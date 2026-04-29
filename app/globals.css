@@ -1,27 +1,37 @@
 @import "tailwindcss";
 
 @theme inline {
-  --color-paper: #FAFAF8;
-  --color-ink: #1A1A1A;
-  --color-dim: #6B6B6B;
-  --color-accent: #C0622C;
-  --color-line: #E2E0DC;
+  --color-bg:           #f0ede8;
+  --color-bg-card:      #e8e4de;
+  --color-ink:          #1a1815;
+  --color-ink-mid:      #4d4840;
+  --color-ink-faint:    #9c9186;
+  --color-accent:       #2d6a4f;
+  --color-accent-lt:    #40916c;
+  --color-accent-glow:  rgba(45, 106, 79, 0.10);
+  --color-rule:         rgba(0, 0, 0, 0.09);
 
-  --font-sans: var(--font-inter);
-  --font-display: var(--font-lora);
+  --font-sans:    var(--font-dm-sans);
+  --font-display: var(--font-bricolage);
+
+  /* Aliases so untouched pages keep working */
+  --color-paper: #f0ede8;
+  --color-dim:   #9c9186;
+  --color-line:  rgba(0, 0, 0, 0.09);
 }
 
 body {
-  background: var(--color-paper);
+  background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans), system-ui, sans-serif;
+  font-weight: 300;
   -webkit-font-smoothing: antialiased;
 }
 
 h1,
 h2,
 h3 {
-  font-family: var(--font-display), Georgia, serif;
+  font-family: var(--font-display), system-ui, sans-serif;
 }
 
 a {
@@ -80,14 +90,14 @@ a {
 .prose blockquote {
   border-left: 3px solid var(--color-accent);
   padding-left: 1rem;
-  color: var(--color-dim);
+  color: var(--color-ink-faint);
   font-style: italic;
   margin: 1.5rem 0;
 }
 
 .prose code {
   font-size: 0.875em;
-  background: var(--color-line);
+  background: var(--color-bg-card);
   padding: 0.1em 0.35em;
   border-radius: 3px;
 }

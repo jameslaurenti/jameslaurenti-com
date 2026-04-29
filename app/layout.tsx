@@ -1,18 +1,22 @@
 import type { Metadata } from "next";
-import { Inter, Lora } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
-const inter = Inter({
-  variable: "--font-inter",
+const bricolage = Bricolage_Grotesque({
+  variable: "--font-bricolage",
   subsets: ["latin"],
+  axes: ["opsz"],
   display: "swap",
 });
 
-const lora = Lora({
-  variable: "--font-lora",
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
+  weight: ["300", "400"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
@@ -33,8 +37,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${lora.variable}`}>
-      <body className="min-h-screen flex flex-col bg-paper text-ink">
+    <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
+      <body className="min-h-screen flex flex-col bg-bg text-ink">
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-S2MBZ4HH37"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-S2MBZ4HH37');
+          `}
+        </Script>
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />

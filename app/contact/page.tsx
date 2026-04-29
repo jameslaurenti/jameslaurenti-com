@@ -19,16 +19,6 @@ export default function Contact() {
 
       <ContactForm />
 
-      <div className="mt-14 pt-8 border-t border-line">
-        <a
-          href="https://linkedin.com/in/james-laurenti"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-dim hover:text-accent transition-colors"
-        >
-          LinkedIn ↗
-        </a>
-      </div>
     </div>
   );
 }
