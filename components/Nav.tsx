@@ -21,7 +21,7 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-50 h-14 border-b border-rule bg-bg">
-      <div className="h-full px-6 grid grid-cols-3 items-center">
+      <div className="h-full px-6 flex items-center justify-between gap-4">
 
         {/* Left: logo mark + name */}
         <Link href="/" className="flex items-center gap-2.5 group w-fit">
@@ -37,7 +37,7 @@ export default function Nav() {
         </Link>
 
         {/* Center: nav links */}
-        <nav className="hidden sm:flex items-center justify-center h-full gap-1">
+        <nav className="hidden sm:flex items-center justify-center h-full gap-1 flex-1">
           {links.map(({ href, label }) => (
             <div key={href} className="relative h-full flex items-center">
               <Link

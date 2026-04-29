@@ -13,8 +13,7 @@ export default function Contact() {
         Contact
       </h1>
       <p className="text-dim mb-12 leading-relaxed">
-        Send me a note. I read everything and try to respond to things that are
-        worth responding to.
+        Send me a note. I read all of it.
       </p>
 
       <ContactForm />
