@@ -13,16 +13,16 @@ const currentlyInto = [
 
 const aboutCards = [
   {
-    tag: "Work",
-    title: "Finding signal in messy systems",
-    body: "From compliance infrastructure for 8,500+ alcohol merchants to retention frameworks for Grubhub's highest-value diners — the work is always about making complicated situations legible enough to act on.",
-    href: "/work",
-    linkLabel: "Explore the work",
+    tag: "Product",
+    title: "I came to product through the stockroom.",
+    body: "Principal PM at Grubhub, in Care. Seven years there across white-label ordering, alcohol and grocery launch, and now the parts that are hardest to measure: retention, trust, the moment someone decides to stay or go.",
+    href: "/about",
+    linkLabel: "More about me",
   },
   {
     tag: "Before tech",
     title: "Wine, Latin, Greek, and a family liquor store",
-    body: "Certified Specialist of Wine. Studied Classics at BU, graduated summa cum laude. Fond of Ovid, Catullus, the Odyssey — stories that take resilience seriously and don't pretend the journey is clean.",
+    body: "Certified Specialist of Wine. Studied Classics at BU, graduated summa cum laude. Fond of Ovid, Catullus, the Odyssey. Stories that take resilience seriously and don't pretend the journey is clean.",
     href: "/about",
     linkLabel: "More about me",
   },
@@ -82,11 +82,11 @@ export default function Home() {
           className="text-ink-mid"
           style={{ fontSize: "1.02rem", lineHeight: 1.78, maxWidth: "54ch" }}
         >
-          Principal PM at Grubhub. I specialize in the parts that resist easy
-          measurement — retention, care tooling, compliance infrastructure, the
-          moments where a product either earns someone's trust or quietly loses
-          it. Before tech: wine consulting, a liquor store family, a Classics
-          degree, and a lot of time with books that asked impossible questions.
+          Principal PM at Grubhub. The work is in the parts that resist easy
+          measurement: retention, care tooling, the decision points where someone
+          either stays or quietly goes. Before tech: wine consulting, a liquor
+          store family, a Classics degree, and a lot of time with books that
+          asked impossible questions.
         </p>
       </section>
 
