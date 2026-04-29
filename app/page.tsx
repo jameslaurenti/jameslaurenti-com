@@ -14,7 +14,7 @@ const currentlyInto = [
 const aboutCards = [
   {
     tag: "Product",
-    title: "I came to product through the stockroom.",
+    title: "We know where we want to go. I figure out why we're not getting there.",
     body: "Principal PM at Grubhub, in Care. Seven years there across white-label ordering, alcohol and grocery launch, and now the parts that are hardest to measure: retention, trust, the moment someone decides to stay or go.",
     href: "/about",
     linkLabel: "More about me",

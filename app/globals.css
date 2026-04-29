@@ -5,7 +5,7 @@
   --color-bg-card:      #e8e4de;
   --color-ink:          #1a1815;
   --color-ink-mid:      #4d4840;
-  --color-ink-faint:    #9c9186;
+  --color-ink-faint:    #6b6055;
   --color-accent:       #2d6a4f;
   --color-accent-lt:    #40916c;
   --color-accent-glow:  rgba(45, 106, 79, 0.10);
@@ -16,7 +16,7 @@
 
   /* Aliases so untouched pages keep working */
   --color-paper: #f0ede8;
-  --color-dim:   #9c9186;
+  --color-dim:   #6b6055;
   --color-line:  rgba(0, 0, 0, 0.09);
 }
 
@@ -24,7 +24,7 @@ body {
   background: var(--color-bg);
   color: var(--color-ink);
   font-family: var(--font-sans), system-ui, sans-serif;
-  font-weight: 300;
+  font-weight: 400;
   -webkit-font-smoothing: antialiased;
 }
 

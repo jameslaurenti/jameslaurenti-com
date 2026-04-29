@@ -21,7 +21,7 @@ export default function MakingThings() {
       <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
         Making Things
       </h1>
-      <p className="text-dim mb-14 leading-relaxed">
+      <p className="text-ink-mid mb-14 leading-relaxed">
         Writing, songs, experiments. Things I've made — not a formal blog.
       </p>
 
@@ -51,7 +51,7 @@ export default function MakingThings() {
                     {isExternal && " ↗"}
                   </span>
                   {post.description && (
-                    <p className="text-sm text-dim mt-1 group-hover:text-accent/70 transition-colors">
+                    <p className="text-sm text-ink-mid mt-1 group-hover:text-accent/70 transition-colors">
                       {post.description}
                     </p>
                   )}

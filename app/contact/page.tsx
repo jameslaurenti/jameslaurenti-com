@@ -12,7 +12,7 @@ export default function Contact() {
       <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
         Contact
       </h1>
-      <p className="text-dim mb-12 leading-relaxed">
+      <p className="text-ink-mid mb-12 leading-relaxed">
         Send me a note. I read all of it.
       </p>
 

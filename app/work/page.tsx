@@ -30,7 +30,7 @@ export default function Work() {
       <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
         Work
       </h1>
-      <p className="text-dim mb-14 leading-relaxed">
+      <p className="text-ink-mid mb-14 leading-relaxed">
         Things I've built when a problem wouldn't leave me alone.
       </p>
 
@@ -48,7 +48,7 @@ export default function Work() {
               </h2>
             </a>
             <p className="mt-3 text-base leading-relaxed">{project.description}</p>
-            <p className="mt-4 text-sm text-dim leading-relaxed">{project.note}</p>
+            <p className="mt-4 text-sm text-ink-mid leading-relaxed">{project.note}</p>
             {project.disclaimer && (
               <p className="mt-4 text-xs text-dim italic">{project.disclaimer}</p>
             )}
