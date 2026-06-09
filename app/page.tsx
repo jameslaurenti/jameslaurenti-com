@@ -11,27 +11,16 @@ const currentlyInto = [
   { label: "Skeptical of", value: "FOMO merchants" },
 ];
 
-const aboutCards = [
+const whatIMake = [
   {
-    tag: "Product",
-    title: "We know where we want to go. I figure out why we're not getting there.",
-    body: "Principal PM at Grubhub, in Care. Seven years there across white-label ordering, alcohol and grocery launch, and now the parts that are hardest to measure: retention, trust, the moment someone decides to stay or go.",
-    href: "/about",
-    linkLabel: "More about me",
+    mode: "How things work",
+    body: "Tools and writing that take something tangled, a city budget, a system, a market, and make it clear enough to act on.",
+    href: "/work",
   },
   {
-    tag: "Before tech",
-    title: "Wine, Latin, Greek, and a family liquor store",
-    body: "Certified Specialist of Wine. Studied Classics at BU, graduated summa cum laude. Fond of Ovid, Catullus, the Odyssey. Stories that take resilience seriously and don't pretend the journey is clean.",
-    href: "/about",
-    linkLabel: "More about me",
-  },
-  {
-    tag: "What drives me",
-    title: "The big questions, honestly held",
-    body: "Consciousness of who I'm helping and hurting with every decision. Curiosity as a practice, not a pose. Never shying from what's hard to answer. Raising kids who exceed me.",
-    href: "/about",
-    linkLabel: "More about me",
+    mode: "What things mean",
+    body: "Essays and experiments about memory, identity, and what's worth paying attention to.",
+    href: "/work",
   },
 ];
 
@@ -124,45 +113,56 @@ export default function Home() {
         </div>
       </div>
 
-      {/* About section */}
-      <div className="flex items-center gap-4 px-10 pt-10 mb-10">
+      {/* Compressed bio line */}
+      <div className="px-10 pt-10 mb-12">
+        <p
+          className="text-ink-mid"
+          style={{ fontSize: "1.02rem", lineHeight: 1.78, maxWidth: "56ch" }}
+        >
+          Principal PM at Grubhub. Before tech: wine, Classics, and a family
+          liquor store.{" "}
+          <Link
+            href="/about"
+            className="text-accent hover:underline underline-offset-4"
+          >
+            More about me →
+          </Link>
+        </p>
+      </div>
+
+      {/* What I make section */}
+      <div className="flex items-center gap-4 px-10 mb-10">
         <span
           className="text-ink-faint uppercase shrink-0"
           style={{ fontSize: "0.67rem", letterSpacing: "0.18em" }}
         >
-          About
+          What I make
         </span>
         <div className="flex-1 h-px bg-rule" />
       </div>
 
       <div className="px-10 mb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-rule">
-          {aboutCards.map((card) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-rule">
+          {whatIMake.map((item) => (
             <Link
-              key={card.title}
-              href={card.href}
+              key={item.mode}
+              href={item.href}
               className="bg-bg p-8 hover:bg-bg-card transition-colors flex flex-col"
             >
-              <div
-                className="text-accent uppercase mb-3"
-                style={{ fontSize: "0.67rem", letterSpacing: "0.15em" }}
-              >
-                {card.tag}
-              </div>
               <h3
                 className="font-display font-medium text-ink mb-3"
-                style={{ fontSize: "1.15rem" }}
+                style={{ fontSize: "1.3rem" }}
               >
-                {card.title}
+                {item.mode}
               </h3>
               <p
                 className="text-ink-mid leading-relaxed mb-4 flex-1"
-                style={{ fontSize: "0.88rem" }}
+                style={{ fontSize: "0.92rem" }}
               >
-                {card.body}
+                {item.body}
               </p>
               <span className="text-accent" style={{ fontSize: "0.78rem" }}>
-                {card.linkLabel} →
+                Explore →
               </span>
             </Link>
           ))}

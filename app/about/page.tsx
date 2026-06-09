@@ -23,6 +23,13 @@ export default function About() {
           came to product through the stockroom, not a business school.
         </p>
         <p>
+          Two kinds of curiosity drive most of what I make: figuring out how
+          things work — systems, budgets, markets, made clear enough to act on —
+          and chasing what things mean — memory, identity, what&apos;s worth
+          paying attention to. Outward and inward, the same attention pointed two
+          ways.
+        </p>
+        <p>
           I studied Classics at Boston University: Latin, Greek, Ovid, Homer,
           Catullus. It's not incidental. People who study dead languages tend to
           be comfortable sitting with things that don't resolve cleanly, and that
