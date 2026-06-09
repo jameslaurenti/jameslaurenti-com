@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>How Beverly's Budget Actually Works</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe4;--paper-2:#efe7d6;--ink:#1c1a17;--ink-soft:#56504a;
+    --line:#d8cdb8;--rev:#1f5e6b;--cost:#b5462f;--cost-soft:#e8c4b8;--gold:#a9802f;--max:1080px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:18px;line-height:1.68;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:700;color:var(--cost)}
+  h1{font-family:"Fraunces";font-weight:900;font-size:clamp(35px,5.4vw,66px);line-height:1.05;letter-spacing:-.02em;margin:.2em 0 .25em}
+  h2{font-family:"Fraunces";font-weight:600;font-size:clamp(25px,3.5vw,39px);line-height:1.12;letter-spacing:-.01em;margin:0 0 .4em}
+  h3{font-family:"Fraunces";font-weight:600;font-size:22px;margin:0 0 .2em}
+  p{margin:0 0 1.1em;max-width:63ch}
+  em{font-style:italic}
+  .lede{font-size:clamp(20px,2.3vw,25px);line-height:1.48;max-width:60ch;font-weight:400}
+  .lede b{font-weight:700}
+  header.hero{padding:13vh 0 7vh;border-bottom:1px solid var(--line)}
+  .hero-meta{font-size:13px;color:var(--ink-soft);margin-top:2.4em;letter-spacing:.02em}
+  section{padding:8vh 0;border-bottom:1px solid var(--line)}
+  .num{font-family:"Fraunces";font-weight:600;font-style:italic;color:var(--gold);font-size:clamp(16px,1.7vw,21px);letter-spacing:.04em;display:block;margin-bottom:.7em}
+  /* translation key */
+  .key{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:24px 26px;margin:30px 0 0;box-shadow:0 18px 40px -32px rgba(0,0,0,.4)}
+  .key h3{font-size:18px;margin-bottom:2px}
+  .key .sub{font-size:14.5px;color:var(--ink-soft);margin:0 0 14px}
+  .key ul{list-style:none;padding:0;margin:0}
+  .key li{display:grid;grid-template-columns:210px 1fr;gap:6px 20px;padding:11px 0;border-top:1px solid var(--line);align-items:baseline}
+  .key li:first-child{border-top:none}
+  .key .h{font-family:"Fraunces";font-weight:600;color:var(--rev);font-size:16px}
+  .key .m{font-size:15px;color:var(--ink)}
+  .key .m .term{color:var(--ink-soft);font-size:13.5px}
+  @media(max-width:640px){.key li{grid-template-columns:1fr;gap:2px}}
+  /* recurring kitchen-table box */
+  .kt{background:#eef2f0;border:1px solid #cfdcd8;border-left:5px solid var(--rev);border-radius:0 7px 7px 0;padding:16px 20px;margin:22px 0;max-width:64ch}
+  .kt .lab{display:block;font-size:11px;font-weight:700;letter-spacing:.13em;text-transform:uppercase;color:var(--rev);margin-bottom:6px}
+  .kt p{margin:0;font-size:16px;line-height:1.6;max-width:none}
+  /* expandable detail */
+  details.more{margin:20px 0;border:1px solid var(--line);border-radius:6px;background:var(--paper-2);max-width:64ch}
+  details.more summary{cursor:pointer;padding:12px 16px;font-weight:700;font-size:14.5px;color:var(--rev);list-style:none}
+  details.more summary::-webkit-details-marker{display:none}
+  details.more summary::before{content:"+";font-weight:800;margin-right:8px}
+  details.more[open] summary::before{content:"\2013"}
+  details.more .body{padding:2px 16px 15px;font-size:14.5px;color:var(--ink-soft);line-height:1.6}
+  details.more .body p{max-width:none;margin:0 0 .7em}
+  details.more .body p:last-child{margin-bottom:0}
+  details.more .body a{color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);font-weight:600}
+  .term{color:var(--ink-soft)}
+  .chart-card{background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:26px 24px 18px;margin:30px 0;box-shadow:0 1px 0 #fff inset,0 18px 40px -30px rgba(0,0,0,.4)}
+  svg{display:block;width:100%;height:auto;overflow:visible}
+  .legend{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;font-weight:500;margin-top:6px}
+  .legend span{display:inline-flex;align-items:center;gap:8px}
+  .swatch{width:16px;height:10px;border-radius:2px;display:inline-block}
+  .cap{font-size:14.5px;color:var(--ink-soft);max-width:64ch;margin-top:14px}
+  .cap b{color:var(--ink)}
+  .chart-src{font-size:12.5px;font-style:italic;color:var(--ink-soft);max-width:64ch;margin-top:12px;padding-top:10px;border-top:1px solid var(--line)}
+  .chart-src a{color:var(--gold);font-style:normal;font-weight:600;text-decoration:none;border-bottom:1px dotted var(--gold)}
+  .chart-src a:hover{color:var(--cost)}
+  .axlab{font-family:"Public Sans";font-size:12px;fill:var(--ink-soft)}
+  .ptlab{font-family:"Public Sans";font-size:12.5px;font-weight:700;paint-order:stroke;stroke:var(--paper-2);stroke-width:4px;stroke-linejoin:round}
+  .axis{stroke:var(--line);stroke-width:1}
+  a.src{display:inline-block;font-size:12.5px;font-weight:800;color:var(--gold);background:rgba(169,128,47,0.18);border:1px solid rgba(169,128,47,0.75);border-radius:4px;padding:0 6px;line-height:1.55;text-decoration:none;margin-left:5px;vertical-align:baseline}
+  a.src:hover{background:var(--cost);color:#fff;border-color:var(--cost)}
+  a.inlink{color:var(--rev);text-decoration:none;border-bottom:1px solid var(--cost-soft)}
+  a.inlink:hover{border-bottom-color:var(--rev)}
+  .plugs{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:14px;margin:28px 0 10px}
+  .plug{position:relative;display:flex;flex-direction:column;background:var(--paper-2);border:1px solid var(--line);border-radius:6px;padding:16px 14px}
+  .plug .amt{font-family:"Fraunces";font-weight:900;font-size:26px;line-height:1}
+  .plug .what{font-size:13.5px;color:var(--ink-soft);margin-top:6px;flex:1}
+  .plug .stamp{position:absolute;top:10px;right:10px;font-size:9.5px;font-weight:700;letter-spacing:.12em;color:var(--cost);border:1.5px solid var(--cost);border-radius:3px;padding:2px 5px;transform:rotate(7deg);opacity:.8}
+  .plug a.psrc{font-size:11px;font-weight:700;color:var(--gold);text-decoration:none;margin-top:12px;border-bottom:1px dotted var(--gold);align-self:flex-start}
+  .choices{display:flex;flex-direction:column;gap:18px;margin-top:26px}
+  .choice{display:grid;grid-template-columns:1.05fr 1fr 1fr;grid-template-areas:"lever chose alt" "lever trade trade";background:var(--paper-2);border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:7px;overflow:hidden;box-shadow:0 14px 30px -24px rgba(0,0,0,.55)}
+  .choice .lever{grid-area:lever;background:#e7dcc6;border-right:1px solid var(--line);padding:18px;font-family:"Fraunces";font-weight:600;font-size:18px}
+  .choice .lever .q{font-size:14px;color:var(--ink-soft);font-family:"Public Sans";font-weight:400;margin:6px 0 0}
+  .choice .c-chose{grid-area:chose;padding:18px;border-right:1px solid var(--line)}
+  .choice .c-alt{grid-area:alt;padding:18px}
+  .choice .c-trade{grid-area:trade;padding:15px 18px 17px;border-top:1px dashed var(--cost);background:rgba(181,70,47,0.055)}
+  .choice p{font-size:14.5px;line-height:1.55;margin:0}
+  .tag{display:block;font-size:10.5px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:7px}
+  .tag.chose{color:var(--rev)}.tag.alt{color:var(--gold)}.tag.trade{color:var(--cost)}
+  .c-trade .tw{margin:0 0 9px}
+  .c-trade .tw:last-child{margin-bottom:0}
+  .twl{display:inline-block;font-size:9.5px;font-weight:700;letter-spacing:.09em;text-transform:uppercase;padding:1px 6px;border-radius:3px;margin-right:6px}
+  .twl.for{background:rgba(31,94,107,.15);color:var(--rev)}
+  .twl.cost{background:rgba(181,70,47,.15);color:var(--cost)}
+  @media(max-width:760px){
+    .choice{grid-template-columns:1fr;grid-template-areas:"lever" "chose" "alt" "trade"}
+    .choice .lever,.choice .c-chose{border-right:none;border-bottom:1px solid var(--line)}
+    .choice .c-alt{border-bottom:1px solid var(--line)}
+  }
+  .takeaway{margin-top:34px;padding:22px 26px;border-left:5px solid var(--gold);background:var(--paper-2);border-radius:0 6px 6px 0;font-family:"Fraunces";font-weight:500;font-size:clamp(19px,2.1vw,23px);line-height:1.42;color:var(--ink)}
+  .takeaway b{font-weight:900}
+  .barchart{margin:6px 0 2px}
+  .barrow{display:grid;grid-template-columns:96px 1fr 50px;align-items:center;gap:10px;margin:9px 0}
+  .barrow .bl{font-size:13px;text-align:right;color:var(--ink);line-height:1.15}
+  .barrow .btrack{background:rgba(0,0,0,0.05);border-radius:3px;height:24px;overflow:hidden}
+  .barrow .bfill{height:100%;border-radius:3px;background:var(--rev);opacity:.34}
+  .barrow .bv{font-size:12.5px;font-weight:700;color:var(--ink-soft)}
+  .barrow.me .bl{font-weight:700;color:var(--cost)}
+  .barrow.me .bfill{background:var(--cost);opacity:1}
+  .barrow.me .bv{color:var(--cost)}
+  .barchart.def .barrow{grid-template-columns:56px 1fr 60px}
+  .barchart.def .bfill{background:var(--cost)}
+  .barchart.def .bv{color:var(--cost)}
+  .bnote{font-size:12.5px;color:var(--ink-soft);font-style:italic;margin:12px 0 0;padding-left:106px}
+  @media(max-width:520px){.barrow{grid-template-columns:78px 1fr 44px;gap:8px}.barrow .bl{font-size:11.5px}.barchart.def .barrow{grid-template-columns:46px 1fr 54px}.bnote{padding-left:86px}}
+  .callout{background:var(--ink);color:var(--paper);border-radius:6px;padding:32px 30px;margin:30px 0}
+  .callout p{color:#e8e1d2;max-width:64ch;margin:0}
+  .callout p+p{margin-top:1em}
+  .callout .big{font-family:"Fraunces";font-weight:900;font-size:clamp(25px,3.6vw,38px);line-height:1.1;margin:.1em 0 .5em;color:#fff}
+  .callout a.inlink{color:#e7c9a0;border-bottom-color:#7a5b34}
+  .qlist{list-style:none;padding:0;margin:18px 0 22px;max-width:66ch}
+  .qlist li{padding:13px 0;border-top:1px solid rgba(255,255,255,0.15);color:#ece4d3;font-size:16px;line-height:1.5}
+  .qlist li:first-child{border-top:none}
+  .qlist b{color:#fff;font-weight:700;font-family:"Fraunces";font-size:17px}
+  .appendix{padding:7vh 0 8vh;border-top:3px double var(--line);border-bottom:1px solid var(--line)}
+  .appendix .num{color:var(--ink-soft)}
+  .venues{list-style:none;padding:0;margin:16px 0 4px;max-width:70ch}
+  .venues li{padding:12px 0;border-top:1px solid var(--line);line-height:1.5;font-size:15.5px}
+  .venues li:first-child{border-top:none}
+  .venues b{font-family:"Fraunces";font-weight:600;color:var(--ink)}
+  .venues .vd{color:var(--ink-soft)}
+  .venues a{color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);font-weight:600}
+  .authornote{margin-top:34px;padding:24px 26px;border:1px solid var(--line);border-left:5px solid var(--rev);background:var(--paper-2);border-radius:0 6px 6px 0}
+  .authornote p{margin:0;font-size:16px;color:var(--ink);max-width:64ch}
+  .authornote .sig{margin-top:14px;font-family:"Fraunces";font-style:italic;color:var(--ink-soft);font-size:14.5px}
+  .backlink{display:inline-block;margin-top:20px;font-size:13px;font-weight:600;color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold)}
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in{opacity:1;transform:none}
+  footer{padding:6vh 0 9vh;color:var(--ink-soft);font-size:13.5px}
+  footer h3{color:var(--ink);font-size:18px;margin-bottom:.4em}
+  footer p{max-width:72ch}
+  .refs{list-style:none;padding:0;margin:14px 0 0;max-width:74ch}
+  .refs li{padding:10px 0;border-bottom:1px solid var(--line);line-height:1.5}
+  .refs li:last-child{border-bottom:none}
+  .refs b{color:var(--ink);font-weight:700}
+  .refs .desc{color:var(--ink-soft)}
+  .refs a{color:var(--gold);text-decoration:none;border-bottom:1px dotted var(--gold);font-weight:600}
+  /* site back-bar */
+  .backbar{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--line)}
+  .backbar-inner{max-width:var(--max);margin:0 auto;padding:10px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .backbar-home{font-family:"Public Sans",system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--rev);text-decoration:none;letter-spacing:.01em}
+  .backbar-home:hover{color:var(--cost)}
+  .backbar-name{font-family:"Public Sans",system-ui,sans-serif;font-size:13px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+
+<div class="backbar">
+  <div class="backbar-inner">
+    <a class="backbar-home" href="/work/beverly">&larr; Beverly</a>
+    <span class="backbar-name">James Laurenti</span>
+  </div>
+</div>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="kicker">Beverly, Massachusetts &middot; How the money works</span>
+    <h1>A state law caps how fast Beverly can raise money. Its costs rise faster.</h1>
+    <p class="lede">Every fight over City Hall, trash fees, or teaching jobs sits on top of the same problem. The clearest way to see it is to picture the whole city as one household, so that's the thread running through this page, in a short box at each step. <b>Real Beverly numbers, plain language, no finance background needed.</b></p>
+    <p class="hero-meta">A nonpartisan explainer. Figures from the city's own budget documents, with sources at the bottom and the details one tap away.</p>
+    <div class="key">
+      <h3>Picture the city as a household</h3>
+      <p class="sub">Meet the cast once, and the rest of the page reads easily.</p>
+      <ul>
+        <li><span class="h">The capped raise</span><span class="m">Property taxes, the city's main income, can rise only about 2.5% a year. <span class="term">A state law called Proposition 2&frac12;.</span></span></li>
+        <li><span class="h">The bills that outrun it</span><span class="m">Salaries, health insurance, retirement, and special education, all climbing faster than the raise.</span></li>
+        <li><span class="h">The mortgage</span><span class="m">Borrowing for big buildings, paid back slowly over decades. <span class="term">Officials call these capital projects.</span></span></li>
+        <li><span class="h">The rainy-day jar</span><span class="m">The city's savings cushion. <span class="term">Officials call it reserves.</span></span></li>
+        <li><span class="h">The one-time yard sale</span><span class="m">Money you can only spend once, gone after a single year.</span></li>
+        <li><span class="h">The vote at the table</span><span class="m">Asking residents to approve higher taxes for good. <span class="term">Officials call it an override.</span></span></li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<!-- 1 -->
+<section>
+  <div class="wrap reveal">
+    <span class="num">01 &middot; The scissors</span>
+    <h2>The city can't raise money as fast as its bills grow.</h2>
+    <p>Most of the city's income comes from property taxes, and the cap lets that income grow only about 2.5% a year, plus a little from new construction. The city's costs don't stop at 2.5%. Salaries, health insurance, retirement, and special education climb faster, roughly 4% to 9% a year. So the bills pull ahead of the income, a little more every year.</p>
+    <div class="kt">
+      <span class="lab">At the kitchen table</span>
+      <p>Your boss can give you a 2.5% raise. But rent, groceries, and insurance went up 6%. You're not overspending. The math just stops adding up, and it slips a little further each year.</p>
+    </div>
+    <p>Picture two lines. The top one is what the city has to spend. The bottom one is what it's allowed to collect. They start together and pull apart, like a pair of scissors opening. The space between them is the shortfall, and it grows on its own before anyone makes a single decision.</p>
+    <div class="chart-card">
+      <svg viewBox="0 0 760 400" role="img" aria-label="Spending rises faster than income, 2025 to 2029">
+        <line class="axis" x1="95" y1="330" x2="720" y2="330"/>
+        <line class="axis" x1="95" y1="50" x2="95" y2="330"/>
+        <text class="axlab" x="88" y="335" text-anchor="end" font-size="17">$162M</text>
+        <text class="axlab" x="88" y="195" text-anchor="end" font-size="17">$181M</text>
+        <text class="axlab" x="88" y="55" text-anchor="end" font-size="17">$200M</text>
+        <line class="axis" x1="95" y1="190" x2="720" y2="190" stroke-dasharray="2 6" opacity=".5"/>
+        <g font-size="20" font-weight="700" fill="var(--ink)" text-anchor="middle" font-family="Public Sans">
+          <text x="95" y="358">2025</text>
+          <text x="251.25" y="358">2026</text>
+          <text x="407.5" y="358">2027</text>
+          <text x="563.75" y="358">2028</text>
+          <text x="720" y="358">2029</text>
+        </g>
+        <path d="M95,300.9 L251.25,224.4 L407.5,170.2 L563.75,119.9 L720,60 L720,135.1 L563.75,175.8 L407.5,216.7 L251.25,253.4 L95,300.9 Z" fill="var(--cost)" opacity="0.14"/>
+        <path d="M95,300.9 L251.25,224.4 L407.5,170.2 L563.75,119.9 L720,60" fill="none" stroke="var(--cost)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+        <path d="M95,300.9 L251.25,253.4 L407.5,216.7 L563.75,175.8 L720,135.1" fill="none" stroke="var(--rev)" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+        <circle cx="720" cy="60" r="5" fill="var(--cost)"/>
+        <circle cx="720" cy="135.1" r="5" fill="var(--rev)"/>
+        <text class="ptlab" x="710" y="50" text-anchor="end" font-size="20" fill="var(--cost)">What it spends</text>
+        <text class="ptlab" x="710" y="153" text-anchor="end" font-size="20" fill="var(--rev)">What it collects</text>
+      </svg>
+      <div class="legend">
+        <span><i class="swatch" style="background:var(--rev)"></i>Money coming in</span>
+        <span><i class="swatch" style="background:var(--cost)"></i>Money going out</span>
+        <span><i class="swatch" style="background:var(--cost-soft)"></i>The shortfall</span>
+      </div>
+      <p class="cap">The exact dollar figures matter less than the shape: the spending line pulls away from the income line, and the gap widens every year. Both lines start equal in 2025 because the city is required by law to pass a balanced budget.</p>
+      <p class="chart-src">Source: City of Beverly, <a href="https://www.beverlyma.gov/Archive/ViewFile/Item/68" target="_blank" rel="noopener">Financial Forecast 2025&ndash;29</a> (December 2024).</p>
+    </div>
+    <details class="more">
+      <summary>Want the specifics on the costs?</summary>
+      <div class="body">
+        <p>The cap (Proposition 2&frac12;) lets the property-tax take grow about 2.5% a year, plus revenue from new construction. On the cost side, the city's forecasts show the fastest-growing items are health insurance, pension contributions, salaries set by union contracts, special education, and the assessment Beverly pays to the regional vocational high school. Several of those routinely rise faster than the 2.5% cap, which is what opens the gap.</p>
+        <p>The chart combines the city side and the school side of the budget. By 2029, spending is projected near $198.6M against about $188.4M coming in, a gap of roughly $10M.</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- 2 -->
+<section>
+  <div class="wrap reveal">
+    <span class="num">02 &middot; The gap was no surprise</span>
+    <h2>The city saw this coming, and it keeps getting worse.</h2>
+    <p>This was not sprung on anyone. The city's forecasters flagged this year's shortfall back in 2022, and again in 2024. Both times they were close. And it isn't a one-time dip: left alone, the yearly gap grows from about $3.9 million to more than $10 million within four years.</p>
+    <div class="kt">
+      <span class="lab">At the kitchen table</span>
+      <p>You ran the numbers two years ago and saw this tight year coming. You were right. And next year looks tighter, and the one after that tighter still, unless something changes.</p>
+    </div>
+    <div class="chart-card">
+      <div class="barchart def" role="img" aria-label="The yearly shortfall grows from 2026 to 2029">
+        <div class="barrow"><div class="bl">2026</div><div class="btrack"><div class="bfill" style="width:35.7%;opacity:.5"></div></div><div class="bv">$3.9M</div></div>
+        <div class="barrow"><div class="bl">2027</div><div class="btrack"><div class="bfill" style="width:57.3%;opacity:.68"></div></div><div class="bv">$6.3M</div></div>
+        <div class="barrow"><div class="bl">2028</div><div class="btrack"><div class="bfill" style="width:68.9%;opacity:.82"></div></div><div class="bv">$7.6M</div></div>
+        <div class="barrow"><div class="bl">2029</div><div class="btrack"><div class="bfill" style="width:92.7%;opacity:1"></div></div><div class="bv">$10.2M</div></div>
+      </div>
+      <p class="cap"><b>How big the yearly shortfall would get if the city did nothing.</b> It can't actually do nothing, since it has to balance the budget by law, so read this as a warning light, not a prediction. Each year it has to close that year's gap somehow.</p>
+      <p class="chart-src">Source: City of Beverly, <a href="https://www.beverlyma.gov/Archive/ViewFile/Item/68" target="_blank" rel="noopener">Financial Forecast 2025&ndash;29</a> (December 2024).</p>
+    </div>
+    <details class="more">
+      <summary>How do we know it was foreseen?</summary>
+      <div class="body">
+        <p>The city's Financial Forecast Committee projected the 2026 shortfall at about $3.1 million in its December 2022 report, and about $3.9 million in its December 2024 report. The 2024 report also projected the gap widening in the years after, to roughly $6.3M, $7.6M, and $10.2M, if nothing changed. The most recent report describes this stretch as more severe than anything the city has faced in decades, because the one-time fixes it used before are now gone (see the next section).</p>
+      </div>
+    </details>
+  </div>
+</section>
+
+<!-- 3 -->
+<section>
+  <div class="wrap reveal">
+    <span class="num">03 &middot; The one-time fixes are used up</span>
+    <h2>For years, the city patched the gap with money it could only spend once.</h2>
+    <p>Beverly has run shortfalls on paper for a long time, and it kept closing them with one-time money. A big slug of federal pandemic aid. Road repairs shifted out of the day-to-day budget. Unused tax room. Equipment it chose not to buy. Each worked exactly once. Now they're spent, and what's left are the hard tools: <b>raise fees, or cut services.</b></p>
+    <div class="kt">
+      <span class="lab">At the kitchen table</span>
+      <p>One year you sold the old car; another you skipped vacation and raided the holiday jar. Those got you through, but you can't sell the same car twice. Eventually you're down to the hard choices: a side job, or cutting things you'd rather keep.</p>
+    </div>
+    <div class="plugs">
+      <div class="plug"><span class="stamp">GONE</span><div class="amt">$12.6M</div><div class="what">Federal pandemic aid, spent and won't repeat</div><a class="psrc" href="https://patch.com/massachusetts/beverly/beverly-wants-input-use-12-6-million-rescue-plan-funds" target="_blank" rel="noopener">source &#8599;</a></div>
+      <div class="plug"><span class="stamp">GONE</span><div class="amt">$2.7M</div><div class="what">Road repairs moved out of the day-to-day budget</div><a class="psrc" href="https://beverlyma.gov/DocumentCenter/View/6958/Financial-Forecast-Report-FY2026-2030#page=9" target="_blank" rel="noopener">source &#8599;</a></div>
+      <div class="plug"><span class="stamp">GONE</span><div class="amt">$1.4M</div><div class="what">Unused tax room, now drawn down</div><a class="psrc" href="https://beverlyma.gov/DocumentCenter/View/6958/Financial-Forecast-Report-FY2026-2030#page=9" target="_blank" rel="noopener">source &#8599;</a></div>
+      <div class="plug"><span class="stamp">GONE</span><div class="amt">$300K</div><div class="what">Equipment purchases the city skipped</div><a class="psrc" href="https://beverlyma.gov/DocumentCenter/View/6958/Financial-Forecast-Report-FY2026-2030#page=9" target="_blank" rel="noopener">source &#8599;</a></div>
+    </div>
+    <p class="cap">The problem was never any single one of these moves. It's that none of them come back the next year. <span class="term">In budget language, these are "one-time" sources, as opposed to steady, recurring money.</span></p>
+  </div>
+</section>
+
+<!-- 4 -->
+<section>
+  <div class="wrap reveal">
+    <span class="num">04 &middot; The choices, and what each one costs</span>
+    <h2>The city can't make the squeeze disappear. It can only decide how to carry it.</h2>
+    <p>The shortfall is mostly outside the city's control. But how it copes is a set of standing choices, and each one helps in one way and costs in another. None is free. Here are the four big ones in plain terms, with the upside and the downside of each. Reasonable neighbors land in different places on all of them.</p>
+    <div class="kt">
+      <span class="lab">At the kitchen table</span>
+      <p>Every money decision a household makes is a trade-off: pay down the debt or take the trip, save more or spend now. There's rarely a free option, only different costs landing on different people. The city's choices work the same way.</p>
+    </div>
+    <div class="choices">
+      <div class="choice">
+        <div class="lever">Guessing next year's income<p class="q">Plan high, or plan low?</p></div>
+        <div class="c-chose"><span class="tag chose">What the city does</span><p>Guesses <b>low</b> on purpose. Money that comes in above the guess becomes savings.</p></div>
+        <div class="c-alt"><span class="tag alt">Another option</span><p>Guess the income <b>honestly</b>, leaving more room to fund services now.</p></div>
+        <div class="c-trade"><span class="tag trade">The trade-off</span>
+          <p class="tw"><span class="twl for">Upside</span>Builds savings and keeps the city's borrowing cheap. It also guards against guessing too high and running out of money partway through the year, which would force cuts mid-year, in the middle of a school year.</p>
+          <p class="tw"><span class="twl cost">Downside</span>It makes the shortfall look bigger on paper every year, and that bigger number is what gets used to justify cuts.</p>
+        </div>
+      </div>
+      <div class="choice">
+        <div class="lever">How much to keep in savings<p class="q">A big rainy-day jar, or a small one?</p></div>
+        <div class="c-chose"><span class="tag chose">What the city does</span><p>Keeps a <b>large</b> cushion, near 19% of its budget, roughly two and a half months of spending.</p></div>
+        <div class="c-alt"><span class="tag alt">Another option</span><p>Hold a smaller cushion, closer to what comparable towns keep, and spend the difference on services.</p></div>
+        <div class="c-trade"><span class="tag trade">The trade-off</span>
+          <p class="tw"><span class="twl for">Upside</span>A big cushion rides out a bad year and keeps borrowing cheap.</p>
+          <p class="tw"><span class="twl cost">Downside</span>Money in the jar isn't paying for services today. And drain it to cover everyday bills, and it's gone, with the same gap waiting next year. <span class="term">(How Beverly's cushion compares to other towns is in the <a class="inlink" href="#reserves-appendix">appendix</a>.)</span></p>
+        </div>
+      </div>
+      <div class="choice">
+        <div class="lever">How to pay for big buildings<p class="q">Borrow, pay cash, or wait?</p></div>
+        <div class="c-chose"><span class="tag chose">What the city does</span><p><b>Borrows</b> for big projects like the City Hall renovation,<a class="src" href="https://patch.com/massachusetts/beverly/beverly-28-million-city-hall-renovation-approved-amid-looming-structural" target="_blank" rel="noopener" title="City Hall project coverage">&#8599;</a> repaid slowly over many years.</p></div>
+        <div class="c-alt"><span class="tag alt">Another option</span><p>Pay cash (which drains the savings jar), or delay the project, though a building left to decay only costs more to fix later.</p></div>
+        <div class="c-trade"><span class="tag trade">The trade-off</span>
+          <p class="tw"><span class="twl for">Upside</span>Spreads the cost over the decades people use the building, instead of draining today's savings.</p>
+          <p class="tw"><span class="twl cost">Downside</span>The city owes the loan payments for years. And the key point: that borrowed money legally can't be turned into salaries. It's a separate pot, like a mortgage you can't spend on groceries.</p>
+        </div>
+      </div>
+      <div class="choice">
+        <div class="lever">How to close the gap<p class="q">Fees, a tax vote, or cuts?</p></div>
+        <div class="c-chose"><span class="tag chose">What the city does</span><p>Raises flat <b>fees</b> like the trash bill and cuts services,<a class="src" href="https://patch.com/massachusetts/beverly/beverly-mayor-outlines-staff-cuts-amid-budget-deficit-modified-trash-fee" target="_blank" rel="noopener" title="Cuts and trash fee coverage">&#8599;</a> to avoid asking voters for higher taxes.</p></div>
+        <div class="c-alt"><span class="tag alt">Another option</span><p>Ask voters to approve a permanent tax increase (an override), or pursue payments from large tax-exempt institutions.</p></div>
+        <div class="c-trade"><span class="tag trade">The trade-off</span>
+          <p class="tw"><span class="twl for">Upside</span>A fee is easier than a town-wide vote and avoids raising everyone's taxes.</p>
+          <p class="tw"><span class="twl cost">Downside</span>A flat fee costs a struggling household the same as a wealthy one, and it doesn't keep up with rising costs, so the gap returns next year. An override could fix it lastingly, but it raises everyone's taxes and the vote can fail.</p>
+        </div>
+      </div>
+    </div>
+    <div class="takeaway"><b>The pattern:</b> on every row, the choice that protects the city's long-term strength also pushes more of the near-term pain onto current services and onto flat fees. That is the real decision in front of the city, and it comes down to values and risk, not arithmetic.</div>
+  </div>
+</section>
+
+<!-- 5 -->
+<section>
+  <div class="wrap reveal">
+    <span class="num">05 &middot; The argument worth having</span>
+    <div class="callout">
+      <p class="big">The pressure is real, it's getting worse, and the easy money is gone.</p>
+      <p>That's why the loudest fight, "they're renovating City Hall while cutting teachers," misses the mark. Those are two separate pots. The <a class="inlink" href="https://patch.com/massachusetts/beverly/beverly-28-million-city-hall-renovation-approved-amid-looming-structural" target="_blank" rel="noopener">building money is borrowed</a> and repaid over decades; by law it can't become <a class="inlink" href="https://patch.com/massachusetts/beverly/beverly-mayor-outlines-staff-cuts-amid-budget-deficit-modified-trash-fee" target="_blank" rel="noopener">next year's salaries</a>, and spending borrowed money on everyday bills would only blow a bigger hole later.</p>
+      <p style="margin-top:1.4em;color:#fff;font-weight:700">The disagreements worth having are these:</p>
+      <ul class="qlist">
+        <li><b>How much risk to carry.</b> Keep a big safety net and cut now, or spend more on services and accept the danger of a mid-year shortfall?</li>
+        <li><b>How much to save, and in what form.</b> Is the rainy-day jar bigger than it needs to be, and should more of it be easy to reach instead of locked away?</li>
+        <li><b>Band-aid or real fix.</b> Keep raising flat fees that don't keep up, or ask voters for a permanent tax change that fixes the gap but costs everyone?</li>
+        <li><b>Spend less, or bring in more.</b> Where can the city honestly cut costs, like health care or sharing services with nearby towns, and should it grow what it collects by welcoming new development?</li>
+        <li><b>Who carries the weight.</b> Renters, homeowners, seniors, families, and big tax-exempt institutions don't feel these choices the same way. Who should?</li>
+      </ul>
+      <p>Those are real, fair disagreements about risk, fairness, and priorities, and they're worth arguing loudly. Blaming each other over two unrelated bills just runs out the clock while the gap keeps widening.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 6 -->
+<section style="border-bottom:none">
+  <div class="wrap reveal">
+    <span class="num">06 &middot; The conversation is already happening</span>
+    <h2>This isn't a lone voice in the dark.</h2>
+    <p>Beverly is a town worth caring about, and this is a real problem. We're already feeling it: a trash bill leaping from $100 toward $300 or more, jobs cut across city departments, even police and fire posts left unfilled. Those costs land on real households right now.</p>
+    <p>But most of the public energy goes to the symptoms, the size of the trash fee and the look of the City Hall project, and to deciding who to blame. The slow squeeze underneath, the one from the first few sections, barely comes up. Some people are digging into the real causes, on the City Council and in letters from residents, but it's scattered, and a few arrive already certain of one fix before the rest of us have the full picture. This page is here to hand everyone the same map.</p>
+    <p style="margin-top:1.2em;font-weight:700">Where it's playing out, if you want to follow it or speak up:</p>
+    <ul class="venues">
+      <li><b>The Beverly Beat.</b> <span class="vd">A local newsletter that covers the budget meeting by meeting, with an active comment section.</span> <a href="https://thebeverlybeat.substack.com" target="_blank" rel="noopener">Visit &#8599;</a></li>
+      <li><b>City Council meetings.</b> <span class="vd">Anyone can speak for a few minutes. They're held at City Hall (191 Cabot St.); the schedule and agendas live in the city's <a href="https://www.beverlyma.gov/AgendaCenter" target="_blank" rel="noopener">online Agenda Center</a>, and you can get email alerts through the city's <a href="https://www.beverlyma.gov/145/Stay-Informed" target="_blank" rel="noopener">Notify Me</a> list. Can't attend? <a href="https://bevcam.org" target="_blank" rel="noopener">BevCam</a> streams and archives the meetings.</span></li>
+      <li><b>Patch (Beverly).</b> <span class="vd">Local news, plus opinion pieces written by residents.</span> <a href="https://patch.com/massachusetts/beverly" target="_blank" rel="noopener">Visit &#8599;</a></li>
+      <li><b>Local Facebook groups.</b> <span class="vd">Where the day-to-day reaction lives, for better and worse.</span></li>
+    </ul>
+    <div class="authornote">
+      <p>A note on why this exists. I didn't make this to push a tax increase, defend a fee, or take anyone's side. I made it because I love this place, the money problem is only going to get harder, and almost no one had laid the whole picture out in plain language. If we're going to argue, and we should, let's spend that energy on the things that actually fix it, not on deciding who to blame for two unrelated bills. Now you've got the map.</p>
+      <p class="sig">James Laurenti</p>
+    </div>
+  </div>
+</section>
+
+<!-- appendix -->
+<section class="appendix" id="reserves-appendix">
+  <div class="wrap reveal">
+    <span class="num">Appendix &middot; A fact-check</span>
+    <h2>Is the city sitting on a pile of cash?</h2>
+    <p>A common charge is that Beverly hoards money while pleading poverty. So let's check it.</p>
+    <div class="kt">
+      <span class="lab">At the kitchen table</span>
+      <p>The question is just: is this family's rainy-day jar bigger than the neighbors'? The fair way to compare is to measure each household's savings against its own spending, not in raw dollars.</p>
+    </div>
+    <p>Here's Beverly's savings cushion next to nearby and similar-sized towns, measured as a share of each town's yearly budget.</p>
+    <div class="chart-card">
+      <div class="barchart">
+        <div class="barrow"><div class="bl">Woburn</div><div class="btrack"><div class="bfill" style="width:92.3%"></div></div><div class="bv">32.3%</div></div>
+        <div class="barrow"><div class="bl">Watertown</div><div class="btrack"><div class="bfill" style="width:61.3%"></div></div><div class="bv">21.5%</div></div>
+        <div class="barrow"><div class="bl">Marlborough</div><div class="btrack"><div class="bfill" style="width:57.4%"></div></div><div class="bv">20.1%</div></div>
+        <div class="barrow"><div class="bl">Salem</div><div class="btrack"><div class="bfill" style="width:56.1%"></div></div><div class="bv">19.6%</div></div>
+        <div class="barrow"><div class="bl">Leominster</div><div class="btrack"><div class="bfill" style="width:55.8%"></div></div><div class="bv">19.5%</div></div>
+        <div class="barrow me"><div class="bl">Beverly</div><div class="btrack"><div class="bfill" style="width:54.8%"></div></div><div class="bv">19.2%</div></div>
+        <div class="barrow"><div class="bl">Westfield</div><div class="btrack"><div class="bfill" style="width:42.1%"></div></div><div class="bv">14.7%</div></div>
+        <div class="barrow"><div class="bl">Danvers</div><div class="btrack"><div class="bfill" style="width:41.7%"></div></div><div class="bv">14.6%</div></div>
+        <div class="barrow"><div class="bl">Marblehead</div><div class="btrack"><div class="bfill" style="width:27.1%"></div></div><div class="bv">9.5%</div></div>
+        <div class="barrow"><div class="bl">Peabody</div><div class="btrack"><div class="bfill" style="width:18.9%"></div></div><div class="bv">6.6%</div></div>
+        <div class="barrow"><div class="bl">Gloucester</div><div class="btrack"><div class="bfill" style="width:15.6%"></div></div><div class="bv">5.5%</div></div>
+      </div>
+      <p class="bnote">Middle of the pack &#8776; 17%. &nbsp; Beverly: 19.2%.</p>
+      <div class="legend" style="margin-top:14px">
+        <span><i class="swatch" style="background:var(--cost)"></i>Beverly</span>
+        <span><i class="swatch" style="background:var(--rev);opacity:.34"></i>Nearby and similar towns</span>
+      </div>
+      <p class="cap"><b>Savings as a share of the yearly budget, 2025.</b> Beverly is on the higher side, but it lands squarely in the middle of the pack, 6th of 11. Not lean, not a hoarder. One catch: most of Beverly's savings sits in a fund that takes a two-thirds council vote to spend, rather than money it can reach easily.</p>
+      <p class="chart-src">Source: Massachusetts Division of Local Services, <a href="https://www.mass.gov/info-details/municipal-finance-trend-dashboard-reports" target="_blank" rel="noopener">Municipal Finance Trend Dashboard</a>, 2025 figures.</p>
+    </div>
+    <details class="more">
+      <summary>How is "savings" measured here?</summary>
+      <div class="body">
+        <p>Savings combines the city's leftover money at year-end (free cash) and its formal rainy-day fund (the stabilization fund), divided by its general-fund operating budget. All eleven towns are measured the same way, using the state's certified 2025 figures, so it's a fair comparison.</p>
+        <p>There's no single official "correct" level to keep. Rating agencies and the Government Finance Officers Association generally suggest holding at least about two months of spending, which is roughly 17%. Statewide, reserves have run unusually high since the pandemic.</p>
+      </div>
+    </details>
+    <a class="backlink" href="#top">&#8593; Back to the top</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <h3>Sources &amp; notes</h3>
+    <ul class="refs">
+      <li><b>City of Beverly Financial Forecasts</b> (2022, 2024, 2025). <span class="desc">The income-vs-spending lines, the growing shortfall, and the one-time fixes that are now used up.</span> <a href="https://beverlyma.gov/DocumentCenter/View/6958/Financial-Forecast-Report-FY2026-2030" target="_blank" rel="noopener">Most recent &#8599;</a></li>
+      <li><b>City of Beverly operating budgets</b> (2025 &amp; 2026). <span class="desc">Line-item spending, the borrowing for big projects, and the budget message stating savings near 19% of the budget.</span></li>
+      <li><b>Local coverage.</b> <span class="desc">The City Hall renovation and the staff cuts / trash fee (<a href="https://patch.com/massachusetts/beverly/beverly-28-million-city-hall-renovation-approved-amid-looming-structural" target="_blank" rel="noopener">Patch</a>, <a href="https://patch.com/massachusetts/beverly/beverly-mayor-outlines-staff-cuts-amid-budget-deficit-modified-trash-fee" target="_blank" rel="noopener">Patch</a>); ongoing coverage (<a href="https://thebeverlybeat.substack.com" target="_blank" rel="noopener">The Beverly Beat</a>).</span></li>
+      <li><b>The savings comparison</b> <span class="desc">uses the state's <a href="https://www.mass.gov/info-details/municipal-finance-trend-dashboard-reports" target="_blank" rel="noopener">Municipal Finance Trend Dashboard</a>, which reports every community's reserves the same way. There is no single official "correct" reserve level, and statewide reserves have been historically high since the pandemic.</span></li>
+    </ul>
+    <p style="margin-top:1.4em">Dollar figures are rounded. The "shortfall" figures show the gap before the city closes it, which by law it must. This page explains the structure; it does not argue a side.</p>
+  </div>
+</footer>
+
+<script>
+  const obs=new IntersectionObserver((es)=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in')})},{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

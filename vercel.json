@@ -1,0 +1,14 @@
+{
+  "redirects": [
+    {
+      "source": "/beverly-development",
+      "destination": "/work/beverly/development-map",
+      "permanent": true
+    },
+    {
+      "source": "/beverly-budget",
+      "destination": "/work/beverly/budget-explainer",
+      "permanent": true
+    }
+  ]
+}

@@ -13,16 +13,8 @@ type Project = {
   disclaimer?: string;
 };
 
-const projects: Project[] = [
-  {
-    name: "Beverly Civic Assistant",
-    description:
-      "A civic assistant for Beverly, MA. Ask it about the budget, the planning board's latest decisions, what's on a future agenda. It pulls from the public record so you don't have to.",
-    href: "https://beverly-civic.onrender.com",
-    note: "Beverly's civic information is public but scattered: zoning records, budget documents, planning board minutes, meeting schedules. Getting informed means either attending in person or spending real time digging through city department pages. Most people don't, not from lack of interest but lack of time. A community that stays informed tends to advocate for better priorities. This is a small attempt at closing that gap.",
-    disclaimer: "Heads up: hosted on Render's free tier, so the first load can take 30–60 seconds. It's not broken — just waking up.",
-  },
-];
+// Civic Assistant retired; full tagged index lands in the content pass.
+const projects: Project[] = [];
 
 export default function Work() {
   return (
@@ -35,6 +27,11 @@ export default function Work() {
       </p>
 
       <div className="flex flex-col gap-14">
+        {projects.length === 0 && (
+          <p className="text-dim border-t border-line pt-10">
+            New work, reorganized — back shortly.
+          </p>
+        )}
         {projects.map((project) => (
           <article key={project.name} className="border-t border-line pt-10">
             <a
