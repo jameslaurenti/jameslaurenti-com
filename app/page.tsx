@@ -14,12 +14,14 @@ const currentlyInto = [
 const whatIMake = [
   {
     mode: "How things work",
-    body: "Tools and writing that take something tangled, a city budget, a system, a market, and make it clear enough to act on.",
+    body: "Tools and writing that take something tangled and make it legible. Right now: Beverly's budget and the development reshaping a fast-growing city, broken down so residents can actually follow along.",
+    cta: "See the work →",
     href: "/work",
   },
   {
     mode: "What things mean",
-    body: "Essays and experiments about memory, identity, and what's worth paying attention to.",
+    body: "Essays and experiments on memory, identity, and what's worth paying attention to. Starting with one on why being understood holds us together.",
+    cta: "Read →",
     href: "/work",
   },
 ];
@@ -46,7 +48,7 @@ export default function Home() {
 
         {/* H1 */}
         <h1
-          className="font-display font-bold text-ink mb-5"
+          className="font-display font-bold text-ink mb-8"
           style={{
             fontSize: "clamp(2.6rem, 5.5vw, 4.6rem)",
             letterSpacing: "-0.03em",
@@ -58,24 +60,38 @@ export default function Home() {
           worth keeping.
         </h1>
 
-        {/* Subhead */}
-        <p
-          className="font-sans font-light italic text-ink-faint mb-8"
-          style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.5rem)" }}
-        >
-          Fifteen years making complicated things work.
-        </p>
-
-        {/* Body */}
+        {/* Intro */}
         <p
           className="text-ink-mid"
           style={{ fontSize: "1.02rem", lineHeight: 1.78, maxWidth: "54ch" }}
         >
-          Principal PM at Grubhub. The work is in the parts that resist easy
-          measurement: retention, care tooling, the decision points where someone
-          either stays or quietly goes. Before tech: wine consulting, a liquor
-          store family, a Classics degree, and a lot of time with books that
-          asked impossible questions.
+          Most of what&apos;s here began with a question I couldn&apos;t put
+          down. Some are about how things work, like where my city&apos;s money
+          actually goes. Others are about what things mean, which is harder to
+          pin down and more personal.
+        </p>
+        <p
+          className="text-ink-mid"
+          style={{
+            fontSize: "1.02rem",
+            lineHeight: 1.78,
+            maxWidth: "54ch",
+            marginTop: "1.1rem",
+          }}
+        >
+          By trade I&apos;m a product manager at Grubhub. Before that, a Classics
+          degree, a family liquor store, and a long stretch in wine. The rest is
+          curiosity that wouldn&apos;t stay in its lane.
+        </p>
+
+        <p style={{ marginTop: "1.6rem" }}>
+          <Link
+            href="/about"
+            className="text-accent hover:underline underline-offset-4"
+            style={{ fontSize: "0.95rem" }}
+          >
+            More about me →
+          </Link>
         </p>
       </section>
 
@@ -113,28 +129,11 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Compressed bio line */}
-      <div className="px-10 pt-10 mb-12">
-        <p
-          className="text-ink-mid"
-          style={{ fontSize: "1.02rem", lineHeight: 1.78, maxWidth: "56ch" }}
-        >
-          Principal PM at Grubhub. Before tech: wine, Classics, and a family
-          liquor store.{" "}
-          <Link
-            href="/about"
-            className="text-accent hover:underline underline-offset-4"
-          >
-            More about me →
-          </Link>
-        </p>
-      </div>
-
       {/* What I make section */}
-      <div className="flex items-center gap-4 px-10 mb-10">
+      <div className="flex items-center gap-4 px-10 pt-14 mb-10">
         <span
-          className="text-ink-faint uppercase shrink-0"
-          style={{ fontSize: "0.67rem", letterSpacing: "0.18em" }}
+          className="font-display font-semibold text-ink shrink-0"
+          style={{ fontSize: "1.35rem", letterSpacing: "-0.01em" }}
         >
           What I make
         </span>
@@ -162,7 +161,7 @@ export default function Home() {
                 {item.body}
               </p>
               <span className="text-accent" style={{ fontSize: "0.78rem" }}>
-                Explore →
+                {item.cta}
               </span>
             </Link>
           ))}

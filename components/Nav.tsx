@@ -55,16 +55,6 @@ export default function Nav() {
               )}
             </div>
           ))}
-          <div className="relative h-full flex items-center">
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-1.5 rounded-[6px] text-sm text-ink-mid hover:bg-bg-card hover:text-ink transition-colors"
-            >
-              Resume ↗
-            </a>
-          </div>
         </nav>
 
         {/* Right: location indicator (desktop) / hamburger (mobile) */}
@@ -112,14 +102,6 @@ export default function Nav() {
                 {label}
               </Link>
             ))}
-            <a
-              href="/resume.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-3 py-2 rounded-[6px] text-sm text-ink-mid hover:bg-bg-card hover:text-ink transition-colors"
-            >
-              Resume ↗
-            </a>
           </div>
         </div>
       )}

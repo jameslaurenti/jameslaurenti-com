@@ -35,7 +35,7 @@ export default function ContactForm() {
   if (status === "sent") {
     return (
       <p className="text-base border-t border-line pt-10">
-        Got it — I'll be in touch.
+        Got it, I'll be in touch.
       </p>
     );
   }
