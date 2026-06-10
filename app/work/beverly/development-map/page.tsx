@@ -19,9 +19,21 @@ export default function BeverlyDevelopmentMapPage() {
           >
             ← Beverly
           </Link>
-          <span className="text-ink-faint" style={{ fontSize: "0.78rem" }}>
-            James Laurenti
-          </span>
+          <div className="flex items-center gap-3">
+            <span
+              className="rounded-full border border-ink-faint/40 text-ink-faint uppercase"
+              style={{
+                fontSize: "0.6rem",
+                padding: "0.1rem 0.45rem",
+                letterSpacing: "0.1em",
+              }}
+            >
+              Beta
+            </span>
+            <span className="text-ink-faint" style={{ fontSize: "0.78rem" }}>
+              James Laurenti
+            </span>
+          </div>
         </div>
       </div>
       <iframe
