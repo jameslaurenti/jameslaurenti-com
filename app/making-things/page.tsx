@@ -22,7 +22,7 @@ export default function MakingThings() {
         Making Things
       </h1>
       <p className="text-ink-mid mb-14 leading-relaxed">
-        Writing, songs, experiments. Things I've made — not a formal blog.
+        Writing, songs, experiments. Things I've made, not a formal blog.
       </p>
 
       {posts.length === 0 ? (

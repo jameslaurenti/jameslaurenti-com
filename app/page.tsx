@@ -11,27 +11,18 @@ const currentlyInto = [
   { label: "Skeptical of", value: "FOMO merchants" },
 ];
 
-const aboutCards = [
+const whatIMake = [
   {
-    tag: "Product",
-    title: "We know where we want to go. I figure out why we're not getting there.",
-    body: "Principal PM at Grubhub, in Care. Seven years there across white-label ordering, alcohol and grocery launch, and now the parts that are hardest to measure: retention, trust, the moment someone decides to stay or go.",
-    href: "/about",
-    linkLabel: "More about me",
+    mode: "How things work",
+    body: "Tools and writing that take something tangled and make it legible. Right now: Beverly's budget and the development reshaping a fast-growing city, broken down so residents can actually follow along.",
+    cta: "See the work →",
+    href: "/work",
   },
   {
-    tag: "Before tech",
-    title: "Wine, Latin, Greek, and a family liquor store",
-    body: "Certified Specialist of Wine. Studied Classics at BU, graduated summa cum laude. Fond of Ovid, Catullus, the Odyssey. Stories that take resilience seriously and don't pretend the journey is clean.",
-    href: "/about",
-    linkLabel: "More about me",
-  },
-  {
-    tag: "What drives me",
-    title: "The big questions, honestly held",
-    body: "Consciousness of who I'm helping and hurting with every decision. Curiosity as a practice, not a pose. Never shying from what's hard to answer. Raising kids who exceed me.",
-    href: "/about",
-    linkLabel: "More about me",
+    mode: "What things mean",
+    body: "Essays and experiments on memory, identity, and what's worth paying attention to. Starting with one on why being understood holds us together.",
+    cta: "Read →",
+    href: "/work",
   },
 ];
 
@@ -57,7 +48,7 @@ export default function Home() {
 
         {/* H1 */}
         <h1
-          className="font-display font-bold text-ink mb-5"
+          className="font-display font-bold text-ink mb-8"
           style={{
             fontSize: "clamp(2.6rem, 5.5vw, 4.6rem)",
             letterSpacing: "-0.03em",
@@ -69,24 +60,38 @@ export default function Home() {
           worth keeping.
         </h1>
 
-        {/* Subhead */}
-        <p
-          className="font-sans font-light italic text-ink-faint mb-8"
-          style={{ fontSize: "clamp(1.15rem, 2.2vw, 1.5rem)" }}
-        >
-          Fifteen years making complicated things work.
-        </p>
-
-        {/* Body */}
+        {/* Intro */}
         <p
           className="text-ink-mid"
           style={{ fontSize: "1.02rem", lineHeight: 1.78, maxWidth: "54ch" }}
         >
-          Principal PM at Grubhub. The work is in the parts that resist easy
-          measurement: retention, care tooling, the decision points where someone
-          either stays or quietly goes. Before tech: wine consulting, a liquor
-          store family, a Classics degree, and a lot of time with books that
-          asked impossible questions.
+          Most of what&apos;s here began with a question I couldn&apos;t put
+          down. Some are about how things work, like where my city&apos;s money
+          actually goes. Others are about what things mean, which is harder to
+          pin down and more personal.
+        </p>
+        <p
+          className="text-ink-mid"
+          style={{
+            fontSize: "1.02rem",
+            lineHeight: 1.78,
+            maxWidth: "54ch",
+            marginTop: "1.1rem",
+          }}
+        >
+          By trade I&apos;m a product manager at Grubhub. Before that, a Classics
+          degree, a family liquor store, and a long stretch in wine. The rest is
+          curiosity that wouldn&apos;t stay in its lane.
+        </p>
+
+        <p style={{ marginTop: "1.6rem" }}>
+          <Link
+            href="/about"
+            className="text-accent hover:underline underline-offset-4"
+            style={{ fontSize: "0.95rem" }}
+          >
+            More about me →
+          </Link>
         </p>
       </section>
 
@@ -124,45 +129,39 @@ export default function Home() {
         </div>
       </div>
 
-      {/* About section */}
-      <div className="flex items-center gap-4 px-10 pt-10 mb-10">
+      {/* What I make section */}
+      <div className="flex items-center gap-4 px-10 pt-14 mb-10">
         <span
-          className="text-ink-faint uppercase shrink-0"
-          style={{ fontSize: "0.67rem", letterSpacing: "0.18em" }}
+          className="font-display font-semibold text-ink shrink-0"
+          style={{ fontSize: "1.35rem", letterSpacing: "-0.01em" }}
         >
-          About
+          What I make
         </span>
         <div className="flex-1 h-px bg-rule" />
       </div>
 
       <div className="px-10 mb-16">
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-rule">
-          {aboutCards.map((card) => (
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-px bg-rule">
+          {whatIMake.map((item) => (
             <Link
-              key={card.title}
-              href={card.href}
+              key={item.mode}
+              href={item.href}
               className="bg-bg p-8 hover:bg-bg-card transition-colors flex flex-col"
             >
-              <div
-                className="text-accent uppercase mb-3"
-                style={{ fontSize: "0.67rem", letterSpacing: "0.15em" }}
-              >
-                {card.tag}
-              </div>
               <h3
                 className="font-display font-medium text-ink mb-3"
-                style={{ fontSize: "1.15rem" }}
+                style={{ fontSize: "1.3rem" }}
               >
-                {card.title}
+                {item.mode}
               </h3>
               <p
                 className="text-ink-mid leading-relaxed mb-4 flex-1"
-                style={{ fontSize: "0.88rem" }}
+                style={{ fontSize: "0.92rem" }}
               >
-                {card.body}
+                {item.body}
               </p>
               <span className="text-accent" style={{ fontSize: "0.78rem" }}>
-                {card.linkLabel} →
+                {item.cta}
               </span>
             </Link>
           ))}

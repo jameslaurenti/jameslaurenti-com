@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Find the Money: The Beverly Budget Challenge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,900;1,9..144,500&family=Public+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#f4efe4;--paper-2:#efe7d6;--ink:#1c1a17;--ink-soft:#56504a;
+    --line:#d8cdb8;--rev:#1f5e6b;--cost:#b5462f;--cost-soft:#e8c4b8;--gold:#a9802f;--green:#3a7d56;--max:920px;
+  }
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--paper);color:var(--ink);font-family:"Public Sans",system-ui,sans-serif;font-size:18px;line-height:1.62;padding-bottom:96px;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.025'/%3E%3C/svg%3E");}
+  .wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+  .kicker{text-transform:uppercase;letter-spacing:.18em;font-size:12px;font-weight:700;color:var(--cost)}
+  h1{font-family:"Fraunces";font-weight:900;font-size:clamp(34px,5.4vw,58px);line-height:1.04;letter-spacing:-.02em;margin:.15em 0 .3em}
+  h2{font-family:"Fraunces";font-weight:600;font-size:clamp(22px,3vw,30px);margin:0 0 .4em}
+  p{margin:0 0 1em;max-width:64ch}
+  header.hero{padding:11vh 0 5vh;border-bottom:1px solid var(--line)}
+  .lede{font-size:clamp(19px,2.2vw,23px);line-height:1.5;max-width:60ch}
+  .lede b{font-weight:700}
+  section{padding:5vh 0;border-bottom:1px solid var(--line)}
+  .rules{background:var(--paper-2);border:1px solid var(--line);border-radius:8px;padding:18px 22px;margin:24px 0;max-width:64ch}
+  .rules ul{margin:6px 0 0;padding-left:20px}
+  .rules li{margin:6px 0;font-size:15.5px}
+  .target{font-family:"Fraunces";font-weight:900;color:var(--cost)}
+  /* locked */
+  .locks{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin-top:18px}
+  .lock{background:var(--paper-2);border:1px solid var(--line);border-radius:7px;padding:14px 16px;position:relative;opacity:.92}
+  .lock .pad{position:absolute;top:12px;right:13px;font-size:14px}
+  .lock .nm{font-family:"Fraunces";font-weight:600;font-size:16px;padding-right:20px}
+  .lock .amt{font-family:"Fraunces";font-weight:900;font-size:20px;color:var(--ink-soft);margin:2px 0 6px}
+  .lock .why{font-size:13px;color:var(--ink-soft);line-height:1.45}
+  .locktotal{font-size:14.5px;color:var(--ink-soft);margin-top:14px;font-style:italic}
+  /* cuttable */
+  .cat{padding:18px 0;border-top:1px solid var(--line)}
+  .cat:first-child{border-top:none}
+  .cat .top{display:flex;justify-content:space-between;align-items:baseline;gap:14px}
+  .cat .nm{font-family:"Fraunces";font-weight:600;font-size:18px}
+  .cat .bud{font-size:13px;color:var(--ink-soft);white-space:nowrap}
+  input[type=range]{width:100%;margin:12px 0 0;accent-color:var(--cost);height:24px}
+  .cat .out{display:flex;justify-content:space-between;align-items:baseline;font-size:13.5px;gap:12px;margin-top:2px}
+  .cat .pct{color:var(--ink-soft)}
+  .cat .cutamt{font-weight:700;color:var(--cost)}
+  .cat .cons{font-size:13.5px;color:var(--ink-soft);margin-top:8px;line-height:1.45;min-height:1.2em}
+  .cat.elect .cons{color:var(--rev)}
+  .controls{display:flex;gap:12px;align-items:center;margin-top:8px;flex-wrap:wrap}
+  button.reset{font-family:"Public Sans";font-size:13.5px;font-weight:700;color:var(--ink);background:none;border:1px solid var(--line);border-radius:6px;padding:7px 14px;cursor:pointer}
+  button.reset:hover{background:var(--paper-2)}
+  /* verdict */
+  .verdict{background:var(--ink);color:var(--paper);border-radius:8px;padding:26px 26px;margin-top:8px}
+  .verdict .vbig{font-family:"Fraunces";font-weight:900;font-size:clamp(22px,3.2vw,32px);line-height:1.12;color:#fff;margin:0 0 .4em}
+  .verdict p{color:#e6dfce;max-width:62ch;margin:0 0 .7em}
+  .verdict p:last-child{margin-bottom:0}
+  .verdict.win .vbig{color:#bfe6cd}
+  /* sticky tally */
+  .tally{position:fixed;left:0;right:0;bottom:0;background:var(--ink);color:#fff;z-index:50;box-shadow:0 -10px 30px -14px rgba(0,0,0,.6);padding:11px 0}
+  .tally .inner{max-width:var(--max);margin:0 auto;padding:0 22px;display:flex;align-items:center;gap:16px}
+  .tally .nums{white-space:nowrap}
+  .tally .cur{font-family:"Fraunces";font-weight:900;font-size:clamp(18px,2.4vw,24px)}
+  .tally .of{font-size:13px;color:#c9c1b1}
+  .tally .pbar{flex:1;height:12px;background:rgba(255,255,255,.16);border-radius:6px;overflow:hidden;min-width:60px}
+  .tally .pfill{height:100%;width:0%;background:var(--cost);transition:width .15s ease}
+  .tally .pfill.done{background:var(--green)}
+  .tally .msg{font-size:12.5px;color:#d8d1c1;white-space:nowrap;max-width:30%}
+  @media(max-width:620px){.tally .msg{display:none}}
+  .src{display:inline-block;font-size:12px;font-weight:800;color:var(--gold);background:rgba(169,128,47,.16);border:1px solid rgba(169,128,47,.7);border-radius:4px;padding:0 5px;text-decoration:none;margin-left:4px;vertical-align:baseline}
+  .src:hover{background:var(--cost);color:#fff;border-color:var(--cost)}
+  footer{padding:5vh 0 8vh;color:var(--ink-soft);font-size:13.5px}
+  footer a{color:var(--gold)}
+  .note{font-size:13px;color:var(--ink-soft);font-style:italic;max-width:64ch}
+  /* site back-bar */
+  .backbar{position:sticky;top:0;z-index:100;background:var(--paper);border-bottom:1px solid var(--line)}
+  .backbar-inner{max-width:var(--max);margin:0 auto;padding:10px 22px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+  .backbar-home{font-family:"Public Sans",system-ui,sans-serif;font-size:14px;font-weight:700;color:var(--rev);text-decoration:none;letter-spacing:.01em}
+  .backbar-home:hover{color:var(--cost)}
+  .backbar-name{font-family:"Public Sans",system-ui,sans-serif;font-size:13px;color:var(--ink-soft)}
+</style>
+</head>
+<body>
+
+<div class="backbar">
+  <div class="backbar-inner">
+    <a class="backbar-home" href="/work/beverly">&larr; Beverly</a>
+    <span class="backbar-name">James Laurenti</span>
+  </div>
+</div>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="kicker">Beverly, Massachusetts &middot; Try it yourself &middot; Beta</span>
+    <h1>"The money is there. They just need to find it."</h1>
+    <p class="lede">It's the most common thing people say about the city budget, and it's a fair thing to wonder. So here's the city's actual budget, with a chance to try your hand at it. In fiscal year 2026, Beverly came up about <span class="target">$3.9 million</span> short<a class="src" href="https://beverlyma.gov/DocumentCenter/View/6958/Financial-Forecast-Report-FY2026-2030" target="_blank" rel="noopener" title="City of Beverly Financial Forecast, which projected the 2026 shortfall">source</a>. See if you can close the gap, and get a feel for what the choice really involves.</p>
+    <div class="rules">
+      <b>A few ground rules, and they're the real ones the city lives with:</b>
+      <ul>
+        <li>Some of the budget is <b>locked</b>. The city legally can't touch it this year. Those boxes explain why, and when it changes.</li>
+        <li>The rest is <b>services</b>, and almost every dollar is somebody's job. You can cut them, but the cut has consequences.</li>
+        <li>It has to be <b>permanent</b> money. One-time tricks don't count, because the shortfall comes back every year.</li>
+      </ul>
+    </div>
+  </div>
+</header>
+
+<section>
+  <div class="wrap">
+    <h2>First, what you can't touch</h2>
+    <p>About a quarter of the budget is off the table this year. Not because anyone's hiding it, but because it's already promised, mandated, or billed by someone else. Here's each piece, and when it actually changes.</p>
+    <div class="locks" id="locks"></div>
+    <p class="locktotal" id="locktotal"></p>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <h2>Now the part you control</h2>
+    <p>This is everything else: the services. Slide to cut. Watch the running total at the bottom of your screen climb toward $3.9 million, and watch what each cut costs in jobs and service. The mayor and council pay is in here too, near the end, so you can try the most popular idea in local politics and see how far it gets you.</p>
+    <div id="cats"></div>
+    <div class="controls">
+      <button class="reset" id="reset">Reset all cuts</button>
+      <span class="note" style="margin:0">Tip: cutting a little from a lot of places adds up faster than gutting one small department.</span>
+    </div>
+  </div>
+</section>
+
+<section style="border-bottom:none">
+  <div class="wrap">
+    <div class="verdict" id="verdict">
+      <p class="vbig" id="vbig">Make some cuts to begin.</p>
+      <p id="vbody">Your total is at the bottom of the screen.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p><b>Early version.</b> The figures are sourced and checked, but few people have used it yet. If you spot a mistake, <a href="/contact">tell me</a>.</p>
+    <p><b>How this works.</b> Every department total is real, taken from the City of Beverly's FY2026 budget. Because most city spending is salaries, the job estimates assume an average position, with benefits, costs about $95,000; real pay varies, so treat the counts as ballpark. This is a simplified model at the department level, not a line-by-line ledger, and the consequences are reasoned estimates, not predictions.</p>
+    <p><b>What the city actually did.</b> It closed this year's gap with a mix: a higher trash fee, real cuts across departments, and the last of its one-time funds.<a class="src" href="https://patch.com/massachusetts/beverly/beverly-mayor-outlines-staff-cuts-amid-budget-deficit-modified-trash-fee" target="_blank" rel="noopener">source</a> And the gap grows in the years ahead (toward $6.3M, then $7.6M, then $10.2M if nothing structural changes), so balancing it once doesn't make it go away.</p>
+    <p><b>Sources.</b> City of Beverly <a href="https://beverlyma.gov/DocumentCenter/View/6958/Financial-Forecast-Report-FY2026-2030" target="_blank" rel="noopener">FY2026 budget and financial forecast</a>. Figures rounded.</p>
+  </div>
+</footer>
+
+<div class="tally">
+  <div class="inner">
+    <div class="nums"><span class="cur" id="curcut">$0</span> <span class="of">of $3.9M found</span></div>
+    <div class="pbar"><div class="pfill" id="pfill"></div></div>
+    <div class="msg" id="tmsg">Start cutting</div>
+  </div>
+</div>
+
+<script>
+  const TARGET = 3900000;
+  const POS = 95000;
+
+  const locked = [
+    {nm:"Debt payments", amt:8789183, why:"Repayment on money already borrowed. Falls as old loans are paid off, rises as new projects like City Hall are added."},
+    {nm:"Pensions", amt:14427082, why:"State-mandated, and the single biggest locked cost. Most of it is a catch-up payment for years of past underfunding, and that part climbs about $570K a year. The regional system Beverly belongs to (Essex Regional) is scheduled to reach full funding in 2035; once it does, the catch-up ends and this bill should step down significantly, leaving mainly the smaller cost of current workers' benefits. It won't vanish, and the 2035 date can slip if investment returns fall short. The city can't change it."},
+    {nm:"Health insurance", amt:12137299, why:"Rose about 10% this year with the insurance market. The city can only nudge it through plan design and bargaining, not freeze it."},
+    {nm:"Other benefits", amt:1068500, why:"Unemployment, workers' comp, Medicare, life insurance. Set by law and by contract."},
+    {nm:"State & county charges", amt:2390731, why:"Billed to the city by the state. Outside local control, and can change as their formulas do."},
+    {nm:"Essex Tech & charter schools", amt:3966718, why:"Billed by how many Beverly students enroll there. Rises with enrollment, set outside the city."}
+  ];
+
+  const cats = [
+    {id:"schools", nm:"Beverly Public Schools", amt:85372614, max:20},
+    {id:"police", nm:"Police", amt:10720098, max:20},
+    {id:"fire", nm:"Fire", amt:8395132, max:20},
+    {id:"dpw", nm:"Public Works (streets, snow, trash, parks)", amt:9071553, max:20},
+    {id:"admin", nm:"City administration (finance, clerk, IT, planning, legal)", amt:9495850, max:20},
+    {id:"safety2", nm:"Other public safety (dispatch, inspections, harbormaster)", amt:2463573, max:20},
+    {id:"seniors", nm:"Senior center, health & veterans' services", amt:2308066, max:25},
+    {id:"library", nm:"Library", amt:2366768, max:25},
+    {id:"rec", nm:"Recreation & community programs", amt:421823, max:25},
+    {id:"elected", nm:"Mayor & City Council pay", amt:276425, max:100, elect:true}
+  ];
+
+  const fmt = n => "$" + Math.round(n).toLocaleString();
+  const fmtM = n => "$" + (n/1e6).toFixed(n<1e7?2:1) + "M";
+
+  function consequence(c, pct, cut){
+    if(pct===0) return "";
+    if(c.elect){
+      const share = Math.round(cut/TARGET*100);
+      if(pct>=100) return "You zeroed out the mayor and all nine councillors. That saves " + fmt(cut) + ", about " + share + "% of the gap, and changes spending on zero city services.";
+      return "Saves " + fmt(cut) + ", roughly " + share + "% of the gap. It changes spending on no city service.";
+    }
+    const jobs = Math.max(1, Math.round(cut/POS));
+    const lines = {
+      schools:"About "+jobs+" school staff (teachers, aides, support). Expect larger classes and fewer programs.",
+      police:"About "+jobs+" police positions. Expect slower response and thinner patrols.",
+      fire:"About "+jobs+" firefighter positions. Expect slower response or rotating station closures.",
+      dpw:"About "+jobs+" public-works positions. Slower plowing, trash pickup, and road and park upkeep.",
+      admin:"About "+jobs+" positions across finance, permitting, the clerk, and IT. Slower city services and longer waits.",
+      safety2:"About "+jobs+" positions in dispatch, building inspections, and the harbormaster. Slower permits and more strain on 911 dispatch.",
+      seniors:"About "+jobs+" positions. Reduced senior-center, public-health, and veterans' services.",
+      library:"Reduced hours and about "+jobs+" fewer library staff.",
+      rec:"About "+jobs+" positions. Fewer youth and community programs."
+    };
+    return lines[c.id] || (jobs+" positions.");
+  }
+
+  // render locked
+  const lockEl = document.getElementById("locks");
+  let lockedTotal = 0;
+  locked.forEach(l=>{
+    lockedTotal += l.amt;
+    const d = document.createElement("div");
+    d.className = "lock";
+    d.innerHTML = '<span class="pad">&#128274;</span><div class="nm">'+l.nm+'</div><div class="amt">'+fmtM(l.amt)+'</div><div class="why">'+l.why+'</div>';
+    lockEl.appendChild(d);
+  });
+  document.getElementById("locktotal").textContent =
+    "Locked total: about " + fmtM(lockedTotal) + ", roughly a quarter of the whole budget. None of it is available to close the gap this year.";
+
+  // render cats
+  const catsEl = document.getElementById("cats");
+  cats.forEach(c=>{
+    const row = document.createElement("div");
+    row.className = "cat" + (c.elect ? " elect" : "");
+    row.innerHTML =
+      '<div class="top"><span class="nm">'+c.nm+'</span><span class="bud">budget '+fmtM(c.amt)+'</span></div>'+
+      '<input type="range" min="0" max="'+c.max+'" step="'+(c.elect?5:1)+'" value="0" id="r_'+c.id+'" aria-label="Cut '+c.nm+'">'+
+      '<div class="out"><span class="pct" id="p_'+c.id+'">No cut</span><span class="cutamt" id="a_'+c.id+'"></span></div>'+
+      '<div class="cons" id="c_'+c.id+'"></div>';
+    catsEl.appendChild(row);
+    row.querySelector("input").addEventListener("input", recalc);
+  });
+
+  const curEl=document.getElementById("curcut"), pfill=document.getElementById("pfill"),
+        tmsg=document.getElementById("tmsg"), vbig=document.getElementById("vbig"),
+        vbody=document.getElementById("vbody"), verdict=document.getElementById("verdict");
+
+  function recalc(){
+    let total=0, jobs=0;
+    const hit=[];
+    cats.forEach(c=>{
+      const pct = +document.getElementById("r_"+c.id).value;
+      const cut = c.amt*(pct/100);
+      total += cut;
+      if(!c.elect && pct>0) jobs += Math.round(cut/POS);
+      if(pct>0) hit.push({c,pct,cut});
+      document.getElementById("p_"+c.id).textContent = pct===0 ? "No cut" : ("cut "+pct+"%");
+      document.getElementById("a_"+c.id).textContent = pct===0 ? "" : ("\u2212"+fmt(cut));
+      document.getElementById("c_"+c.id).textContent = consequence(c,pct,cut);
+    });
+    curEl.textContent = fmtM(total);
+    const ratio = Math.min(100, total/TARGET*100);
+    pfill.style.width = ratio+"%";
+    const done = total>=TARGET;
+    pfill.classList.toggle("done", done);
+
+    if(total===0){
+      tmsg.textContent="Start cutting";
+      verdict.classList.remove("win");
+      vbig.textContent="Make some cuts to begin.";
+      vbody.textContent="The running total sits at the bottom of your screen. Remember: it has to add up to about $3.9 million in permanent cuts.";
+      return;
+    }
+    const short = TARGET-total;
+    if(!done){
+      tmsg.textContent = fmt(short)+" to go";
+      verdict.classList.remove("win");
+      vbig.textContent = "You've found "+fmtM(total)+". Still "+fmt(short)+" short.";
+      vbody.textContent = "So far that's about "+jobs+" jobs gone. Keep cutting, and notice how quickly you run out of places that aren't schools, police, or fire. That's the squeeze in one sentence: the money exists, but it's almost all people who do things for the city.";
+    } else {
+      tmsg.textContent = "Gap closed";
+      verdict.classList.add("win");
+      vbig.textContent = "You closed the $3.9M gap. Here's the bill: about "+jobs+" jobs.";
+      let parts = hit.filter(h=>!h.c.elect).sort((a,b)=>b.cut-a.cut).slice(0,3)
+                     .map(h=>h.c.nm.split(" (")[0].toLowerCase());
+      vbody.innerHTML = "You got there mostly by cutting "+(parts.join(", "))+". That's the honest trade-off the city actually faces: the money can be found, but only by reducing services people rely on. And it grows next year, so you'd be back here finding even more. The real debate isn't whether the money exists. It's which of these cuts, or which new revenue, the city is willing to live with.";
+    }
+  }
+
+  document.getElementById("reset").addEventListener("click", ()=>{
+    cats.forEach(c=>{document.getElementById("r_"+c.id).value=0;});
+    recalc();
+  });
+
+  recalc();
+</script>
+</body>
+</html>
