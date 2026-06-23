@@ -9,6 +9,11 @@
       "source": "/beverly-budget",
       "destination": "/work/beverly/budget-explainer",
       "permanent": true
+    },
+    {
+      "source": "/beverly-fy27budget",
+      "destination": "/work/beverly/fy27-budget",
+      "permanent": false
     }
   ]
 }
