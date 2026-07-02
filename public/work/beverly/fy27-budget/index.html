@@ -4,10 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="robots" content="noindex, nofollow">
-<title>Beverly's FY2027 Budget, Explained</title>
+<title>Beverly FY2027: A Structural Gap, and How It Was Closed for One Year</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap');
-:root {
+:root{
   --paper:#F2F4EF; --white:#fff; --ink:#1C2120; --ink-mid:#4A5250; --ink-soft:#7A8580; --grid:#D4DAD3;
   --rev:#2D6748; --rev-light:#E8F2EC; --rev-mid:#5A9E7A;
   --cost:#8B3A2E; --cost-light:#F5E8E6; --cost-mid:#C4675A;
@@ -15,167 +15,256 @@
   --cuts:#2E5070; --cuts-light:#E4EDF5; --cuts-mid:#5A85A8;
   --warn:#7A4E00; --warn-light:#FDF3D8;
   --pass:#1A5E6E; --pass-light:#E0F2F6;
-  --new-dev:#3D5A2E; --new-dev-light:#EAF2E3;
+  --amend:#5A3A7A; --amend-light:#EDE8F5;
 }
 *{box-sizing:border-box;margin:0;padding:0;}
 html{scroll-behavior:smooth;}
-body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system-ui,sans-serif;font-size:16px;line-height:1.65;-webkit-font-smoothing:antialiased;}
 
 /* STICKY HEADER */
 #sticky-header{position:sticky;top:0;z-index:100;background:var(--ink);color:#fff;padding:10px 20px 8px;box-shadow:0 2px 12px rgba(0,0,0,.25);}
 .header-inner{max-width:980px;margin:0 auto;}
-.header-top{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:4px;}
-.header-title{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);}
-.tracker-label{font-size:12.5px;color:rgba(255,255,255,.65);margin-bottom:5px;letter-spacing:.01em;}
+.header-title{font-family:'IBM Plex Mono',monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.85);margin-bottom:5px;display:block;}
+.tracker-label{font-size:13px;color:rgba(255,255,255,.65);margin-bottom:6px;}
 .phase-pills{display:flex;gap:6px;margin-bottom:7px;flex-wrap:wrap;}
-.phase-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:3px 9px;border:1px solid rgba(255,255,255,.2);cursor:pointer;background:transparent;color:rgba(255,255,255,.45);transition:all .15s;}
+.phase-pill{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.07em;text-transform:uppercase;padding:4px 9px;border:1px solid rgba(255,255,255,.2);cursor:pointer;background:transparent;color:rgba(255,255,255,.45);transition:all .15s;min-height:32px;}
 .phase-pill.active-1{background:var(--rev);border-color:var(--rev);color:#fff;}
 .phase-pill.active-2{background:var(--cost);border-color:var(--cost);color:#fff;}
 .phase-pill.active-3{background:var(--trash);border-color:var(--trash);color:#fff;}
 .phase-pill.active-4{background:var(--cuts);border-color:var(--cuts);color:#fff;}
-#mini-chart{width:100%;height:56px;display:block;}
+#mini-chart{width:100%;height:52px;display:block;}
+.pill-short{display:none;}
+.pill-full{display:inline;}
 
 /* LAYOUT */
 .page-wrap{max-width:980px;margin:0 auto;padding:0 20px 80px;}
+
+/* INTRO */
 .intro-block{padding:44px 0 28px;border-bottom:1px solid var(--grid);}
-.intro-block h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(28px,4.5vw,48px);line-height:1.06;letter-spacing:-.02em;margin-bottom:14px;}
-.intro-standfirst{font-size:16.5px;color:var(--ink-mid);max-width:60ch;line-height:1.65;}
-.summary-pills{display:flex;flex-wrap:wrap;gap:8px;margin-top:20px;}
-.summary-pill{display:flex;align-items:center;gap:8px;padding:8px 14px;background:var(--white);border:1px solid var(--grid);font-size:13px;}
-.summary-pill .dot{width:9px;height:9px;border-radius:50%;flex-shrink:0;}
-.summary-pill strong{font-family:'IBM Plex Mono',monospace;font-size:13.5px;}
+.intro-halves{display:flex;gap:12px;margin-bottom:14px;flex-wrap:wrap;}
+.intro-half{flex:1;min-width:200px;padding:12px 14px;border-left:3px solid;}
+.intro-half.h1{border-color:var(--cost);background:var(--cost-light);}
+.intro-half.h2{border-color:var(--rev);background:var(--rev-light);}
+.half-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:4px;}
+.half-label.h1{color:var(--cost);}
+.half-label.h2{color:var(--rev);}
+.half-text{font-size:14px;line-height:1.55;}
+.intro-block h1{font-family:'Fraunces',serif;font-weight:300;font-size:clamp(26px,4.5vw,46px);line-height:1.05;letter-spacing:-.02em;margin-bottom:14px;}
+.intro-standfirst{font-size:16px;color:var(--ink-mid);line-height:1.7;}
 
 /* RUNNING TALLY */
 .running-tally{display:flex;flex-wrap:wrap;gap:1px;background:var(--grid);border:1px solid var(--grid);margin:22px 0;}
-.tally-cell{flex:1;min-width:130px;padding:12px 14px;background:var(--white);}
-.tally-cell .tc-phase{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px;}
-.tally-cell .tc-val{font-family:'IBM Plex Mono',monospace;font-size:19px;font-weight:500;}
-.tally-cell .tc-label{font-size:11.5px;color:var(--ink-soft);margin-top:2px;}
+.tally-cell{flex:1;min-width:130px;padding:14px 14px 12px;background:var(--white);}
+.tally-cell .tc-phase{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:4px;}
+.tally-cell .tc-val{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:500;line-height:1;}
+.tally-cell .tc-label{font-size:12px;color:var(--ink-soft);margin-top:4px;}
 .tally-cell.phase-1{border-top:3px solid var(--rev);}
 .tally-cell.phase-2{border-top:3px solid var(--cost);}
 .tally-cell.phase-3{border-top:3px solid var(--trash);}
 .tally-cell.phase-4{border-top:3px solid var(--cuts);}
 
 /* PHASE SECTIONS */
-.phase-section{padding:44px 0 16px;border-bottom:1px solid var(--grid);}
+.phase-section{padding:44px 0 24px;border-bottom:1px solid var(--grid);}
 .phase-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:8px;}
 .eyebrow-swatch{width:18px;height:3px;display:inline-block;}
-.phase-section h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(21px,3.2vw,32px);line-height:1.1;letter-spacing:-.01em;margin-bottom:14px;}
-.phase-narrative{font-size:15px;color:var(--ink-mid);max-width:70ch;line-height:1.7;margin-bottom:22px;}
+.phase-section h2{font-family:'Fraunces',serif;font-weight:400;font-size:clamp(22px,3.2vw,34px);line-height:1.1;letter-spacing:-.01em;margin-bottom:12px;}
+.phase-narrative{font-size:15.5px;color:var(--ink-mid);line-height:1.7;margin-bottom:20px;}
 .phase-narrative b{color:var(--ink);}
 
-/* CALLOUT BOXES */
-.callout{padding:13px 16px;margin:18px 0;border-left:3px solid;font-size:14px;line-height:1.65;}
+/* TOP-LINE BOX */
+.topline-box{display:flex;align-items:center;gap:16px;padding:16px 18px;background:var(--white);border:1px solid var(--grid);margin-bottom:22px;}
+.tl-number{font-family:'Fraunces',serif;font-size:clamp(32px,5vw,52px);font-weight:300;line-height:1;letter-spacing:-.02em;}
+.tl-number.rev{color:var(--rev);}
+.tl-number.cost{color:var(--cost);}
+.tl-number.cuts{color:var(--cuts);}
+.tl-desc{font-size:14.5px;color:var(--ink-mid);max-width:36ch;line-height:1.5;}
+.tl-desc strong{color:var(--ink);}
+
+/* CALLOUTS */
+.callout{padding:14px 17px;margin:18px 0;border-left:3px solid;font-size:14.5px;line-height:1.65;}
 .callout.info{background:#E8F2F8;border-color:#2B6CB0;}
 .callout.warn{background:var(--warn-light);border-color:var(--warn);}
-.callout.newdev{background:var(--new-dev-light);border-color:var(--new-dev);}
 .callout.pass-note{background:var(--pass-light);border-color:var(--pass);}
-.callout-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;font-weight:600;}
-.callout b{font-weight:600;}
+.callout.newdev{background:#EAF2E3;border-color:#3D5A2E;}
+.callout.edu-tension{background:var(--cost-light);border-color:var(--cost-mid);}
+.callout-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin-bottom:5px;}
 
 /* GROUP BLOCKS */
-.group-block{margin-bottom:26px;}
-.group-header{display:flex;align-items:center;justify-content:space-between;padding:9px 0 8px;border-bottom:2px solid var(--ink);margin-bottom:0;}
-.group-name{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;display:flex;align-items:center;gap:7px;color:var(--ink-mid);}
-.group-icon{font-size:14px;}
-/* KEY HIERARCHY FIX: group total is large, prominent */
-.group-total{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;font-variant-numeric:tabular-nums;}
+.group-block{margin-bottom:28px;}
+.group-header{display:flex;align-items:baseline;justify-content:space-between;padding:8px 0 7px;border-bottom:2px solid var(--ink);margin-bottom:0;gap:12px;}
+.group-name{font-family:'IBM Plex Sans',sans-serif;font-weight:600;font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--ink-mid);display:flex;align-items:center;gap:6px;}
+.group-stats{display:flex;align-items:baseline;gap:10px;flex-shrink:0;}
+.group-total{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;}
+.group-pct{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);background:var(--paper);padding:2px 5px;border-radius:2px;}
 
-/* LINE ITEMS: smaller, subordinate to group total */
-.line-row{display:grid;grid-template-columns:1fr auto;gap:5px 14px;align-items:start;padding:10px 0 10px 14px;border-bottom:1px solid var(--grid);border-left:3px solid transparent;}
+/* LINE ITEMS */
+.line-row{display:grid;grid-template-columns:1fr auto;gap:6px 16px;align-items:start;padding:11px 0 11px 14px;border-bottom:1px solid var(--grid);border-left:3px solid transparent;}
 .line-row:last-of-type{border-bottom:none;}
-.line-label{font-size:13.5px;color:var(--ink);}
-.line-label small{display:block;font-size:12px;color:var(--ink-soft);line-height:1.5;margin-top:2px;}
-.line-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:4px;}
+.line-label-wrap{display:flex;flex-direction:column;gap:3px;}
+.line-label{font-size:14.5px;color:var(--ink);}
+.line-desc{font-size:12.5px;color:var(--ink-soft);line-height:1.5;}
+.line-badges{display:flex;gap:4px;flex-wrap:wrap;margin-top:3px;}
 .badge{font-family:'IBM Plex Mono',monospace;font-size:8.5px;letter-spacing:.06em;text-transform:uppercase;padding:2px 5px;border-radius:2px;white-space:nowrap;}
-.badge.reported{background:#DBE7DF;color:#234C39;}
+.badge.confirmed{background:#DBE7DF;color:#234C39;}
 .badge.derived{background:#DFE6EE;color:#2B4258;}
-.badge.estimate{background:#F0E6CF;color:#7A591A;}
 .badge.passthrough{background:var(--pass-light);color:var(--pass);border:1px solid var(--pass);}
-.line-right{display:flex;flex-direction:column;align-items:flex-end;gap:4px;}
-/* Line amounts are smaller than group totals */
-.line-amount{font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:500;white-space:nowrap;}
-.bar-track{width:90px;height:3px;background:var(--grid);border-radius:2px;overflow:hidden;}
-.bar-fill{height:3px;border-radius:2px;}
+.badge.amendment{background:var(--amend-light);color:var(--amend);border:1px solid var(--amend);}
+.line-right{display:flex;flex-direction:column;align-items:flex-end;gap:5px;padding-top:2px;}
+.line-amount{font-family:'IBM Plex Mono',monospace;font-size:14px;font-weight:500;white-space:nowrap;}
+.line-pct{font-family:'IBM Plex Mono',monospace;font-size:11px;color:var(--ink-soft);}
+.pct-bar{width:80px;height:6px;background:var(--grid);border-radius:3px;overflow:hidden;}
+.pct-fill{height:6px;border-radius:3px;}
+
+/* AMENDMENT DISPLAY */
+.amend-box{margin:0 0 4px 14px;padding:10px 12px;background:var(--amend-light);border-left:2px solid var(--amend);}
+.amend-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--amend);margin-bottom:5px;font-weight:600;}
+.amend-grid{display:grid;grid-template-columns:1fr auto auto;gap:4px 14px;font-size:12.5px;align-items:center;}
+.amend-key{color:var(--ink-soft);}
+.amend-val{font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-align:right;}
 
 /* IMPACT BOXES */
-.impact-box{margin:0 0 2px 14px;padding:9px 11px;background:var(--paper);border-left:2px solid var(--grid);font-size:12.5px;color:var(--ink-mid);line-height:1.55;}
-.impact-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:2px;}
+.impact-box{margin:0 0 3px 14px;padding:10px 12px;background:var(--paper);border-left:2px solid var(--grid);}
+.impact-label{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px;}
+.impact-text{font-size:13px;color:var(--ink-mid);line-height:1.55;}
 
-/* TRASH SECTION */
-.scenario-toggle{display:flex;gap:8px;margin:16px 0;}
-.scn-btn{flex:1;padding:10px 14px;border:2px solid var(--grid);background:var(--white);cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:500;text-align:left;line-height:1.35;transition:all .15s;}
-.scn-btn.active{border-color:var(--trash);background:var(--trash-light);}
-.scn-btn .scn-label{font-size:11px;color:var(--ink-soft);font-weight:400;display:block;margin-top:2px;}
-.fee-table-wrap{overflow-x:auto;margin:14px 0;}
-.fee-table{border-collapse:collapse;width:100%;font-size:13px;}
-.fee-table th{text-align:right;padding:6px 10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft);font-weight:500;border-bottom:2px solid var(--ink);}
-.fee-table th:first-child{text-align:left;}
-.fee-table td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--grid);font-family:'IBM Plex Mono',monospace;font-size:13px;}
-.fee-table td:first-child{text-align:left;font-family:'IBM Plex Sans',sans-serif;}
-.fee-table td.hi{background:var(--trash-light);font-weight:600;border-left:2px solid var(--trash);border-right:2px solid var(--trash);}
-.fee-table tr:last-child td{border-bottom:none;}
-
-/* TRASH MATH GRID */
-.trash-math{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--grid);border:1px solid var(--grid);margin:16px 0;}
-@media(max-width:600px){.trash-math{grid-template-columns:1fr;}}
-.tm-cell{background:var(--white);padding:14px;}
-.tm-cell .tm-k{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
-.tm-cell .tm-v{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:500;}
-.tm-cell .tm-note{font-size:11.5px;color:var(--ink-soft);margin-top:5px;line-height:1.45;}
-.tm-cell.highlight{background:var(--trash-light);}
-
-/* CITY HALL BOX */
-.ch-box{margin:26px 0;padding:20px;background:var(--warn-light);border:2px solid var(--warn);}
+/* CITY HALL CALLOUT */
+.ch-box{margin:26px 0;padding:20px 22px;background:var(--warn-light);border:2px solid var(--warn);}
 .ch-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);margin-bottom:7px;font-weight:600;}
-.ch-headline{font-family:'Fraunces',serif;font-weight:400;font-size:19px;color:var(--ink);margin-bottom:10px;}
-.ch-body{font-size:14px;color:var(--ink-mid);line-height:1.65;}
-.ch-body p+p{margin-top:8px;}
+.ch-headline{font-family:'Fraunces',serif;font-weight:400;font-size:20px;color:var(--ink);margin-bottom:14px;}
+.ch-section{margin-bottom:14px;padding-bottom:14px;border-bottom:1px solid rgba(0,0,0,.08);}
+.ch-section:last-of-type{border-bottom:none;margin-bottom:0;padding-bottom:0;}
+.ch-section-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--warn);margin-bottom:5px;font-weight:600;}
+.ch-body{font-size:14.5px;color:var(--ink-mid);line-height:1.65;}
 
-/* DEBT APPENDIX */
+/* TRASH OPTIONS */
+.options-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:20px 0 8px;}
+@media(max-width:640px){.options-grid{grid-template-columns:1fr;}}
+.option-card{padding:16px;background:var(--white);border:1px solid var(--grid);border-top:3px solid var(--grid);position:relative;display:flex;flex-direction:column;}
+.option-card.adopted{border:2px solid var(--trash);border-top:3px solid var(--trash);}
+.adopted-badge{position:absolute;top:-1px;right:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:var(--trash);color:#fff;padding:2px 7px;}
+.opt-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:7px;}
+.opt-eyebrow.adopted-eye{color:var(--trash);}
+.opt-title{font-weight:600;font-size:15px;margin-bottom:8px;line-height:1.3;}
+.opt-desc{font-size:13px;color:var(--ink-mid);line-height:1.6;flex-grow:1;}
+.opt-stats{margin-top:12px;padding-top:12px;border-top:1px solid var(--grid);}
+.opt-stat-key{font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px;}
+.opt-stat-val{font-family:'IBM Plex Mono',monospace;font-size:20px;font-weight:600;line-height:1;}
+.opt-stat-pct{font-size:11px;color:var(--ink-soft);margin-top:3px;}
+/* Option chain rows */
+.chain-block{margin-top:12px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;}
+.chain-heading{font-size:9px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+.chain-row{display:grid;grid-template-columns:1fr auto;gap:8px;padding:3px 0;}
+.chain-row .ck{color:var(--ink-mid);}
+.chain-row.pivot{border-top:1px solid var(--grid);margin-top:4px;padding-top:6px;font-weight:600;}
+.chain-bridge{margin:8px 0;padding:7px 10px;background:var(--paper);border-left:2px solid var(--ink-soft);font-size:11.5px;line-height:1.5;color:var(--ink-mid);}
+.chain-outcome{margin-top:8px;padding-top:8px;border-top:2px solid var(--ink);}
+.chain-outcome-key{font-size:9px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:3px;font-family:'IBM Plex Mono',monospace;}
+.chain-outcome-val{font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:600;line-height:1;}
+.chain-outcome-sub{font-size:11px;color:var(--ink-soft);margin-top:4px;}
+
+/* TRASH MATH */
+.trash-math{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--grid);border:1px solid var(--grid);margin:18px 0;}
+@media(max-width:580px){.trash-math{grid-template-columns:1fr;}}
+.tm-cell{background:var(--white);padding:15px;}
+.tm-cell.highlight{background:var(--trash-light);}
+.tm-k{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px;}
+.tm-v{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;}
+.tm-sub{font-size:11.5px;color:var(--ink-soft);margin-top:3px;}
+.tm-note{font-size:12.5px;color:var(--ink-mid);margin-top:6px;line-height:1.5;}
+
+/* CRITICAL THINKING */
+.critical-section{margin:28px 0 0;padding:16px 18px;background:var(--white);border:1px solid var(--grid);}
+.crit-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;font-weight:600;}
+.crit-q{font-size:14.5px;color:var(--ink-mid);line-height:1.65;padding-left:14px;border-left:2px solid var(--grid);margin-bottom:10px;}
+.crit-q:last-of-type{margin-bottom:0;}
+
+/* FOOTNOTES */
+sup.fn{font-size:10px;line-height:0;vertical-align:super;}
+sup.fn a{color:var(--ink-soft);text-decoration:none;font-family:'IBM Plex Mono',monospace;}
+sup.fn a:hover{color:var(--ink);}
+.footnotes{margin-top:28px;padding-top:16px;border-top:1px solid var(--grid);font-size:13px;color:var(--ink-mid);line-height:1.65;}
+.footnotes h3{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;}
+.fn-item{display:grid;grid-template-columns:24px 1fr;gap:4px;margin-bottom:8px;}
+.fn-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+
+/* APPENDIX */
 .appendix{padding:40px 0 16px;border-bottom:1px solid var(--grid);}
-.appendix h2{font-family:'Fraunces',serif;font-weight:400;font-size:24px;line-height:1.15;margin-bottom:10px;}
-.appendix .sub{font-size:14.5px;color:var(--ink-mid);max-width:65ch;line-height:1.65;margin-bottom:20px;}
+.appendix h2{font-family:'Fraunces',serif;font-weight:400;font-size:24px;margin-bottom:10px;}
+.appendix .sub{font-size:14px;color:var(--ink-mid);line-height:1.65;margin-bottom:16px;}
 .debt-table{width:100%;border-collapse:collapse;font-size:13px;overflow-x:auto;display:block;}
-.debt-table th{text-align:right;padding:7px 10px;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);border-bottom:2px solid var(--ink);white-space:nowrap;}
+.debt-table th{padding:7px 10px;text-align:right;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.07em;text-transform:uppercase;color:var(--ink-soft);border-bottom:2px solid var(--ink);white-space:nowrap;font-weight:500;}
 .debt-table th:first-child{text-align:left;}
 .debt-table td{padding:8px 10px;text-align:right;border-bottom:1px solid var(--grid);font-family:'IBM Plex Mono',monospace;font-size:12.5px;white-space:nowrap;}
-.debt-table td:first-child{text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:13px;}
-.debt-table tr.highlight-row td{background:#FFF8E8;font-weight:600;}
-.debt-table tr.now-row td{background:var(--cuts-light);}
-
-/* EPILOGUE */
-.epilogue{padding:36px 0;border-bottom:1px solid var(--grid);}
-.epilogue h2{font-family:'Fraunces',serif;font-weight:400;font-size:22px;margin-bottom:10px;}
-.epilogue p{font-size:14.5px;color:var(--ink-mid);max-width:68ch;line-height:1.7;margin-bottom:10px;}
-.alt-box{background:var(--white);border:1px solid var(--grid);padding:16px;margin:16px 0;display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-@media(max-width:560px){.alt-box{grid-template-columns:1fr;}}
-.alt-stat .ak{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);}
-.alt-stat .av{font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:500;margin-top:3px;}
-.alt-stat .an{font-size:12px;color:var(--ink-mid);margin-top:4px;}
+.debt-table td:first-child{text-align:left;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;font-weight:500;}
+.debt-table tr.yr-now td{background:var(--cuts-light);}
+.debt-table tr.yr-proj td{color:var(--ink-soft);}
 
 /* FOOTER */
-.page-footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);font-size:11.5px;color:var(--ink-soft);line-height:1.7;}
+.page-footer{margin-top:44px;padding-top:18px;border-top:1px solid var(--grid);font-size:12px;color:var(--ink-soft);line-height:1.7;}
 .page-footer b{color:var(--ink);}
 
 /* UTIL */
-.rev-text{color:var(--rev);}
-.cost-text{color:var(--cost);}
-.trash-text{color:var(--trash);}
-.cuts-text{color:var(--cuts);}
+.rev-text{color:var(--rev);} .cost-text{color:var(--cost);} .trash-text{color:var(--trash);} .cuts-text{color:var(--cuts);}
+a{color:inherit;}
+a:hover{text-decoration:underline;}
+
 @media(max-width:600px){
-  .line-row{grid-template-columns:1fr;}
-  .line-right{flex-direction:row;align-items:center;}
-  .bar-track{display:none;}
-  .group-total{font-size:16px;}
+  body{font-size:16.5px;line-height:1.6;}
+  .page-wrap{padding:0 16px 60px;}
+
+  /* Compact sticky header on mobile */
+  #sticky-header{padding:8px 14px 6px;}
+  .header-title{font-size:11px;margin-bottom:0;}
+  .tracker-label{display:none;}
+  .phase-pills{gap:4px;margin-bottom:5px;}
+  /* Pills become compact: number only, current one shows label */
+  .phase-pill{font-size:9px;padding:5px 7px;min-height:34px;letter-spacing:.03em;flex:1;text-align:center;justify-content:center;display:flex;align-items:center;}
+  .pill-full{display:none;}
+  .pill-short{display:inline;}
+  #mini-chart{height:34px;}
+
+  /* Larger, more readable body content */
+  .phase-section{padding:36px 0 20px;}
+  .phase-section h2{font-size:24px;}
+  .phase-narrative{font-size:16px;line-height:1.65;}
+  .line-label{font-size:16px;}
+  .line-desc{font-size:14px;line-height:1.55;}
+  .line-amount{font-size:16px;}
+  .line-pct{font-size:12px;}
+  .callout{font-size:15px;}
+  .group-name{font-size:12.5px;}
+  .group-total{font-size:18px;}
+  .group-pct{font-size:11px;}
+  .impact-text{font-size:14px;}
+  .crit-q{font-size:15.5px;}
+
+  /* Layout stacking */
+  .options-grid{grid-template-columns:1fr;gap:14px;}
+  .line-row{grid-template-columns:1fr;gap:6px;padding-left:12px;}
+  .line-right{flex-direction:row;align-items:center;gap:10px;}
+  .pct-bar{display:none;}
+  .topline-box{flex-direction:column;align-items:flex-start;gap:8px;padding:14px;}
+  .tl-number{font-size:44px;}
+  .tl-desc{font-size:15px;}
+  .trash-math{grid-template-columns:1fr;}
+  .amend-grid{grid-template-columns:1fr auto;}
+  .tally-cell{min-width:calc(50% - 1px);padding:12px;}
+  .tally-cell .tc-val{font-size:19px;}
+  .intro-block h1{font-size:28px;}
+  .intro-halves{flex-direction:column;gap:10px;}
+  .ch-box{padding:16px;}
+  .ch-headline{font-size:18px;}
+  .chain-outcome-val{font-size:24px;}
+
+  /* Footnotes and appendix readability */
+  .footnotes{font-size:14px;}
+  .debt-table td{font-size:12px;padding:7px 8px;}
+  .debt-table th{font-size:9px;padding:6px 8px;}
 }
-sup.fn{font-size:10px;line-height:0;vertical-align:super;}
-sup.fn a{color:var(--ink-soft);text-decoration:none;font-family:'IBM Plex Mono',monospace;}
-sup.fn a:hover{color:var(--ink);text-decoration:underline;}
-.footnotes{margin-top:28px;padding-top:16px;border-top:1px solid var(--grid);font-size:12.5px;color:var(--ink-mid);line-height:1.65;}
-.footnotes h3{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;}
-.fn-item{display:grid;grid-template-columns:22px 1fr;gap:4px;margin-bottom:8px;}
-.fn-num{font-family:'IBM Plex Mono',monospace;font-size:12px;color:var(--ink-soft);}
+@media(max-width:400px){
+  .phase-pill{font-size:8px;padding:5px 4px;}
+  .tally-cell{min-width:100%;}
+}
 </style>
 </head>
 <body>
@@ -211,167 +300,168 @@ function checkPw(){
 
 <div id="sticky-header">
   <div class="header-inner">
-    <div class="header-top">
-      <span class="header-title">Beverly FY2027 Budget</span>
-    </div>
+    <span class="header-title">Beverly FY2027 Budget</span>
     <div class="tracker-label">Track your place in the story as you scroll through each section below</div>
     <div class="phase-pills">
-      <button class="phase-pill" data-target="phase1">Revenue +$7.2M</button>
-      <button class="phase-pill" data-target="phase2">Cost pressures +$10.0M</button>
-      <button class="phase-pill" data-target="phase3">Trash fee covers $1.1M</button>
-      <button class="phase-pill" data-target="phase4">Reductions close $1.8M</button>
+      <button class="phase-pill" data-target="phase1"><span class="pill-full">Part 1: Revenue +$7.2M</span><span class="pill-short">1 · Revenue</span></button>
+      <button class="phase-pill" data-target="phase2"><span class="pill-full">Part 2: Cost pressures +$10.0M</span><span class="pill-short">2 · Costs</span></button>
+      <button class="phase-pill" data-target="phase3"><span class="pill-full">Part 3: Trash fee covers $1.1M</span><span class="pill-short">3 · Trash</span></button>
+      <button class="phase-pill" data-target="phase4"><span class="pill-full">Part 4: Remaining cuts $1.8M</span><span class="pill-short">4 · Cuts</span></button>
     </div>
-    <svg id="mini-chart" viewBox="0 0 980 56" preserveAspectRatio="none"></svg>
+    <svg id="mini-chart" viewBox="0 0 980 52" preserveAspectRatio="none"></svg>
   </div>
 </div>
 
 <div class="page-wrap">
 
 <div class="intro-block">
-  <h1>Beverly's FY2027 Budget:<br>Revenue, Rising Costs, the Trash Fee, and What Got Cut</h1>
-  <p class="intro-standfirst">State law requires Beverly to pass a balanced budget every year. This walks through how FY2027 gets there: where the money comes from, why costs grew faster than revenue, what the trash fee decision meant for services, and what was reduced to close the remaining gap.</p>
-  <div class="summary-pills">
-    <div class="summary-pill"><span class="dot" style="background:var(--rev)"></span><span>Revenue grew</span><strong class="rev-text">+$7.2M</strong></div>
-    <div class="summary-pill"><span class="dot" style="background:var(--cost)"></span><span>Cost pressures totaled</span><strong class="cost-text">+$10.0M</strong></div>
-    <div class="summary-pill"><span class="dot" style="background:var(--trash)"></span><span>Trash fee offset</span><strong class="trash-text">+$1.1M</strong></div>
-    <div class="summary-pill"><span class="dot" style="background:var(--cuts)"></span><span>Reductions closed the remaining gap</span><strong class="cuts-text">$1.8M</strong></div>
+  <h1>Beverly FY2027: Rising Costs, a Structural Gap, and How It Was Closed for One Year</h1>
+  <div class="intro-halves">
+    <div class="intro-half h1">
+      <div class="half-label h1">Part 1 + 2: The Problem</div>
+      <div class="half-text">Beverly's costs grew about $10 million this year. Revenue only grew $7.2 million. That gap is not an accident or a one-time event. It reflects a long-running reality: the things that drive city costs, school enrollment, health insurance, pension obligations, grow faster each year than property taxes are legally allowed to grow.</div>
+    </div>
+    <div class="intro-half h2">
+      <div class="half-label h2">Part 3 + 4: The Response</div>
+      <div class="half-text">To close a $2.9 million gap, Beverly had two levers it could pull directly this year: charge residents more through trash fees, or cut services. It used both. Other ideas people often raise, like canceling the City Hall renovation or getting more from the state, either could not close this year's gap or depend on decisions outside the city's control. Part 3 explains why.</div>
+    </div>
   </div>
+  <p class="intro-standfirst">This piece walks through each part in plain language, with sources noted throughout. Use the tracker above to follow along.</p>
 </div>
 
+<!-- RUNNING TALLY -->
 <div class="running-tally">
   <div class="tally-cell phase-1"><div class="tc-phase">After revenue</div><div class="tc-val rev-text">+$7.17M</div><div class="tc-label">ahead of FY26 baseline</div></div>
-  <div class="tally-cell phase-2"><div class="tc-phase">After costs</div><div class="tc-val cost-text" id="tc2">-$2.88M</div><div class="tc-label">gap remaining</div></div>
-  <div class="tally-cell phase-3"><div class="tc-phase">After trash fee</div><div class="tc-val" id="tc3">-$1.81M</div><div class="tc-label">still to close</div></div>
-  <div class="tally-cell phase-4"><div class="tc-phase">Final</div><div class="tc-val" id="tc4">$0</div><div class="tc-label">legally required balance</div></div>
+  <div class="tally-cell phase-2"><div class="tc-phase">After costs</div><div class="tc-val cost-text">-$2.88M</div><div class="tc-label">gap to close</div></div>
+  <div class="tally-cell phase-3"><div class="tc-phase">After trash fee</div><div class="tc-val trash-text">-$1.81M</div><div class="tc-label">still remaining</div></div>
+  <div class="tally-cell phase-4"><div class="tc-phase">Final result</div><div class="tc-val">$0</div><div class="tc-label">balanced, as required by law</div></div>
 </div>
 
 <!-- PHASE 1: REVENUE -->
 <div class="phase-section" id="phase1">
   <div class="phase-eyebrow"><span class="eyebrow-swatch" style="background:var(--rev)"></span><span style="color:var(--rev)">Part 1</span></div>
   <h2>Where Beverly Gets Its Money</h2>
-  <p class="phase-narrative">Beverly raises money three main ways: property taxes, state aid from Beacon Hill, and local fees and excise taxes. Property taxes account for about <b>77 cents of every dollar of city revenue</b>, but a 1980 state law called Proposition 2.5 caps how fast they can grow. Each year, the maximum increase is 2.5% of the prior year's total, plus revenue from new construction added to the tax rolls. The city cannot raise property taxes faster than that without a special ballot vote, which Beverly has never passed. This year, all revenue sources combined generated $7.2 million more than last year. The cost pressures on that revenue totaled roughly $10 million in areas that grew.</p>
+  <p class="phase-narrative">Beverly raises money through property taxes, state aid, and local fees and excise taxes. Property taxes make up about <b>77 cents of every dollar of city revenue</b>, but a 1980 state law called Proposition 2.5 caps how fast the city can raise them. Each year, the maximum increase is 2.5% of the prior year's levy, plus revenue from newly built properties that have been added to the tax rolls. Beverly cannot raise property taxes faster than that limit without voters approving a ballot measure called an override. Beverly has not passed one in recent history. Marblehead, a neighboring community, did approve a $15 million override on June 9, 2026.<sup class="fn"><a href="#footnotes">[1]</a></sup> This year, all of Beverly's revenue sources combined brought in $7.2 million more than last year.</p>
 
-  <div class="callout info">
-    <div class="callout-label">What Proposition 2.5 means</div>
-    Think of Beverly's property tax base as a number that can only increase 2.5% per year, plus whatever new buildings come onto the tax rolls. When school costs grow 5%, health insurance grows 9%, and pensions grow 5%, that 2.5% ceiling creates a gap that has to be closed some other way.
+  <div class="topline-box">
+    <div class="tl-number rev">+$7.2M</div>
+    <div class="tl-desc"><strong>Total new revenue this year</strong><br>Compared to FY26. Each category below shows its share of this total.</div>
   </div>
 
-  <!-- Property taxes group -->
+  <!-- Property and Local Taxes Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🏠</span> Property and local taxes</span>
-      <span class="group-total rev-text">+$5.67M</span>
+      <span class="group-name">Property and local taxes</span>
+      <div class="group-stats">
+        <span class="group-pct rev-text">72% of revenue growth</span>
+        <span class="group-total rev-text">+$5.17M</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--rev)">
-      <div>
-        <div class="line-label">Statutory 2.5% property tax increase
-          <small>Each year, the city is allowed to raise property taxes by up to 2.5% of the prior year's levy. This is the mandatory, formula-driven portion.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Property tax increase (2.5% annual cap)</span>
+        <span class="line-desc">Each year, the city is legally allowed to raise property taxes by up to 2.5% of the prior year's levy. This is the formula-driven portion, set by state law.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount rev-text">+$3.39M</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--rev);width:64%"></div></div>
+        <span class="line-pct">47% of revenue growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--rev);width:47%"></div></div>
       </div>
     </div>
 
-    <div class="line-row" style="border-left-color:var(--new-dev)">
-      <div>
-        <div class="line-label">New construction added to the tax rolls
-          <small>Properties built or significantly improved and newly assessed this year. Once on the rolls, they contribute to the tax base permanently, not just in the year they're added.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+    <div class="line-row" style="border-left-color:var(--rev)">
+      <div class="line-label-wrap">
+        <span class="line-label">New construction added to the tax rolls</span>
+        <span class="line-desc">When new buildings are completed and assessed, they are added to Beverly's permanent tax base. Beverly had $1.95M in new construction added this year. Unlike a one-time windfall, these properties keep paying taxes going forward. That said, new construction is not a guaranteed annual increase  -  it depends on development projects getting proposed, approved, and completed. And more development, particularly residential, can also increase pressure on schools, roads, and city services.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount rev-text">+$1.95M</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--new-dev);width:37%"></div></div>
-      </div>
-    </div>
-
-    <div class="callout newdev">
-      <div class="callout-label">New construction: what this means year to year</div>
-      The $1.95M from new construction permanently expands Beverly's tax base. Those properties will continue paying taxes in future years, which is why new development is financially significant for the city. However, next year's new growth credit depends on what new construction comes online in the coming year. The annual increment varies. Beverly's downtown activity and ongoing residential and commercial development have contributed to its new growth numbers in recent years, but the amount is not guaranteed to repeat or grow.
-    </div>
-
-    <div class="line-row">
-      <div>
-        <div class="line-label">Overlay reserve deduction
-          <small>A required legal set-aside, not a tap into city savings. Massachusetts law requires cities to hold back a portion of the levy to cover situations where property owners successfully appeal their tax assessments and receive refunds. This reduces available revenue by about $500K.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
-      </div>
-      <div class="line-right">
-        <span class="line-amount cost-text">-$500K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:9%"></div></div>
+        <span class="line-pct">27% of revenue growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--rev);width:27%"></div></div>
       </div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">PILOT payments (Payments In Lieu of Taxes)
-          <small>Negotiated annual payments from institutions that own property in Beverly but are tax-exempt, such as hospitals and nonprofits. These are voluntary agreements, not automatic. Beverly's PILOT total was flat this year at $250K.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
-      </div>
-      <div class="line-right">
-        <span class="line-amount" style="color:var(--ink-soft)">flat $250K</span>
-      </div>
-    </div>
-
-    <div class="line-row">
-      <div>
-        <div class="line-label">Motor vehicle excise, cannabis (3%), hotel/motel, meals taxes
-          <small>All grew modestly. Cannabis excise is up about 11% as local dispensaries mature.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Local excise taxes (motor vehicles, meals, hotel, cannabis)</span>
+        <span class="line-desc">Motor vehicle excise tax (+$215K) and meals/hotel/cannabis taxes (+$115K combined) grew modestly. Cannabis excise is up about 11% as Beverly's dispensaries continue to mature.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount rev-text">+$330K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--rev);width:6%"></div></div>
+        <span class="line-pct">5% of revenue growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--rev);width:5%"></div></div>
+      </div>
+    </div>
+
+    <div class="line-row">
+      <div class="line-label-wrap">
+        <span class="line-label">PILOT payments (Payments In Lieu of Taxes)</span>
+        <span class="line-desc">Certain organizations, such as colleges and hospitals, own property in Beverly but do not pay regular property taxes. Some voluntarily pay the city a negotiated annual amount instead. Beverly receives $250K per year in these payments, unchanged from last year. PILOT payments are frequently raised as a potential avenue for raising city revenue, as some communities have negotiated substantially higher amounts.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
+      </div>
+      <div class="line-right">
+        <span class="line-amount" style="color:var(--ink-soft)">no change</span>
+      </div>
+    </div>
+
+    <div class="line-row">
+      <div class="line-label-wrap">
+        <span class="line-label">Abatement reserve (reduces available levy)</span>
+        <span class="line-desc">Every year, state law requires Beverly to hold back a portion of the property tax levy as a buffer. This covers situations where a property owner challenges their tax bill and wins a reduction. Think of it like a company setting aside money for potential customer refunds. Beverly held back $500K this year. The money may not all be needed, and any leftover is freed up later.<sup class="fn"><a href="#footnotes">[2]</a></sup></span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
+      </div>
+      <div class="line-right">
+        <span class="line-amount cost-text">-$500K</span>
+        <span class="line-pct">reduces total by 7%</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:7%"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- State aid group -->
+  <!-- State Funding Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🏛</span> State aid from Beacon Hill</span>
-      <span class="group-total rev-text">+$719K</span>
+      <span class="group-name">State funding</span>
+      <div class="group-stats">
+        <span class="group-pct rev-text">10% of revenue growth</span>
+        <span class="group-total rev-text">+$719K</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--rev)">
-      <div>
-        <div class="line-label">Chapter 70 school funding
-          <small>Beverly receives the state's minimum aid level under the Chapter 70 formula, meaning the state calculates that Beverly's local tax capacity is high enough that it qualifies for a lower state contribution than many other communities. This year's allocation grew by $714K, but Beverly remains at the minimum tier. The city has consistently advocated at the state level for changes to the formula.</small>
-        </div>
-        <div class="line-badges"><span class="badge derived">calculated from budget totals</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Chapter 70 school funding from the state</span>
+        <span class="line-desc">The state distributes education funding to every city and town through a formula called Chapter 70. Beverly receives the minimum aid level, meaning the state formula calculates that Beverly's local tax capacity is high enough to qualify for a lower state contribution than many other communities. Beverly's allocation grew $714K this year, but the city remains in the minimum tier.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount rev-text">+$714K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--rev);width:13%"></div></div>
+        <span class="line-pct">10% of revenue growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--rev);width:10%"></div></div>
       </div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Unrestricted general government aid (UGGA)
-          <small>State aid for non-school city operations, set annually by the legislature. Beverly's UGGA actually decreased by $24K this year. The reasons for year-to-year fluctuations are determined by the state budget process; Beverly does not control this number.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Unrestricted General Government Aid (UGGA)</span>
+        <span class="line-desc">UGGA is the state's annual general aid payment to municipalities for non-school operations. Beverly's allocation actually fell by $24K this year. Here is the part worth understanding: UGGA has no formula that accounts for a city's current population, needs, or economic conditions. It was created in 2010 by merging two older aid programs, and each city's share is essentially frozen to what it received back then, adjusted up or down by a small percentage each year in the state budget. In practice, that means Beverly's aid reflects a snapshot of the city from over a decade ago, not how Beverly has changed since. The Massachusetts Municipal Association has pushed for a new formula that would better reflect current conditions.<sup class="fn"><a href="#footnotes">[3]</a></sup></span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$24K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:1%"></div></div>
+        <span class="line-pct">reduces total slightly</span>
       </div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Other state aid (net)
-          <small>Veterans reimbursement fell 25% (-$105K). Charter school reimbursement (+$38K) and smart growth payment (+$158K) partially offset that. Net gain: about $29K.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Other state aid (net)</span>
+        <span class="line-desc">Veterans reimbursement fell $105K (25%). Charter school reimbursement +$38K, smart growth payment +$158K. Net: approximately +$29K across all other state aid lines.</span>
+        <div class="line-badges"><span class="badge derived">calculated from budget totals</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount rev-text">+$29K</span>
@@ -379,32 +469,53 @@ function checkPw(){
     </div>
   </div>
 
-  <!-- Other sources group -->
+  <!-- NGRID passthrough -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">💼</span> Other sources</span>
-      <span class="group-total rev-text">+$72K net</span>
+      <span class="group-name">National Grid energy credit</span>
+      <div class="group-stats">
+        <span class="group-pct" style="color:var(--pass)">passthrough</span>
+        <span class="group-total" style="color:var(--pass)">+$700K</span>
+      </div>
     </div>
+    <div class="line-row" style="border-left-color:var(--pass)">
+      <div class="line-label-wrap">
+        <span class="line-label">National Grid energy savings credit</span>
+        <span class="line-desc">National Grid reimbursed Beverly approximately $700K for energy savings through the Electric Division. This appears as revenue in the city's budget. A corresponding cost increase appears in Part 2 under Public Services. The two largely offset each other, so this item does not materially change the overall budget picture. Note that this $700K is included in both the $7.2M total revenue growth and the $10M total cost growth figures, so both headline numbers are inflated slightly by an item that nets close to zero.<sup class="fn"><a href="#footnotes">[10]</a></sup></span>
+        <div class="line-badges"><span class="badge passthrough">passthrough: see Part 2</span><span class="badge confirmed">budget book</span></div>
+      </div>
+      <div class="line-right">
+        <span class="line-amount" style="color:var(--pass)">+$700K</span>
+        <span class="line-pct">10% of revenue total</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--pass);width:10%"></div></div>
+      </div>
+    </div>
+  </div>
 
+  <!-- Other Sources Group -->
+  <div class="group-block">
+    <div class="group-header">
+      <span class="group-name">Other sources</span>
+      <div class="group-stats">
+        <span class="group-pct rev-text">1% of revenue growth</span>
+        <span class="group-total rev-text">+$72K net</span>
+      </div>
+    </div>
     <div class="line-row">
-      <div>
-        <div class="line-label">Enterprise fund transfers and other financing
-          <small>Water, sewer, airport, and other city enterprise operations contribute to shared overhead costs. Cemetery trust also contributes annually.</small>
-        </div>
+      <div class="line-label-wrap">
+        <span class="line-label">Enterprise fund transfers and other financing</span>
+        <span class="line-desc">Water, sewer, airport, and other city-run enterprise operations contribute to shared overhead costs. Note: this line will look different in Part 3 because trash is its own enterprise fund, and the general fund's contribution to that fund is part of the trash fee story.</span>
         <div class="line-badges"><span class="badge derived">calculated from budget totals</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount rev-text">+$147K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--rev);width:3%"></div></div>
       </div>
     </div>
-
     <div class="line-row">
-      <div>
-        <div class="line-label">Investment income on city reserves
-          <small>Interest earned on city funds held in accounts. Down $75K this year.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Investment income on city funds</span>
+        <span class="line-desc">Interest earned on city accounts. Down $75K this year.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$75K</span>
@@ -412,9 +523,11 @@ function checkPw(){
     </div>
   </div>
 
-  <div class="callout pass-note">
-    <div class="callout-label">Not counted above: NGRID energy credit</div>
-    National Grid reimbursed Beverly approximately <b>$700K</b> for energy savings, which appears as revenue. The electric division's expenses also increased, by approximately $588K, over the same period. The two sides are closely matched and the net budget effect is modest. This item is excluded from the main revenue figures above because it is largely offset on the expense side and does not materially affect the overall picture.
+  <!-- Part 1 Critical Thinking -->
+  <div class="critical-section">
+    <div class="crit-eyebrow">Questions worth thinking about</div>
+    <div class="crit-q">The property tax cap allowed Beverly to raise about $3.4 million from the 2.5% increase. This year's total cost growth was nearly three times that. If costs consistently grow faster than property taxes are allowed to, what are the realistic options for closing that gap over time?</div>
+    <div class="crit-q">Beverly receives $250K per year in PILOT payments from tax-exempt organizations. Some cities have negotiated significantly more from large institutions like hospitals and universities. Could PILOT payments be raised enough to make a material difference in a budget gap like this one? What would it take, and who would need to agree?</div>
   </div>
 </div>
 
@@ -422,52 +535,59 @@ function checkPw(){
 <div class="phase-section" id="phase2">
   <div class="phase-eyebrow"><span class="eyebrow-swatch" style="background:var(--cost)"></span><span style="color:var(--cost)">Part 2</span></div>
   <h2>Where the Money Goes</h2>
-  <p class="phase-narrative">Beverly's biggest cost increases are driven by contracts, legal requirements, and enrollment, most of which were set before the annual budget process began. That said, not everything is locked in: the City Hall renovation project represents a policy choice with real budget implications, and the pace of school funding growth reflects ongoing decisions about how much to prioritize education each year. The parts of the budget that grew added up to roughly <b>$10 million in new cost pressures against $7.2 million in new revenue.</b> The $2.8 million gap is what the rest of this story is about.</p>
+  <p class="phase-narrative">This section walks through what Beverly spends money on and what drove the increases this year. Most of the growth comes from contracts, legal requirements, and formulas set before the annual budget process even starts. Part 3 and Part 4 are where the city's choices come in. This section is just the bills going up.</p>
 
-  <!-- EDUCATION GROUP -->
+  <div class="topline-box">
+    <div class="tl-number cost">+$10.0M</div>
+    <div class="tl-desc"><strong>Total cost growth this year</strong><br>Education alone accounts for about half. Each category shows its share of the total.</div>
+  </div>
+
+  <!-- Education Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🎓</span> Education</span>
-      <span class="group-total cost-text">-$5.19M</span>
+      <span class="group-name">Education</span>
+      <div class="group-stats">
+        <span class="group-pct cost-text">52% of cost growth</span>
+        <span class="group-total cost-text">-$5.19M</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cost)">
-      <div>
-        <div class="line-label"><b>Beverly Public Schools</b>
-          <small>A 5.28% increase, bringing the city's contribution to $89.9M. Schools now represent 49.7% of the entire city budget. For context, the BPS funding increase was 7.73% in FY25 and 9.08% in FY26. The rate of increase is slowing, but costs keep compounding on a growing base.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Beverly Public Schools</span>
+        <span class="line-desc">Up 5.28%, bringing the city's contribution to $89.9 million. Schools now account for 49.7% of the entire city budget. For comparison, the school budget increased 7.73% in FY25 and 9.08% in FY26. The rate has slowed but the base keeps compounding.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book + transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$4.50M</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:100%"></div></div>
+        <span class="line-pct">45% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:45%"></div></div>
       </div>
     </div>
 
-    <div class="impact-box">
-      <div class="impact-label">The education funding tension</div>
-      City Hall and the School Committee have both acknowledged that even with this increase, Beverly Public Schools has unmet needs, particularly in special education, where costs are growing faster than the funding formula accounts for. Parents, educators, and school advocates have argued the increase is not enough. The budget reflects what the city concluded it could provide while balancing all other obligations.
+    <div class="callout edu-tension">
+      <div class="callout-label">The education funding tension</div>
+      Even with this increase, Beverly Public Schools has acknowledged unmet needs, particularly in special education. The school budget is rising, and it is still not enough by the district's own account. Both sides of that picture are true at the same time.
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Essex Tech (North Shore Regional Vocational School)
-          <small>Beverly pays an annual assessment for residents attending Essex Tech. That assessment rose 17.4% this year (+$690K), driven by the regional formula. Beverly does not set or control this number.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Essex Tech (North Shore Agricultural and Technical School)</span>
+        <span class="line-desc">Beverly is one of 17 member communities that support Essex Tech. The city's annual payment is set by a formula in the school's founding legislation: costs are split based on how many Beverly students attend relative to students from other towns.<sup class="fn"><a href="#footnotes">[4]</a></sup> Beverly does not control the school's per-student costs or how many Beverly students choose to apply. This year's assessment rose 17.4%, adding $690K.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book + transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$690K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:15%"></div></div>
+        <span class="line-pct">7% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:15%"></div></div>
       </div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Charter school and school choice tuition
-          <small>Beverly pays tuition for residents who attend charter schools or choose a different public school. Total: $1.52M. This is embedded in the 53.1% education share of the budget.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Charter school and school choice tuition</span>
+        <span class="line-desc">Beverly pays tuition for residents who enroll in charter schools or choose a different public school. Total: $1.52M. This is included in the 53.1% education share of the total budget.</span>
+        <div class="line-badges"><span class="badge confirmed">transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount" style="color:var(--ink-soft)">included above</span>
@@ -475,260 +595,314 @@ function checkPw(){
     </div>
   </div>
 
-  <!-- BENEFITS GROUP -->
+  <!-- Benefits Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🏥</span> Employee benefits</span>
-      <span class="group-total cost-text">-$1.76M</span>
+      <span class="group-name">Employee benefits</span>
+      <div class="group-stats">
+        <span class="group-pct cost-text">18% of cost growth</span>
+        <span class="group-total cost-text">-$1.76M</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cost)">
-      <div>
-        <div class="line-label">Health insurance for all city and school employees
-          <small>Up 9% this year. The cost is driven by the health plan itself, not by negotiation or policy choices Beverly makes annually. It has increased every year.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Health insurance for city and school employees</span>
+        <span class="line-desc">Up 9% this year (+$1.09M). The annual premium increase is set by the city's health plan, not by the city's own negotiating table.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$1.09M</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:24%"></div></div>
+        <span class="line-pct">11% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:24%"></div></div>
       </div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Pension contributions to Essex County Retirement System
-          <small>Up 4.7%. Set annually by an independent actuarial assessment. The city cannot defer, reduce, or negotiate this contribution.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Pension contributions to Essex County Retirement System</span>
+        <span class="line-desc">Up 4.7% (+$669K). The annual contribution amount is set by an independent actuarial review of the pension fund. Beverly cannot unilaterally reduce or defer this payment.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$669K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:15%"></div></div>
+        <span class="line-pct">7% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:15%"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- PUBLIC SERVICES GROUP -->
+  <!-- Public Services Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🏗</span> Public services and infrastructure</span>
-      <span class="group-total cost-text">-$1.25M</span>
+      <span class="group-name">Public services and infrastructure</span>
+      <div class="group-stats">
+        <span class="group-pct cost-text">12% of cost growth</span>
+        <span class="group-total cost-text">-$1.25M</span>
+      </div>
     </div>
 
-    <div class="line-row" style="border-left-color:var(--cost)">
-      <div>
-        <div class="line-label">Department of Public Services, Engineering, Highway, Parks, Electric Division
-          <small>Fuel, materials, and staffing costs drove increases across most of these departments. Note: the Electric Division budget includes an energy credit from National Grid that is matched on the revenue side, so the net impact on the budget from that credit is zero. The underlying cost increase here is real.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+    <div class="line-row" style="border-left-color:var(--pass)">
+      <div class="line-label-wrap">
+        <span class="line-label">Electric Division</span>
+        <span class="line-desc">Electric costs rose approximately $588K this year. Nearly all of this is tied to National Grid, which also reimburses Beverly about $700K through the energy savings credit shown as revenue in Part 1. Because the credit and the cost sit on opposite sides of the budget, this line is close to a wash overall. The $588K is shown here as the actual increase in what the Electric Division spends; the matching credit is counted once, in Part 1.</span>
+        <div class="line-badges"><span class="badge passthrough">credit shown in Part 1</span><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
-        <span class="line-amount cost-text">-$1.25M</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:28%"></div></div>
+        <span class="line-amount cost-text">-$588K</span>
+        <span class="line-pct">6% of cost growth<br><span style="color:var(--pass);font-size:10px;">offset by credit in Part 1</span></span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--pass);width:13%"></div></div>
+      </div>
+    </div>
+
+    <div class="line-row" style="border-left-color:var(--cost)">
+      <div class="line-label-wrap">
+        <span class="line-label">Engineering, Highway, Parks, DPS operations (excluding electric)</span>
+        <span class="line-desc">Fuel, materials, and staffing costs drove increases across these departments.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
+      </div>
+      <div class="line-right">
+        <span class="line-amount cost-text">-$665K</span>
+        <span class="line-pct">7% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:15%"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- PUBLIC SAFETY GROUP -->
+  <!-- Public Safety Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🚒</span> Public safety</span>
-      <span class="group-total cost-text">-$986K</span>
+      <span class="group-name">Public safety</span>
+      <div class="group-stats">
+        <span class="group-pct cost-text">10% of cost growth</span>
+        <span class="group-total cost-text">-$986K</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cost)">
-      <div>
-        <div class="line-label">Police, Fire, Public Safety Dispatch, Harbormaster
-          <small>Wage increases driven by collective bargaining contracts. Police and Fire are each not filling one position when it becomes vacant this year, which partially offsets the contractual cost growth.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Police, Fire, Dispatch, Harbormaster</span>
+        <span class="line-desc">Wage increases are driven by collective bargaining contracts. The transmittal letter notes that Police and Fire are each holding one position open through attrition this year, meaning when a position becomes vacant it is not refilled. The source describes this as attrition and does not specify the reason each position opened. This partially reduces the contractual cost growth.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book + transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$986K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:22%"></div></div>
+        <span class="line-pct">10% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:22%"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- DEBT AND OTHER -->
+  <!-- Required Obligations Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">📋</span> Debt payments and required obligations</span>
-      <span class="group-total cost-text">-$861K</span>
+      <span class="group-name">Required contributions and other obligations</span>
+      <div class="group-stats">
+        <span class="group-pct cost-text">8% of cost growth</span>
+        <span class="group-total cost-text">-$861K</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cost)">
-      <div>
-        <div class="line-label">Social Security and Medicare contributions, OPEB fund deposits, and county assessments
-          <small>Social Security and Medicare: the city's share of payroll taxes on employee wages. OPEB fund: money set aside today for the future cost of retirees' health insurance, required by state law. County assessments: mandatory charges from Essex County and regional agencies.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Payroll taxes (Social Security and Medicare) and OPEB fund</span>
+        <span class="line-desc">Payroll taxes: Beverly's share of Social Security and Medicare contributions on employee wages, set by federal law. OPEB fund: money set aside today that the city is required to save toward future retirees' health insurance costs, required by state law.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cost-text">-$667K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:15%"></div></div>
+        <span class="line-pct">7% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:15%"></div></div>
       </div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Debt service on existing borrowing
-          <small>Only roughly +$176K this year, an unusually small increase. That's because City Hall renovation debt payments have not yet fully started. See the City Hall section below.<sup class="fn"><a href="#footnotes">[3]</a></sup></small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">McPherson Youth Center: deliberate budget increase</span>
+        <span class="line-desc">The McPherson Youth Center on Rantoul Street received a deliberate 70% budget increase this year, from $68K to $117K (+$48K). This represents a policy decision to expand programming at the center.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
-        <span class="line-amount cost-text">+~$176K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cost);width:3%"></div></div>
+        <span class="line-amount cost-text">-$48K</span>
       </div>
     </div>
 
-    <div class="line-row">
-      <div>
-        <div class="line-label">McPherson Youth Center (+$48K), unemployment reserve, other increases
-          <small>The McPherson Youth Center on Rantoul Street received a deliberate 70% budget increase. Unemployment reserve also grew.</small>
-        </div>
-        <div class="line-badges"><span class="badge derived">calculated from budget totals</span></div>
+    <div class="line-row" style="border-left-color:var(--cost)">
+      <div class="line-label-wrap">
+        <span class="line-label">Debt service on existing loans</span>
+        <span class="line-desc">Only roughly +$176K this year, an unusually small increase given that the City Hall renovation loan payments have started.<sup class="fn"><a href="#footnotes">[5]</a></sup> Beverly's debt service historically runs near 5-7% of the total budget. At 5.01% in FY27, it is at the low end of that range. The reason debt payments barely moved despite City Hall is explained in the callout below.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book + City Hall PowerPoint, Slide 27</span></div>
       </div>
       <div class="line-right">
-        <span class="line-amount cost-text">-$194K</span>
+        <span class="line-amount cost-text">-~$176K</span>
+        <span class="line-pct">2% of cost growth</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cost);width:4%"></div></div>
       </div>
     </div>
   </div>
 
-  <!-- CITY HALL BOX -->
+  <!-- City Hall Box -->
   <div class="ch-box">
-    <div class="ch-eyebrow">Looking ahead: City Hall renovation and what it costs the budget</div>
-    <div class="ch-headline">A $29.4M project already approved and underway</div>
-    <div class="ch-body">
-      <p>Beverly's City Hall renovation and annex reconstruction is a <b>$29.4M project</b> (that includes $28.4M for the work itself and $1M to temporarily house city departments during construction). The City Council formally authorized the borrowing in January 2026. Construction is scheduled to begin in September 2026, with city workers moving back in around February 2028.</p>
+    <div class="ch-eyebrow">A closer look: the City Hall renovation and the debt budget</div>
+    <div class="ch-headline">$29.4M project, but only a $176K increase in this year's debt payments</div>
 
-      <p>Beverly is not borrowing the entire $29.4M. The city applied $1.5M that had been set aside in previous budgets for design work, and transferred $2M from a dedicated savings account that the city had been building specifically to reduce future borrowing costs. A one-time pre-payment of $525K was also included in the FY26 budget. After those reductions, <b>Beverly needs to borrow approximately $25.4M</b>. That borrowing is split into two loans issued at different times as construction costs come due.</p>
-
-      <p>The first loan ($15.4M) begins in FY27, which is this budget. Beverly's estimated annual payment on that loan is <b>$2 million</b>. The second loan ($10M) is not yet issued, and its payments begin in FY28 when both loans are active simultaneously.</p>
-
-      <p>Here is what surprises many people: <b>the debt service line in this budget only increases by roughly $176K</b><sup class="fn"><a href="#footnotes">[3]</a></sup> despite the fact that City Hall's first loan payment is $2M. How is that possible? Two other city loans from earlier capital projects made their final payments in FY26 and then disappeared from the schedule entirely. A parking and land acquisition loan made a $1M final payment and was retired. A Central Fire Station loan made a final payment of $293K and was also retired. Together, those two bonds clearing freed up $1.3M in annual capacity right as City Hall stepped in. The rest of the existing loan portfolio also continues to pay down normally each year, contributing additional room. The net result is that a $2M new obligation produces only a $176K to $231K net increase in total debt payments.</p>
-
-      <p>This is not a coincidence. The city has managed its borrowing this way since the mid-1990s, deliberately timing new loans to enter the schedule as old ones retire. The strategy is documented in the January 2026 City Council presentation on the project. Through FY2028 and into the early 2030s, the total amount Beverly pays on all its loans combined is projected to stay near 5% of the overall budget, even as City Hall payments ramp up.</p>
-
-      <p>What happens beyond that is harder to project and depends heavily on decisions not yet made. A January 2026 planning document showed a scenario where several additional capital projects, including a proposed large public services building, would push debt payments significantly higher later in the decade. Those projects have not been approved. That part of the schedule represents planning, not commitment.</p>
+    <div class="ch-section">
+      <div class="ch-section-label">How the project is being paid for</div>
+      <div class="ch-body">The total project cost is $29.4M ($28.4M for the work itself, $1M to temporarily relocate city departments during construction). Beverly is not borrowing all of it. The city applied $1.5M previously set aside for design work, transferred $2M from a dedicated savings fund built specifically for future capital needs, and made a one-time $525K loan reduction payment in the FY26 budget. That leaves approximately $25.4M to borrow, split into two loans issued at different times as construction costs become due.</div>
     </div>
 
-    <div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--warn-mid,#D4A240);">
-      <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--warn);margin-bottom:10px;">Questions worth thinking about</div>
-      <p style="font-size:14px;color:var(--ink-mid);line-height:1.7;margin-bottom:12px;">The City Hall renovation has been one of the most debated items in Beverly's recent budget history. Some of the most interesting questions are not simply "should we have done it?" but go deeper than that.</p>
-      <p style="font-size:14px;color:var(--ink-mid);line-height:1.7;margin-bottom:12px;"><b>How much of the budget should go toward borrowing for capital projects?</b> Think of it like a household deciding what share of their monthly income to put toward a mortgage or home renovation loan. Beverly has historically kept that number between roughly 5% and 7% of its annual budget. This year, City Hall fits within that range because older loans are retiring. Is that the right commitment level? Should Beverly be borrowing more aggressively to invest in infrastructure, or less?</p>
-      <p style="font-size:14px;color:var(--ink-mid);line-height:1.7;margin-bottom:0;"><b>If borrowing at that level makes sense, is City Hall the right project?</b> This is a question about priorities, not just numbers. The building has not had a major renovation since the 1930s and has documented structural and safety issues. But Beverly has other needs too. If the city can responsibly absorb about $1.5-2M per year in new loan payments, the richer debate is whether City Hall is the highest-priority use of that capacity, or whether there is something else Beverly should be investing in first.</p>
+    <div class="ch-section">
+      <div class="ch-section-label">Why the FY27 debt payment is only $2M, and why the total barely moved</div>
+      <div class="ch-body">The first loan starts in FY27, with an estimated payment of $2M. The second loan ($10M) does not start until FY28. So FY27 carries only the first loan. Two older loans made their final payments in FY26 and then left the schedule entirely, freeing up room right as City Hall stepped in. Here is how the math works out:</div>
+      <div style="margin:12px 0;padding:12px 14px;background:var(--white);border:1px solid var(--grid);font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.9;">
+        <div style="display:grid;grid-template-columns:1fr auto;gap:2px 14px;max-width:420px;">
+          <span style="color:var(--ink-mid);">City Hall loan 1 begins</span><span class="cost-text">+$2,000,000</span>
+          <span style="color:var(--ink-mid);">FY26 one-time pre-payment ends</span><span class="rev-text">-$525,000</span>
+          <span style="color:var(--ink-mid);">Land acquisition bond retires</span><span class="rev-text">-$1,000,000</span>
+          <span style="color:var(--ink-mid);">Fire Station loan retires</span><span class="rev-text">-$293,000</span>
+          <span style="color:var(--ink-mid);">Existing bonds naturally decline</span><span class="rev-text">-$206,000</span>
+          <span style="color:var(--ink-mid);">Short-term borrowing change</span><span class="cost-text">+$200,000</span>
+          <span style="border-top:1px solid var(--grid);padding-top:4px;font-weight:600;color:var(--ink);">Net change in total debt service</span><span style="border-top:1px solid var(--grid);padding-top:4px;font-weight:600;color:var(--warn);">+$176,000</span>
+        </div>
+      </div>
     </div>
+
+    <div class="ch-section">
+      <div class="ch-section-label">What happens next</div>
+      <div class="ch-body">FY28 is when both loans are active simultaneously, adding about $2.4M in City Hall payments. But the existing portfolio continues to decline, cushioning much of the new load. Total debt service as a percentage of Beverly's general fund budget is projected to stay near 5% through FY2032. A full year-by-year breakdown is in the <a href="#debt" style="color:var(--warn);text-decoration:underline;">appendix at the bottom of this page</a>. Beyond FY2032, the picture becomes less certain and depends heavily on additional capital projects Beverly has not yet authorized.</div>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-section-label">The broader strategy</div>
+      <div class="ch-body">Beverly has managed its borrowing this way since the mid-1990s, deliberately timing new loans to enter the schedule as old ones retire, keeping total annual debt payments roughly flat as a share of the budget. The City Hall renovation is the most recent project financed through this approach. The January 2026 City Council presentation documents this strategy explicitly, with charts showing the layering pattern over time.<sup class="fn"><a href="#footnotes">[9]</a></sup></div>
+    </div>
+  </div>
+
+  <!-- Part 2 Critical Thinking -->
+  <div class="critical-section">
+    <div class="crit-eyebrow">Questions worth thinking about</div>
+    <div class="crit-q">Beverly has historically kept its annual loan payments near 5-7% of its total budget. Think of it like a household deciding what portion of monthly income to put toward a mortgage. Is that commitment level right for a city of Beverly's size? Should Beverly be borrowing more aggressively to invest in infrastructure, or less?</div>
+    <div class="crit-q">Education now drives more than half of this year's cost growth, even after a meaningful budget increase. And BPS has still had to realign staff to meet growing needs. If costs are rising and the schools still need more, while services unrelated to the schools are being cut, what does that suggest about the gap between what Beverly needs and what current revenue tools can deliver?</div>
   </div>
 </div>
 
-<!-- PHASE 3: TRASH -->
+<!-- PHASE 3: TRASH FEE -->
 <div class="phase-section" id="phase3">
   <div class="phase-eyebrow"><span class="eyebrow-swatch" style="background:var(--trash)"></span><span style="color:var(--trash)">Part 3</span></div>
-  <h2>The Trash Fee: A Decision About Who Pays and How Much</h2>
-  <p class="phase-narrative">After accounting for all revenue and cost changes, Beverly faced a roughly <b>$2.88 million gap</b> to close. Of the options available, the trash fee was the one the City Council could act on immediately and on its own, without depending on the state legislature, negotiating with outside institutions, or calling a ballot vote. Three realistic options were on the table.</p>
+  <h2>The Trash Fee: A Choice Between Two Kinds of Burden</h2>
+  <p class="phase-narrative">After accounting for all revenue and cost changes, Beverly faced a roughly <b>$2.88 million gap</b> to close. The city had two main levers: ask residents to pay more directly through trash fees, or make deeper cuts to services and staffing. The trash fee was the one lever the City Council could pull on its own, without waiting on the state legislature, negotiating with outside institutions, or putting a question to voters. Three realistic options were on the table.</p>
 
   <div class="callout info">
-    <div class="callout-label">How sanitation is funded</div>
-    Trash and recycling run as a separate city account, like a small business within city government. Revenue (user fees plus whatever the city's general fund contributes) has to equal expenses each year. For years, Beverly charged $100/year per household, which did not come close to covering the real cost. The city's general fund quietly covered the $2.48M gap. This year, the hauler contract alone jumped $1.3M. Something had to change.
+    <div class="callout-label">How trash is funded in Beverly</div>
+    Trash and recycling run as a separate city account that has to break even each year. The money coming in (resident fees plus a bit of other income) has to equal the cost of collecting and processing the trash. Here is an analogy. Picture an apartment building with many units. One unit has two roommates. Their electric bill comes to $500. Each roommate pays only $100 toward it, which leaves $300 unpaid. The landlord covers that $300 out of the rent money he collects across the whole building. But every dollar he spends covering that one unit's shortfall is a dollar he cannot spend fixing the building or paying staff. Beverly's trash program works the same way. Residents were paying $100 per year, the real cost was far higher, and the general fund (the same pot that pays for schools, police, and roads) covered the $2.48M shortfall. This year the new hauler contract alone jumped $1.3M, making that arrangement much harder to sustain. The question became whether to raise the fees residents pay, or leave them low and cut services elsewhere to free up the money.
   </div>
 
-  <div style="margin:24px 0;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;">The three options</div>
+  <!-- 3 Options -->
+  <div class="callout info" style="margin-bottom:6px;">
+    <div class="callout-label">The baseline that ties it all together</div>
+    Last year, the general fund covered $2.48M of the trash program's cost. That is the number to keep in mind. Each option below changes how much the general fund has to chip in this year, and that change flows straight into the budget. If the general fund has to cover more than last year's $2.48M, the deficit gets bigger and deeper cuts are needed. If it covers less, the deficit shrinks. In other words, the higher the trash fee, the less the general fund has to cover, and the fewer services get cut. Follow each card from top to bottom to see how the fee choice turns into a cut requirement.
+  </div>
+  <div class="options-grid">
 
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:6px;">
-
-      <div style="padding:16px;background:var(--white);border:1px solid var(--grid);border-top:3px solid var(--ink-soft);">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Option A</div>
-        <div style="font-weight:600;font-size:14px;margin-bottom:8px;line-height:1.3;">Keep fees at $100/year</div>
-        <div style="font-size:13px;color:var(--ink-mid);line-height:1.6;margin-bottom:12px;">No change to residents' bills. The general fund would need to absorb both the existing $2.48M subsidy and the $1.35M cost increase, leaving a much larger gap for service cuts to fill. Some council members also argued for fees lower than the $300 that was ultimately adopted, or for no increase at all.</div>
-        <div style="border-top:1px solid var(--grid);padding-top:10px;">
-          <div style="font-size:11px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;">Deficit remaining for cuts</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--cost);margin-top:2px;">~$4.41M</div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-top:3px;">Fee covers 0% of the gap</div>
-        </div>
+    <div class="option-card">
+      <div class="opt-eyebrow">Option A</div>
+      <div class="opt-title">Keep fees at $100/year</div>
+      <div class="opt-desc">No change to residents' trash bills. Some council members argued for this approach or for fees lower than what was adopted.<sup class="fn"><a href="#footnotes">[6]</a></sup></div>
+      <div class="chain-block">
+        <div class="chain-heading">Step 1: The enterprise fund</div>
+        <div class="chain-row"><span class="ck">Cost to run sanitation</span><span>$5.27M</span></div>
+        <div class="chain-row"><span class="ck">Resident fees (at $100/household)</span><span style="color:var(--rev)">-$1.27M</span></div>
+        <div class="chain-row"><span class="ck">Other fund income</span><span style="color:var(--rev)">-$0.20M</span></div>
+        <div class="chain-row pivot"><span>General fund must cover the rest</span><span>$3.80M</span></div>
       </div>
-
-      <div style="padding:16px;background:var(--trash-light);border:1px solid var(--trash-mid);border-top:3px solid var(--trash);">
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--trash);margin-bottom:8px;">Option B  -  Mayor's proposal</div>
-        <div style="font-weight:600;font-size:14px;margin-bottom:8px;line-height:1.3;">Raise to $425/standard bin</div>
-        <div style="font-size:13px;color:var(--ink-mid);line-height:1.6;margin-bottom:12px;">Per Patch reporting on the May 2026 City Council vote,<sup class="fn"><a href="#footnotes">[1]</a></sup> the mayor's prior proposal was $425 for a standard bin. Fee revenue at that level would nearly cover the full program cost, eliminating the general fund subsidy and leaving very little remaining deficit for cuts. Note: the transmittal letter (June 1 2026) confirms a prior higher proposal existed but does not specify the $425 figure.</div>
-        <div style="border-top:1px solid var(--trash-mid);padding-top:10px;">
-          <div style="font-size:11px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;">Deficit remaining for cuts</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--rev);margin-top:2px;">~$407K</div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-top:3px;">Fee covers about 86% of the gap</div>
-        </div>
+      <div class="chain-bridge">
+        That is <b>$1.32M more</b> than last year's $2.48M subsidy. The extra cost pushes the deficit up.
       </div>
-
-      <div style="padding:16px;background:var(--white);border:2px solid var(--trash);border-top:3px solid var(--trash);position:relative;">
-        <div style="position:absolute;top:-1px;right:10px;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;text-transform:uppercase;background:var(--trash);color:#fff;padding:2px 6px;">Adopted 7-2<sup style="font-size:8px;color:rgba(255,255,255,.8);"><a href="#footnotes" style="color:inherit;text-decoration:none;">[2]</a></sup></div>
-        <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--trash);margin-bottom:8px;">Option C: Council vote</div>
-        <div style="font-weight:600;font-size:14px;margin-bottom:8px;line-height:1.3;">Raise to $300/standard bin</div>
-        <div style="font-size:13px;color:var(--ink-mid);line-height:1.6;margin-bottom:12px;">The City Council voted 7 to 2 for a schedule of $200 (small bin), $300 (standard), $400 (large), and $650 (commercial). Residents pay more than before, but less than the mayor proposed. The general fund subsidy shrinks but does not disappear.</div>
-        <div style="border-top:1px solid var(--grid);padding-top:10px;">
-          <div style="font-size:11px;color:var(--ink-soft);font-family:'IBM Plex Mono',monospace;text-transform:uppercase;letter-spacing:.08em;">Deficit remaining for cuts</div>
-          <div style="font-family:'IBM Plex Mono',monospace;font-size:18px;font-weight:600;color:var(--cuts);margin-top:2px;">$1.81M</div>
-          <div style="font-size:11px;color:var(--ink-soft);margin-top:3px;">Fee covers about 37% of the gap</div>
-        </div>
+      <div class="chain-outcome">
+        <div class="chain-outcome-key">Deficit remaining for cuts</div>
+        <div class="chain-outcome-val" style="color:var(--ink)">~$4.2M</div>
+        <div class="chain-outcome-sub">Fee covers 0% of the gap. Deepest cuts of the three options.</div>
       </div>
-
     </div>
-    <div style="font-size:11.5px;color:var(--ink-soft);line-height:1.5;margin-top:4px;">Note: "deficit remaining for cuts" is how much still needed to be closed through the service reductions in Part 4 after the fee decision.</div>
-  </div>
 
-  <div class="callout note" style="background:var(--unknown-light);border-left:3px solid var(--unknown);--unknown:#4A4A6A;--unknown-light:#EEEEF8;">
-    <div class="callout-label">Other options that were discussed</div>
-    Some residents and council members have raised other ways Beverly could potentially close budget gaps: deferring the City Hall renovation, negotiating higher voluntary payments from tax-exempt institutions like hospitals, or seeking more state funding. Each of these is a legitimate point. They also each depend on something outside the immediate budget process. More state aid requires action by the state legislature. Higher institutional payments require the institutions to agree. Deferring City Hall would have meant unwinding a bond authorization already voted on and construction contracts already in motion. The trash fee was the one lever available to close part of the gap that the Council could act on directly and immediately.
-  </div>
+    <div class="option-card">
+      <div class="opt-eyebrow">Option B: Mayor's prior proposal</div>
+      <div class="opt-title">Raise to $425 standard bin</div>
+      <div class="opt-desc">Per Patch reporting on the fee vote,<sup class="fn"><a href="#footnotes">[7]</a></sup> the mayor's prior proposal was $425 for a standard bin, $280 for a smaller bin.</div>
+      <div class="chain-block">
+        <div class="chain-heading">Step 1: The enterprise fund</div>
+        <div class="chain-row"><span class="ck">Cost to run sanitation</span><span>$5.27M</span></div>
+        <div class="chain-row"><span class="ck">Resident fees (at $425/household)</span><span style="color:var(--rev)">-$5.21M</span></div>
+        <div class="chain-row"><span class="ck">Other fund income</span><span style="color:var(--rev)">-$0.20M</span></div>
+        <div class="chain-row pivot"><span>General fund must cover the rest</span><span>~$0</span></div>
+      </div>
+      <div class="chain-bridge">
+        That is <b>$2.48M less</b> than last year's subsidy. Nearly the entire deficit is erased.
+      </div>
+      <div class="chain-outcome">
+        <div class="chain-outcome-key">Deficit remaining for cuts</div>
+        <div class="chain-outcome-val" style="color:var(--ink)">~$407K</div>
+        <div class="chain-outcome-sub">Fee covers about 86% of the gap. Shallowest cuts, highest resident bills.</div>
+      </div>
+    </div>
 
-  <!-- Fee table -->
-  <div style="margin-top:22px;">
-    <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:8px;">Adopted fee schedule (Option C), annual per household</div>
-  <div class="fee-table-wrap">
-    <table class="fee-table">
-      <thead>
-        <tr>
-          <th style="text-align:left">Bin size</th>
-          <th>Prior FY26</th>
-          <th id="th-prop">Mayor's Option B</th>
-          <th id="th-adpt">Council adopted</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr><td>35-gallon (opt down)</td><td>$100</td><td id="p-sm">$280</td><td id="a-sm">$200</td></tr>
-        <tr><td>65-gallon standard (most households)</td><td>$100</td><td id="p-st">$425</td><td id="a-st">$300</td></tr>
-        <tr><td>95-gallon (opt up)</td><td>$100</td><td id="p-lg">n/a</td><td id="a-lg">$400</td></tr>
-        <tr><td>Commercial (65-gallon)</td><td>n/a</td><td id="p-co">n/a</td><td id="a-co">$650</td></tr>
-      </tbody>
-    </table>
-  </div>
-  </div>
+    <div class="option-card adopted">
+      <div class="adopted-badge">Adopted 7-2<sup class="fn"><a href="#footnotes">[7]</a></sup></div>
+      <div class="opt-eyebrow adopted-eye">Option C: Council vote</div>
+      <div class="opt-title">Raise to $300 standard bin</div>
+      <div class="opt-desc">$200 (35-gal), $300 (standard), $400 (95-gal), $650 (commercial). More than before, less than the mayor proposed.</div>
+      <div class="chain-block">
+        <div class="chain-heading">Step 1: The enterprise fund</div>
+        <div class="chain-row"><span class="ck">Cost to run sanitation</span><span>$5.27M</span></div>
+        <div class="chain-row"><span class="ck">Resident fees (at $300/household)</span><span style="color:var(--rev)">-$3.68M</span></div>
+        <div class="chain-row"><span class="ck">Other fund income</span><span style="color:var(--rev)">-$0.20M</span></div>
+        <div class="chain-row pivot"><span>General fund must cover the rest</span><span>$1.40M</span></div>
+      </div>
+      <div class="chain-bridge">
+        That is <b>$1.08M less</b> than last year's subsidy. The deficit shrinks, but does not close.
+      </div>
+      <div class="chain-outcome">
+        <div class="chain-outcome-key">Deficit remaining for cuts</div>
+        <div class="chain-outcome-val cuts-text">~$1.81M</div>
+        <div class="chain-outcome-sub">Fee covers about 37% of the gap. The middle path the Council chose.</div>
+      </div>
+    </div>
 
-  <!-- Trash math: 3-step breakdown -->
-  <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:20px 0 6px">What the numbers show under the adopted schedule</div>
-  <div class="trash-math">
-    <div class="tm-cell">
-      <div class="tm-k">Total sanitation cost increase</div>
-      <div class="tm-v cost-text">+$1.35M</div>
-      <div class="tm-note">Hauler contract up $1.30M. Recycling processing up $492K. Incineration down $457K. Net increase in total program cost this year.</div>
-    </div>
-    <div class="tm-cell">
-      <div class="tm-k">New fee revenue collected</div>
-      <div class="tm-v rev-text">+$2.41M</div>
-      <div class="tm-note">At the adopted schedule, residents pay $2.41M more in fees than last year. This more than covers the program cost increase.</div>
-    </div>
-    <div class="tm-cell highlight">
-      <div class="tm-k">General fund still contributes</div>
-      <div class="tm-v trash-text" id="tm-gf">$1.40M</div>
-      <div class="tm-note" id="tm-gf-note">Down from $2.48M last year. The city saves $1.08M on its sanitation subsidy, but $1.40M still needs to come from the general operating budget.</div>
-    </div>
   </div>
+  <div style="font-size:12.5px;color:var(--ink-soft);margin-bottom:20px;">Each option starts from the same $5.27M sanitation cost and the same $2.88M pre-trash deficit. The only variable is the fee level, which determines the general fund contribution, which determines how much is left to close through cuts in Part 4.</div>
 
   <div class="callout warn">
-    <div class="callout-label">Where this leaves the overall budget</div>
-    The adopted fee covers about 37% of the remaining deficit, saving $1.08M the city would otherwise have had to cut from services. The remaining $1.81M gap is what Part 4 covers. Residents who pay the new fee are directly funding a portion of the budget balance. Residents who rely on the services that got cut are absorbing the rest.
+    <div class="callout-label">Other options that were raised</div>
+    Some residents and council members have pointed to other potential levers: pausing the City Hall renovation, increasing PILOT payments from tax-exempt institutions, or seeking more state aid. Each of these involves decisions outside the budget process itself. State aid requires action by the state legislature. Higher institutional payments require the institutions to agree. The City Hall bond had been authorized and construction documents were in progress by the time of this vote. The trash fee was the lever the Council could act on directly.
+  </div>
+
+  <!-- Trash math boxes -->
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin:20px 0 6px">What the adopted schedule means in numbers</div>
+  <div class="trash-math">
+    <div class="tm-cell">
+      <div class="tm-k">Total sanitation program cost</div>
+      <div class="tm-v cost-text">$5.27M</div>
+      <div class="tm-sub cost-text">up from $3.93M last year (+$1.35M, +34%)</div>
+      <div class="tm-note">Hauler contract up $1.30M. Recycling processing up $492K. Incineration savings of $457K partially offset this.</div>
+    </div>
+    <div class="tm-cell">
+      <div class="tm-k">Total fee revenue collected</div>
+      <div class="tm-v rev-text">$3.68M</div>
+      <div class="tm-sub rev-text">up from $1.27M last year (+$2.41M, +190%)</div>
+      <div class="tm-note">At the adopted schedule, residents pay about three times more in fees than they did under the $100 flat rate.</div>
+    </div>
+    <div class="tm-cell highlight">
+      <div class="tm-k">Remaining general fund contribution</div>
+      <div class="tm-v trash-text">$1.40M</div>
+      <div class="tm-sub trash-text">down from $2.48M last year (-$1.08M)</div>
+      <div class="tm-note">The general fund saves $1.08M on sanitation this year. But it still contributes $1.40M, which is part of the gap that Part 4 closes through cuts.</div>
+    </div>
+  </div>
+
+  <!-- Part 3 Critical Thinking -->
+  <div class="critical-section">
+    <div class="crit-eyebrow">Questions worth thinking about</div>
+    <div class="crit-q">The City Council chose a middle path on the trash fee: more than $100 but less than $425. The result is that residents pay more on their bills, and services are cut more than they would have been if the higher fee had passed. If you objected to the $300 fee, what alternative would you have pursued to close that portion of the gap? The answer would likely require looking back at Parts 2 and 4 to find additional reductions.</div>
   </div>
 </div>
 
@@ -736,97 +910,102 @@ function checkPw(){
 <div class="phase-section" id="phase4">
   <div class="phase-eyebrow"><span class="eyebrow-swatch" style="background:var(--cuts)"></span><span style="color:var(--cuts)">Part 4</span></div>
   <h2>What Gets Reduced or Eliminated</h2>
-  <p class="phase-narrative">After the revenue growth and the partial offset from the trash fee, Beverly still needed to close a $1.8 million gap. The city did that through a combination of eliminating services, deferring capital spending, reducing financial reserves, and reducing staffing in most departments. Sorted from largest to smallest dollar impact.</p>
+  <p class="phase-narrative">After the trash fee offset, Beverly still needed to close a $1.81 million gap. The mayor's proposed budget included cuts across staffing, services, and reserves. The City Council reviewed the budget at a meeting on June 23, 2026, and added four further reductions totaling $93,120 on top of the mayor's proposal. Council members noted it was the largest dollar amount of cuts ever introduced by the Council in a final budget session, which speaks as much to the pattern of minimal amendment activity in prior years as it does to the scale of this year's cuts. The final budget passed 5-4.<sup class="fn"><a href="#footnotes">[8]</a></sup></p>
 
-  <!-- Capital and reserves -->
+  <!-- Capital and Reserves Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🏦</span> Capital and financial buffers</span>
-      <span class="group-total cuts-text">+$711K</span>
+      <span class="group-name">Capital funding and financial buffers</span>
+      <div class="group-stats">
+        <span class="group-pct cuts-text">39% of total reductions</span>
+        <span class="group-total cuts-text">+$711K</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cuts)">
-      <div>
-        <div class="line-label"><b>Capital projects funding: zeroed out</b>
-          <small>In most years, Beverly sets aside about $500K from surplus cash to pay for one-time needs: replacing aging equipment, emergency building repairs, road work that falls outside the regular maintenance budget. This year: $0. Those needs do not disappear; they get deferred.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Capital projects fund: zeroed out</span>
+        <span class="line-desc">In most years, Beverly sets aside surplus cash to pay for one-time needs: replacing aging equipment, emergency building repairs, road work that falls outside normal maintenance. This year that pot was eliminated. Those needs do not disappear; they get deferred.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$525K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cuts);width:100%"></div></div>
+        <span class="line-pct">29% of reductions</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cuts);width:29%"></div></div>
       </div>
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      Equipment that breaks this year may not be replaced quickly. Road or building repairs that would have been funded by this pot get pushed to a future budget, often costing more by the time they are addressed.
+      <div class="impact-text">Equipment that breaks this year may not be replaced on a normal timeline. Road or building repairs that would have come from this fund get pushed to a future budget, often at higher cost.</div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Mid-year emergency fund: reduced
-          <small>Each year, Beverly budgets a pool of money set aside specifically for unexpected costs that come up during the fiscal year: an emergency storm that blows the snow-removal budget, an unexpected legal settlement, equipment failure. This year's fund is $186K smaller, meaning less room to absorb surprises between July 2026 and June 2027.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Reserve for Appropriation: reduced by $186K</span>
+        <span class="line-desc">The mayor's proposed budget reduced this reserve from $1.1M to $915K. This is a pool of money set aside at the start of the fiscal year specifically for unexpected costs that come up mid-year: a major storm blowing through the snow-removal budget, an unexpected legal settlement, equipment that fails ahead of schedule. Beverly actually keeps two separate mid-year buffers. This one is the larger operational reserve. A second, smaller fund called "Reserve and Unforeseen" ($225K) is controlled directly by the City Council and requires a Council vote to tap. At the June 23 meeting, Councilor St. Hilaire proposed zeroing out that separate $225K fund entirely. That amendment failed 2-7, with Budget Analyst Gerald Perry and others warning that the fund is essential for situations like overtime during snowstorms and cannot be replenished from free cash until year-end certification.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book + CC meeting notes</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$186K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cuts);width:35%"></div></div>
+        <span class="line-pct">10% of reductions</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cuts);width:35%"></div></div>
       </div>
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      If something unexpected costs more than expected mid-year, the city has less cushion to cover it without making additional cuts or asking the Council for a transfer.
+      <div class="impact-text">Less cushion if something unexpected costs more than expected mid-year. If the emergency fund runs out, additional cuts may be needed before the fiscal year ends.</div>
     </div>
   </div>
 
-  <!-- City services -->
+  <!-- City Services Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🚌</span> City services</span>
-      <span class="group-total cuts-text">+$427K</span>
+      <span class="group-name">City services</span>
+      <div class="group-stats">
+        <span class="group-pct cuts-text">23% of total reductions</span>
+        <span class="group-total cuts-text">+$427K</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cuts)">
-      <div>
-        <div class="line-label"><b>City bus (CATA shuttle): eliminated entirely</b>
-          <small>Beverly's municipal bus service ran on a contract with the Cape Ann Transportation Authority. The contract was not renewed. The mayor noted the Council on Aging transportation program may expand to serve some of the same need, but that program is designed for seniors specifically and has different routes and eligibility.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">City bus (CATA shuttle): discontinued</span>
+        <span class="line-desc">Beverly's municipal bus service ran on a contract with the Cape Ann Transportation Authority. The contract was not renewed. This was the largest single service cut in Part 4.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book + transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$185K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cuts);width:35%"></div></div>
+        <span class="line-pct">10% of reductions</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cuts);width:35%"></div></div>
       </div>
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      Residents without cars who used the bus for work, medical appointments, or shopping have no direct replacement. The COA transportation option requires seniors to meet specific eligibility criteria.
+      <div class="impact-text">Residents without cars who used the bus for work, appointments, or shopping have no direct replacement from the city. A Council on Aging transportation program exists but requires eligibility and runs different routes.</div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cuts)">
-      <div>
-        <div class="line-label">Library, Council on Aging, Health Dept, Veterans Services (combined)
-          <small>Beverly Farms library branch will have reduced hours. The Council on Aging lost one part-time staff position; several expense lines were moved to formula grants, which are allocated by the state and not guaranteed year to year. The Health Department dental clinic is now grant-funded for FY27, meaning it operates without a city budget line this year. Veterans services were also reduced.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Library, Council on Aging, Health Dept, Veterans Services (combined)</span>
+        <span class="line-desc">Beverly Farms library branch: reduced hours. Council on Aging: one part-time position eliminated. Health Dept dental clinic: grant-funded for FY27, removing it from the city budget for now, but the grant must be renewed annually. Veterans services reduced.</span>
+        <div class="line-badges"><span class="badge confirmed">transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$220K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cuts);width:42%"></div></div>
+        <span class="line-pct">12% of reductions</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cuts);width:42%"></div></div>
       </div>
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      Fewer library hours in Beverly Farms. Less COA staff capacity. Dental care access for lower-income residents now depends on a grant that may not be renewed in future years. Veterans services reduced.
+      <div class="impact-text">Fewer library hours in Beverly Farms. Less COA capacity. Dental care access for lower-income residents now depends on a grant that may not be renewed in future years.</div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Planning department: one staff position eliminated, consulting reduced
-          <small>The shuttle bus contract ($185K) was also in the planning budget and is counted separately above. The remaining $22K reflects one full-time position eliminated and reduced spending on outside consultants and services.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Planning department: one staff position eliminated, consulting reduced</span>
+        <span class="line-desc">One full-time position eliminated. Consulting and outside services budget reduced. The $185K shuttle bus contract shown above was also part of the Planning budget.</span>
+        <div class="line-badges"><span class="badge confirmed">transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$22K</span>
@@ -834,65 +1013,120 @@ function checkPw(){
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      Less capacity for permit review, zoning analysis, and grant writing.
+      <div class="impact-text">Less capacity for permit review, zoning analysis, and grant writing.</div>
     </div>
   </div>
 
-  <!-- Admin and staffing -->
+  <!-- Administration Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">🏢</span> Staffing and administration</span>
-      <span class="group-total cuts-text">+$308K</span>
+      <span class="group-name">Staffing and administration (mayor's proposal + council additions)</span>
+      <div class="group-stats">
+        <span class="group-pct cuts-text">18% of total reductions</span>
+        <span class="group-total cuts-text">+$334K</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cuts)">
-      <div>
-        <div class="line-label">Mayor's office: 2.5 positions reduced, nonprofit contracts eliminated
-          <small>Two and a half positions were eliminated. Among them was the Assistant Sustainability Director: a private donor agreed to fund that specific role for FY27 and FY28, so the work continues, but the funding comes from outside the city budget. When the donation ends, the city would need to find funding to keep that role. Separately, two nonprofit contracts were not renewed: $35K that had supported downtown initiatives and $15K for economic stimulus work.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book and mayor's message</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Mayor's office: 2.5 positions reduced</span>
+        <span class="line-desc">Two and a half positions were eliminated. One of those was the Assistant Sustainability Director, whose role is being funded for FY27 and FY28 by a private donor. When that donation ends, the city would need to find funding to continue the position. Two nonprofit contracts were also ended: $35K for downtown initiatives and $15K for economic stimulus work.</span>
+        <div class="line-badges"><span class="badge confirmed">transmittal letter</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$155K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cuts);width:29%"></div></div>
+        <span class="line-pct">8% of reductions</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cuts);width:29%"></div></div>
+      </div>
+    </div>
+
+    <div class="amend-box">
+      <div class="amend-label">Additional cuts added on top of the above by the City Council at the June 23 meeting</div>
+      <div class="amend-grid">
+        <span class="amend-key">Mayor's office travel budget</span>
+        <span class="amend-val cost-text">$13,500</span>
+        <span class="amend-val rev-text">→ $10,000 (-$3,500)</span>
+        <span class="amend-key">Racial Justice staff position</span>
+        <span class="amend-val cost-text">$62,620</span>
+        <span class="amend-val rev-text">→ $0 (-$62,620) voted 5-4</span>
       </div>
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      Less mayoral office capacity. Downtown and economic stimulus nonprofit partnerships ended. Sustainability work continues for now, funded privately.
+      <div class="impact-text">Reduced mayoral office capacity. Downtown and economic stimulus partnerships ended. Racial Justice staff work eliminated after a narrow council vote. Sustainability work continues for now under private funding.</div>
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Inspections (-$70K), Human Resources (-$35K), Solicitor (-$16K), City Council offices (-$31K)
-          <small>Positions reduced through attrition or elimination across several administrative departments. Inspectional Services lost 1.5 positions (a mix of full-time and part-time). Finance lost 2 positions to attrition.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Finance department: Budget Analyst position reduced</span>
+        <span class="line-desc">Originally proposed by the mayor. The City Council added an additional reduction at the June 23 meeting.</span>
+        <div class="line-badges"><span class="badge confirmed">transmittal letter + CC meeting notes</span></div>
       </div>
       <div class="line-right">
-        <span class="line-amount cuts-text">+$153K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cuts);width:29%"></div></div>
+        <span class="line-amount cuts-text">+$20K</span>
+      </div>
+    </div>
+    <div class="amend-box">
+      <div class="amend-label">Cut introduced by the City Council at the June 23 meeting (not in the mayor's original proposal)</div>
+      <div class="amend-grid">
+        <span class="amend-key">Budget Analyst salary (per diem, est. half of Finance Director salary)</span>
+        <span class="amend-val cost-text">$79,870</span>
+        <span class="amend-val rev-text">→ $59,870 (-$20,000) unanimous</span>
+      </div>
+    </div>
+
+    <div class="line-row">
+      <div class="line-label-wrap">
+        <span class="line-label">Purchasing / Mail Messenger: position zeroed out</span>
+        <span class="line-desc">Added by City Council at the June 23 meeting. Voted 5-4.</span>
+        <div class="line-badges"><span class="badge amendment">council addition</span><span class="badge confirmed">CC meeting notes</span></div>
+      </div>
+      <div class="line-right">
+        <span class="line-amount cuts-text">+$7K</span>
+      </div>
+    </div>
+    <div class="amend-box">
+      <div class="amend-label">Cut introduced by the City Council at the June 23 meeting (not in the mayor's original proposal)</div>
+      <div class="amend-grid">
+        <span class="amend-key">Mail Messenger position</span>
+        <span class="amend-val cost-text">$7,000</span>
+        <span class="amend-val rev-text">→ $0 (-$7,000) voted 5-4</span>
+      </div>
+    </div>
+
+    <div class="line-row">
+      <div class="line-label-wrap">
+        <span class="line-label">Inspections (-$70K), HR (-$35K), Solicitor (-$16K), Council and Clerk offices (-$31K)</span>
+        <span class="line-desc">Reductions across several administrative departments through attrition and eliminated positions. Inspectional Services lost 1.5 positions. Finance lost 2 positions to attrition.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book + transmittal letter</span></div>
+      </div>
+      <div class="line-right">
+        <span class="line-amount cuts-text">+$152K</span>
+        <span class="line-pct">8% of reductions</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cuts);width:29%"></div></div>
       </div>
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      Building and inspection response times may slow. Less administrative capacity citywide.
+      <div class="impact-text">Building inspections and permit reviews may take longer. Less administrative capacity across the city.</div>
     </div>
   </div>
 
-  <!-- Budget tightening -->
+  <!-- Budget Tightening Group -->
   <div class="group-block">
     <div class="group-header">
-      <span class="group-name"><span class="group-icon">✂</span> Budget tightening across departments</span>
-      <span class="group-total cuts-text">+$361K</span>
+      <span class="group-name">Departmental budget tightening</span>
+      <div class="group-stats">
+        <span class="group-pct cuts-text">20% of total reductions</span>
+        <span class="group-total cuts-text">+$361K</span>
+      </div>
     </div>
 
     <div class="line-row" style="border-left-color:var(--cuts)">
-      <div>
-        <div class="line-label">Workers compensation reserve: reduced
-          <small>Down $80K. A calculated risk that workers compensation claims will remain within a lower budget ceiling this year.</small>
-        </div>
-        <div class="line-badges"><span class="badge reported">from budget book</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Workers compensation reserve: reduced $80K</span>
+        <span class="line-desc">A calculated risk that workers compensation claims will remain within a lower ceiling this year.</span>
+        <div class="line-badges"><span class="badge confirmed">budget book</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$80K</span>
@@ -900,195 +1134,114 @@ function checkPw(){
     </div>
 
     <div class="line-row">
-      <div>
-        <div class="line-label">Consulting, surveys, property appraisals, staff conference travel, and department supplies
-          <small>Departments across the city are running leaner on discretionary spending. Fewer outside studies, reduced travel to professional conferences that bring back grant knowledge and best practices.</small>
-        </div>
-        <div class="line-badges"><span class="badge estimate">estimated from budget constraints</span></div>
+      <div class="line-label-wrap">
+        <span class="line-label">Consulting budgets, conference travel, surveys, and departmental supplies</span>
+        <span class="line-desc">Departments across the city are running leaner on discretionary spending. Reduced travel to professional conferences, fewer outside studies, and tighter supply budgets across the board.</span>
+        <div class="line-badges"><span class="badge derived">estimated from budget constraints</span></div>
       </div>
       <div class="line-right">
         <span class="line-amount cuts-text">+$281K</span>
-        <div class="bar-track"><div class="bar-fill" style="background:var(--cuts);width:53%"></div></div>
+        <span class="line-pct">15% of reductions</span>
+        <div class="pct-bar"><div class="pct-fill" style="background:var(--cuts);width:53%"></div></div>
       </div>
     </div>
     <div class="impact-box">
       <div class="impact-label">What residents feel</div>
-      Departments have less capacity for outside expertise, property appraisals needed for development review, and professional development for city staff.
+      <div class="impact-text">Departments have less capacity for outside expertise, property appraisals, and professional development for staff.</div>
     </div>
+  </div>
+
+  <!-- Part 4 Critical Thinking -->
+  <div class="critical-section">
+    <div class="crit-eyebrow">Questions worth thinking about</div>
+    <div class="crit-q">Beverly needed about $1.81 million in reductions to close the remaining gap. Looking at the cuts listed above, if Beverly had found an additional $1.81 million some other way and could have avoided all of them, what would you have funded first? The bus? The library hours? The school budget? The capital fund? </div>
   </div>
 </div>
 
-<!-- EPILOGUE: Mayor's original proposal -->
-<div class="epilogue" id="epilogue">
-  <h2>What the Mayor's Original Fee Would Have Meant</h2>
-  <p>One path not taken: per Patch reporting on the fee vote,<sup class="fn"><a href="#footnotes">[1]</a></sup> the mayor's prior proposal was $425 for a standard bin. At that level, fee revenue would have nearly eliminated the general fund sanitation transfer entirely. There would have been no remaining $1.4M gap from the trash program to close through cuts.</p>
-  <p>The City Council voted 7 to 2<sup class="fn"><a href="#footnotes">[2]</a></sup> for a lower fee of $300 per standard bin. That decision reduced what residents pay on their trash bills, and it shifted $1.4M of the cost into the general fund, which required $1.4M more in cuts to services elsewhere. Those cuts are listed in Part 4.</p>
-  <p>Here is what $1.4M represents, for scale:</p>
-  <div class="alt-box">
-    <div class="alt-stat">
-      <div class="ak">The CATA bus cost</div>
-      <div class="av">$185K</div>
-      <div class="an">The entire shuttle bus contract eliminated this year</div>
-    </div>
-    <div class="alt-stat">
-      <div class="ak">Library and COA combined</div>
-      <div class="av">$220K</div>
-      <div class="an">Reduced hours, lost staff positions, programs moved to grants</div>
-    </div>
-    <div class="alt-stat">
-      <div class="ak">Capital projects fund</div>
-      <div class="av">$525K</div>
-      <div class="an">The set-aside for one-time capital needs, zeroed this year</div>
-    </div>
-    <div class="alt-stat">
-      <div class="ak">All three combined</div>
-      <div class="av">$930K</div>
-      <div class="an">Still $470K short of the $1.4M that would have been freed</div>
-    </div>
-  </div>
-  <p>There is no simple right answer here. A higher trash fee protects services but costs residents more directly on their bills. A lower fee protects residents' bills but requires cuts to services that other residents rely on. Both groups of residents are real, and reasonable people weighed them differently. This section is here to make the tradeoff visible, not to argue for one side.</p>
-</div>
-
-<!-- DEBT APPENDIX -->
+<!-- APPENDIX -->
 <div class="appendix" id="debt">
   <h2>Appendix: Beverly's Annual Loan Payments, FY2026 Through FY2034</h2>
-  <p class="sub">Beverly borrows money for large capital projects and repays those loans through annual payments built into the operating budget. The city's practice has been to time new borrowing so it enters the schedule as older loans retire, keeping the total annual payment roughly stable as a share of the budget. The table below shows how that plays out through the next several years, based on a planning document the city presented to the City Council in January 2026.</p>
-  <p class="sub">A note on what is and is not confirmed: FY2026 and FY2027 figures reflect actual budget appropriations. FY2028 figures reflect authorized borrowing not yet issued. Everything from FY2029 onward is a projection based on what the city was planning as of January 2026. The further out the year, the less certain the number. Several projects listed in the later years have not been voted on and may not proceed as described. In particular, a proposed $50M Public Services Building accounts for a large share of the projected increase in FY2033. That project appears as a line in a January 2026 planning presentation. As of the writing of this document, no additional details on its scope, timing, or authorization status have been located. If it does not move forward, the FY2033 figure would be substantially lower.</p>
+  <p class="sub">Beverly borrows money for large capital projects and repays those loans through annual payments in the operating budget. The table below shows how those payments are projected to look over the next several years, based on the General Fund Debt Schedule presented to the City Council in January 2026. FY2026 and FY2027 reflect actual budget figures. FY2028 reflects an authorized loan not yet issued. Everything from FY2029 onward is a projection based on capital projects Beverly was planning as of January 2026. Many of those projects have not yet been formally authorized, and if they do not proceed, the numbers for those years would be lower.</p>
+  <p class="sub">The large jump shown in FY2033 is driven primarily by a proposed $50 million Public Services Building that appears as a planning entry in the January 2026 debt schedule. As of this writing, no additional details on the status of that project have been confirmed. If it does not move forward, the FY2033 figure would be substantially lower.</p>
 
-  <div style="overflow-x:auto">
+  <div style="overflow-x:auto;">
   <table class="debt-table">
     <thead>
       <tr>
         <th style="text-align:left">Year</th>
-        <th>Existing debt service</th>
-        <th>City Hall addition</th>
-        <th>Other new projects</th>
-        <th>Total debt service</th>
+        <th>Existing bonds paying down</th>
+        <th>City Hall loan 1</th>
+        <th>City Hall loan 2</th>
+        <th>Other projected</th>
+        <th>Total</th>
         <th>% of budget</th>
-        <th>Notes</th>
       </tr>
     </thead>
     <tbody>
-      <tr class="now-row">
-        <td>FY2026</td><td>$6.87M</td><td>$0.53M</td><td>$1.39M</td><td>$8.79M</td><td>5.06%</td><td>CH short-term payment, already in budget</td>
-      </tr>
-      <tr class="now-row">
-        <td><b>FY2027 (this budget)</b></td><td>$6.67M</td><td>$2.00M</td><td>$0.30M</td><td><b>$8.97M</b></td><td><b>5.01%</b></td><td>First full CH bond year</td>
-      </tr>
-      <tr>
-        <td>FY2028</td><td>$6.38M</td><td>$2.40M</td><td>$0.40M</td><td>$9.18M</td><td>5.00%</td><td>Second CH loan portion begins</td>
-      </tr>
-      <tr>
-        <td>FY2029</td><td>$6.16M</td><td>$1.76M</td><td>$1.55M</td><td>$9.47M</td><td>5.01%</td><td>School roof bonds begin</td>
-      </tr>
-      <tr>
-        <td>FY2030</td><td>$5.98M</td><td>$1.72M</td><td>$2.05M</td><td>$9.75M</td><td>5.02%</td><td></td>
-      </tr>
-      <tr>
-        <td>FY2031</td><td>$5.81M</td><td>$1.69M</td><td>$2.52M</td><td>$10.02M</td><td>4.98%</td><td></td>
-      </tr>
-      <tr>
-        <td>FY2032</td><td>$5.65M</td><td>$1.65M</td><td>$3.33M</td><td>$10.62M</td><td>5.10%</td><td></td>
-      </tr>
-      <tr class="highlight-row">
-        <td>FY2033</td><td>$5.53M</td><td>$1.61M</td><td>$8.32M</td><td>$15.46M</td><td>7.18%</td><td>Projection only. Assumes $50M Public Services Building and other unconfirmed projects proceed.</td>
-      </tr>
-      <tr class="highlight-row">
-        <td>FY2034</td><td>$5.41M</td><td>$1.58M</td><td>$8.84M</td><td>$15.83M</td><td>7.10%</td><td>Projection only. Contingent on multiple projects not yet authorized.</td>
-      </tr>
+      <tr><td>FY2026</td><td>$6.87M</td><td>$0.53M</td><td>--</td><td>$1.39M</td><td>$8.79M</td><td>5.06%</td></tr>
+      <tr class="yr-now"><td><b>FY2027 (this budget)</b></td><td>$6.67M</td><td>$2.00M</td><td>--</td><td>$0.30M</td><td><b>$8.97M</b></td><td><b>5.01%</b></td></tr>
+      <tr><td>FY2028</td><td>$6.38M</td><td>$1.40M</td><td>$1.00M</td><td>$0.40M</td><td>$9.18M</td><td>5.00%</td></tr>
+      <tr class="yr-proj"><td>FY2029 (projected)</td><td>$6.16M</td><td>$1.02M</td><td>$0.74M</td><td>$1.55M</td><td>$9.47M</td><td>5.01%</td></tr>
+      <tr class="yr-proj"><td>FY2030 (projected)</td><td>$5.98M</td><td>$1.00M</td><td>$0.73M</td><td>$2.05M</td><td>$9.75M</td><td>5.02%</td></tr>
+      <tr class="yr-proj"><td>FY2031 (projected)</td><td>$5.81M</td><td>$0.97M</td><td>$0.71M</td><td>$2.53M</td><td>$10.02M</td><td>4.98%</td></tr>
+      <tr class="yr-proj"><td>FY2032 (projected)</td><td>$5.65M</td><td>$0.95M</td><td>$0.70M</td><td>$3.33M</td><td>$10.62M</td><td>5.10%</td></tr>
+      <tr class="yr-proj" style="background:#FDF3D8;"><td><b>FY2033 (projected)</b></td><td>$5.53M</td><td>$0.93M</td><td>$0.68M</td><td>$8.32M</td><td><b>$15.46M</b></td><td><b>7.18%</b></td></tr>
     </tbody>
   </table>
   </div>
-  <p class="sub" style="margin-top:14px">Source: City of Beverly General Fund Debt Schedule, presented to City Council January 20, 2026. "Other new projects" includes school roof bonds, a Senior Center, Beverly Golf and Tennis, Lynch Carriage House, a firing range, and other items in the long-term planning document. All of these are proposed projects whose authorization status was not confirmed as of this writing. The figures shown represent the planning scenario presented in January 2026, not approved commitments. Actual future debt service will depend on which projects the City Council chooses to authorize in coming years.</p>
+  <p class="sub" style="margin-top:12px;">Source: City of Beverly General Fund Debt Schedule, City Council Presentation, January 20, 2026, Slide 27. "% of budget" figures are the presentation's own projections of debt service as a share of the estimated general fund in each year. FY2029+ figures are conditional on planned capital projects proceeding as described in the January 2026 presentation.</p>
 </div>
 
+<!-- FOOTNOTES -->
 <div class="footnotes" id="footnotes">
-  <h3>Notes and sources</h3>
-  <div class="fn-item"><span class="fn-num">[1]</span><span>The mayor's prior trash fee proposal of $425 for a standard 65-gallon bin (and $280 for a smaller 35-gallon bin) is confirmed in Scott Souza, "Proposed Beverly Trash Fee Increase Spurs Fierce City Council Debate," <a href="https://patch.com/massachusetts/beverly/proposed-beverly-trash-fee-increase-spurs-fierce-city-council-debate" target="_blank" rel="noopener" style="color:inherit">Patch, May 19, 2026</a>. The mayor's budget transmittal letter (June 1, 2026) confirms a prior higher proposal existed but does not specify the dollar figure.</span></div>
-  <div class="fn-item"><span class="fn-num">[2]</span><span>The 7-2 vote margin on the fee schedule is confirmed in Scott Souza, "Beverly Mayor Outlines Staff Cuts Amid Budget Deficit, Modified Trash Fee Increase," <a href="https://patch.com/massachusetts/beverly/beverly-mayor-outlines-staff-cuts-amid-budget-deficit-modified-trash-fee" target="_blank" rel="noopener" style="color:inherit">Patch, June 2026</a>: "by a 7-2 margin voted to support a lesser increase to $300 for most families." The final ordinance was confirmed in a second Council vote covered in a separate Patch article.</span></div>
-  <div class="fn-item"><span class="fn-num">[3]</span><span>The debt service increase figure of approximately $176K is from the City Hall Renovation presentation to the City Council, January 20, 2026, General Fund Debt Schedule, Slide 27 ($8,789,183 in FY26 to $8,965,461 in FY27). The FY27 budget book summary page shows a different variance figure, likely due to a scan quality issue in the OCR. The PowerPoint figure is used here as the more legible source for this specific comparison.</span></div>
+  <h3>Notes referenced in the text</h3>
+  <div class="fn-item"><span class="fn-num">[1]</span><span>Will Dowd, <a href="https://www.marbleheadindependent.com/marblehead-voters-approve-15m-override-ending-more-than-two-decades-of-resistance/" target="_blank" rel="noopener">Marblehead Independent, June 9, 2026</a>: Marblehead voters approved a $15 million operating override, 54.3% to 45.7%, the first since 2005.</span></div>
+  <div class="fn-item"><span class="fn-num">[2]</span><span>The abatement reserve (called the "overlay" in state law) is required under Massachusetts General Laws Chapter 59, Section 25: "The assessors of each city or town shall raise by taxation each year a reasonable amount of overlay." <a href="https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter59/Section25" target="_blank" rel="noopener">Full text at malegislature.gov.</a></span></div>
+  <div class="fn-item"><span class="fn-num">[3]</span><span>UGGA background: Massachusetts Budget and Policy Center analysis and Boston Globe editorial (December 2025) both document that UGGA has no enrollment or needs formula. Each community's allocation is based on historical amounts from two older programs merged in 2010. <a href="https://www.mass.gov/info-details/understanding-local-government-revenue-sources" target="_blank" rel="noopener">Mass.gov overview of local government revenue sources.</a> <a href="https://www.bostonglobe.com/2025/12/18/opinion/ugga-municipal-aid-formula/" target="_blank" rel="noopener">Boston Globe editorial on UGGA reform, December 2025.</a></span></div>
+  <div class="fn-item"><span class="fn-num">[4]</span><span>Essex Tech assessment methodology: Acts of 2004 Chapter 463 states expenses "shall be apportioned to the member municipalities on the basis of their respective pupil enrollment in the district." <a href="https://malegislature.gov/Laws/SessionLaws/Acts/2004/Chapter463" target="_blank" rel="noopener">Full statute at malegislature.gov.</a> <a href="https://essexnorthshore.org/admissions/" target="_blank" rel="noopener">Essex North Shore admissions page.</a></span></div>
+  <div class="fn-item"><span class="fn-num">[5]</span><span>The $176K net increase in debt service is from the <a href="https://www.beverlyma.gov/DocumentCenter/View/7054/Beverly-City-Hall-Renovation-and-Expansion--City-Council-Project-Update--January-20-2026?bidId=" target="_blank" rel="noopener">City Hall Renovation presentation to the City Council, January 20, 2026</a>, General Fund Debt Schedule, Slide 27.</span></div>
+  <div class="fn-item"><span class="fn-num">[6]</span><span>Option A calculation: At $100 flat fee, enterprise fund fee revenue stays at approximately $1.27M. Enterprise costs are $5.27M. The general fund transfer needed rises to approximately $3.81M, an increase of $1.33M over FY26. Adding that to the pre-trash deficit of $2.88M gives approximately $4.21M in total cuts needed. Figure rounded to $4.2M. This is a calculated estimate, not a figure from any official city document.</span></div>
+  <div class="fn-item"><span class="fn-num">[7]</span><span>Scott Souza, Patch: <a href="https://patch.com/massachusetts/beverly/proposed-beverly-trash-fee-increase-spurs-fierce-city-council-debate" target="_blank" rel="noopener">"Proposed Beverly Trash Fee Increase Spurs Fierce City Council Debate" (May 19, 2026)</a> and <a href="https://patch.com/massachusetts/beverly/beverly-mayor-outlines-staff-cuts-amid-budget-deficit-modified-trash-fee" target="_blank" rel="noopener">"Beverly Mayor Outlines Staff Cuts Amid Budget Deficit, Modified Trash Fee Increase" (June 2026)</a>. The second article confirms the 7-2 vote margin.</span></div>
+  <div class="fn-item"><span class="fn-num">[8]</span><span>City Council budget meeting, June 23, 2026. Meeting notes provided by the City of Beverly. Final vote 5-4: Flowers, Feldman, Houseman, Spang, Rotondo in favor; Sonia, St. Hilaire, Mulladay, Crowley opposed. <a href="https://www.youtube.com/watch?v=nlwByu273SM" target="_blank" rel="noopener">Video of the meeting.</a></span></div>
+  <div class="fn-item"><span class="fn-num">[9]</span><span><a href="https://www.beverlyma.gov/DocumentCenter/View/7054/Beverly-City-Hall-Renovation-and-Expansion--City-Council-Project-Update--January-20-2026?bidId=" target="_blank" rel="noopener">City of Beverly, "Beverly City Hall Renovation and Expansion, City Council Project Update," January 20, 2026.</a> Includes General Fund Debt Schedule (Slide 27) and debt management strategy charts (Slides 23-25).</span></div>
+  <div class="fn-item"><span class="fn-num">[10]</span><span>The National Grid energy credit ($700K revenue, roughly $588K matching cost) is a passthrough that nets close to zero. It is included in both the $7.2M revenue growth and $10M cost growth headline figures. Excluding it, revenue growth is closer to $6.5M and cost growth closer to $9.4M. The gap between them, which is what drives the deficit, is essentially unchanged either way.</span></div>
 </div>
 
 <div class="page-footer">
-  <b>Sources.</b> City of Beverly FY2027 Operating Budget (scanned PDF, RICOH IM 5000, June 1 2026). Mayor Cahill budget transmittal letter, June 1 2026. City of Beverly FY2026-2030 Financial Forecast. Beverly City Hall Renovation and Expansion, City Council Project Update, January 20 2026. Scott Souza, Patch: "Proposed Beverly Trash Fee Increase Spurs Fierce City Council Debate" (May 19, 2026) and "Beverly Mayor Outlines Staff Cuts Amid Budget Deficit, Modified Trash Fee Increase" (June 2026). City of Beverly Solid Waste and Recycling program page (beverlyma.gov). All revenue and expenditure figures are from the Donna Matarazzo budget analysis printout, 05/29/2026. Recycling processing cost jump ($8K to $500K) is not described in any press coverage reviewed.
+  <h3 style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;">Core source documents</h3>
+  <b>City of Beverly documents:</b> FY2027 Operating Budget (scanned PDF, June 1 2026); Mayor Cahill budget transmittal letter (June 1 2026); FY2026-2030 Financial Forecast; <a href="https://www.youtube.com/watch?v=nlwByu273SM" target="_blank" rel="noopener">City Council budget meeting, June 23 2026</a>; <a href="https://www.beverlyma.gov/DocumentCenter/View/7054/Beverly-City-Hall-Renovation-and-Expansion--City-Council-Project-Update--January-20-2026?bidId=" target="_blank" rel="noopener">Beverly City Hall Renovation and Expansion, City Council Project Update (January 20 2026)</a>. The budget and forecast documents are available through the City Clerk's public records.<br><br>
+  <b>News reporting:</b> Scott Souza, Patch, <a href="https://patch.com/massachusetts/beverly/proposed-beverly-trash-fee-increase-spurs-fierce-city-council-debate" target="_blank" rel="noopener">"Proposed Beverly Trash Fee Increase Spurs Fierce City Council Debate"</a> (May 19 2026) and <a href="https://patch.com/massachusetts/beverly/beverly-mayor-outlines-staff-cuts-amid-budget-deficit-modified-trash-fee" target="_blank" rel="noopener">"Beverly Mayor Outlines Staff Cuts Amid Budget Deficit, Modified Trash Fee Increase"</a> (June 2026); Will Dowd, <a href="https://www.marbleheadindependent.com/marblehead-voters-approve-15m-override-ending-more-than-two-decades-of-resistance/" target="_blank" rel="noopener">Marblehead Independent</a> (June 9 2026).<br><br>
+  <b>State law and data:</b> <a href="https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter59/Section25" target="_blank" rel="noopener">Massachusetts General Laws Chapter 59, Section 25</a> (overlay reserve); <a href="https://malegislature.gov/Laws/SessionLaws/Acts/2004/Chapter463" target="_blank" rel="noopener">Acts of 2004, Chapter 463</a> (Essex Tech assessment); <a href="https://www.mass.gov/orgs/division-of-local-services" target="_blank" rel="noopener">Mass.gov Division of Local Services</a>; <a href="https://www.bostonglobe.com/2025/12/18/opinion/ugga-municipal-aid-formula/" target="_blank" rel="noopener">Boston Globe editorial on UGGA reform</a> (December 2025).
 </div>
 
-</div><!-- /page-wrap -->
+</div>
 
 <script>
-const scenario_data = {
-  proposed: { gf_saved: 2475, gf_remain: 0, tc3: -407 },
-  adopted:  { gf_saved: 1075, gf_remain: 1400, tc3: -1807 }
-};
-let current_scn = 'adopted';
 let active_phase = 0;
 
 function renderMini() {
   const svg = document.getElementById('mini-chart');
-  const W = 980, H = 56, pad = 4, gap = 10;
+  const W = 980, H = 52, pad = 3, gap = 8;
   const n = 4, colW = (W - gap * (n-1) - pad*2) / n;
-  const t = scenario_data[current_scn];
-  const nets = [7168, -10050, t.gf_saved, 1807 + (current_scn === 'proposed' ? 1400 : 0)];
+  const nets = [7168, -10050, 1075, 1807];
   const cums = [0];
   nets.forEach(v => cums.push(cums[cums.length-1] + v));
-  let maxV = Math.max(...cums, 0), minV = Math.min(...cums, 0);
+  const maxV = Math.max(...cums, 0) * 1.08;
+  const minV = Math.min(...cums, 0) * 1.08;
   const span = maxV - minV || 1;
-  maxV += span * 0.1; minV -= span * 0.1;
-  const y = v => pad + (H - pad*2) * (maxV - v) / (maxV - minV);
+  const y = v => pad + (H - pad*2) * (maxV - v) / span;
   const xOf = i => pad + i * (colW + gap);
   const colors = ['#2D6748','#8B3A2E','#B07820','#2E5070'];
-  let h = '<line x1="0" y1="' + y(0) + '" x2="' + W + '" y2="' + y(0) + '" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>';
+  let h = '<line x1="0" y1="' + y(0) + '" x2="' + W + '" y2="' + y(0) + '" stroke="rgba(255,255,255,.25)" stroke-width="1"/>';
   for (let i = 0; i < 4; i++) {
     const yT = y(Math.max(cums[i], cums[i+1]));
     const yB = y(Math.min(cums[i], cums[i+1]));
     const ht = Math.max(2, yB - yT);
-    h += '<rect x="' + xOf(i) + '" y="' + yT + '" width="' + colW + '" height="' + ht + '" fill="' + colors[i] + '" opacity="' + (active_phase === i+1 ? 1 : 0.5) + '"/>';
+    h += '<rect x="' + xOf(i) + '" y="' + yT + '" width="' + colW + '" height="' + ht + '" fill="' + colors[i] + '" opacity="' + (active_phase === i+1 ? 1 : 0.55) + '"/>';
   }
   svg.innerHTML = h;
 }
 
-function applyScenario(scn) {
-  current_scn = scn;
-  const t = scenario_data[scn];
-  const isP = scn === 'proposed';
-
-  document.getElementById('scnProposed').classList.toggle('active', isP);
-  document.getElementById('scnAdopted').classList.toggle('active', !isP);
-
-  ['p-sm','p-st','p-lg','p-co'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.className = isP ? 'hi' : '';
-  });
-  ['a-sm','a-st','a-lg','a-co'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.className = isP ? '' : 'hi';
-  });
-  document.getElementById('th-prop').style.color = isP ? 'var(--trash)' : 'var(--ink-soft)';
-  document.getElementById('th-adpt').style.color = isP ? 'var(--ink-soft)' : 'var(--trash)';
-
-  const gfEl = document.getElementById('tm-gf');
-  const gfNote = document.getElementById('tm-gf-note');
-  if (gfEl) gfEl.textContent = isP ? '$0' : '$1.40M';
-  if (gfEl) gfEl.style.color = isP ? 'var(--rev)' : 'var(--trash)';
-  if (gfNote) gfNote.textContent = isP
-    ? 'At the mayor\'s proposed fee, the general fund transfer is eliminated. Sanitation is fully covered by user fees.'
-    : 'Down from $2.48M last year. The general fund saves $1.08M vs. FY26. But $1.40M still comes from the operating budget.';
-
-  const tc3El = document.getElementById('tc3');
-  if (tc3El) {
-    const v = t.tc3;
-    tc3El.textContent = v < 0 ? '-$' + Math.abs(v/1000).toFixed(2) + 'M' : '+$' + (v/1000).toFixed(2) + 'M';
-    tc3El.style.color = v < 0 ? 'var(--cost)' : 'var(--rev)';
-  }
-  const tc4El = document.getElementById('tc4');
-  if (tc4El) {
-    tc4El.textContent = isP ? '+$1.40M surplus' : '$0';
-    tc4El.style.color = isP ? 'var(--rev)' : 'var(--ink)';
-  }
-  renderMini();
-}
-
-// scroll observer
 const sections = ['phase1','phase2','phase3','phase4'];
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => {
@@ -1101,16 +1254,14 @@ const obs = new IntersectionObserver(entries => {
       renderMini();
     }
   });
-}, { threshold: 0.18 });
+}, { threshold: 0.15 });
 sections.forEach(id => { const el = document.getElementById(id); if (el) obs.observe(el); });
 
-document.querySelectorAll('[data-scn]').forEach(b => b.addEventListener('click', () => applyScenario(b.dataset.scn)));
 document.querySelectorAll('.phase-pill').forEach(b => b.addEventListener('click', () => {
   const el = document.getElementById(b.dataset.target);
   if (el) el.scrollIntoView({ behavior: 'smooth' });
 }));
 
-applyScenario('adopted');
 renderMini();
 </script>
 </body>
