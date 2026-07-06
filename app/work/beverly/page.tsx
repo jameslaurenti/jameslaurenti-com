@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "Civic Tools: Beverly — James Laurenti",
   description:
-    "Three tools that make Beverly's budget and development legible to the people who live here.",
+    "Explainers and tools that make Beverly's budget and development legible to the people who live here.",
 };
 
 type Piece = {
@@ -12,26 +12,56 @@ type Piece = {
   blurb: string;
   href: string;
   beta?: boolean;
+  meta?: string;
 };
 
-const pieces: Piece[] = [
+type Group = {
+  label: string;
+  description: string;
+  numbered?: boolean;
+  note?: string;
+  pieces: Piece[];
+};
+
+const groups: Group[] = [
   {
-    title: "The budget, explained",
-    blurb: "Why the city keeps running short, in plain language.",
-    href: "/work/beverly/budget-explainer",
+    label: "Reading",
+    description:
+      "Narrative explainers that turn a contentious civic problem into plain language. They build on each other, so start at the top.",
+    numbered: true,
+    note: "A third piece, on Beverly's options for raising revenue, is in progress.",
+    pieces: [
+      {
+        title: "How the budget works",
+        blurb: "Why the city keeps running short, in plain language.",
+        href: "/work/beverly/budget-explainer",
+        meta: "Written spring 2026, before the FY2027 budget was set",
+      },
+      {
+        title: "The FY2027 budget",
+        blurb:
+          "The year the gap got real: rising costs, the trash-fee fight, and what was cut to balance one budget.",
+        href: "/work/beverly/fy27-budget",
+      },
+    ],
   },
   {
-    title: "Find the money",
-    blurb:
-      'The actual budget, and a chance to close the gap yourself. It’s harder than "just cut the waste."',
-    href: "/work/beverly/budget-challenge",
-    beta: true,
-  },
-  {
-    title: "The development map",
-    blurb: "Where Beverly is changing, parcel by parcel.",
-    href: "/work/beverly/development-map",
-    beta: true,
+    label: "Tools",
+    description: "Interactive pieces. Poke at the numbers and the map yourself.",
+    pieces: [
+      {
+        title: "Find the money",
+        blurb:
+          'The actual budget, and a chance to close the gap yourself. It’s harder than "just cut the waste."',
+        href: "/work/beverly/budget-challenge",
+      },
+      {
+        title: "The development map",
+        blurb: "Where Beverly is changing, parcel by parcel.",
+        href: "/work/beverly/development-map",
+        beta: true,
+      },
+    ],
   },
 ];
 
@@ -46,51 +76,90 @@ export default function BeverlyCollection() {
         style={{ maxWidth: "62ch" }}
       >
         My town is making hard decisions with real consequences, and the
-        conversation around them has been contentious. These three things are an
-        attempt to make it clearer: understand the problem, try to solve it
-        yourself, then see it on the ground. Nonpartisan, sourced, and built for
-        people who don&apos;t have time to dig.
+        conversation around them has been contentious. These are an attempt to
+        make it clearer: explainers that walk through the problem, and tools to
+        poke at it yourself. Nonpartisan, sourced, and built for people who
+        don&apos;t have time to dig.
       </p>
 
-      <ol className="flex flex-col">
-        {pieces.map((piece, i) => (
-          <li key={piece.href} className="border-t border-line">
-            <Link
-              href={piece.href}
-              className="group flex gap-5 py-8 hover:text-accent transition-colors"
+      {groups.map((group) => (
+        <section key={group.label} className="mb-14 last:mb-0">
+          <h2
+            className="font-semibold uppercase text-ink-faint"
+            style={{ fontSize: "0.72rem", letterSpacing: "0.18em" }}
+          >
+            {group.label}
+          </h2>
+          <p
+            className="mt-2 text-ink-mid leading-relaxed"
+            style={{ maxWidth: "60ch", fontSize: "0.95rem" }}
+          >
+            {group.description}
+          </p>
+
+          <ol className="mt-5 flex flex-col">
+            {group.pieces.map((piece, i) => (
+              <li key={piece.href} className="border-t border-line">
+                <Link
+                  href={piece.href}
+                  className="group flex gap-5 py-7 hover:text-accent transition-colors"
+                >
+                  <span
+                    className="font-display text-ink-faint shrink-0"
+                    style={{ fontSize: "1.5rem", lineHeight: 1.15 }}
+                    aria-hidden
+                  >
+                    {group.numbered ? (
+                      i + 1
+                    ) : (
+                      <span style={{ fontSize: "0.9rem" }}>◆</span>
+                    )}
+                  </span>
+                  <div>
+                    <div className="flex items-center gap-2.5">
+                      <h3 className="font-display text-2xl font-semibold tracking-tight">
+                        {piece.title}
+                      </h3>
+                      {piece.beta && (
+                        <span
+                          className="shrink-0 rounded-full border border-ink-faint/40 text-ink-faint uppercase"
+                          style={{
+                            fontSize: "0.6rem",
+                            padding: "0.12rem 0.5rem",
+                            letterSpacing: "0.1em",
+                          }}
+                        >
+                          Beta
+                        </span>
+                      )}
+                    </div>
+                    {piece.meta && (
+                      <p
+                        className="mt-1 text-ink-faint"
+                        style={{ fontSize: "0.8rem" }}
+                      >
+                        {piece.meta}
+                      </p>
+                    )}
+                    <p className="mt-2 text-ink-mid leading-relaxed group-hover:text-accent/70 transition-colors">
+                      {piece.blurb}
+                    </p>
+                  </div>
+                </Link>
+              </li>
+            ))}
+          </ol>
+
+          {group.note && (
+            <p
+              className="mt-5 text-ink-faint"
+              style={{ fontSize: "0.85rem" }}
             >
-              <span
-                className="font-display text-ink-faint shrink-0"
-                style={{ fontSize: "1.5rem", lineHeight: 1.15 }}
-              >
-                {i + 1}
-              </span>
-              <div>
-                <div className="flex items-center gap-2.5">
-                  <h2 className="font-display text-2xl font-semibold tracking-tight">
-                    {piece.title}
-                  </h2>
-                  {piece.beta && (
-                    <span
-                      className="shrink-0 rounded-full border border-ink-faint/40 text-ink-faint uppercase"
-                      style={{
-                        fontSize: "0.6rem",
-                        padding: "0.12rem 0.5rem",
-                        letterSpacing: "0.1em",
-                      }}
-                    >
-                      Beta
-                    </span>
-                  )}
-                </div>
-                <p className="mt-2 text-ink-mid leading-relaxed group-hover:text-accent/70 transition-colors">
-                  {piece.blurb}
-                </p>
-              </div>
-            </Link>
-          </li>
-        ))}
-      </ol>
+              {group.note}
+            </p>
+          )}
+        </section>
+      ))}
     </div>
   );
 }
