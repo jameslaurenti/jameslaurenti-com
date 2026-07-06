@@ -118,7 +118,13 @@ body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system
 /* AMENDMENT DISPLAY */
 .amend-box{margin:0 0 4px 14px;padding:10px 12px;background:var(--amend-light);border-left:2px solid var(--amend);}
 .amend-label{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--amend);margin-bottom:5px;font-weight:600;}
-.amend-grid{display:grid;grid-template-columns:1fr auto auto;gap:4px 14px;font-size:12.5px;align-items:center;}
+.amend-item{padding:9px 0;border-top:1px solid rgba(34,38,31,.08);}
+.amend-item:first-of-type{border-top:none;padding-top:2px;}
+.amend-item-name{display:block;font-weight:600;font-size:13.5px;margin-bottom:4px;}
+.amend-item-detail{display:flex;justify-content:space-between;align-items:baseline;gap:8px 16px;flex-wrap:wrap;font-family:'IBM Plex Mono',monospace;font-size:12.5px;}
+.amend-item-detail .change{color:var(--ink-mid);white-space:nowrap;}
+.amend-item-detail .saves{font-weight:600;white-space:nowrap;}
+.amend-item-detail .vote{color:var(--ink-soft);white-space:nowrap;}
 .amend-key{color:var(--ink-soft);}
 .amend-val{font-family:'IBM Plex Mono',monospace;font-size:12.5px;text-align:right;}
 
@@ -173,9 +179,11 @@ body{background:var(--paper);color:var(--ink);font-family:'IBM Plex Sans',system
 .tm-note{font-size:12.5px;color:var(--ink-mid);margin-top:6px;line-height:1.5;}
 
 /* CRITICAL THINKING */
-.critical-section{margin:28px 0 0;padding:16px 18px;background:var(--white);border:1px solid var(--grid);}
-.crit-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:10px;font-weight:600;}
-.crit-q{font-size:14.5px;color:var(--ink-mid);line-height:1.65;padding-left:14px;border-left:2px solid var(--grid);margin-bottom:10px;}
+.critical-section{margin:30px 0 0;padding:22px 24px 20px;background:var(--white);border:1px solid var(--grid);border-top:3px solid var(--ink);position:relative;}
+.critical-section::before{content:"?";position:absolute;top:10px;right:18px;font-family:'Fraunces',serif;font-size:44px;font-weight:600;color:var(--grid);line-height:1;pointer-events:none;}
+.crit-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink);margin-bottom:12px;font-weight:600;}
+.crit-q{font-family:'Fraunces',serif;font-size:16px;color:var(--ink);line-height:1.62;padding-left:16px;border-left:3px solid var(--ink);margin-bottom:14px;}
+.crit-q:last-child{margin-bottom:0;}
 .crit-q:last-of-type{margin-bottom:0;}
 
 /* FOOTNOTES */
@@ -236,7 +244,8 @@ a:hover{text-decoration:underline;}
   .group-total{font-size:18px;}
   .group-pct{font-size:11px;}
   .impact-text{font-size:14px;}
-  .crit-q{font-size:15.5px;}
+  .crit-q{font-size:16.5px;}
+  .critical-section::before{font-size:36px;right:14px;}
 
   /* Layout stacking */
   .options-grid{grid-template-columns:1fr;gap:14px;}
@@ -247,7 +256,6 @@ a:hover{text-decoration:underline;}
   .tl-number{font-size:44px;}
   .tl-desc{font-size:15px;}
   .trash-math{grid-template-columns:1fr;}
-  .amend-grid{grid-template-columns:1fr auto;}
   .tally-cell{min-width:calc(50% - 1px);padding:12px;}
   .tally-cell .tc-val{font-size:19px;}
   .intro-block h1{font-size:28px;}
@@ -319,11 +327,11 @@ function checkPw(){
   <div class="intro-halves">
     <div class="intro-half h1">
       <div class="half-label h1">Part 1 + 2: The Problem</div>
-      <div class="half-text">Beverly's costs grew about $10 million this year. Revenue only grew $7.2 million. That gap is not an accident or a one-time event. It reflects a long-running reality: the things that drive city costs, school enrollment, health insurance, pension obligations, grow faster each year than property taxes are legally allowed to grow. This is not unique to Beverly. Proposition 2.5 squeezes nearly every city and town in Massachusetts the same way, which is why override votes and fee increases have been spreading across the state.</div>
+      <div class="half-text">Beverly's costs grew about $10 million this year. Revenue only grew $7.2 million. That gap is not an accident or a one-time event. It reflects a long-running reality: the biggest drivers of city costs grow faster each year than property taxes are legally allowed to grow. Most of a city budget is people. Their pay is set in multi-year contracts, most of the workforce is unionized, and as this year's budget shows, those wage increases outpace what the cap allows. Health insurance, pensions, and special education climb faster still. None of it is optional. These are commitments the city has already made, and they compound. This is not unique to Beverly. Proposition 2.5 squeezes nearly every city and town in Massachusetts the same way, which is why override votes and fee increases have been spreading across the state.</div>
     </div>
     <div class="intro-half h2">
       <div class="half-label h2">Part 3 + 4: The Response</div>
-      <div class="half-text">To close a $2.9 million gap, Beverly had two levers it could pull directly this year: charge residents more through trash fees, or cut services. It used both. Other ideas people often raise, like canceling the City Hall renovation or getting more from the state, either could not close this year's gap or depend on decisions outside the city's control. Part 3 explains why.</div>
+      <div class="half-text">To close a $2.9 million gap, the levers Beverly could pull on its own this year came down to the trash fee and service cuts. It used both. If your first reaction is that canceling the City Hall renovation belongs on that list, that question deserves a real answer, not a hand-wave. It gets one in Part 2, including a part of the story that rarely makes it into the argument: the timing of the City Hall loans matters more than their size this year.</div>
     </div>
   </div>
   <p class="intro-standfirst">This piece walks through each part in plain language, with sources noted throughout. It builds on an earlier explainer, <a href="https://www.jameslaurenti.com/work/beverly/budget-explainer" target="_blank" rel="noopener">How Beverly's Budget Actually Works</a>, which lays out why the gap exists in the first place: the structural mismatch between what the city is allowed to raise and what it costs to run. If you want the why behind the numbers here, start there. Use the tracker above to follow along.</p>
@@ -341,7 +349,7 @@ function checkPw(){
 <div class="phase-section" id="phase1">
   <div class="phase-eyebrow"><span class="eyebrow-swatch" style="background:var(--rev)"></span><span style="color:var(--rev)">Part 1</span></div>
   <h2>Where Beverly Gets Its Money</h2>
-  <p class="phase-narrative">Beverly raises money through property taxes, state aid, and local fees and excise taxes. Property taxes make up about <b>77 cents of every dollar of city revenue</b>, but a 1980 state law called Proposition 2.5 caps how fast the city can raise them. Each year, the maximum increase is 2.5% of the prior year's levy, the total amount collected from all property taxes, plus revenue from newly built properties added to the tax rolls. Beverly cannot raise property taxes faster than that limit without voters approving a ballot measure called an override. Beverly has not passed one in recent history. Marblehead, a neighboring community, did approve a $15 million override on June 9, 2026.<sup class="fn"><a href="#footnotes">[1]</a></sup> This year, all of Beverly's revenue sources combined brought in $7.2 million more than last year.</p>
+  <p class="phase-narrative">Beverly raises money through property taxes, state aid, and local fees and excise taxes. Property taxes make up about <b>77 cents of every dollar of city revenue</b>, but a 1980 state law called Proposition 2.5 caps how fast the city can raise them. Each year, the maximum increase is 2.5% of the prior year's levy, the total amount collected from all property taxes, plus revenue from newly built properties added to the tax rolls. Beverly cannot raise property taxes faster than that limit unless voters approve it at the ballot: an override for ongoing spending, or a debt exclusion, a temporary version tied to a specific borrowing. Beverly has not passed one in recent history. Marblehead, a neighboring community, did approve a $15 million override on June 9, 2026.<sup class="fn"><a href="#footnotes">[1]</a></sup> This year, all of Beverly's revenue sources combined brought in $7.2 million more than last year.</p>
 
   <div class="topline-box">
     <div class="tl-number rev">+$7.2M</div>
@@ -504,7 +512,7 @@ function checkPw(){
     <div class="line-row">
       <div class="line-label-wrap">
         <span class="line-label">Enterprise fund transfers and other financing</span>
-        <span class="line-desc">Water, sewer, airport, and other city services that run like self-contained businesses (called enterprise funds, each meant to cover its own costs through fees) contribute to shared overhead. Note: this line connects to Part 3, because trash is one of these enterprise funds, and how much the general fund chips in to cover it is the heart of the trash fee story.</span>
+        <span class="line-desc">Water, sewer, airport, and other city services that run like self-contained businesses (called enterprise funds, each meant to cover its own costs through fees) contribute to shared overhead. Part 3 returns to this, because trash is one of these funds and the general fund's contribution to it is the heart of the trash fee story.</span>
         <div class="line-badges"><span class="badge derived">calculated from budget totals</span></div>
       </div>
       <div class="line-right">
@@ -554,7 +562,7 @@ function checkPw(){
     <div class="line-row" style="border-left-color:var(--cost)">
       <div class="line-label-wrap">
         <span class="line-label">Beverly Public Schools</span>
-        <span class="line-desc">Up 5.28%, bringing the city's contribution to $89.9 million. Schools now account for 49.7% of the entire city budget. For comparison, the school budget increased 7.73% in FY25 and 9.08% in FY26. The rate has slowed but the base keeps compounding.</span>
+        <span class="line-desc">Up 5.28%, bringing the city's contribution to $89.9 million. Schools now account for 49.7% of the entire city budget. On top of that, Beverly pays $1.52M in tuition for residents who enroll in charter schools or choose another district's schools, part of what brings total education spending to 53.1% of the budget. For comparison, the school budget increased 7.73% in FY25 and 9.08% in FY26. The rate has slowed but the base keeps compounding.</span>
         <div class="line-badges"><span class="badge confirmed">budget book + transmittal letter</span></div>
       </div>
       <div class="line-right">
@@ -582,16 +590,6 @@ function checkPw(){
       </div>
     </div>
 
-    <div class="line-row">
-      <div class="line-label-wrap">
-        <span class="line-label">Charter school and school choice tuition</span>
-        <span class="line-desc">Beverly pays tuition for residents who enroll in charter schools or choose a different public school. Total: $1.52M. This is included in the 53.1% education share of the total budget.</span>
-        <div class="line-badges"><span class="badge confirmed">transmittal letter</span></div>
-      </div>
-      <div class="line-right">
-        <span class="line-amount" style="color:var(--ink-soft)">included above</span>
-      </div>
-    </div>
   </div>
 
   <!-- Benefits Group -->
@@ -743,21 +741,26 @@ function checkPw(){
   <!-- City Hall Box -->
   <div class="ch-box">
     <div class="ch-eyebrow">A closer look: the City Hall renovation and the debt budget</div>
-    <div class="ch-headline">$29.4M project, but only a $176K increase in this year's debt payments</div>
+    <div class="ch-headline">A $29.4M project that added only $176K to this year's debt payments</div>
 
     <div class="ch-section">
-      <div class="ch-section-label">Why this is the part everyone's arguing about</div>
-      <div class="ch-body">If you follow Beverly politics at all, you know the City Hall renovation is the loudest fight in town right now. The core objection sounds intuitive: the city is borrowing tens of millions for a building while cutting services and underfunding schools. It is worth understanding why the accounting does not work the way that objection assumes, and where the real risk actually sits. Two things to hold onto. First, borrowed building money and everyday operating money are legally separate pots; the bond for City Hall cannot be spent on teachers or trash pickup, and the reverse is also true. The <a href="https://www.jameslaurenti.com/work/beverly/budget-explainer" target="_blank" rel="noopener">earlier budget explainer</a> walks through why. Second, the state does not set a magic number for how much debt is too much. Its Division of Local Services says debt becomes a fiscal-stress problem when it grows to the point that it crowds out normal services.<sup class="fn"><a href="#footnotes">[11]</a></sup> Beverly's debt service as a share of its budget is holding roughly flat, not climbing. That is the number that matters, and it is the opposite of the pattern the state warns about.</div>
+      <div class="ch-section-label">Start with the number that actually matters</div>
+      <div class="ch-body">The City Hall renovation is the loudest fight in town, and the number that headlines the fight is the big one: $29.4M. But that is the sticker price on the whole project, spread over decades of loan payments. It is not what hit this year's budget. What hit this year's budget is the annual payment, and that went up by about $176K. The rest of this section is about why a $29.4M project moved the yearly number so little. The short version is timing.</div>
+    </div>
+
+    <div class="ch-section">
+      <div class="ch-section-label">Think of it like buying a car</div>
+      <div class="ch-body">Picture a household with a Subaru Forester at 200,000 miles. It runs, but every inspection is a coin flip, and everyone knows it is close to done. There is no car payment anymore, which is nice, but there is also a home improvement loan still on the books from when they redid the kitchen. So they wait, and they plan. They shop with a number in mind: whatever the new car costs, the monthly payment should land right about where the kitchen payment leaves off. When the kitchen loan is nearly done, they pick a car and a loan built to fit that number, and they sign. Their total monthly outlay barely changes. They took on a big new debt and their budget hardly felt it, because one payment ended right as the other began. That is what Beverly did with City Hall.</div>
     </div>
 
     <div class="ch-section">
       <div class="ch-section-label">How the project is being paid for</div>
-      <div class="ch-body">The total project cost is $29.4M ($28.4M for the work itself, $1M to temporarily relocate city departments during construction). Beverly is not borrowing all of it. The city applied $1.5M previously set aside for design work, transferred $2M from a dedicated savings fund built specifically for future capital needs, and made a one-time $525K loan reduction payment in the FY26 budget. That leaves approximately $25.4M to borrow, split into two loans issued at different times as construction costs become due.</div>
+      <div class="ch-body">The full cost is $29.4M: $28.4M for the work, $1M to relocate departments during construction. Beverly is not borrowing all of it. It put in $1.5M already set aside for design, moved $2M from a savings fund built for exactly this kind of capital need, and made a one-time $525K payment in the FY26 budget. That leaves about $25.4M to borrow, split into two loans that start at different times as the construction bills come due.</div>
     </div>
 
     <div class="ch-section">
       <div class="ch-section-label">Why the FY27 payment is only $2M, and why total debt service barely rose</div>
-      <div class="ch-body">The first loan starts in FY27, with an estimated payment of $2M. The second loan ($10M) does not start until FY28. So FY27 carries only the first loan. Two older loans made their final payments in FY26 and then left the schedule entirely, freeing up room right as City Hall stepped in. Here is how the math works out:</div>
+      <div class="ch-body">Only the first loan starts in FY27. The second ($10M) does not begin until FY28. And just like the kitchen loan coming off the books, two older loans made their final payments in FY26 and left the schedule entirely, opening up room right as City Hall stepped in. Here is the math:</div>
       <div style="margin:12px 0;padding:12px 14px;background:var(--white);border:1px solid var(--grid);font-family:'IBM Plex Mono',monospace;font-size:13px;line-height:1.9;">
         <div style="display:grid;grid-template-columns:1fr auto;gap:2px 14px;max-width:420px;">
           <span style="color:var(--ink-mid);">City Hall loan 1 begins</span><span class="cost-text">+$2,000,000</span>
@@ -773,19 +776,19 @@ function checkPw(){
 
     <div class="ch-section">
       <div class="ch-section-label">What happens next</div>
-      <div class="ch-body">FY28 is when both loans are active simultaneously, adding about $2.4M in City Hall payments. But the existing portfolio continues to decline, cushioning much of the new load. Total debt service as a percentage of Beverly's general fund budget is projected to stay near 5% through FY2032. A full year-by-year breakdown is in the <a href="#debt" style="color:var(--warn);text-decoration:underline;">appendix at the bottom of this page</a>. Beyond FY2032, the picture becomes less certain and depends heavily on additional capital projects Beverly has not yet authorized.</div>
+      <div class="ch-body">FY28 is when both loans run at once, adding about $2.4M in City Hall payments. The rest of the portfolio keeps shrinking, which absorbs a lot of that. Debt service is projected to hold near 5% of the budget through FY2032. Two ways to read that number. Level: 5% sits at the bottom of the 5-7% range Beverly has run for decades. Direction: the state's guidance treats debt as a fiscal stress problem when the payments grow to the point that they crowd out everyday services.<sup class="fn"><a href="#footnotes">[11]</a></sup> None of Beverly's immediate neighbors offers a picture of that kind of stress, but Massachusetts has a live example right now: Quincy, the state's cautionary tale on exactly this question. Quincy's own budget breakdown puts debt service at 19.54% of its FY26 budget, nearly four times Beverly's share, a burden swollen in part by borrowing against its pension obligations. Both major rating agencies have acted, S&P cutting Quincy's rating in 2025 with a negative outlook over shrinking flexibility and reserves, and Moody's following with its own downgrade this spring. Per resident, Quincy spends about $882 a year on debt payments. Beverly spends about $212. Beverly's line is flat near 5% and projected to stay there. A full year-by-year breakdown is in the <a href="#debt" style="color:var(--warn);text-decoration:underline;">appendix</a>. Past FY2032 it gets murkier, and depends on projects Beverly has not authorized yet.</div>
     </div>
 
     <div class="ch-section">
       <div class="ch-section-label">The broader strategy</div>
-      <div class="ch-body">Beverly has managed its borrowing this way since the mid-1990s, deliberately timing new loans to enter the schedule as old ones retire, keeping total annual debt payments roughly flat as a share of the budget. The City Hall renovation is the most recent project financed through this approach. The January 2026 City Council presentation documents this strategy explicitly, with charts showing the layering pattern over time.<sup class="fn"><a href="#footnotes">[9]</a></sup></div>
+      <div class="ch-body">This is not a one-off trick. Beverly has borrowed this way since the mid-1990s, timing new loans to start as old ones end so the yearly total stays roughly flat against the budget. City Hall is the newest project run through that playbook. The January 2026 presentation to the City Council lays it out directly, with charts showing the loans stacking and clearing over time.<sup class="fn"><a href="#footnotes">[9]</a></sup></div>
     </div>
   </div>
 
   <!-- Part 2 Critical Thinking -->
   <div class="critical-section">
     <div class="crit-eyebrow">Questions worth thinking about</div>
-    <div class="crit-q">The sharpest version of the skeptic's case isn't about City Hall at all. It's that the city is borrowing for a building while schools go underfunded and services get cut. That's a real feeling and it deserves a real answer. Here's the thing to sit with. Borrowed money for buildings and everyday money for teachers and services are legally separate pots, and Beverly's debt payments are holding steady as a share of the budget rather than climbing, which is the opposite of the pattern the state flags as fiscal stress. So the question isn't really whether City Hall is worth it. It's whether Beverly should borrow for big long-lived things at all. Because the next bond won't be for a city hall. It might be a new school, or the roof over a branch library. If borrowing is reckless here, it's reckless for those too. If it's responsible for those, what makes this different, beyond that a government building is easier to resent?</div>
+    <div class="crit-q">The sharpest version of the skeptic's case isn't about City Hall at all. It's that the city is borrowing for a building while schools go underfunded and services get cut. That's a real feeling and it deserves a real answer. The honest reply is that the yearly cost of this project is small and steady, and Beverly's debt payments are holding flat against the budget rather than climbing, which is the opposite of the pattern the state flags as fiscal stress. So the question isn't really whether City Hall is worth it. It's whether Beverly should borrow for big long-lived things at all. Because the next bond won't be for a city hall. It might be a new school, or the roof over a branch library. If borrowing is reckless here, it's reckless for those too. If it's responsible for those, what makes this different, beyond that a government building is easier to resent?</div>
   </div>
 </div>
 
@@ -797,7 +800,7 @@ function checkPw(){
 
   <div class="callout info">
     <div class="callout-label">How trash is funded in Beverly</div>
-    Trash and recycling run as a separate city account that has to break even each year. The money coming in (resident fees plus a bit of other income) has to equal the cost of collecting and processing the trash. Here is an analogy. Picture an apartment building with many units. One unit has two roommates. Their electric bill comes to $500. Each roommate pays only $100 toward it, which leaves $300 unpaid. The landlord covers that $300 out of the rent money he collects across the whole building. But every dollar he spends covering that one unit's shortfall is a dollar he cannot spend fixing the building or paying staff. Beverly's trash program works the same way. Residents were paying $100 per year, the real cost was far higher, and the general fund (the same pot that pays for schools, police, and roads) covered the $2.48M shortfall. This year the new hauler contract alone jumped $1.3M, making that arrangement much harder to sustain. The question became whether to raise the fees residents pay, or leave them low and cut services elsewhere to free up the money.
+    Trash and recycling run as a separate city account that has to break even each year. The money coming in (resident fees plus a bit of other income) has to equal the cost of collecting and processing the trash. Here is an analogy. Picture an apartment building with many units. One unit has two roommates. Their electric bill comes to $500. Each roommate pays only $100 toward it, which leaves $300 unpaid. The landlord covers that $300 out of the rent money he collects across the whole building. But every dollar he spends covering that one unit's shortfall is a dollar he cannot spend fixing the building or paying staff. Beverly runs several of these accounts, called enterprise funds, and trash is the odd one out. Water and sewer are enterprise funds too, and they work the way the model intends: fees cover more than 90% of their cost, with the rest coming from small miscellaneous revenue.<sup class="fn"><a href="#footnotes">[12]</a></sup> Trash was the exception. Residents were paying $100 per year, the real cost was far higher, and the general fund (the same pot that pays for schools, police, and roads) covered the $2.48M shortfall. This year the new hauler contract alone jumped $1.3M, making that arrangement much harder to sustain. The question became whether to raise the fees residents pay, or leave them low and cut services elsewhere to free up the money. Either way, the cost reaches every resident, homeowners on the tax bill and, indirectly, renters through what landlords charge.
   </div>
 
   <!-- 3 Options -->
@@ -1040,13 +1043,21 @@ function checkPw(){
 
     <div class="amend-box">
       <div class="amend-label">Additional cuts added on top of the above by the City Council at the June 23 meeting</div>
-      <div class="amend-grid">
-        <span class="amend-key">Mayor's office travel budget</span>
-        <span class="amend-val cost-text">$13,500</span>
-        <span class="amend-val rev-text">→ $10,000 (-$3,500)</span>
-        <span class="amend-key">Racial Justice staff position</span>
-        <span class="amend-val cost-text">$62,620</span>
-        <span class="amend-val rev-text">→ $0 (-$62,620) voted 5-4</span>
+      <div class="amend-item">
+        <span class="amend-item-name">Mayor's office expenses (line 51892)</span>
+        <div class="amend-item-detail">
+          <span class="change">$13,500 → $10,000</span>
+          <span class="saves rev-text">saves $3,500</span>
+          <span class="vote">vote 9-0</span>
+        </div>
+      </div>
+      <div class="amend-item">
+        <span class="amend-item-name">Racial Justice staff position</span>
+        <div class="amend-item-detail">
+          <span class="change">$62,620 → $0</span>
+          <span class="saves rev-text">saves $62,620</span>
+          <span class="vote">vote 5-4</span>
+        </div>
       </div>
     </div>
     <div class="impact-box">
@@ -1066,10 +1077,13 @@ function checkPw(){
     </div>
     <div class="amend-box">
       <div class="amend-label">Cut introduced by the City Council at the June 23 meeting (not in the mayor's original proposal)</div>
-      <div class="amend-grid">
-        <span class="amend-key">Budget Analyst salary (per diem, est. half of Finance Director salary)</span>
-        <span class="amend-val cost-text">$79,870</span>
-        <span class="amend-val rev-text">→ $59,870 (-$20,000) unanimous</span>
+      <div class="amend-item">
+        <span class="amend-item-name">Budget Analyst salary (per diem, est. half of Finance Director salary)</span>
+        <div class="amend-item-detail">
+          <span class="change">$79,870 → $59,870</span>
+          <span class="saves rev-text">saves $20,000</span>
+          <span class="vote">vote 9-0</span>
+        </div>
       </div>
     </div>
 
@@ -1085,10 +1099,13 @@ function checkPw(){
     </div>
     <div class="amend-box">
       <div class="amend-label">Cut introduced by the City Council at the June 23 meeting (not in the mayor's original proposal)</div>
-      <div class="amend-grid">
-        <span class="amend-key">Mail Messenger position</span>
-        <span class="amend-val cost-text">$7,000</span>
-        <span class="amend-val rev-text">→ $0 (-$7,000) voted 5-4</span>
+      <div class="amend-item">
+        <span class="amend-item-name">Mail Messenger position</span>
+        <div class="amend-item-detail">
+          <span class="change">$7,000 → $0</span>
+          <span class="saves rev-text">saves $7,000</span>
+          <span class="vote">vote 5-4</span>
+        </div>
       </div>
     </div>
 
@@ -1161,7 +1178,7 @@ function checkPw(){
   <div class="phase-eyebrow"><span class="eyebrow-swatch" style="background:var(--ink)"></span><span>What happens next</span></div>
   <h2>This year is balanced. The problem is not solved.</h2>
   <p class="phase-narrative">Everything in this piece describes how Beverly closed the gap for one year. The gap itself does not go away. The same forces that opened it, costs climbing faster than the property tax cap allows, are still in place, and several of the moves used this year were one-time fixes that cannot be repeated. A private donor is covering a position for two years. A dental clinic shifted onto a grant that has to be renewed. Reserves were drawn down; the mayor noted the city has spent roughly $2 million from its rainy-day fund.</p>
-  <p class="phase-narrative">At the June 23 budget meeting, Councilor Timothy Houseman raised the kinds of moves FY2028 might force onto the table if the trajectory holds: things like raising kindergarten fees, cutting the school budget, holding the line on the city's share of health insurance, cautioning unions that raises above the 2.5% the tax cap allows may not be affordable, and leaning on the state for more aid. He was not endorsing these as a platform. He was naming them as the uncomfortable levers a city starts reaching for when the easy ones are gone, and he called it a "break glass" moment.<sup class="fn"><a href="#footnotes">[8]</a></sup> The specific list matters less than the direction it points. This was not the hard year. Next year is harder.</p>
+  <p class="phase-narrative">At the June 23 budget meeting, Councilor Scott Houseman raised the kinds of moves FY2028 might force onto the table if the trajectory holds: things like raising kindergarten fees, cutting the school budget, bringing the city's share of health insurance costs below 80%, cautioning unions that raises above the 2.5% the tax cap allows may not be affordable, and leaning on the state for more aid. He was not endorsing these as a platform. He was naming them as the uncomfortable levers a city starts reaching for when the easy ones are gone, and he called it a "break glass" moment.<sup class="fn"><a href="#footnotes">[8]</a></sup> The specific list matters less than the direction it points. This was not the hard year. Next year is harder.</p>
   <p class="phase-narrative">If you want to understand the structural squeeze underneath all of this, or see where residents can weigh in before the next budget is set, the <a href="https://www.jameslaurenti.com/work/beverly/budget-explainer" target="_blank" rel="noopener">earlier explainer</a> covers both. This piece has stuck to the mechanics of how the money moved, not the politics of the moment.</p>
 </div>
 
@@ -1212,7 +1229,8 @@ function checkPw(){
   <div class="fn-item"><span class="fn-num">[8]</span><span>City Council budget meeting, June 23, 2026. Meeting notes provided by the City of Beverly. Final vote 5-4: Flowers, Feldman, Houseman, Spang, Rotondo in favor; Sonia, St. Hilaire, Mulladay, Crowley opposed. <a href="https://www.youtube.com/watch?v=nlwByu273SM" target="_blank" rel="noopener">Video of the meeting.</a></span></div>
   <div class="fn-item"><span class="fn-num">[9]</span><span><a href="https://www.beverlyma.gov/DocumentCenter/View/7054/Beverly-City-Hall-Renovation-and-Expansion--City-Council-Project-Update--January-20-2026?bidId=" target="_blank" rel="noopener">City of Beverly, "Beverly City Hall Renovation and Expansion, City Council Project Update," January 20, 2026.</a> Includes General Fund Debt Schedule (Slide 27) and debt management strategy charts (Slides 23-25).</span></div>
   <div class="fn-item"><span class="fn-num">[10]</span><span>The National Grid energy credit ($700K revenue, roughly $588K matching cost) is a passthrough that nets close to zero. It is included in both the $7.2M revenue growth and $10M cost growth headline figures. Excluding it, revenue growth is closer to $6.5M and cost growth closer to $9.4M. The gap between them, which is what drives the deficit, is essentially unchanged either way.</span></div>
-  <div class="fn-item"><span class="fn-num">[11]</span><span>Massachusetts Division of Local Services, <a href="https://www.mass.gov/info-details/fiscal-stress-the-debt-burden" target="_blank" rel="noopener">"Fiscal Stress: The Debt Burden."</a> The DLS does not set a fixed percentage for how much municipal debt is acceptable. It describes fiscal stress as appearing "when debt service has impacted the operating budget to where normal public services are affected," and notes that statewide, debt has been growing faster than revenues. Beverly's debt service as a share of its budget is projected to hold roughly flat near 5% through FY2032 (see appendix).</span></div>
+  <div class="fn-item"><span class="fn-num">[11]</span><span>Massachusetts Division of Local Services, <a href="https://www.mass.gov/info-details/fiscal-stress-the-debt-burden" target="_blank" rel="noopener">"Fiscal Stress: The Debt Burden."</a> The DLS does not set a fixed percentage for how much municipal debt is acceptable. It describes fiscal stress as appearing "when debt service has impacted the operating budget to where normal public services are affected," and notes that statewide, debt has been growing faster than revenues. Beverly's debt service as a share of its budget is projected to hold roughly flat near 5% through FY2032 (see appendix). Quincy figures from the City of Quincy's own <a href="https://www.quincyma.gov/departments/municipal_finance/charts,_graphs,_and_data.php" target="_blank" rel="noopener">"Where Your Tax Dollar Goes" FY26 breakdown and per capita debt service comparison</a>: debt service at 19.54% of the FY26 budget, and $882 per resident. Beverly's own debt service works out to roughly $212 per resident (FY27 debt service near $9.1M against about 42,700 residents). S&P Global Ratings downgraded Quincy's general obligation rating to AA- in 2025, retaining a negative outlook, citing diminished budgetary flexibility and declining reserves (ratings reports are posted on Quincy's municipal finance debt service page). Moody's issued its own downgrade in spring 2026, as reported in regional press coverage. Quincy's FY26 budget notes the recent jump in its debt payments is driven largely by pension obligation bond payments.</span></div>
+  <div class="fn-item"><span class="fn-num">[12]</span><span>Fee coverage for Beverly's water and sewer enterprise funds from the Massachusetts Division of Local Services, <a href="https://dlstab.dor.state.ma.us/views/TrendsInEnterprisefunds/TrendsInEnterpriseFunds" target="_blank" rel="noopener">"Trends in Enterprise Funds"</a> (FY2025, the most recent year populated). Both funds recovered upward of 90% of their costs through user charges, with the balance from miscellaneous revenues.</span></div>
 </div>
 
 <div class="page-footer">
