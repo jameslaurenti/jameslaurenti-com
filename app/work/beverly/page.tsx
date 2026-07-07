@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Civic Tools: Beverly — James Laurenti",
+  title: "Civic Resources: Beverly — James Laurenti",
   description:
     "Explainers and tools that make Beverly's budget and development legible to the people who live here.",
 };
@@ -19,7 +19,6 @@ type Group = {
   label: string;
   description: string;
   numbered?: boolean;
-  note?: string;
   pieces: Piece[];
 };
 
@@ -29,7 +28,6 @@ const groups: Group[] = [
     description:
       "Narrative explainers that turn a contentious civic problem into plain language. They build on each other, so start at the top.",
     numbered: true,
-    note: "A third piece, on Beverly's options for raising revenue, is in progress.",
     pieces: [
       {
         title: "How the budget works",
@@ -69,7 +67,7 @@ export default function BeverlyCollection() {
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 sm:py-24">
       <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
-        Civic Tools: Beverly
+        Civic Resources: Beverly
       </h1>
       <p
         className="text-ink-mid mb-14 leading-relaxed"
@@ -82,84 +80,92 @@ export default function BeverlyCollection() {
         don&apos;t have time to dig.
       </p>
 
-      {groups.map((group) => (
-        <section key={group.label} className="mb-14 last:mb-0">
-          <h2
-            className="font-semibold uppercase text-ink-faint"
-            style={{ fontSize: "0.72rem", letterSpacing: "0.18em" }}
-          >
-            {group.label}
-          </h2>
-          <p
-            className="mt-2 text-ink-mid leading-relaxed"
-            style={{ maxWidth: "60ch", fontSize: "0.95rem" }}
-          >
-            {group.description}
-          </p>
-
-          <ol className="mt-5 flex flex-col">
-            {group.pieces.map((piece, i) => (
-              <li key={piece.href} className="border-t border-line">
-                <Link
-                  href={piece.href}
-                  className="group flex gap-5 py-7 hover:text-accent transition-colors"
-                >
-                  <span
-                    className="font-display text-ink-faint shrink-0"
-                    style={{ fontSize: "1.5rem", lineHeight: 1.15 }}
-                    aria-hidden
-                  >
-                    {group.numbered ? (
-                      i + 1
-                    ) : (
-                      <span style={{ fontSize: "0.9rem" }}>◆</span>
-                    )}
-                  </span>
-                  <div>
-                    <div className="flex items-center gap-2.5">
-                      <h3 className="font-display text-2xl font-semibold tracking-tight">
-                        {piece.title}
-                      </h3>
-                      {piece.beta && (
-                        <span
-                          className="shrink-0 rounded-full border border-ink-faint/40 text-ink-faint uppercase"
-                          style={{
-                            fontSize: "0.6rem",
-                            padding: "0.12rem 0.5rem",
-                            letterSpacing: "0.1em",
-                          }}
-                        >
-                          Beta
-                        </span>
-                      )}
-                    </div>
-                    {piece.meta && (
-                      <p
-                        className="mt-1 text-ink-faint"
-                        style={{ fontSize: "0.8rem" }}
-                      >
-                        {piece.meta}
-                      </p>
-                    )}
-                    <p className="mt-2 text-ink-mid leading-relaxed group-hover:text-accent/70 transition-colors">
-                      {piece.blurb}
-                    </p>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ol>
-
-          {group.note && (
+      <div className="flex flex-col gap-12">
+        {groups.map((group) => (
+          <section key={group.label}>
+            <div className="flex items-center gap-3">
+              <h2
+                className="font-semibold uppercase text-accent"
+                style={{ fontSize: "0.78rem", letterSpacing: "0.16em" }}
+              >
+                {group.label}
+              </h2>
+              <span
+                className="flex-1"
+                style={{ height: "1px", background: "var(--color-accent)", opacity: 0.28 }}
+              />
+            </div>
             <p
-              className="mt-5 text-ink-faint"
-              style={{ fontSize: "0.85rem" }}
+              className="mt-2.5 text-ink-mid leading-relaxed"
+              style={{ maxWidth: "60ch", fontSize: "0.95rem" }}
             >
-              {group.note}
+              {group.description}
             </p>
-          )}
-        </section>
-      ))}
+
+            <ol
+              className="mt-4 flex flex-col rounded-xl overflow-hidden"
+              style={{
+                border: "1px solid var(--color-line)",
+                background: "var(--color-bg-card)",
+              }}
+            >
+              {group.pieces.map((piece, i) => (
+                <li
+                  key={piece.href}
+                  className={i > 0 ? "border-t border-line" : ""}
+                >
+                  <Link
+                    href={piece.href}
+                    className="group flex gap-5 px-5 sm:px-6 py-6 hover:text-accent transition-colors"
+                  >
+                    <span
+                      className="font-display text-ink-faint shrink-0"
+                      style={{ fontSize: "1.5rem", lineHeight: 1.15 }}
+                      aria-hidden
+                    >
+                      {group.numbered ? (
+                        i + 1
+                      ) : (
+                        <span style={{ fontSize: "0.9rem" }}>◆</span>
+                      )}
+                    </span>
+                    <div>
+                      <div className="flex items-center gap-2.5">
+                        <h3 className="font-display text-2xl font-semibold tracking-tight">
+                          {piece.title}
+                        </h3>
+                        {piece.beta && (
+                          <span
+                            className="shrink-0 rounded-full border border-ink-faint/40 text-ink-faint uppercase"
+                            style={{
+                              fontSize: "0.6rem",
+                              padding: "0.12rem 0.5rem",
+                              letterSpacing: "0.1em",
+                            }}
+                          >
+                            Beta
+                          </span>
+                        )}
+                      </div>
+                      {piece.meta && (
+                        <p
+                          className="mt-1 text-ink-faint"
+                          style={{ fontSize: "0.8rem" }}
+                        >
+                          {piece.meta}
+                        </p>
+                      )}
+                      <p className="mt-2 text-ink-mid leading-relaxed group-hover:text-accent/70 transition-colors">
+                        {piece.blurb}
+                      </p>
+                    </div>
+                  </Link>
+                </li>
+              ))}
+            </ol>
+          </section>
+        ))}
+      </div>
     </div>
   );
 }
