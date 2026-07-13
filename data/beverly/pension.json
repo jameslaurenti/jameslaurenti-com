@@ -1,0 +1,67 @@
+{
+  "_meta": {
+    "title": "Beverly Contributory Retirement System, funding schedule",
+    "source": "PERAC Beverly Contributory Retirement System Actuarial Valuation, January 1, 2024",
+    "pages": { "schedule": 9, "stressProjection": 22, "returnHistory": 13 },
+    "confidence": "confirmed",
+    "retrieved": "2026-07",
+    "units": "USD millions unless noted",
+    "notes": "Adopted schedule approved by PERAC. Reset roughly every two years; the January 1, 2026 valuation will update these figures using actual 2024-2025 returns. 'permanent' = normal cost + expenses + net 3(8)(c). 'debt' = amortization of the unfunded actuarial liability. 'ualEnd' = unfunded liability remaining at year end."
+  },
+
+  "fundedStatus": {
+    "asOf": "2024-01-01",
+    "fundedRatio": 75.3,
+    "unfundedLiability": 65.6,
+    "returnAssumption": 7.0,
+    "confidence": "confirmed"
+  },
+
+  "returnHistory": {
+    "confidence": "confirmed",
+    "annualized": { "y2023": 11.4, "y5": 9.5, "y10": 8.0, "y20": 7.8 },
+    "note": "The 7.0% assumption sits below the fund's 20-year actual of 7.8%."
+  },
+
+  "cliff": {
+    "confidence": "confirmed",
+    "peakFy": "FY31",
+    "peakTotal": 18.58,
+    "clearedFy": "FY33",
+    "clearedTotal": 5.80,
+    "annualReliefApprox": 12.8,
+    "shape": "Two-step: FY32 frees ~6.8M as the final debt payment shrinks, FY33 frees ~5.9M more as it hits zero."
+  },
+
+  "schedule": [
+    { "fy": "FY25", "permanent": 4.11, "debt": 10.15, "total": 14.27, "ualEnd": 67.9 },
+    { "fy": "FY26", "permanent": 4.29, "debt": 10.62, "total": 14.91, "ualEnd": 62.2 },
+    { "fy": "FY27", "permanent": 4.48, "debt": 11.10, "total": 15.58, "ualEnd": 55.5 },
+    { "fy": "FY28", "permanent": 4.68, "debt": 11.61, "total": 16.28, "ualEnd": 47.9 },
+    { "fy": "FY29", "permanent": 4.88, "debt": 12.13, "total": 17.02, "ualEnd": 39.3 },
+    { "fy": "FY30", "permanent": 5.10, "debt": 12.69, "total": 17.78, "ualEnd": 29.5 },
+    { "fy": "FY31", "permanent": 5.32, "debt": 13.26, "total": 18.58, "ualEnd": 18.4 },
+    { "fy": "FY32", "permanent": 5.55, "debt": 6.18, "total": 11.74, "ualEnd": 6.0 },
+    { "fy": "FY33", "permanent": 5.80, "debt": 0.0, "total": 5.80, "ualEnd": 0.0 }
+  ],
+
+  "fundedRatioScenarios": {
+    "confidence": "mixed",
+    "note": "The 7% and 3% paths through 2029 are PERAC's own projection (page 22), confidence 'confirmed'. The 5% path and every value past 2029 are 'illustrative'. PERAC warns that at 3% returns the schedule 'might have to be increased before FY29'.",
+    "firmThrough": "2029",
+    "series": [
+      { "yr": "2024", "s7": 73.3, "s5": 73.3, "s3": 73.3, "firm": true },
+      { "yr": "2025", "s7": 75.9, "s5": 74.6, "s3": 73.0, "firm": true },
+      { "yr": "2026", "s7": 78.6, "s5": 75.9, "s3": 72.8, "firm": true },
+      { "yr": "2027", "s7": 81.4, "s5": 77.3, "s3": 72.6, "firm": true },
+      { "yr": "2028", "s7": 84.4, "s5": 78.9, "s3": 72.5, "firm": true },
+      { "yr": "2029", "s7": 87.5, "s5": 80.6, "s3": 72.3, "firm": true },
+      { "yr": "2030", "s7": 91.0, "s5": 83.0, "s3": 72.1, "firm": false },
+      { "yr": "2031", "s7": 95.0, "s5": 86.0, "s3": 71.9, "firm": false },
+      { "yr": "2032", "s7": 98.0, "s5": 89.5, "s3": 71.7, "firm": false },
+      { "yr": "2033", "s7": 100, "s5": 93.0, "s3": 71.5, "firm": false },
+      { "yr": "2034", "s7": 100, "s5": 96.5, "s3": 71.3, "firm": false },
+      { "yr": "2035", "s7": 100, "s5": 100, "s3": 71.1, "firm": false }
+    ]
+  }
+}

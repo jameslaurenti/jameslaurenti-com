@@ -1,0 +1,50 @@
+{
+  "_meta": {
+    "title": "Beverly tax-exempt property and PILOT analysis",
+    "source": "MassGIS Level 3 standardized parcel data, Beverly (M030), CY2025/FY2026 assessment (M030Assess table). Foregone-tax figures computed at the FY25 residential rate.",
+    "confidence": "confirmed",
+    "retrieved": "2026-07",
+    "units": "USD",
+    "taxRatePerThousand": 10.99,
+    "taxRateNote": "FY25 residential rate, single-rate community. Confirm FY26 certified rate before publication; foregone-tax figures scale linearly with it.",
+    "notes": "Exempt = state use codes 900-999. PILOT-eligible universe = private education + charitable/hospital (940-959), excluding government, city, and housing-authority parcels."
+  },
+
+  "totals": {
+    "confidence": "confirmed",
+    "totalCityAssessedValue": 11650000000,
+    "totalExemptBase": 1010000000,
+    "exemptSharePct": 8.7,
+    "exemptParcelCount": 480,
+    "pilotEligibleAssessed": 451600000,
+    "pilotEligibleForegoneTax": 4960000,
+    "currentPilotRevenue": 250000,
+    "currentPilotNote": "Budget book $250K; forecast lists $255K. Either way it is ~12% of Endicott's foregone tax alone."
+  },
+
+  "institutions": {
+    "confidence": "confirmed",
+    "note": "Owner-level totals from the parcel file. foregoneTax = assessed x 10.99 / 1000.",
+    "list": [
+      { "owner": "Endicott College", "parcels": 17, "assessed": 196127000, "foregoneTax": 2155436 },
+      { "owner": "Beverly Hospital (Northeast Hospital Corp / Beth Israel Lahey)", "parcels": 8, "assessed": 46739490, "foregoneTax": 513667 },
+      { "owner": "Landmark School", "parcels": 8, "assessed": 31205400, "foregoneTax": 342947 },
+      { "owner": "Shore Country Day School", "parcels": 4, "assessed": 19454100, "foregoneTax": 213801 },
+      { "owner": "YMCA of the North Shore", "parcels": 4, "assessed": 19086700, "foregoneTax": 209763 },
+      { "owner": "Montserrat College of Art", "parcels": 7, "assessed": 14619700, "foregoneTax": 160671 }
+    ],
+    "excludedFromPilot": [
+      { "owner": "City of Beverly", "parcels": 242, "assessed": 365882820, "reason": "municipal, not PILOT-eligible" },
+      { "owner": "Beverly Housing Authority", "parcels": 16, "assessed": 127256200, "reason": "public housing, not PILOT-eligible" }
+    ]
+  },
+
+  "pilotScenarios": {
+    "confidence": "modeled",
+    "note": "Applied to the $451.6M PILOT-eligible universe. Boston's model is 25% of assessed-equivalent, half creditable as community benefits, so ~12.5% effective cash. Multi-year negotiation timeline.",
+    "bostonEffective12_5pct": 620000,
+    "full25pctCashEquivalent": 1240000,
+    "endicottAloneBoston25pctGross": 539000,
+    "realisticRecurringBand": "600000 to 1250000 per year"
+  }
+}

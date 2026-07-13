@@ -1,0 +1,101 @@
+{
+  "_meta": {
+    "title": "Beverly FY2026-2030 Financial Forecast, general fund operating budget",
+    "source": "City of Beverly Financial Forecast FY2026 to FY2030, Financial Forecast Committee, December 2025",
+    "confidence": "confirmed",
+    "retrieved": "2026-07",
+    "units": "USD millions unless noted",
+    "notes": "General fund operating budget only; enterprise funds excluded. Committee uses a deliberately conservative revenue method and objective expenditure method, so actual deficits may run slightly smaller than the pre-balancing figures shown. The Mayor's submitted budget is balanced by law; these are the pre-balancing projections that show the structural gap. The retirement line here (14.98M FY27) is the forecast's own figure and runs slightly below the PERAC schedule (15.58M FY27) in pension.json; treat pension.json as the authoritative pension source and this as the forecast's internal assumption."
+  },
+
+  "summary": {
+    "confidence": "confirmed",
+    "note": "Pre-balancing. Revenue grows ~2.9%/yr, expenditures ~5%/yr; the gap compounds.",
+    "years": [
+      { "fy": "FY26", "revenue": 173.72, "expenditure": 173.72, "deficit": 0.0 },
+      { "fy": "FY27", "revenue": 178.87, "expenditure": 182.79, "deficit": -3.92 },
+      { "fy": "FY28", "revenue": 183.78, "expenditure": 190.89, "deficit": -7.11 },
+      { "fy": "FY29", "revenue": 189.07, "expenditure": 199.09, "deficit": -10.01 },
+      { "fy": "FY30", "revenue": 194.32, "expenditure": 208.00, "deficit": -13.68 }
+    ]
+  },
+
+  "revenueDetailFy27": {
+    "confidence": "confirmed",
+    "units": "USD",
+    "lines": {
+      "priorYearLevy": 135399268,
+      "levyIncrease2_5pct": 3384982,
+      "newGrowth": 1250000,
+      "grossLevy": 140034249,
+      "overlayProvision": -400000,
+      "taxRevenueNet": 139634249,
+      "stateAidNetSchoolChoice": 24085164,
+      "pilots": 255000,
+      "medicaid": 450000,
+      "motorVehicleBoatExcise": 5459000,
+      "localReceipts": 3157973,
+      "mealsAndRoomTax": 1570000,
+      "cannabisExcise": 231750,
+      "interestIncome": 875000,
+      "landBuildingRental": 320000,
+      "transfersFromEnterprise": 1582663,
+      "otherAvailableFunds": 856900,
+      "penaltiesAndInterest": 392751,
+      "totalRevenue": 178870450
+    }
+  },
+
+  "expenditureDetailFy27": {
+    "confidence": "confirmed",
+    "units": "USD",
+    "municipalLines": {
+      "salariesAndWages": 34818134,
+      "expenses": 7619787,
+      "capitalOutlay": 562538,
+      "propertyCasualtyInsurance": 1256799,
+      "sanitation": 2723575,
+      "healthInsuranceCityAndRetirees": 13021357,
+      "totalDebtService": 9210585,
+      "retirementAssessment": 14984863,
+      "opebTrustContribution": 90781,
+      "workersCompPayrollTaxLifeIns": 871500,
+      "stateCountyAssessments": 2536755,
+      "reserves": 710000,
+      "roadsAndSidewalks": 0,
+      "totalMunicipal": 88406674
+    },
+    "schoolFunding": 89876235,
+    "vocationalAssessment": 4508926,
+    "grandTotal": 182791835
+  },
+
+  "growthAssumptions": {
+    "confidence": "confirmed",
+    "note": "The forecast's own per-line assumptions. These are the inputs to reuse in the bridge model.",
+    "lines": {
+      "salariesAndWages": "1.5%/yr",
+      "expenses": "2.5%/yr (2% average adjustment)",
+      "healthInsurance": "6%/yr (note: FY27 actual came in ~9-10%)",
+      "debtService": "per current capital exposure schedule",
+      "retirementAssessment": "4.5%/yr per PERAC funding schedule",
+      "opebTrustContribution": "3.75%/yr",
+      "stateCountyAssessments": "based on historical data",
+      "schoolFunding": "3%/yr plus stepped enrollment to 60 slots per grade",
+      "vocationalAssessment": "3.75%/yr (FY27 actual +13.66% on enrollment)"
+    }
+  },
+
+  "reserves": {
+    "confidence": "confirmed",
+    "note": "Reserves healthy now but drawing down. ~$7M spent from reserves before FY26 close (City Hall, roads, stabilization, OPEB transfer). DLS free-cash policy target is 3-8% of the general fund.",
+    "freeCashCertified": { "FY23": 9.93, "FY24": 11.36, "FY25": 10.71, "FY26": 10.50 },
+    "undesignatedFundBalance": { "FY23": 13.04, "FY24": 14.05, "FY25": 14.05, "FY26": 14.20 }
+  },
+
+  "riskFlags": {
+    "confidence": "confirmed",
+    "federalSchoolGrants": "BPS relies on ~$2.5M/yr in federal grants the committee says the city could not replace if cut.",
+    "structuralNote": "The committee calls this deficit 'qualitatively different' from prior years; the strategies used to close past gaps (roads shift to free cash $2.7M, excess levy capacity $1.4M, Rx restructuring) 'no longer exist'."
+  }
+}
