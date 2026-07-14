@@ -8,8 +8,13 @@
   --color-ink-faint:    #6b6055;
   --color-accent:       #2d6a4f;
   --color-accent-lt:    #40916c;
+  --color-accent-deep:  #1e4d38;
   --color-accent-glow:  rgba(45, 106, 79, 0.10);
   --color-rule:         rgba(0, 0, 0, 0.09);
+
+  /* Supporting palette for civic charts (debt burden, accents) */
+  --color-debt:         #b0562b;
+  --color-gold:         #b8923a;
 
   --font-sans:    var(--font-dm-sans);
   --font-display: var(--font-bricolage);
