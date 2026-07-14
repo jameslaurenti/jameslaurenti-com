@@ -22,6 +22,8 @@ const TAX_PER_M = 53; // ~$50-55/yr on the median bill per $1M of override
 
 const fmtSigned = (v: number) => `${v < 0 ? "-" : "+"}$${Math.abs(v).toFixed(1)}M`;
 const fmtM = (v: number) => `$${v.toFixed(1)}M`;
+const fmtPct = (v: number) => `${(v * 100).toFixed(1)}%`;
+const pts = (v: number) => (v * 100).toFixed(1);
 
 function Stat({ label, value, sub }: { label: string; value: string; sub?: string }) {
   return (
@@ -33,12 +35,36 @@ function Stat({ label, value, sub }: { label: string; value: string; sub?: strin
   );
 }
 
+function Slider({ id, label, value, min, max, step, onChange, display, sub }: {
+  id: string; label: string; value: number; min: number; max: number; step: number;
+  onChange: (v: number) => void; display: string; sub?: string;
+}) {
+  return (
+    <div>
+      <div className="flex items-baseline justify-between">
+        <label htmlFor={id} className="font-semibold" style={{ fontSize: "0.85rem" }}>{label}</label>
+        <span className="font-display font-semibold text-accent" style={{ fontSize: "1.05rem" }}>{display}</span>
+      </div>
+      <input id={id} type="range" min={min} max={max} step={step} value={value}
+        onChange={(e) => onChange(parseFloat(e.target.value))} className="w-full" />
+      {sub && <div className="text-ink-faint" style={{ fontSize: "0.7rem" }}>{sub}</div>}
+    </div>
+  );
+}
+
 export default function BridgeModel() {
   const [override, setOverride] = useState(0);
-  const result = useMemo(() => computeBridge({ overrideAmount: override }), [override]);
-  const { rows, peak, breachBaseFy, breachOverrideFy, smallestOverrideToHold } = result;
+  const [newGrowth, setNewGrowth] = useState(1.25);
+  const [pilot, setPilot] = useState(0.25);
+  const [health, setHealth] = useState(0);
 
-  const overrideHolds = breachOverrideFy === null;
+  const result = useMemo(
+    () => computeBridge({ overrideAmount: override, newGrowthTarget: newGrowth, pilotTarget: pilot, healthSavings: health }),
+    [override, newGrowth, pilot, health],
+  );
+  const { rows, peak, breachBaseFy, breachStrategyFy, smallestOverrideToHold, scissors } = result;
+
+  const strategyHolds = breachStrategyFy === null;
   const taxImpact = Math.round(override * TAX_PER_M);
 
   return (
@@ -56,46 +82,50 @@ export default function BridgeModel() {
       </h1>
       <p className="text-ink-mid leading-relaxed mb-8" style={{ maxWidth: "60ch" }}>
         The city&apos;s own forecast shows the deficit widening to $13.7M by FY30. This layers the
-        adopted PERAC pension schedule on top, extends the picture to FY40, and lets you add a
-        permanent operating override to see whether reserves survive the peak years. Drag the
-        override and watch the reserve line.
+        adopted PERAC pension schedule on top, extends the picture to FY40, and lets you work the
+        levers: grow the tax base, negotiate PILOT payments, trim health costs, and add a permanent
+        override. Watch which moves lift the line and which actually bend it.
       </p>
 
-      {/* Control */}
-      <div className="rounded-xl border border-rule bg-bg-card p-5 mb-6">
-        <div className="flex items-baseline justify-between mb-2">
-          <label htmlFor="override" className="font-semibold" style={{ fontSize: "0.9rem" }}>
-            Permanent operating override
-          </label>
-          <span className="font-display text-2xl font-semibold text-accent">{fmtM(override)}</span>
+      {/* Controls */}
+      <div className="rounded-xl border border-rule bg-bg-card p-5 mb-6 flex flex-col gap-5">
+        <Slider id="override" label="Permanent operating override" value={override} min={0} max={15} step={0.5}
+          onChange={setOverride} display={fmtM(override)}
+          sub={taxImpact > 0 ? `≈ $${taxImpact}/yr on the median bill · a level shift, not a bend` : "a level shift, not a bend"} />
+        <Slider id="newgrowth" label="Sustained new growth" value={newGrowth} min={1.25} max={3} step={0.05}
+          onChange={setNewGrowth} display={`${fmtM(newGrowth)}/yr`}
+          sub="City plans $1.25M · 11-yr actual ~$1.6M · target $2.5-3M. Compounds, so it bends the revenue line." />
+        <Slider id="pilot" label="PILOT payments" value={pilot} min={0.25} max={1.25} step={0.05}
+          onChange={setPilot} display={`${fmtM(pilot)}/yr`}
+          sub="Now $0.25M · realistic band $0.6-1.25M. Endicott alone forgoes $2.16M." />
+        <Slider id="health" label="Annual health-cost savings" value={health} min={0} max={0.5} step={0.05}
+          onChange={setHealth} display={`${fmtM(health)}/yr`}
+          sub="Plan design / GIC entry. Local ceiling ~$0.15-0.5M/yr." />
+      </div>
+
+      {/* Scissors callout */}
+      <div className="rounded-xl p-5 mb-8" style={{ background: "var(--color-accent-glow)", border: "1px solid rgba(45,106,79,0.28)" }}>
+        <div className="font-semibold uppercase text-accent mb-1.5" style={{ fontSize: "0.68rem", letterSpacing: "0.12em" }}>
+          The structural scissors
         </div>
-        <input
-          id="override"
-          type="range"
-          min={0}
-          max={15}
-          step={0.5}
-          value={override}
-          onChange={(e) => setOverride(parseFloat(e.target.value))}
-          className="w-full"
-        />
-        <div className="flex justify-between text-ink-faint mt-1" style={{ fontSize: "0.72rem" }}>
-          <span>$0</span>
-          <span>{taxImpact > 0 ? `≈ $${taxImpact}/yr on the median bill` : "drag to add an override"}</span>
-          <span>$15M</span>
-        </div>
+        <p className="text-ink leading-relaxed" style={{ fontSize: "0.92rem" }}>
+          Ex-pension costs grow <b>{fmtPct(scissors.baseExpPct)}/yr</b> against{" "}
+          <b>{fmtPct(scissors.baseRevPct)}/yr</b> revenue: a <b>{pts(scissors.baseGapPct)}-point</b> gap that
+          compounds. Your levers bend it to <b>{pts(scissors.stratGapPct)} points</b>. The override isn&apos;t
+          here, because it lifts the level without bending the slope.
+        </p>
       </div>
 
       {/* Readouts */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-10">
-        <Stat label={`Peak bridge-year deficit (${peak.fyLabel}), before any override`} value={fmtSigned(peak.deficit)} />
+        <Stat label={`Peak bridge-year deficit (${peak.fyLabel}), before any action`} value={fmtSigned(peak.deficit)} />
         <Stat
-          label="With this override, reserves…"
-          value={overrideHolds ? "hold to FY40" : `dip below floor ${breachOverrideFy}`}
-          sub={`Without any override: below floor ${breachBaseFy ?? "never"}`}
+          label="With this strategy, reserves…"
+          value={strategyHolds ? "hold to FY40" : `dip below floor ${breachStrategyFy}`}
+          sub={`Do nothing: below floor ${breachBaseFy ?? "never"}`}
         />
         <Stat
-          label="Smallest override that holds reserves above the floor through FY33"
+          label="Smallest override that holds through FY33, given these levers"
           value={smallestOverrideToHold === null ? ">$20M" : fmtM(smallestOverrideToHold)}
         />
       </div>
@@ -118,8 +148,8 @@ export default function BridgeModel() {
             <Legend wrapperStyle={{ fontSize: 12 }} />
             <ReferenceLine y={0} stroke={C.ink} strokeOpacity={0.4} />
             <ReferenceLine x="FY33" stroke={C.accent} strokeDasharray="4 4" strokeOpacity={0.5} />
-            <Line type="monotone" dataKey="deficitBase" name="No override" stroke={C.debt} strokeWidth={2} dot={false} isAnimationActive={false} />
-            <Line type="monotone" dataKey="deficitWithOverride" name="With override" stroke={C.accent} strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line type="monotone" dataKey="deficitBase" name="Do nothing" stroke={C.debt} strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line type="monotone" dataKey="deficitStrategy" name="With strategy" stroke={C.accent} strokeWidth={2} dot={false} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
       </div>
@@ -139,8 +169,8 @@ export default function BridgeModel() {
             <Tooltip formatter={(value) => fmtM(Number(value))} labelStyle={{ color: C.ink }} contentStyle={{ fontSize: 12, borderRadius: 8, border: `1px solid ${C.rule}` }} />
             <Legend wrapperStyle={{ fontSize: 12 }} />
             <ReferenceLine y={0} stroke={C.ink} strokeOpacity={0.4} />
-            <Line type="monotone" dataKey="reserveBase" name="No override" stroke={C.debt} strokeWidth={2} dot={false} isAnimationActive={false} />
-            <Line type="monotone" dataKey="reserveWithOverride" name="With override" stroke={C.accent} strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line type="monotone" dataKey="reserveBase" name="Do nothing" stroke={C.debt} strokeWidth={2} dot={false} isAnimationActive={false} />
+            <Line type="monotone" dataKey="reserveStrategy" name="With strategy" stroke={C.accent} strokeWidth={2} dot={false} isAnimationActive={false} />
             <Line type="monotone" dataKey="reserveFloor" name="Reserve floor (5%)" stroke={C.gold} strokeWidth={1.5} strokeDasharray="5 4" dot={false} isAnimationActive={false} />
           </LineChart>
         </ResponsiveContainer>
@@ -152,12 +182,13 @@ export default function BridgeModel() {
           (Dec 2025 Financial Forecast Committee) with the authoritative PERAC pension schedule
           substituted, which runs ~$0.6M steeper than the forecast&apos;s own pension assumption.
           FY31-FY40 are a modeled extension on the forecast&apos;s FY27-30 revenue (~2.8%/yr) and
-          ex-pension (~4.4%/yr) slopes. The override grows at 2.5%/yr from FY28.
+          ex-pension (~4.4%/yr) slopes. Lever ramps and the override are modeled: new growth compounds
+          at 2.5% and ramps over 4 years; PILOT and health savings ramp over 3 years.
         </p>
         <p>
           Reserves assume gaps are absorbed by the undesignated fund balance with no service cuts
-          modeled, so a balance below the floor marks where cuts would be forced. Lever ramps (new
-          growth, PILOT), a cliff-date toggle, and pension re-amortization arrive in later stages.
+          modeled, so a balance below the floor marks where cuts would be forced. A cliff-date toggle
+          and pension re-amortization arrive in stage 3.
         </p>
       </div>
     </div>
