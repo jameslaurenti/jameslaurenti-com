@@ -49,7 +49,14 @@ export default function PeerCohort({
       .map((t) => ({ t, m: metrics(t, year) }))
       .filter((x): x is { t: Town; m: Metrics } => x.m != null);
     if (basis === "county") return pool.filter((x) => x.t.county === town.county);
-    if (basis === "type") return pool.filter((x) => x.t.type && x.t.type === town.type);
+    if (basis === "type") {
+      // Same type AND similar value. Type alone lumps Beverly in with Nantucket
+      // and Chilmark, whose near-zero effective rates drag the median down.
+      const sameType = pool.filter((x) => x.t.type && x.t.type === town.type);
+      return [...sameType]
+        .sort((a, b) => Math.abs(a.m.value - focus.value) - Math.abs(b.m.value - focus.value))
+        .slice(0, K);
+    }
     const key = basis === "value" ? "value" : "income";
     return [...pool].sort((a, b) => Math.abs(a.m[key] - focus[key]) - Math.abs(b.m[key] - focus[key])).slice(0, K);
   }, [data, town, year, basis, focus]);
@@ -88,7 +95,7 @@ export default function PeerCohort({
       : basis === "income"
         ? "towns with similar incomes"
         : basis === "type"
-          ? `other ${typePlural}`
+          ? `other ${typePlural} of similar value`
           : `other towns in ${town.county} County`;
 
   const domPhrase = {
