@@ -91,7 +91,7 @@ export default function LevyHeadroom({ data, town, year, color }: Props) {
       </svg>
 
       {/* legend */}
-      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-[11px] text-ink-mid">
+      <div className="mt-1 flex flex-wrap items-center gap-x-4 gap-y-1 text-[0.6875rem] text-ink-mid">
         <span className="inline-flex items-center gap-1.5">
           <span className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: color }} /> Tax levied
         </span>
@@ -114,7 +114,7 @@ export default function LevyHeadroom({ data, town, year, color }: Props) {
         </div>
       )}
 
-      <p className="mt-2 text-[11px] leading-relaxed text-ink-faint">
+      <p className="mt-2 text-[0.6875rem] leading-relaxed text-ink-faint">
         The full bar is the levy ceiling (2.5% of assessed value). It rises with home values, while the tax
         actually levied grows only ~2.5% a year — so the hatched “override capacity” slab widens. That gap is
         real but not spendable: reaching it takes override votes, not a rate change. Copy here is a working draft.
@@ -126,9 +126,9 @@ export default function LevyHeadroom({ data, town, year, color }: Props) {
 function Stat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
     <div className="rounded-md border border-rule bg-bg p-2.5">
-      <div className="text-[10px] font-medium uppercase tracking-wide text-ink-faint">{label}</div>
+      <div className="text-[0.6875rem] font-medium uppercase tracking-wide text-ink-faint">{label}</div>
       <div className="font-display text-xl font-semibold tabular-nums text-ink">{value}</div>
-      <div className="text-[10px] text-ink-faint">{sub}</div>
+      <div className="text-[0.6875rem] text-ink-faint">{sub}</div>
     </div>
   );
 }

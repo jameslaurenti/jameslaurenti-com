@@ -95,7 +95,7 @@ export default function TownDetail({ data, selected, focused, onFocus }: Props) 
               <div className="text-xs font-medium uppercase tracking-wide text-ink-faint">{m.label}</div>
               <div className="mt-1 flex items-baseline gap-1.5">
                 <span className="font-display text-2xl font-semibold tabular-nums text-ink">{m.fmt(latestVal)}</span>
-                <span className="text-[11px] text-ink-faint">{m.suffix}</span>
+                <span className="text-[0.6875rem] text-ink-faint">{m.suffix}</span>
               </div>
               <div className="mt-0.5 flex items-center gap-1 text-xs tabular-nums text-ink-mid">
                 <span aria-hidden>{chg.dir === "up" ? "↑" : chg.dir === "down" ? "↓" : "→"}</span>
@@ -108,7 +108,7 @@ export default function TownDetail({ data, selected, focused, onFocus }: Props) 
           );
         })}
       </div>
-      <p className="mt-2 text-[11px] text-ink-faint">
+      <p className="mt-2 text-[0.6875rem] text-ink-faint">
         Sparklines span FY{fys[0]}–FY{fys[fys.length - 1]}; each is scaled to its own range. Gaps are years without a
         published figure.
       </p>

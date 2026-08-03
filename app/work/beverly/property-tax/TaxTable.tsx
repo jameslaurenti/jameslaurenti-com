@@ -142,7 +142,7 @@ export default function TaxTable({ data, year, selected }: Props) {
                     aria-label={`Sort by ${c.label}`}
                   >
                     {c.label}
-                    <span className="text-[10px] text-ink-faint" aria-hidden>
+                    <span className="text-[0.6875rem] text-ink-faint" aria-hidden>
                       {sortKey === c.key ? (dir === "asc" ? "▲" : "▼") : "↕"}
                     </span>
                   </button>
@@ -170,7 +170,7 @@ export default function TaxTable({ data, year, selected }: Props) {
                         ) : atCeiling ? (
                           <span className="inline-flex items-center gap-1.5">
                             {c.render(t)}
-                            <span className="rounded border border-rule bg-bg px-1 py-0.5 text-[9px] font-medium uppercase tracking-wide text-ink-mid">
+                            <span className="rounded border border-rule bg-bg px-1 py-0.5 text-[0.6875rem] font-medium uppercase tracking-wide text-ink-mid">
                               at ceiling
                             </span>
                           </span>

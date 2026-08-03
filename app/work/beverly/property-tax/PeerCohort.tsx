@@ -99,8 +99,8 @@ export default function PeerCohort({
           : `other towns in ${town.county} County`;
 
   const domPhrase = {
-    income: `${town.name}'s median household income (${signedPct(focus.income / med.income)} vs. peers) — the same-size bill lands ${higher ? "harder" : "softer"} on ${focus.income < med.income ? "lower" : "higher"} incomes`,
-    rate: `its effective tax rate (${signedPct(focus.eff / med.eff)} vs. peers) — the tax levied per dollar of home value`,
+    income: `${town.name}'s median household income (${signedPct(focus.income / med.income)} vs. peers): the same-size bill lands ${higher ? "harder" : "softer"} on ${focus.income < med.income ? "lower" : "higher"} incomes`,
+    rate: `its effective tax rate (${signedPct(focus.eff / med.eff)} vs. peers), the tax levied per dollar of home value`,
     value: `its home values (${signedPct(focus.value / med.value)} vs. peers)`,
   }[dominant];
 
@@ -122,7 +122,7 @@ export default function PeerCohort({
       <div className="mb-3 flex flex-wrap items-center gap-2">
         {town.type && (
           <span
-            className="rounded-full border border-rule bg-bg px-2 py-0.5 text-[11px] font-medium text-ink-mid"
+            className="rounded-full border border-rule bg-bg px-2 py-0.5 text-[0.6875rem] font-medium text-ink-mid"
             title={town.gateway && town.coastal ? "Statutory Gateway City; also coastal" : undefined}
           >
             {town.type}
@@ -149,6 +149,10 @@ export default function PeerCohort({
       </div>
 
       {/* burden strip */}
+      <div className="mb-1 flex flex-wrap items-baseline justify-between gap-x-2">
+        <span className="text-[0.75rem] font-semibold text-ink">Tax burden</span>
+        <span className="text-[0.6875rem] text-ink-faint">average bill as a share of median household income</span>
+      </div>
       <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img"
         aria-label={`${town.name}'s tax burden is ${fmtPct(focus.burden, 1)}, versus a peer median of ${fmtPct(med.burden, 1)}.`}>
         <line x1={PL} x2={PR} y1={cy} y2={cy} stroke="var(--color-rule)" />
@@ -168,6 +172,9 @@ export default function PeerCohort({
 
       {/* driver breakdown */}
       <div className="mt-3 space-y-1.5">
+        <div className="mb-1 text-[0.6875rem] leading-relaxed text-ink-faint">
+          Each row compares {town.name} with the peer median. The bar and the percent show how far above or below it sits.
+        </div>
         {rows.map((r) => {
           const ratio = r.m ? r.f / r.m : 1;
           const above = ratio >= 1;
@@ -199,7 +206,7 @@ export default function PeerCohort({
         {town.name}’s tax burden ({fmtPct(focus.burden, 1)}) is {higher ? "higher" : "lower"} than{" "}
         {basisLabel} (median {fmtPct(med.burden, 1)}). The biggest factor is {domPhrase}. Burden is
         effective&nbsp;rate&nbsp;×&nbsp;(home&nbsp;value&nbsp;÷&nbsp;income): rate reflects tax the town levies; value
-        and income are set by the market. <span className="text-ink-faint">Working draft.</span>
+        and income are set by the market.
       </p>
     </div>
   );

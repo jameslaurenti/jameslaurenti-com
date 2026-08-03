@@ -139,3 +139,106 @@ export function firstLast(town: Town, field: keyof TownYear): {
   }
   return { first, last };
 }
+
+// ---------------------------------------------------------------------------
+// Companion fiscal-shape / drift dataset — public/data/ma-town-shape.json.
+// Town-level attributes (keyed by town name) that join to the per-year tax data
+// above. Built from the beverly-identity statewide_data pulls (DLS levers +
+// Census ACS income). Reconciliations: income = ACS median household; the
+// canonical effective rate stays the residential bill/value in the tax file, so
+// it is NOT duplicated here.
+// ---------------------------------------------------------------------------
+
+export const SHAPE_DATA_URL = "/data/ma-town-shape.json";
+
+export type ShapeLabel = "Develops" | "Overrides" | "Aid-reliant" | "Banks within the cap";
+export const SHAPE_ORDER: ShapeLabel[] = ["Develops", "Overrides", "Aid-reliant", "Banks within the cap"];
+
+// Friendlier, less-charged display labels. The data keys (and the generated JSON
+// from the beverly-identity pipeline) keep the internal names; the UI renders
+// these. "Aid-reliant" read as a knock on towns that receive more state aid, so
+// it shows as "State-supported."
+export const SHAPE_DISPLAY: Record<ShapeLabel, string> = {
+  Develops: "Develops",
+  Overrides: "Overrides",
+  "Aid-reliant": "State-supported",
+  "Banks within the cap": "Banks within the cap",
+};
+
+export interface TownDrift {
+  valRealG_12_22: number; // real property-value growth, 2012→2022 (%)
+  valRealG_12_24: number; // real property-value growth, 2012→2024 (%)
+  incRealG_12_22: number; // real ACS median-household-income growth, 2012→2022 (%)
+  divergence: number; // valRealG_12_22 − incRealG_12_22 (positive = values outran incomes)
+}
+
+export interface TownShape {
+  shape: ShapeLabel;
+  levers: {
+    develop: { pctile: number; newGrowthPctOfLevy: number; commercialShare: number };
+    override: { pctile: number; operatingOverridesPassed: number; anyOverridesPassed: number };
+    aid: { pctile: number; stateShareOfRevenue: number };
+    wealth: { pctile: number; eqvPerCapita: number };
+  };
+  drift: TownDrift | null; // null for towns without an ACS estimate (a handful of tiny towns)
+  neighbors: string[]; // nearest-neighbor "towns like this" by fiscal shape
+}
+
+export interface TownShapeData {
+  _meta: {
+    generated: string;
+    scope: string;
+    nTowns: number;
+    source: string;
+    incomeBasis: string;
+    driftWindow: string;
+    effectiveRateNote: string;
+    shapeThresholds: { aid: number; override: number; developMedianPct: number } | null;
+    shapes: ShapeLabel[];
+    confidence: string;
+  };
+  towns: Record<string, TownShape>;
+}
+
+// CVD-validated categorical palette for the four shapes (site is light-mode only).
+// Do NOT map Develops to the site's forest green: green + sienna fail the colorblind
+// separation check (see the prototype's palette validation), so this data palette is
+// its own thing, used inline like SELECT_COLORS rather than as brand tokens.
+export const SHAPE_COLORS: Record<ShapeLabel, string> = {
+  Develops: "#0c8a72", // teal
+  Overrides: "#c8551c", // vermillion
+  "Aid-reliant": "#2f6d9e", // blue
+  "Banks within the cap": "#9c9488", // neutral gray
+};
+
+// Plain-language, sign-aware read of a town's value-vs-income drift (see the
+// prototype's verdict logic). Kept here so the Shape/Drift lens and any prose
+// stay consistent.
+export function driftVerdict(d: TownDrift): { headline: string; detail: string } {
+  const word = (v: number) =>
+    v >= 20 ? { t: "climbed well ahead of inflation", dir: 1 }
+    : v >= 5 ? { t: "rose in real terms", dir: 1 }
+    : v > -5 ? { t: "roughly kept pace with inflation", dir: 0 }
+    : { t: "lost ground to inflation", dir: -1 };
+  const val = word(d.valRealG_12_22);
+  const inc = word(d.incRealG_12_22);
+  const g = Math.round(Math.abs(d.divergence));
+  const headline = `Property values ${val.t}; residents' incomes ${inc.t}.`;
+  let detail: string;
+  if (d.divergence >= 6) {
+    detail = val.dir > 0
+      ? (inc.dir <= 0
+          ? `Values climbed while incomes ${inc.dir < 0 ? "fell" : "barely moved"}. That ${g}-point gap is the priced-out pattern.`
+          : `Values pulled ${g} points ahead of incomes.`)
+      : `Even with values ${val.dir < 0 ? "falling" : "flat"} in real terms, they still ran ${g} points ahead of incomes, which fell further.`;
+  } else if (d.divergence <= -6) {
+    detail = inc.dir > 0 && val.dir > 0
+      ? `Incomes ran ${g} points ahead of values; residents kept up with, and passed, their rising home values.`
+      : inc.dir > 0
+        ? `Residents' incomes rose in real terms while home values ${val.dir < 0 ? "slipped" : "stayed roughly flat"}. The gap is ${g} points.`
+        : `The ${g}-point gap comes from property values ${val.dir < 0 ? "losing ground" : "staying flat"}, not from incomes rising.`;
+  } else {
+    detail = `Values and incomes moved within a few points of each other. The town's profile held its shape.`;
+  }
+  return { headline, detail };
+}
