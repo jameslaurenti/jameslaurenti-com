@@ -1,0 +1,19 @@
+{
+  "defaults": {
+    "standard": "WCAG2AA",
+    "timeout": 40000,
+    "wait": 600,
+    "chromeLaunchConfig": { "args": ["--no-sandbox", "--disable-dev-shm-usage"] }
+  },
+  "urls": [
+    "http://localhost:3000/work",
+    "http://localhost:3000/work/beverly",
+    "http://localhost:3000/work/beverly/budget-explainer",
+    "http://localhost:3000/work/beverly/fy27-budget",
+    "http://localhost:3000/work/beverly/budget-challenge",
+    "http://localhost:3000/work/beverly/property-tax",
+    "http://localhost:3000/work/beverly/who-beverly-is",
+    "http://localhost:3000/work/beverly/what-sets-your-taxes",
+    "http://localhost:3000/work/beverly/development-map"
+  ]
+}

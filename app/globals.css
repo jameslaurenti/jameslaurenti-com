@@ -13,8 +13,10 @@
   --color-rule:         rgba(0, 0, 0, 0.09);
 
   /* Supporting palette for civic charts (debt burden, accents) */
-  --color-debt:         #b0562b;
-  --color-gold:         #b8923a;
+  --color-debt:         #9c4a24; /* darkened for WCAG AA as text (5.26:1 on paper); was #b0562b */
+  --color-gold:         #b8923a; /* bright: decorative FILLS/borders only, never text (fails contrast) */
+  --color-gold-strong:  #7e6120; /* AA-safe gold for TEXT and badges (4.97:1 on paper) */
+  --color-cuts:         #2e5070; /* fourth phase color (service cuts) in the FY27 walkthrough */
 
   --font-sans:    var(--font-dm-sans);
   --font-display: var(--font-bricolage);
@@ -42,6 +44,22 @@ h3 {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* Obvious, clickable in-body link for the reading pieces. Unlayered + a class
+   selector, so it outranks the `a` reset above (which beats Tailwind utilities). */
+.rlink {
+  color: var(--color-accent);
+  font-weight: 500;
+  text-decoration: underline;
+  text-decoration-color: var(--color-accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 2px;
+  transition: color 0.15s, text-decoration-color 0.15s;
+}
+.rlink:hover {
+  color: var(--color-accent-deep);
+  text-decoration-color: var(--color-accent-deep);
 }
 
 /* Prose styles for rendered markdown */

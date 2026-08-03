@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "a11y:contrast": "node scripts/check-contrast.mjs",
+    "a11y:contrast:ci": "node scripts/check-contrast.mjs --ci",
+    "a11y": "pa11y-ci"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
