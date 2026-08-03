@@ -20,10 +20,10 @@ type Entry = {
 // field, so promoting to two dedicated section pages stays a refactor of this list.
 const entries: Entry[] = [
   {
-    title: "Civic Resources: Beverly",
+    title: "What Beverly Does Next",
     tag: "How things work",
     blurb:
-      "Explainers and tools that make my city's budget and development legible to the people who live here.",
+      "Beverly's budget is tightening, and the choices ahead will shape the town. Plain-language pieces and tools to help residents understand it and weigh in.",
     href: "/work/beverly",
   },
   {
