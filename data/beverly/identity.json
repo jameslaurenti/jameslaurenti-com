@@ -35,6 +35,22 @@
     { "town": "Marblehead", "funded": 71.5, "payoff": 2036 },
     { "town": "Peabody", "funded": 59.5, "payoff": 2036 }
   ],
+  "reserves": {
+    "_note": "Stabilization trend 2013-2022 from the DLS Municipal Databank trend report, which ends at FY2022. FY2025 balances and FY2026 free cash from the DLS Cat-1 reports (Schedule A stabilization; CertifiedFreeCashBudget351), pulled 8/2026. The 2013 and 2022 figures are the general stabilization fund, so latest.general is the like-for-like comparison.",
+    "stabilization": {
+      "start": { "year": 2013, "amt": 750000 },
+      "trendEnd": { "year": 2022, "amt": 16900000 },
+      "latest": { "fy": 2025, "general": 21961077, "specialPurpose": 2000903, "total": 23961980 }
+    },
+    "freeCash": { "fy": 2026, "amt": 10496162, "pctBudget": 6.04 },
+    "operatingBudget": 173873420,
+    "cohortRank": {
+      "_basis": "certified free cash (FY2026) plus total stabilization (FY2025), as a share of the prior-year operating budget",
+      "beverly": 19.8,
+      "rank": 1,
+      "of": 7
+    }
+  },
   "freeCash2024": [
     { "use": "Roads and sidewalks", "amt": 2.75, "kind": "capital" },
     { "use": "A downtown parking lot and building, bought outright", "amt": 2.5, "kind": "capital" },

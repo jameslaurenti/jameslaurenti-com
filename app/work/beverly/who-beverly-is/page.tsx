@@ -84,7 +84,7 @@ const NOTES: React.ReactNode[] = [
   <>DESE, Chapter 70 trends in aid and local contribution (equalized valuation, aggregate resident income, and low-income share, fiscal 2026), per capita on 2020 Census population. The 82.5 percent target local share is the statutory cap in the Chapter 70 formula. <em>Confirmed.</em></>,
   <>Class size and teacher pay, fiscal 2024. Students per teacher: Beverly 12.0 (Marblehead 10.6, Salem 10.7, Gloucester 10.9, Swampscott 11.0, Danvers 12.2, Peabody 12.3); Beverly&apos;s ratio has fallen from 14.6 in 2015, so the gap is narrowing. Average teacher salary: Beverly $87,991, sixth of seven (Danvers $97,514 highest, Gloucester $86,417 lowest). <em>Confirmed.</em></>,
   <>Education spending, Schedule A: $76.1 million (fiscal 2024) to $82.3 million (fiscal 2025), up 8.2 percent; further increases of about 9 percent (fiscal 2026) and 5.28 percent (fiscal 2027) are budgeted, not yet actual. Statewide percentile: 7th in fiscal 2020, 21st in fiscal 2024. <em>Confirmed on the fiscal 2025 actual and the percentiles; later years budgeted.</em></>,
-  <>DLS Municipal Databank, stabilization fund trend, fiscal 2013 through 2022; the series ends at fiscal 2022 in this report. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, stabilization fund trend, fiscal 2013 through 2022; that series ends at fiscal 2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: fiscal 2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, certified free cash, fiscal 2014 through 2024. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, local receipt estimate versus actual, fiscal 2018 through 2024, excluding investment income. Beverly&apos;s range is +21.1 percent (fiscal 2020) to +50.7 percent (fiscal 2021). <em>Confirmed.</em></>,
   <>Beverly other financing uses and transfers, fiscal 2021 through 2024. <em>Confirmed.</em></>,
@@ -108,7 +108,7 @@ const NOTES: React.ReactNode[] = [
   <>Beverly City Council approved the negotiated eminent-domain taking of 218 to 226 Cabot Street and 8 Chapman Street on May 1, 2023. Purchase price $7.35 million; total authorization $8 million including about $650,000 of renovation. The city ultimately funded about $4.5 million from certified free cash across two years and borrowed the rest. Mayor Cahill cited 108 parking spaces; the city&apos;s current redevelopment page says 107. <em>Confirmed.</em></>,
   <>Beverly Financial Forecast Report fiscal 2026 through 2030, December 2025: fiscal 2027 −$3.92 million, fiscal 2028 −$7.11 million, fiscal 2029 −$10.01 million, fiscal 2030 −$13.68 million. <em>Confirmed.</em></>,
   <>The <A href="/work/beverly/fy27-budget">FY2027 budget piece</A> in this series carries the primary sourcing for the trash-fee votes, the council amendments, and the final budget vote.</>,
-  <>Stabilization fund about $16.9 million (fiscal 2022, the last year in the DLS trend report); certified free cash about $10.5 million (fiscal 2026), inside the city&apos;s 3-to-8-percent policy band. The roughly $2 million rainy-day draw is reported in the FY2027 budget piece, sourced to the mayor. <em>Confirmed on the balances.</em></>,
+  <>General stabilization fund $21,961,077 (fiscal 2025, DLS Schedule A); certified free cash $10,496,162 (fiscal 2026), inside the city&apos;s 3-to-8-percent policy band. On the two together Beverly holds the largest cushion in the seven-town cohort, about 19.8 percent of its operating budget. The roughly $2 million rainy-day draw is reported in the FY2027 budget piece, sourced to the mayor. <em>Confirmed on the balances.</em></>,
   <>Beverly fiscal 2021 budget, as reported by Patch. A $4.6 million pandemic revenue shortfall was closed with a 2.5 percent tax increase, new growth, about $1 million from reserves, and department reductions; state aid was projected down 17.5 percent; no layoffs. <em>Confirmed via Patch.</em></>,
 ];
 
@@ -332,7 +332,8 @@ export default function WhoBeverlyIs() {
             <h3 className="mt-8 font-display text-xl font-semibold text-ink">The surplus machine</h3>
             <P>
               Start with savings. Beverly&apos;s stabilization fund, its rainy-day account, held $750,000 in 2013 and $16.9 million by
-              2022, growing every single year.{fn(12)}
+              2022, growing every single year. By fiscal 2025 it held about $22 million, and close to $24 million counting the
+              special-purpose accounts beside it.{fn(12)}
             </P>
 
             <StabilizationLeap />
@@ -558,7 +559,7 @@ export default function WhoBeverlyIs() {
               across the mayor&apos;s office, planning, the Council on Aging, and one each in police and fire by attrition.{fn(35)}
             </P>
             <P>
-              Here is the part that belongs in this piece. Beverly closed that gap while holding about $16.9 million in its stabilization
+              Here is the part that belongs in this piece. Beverly closed that gap while holding about $22 million in its stabilization
               fund and certifying about $10.5 million in free cash, an amount inside the city&apos;s own policy target. The reserves were
               not untouched; the mayor noted spending roughly $2 million from the rainy-day fund. They were also not spent down to
               preserve the services being cut.{fn(36)}
@@ -590,7 +591,7 @@ export default function WhoBeverlyIs() {
             <P>
               Put the decade in one paragraph. Beverly grew its population, its housing stock, and its commercial tax base faster than
               most of its neighbors. It taxed that base to the state ceiling every year. It forecast its revenue conservatively, banked
-              the surplus, took a reserve fund from $750,000 to $16.9 million, and moved to retire its pension debt years early. It ran
+              the surplus, took a reserve fund from $750,000 to roughly $22 million, and moved to retire its pension debt years early. It ran
               its schools, its police and fire, and its public works near the bottom of its peer group throughout. When the costs of those
               choices arrived together, it reduced services rather than spend the reserve on them.
             </P>

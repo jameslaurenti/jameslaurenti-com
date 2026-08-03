@@ -292,23 +292,37 @@ export function FreeCashDisposition() {
 }
 
 // ---- small: the stabilization leap ----
+// The 2013 and 2022 points are the general stabilization fund from the DLS trend report,
+// which ends at FY2022; latest.general is the same fund at FY2025, so the multiple is
+// like-for-like. The every-year claim stays scoped to the years the trend report covers.
+const STAB = identity.reserves.stabilization;
+
 export function StabilizationLeap() {
+  const fold = Math.round(STAB.latest.general / STAB.start.amt);
   return (
     <div className="my-8 flex flex-col items-stretch gap-3 rounded-md border border-rule bg-bg-card/50 px-5 py-5 sm:flex-row sm:items-center sm:gap-6">
       <div className="flex items-center gap-3">
         <div>
-          <div className="text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-faint">2013</div>
-          <div className="font-display text-2xl font-bold tabular-nums text-ink-mid">$750K</div>
+          <div className="text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-faint">{STAB.start.year}</div>
+          <div className="font-display text-2xl font-bold tabular-nums text-ink-mid">
+            ${Math.round(STAB.start.amt / 1000)}K
+          </div>
         </div>
         <span className="font-display text-2xl text-accent">→</span>
         <div>
-          <div className="text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-faint">2022</div>
-          <div className="font-display text-3xl font-extrabold tabular-nums text-accent">$16.9M</div>
+          <div className="text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-faint">
+            FY{STAB.latest.fy}
+          </div>
+          <div className="font-display text-3xl font-extrabold tabular-nums text-accent">
+            ${(STAB.latest.general / 1e6).toFixed(1)}M
+          </div>
         </div>
       </div>
       <p className="text-[0.90625rem] leading-snug text-ink-mid sm:border-l sm:border-rule sm:pl-6">
-        Beverly&apos;s stabilization fund, its rainy-day account, grew <b className="text-ink">every single year</b>{" "}across the decade,
-        a 22.6-fold climb. Nothing else in the budget moved like it.
+        Beverly&apos;s stabilization fund, its rainy-day account, grew{" "}
+        <b className="text-ink">every single year</b>{" "}the state&apos;s trend report covers, {STAB.start.year} through{" "}
+        {STAB.trendEnd.year}, and it is higher again by fiscal {STAB.latest.fy}. A {fold}-fold rise. Nothing else in the
+        budget moved like it.
       </p>
     </div>
   );
