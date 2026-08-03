@@ -1,0 +1,47 @@
+{
+  "_source": "Beverly identity analysis (draft_piece_a.md). Per-capita from DLS Schedule A FY14-24 + 2020 Census; school funding from DESE Chapter 70 FY24; receipts from DLS estimate-vs-actual FY18-24; pension from PERAC funded-ratio list; FY2024 free cash from Beverly City Council AgendaCenter orders.",
+  "functionSpending": [
+    { "fn": "Total spending", "bev": 3152, "med": 3712, "rank": 6 },
+    { "fn": "Public safety", "bev": 380, "med": 454, "rank": 7 },
+    { "fn": "Debt service", "bev": 201, "med": 252, "rank": 6 },
+    { "fn": "General government", "bev": 139, "med": 166, "rank": 5 },
+    { "fn": "Public works", "bev": 121, "med": 246, "rank": 6 },
+    { "fn": "Culture and recreation", "bev": 81, "med": 70, "rank": 2 }
+  ],
+  "schoolFunding": [
+    { "town": "Marblehead", "aid": 2391, "req": 10144, "add": 7888 },
+    { "town": "Danvers", "aid": 2803, "req": 9967, "add": 5607 },
+    { "town": "Gloucester", "aid": 3733, "req": 11767, "add": 5442 },
+    { "town": "Swampscott", "aid": 2527, "req": 10325, "add": 5411 },
+    { "town": "Salem", "aid": 6534, "req": 10109, "add": 4046 },
+    { "town": "Beverly", "aid": 3203, "req": 10406, "add": 3506, "me": true },
+    { "town": "Peabody", "aid": 5934, "req": 9367, "add": 1561 }
+  ],
+  "receipts": [
+    { "town": "Beverly", "pct": 21.1, "rank": 1, "me": true },
+    { "town": "Marblehead", "pct": 20.7, "rank": 2 },
+    { "town": "Salem", "pct": 11.4, "rank": 3 },
+    { "town": "Gloucester", "pct": 10.4, "rank": 4 },
+    { "town": "Danvers", "pct": 1.7, "rank": 5 },
+    { "town": "Swampscott", "pct": 0.9, "rank": 6 },
+    { "town": "Peabody", "pct": -11.6, "rank": 7 }
+  ],
+  "pension": [
+    { "town": "Swampscott", "funded": 75.3, "payoff": 2031 },
+    { "town": "Beverly", "funded": 75.3, "payoff": 2032, "me": true },
+    { "town": "Salem", "funded": 73.5, "payoff": 2032 },
+    { "town": "Gloucester", "funded": 60.4, "payoff": 2034 },
+    { "town": "Danvers", "funded": 64.5, "payoff": 2035 },
+    { "town": "Marblehead", "funded": 71.5, "payoff": 2036 },
+    { "town": "Peabody", "funded": 59.5, "payoff": 2036 }
+  ],
+  "freeCash2024": [
+    { "use": "Roads and sidewalks", "amt": 2.75, "kind": "capital" },
+    { "use": "A downtown parking lot and building, bought outright", "amt": 2.5, "kind": "capital" },
+    { "use": "The general stabilization fund", "amt": 1.14, "kind": "reserve" },
+    { "use": "The debt stabilization fund", "amt": 1.0, "kind": "reserve" },
+    { "use": "The retiree health care trust", "amt": 0.227, "kind": "reserve" },
+    { "use": "A restricted opioid-settlement fund", "amt": 0.107, "kind": "restricted" },
+    { "use": "Recurring services", "amt": 0, "kind": "none" }
+  ]
+}
