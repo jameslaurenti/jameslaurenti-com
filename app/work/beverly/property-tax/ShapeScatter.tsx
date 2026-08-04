@@ -54,6 +54,10 @@ type Props = {
   focused: string;
   onFocus: (name: string) => void;
   diagonal?: boolean; // y = x reference line (drift lens); forces a shared domain
+  // Trim the axes to the 2nd-98th percentile. A handful of towns (Monterey's +152% income
+  // growth, Chilmark's +98%) sit so far out that they squash everyone else into a corner.
+  // Off-scale towns are pinned to the edge and marked, not dropped.
+  robust?: boolean;
   reducedMotion: boolean;
 };
 
@@ -69,6 +73,7 @@ export default function ShapeScatter({
   focused,
   onFocus,
   diagonal = false,
+  robust = false,
   reducedMotion,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
@@ -83,8 +88,13 @@ export default function ShapeScatter({
   const { X, Y, xTicks, yTicks, diag } = useMemo(() => {
     const xs = points.map((p) => p.x);
     const ys = points.map((p) => p.y);
+    const pct = (arr: number[], p: number) => {
+      const a = [...arr].sort((q, r) => q - r);
+      return a[Math.max(0, Math.min(a.length - 1, Math.round((a.length - 1) * p)))];
+    };
     const ext = (arr: number[], scale: Scale): [number, number] => {
-      const mn = Math.min(...arr), mx = Math.max(...arr);
+      const mn = robust ? pct(arr, 0.02) : Math.min(...arr);
+      const mx = robust ? pct(arr, 0.98) : Math.max(...arr);
       if (scale === "log") {
         const pos = Math.min(...arr.filter((v) => v > 0));
         return [pos / 1.12, mx * 1.12];
@@ -121,7 +131,14 @@ export default function ShapeScatter({
       diag = { x1: X(v0), y1: Y(v0), x2: X(v1), y2: Y(v1) };
     }
     return { X, Y, xTicks, yTicks, diag };
-  }, [points, xScale, yScale, diagonal, PX0]);
+  }, [points, xScale, yScale, diagonal, robust, PX0]);
+
+  // Draw every town inside the plot even when its value falls outside a trimmed axis.
+  const cx = (v: number) => Math.max(PX0, Math.min(PX1, X(v)));
+  const cy = (v: number) => Math.max(PY0, Math.min(PY1, Y(v)));
+  const offScale = (p: ScatterPoint) =>
+    X(p.x) < PX0 - 0.5 || X(p.x) > PX1 + 0.5 || Y(p.y) < PY0 - 0.5 || Y(p.y) > PY1 + 0.5;
+  const offCount = robust ? points.filter(offScale).length : 0;
 
   const dotTransition = reducedMotion ? "none" : "transform 0.5s cubic-bezier(0.4,0,0.2,1)";
   const selSet = new Set(selected);
@@ -134,9 +151,9 @@ export default function ShapeScatter({
     const p = new DOMPointReadOnly(clientX, clientY).matrixTransform(ctm.inverse());
     let best: { name: string; d2: number; cx: number; cy: number } | null = null;
     for (const pt of points) {
-      const cx = X(pt.x), cy = Y(pt.y);
-      const d2 = (cx - p.x) ** 2 + (cy - p.y) ** 2;
-      if (!best || d2 < best.d2) best = { name: pt.name, d2, cx, cy };
+      const px = cx(pt.x), py = cy(pt.y);
+      const d2 = (px - p.x) ** 2 + (py - p.y) ** 2;
+      if (!best || d2 < best.d2) best = { name: pt.name, d2, cx: px, cy: py };
     }
     if (best && best.d2 <= 15 * 15) {
       setHovered(best.name);
@@ -224,7 +241,10 @@ export default function ShapeScatter({
               cy={0}
               fill={SHAPE_COLORS[pt.shape]}
               fillOpacity={0.5}
-              style={{ transform: `translate(${X(pt.x)}px,${Y(pt.y)}px)`, transition: dotTransition, cursor: "pointer" }}
+              stroke={robust && offScale(pt) ? "var(--color-ink)" : "none"}
+              strokeWidth={robust && offScale(pt) ? 1 : 0}
+              strokeDasharray={robust && offScale(pt) ? "1.5 1.5" : undefined}
+              style={{ transform: `translate(${cx(pt.x)}px,${cy(pt.y)}px)`, transition: dotTransition, cursor: "pointer" }}
               onClick={() => onFocus(pt.name)}
             />
           );
@@ -242,14 +262,22 @@ export default function ShapeScatter({
               fill={SHAPE_COLORS[pt.shape]}
               stroke={isFoc ? "var(--color-ink)" : "var(--color-bg)"}
               strokeWidth={isFoc ? 1.5 : 1.25}
-              style={{ transform: `translate(${X(pt.x)}px,${Y(pt.y)}px)`, transition: dotTransition, cursor: "pointer" }}
+              style={{ transform: `translate(${cx(pt.x)}px,${cy(pt.y)}px)`, transition: dotTransition, cursor: "pointer" }}
               onClick={() => onFocus(pt.name)}
             />
           );
         })}
 
-        {hoveredPt && <circle cx={X(hoveredPt.x)} cy={Y(hoveredPt.y)} r={8} fill="none" stroke="var(--color-ink)" strokeWidth={1} />}
+        {hoveredPt && <circle cx={cx(hoveredPt.x)} cy={cy(hoveredPt.y)} r={8} fill="none" stroke="var(--color-ink)" strokeWidth={1} />}
       </svg>
+
+      {offCount > 0 && (
+        <p className="mt-1.5 text-[0.6875rem] leading-snug text-ink-faint">
+          {offCount === 1 ? "One town sits" : `${offCount} towns sit`} beyond this range and{" "}
+          {offCount === 1 ? "is" : "are"} pinned to the edge, ringed in a dashed outline. Trimming the axes
+          keeps the other {points.length - offCount} readable. Hover a pinned dot for its real numbers.
+        </p>
+      )}
 
       {hoveredPt && tip && (
         <div
@@ -275,6 +303,11 @@ export default function ShapeScatter({
             <span className="inline-block h-2 w-2 rounded-full" style={{ background: SHAPE_COLORS[hoveredPt.shape] }} />
             <span className="text-ink-mid">{SHAPE_DISPLAY[hoveredPt.shape]}</span>
           </div>
+          {robust && offScale(hoveredPt) && (
+            <div className="mt-1.5 border-t border-rule pt-1.5 text-[0.6875rem] leading-snug text-ink-faint">
+              Beyond the chart&apos;s range, so the dot sits at the edge. The figures above are the real ones.
+            </div>
+          )}
         </div>
       )}
     </div>

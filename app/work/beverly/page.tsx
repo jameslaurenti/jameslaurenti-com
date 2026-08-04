@@ -119,9 +119,7 @@ function PieceHeaderBlurb({ piece }: { piece: Piece }) {
   return (
     <>
       <div className="flex items-center gap-2.5">
-        <h3
-          className="font-display text-2xl font-semibold tracking-tight"
-        >
+        <h3 className="font-display text-2xl font-semibold tracking-tight transition-colors group-hover:text-accent">
           {piece.title}
         </h3>
         {piece.status && <StatusChip status={piece.status} />}
@@ -159,9 +157,11 @@ export default function BeverlyCollection() {
           I built this because I wanted it and couldn&apos;t find it. I kept hearing about Beverly&apos;s budget
           in passing, and every explanation was either a snapshot missing the context or a source with an agenda.
           I&apos;m a fairly new resident and a father. I love this place, my kids will always call it home, and
-          I&apos;m invested in its future. This is also just what I do: my work is untangling complicated problems
-          so the people who have to decide can see them clearly, and I care more about handing over the whole
-          picture than steering the answer. So here it is. You decide.
+          I&apos;m invested in its future. This is also the work I do for a living. I&apos;m a product manager, and
+          the job is mostly untangling complicated problems until other people can see them clearly. I think that
+          matters here for a specific reason: the better informed people are, the richer the argument gets, and
+          the better the decision at the end of it. So I would rather hand you the whole picture and let you
+          build your own view than press mine on you. Here it is. You decide.
         </p>
         <p className="mt-3 font-display italic text-ink-faint" style={{ fontSize: "0.85rem" }}>James Laurenti</p>
       </div>

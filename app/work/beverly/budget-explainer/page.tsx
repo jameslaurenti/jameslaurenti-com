@@ -328,7 +328,6 @@ export default function BudgetExplainer() {
           {/* translation key */}
           <div className="mt-8 rounded-lg border border-rule bg-bg-card/60 px-6 py-6 shadow-sm">
             <h3 className="font-display text-lg font-semibold">Picture the city as a household</h3>
-            <p className="mb-3.5 mt-0.5 text-[0.90625rem] text-ink-mid">Meet the cast once, and the rest of the page reads easily.</p>
             <ul className="divide-y divide-rule">
               {[
                 ["The capped raise", <>Property taxes, the city&apos;s main income, can rise only about 2.5% a year. <span className="text-ink-faint">A state law called Proposition 2½.</span></>],
@@ -535,7 +534,7 @@ export default function BudgetExplainer() {
               <Choice
                 lever="How much to keep in savings"
                 q="A big rainy-day jar, or a small one?"
-                chose={<>Keeps a <b>large</b>{" "}cushion, near 20% of its budget, roughly two and a half months of spending, the highest of its North Shore cohort.</>}
+                chose={<>Keeps a <b>large</b>{" "}cushion, near 20% of its budget, roughly two and a half months of spending, the highest of its North Shore cohort. About two-thirds of that is the stabilization fund, a formal savings account; the rest is free cash, last year&apos;s leftover.</>}
                 alt={<>Hold a smaller cushion, closer to what comparable towns keep, and spend the difference on services.</>}
                 up={<>A big cushion rides out a bad year and keeps borrowing cheap.</>}
                 down={<>Money in the jar isn&apos;t paying for services today. And drain it to cover everyday bills, and it&apos;s gone, with the same gap waiting next year. <span className="text-ink-faint">(How Beverly&apos;s cushion compares is in the <A href="#reserves">appendix</A>.)</span></>}
@@ -550,9 +549,9 @@ export default function BudgetExplainer() {
               />
               <Choice
                 lever="How to close the gap"
-                q="Fees, a tax vote, or cuts?"
-                chose={<>Raises flat <b>fees</b>{" "}like the trash bill and cuts services, to avoid asking voters for higher taxes.</>}
-                alt={<>Ask voters to approve a permanent tax increase (an override), or pursue payments from large tax-exempt institutions.</>}
+                q="Fees, cuts, a tax vote, or more growth?"
+                chose={<>Raises flat <b>fees</b>{" "}like the trash bill and cuts services, to avoid asking voters for higher taxes. It also grows the tax base, though it has eased off lately, lowering downtown building heights in 2023 and buying a Cabot Street parcel to keep it a parking lot.</>}
+                alt={<>Ask voters to approve a permanent tax increase (an override), chase new growth harder, pursue payments from large tax-exempt institutions, or change how much of the surplus goes to reserves rather than services.</>}
                 up={<>A fee is easier than a town-wide vote and avoids raising everyone&apos;s taxes.</>}
                 down={<>A flat fee costs a struggling household the same as a wealthy one, and it doesn&apos;t keep up with rising costs, so the gap returns next year. An override could fix it lastingly, but it raises everyone&apos;s taxes and the vote can fail.</>}
               />
@@ -662,7 +661,10 @@ export default function BudgetExplainer() {
               <p className="mt-3.5 max-w-[64ch] text-[0.90625rem] text-ink-mid">
                 <b className="text-ink">Reserves as a share of the yearly budget: free cash plus stabilization, most recent state figures.</b>{" "}
                 So the charge has something to it. Of the seven North Shore towns, Beverly holds the largest
-                cushion, near 20% of its budget, roughly two and a half months of spending. That is high but not
+                cushion, near 20% of its budget, roughly two and a half months of spending. Two different pots
+                sit inside that figure: about 14 points of it is the stabilization fund, the formal savings
+                account the city votes money into, and about 6 points is certified free cash, the surplus left
+                when the books close. That is high but not
                 reckless by rating-agency standards; what stands out is that Beverly sits at the top of its cohort
                 on reserves while running services near the bottom. Two things keep it honest. Beverly&apos;s
                 cushion is also the most flexible of the group, mostly free cash and general savings, where much

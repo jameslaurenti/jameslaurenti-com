@@ -66,6 +66,7 @@ export default function DriftLens({
         focused={focused}
         onFocus={onFocus}
         diagonal
+        robust
         reducedMotion={reducedMotion}
       />
       <p className="mt-1 text-center text-[0.6875rem] text-ink-faint">

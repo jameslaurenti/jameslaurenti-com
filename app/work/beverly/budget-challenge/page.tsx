@@ -146,9 +146,10 @@ export default function BudgetChallenge() {
               cash is last year&apos;s leftover, the money the city took in above what it spent, certified by the state after the books
               close. It&apos;s the pool available to appropriate the next year, which is why people say the money is there. But it&apos;s
               <b className="text-ink"> one-time money</b>: state rules bar it from funding recurring costs like salaries, because the job
-              vanishes the year the surplus dips. And it&apos;s already spoken for, routed to roads, the stabilization fund, the
-              retiree-health trust, and capital projects. It sits outside the operating budget below. When your choices over-balance the
-              budget, the extra lands here, in free cash, not in services.
+              vanishes the year the surplus dips. Most of it gets claimed each year, routed to roads, the stabilization fund, the
+              retiree-health trust, and capital projects, and what the Council never appropriates rolls forward into next year&apos;s
+              pool. It sits outside the operating budget below. When your choices over-balance the budget, the extra lands here, in free
+              cash, not in services.
             </p>
           </div>
         </section>
@@ -316,15 +317,22 @@ export default function BudgetChallenge() {
               className={`mt-2 w-full ${devOn ? "" : "cursor-not-allowed opacity-40"}`}
               style={{ accentColor: "var(--color-accent)", height: 22 }}
             />
-            <div className="relative mt-1 h-4 text-[0.6875rem] text-ink-faint">
+            {/* Five markers won't sit on one line on a phone, so they alternate rows. The tick
+                stays at the value either way; only the caption drops to the second row. */}
+            <div className="relative mt-1 h-9 text-[0.6875rem] text-ink-faint sm:h-4">
               {[
                 { v: DEV.low, l: "10-yr low" },
                 { v: DEV.planned, l: "Dec forecast" },
+                { v: DEV.mean, l: "10-yr average" },
                 { v: DEV.actual, l: "FY27 budget" },
                 { v: DEV.high, l: "10-yr high" },
-              ].map((m) => (
-                <span key={m.l} className="absolute -translate-x-1/2 whitespace-nowrap" style={{ left: `${((m.v - DEV.min) / (DEV.max - DEV.min)) * 100}%` }}>
-                  <span className="block h-1.5 w-px bg-ink-faint/50" /> {m.l}
+              ].map((m, i) => (
+                <span
+                  key={m.l}
+                  className="absolute -translate-x-1/2 whitespace-nowrap"
+                  style={{ left: `${((m.v - DEV.min) / (DEV.max - DEV.min)) * 100}%` }}
+                >
+                  <span className={`block w-px bg-ink-faint/50 ${i % 2 ? "h-5 sm:h-1.5" : "h-1.5"}`} /> {m.l}
                 </span>
               ))}
             </div>
@@ -334,7 +342,7 @@ export default function BudgetChallenge() {
               </div>
             ) : (
               <div className="mt-2 text-[0.78125rem] leading-relaxed text-ink-faint">
-                Over the last decade Beverly&apos;s new growth ran from {fmtM(DEV.low)} (2016) to {fmtM(DEV.high)} (2018), averaging {fmtM(DEV.mean)}. This year&apos;s budgeted {fmtM(DEV.actual)} sits near the top. Notice the December forecast had assumed only {fmtM(DEV.planned)}, well below what the city usually delivers. That gap is the headroom the development strategy works in.
+                Over the last decade Beverly&apos;s new growth ran from {fmtM(DEV.low)} (2016) to {fmtM(DEV.high)} (2018), averaging {fmtM(DEV.mean)}. This year&apos;s budgeted {fmtM(DEV.actual)} sits near the top. Notice the December forecast had assumed only {fmtM(DEV.planned)}, below even the ten-year average marked on the track. That gap is the headroom the development strategy works in.
               </div>
             )}
           </div>

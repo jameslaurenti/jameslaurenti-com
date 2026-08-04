@@ -481,10 +481,6 @@ export default function WhatSetsYourTaxes() {
                 and shows whether its property values have outrun its residents&apos; incomes.<Fn n={14} />
               </p>
             </div>
-
-            <p className="mt-8 max-w-[64ch] font-display text-2xl font-extrabold leading-snug sm:text-[1.75rem]">
-              The letter tells you what your house is worth. It was never what set your taxes.
-            </p>
           </Reveal>
         </section>
 
