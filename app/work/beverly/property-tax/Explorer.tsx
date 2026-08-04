@@ -137,9 +137,10 @@ export default function Explorer() {
   const ftColor = ft ? SELECT_COLORS[Math.max(0, bill.selected.indexOf(ft.name)) % SELECT_COLORS.length] : SELECT_COLORS[0];
 
   return (
-    <div className="rounded-lg border border-rule bg-bg-card/40 p-4 sm:p-5">
-      {/* jump nav — the three views are all on the page; this scrolls between them */}
-      <nav className="mb-5 flex flex-wrap items-center gap-1.5 text-xs" aria-label="Jump to a view">
+    <div>
+      {/* Jump nav sits outside the section cards so it reads as navigation for the page
+          rather than a control belonging to the first chart. */}
+      <nav className="mb-4 flex flex-wrap items-center gap-1.5 text-xs" aria-label="Jump to a view">
         <span className="mr-0.5 text-[0.6875rem] font-semibold uppercase tracking-wide text-ink-faint">Jump to</span>
         {SECTIONS.map((s) => (
           <button
@@ -153,8 +154,11 @@ export default function Explorer() {
         ))}
       </nav>
 
+      {/* Each view is its own card. They were hairline-separated inside one container and
+          ran together; discrete cards make the page scannable. */}
+      <div className="flex flex-col gap-5">
       {/* ---- YOUR BILL ---- */}
-      <section id="bill" className="scroll-mt-24">
+      <section id="bill" className="scroll-mt-28 rounded-lg border border-rule bg-bg-card/40 p-4 sm:p-5">
         <SectionHeading
           title="Your bill"
           desc="The rate, the average bill, and how hard that bill lands on local incomes, across the decade and against similar towns. The year slider below controls this section."
@@ -220,7 +224,7 @@ export default function Explorer() {
       </section>
 
       {/* ---- TOWN'S SHAPE ---- */}
-      <section id="shape" className="mt-10 scroll-mt-24 border-t border-rule pt-8">
+      <section id="shape" className="scroll-mt-28 rounded-lg border border-rule bg-bg-card/40 p-4 sm:p-5">
         <SectionHeading
           title="Town's shape"
           desc="How each town funds itself, by growing its base, voting past the cap, or leaning on state aid, and which towns share its shape. A decade-level view; it does not use the year slider."
@@ -236,7 +240,7 @@ export default function Explorer() {
       </section>
 
       {/* ---- DRIFT ---- */}
-      <section id="drift" className="mt-10 scroll-mt-24 border-t border-rule pt-8">
+      <section id="drift" className="scroll-mt-28 rounded-lg border border-rule bg-bg-card/40 p-4 sm:p-5">
         <SectionHeading
           title="Drift"
           desc="Whether a town's property values have outrun its residents' incomes over the last decade, with inflation stripped out."
@@ -252,7 +256,7 @@ export default function Explorer() {
       </section>
 
       {/* ---- ALL TOWNS (data appendix) ---- */}
-      <section className="mt-10 border-t border-rule pt-8">
+      <section className="rounded-lg border border-rule bg-bg-card/40 p-4 sm:p-5">
         <h2 className="mb-1 font-display text-xl font-semibold text-ink">All towns</h2>
         <p className="mb-3 max-w-[60ch] text-[0.8125rem] leading-relaxed text-ink-faint">
           The figures behind the Your bill chart, for the fiscal year set on that slider. Sortable and searchable, and the
@@ -260,6 +264,7 @@ export default function Explorer() {
         </p>
         <TaxTable data={data} year={year} selected={bill.selected} />
       </section>
+      </div>
     </div>
   );
 }

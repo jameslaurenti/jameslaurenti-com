@@ -45,17 +45,24 @@ export default function MaPropertyTaxPage() {
         </p>
       </div>
 
-      <section className="mt-8" aria-label="Quadrant chart of rate versus burden">
+      <section
+        className="mt-8"
+        aria-label="Property tax explorer: your bill, town's shape, drift, and the full table"
+      >
         <Explorer />
       </section>
 
       <p className="mt-6 text-xs leading-relaxed text-ink-faint">
-        <strong className="font-medium text-ink-mid">Reading the chart.</strong> Each dot is one municipality
-        in the selected fiscal year. Left–right is the <em>effective</em> rate (average bill ÷ average value);
-        up–down is <em>burden</em> (average bill ÷ median household income). Dashed lines sit at the statewide
-        median for that year, splitting the field into four quadrants. Select a town to trace its path across
-        the decade. Residential single-family figures only. Rate and bill data from the Massachusetts Division
-        of Local Services; household income from the U.S. Census American Community Survey five-year estimates.
+        <strong className="font-medium text-ink-mid">Reading the Your bill chart.</strong> Each dot is one
+        municipality in the selected fiscal year. Left–right is the <em>effective</em> rate (average bill ÷
+        average value); up–down is <em>burden</em> (average bill ÷ median household income). Dashed lines sit
+        at the statewide median for that year, splitting the field into four quadrants. Select a town to trace
+        its path across the decade.
+      </p>
+      <p className="mt-3 text-xs leading-relaxed text-ink-faint">
+        <strong className="font-medium text-ink-mid">Sources, all views.</strong> Residential single-family
+        figures only. Rate and bill data from the Massachusetts Division of Local Services; household income
+        from the U.S. Census American Community Survey five-year estimates.
       </p>
     </div>
   );

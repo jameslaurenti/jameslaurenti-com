@@ -214,10 +214,10 @@ export default function FY27Budget() {
     <div ref={rootRef} className="bg-bg text-ink">
       {/* sticky phase tracker */}
       {/* Stacks below the collection breadcrumb: 3.5rem site nav + 2.25rem breadcrumb. */}
-      <div className="sticky top-[5.75rem] z-40 border-b border-black/20 bg-ink px-4 py-2.5 text-bg shadow-md sm:px-6">
+      <div className="sticky top-[5.75rem] z-40 border-b border-black/20 bg-ink px-4 py-2 text-bg shadow-md sm:px-6 sm:py-2.5">
         <div className="mx-auto max-w-3xl">
           <div className="mb-1.5 hidden text-[0.75rem] text-bg/60 sm:block">Track your place in the story as you scroll</div>
-          <div className="mb-1.5 flex flex-wrap gap-1.5">
+          <div className="flex flex-wrap gap-1.5 sm:mb-1.5">
             {PHASES.map((p) => {
               const on = active === p.n;
               return (
@@ -238,7 +238,11 @@ export default function FY27Budget() {
               );
             })}
           </div>
-          <MiniChart active={active} />
+          {/* Hidden on phones: at 375px it is 46px of chrome for a chart you cannot read,
+              and the phase buttons above already mark your place. */}
+          <div className="hidden sm:block">
+            <MiniChart active={active} />
+          </div>
         </div>
       </div>
 
