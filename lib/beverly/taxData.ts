@@ -204,11 +204,23 @@ export interface TownShapeData {
 // Do NOT map Develops to the site's forest green: green + sienna fail the colorblind
 // separation check (see the prototype's palette validation), so this data palette is
 // its own thing, used inline like SELECT_COLORS rather than as brand tokens.
+// Marks only: dots, legend swatches, bar fills.
 export const SHAPE_COLORS: Record<ShapeLabel, string> = {
   Develops: "#0c8a72", // teal
   Overrides: "#c8551c", // vermillion
   "Aid-reliant": "#2f6d9e", // blue
   "Banks within the cap": "#9c9488", // neutral gray
+};
+
+// The same hues, darkened until white text clears WCAG AA on them. Three of the four mark
+// colours fail as a background for white type (Develops 4.29:1, Overrides 4.40:1, Banks
+// 3.00:1), so anything that sets text on the colour uses these. Marks keep the palette
+// above, so the colourblind separation is untouched.
+export const SHAPE_BADGE_COLORS: Record<ShapeLabel, string> = {
+  Develops: "#0b7a64", // 5.27:1 on white
+  Overrides: "#b44c19", // 5.27:1
+  "Aid-reliant": "#2f6d9e", // 5.52:1, already passing
+  "Banks within the cap": "#736b60", // 5.25:1
 };
 
 // Plain-language, sign-aware read of a town's value-vs-income drift (see the

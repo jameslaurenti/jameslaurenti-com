@@ -70,7 +70,7 @@ export default function DriftLens({
         reducedMotion={reducedMotion}
       />
       <p className="mt-1 text-center text-[0.6875rem] text-ink-faint">
-        Real growth since 2012, inflation removed. Above the dashed line, values outran residents' incomes.
+        Real growth since 2012, inflation removed. Above the dashed line, values outran residents&apos; incomes.
       </p>
 
       <div className="mt-5 border-t border-rule pt-5">

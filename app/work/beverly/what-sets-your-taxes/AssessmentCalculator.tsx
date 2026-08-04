@@ -100,6 +100,8 @@ function Slider({ label, value, onChange, disabled }: { label: string; value: nu
         value={value}
         disabled={disabled}
         onChange={(e) => onChange(+e.target.value)}
+        // The caption above is a span, not a label, so it carries no name to assistive tech.
+        aria-label={label}
         className="mt-1 w-full accent-[var(--color-accent)] disabled:opacity-40"
       />
     </div>

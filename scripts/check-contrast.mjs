@@ -16,6 +16,8 @@ import { dirname, join } from "node:path";
 
 const root = join(dirname(fileURLToPath(import.meta.url)), "..");
 const css = readFileSync(join(root, "app", "globals.css"), "utf8");
+// The fiscal-shape palette lives in TypeScript, not CSS tokens, so read it directly.
+const taxData = readFileSync(join(root, "lib", "beverly", "taxData.ts"), "utf8");
 
 const tok = {};
 for (const m of css.matchAll(/--color-([a-z0-9-]+):\s*(#[0-9a-fA-F]{6})/g)) tok[m[1]] = m[2];
@@ -39,6 +41,14 @@ const CHECKS = [
 // White text on colored badges/buttons (fg is literal white)
 const ON_COLOR = [["accent", "badge"], ["debt", "badge"], ["gold-strong", "adopted badge"], ["cuts", "badge"]];
 
+// Shape badges: white type on the darkened variants of the fiscal-shape palette. The mark
+// colours in SHAPE_COLORS are deliberately not audited as text surfaces; three of the four
+// fail there, which is exactly why SHAPE_BADGE_COLORS exists.
+const badgeBlock = taxData.match(/SHAPE_BADGE_COLORS[^{]*\{([^}]*)\}/s);
+const SHAPE_BADGES = badgeBlock
+  ? [...badgeBlock[1].matchAll(/"?([A-Za-z -]+)"?:\s*"(#[0-9a-fA-F]{6})"/g)].map((m) => [m[1].trim(), m[2]])
+  : [];
+
 const th = (kind) => (kind === "text" ? 4.5 : 3);
 const pad = (s, n) => s.padEnd(n);
 let fails = 0;
@@ -59,7 +69,14 @@ for (const [bg, use] of ON_COLOR) {
   rows.push([`white on ${bg}`, r.toFixed(2), "text", ok ? "PASS" : "FAIL", use]);
 }
 
-console.log("\nWCAG contrast audit — design tokens (app/globals.css)\n");
+for (const [name, hex] of SHAPE_BADGES) {
+  const r = ratio("#ffffff", hex);
+  const ok = r >= 4.5;
+  if (!ok) fails++;
+  rows.push([`white on ${name}`, r.toFixed(2), "text", ok ? "PASS" : "FAIL", "fiscal-shape badge"]);
+}
+
+console.log("\nWCAG contrast audit — design tokens + fiscal-shape badges\n");
 console.log(`  ${pad("pairing", 22)}${pad("ratio", 8)}${pad("need", 8)}${pad("result", 8)}usage`);
 console.log("  " + "-".repeat(78));
 for (const [pair, r, kind, res, use] of rows) {

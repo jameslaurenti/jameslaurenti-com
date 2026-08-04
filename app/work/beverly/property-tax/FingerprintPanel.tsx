@@ -1,6 +1,6 @@
 "use client";
 
-import { type TownShape, type ShapeLabel, SHAPE_COLORS, SHAPE_DISPLAY } from "@/lib/beverly/taxData";
+import { type TownShape, type ShapeLabel, SHAPE_COLORS, SHAPE_BADGE_COLORS, SHAPE_DISPLAY } from "@/lib/beverly/taxData";
 
 const SHAPE_DESC: Record<ShapeLabel, string> = {
   Develops:
@@ -54,7 +54,7 @@ export default function FingerprintPanel({
         {county && <span className="text-sm text-ink-faint">{county} County</span>}
         <span
           className="ml-auto inline-flex items-center gap-1.5 rounded-full px-2.5 py-0.5 text-[0.75rem] font-semibold text-white"
-          style={{ background: SHAPE_COLORS[town.shape] }}
+          style={{ background: SHAPE_BADGE_COLORS[town.shape] }}
         >
           {SHAPE_DISPLAY[town.shape]}
         </span>

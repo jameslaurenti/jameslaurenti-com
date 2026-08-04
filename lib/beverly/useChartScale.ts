@@ -62,5 +62,13 @@ export function useChartScale(ref: RefObject<SVGSVGElement | HTMLElement | null>
    */
   const fs = (px: number) => +((u > 1 ? Math.max(px, MIN_LABEL_PX) : px) * u).toFixed(2);
 
-  return { u, fs };
+  /**
+   * For charts whose label sizes are authored for the scaled-down render rather than for
+   * viewBox units, so the number already means roughly "what it should look like on a wide
+   * screen". Here the authored value is kept and only raised when it would otherwise fall
+   * below the legibility floor, instead of being re-inflated to its nominal pixel size.
+   */
+  const fsMin = (units: number) => +Math.max(units, MIN_LABEL_PX * u).toFixed(2);
+
+  return { u, fs, fsMin };
 }

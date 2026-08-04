@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useChartScale } from "@/lib/beverly/useChartScale";
 import Link from "next/link";
 import forecast from "@/data/beverly/forecast.json";
 
@@ -86,7 +87,10 @@ function ChartCard({ children }: { children: React.ReactNode }) {
 
 // ---- Chart: the scissors (revenue vs spending) ----
 function ScissorsChart() {
-  const W = 760, H = 400, L = 95, R = 720, T = 50, B = 330;
+  const svgRef = useRef<SVGSVGElement>(null);
+  // Labels here are authored for the wide render; keep them, but never below the floor.
+  const { u, fsMin } = useChartScale(svgRef, 760);
+  const W = 760, H = 400, L = 95 + (u > 1 ? 34 : 0), R = 720, T = 50, B = 330;
   const revs = YEARS.map((y) => y.revenue);
   const exps = YEARS.map((y) => y.expenditure);
   const lo = Math.floor(Math.min(...revs) / 10) * 10; // 170
@@ -101,18 +105,18 @@ function ScissorsChart() {
     " Z";
   const mid = (lo + hi) / 2;
   return (
-    <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Spending rises faster than income, fiscal 2026 to 2030" className="w-full">
+    <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Spending rises faster than income, fiscal 2026 to 2030" className="w-full">
       <line x1={L} y1={B} x2={R} y2={B} stroke="var(--color-rule)" />
       <line x1={L} y1={T} x2={L} y2={B} stroke="var(--color-rule)" />
       <line x1={L} y1={y(mid)} x2={R} y2={y(mid)} strokeDasharray="2 6" opacity={0.5} stroke="var(--color-rule)" />
       {[lo, mid, hi].map((v) => (
-        <text key={v} x={L - 8} y={y(v) + 5} textAnchor="end" fontSize={16} fill="var(--color-ink-faint)">
+        <text key={v} x={L - 8} y={y(v) + 5} textAnchor="end" fontSize={fsMin(16)} fill="var(--color-ink-faint)">
           ${v}M
         </text>
       ))}
-      <g fontSize={19} fontWeight={600} fill="var(--color-ink-mid)" textAnchor="middle" fontFamily="var(--font-sans)">
+      <g fontSize={fsMin(19)} fontWeight={600} fill="var(--color-ink-mid)" textAnchor="middle" fontFamily="var(--font-sans)">
         {YEARS.map((yr, i) => (
-          <text key={yr.fy} x={x(i)} y={B + 26}>
+          <text key={yr.fy} x={x(i)} y={B + (u > 1 ? 46 : 26)}>
             {yr.fy.replace("FY", "20")}
           </text>
         ))}
@@ -122,10 +126,10 @@ function ScissorsChart() {
       <path d={line(revs)} fill="none" stroke="var(--color-accent)" strokeWidth={4} strokeLinejoin="round" strokeLinecap="round" />
       <circle cx={x(YEARS.length - 1)} cy={y(exps[exps.length - 1])} r={5} fill="var(--color-debt)" />
       <circle cx={x(YEARS.length - 1)} cy={y(revs[revs.length - 1])} r={5} fill="var(--color-accent)" />
-      <text x={R - 10} y={y(exps[exps.length - 1]) - 14} textAnchor="end" fontSize={18} fontWeight={700} fill="var(--color-debt)" style={{ paintOrder: "stroke", stroke: "var(--color-bg)", strokeWidth: 5 }}>
+      <text x={R - 10} y={y(exps[exps.length - 1]) - 14} textAnchor="end" fontSize={fsMin(18)} fontWeight={700} fill="var(--color-debt)" style={{ paintOrder: "stroke", stroke: "var(--color-bg)", strokeWidth: 5 }}>
         What it spends
       </text>
-      <text x={R - 10} y={y(revs[revs.length - 1]) + 32} textAnchor="end" fontSize={18} fontWeight={700} fill="var(--color-accent)" style={{ paintOrder: "stroke", stroke: "var(--color-bg)", strokeWidth: 5 }}>
+      <text x={R - 10} y={y(revs[revs.length - 1]) + 32} textAnchor="end" fontSize={fsMin(18)} fontWeight={700} fill="var(--color-accent)" style={{ paintOrder: "stroke", stroke: "var(--color-bg)", strokeWidth: 5 }}>
         What it collects
       </text>
     </svg>
@@ -135,6 +139,8 @@ function ScissorsChart() {
 // ---- Chart: which costs actually outrun revenue (indexed % growth) ----
 // Rates are the forecast's own per-line assumptions; debt service is its schedule.
 function CostGrowthChart() {
+  const svgRef = useRef<SVGSVGElement>(null);
+  const { u, fsMin } = useChartScale(svgRef, 760);
   const yrs = YEARS.map((y) => y.fy); // FY26..FY30
   const n = yrs.length;
   const idx = (rate: number) => yrs.map((_, t) => ((1 + rate) ** t - 1) * 100);
@@ -147,21 +153,21 @@ function CostGrowthChart() {
     { label: "Debt service", vals: debtIdx, color: "var(--color-cuts)" },
     { label: "Municipal salaries", vals: idx(0.015), color: "var(--color-accent)" },
   ];
-  const W = 760, H = 360, L = 52, R = 600, T = 26, B = 300, maxY = 28;
+  const W = 760, H = 360, L = 52 + (u > 1 ? 30 : 0), R = 600, T = 26, B = 300, maxY = 28;
   const x = (i: number) => L + (i / (n - 1)) * (R - L);
   const y = (v: number) => B - (v / maxY) * (B - T);
   const path = (vals: number[]) => vals.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
   return (
     <div>
-      <svg viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Cumulative cost growth versus revenue, fiscal 2026 to 2030. Health insurance and pensions rise faster than revenue; salaries and debt slower." className="w-full">
+      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Cumulative cost growth versus revenue, fiscal 2026 to 2030. Health insurance and pensions rise faster than revenue; salaries and debt slower." className="w-full">
         {[0, 7, 14, 21, 28].map((g) => (
           <g key={g}>
             <line x1={L} x2={R} y1={y(g)} y2={y(g)} stroke="var(--color-rule)" strokeWidth={0.5} />
-            <text x={L - 6} y={y(g) + 4} textAnchor="end" fontSize={13} fill="var(--color-ink-faint)">+{g}%</text>
+            <text x={L - 6} y={y(g) + 4} textAnchor="end" fontSize={fsMin(13)} fill="var(--color-ink-faint)">+{g}%</text>
           </g>
         ))}
         {yrs.map((f, i) => (
-          <text key={f} x={x(i)} y={B + 20} textAnchor="middle" fontSize={14} fill="var(--color-ink-mid)">{f.replace("FY", "FY20")}</text>
+          <text key={f} x={x(i)} y={B + (u > 1 ? 40 : 20)} textAnchor="middle" fontSize={fsMin(14)} fill="var(--color-ink-mid)">{f.replace("FY", "FY20")}</text>
         ))}
         <path d={path(revVals)} fill="none" stroke="var(--color-ink-mid)" strokeWidth={3} strokeDasharray="6 4" />
         {series.map((s) => (
@@ -171,7 +177,7 @@ function CostGrowthChart() {
           <circle key={s.label} cx={x(n - 1)} cy={y(s.vals[n - 1])} r={4} fill={s.color} />
         ))}
         <circle cx={x(n - 1)} cy={y(revVals[n - 1])} r={4} fill="var(--color-ink-mid)" />
-        <text x={x(n - 1) + 8} y={y(revVals[n - 1]) + 4} fontSize={13} fontWeight={600} fill="var(--color-ink-mid)">Revenue</text>
+        <text x={x(n - 1) + 8} y={y(revVals[n - 1]) + 4} fontSize={fsMin(13)} fontWeight={600} fill="var(--color-ink-mid)">Revenue</text>
       </svg>
       <div className="mt-1 flex flex-wrap gap-x-4 gap-y-1 text-[0.8125rem] font-medium">
         <span className="inline-flex items-center gap-1.5"><i className="inline-block h-0 w-4 border-t-2 border-dashed border-ink-mid" />Revenue (near the 2.5% cap)</span>
@@ -327,7 +333,9 @@ export default function BudgetExplainer() {
 
           {/* translation key */}
           <div className="mt-8 rounded-lg border border-rule bg-bg-card/60 px-6 py-6 shadow-sm">
-            <h3 className="font-display text-lg font-semibold">Picture the city as a household</h3>
+            {/* h2, not h3: this card sits directly under the h1, before any section heading,
+                so an h3 here skips a level for anyone navigating by headings. */}
+            <h2 className="font-display text-lg font-semibold">Picture the city as a household</h2>
             <ul className="divide-y divide-rule">
               {[
                 ["The capped raise", <>Property taxes, the city&apos;s main income, can rise only about 2.5% a year. <span className="text-ink-faint">A state law called Proposition 2½.</span></>],
