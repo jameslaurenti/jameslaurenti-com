@@ -24,13 +24,16 @@ export default function MaPropertyTaxPage() {
           town and read what its numbers say about it.
         </p>
         <p>
-          One number deserves a caution: the tax <em>rate</em>. It is the least useful figure on your bill, and
-          it usually runs the opposite way you would expect, lowest in the most expensive towns. If that seems
-          upside down, the companion article{" "}
+          One word needs pinning down first, because two different numbers answer to it. The{" "}
+          <em>posted rate</em>, the dollars-per-thousand figure printed on your bill, is the least useful number
+          on it, and it usually runs the opposite way you would expect, lowest in the most expensive towns. The
+          companion article{" "}
           <Link href="/work/beverly/what-sets-your-taxes" target="_blank" rel="noopener">
             what sets your property taxes, and what doesn&apos;t
           </Link>{" "}
-          explains why. Treat the rate here as one input among several, not the headline.
+          explains why. The rate on the chart below is the other one, the <em>effective rate</em>: what the
+          average bill actually works out to, as a share of what an average home in that town is worth. That is
+          the comparable number, and it is the one used here throughout.
         </p>
         <p>
           Three views share the same set of towns. <strong>Your bill</strong> follows the rate, the average
@@ -54,10 +57,12 @@ export default function MaPropertyTaxPage() {
 
       <p className="mt-6 text-xs leading-relaxed text-ink-faint">
         <strong className="font-medium text-ink-mid">Reading the Your bill chart.</strong> Each dot is one
-        municipality in the selected fiscal year. Left–right is the <em>effective</em> rate (average bill ÷
-        average value); up–down is <em>burden</em> (average bill ÷ median household income). Dashed lines sit
-        at the statewide median for that year, splitting the field into four quadrants. Select a town to trace
-        its path across the decade.
+        municipality in the selected fiscal year. Left–right is the <em>effective rate</em> (average bill ÷
+        average home value), not the posted dollars-per-thousand rate; up–down is <em>burden</em> (average
+        bill ÷ median household income). The two are close to independent, which is what makes the quadrants
+        worth reading: a town can be expensive per dollar of value and still land lightly on local incomes, or
+        the reverse. Dashed lines sit at the statewide median for that year. Select a town to trace its path
+        across the decade.
       </p>
       <p className="mt-3 text-xs leading-relaxed text-ink-faint">
         <strong className="font-medium text-ink-mid">Sources, all views.</strong> Residential single-family

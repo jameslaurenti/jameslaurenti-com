@@ -52,7 +52,11 @@ function townXY(town: Town, fy: number): Pt | null {
 export default function QuadrantScatter({ data, year, view, selected, reducedMotion }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
   // Keeps SVG labels at a readable on-screen size when the chart is scaled down.
-  const { fs } = useChartScale(svgRef, W);
+  const { u, fs } = useChartScale(svgRef, W);
+  // On a phone the corner labels are scaled up and the long form collides across the
+  // middle. The axis title directly beneath says "effective rate", so the short form is
+  // unambiguous there.
+  const rateWord = u > 1 ? "rate" : "effective rate";
   const wrapRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const [tip, setTip] = useState<{ left: number; top: number } | null>(null);
@@ -120,7 +124,7 @@ export default function QuadrantScatter({ data, year, view, selected, reducedMot
         viewBox={`0 0 ${W} ${H}`}
         className="w-full h-auto"
         role="img"
-        aria-label={`Quadrant scatter of Massachusetts municipalities for fiscal year ${year}: effective tax rate on the horizontal axis, tax burden on the vertical axis. See the table below for the underlying values.`}
+        aria-label={`Quadrant scatter of Massachusetts municipalities for fiscal year ${year}: effective rate, the average bill as a share of average home value, on the horizontal axis; tax burden, the average bill as a share of median household income, on the vertical axis. See the table below for the underlying values.`}
         onPointerMove={(e) => handlePointer(e.clientX, e.clientY)}
         onPointerDown={(e) => handlePointer(e.clientX, e.clientY)}
         onPointerLeave={() => {
@@ -151,7 +155,7 @@ export default function QuadrantScatter({ data, year, view, selected, reducedMot
 
         {/* axis titles */}
         <text x={(PX0 + PX1) / 2} y={H - 4} textAnchor="middle" fontSize={fs(9)} fill="var(--color-ink-mid)">
-          Effective tax rate  (bill ÷ value)
+          Effective rate  (bill ÷ home value)
         </text>
         <text
           x={12}
@@ -174,10 +178,10 @@ export default function QuadrantScatter({ data, year, view, selected, reducedMot
 
         {/* corner labels (neutral) */}
         <g fill="var(--color-ink-faint)" fontSize={fs(7)} opacity={0.85}>
-          <text x={PX1 - 3} y={PY0 + 10} textAnchor="end">higher rate · higher burden</text>
-          <text x={PX0 + 3} y={PY0 + 10} textAnchor="start">lower rate · higher burden</text>
-          <text x={PX1 - 3} y={PY1 - 4} textAnchor="end">higher rate · lower burden</text>
-          <text x={PX0 + 3} y={PY1 - 4} textAnchor="start">lower rate · lower burden</text>
+          <text x={PX1 - 3} y={PY0 + 10} textAnchor="end">{`higher ${rateWord} · higher burden`}</text>
+          <text x={PX0 + 3} y={PY0 + 10} textAnchor="start">{`lower ${rateWord} · higher burden`}</text>
+          <text x={PX1 - 3} y={PY1 - 4} textAnchor="end">{`higher ${rateWord} · lower burden`}</text>
+          <text x={PX0 + 3} y={PY1 - 4} textAnchor="start">{`lower ${rateWord} · lower burden`}</text>
         </g>
 
         {/* rest-of-state dots */}
