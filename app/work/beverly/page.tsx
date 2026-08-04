@@ -151,21 +151,6 @@ export default function BeverlyCollection() {
         Nonpartisan, sourced, and built for people who don&apos;t have time to dig.
       </p>
 
-      <div className="mb-14 rounded-r-md border-l-4 border-accent bg-bg-card/60 px-6 py-5" style={{ maxWidth: "62ch" }}>
-        <div className="font-display text-lg font-semibold text-ink">A note on why this exists</div>
-        <p className="mt-2 leading-relaxed text-ink" style={{ fontSize: "0.95rem" }}>
-          I built this because I wanted it and couldn&apos;t find it. I kept hearing about Beverly&apos;s budget
-          in passing, and every explanation was either a snapshot missing the context or a source with an agenda.
-          I&apos;m a fairly new resident and a father. I love this place, my kids will always call it home, and
-          I&apos;m invested in its future. This is also the work I do for a living. I&apos;m a product manager, and
-          the job is mostly untangling complicated problems until other people can see them clearly. I think that
-          matters here for a specific reason: the better informed people are, the richer the argument gets, and
-          the better the decision at the end of it. So I would rather hand you the whole picture and let you
-          build your own view than press mine on you. Here it is. You decide.
-        </p>
-        <p className="mt-3 font-display italic text-ink-faint" style={{ fontSize: "0.85rem" }}>James Laurenti</p>
-      </div>
-
       <div className="flex flex-col gap-12">
         {groups.map((group) => (
           <section key={group.label}>
@@ -240,6 +225,21 @@ export default function BeverlyCollection() {
             </ol>
           </section>
         ))}
+      </div>
+
+      <div className="mt-16 rounded-r-md border-l-4 border-accent bg-bg-card/60 px-6 py-5" style={{ maxWidth: "62ch" }}>
+        <div className="font-display text-lg font-semibold text-ink">A note on why this exists</div>
+        <p className="mt-2 leading-relaxed text-ink" style={{ fontSize: "0.95rem" }}>
+          I built this because I wanted it and couldn&apos;t find it. I kept hearing about Beverly&apos;s budget
+          in passing, and every explanation was either a snapshot missing the context or a source with an agenda.
+          I&apos;m a fairly new resident and a father. I love this place, my kids will always call it home, and
+          I&apos;m invested in its future. This is also the work I do for a living. I&apos;m a product manager, and
+          the job is mostly untangling complicated problems until other people can see them clearly. I think that
+          matters here for a specific reason: the better informed people are, the richer the argument gets, and
+          the better the decision at the end of it. So I would rather hand you the whole picture and let you
+          build your own view than press mine on you. Here it is. You decide.
+        </p>
+        <p className="mt-3 font-display italic text-ink-faint" style={{ fontSize: "0.85rem" }}>James Laurenti</p>
       </div>
     </div>
   );
