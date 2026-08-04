@@ -16,9 +16,21 @@ function DriftBar({ label, value, color }: { label: string; value: number; color
         <span className="text-[0.8125rem] font-medium text-ink">{label}</span>
         <span className="text-[0.75rem] font-semibold tabular-nums text-ink">{signPct(value)}</span>
       </div>
+      {/* The bar runs from the zero line, not from the left edge, so its length is the real
+          change and its direction is the sign. Filling from the edge made a town with no
+          growth look like it had a quarter of a bar's worth. */}
       <div className="relative mt-1 h-2.5 rounded-sm border border-rule bg-bg">
-        <div className="absolute inset-y-0 rounded-sm" style={{ left: 0, width: `${Math.max(dscale(value), 1)}%`, background: color }} />
-        <span className="absolute inset-y-[-2px] w-px bg-ink-faint opacity-60" style={{ left: `${ZERO}%` }} />
+        <div
+          className="absolute inset-y-0 rounded-sm"
+          style={{
+            left: `${Math.min(dscale(value), ZERO)}%`,
+            width: `${Math.max(Math.abs(dscale(value) - ZERO), 0.6)}%`,
+            background: color,
+          }}
+        />
+        {/* Drawn after the fill and in full-strength ink: as a faint tick it disappeared
+            under the bar, which is the only place it matters. */}
+        <span className="absolute inset-y-[-3px] w-px bg-ink" style={{ left: `${ZERO}%` }} />
       </div>
     </div>
   );
@@ -81,8 +93,10 @@ export default function DriftLens({
               <DriftBar label="Real property-value growth" value={fd.valRealG_12_22} color="var(--color-ink-faint)" />
               <DriftBar label="Real income growth" value={fd.incRealG_12_22} color="var(--color-accent)" />
             </div>
-            <p className="mt-2 text-[0.6875rem] text-ink-faint">
-              The tick marks zero real growth; a bar left of it fell behind inflation. By 2024 the value figure stood at {signPct(fd.valRealG_12_24)}.
+            <p className="mt-2 text-[0.6875rem] leading-relaxed text-ink-faint">
+              Bars run from the vertical line, which is zero. To its right, growth beat inflation. To its left, it
+              fell behind. Both bars cover 2012 to 2022, the years the chart above plots. Property values kept
+              moving after that: measured through 2024 instead, the real change is {signPct(fd.valRealG_12_24)}.
             </p>
             <p className="mt-3 rounded-md bg-bg-card p-3 text-[0.8125rem] leading-relaxed text-ink">
               {verdict.headline} {verdict.detail}
