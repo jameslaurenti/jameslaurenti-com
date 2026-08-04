@@ -5,6 +5,13 @@ export const metadata: Metadata = {
   title: "What Beverly Does Next — James Laurenti",
   description:
     "Beverly's budget is tightening, and the choices the city makes over the next few years will shape the town. Plain-language pieces and tools to help residents understand it and weigh in. Nonpartisan and sourced.",
+  openGraph: {
+    type: "article",
+    title: "What Beverly Does Next",
+    description:
+      "Beverly's budget is tightening, and the choices ahead will shape the town. Plain-language pieces and tools to help residents understand it. Nonpartisan and sourced.",
+    url: "/work/beverly",
+  },
 };
 
 type ToolLink = { label: string; href: string; why?: string };

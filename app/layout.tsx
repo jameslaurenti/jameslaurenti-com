@@ -21,14 +21,19 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
+  // Without this, page-level Open Graph images and canonical URLs can't resolve, and every
+  // page inherits the homepage's og:url.
+  metadataBase: new URL("https://www.jameslaurenti.com"),
   title: "James Laurenti",
   description: "Product leader. Builder of useful things.",
   openGraph: {
+    type: "website",
     title: "James Laurenti",
     description: "Product leader. Builder of useful things.",
-    url: "https://jameslaurenti.com",
+    url: "/",
     siteName: "James Laurenti",
   },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({

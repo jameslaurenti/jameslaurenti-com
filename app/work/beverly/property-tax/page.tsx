@@ -6,6 +6,15 @@ export const metadata: Metadata = {
   title: "MA property tax explorer — James Laurenti",
   description:
     "A decade of property-tax data for all 351 Massachusetts municipalities: posted rate, effective rate, average bill, and burden as a share of income.",
+  openGraph: {
+    type: "article",
+    title: "MA property tax explorer",
+    description: "All 351 Massachusetts cities and towns on the same footing: what an average bill is, how hard it lands on local incomes, how each town funds itself, and whether values have outrun incomes.",
+    url: "/work/beverly/property-tax",
+    // Defining openGraph here replaces the block inherited from the collection,
+    // images included, so the shared card has to be named explicitly.
+    images: ["/work/beverly/opengraph-image"],
+  },
 };
 
 export default function MaPropertyTaxPage() {
