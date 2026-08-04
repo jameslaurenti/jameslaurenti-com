@@ -61,6 +61,9 @@ export default function Explorer() {
   const [shapeData, setShapeData] = useState<TownShapeData | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [year, setYear] = useState<number>(0);
+  // The table keeps its own year. It was following the Your bill scrubber, which meant
+  // scrolling down to read the numbers for a year you had left set three sections up.
+  const [tableYear, setTableYear] = useState<number>(0);
   const [view, setView] = useState<View>("state");
   const [reducedMotion, setReducedMotion] = useState(false);
 
@@ -85,6 +88,7 @@ export default function Explorer() {
       .then((d: TaxData) => {
         setData(d);
         setYear(d.meta.fiscal_years[d.meta.fiscal_years.length - 1]);
+        setTableYear(d.meta.fiscal_years[d.meta.fiscal_years.length - 1]);
       })
       .catch((e) => setError(String(e)));
   }, []);
@@ -257,12 +261,28 @@ export default function Explorer() {
 
       {/* ---- ALL TOWNS (data appendix) ---- */}
       <section className="rounded-lg border border-rule bg-bg-card/40 p-4 sm:p-5">
-        <h2 className="mb-1 font-display text-xl font-semibold text-ink">All towns</h2>
+        <div className="mb-1 flex flex-wrap items-baseline justify-between gap-x-4 gap-y-2">
+          <h2 className="font-display text-xl font-semibold text-ink">All towns</h2>
+          <label className="flex items-center gap-2 text-[0.8125rem] text-ink-mid">
+            Fiscal year
+            <select
+              value={tableYear}
+              onChange={(e) => setTableYear(+e.target.value)}
+              className="rounded-md border border-rule bg-bg px-2 py-1 text-[0.8125rem] text-ink focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent"
+            >
+              {data.meta.fiscal_years.map((fy) => (
+                <option key={fy} value={fy}>
+                  FY{fy}
+                </option>
+              ))}
+            </select>
+          </label>
+        </div>
         <p className="mb-3 max-w-[60ch] text-[0.8125rem] leading-relaxed text-ink-faint">
-          The figures behind the Your bill chart, for the fiscal year set on that slider. Sortable and searchable, and the
-          text alternative to the scatter. Highlights follow the Your bill selection.
+          Every figure behind the Your bill chart, sortable and searchable, and the text alternative to the scatter. It
+          keeps its own fiscal year, set here. Highlights follow the Your bill selection.
         </p>
-        <TaxTable data={data} year={year} selected={bill.selected} />
+        <TaxTable data={data} year={tableYear} selected={bill.selected} />
       </section>
       </div>
     </div>
