@@ -85,7 +85,7 @@ const NOTES: React.ReactNode[] = [
   <>Class size and teacher pay, fiscal 2024. Students per teacher: Beverly 12.0 (Marblehead 10.6, Salem 10.7, Gloucester 10.9, Swampscott 11.0, Danvers 12.2, Peabody 12.3); Beverly&apos;s ratio has fallen from 14.6 in 2015, so the gap is narrowing. Average teacher salary: Beverly $87,991, sixth of seven (Danvers $97,514 highest, Gloucester $86,417 lowest). <em>Confirmed.</em></>,
   <>Education spending, Schedule A: $76.1 million (fiscal 2024) to $82.3 million (fiscal 2025), up 8.2 percent; further increases of about 9 percent (fiscal 2026) and 5.28 percent (fiscal 2027) are budgeted, not yet actual. Statewide percentile: 7th in fiscal 2020, 21st in fiscal 2024. <em>Confirmed on the fiscal 2025 actual and the percentiles; later years budgeted.</em></>,
   <>DLS Municipal Databank, stabilization fund trend, fiscal 2013 through 2022; that series ends at fiscal 2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: fiscal 2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, certified free cash, fiscal 2014 through 2024. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, certified free cash, fiscal 2014 through 2024. Cohort cushion is certified free cash (fiscal 2026) plus total stabilization (fiscal 2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, local receipt estimate versus actual, fiscal 2018 through 2024, excluding investment income. Beverly&apos;s range is +21.1 percent (fiscal 2020) to +50.7 percent (fiscal 2021). <em>Confirmed.</em></>,
   <>Beverly other financing uses and transfers, fiscal 2021 through 2024. <em>Confirmed.</em></>,
   <>Complete audit of Beverly City Council free-cash appropriation orders for fiscal 2024, from the AgendaCenter minutes. Seven approved orders totaling $7,719,626 against a certified pool of about $11.36 million: roads and sidewalks $2.75 million, a downtown parking lot and building $2.5 million, the stabilization fund $1,135,505 and the retiree-health trust $227,101, debt stabilization $1,000,000, and a restricted opioid-settlement fund $107,020. No order funded a recurring operating service. A $2,045,000 free-cash request for the main library&apos;s heating system was disapproved June 3, 2024, and funded from the debt stabilization fund instead. Corroborated by the city&apos;s own fiscal 2026 to 2030 forecast, which lists reserve uses as the City Hall project, roads and sidewalks, stabilization, and the retiree-health trust, and records the Forecast Committee&apos;s suggestion to consider lowering the free-cash target to fund operations, an option not taken. <em>Confirmed against the minutes.</em></>,
@@ -344,6 +344,11 @@ export default function WhoBeverlyIs() {
               is {gapM(FY27)}. Beverly&apos;s yearly surplus is more than twice that. The money exists. Where it goes is not services.
             </P>
             <P>
+              That is not ordinary for the area. Counting the savings account and the year-end surplus together, Beverly holds about
+              19.8 percent of a year&apos;s operating budget in reserve, the largest cushion of the seven. Salem is next at 17.8
+              percent. Marblehead holds 6.2.{fn(13)}
+            </P>
+            <P>
               Where does a $10 million surplus come from every year? Partly from a habit. Local receipts, the money a city takes in
               outside property taxes, run $11 to $15 million a year for Beverly, and cities must estimate that revenue before the year
               begins. Beverly estimates it low and beats the estimate every year. Even in its most accurate year, it collected 21 percent
@@ -573,8 +578,9 @@ export default function WhoBeverlyIs() {
             <P>
               The fiscal 2027 deficit is a different kind of problem, and the difference is the point. It is not a one-year shock but a
               structural one, a permanent gap between how fast costs rise and how fast revenue can. Reserves are one-time money, and
-              one-time money cannot cover a recurring cost. Beverly has held to that line more tightly than any of its neighbors for a
-              decade. So when the structural squeeze finally arrived, it arrived as service cuts, not a drawdown. The decade of choices
+              one-time money cannot cover a recurring cost. Beverly has held that line firmly. Fiscal 2024 is the year traced in full
+              here, and not one dollar of free cash went to a recurring service. So when the structural squeeze finally arrived, it
+              arrived as service cuts, not a drawdown. The decade of choices
               described here was made when choosing was cheap. Fiscal 2027 is the first year it was expensive. Fiscal 2030, on the
               city&apos;s own projection, is more than three times harder.
             </P>
