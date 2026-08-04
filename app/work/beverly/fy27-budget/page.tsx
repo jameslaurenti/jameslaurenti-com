@@ -319,7 +319,7 @@ export default function FY27Budget() {
             />
             <LineRow
               label="New construction added to the tax rolls"
-              desc="When new buildings are completed and assessed, they are added to Beverly's permanent tax base. Beverly had $1.95M in new construction this year. Unlike a one-time windfall, these properties keep paying taxes going forward. That said, new construction is not guaranteed year to year, and more development, particularly residential, can add pressure on schools, roads, and services."
+              desc="When new buildings are completed and assessed, they are added to Beverly's permanent tax base. The budget counts on $1.95M of it this year, a figure the state certifies later, when the tax rate is set. Unlike a one-time windfall, these properties keep paying taxes going forward. That said, new construction is not guaranteed year to year, and more development, particularly residential, can add pressure on schools, roads, and services."
               badges={<Badge kind="confirmed">budget book</Badge>}
               amount="+$1.95M" amountTone="rev" pct="27% of revenue growth" bar={{ pct: 27, tone: "rev" }}
             />

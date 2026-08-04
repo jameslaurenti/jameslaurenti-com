@@ -108,7 +108,7 @@ export default function BudgetChallenge() {
     MAYOR_CUTS.forEach((c) => { if (mayorKept[c.id]) { covered += c.amt; jobs += c.jobs; } });
     REV.forEach((r) => { if (rev[r.id]) covered += r.amt; });
     if (overrideOn) covered += override;
-    if (devOn) covered += dev - DEV.actual; // dev above/below this year's actual $1.95M
+    if (devOn) covered += dev - DEV.actual; // dev above/below the $1.95M the budget assumed
     DEEPER.forEach((d) => { const cut = d.amt * ((deeper[d.id] ?? 0) / 100); covered += cut; if (cut > 0) jobs += jobsOf(cut); });
     const operating = covered - gap; // >=0 means balanced (surplus rolls to free cash)
     let freeCash = 0;
@@ -307,7 +307,7 @@ export default function BudgetChallenge() {
                 )}
               </span>
               <span className="shrink-0 text-[0.8125rem] font-bold tabular-nums" style={{ color: devOn && dev !== DEV.actual ? (dev > DEV.actual ? "var(--color-accent)" : "var(--color-debt)") : "var(--color-ink-faint)" }}>
-                {devOn ? (dev === DEV.actual ? "actual" : `${dev > DEV.actual ? "+" : "−"}${fmt(Math.abs(dev - DEV.actual))}`) : fmtM(DEV.actual)}
+                {devOn ? (dev === DEV.actual ? "as budgeted" : `${dev > DEV.actual ? "+" : "−"}${fmt(Math.abs(dev - DEV.actual))}`) : fmtM(DEV.actual)}
               </span>
             </div>
             <input
@@ -319,8 +319,8 @@ export default function BudgetChallenge() {
             <div className="relative mt-1 h-4 text-[0.6875rem] text-ink-faint">
               {[
                 { v: DEV.low, l: "10-yr low" },
-                { v: DEV.planned, l: "city planned" },
-                { v: DEV.actual, l: "FY27 actual" },
+                { v: DEV.planned, l: "Dec forecast" },
+                { v: DEV.actual, l: "FY27 budget" },
                 { v: DEV.high, l: "10-yr high" },
               ].map((m) => (
                 <span key={m.l} className="absolute -translate-x-1/2 whitespace-nowrap" style={{ left: `${((m.v - DEV.min) / (DEV.max - DEV.min)) * 100}%` }}>
@@ -330,11 +330,11 @@ export default function BudgetChallenge() {
             </div>
             {!devOn ? (
               <div className="mt-2 text-[0.78125rem] leading-relaxed text-ink-faint">
-                New construction added <b className="text-ink">{fmtM(DEV.actual)}</b>{" "}in permanent new tax revenue this year, a strong year. Beverly can&apos;t simply dial this up; it depends on the market and years of permitting. Unlock to explore the decade&apos;s range.
+                The FY2027 budget counts on <b className="text-ink">{fmtM(DEV.actual)}</b>{" "}of new construction added to the tax rolls, a strong year by recent standards. The state certifies the final figure later, when the tax rate is set. Beverly can&apos;t simply dial this up; it depends on the market and years of permitting. Unlock to explore the decade&apos;s range.
               </div>
             ) : (
               <div className="mt-2 text-[0.78125rem] leading-relaxed text-ink-faint">
-                Over the last decade Beverly&apos;s new growth ran from {fmtM(DEV.low)} (2016) to {fmtM(DEV.high)} (2018), averaging {fmtM(DEV.mean)}. This year&apos;s {fmtM(DEV.actual)} was near the top. Notice the forecast only <b className="text-ink">planned</b>{" "}for {fmtM(DEV.planned)}, well below what the city usually delivers. That gap is the headroom the development strategy works in.
+                Over the last decade Beverly&apos;s new growth ran from {fmtM(DEV.low)} (2016) to {fmtM(DEV.high)} (2018), averaging {fmtM(DEV.mean)}. This year&apos;s budgeted {fmtM(DEV.actual)} sits near the top. Notice the December forecast had assumed only {fmtM(DEV.planned)}, well below what the city usually delivers. That gap is the headroom the development strategy works in.
               </div>
             )}
           </div>
@@ -430,14 +430,15 @@ export default function BudgetChallenge() {
           <p className="mb-3 max-w-[72ch]">
             <b>How this works.</b>{" "}The trash options, the itemized cuts, the Council amendments, and this year&apos;s new growth are from
             Beverly&apos;s FY2027 budget and the <Link href="/work/beverly/fy27-budget" className="rlink">FY2027 walkthrough</Link>. The cuts in the mayor&apos;s
-            proposed budget balance it; the Council&apos;s June-23 additions sat on top of an already-balanced budget and become free cash.
-            Job estimates assume an average position, with benefits, costs about $95,000. Revenue levers marked <i>estimated</i> are rough
-            figures shown to convey scale and the conditions attached, not to predict.
+            proposed budget balance it. The reading that the Council&apos;s June-23 additions sat on top of an already-balanced budget, and
+            so land in free cash rather than closing anything, is this tool&apos;s, drawn from the sequence of votes rather than stated in
+            any city document. Job estimates assume an average position, with benefits, costs about $95,000. Revenue levers marked{" "}
+            <i>estimated</i> are rough figures shown to convey scale and the conditions attached, not to predict.
           </p>
           <p className="mb-3 max-w-[72ch]">
             <b>On free cash.</b>{" "}The {fmtM(FREE_CASH * 1e6)}{" "}is Beverly&apos;s FY2026 certified free cash, the most recent figure, from the
             city&apos;s FY2026-2030 financial forecast. New-growth history is the state Division of Local Services 11-year series;
-            FY2027&apos;s {fmtM(DEV.actual)} is from the budget book.
+            FY2027&apos;s {fmtM(DEV.actual)} is the figure in the adopted budget, and {fmtM(DEV.planned)} is what the December 2025 forecast had assumed. Both are estimates: new growth is certified by the state at tax-rate setting, months after the budget passes.
           </p>
           <p className="mb-3 max-w-[72ch]">
             <b>The gap grows.</b>{" "}Toward ${TRAJ[0].toFixed(1)}M in FY2028, then ${TRAJ[1].toFixed(1)}M, then ${TRAJ[2].toFixed(1)}M if
