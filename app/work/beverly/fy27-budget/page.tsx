@@ -213,7 +213,8 @@ export default function FY27Budget() {
   return (
     <div ref={rootRef} className="bg-bg text-ink">
       {/* sticky phase tracker */}
-      <div className="sticky top-14 z-40 border-b border-black/20 bg-ink px-4 py-2.5 text-bg shadow-md sm:px-6">
+      {/* Stacks below the collection breadcrumb: 3.5rem site nav + 2.25rem breadcrumb. */}
+      <div className="sticky top-[5.75rem] z-40 border-b border-black/20 bg-ink px-4 py-2.5 text-bg shadow-md sm:px-6">
         <div className="mx-auto max-w-3xl">
           <div className="mb-1.5 hidden text-[0.75rem] text-bg/60 sm:block">Track your place in the story as you scroll</div>
           <div className="mb-1.5 flex flex-wrap gap-1.5">

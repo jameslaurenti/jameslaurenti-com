@@ -79,7 +79,7 @@ const LEVY = forecast.revenueDetailFy27.lines.taxRevenueNet; // FY27 net propert
 const TAX_SHARE = Math.round((LEVY / forecast.revenueDetailFy27.lines.totalRevenue) * 100); // ~78% of the budget
 
 /* ---- development / new growth (DLS 11-yr series + FY27 budget) ---- */
-const DEV = { actual: 1950000, planned: 1250000, low: 843000, mean: 1590000, high: 2190000, min: 800000, max: 2250000 };
+const DEV = { actual: 1950000, low: 843000, mean: 1590000, high: 2190000, min: 800000, max: 2250000 };
 
 // Schools is the FY2027 appropriation, read from the forecast so the two cannot drift.
 // The other three are FY2026 department budgets; the city publishes no FY2027 breakdown at
@@ -322,7 +322,6 @@ export default function BudgetChallenge() {
             <div className="relative mt-1 h-9 text-[0.6875rem] text-ink-faint sm:h-4">
               {[
                 { v: DEV.low, l: "10-yr low" },
-                { v: DEV.planned, l: "Dec forecast" },
                 { v: DEV.mean, l: "10-yr average" },
                 { v: DEV.actual, l: "FY27 budget" },
                 { v: DEV.high, l: "10-yr high" },
@@ -342,7 +341,7 @@ export default function BudgetChallenge() {
               </div>
             ) : (
               <div className="mt-2 text-[0.78125rem] leading-relaxed text-ink-faint">
-                Over the last decade Beverly&apos;s new growth ran from {fmtM(DEV.low)} (2016) to {fmtM(DEV.high)} (2018), averaging {fmtM(DEV.mean)}. This year&apos;s budgeted {fmtM(DEV.actual)} sits near the top. Notice the December forecast had assumed only {fmtM(DEV.planned)}, below even the ten-year average marked on the track. That gap is the headroom the development strategy works in.
+                Over the last decade Beverly&apos;s new growth ran from {fmtM(DEV.low)} (2016) to {fmtM(DEV.high)} (2018), averaging {fmtM(DEV.mean)}. This year&apos;s budgeted {fmtM(DEV.actual)} sits near the top of that range. That gap is the headroom the development strategy works in.
               </div>
             )}
           </div>
@@ -446,7 +445,7 @@ export default function BudgetChallenge() {
           <p className="mb-3 max-w-[72ch]">
             <b>On free cash.</b>{" "}The {fmtM(FREE_CASH * 1e6)}{" "}is Beverly&apos;s FY2026 certified free cash, the most recent figure, from the
             city&apos;s FY2026-2030 financial forecast. New-growth history is the state Division of Local Services 11-year series;
-            FY2027&apos;s {fmtM(DEV.actual)} is the figure in the adopted budget, and {fmtM(DEV.planned)} is what the December 2025 forecast had assumed. Both are estimates: new growth is certified by the state at tax-rate setting, months after the budget passes.
+            FY2027&apos;s {fmtM(DEV.actual)} is the figure in the adopted budget, an estimate: new growth is certified by the state at tax-rate setting, months after the budget passes.
           </p>
           <p className="mb-3 max-w-[72ch]">
             <b>The gap grows.</b>{" "}Toward ${TRAJ[0].toFixed(1)}M in FY2028, then ${TRAJ[1].toFixed(1)}M, then ${TRAJ[2].toFixed(1)}M if

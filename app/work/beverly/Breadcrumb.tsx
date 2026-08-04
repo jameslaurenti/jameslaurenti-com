@@ -19,8 +19,13 @@ export default function Breadcrumb() {
   if (path === HUB || path === `${HUB}/` || path.startsWith(`${HUB}/development-map`)) return null;
 
   return (
-    <nav aria-label="Breadcrumb" className="mx-auto max-w-3xl px-6 pt-6">
-      <ol className="flex flex-wrap items-center gap-1.5 text-[0.8125rem] text-ink-faint">
+    // Sticks under the site nav (h-14) so the way back stays reachable in pieces that run
+    // thousands of words. Height is BREADCRUMB_H; the FY2027 phase tracker stacks below it.
+    <nav
+      aria-label="Breadcrumb"
+      className="sticky top-14 z-30 h-9 border-b border-rule bg-bg"
+    >
+      <ol className="mx-auto flex h-full max-w-3xl flex-wrap items-center gap-1.5 px-6 text-[0.8125rem] text-ink-faint">
         <li>
           <Link href="/work" className="transition-colors hover:text-accent">
             Work
