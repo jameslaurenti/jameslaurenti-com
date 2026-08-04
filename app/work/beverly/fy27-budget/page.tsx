@@ -790,9 +790,9 @@ export default function FY27Budget() {
           </Narrative>
           <Narrative>
             If you want the structural squeeze underneath all of this, or where residents can weigh in before the next budget, the{" "}
-            <A href="/work/beverly/budget-explainer">earlier explainer</A> covers both. And for what the decade of choices underneath this
-            year says about the town, see <A href="/work/beverly/who-beverly-is">who Beverly is</A>. This piece has stuck to the mechanics of
-            how the money moved, not the politics of the moment.
+            <A href="/work/beverly/budget-explainer">earlier explainer</A> covers both. What the decade of choices underneath this year
+            says about the town is the subject of a companion piece, coming soon. This piece has stuck to the mechanics of how the money
+            moved, not the politics of the moment.
           </Narrative>
         </section>
 

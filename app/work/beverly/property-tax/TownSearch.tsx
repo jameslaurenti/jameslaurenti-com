@@ -60,7 +60,7 @@ export default function TownSearch({ data, selected, onChange }: Props) {
           type="text"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
-          placeholder={atMax ? `Max ${MAX_SELECTED} towns — remove one to add another` : "Add a town to compare…"}
+          placeholder={atMax ? `Max ${MAX_SELECTED} towns. Remove one to add another.` : "Add a town to compare…"}
           disabled={atMax}
           aria-label="Search for a town to highlight"
           className="w-full rounded-md border border-rule bg-bg-card px-3 py-2 text-sm text-ink placeholder:text-ink-faint focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-accent disabled:opacity-60"

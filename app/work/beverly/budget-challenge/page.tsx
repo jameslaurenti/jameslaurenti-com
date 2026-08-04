@@ -30,8 +30,10 @@ const MAYOR_CUTS: Cut[] = [
   { id: "capital", nm: "Capital projects fund, zeroed out", amt: 525000, jobs: 0, note: "Deferred equipment and repairs, not people. The needs don't vanish; they wait, often at higher cost." },
   { id: "reserve", nm: "Emergency reserve, reduced", amt: 186000, jobs: 0, note: "A thinner mid-year cushion for storms, settlements, and surprises." },
   { id: "bus", nm: "City bus (CATA shuttle), discontinued", amt: 185000, jobs: 0, note: "A contract, not city staff, but riders without cars lost the route." },
-  { id: "libcoa", nm: "Library, Council on Aging, health, veterans", amt: 220000, jobs: 2, note: "Reduced Beverly Farms hours and about two positions." },
-  { id: "mayor", nm: "Mayor's office, 2.5 positions", amt: 155000, jobs: 3, note: "Plus two nonprofit contracts ended. Sustainability role now covered by a private donor for two years." },
+  { id: "libcoa", nm: "Library, Council on Aging, health, veterans", amt: 220000, jobs: 2, note: "Reduced hours at the Beverly Farms branch." },
+  // 2.5 is the reported figure. The counter carries it rather than rounding to 3 and
+  // contradicting the label directly above it.
+  { id: "mayor", nm: "Mayor's office, 2.5 positions", amt: 155000, jobs: 2.5, note: "Plus two nonprofit contracts ended. Sustainability role now covered by a private donor for two years." },
   { id: "admin", nm: "Inspections, HR, solicitor, clerk", amt: 152000, jobs: 2, note: "Attrition and eliminated positions across administration." },
   { id: "planning", nm: "Planning position + consulting", amt: 22000, jobs: 1, note: "Less capacity for permit review, zoning, and grant writing." },
   { id: "tighten", nm: "Consulting, travel, supplies, workers-comp reserve", amt: 365000, jobs: 0, note: "Discretionary spending squeezed across every department." },
@@ -79,8 +81,11 @@ const TAX_SHARE = Math.round((LEVY / forecast.revenueDetailFy27.lines.totalReven
 /* ---- development / new growth (DLS 11-yr series + FY27 budget) ---- */
 const DEV = { actual: 1950000, planned: 1250000, low: 843000, mean: 1590000, high: 2190000, min: 800000, max: 2250000 };
 
+// Schools is the FY2027 appropriation, read from the forecast so the two cannot drift.
+// The other three are FY2026 department budgets; the city publishes no FY2027 breakdown at
+// that level. Disclosed in the footer.
 const DEEPER = [
-  { id: "schools", nm: "Beverly Public Schools", amt: 89876235 },
+  { id: "schools", nm: "Beverly Public Schools", amt: forecast.expenditureDetailFy27.schoolFunding },
   { id: "police", nm: "Police", amt: 10720098 },
   { id: "fire", nm: "Fire", amt: 8395132 },
   { id: "dpw", nm: "Public Works", amt: 9071553 },
@@ -407,7 +412,7 @@ export default function BudgetChallenge() {
             ) : (
               <>
                 <p className="font-display text-2xl font-extrabold leading-tight sm:text-3xl" style={{ color: "#bfe6cd" }}>
-                  Balanced. {jobs > 0 ? `The bill: about ${jobs} city ${jobs === 1 ? "job" : "jobs"}` : "And nobody lost a job"}
+                  Balanced. {jobs > 0 ? `The bill: about ${Math.round(jobs)} city ${Math.round(jobs) === 1 ? "job" : "jobs"}` : "And nobody lost a job"}
                   {freeCash > 25000 ? `, plus ${fmtC(freeCash)} to free cash.` : "."}
                 </p>
                 <p className="mt-2 max-w-[62ch] text-bg/85">
@@ -430,14 +435,19 @@ export default function BudgetChallenge() {
             figures shown to convey scale and the conditions attached, not to predict.
           </p>
           <p className="mb-3 max-w-[72ch]">
-            <b>On free cash.</b>{" "}The {fmtM(FREE_CASH * 1e6)} is Beverly&apos;s FY2026 certified free cash, the most recent figure, from the
+            <b>On free cash.</b>{" "}The {fmtM(FREE_CASH * 1e6)}{" "}is Beverly&apos;s FY2026 certified free cash, the most recent figure, from the
             city&apos;s FY2026-2030 financial forecast. New-growth history is the state Division of Local Services 11-year series;
             FY2027&apos;s {fmtM(DEV.actual)} is from the budget book.
           </p>
           <p className="mb-3 max-w-[72ch]">
             <b>The gap grows.</b>{" "}Toward ${TRAJ[0].toFixed(1)}M in FY2028, then ${TRAJ[1].toFixed(1)}M, then ${TRAJ[2].toFixed(1)}M if
-            nothing structural changes, so balancing it once doesn&apos;t make it go away. For what a decade of these choices says about the
-            town, see <Link href="/work/beverly/who-beverly-is" className="rlink">who Beverly is</Link>.
+            nothing structural changes, so balancing it once doesn&apos;t make it go away. What a decade of these choices says about the
+            town is the subject of a companion piece, coming soon.
+          </p>
+          <p className="mb-3 max-w-[72ch]">
+            <b>On the department budgets.</b>{" "}In lever 5, the school figure is the FY2027 appropriation. Police, fire, and public works
+            are their FY2026 budgets, because the city does not publish a departmental breakdown at that level for FY2027. They are shown
+            to convey relative scale, not as FY2027 figures.
           </p>
         </footer>
       </div>
@@ -455,7 +465,7 @@ export default function BudgetChallenge() {
             <div className="h-full rounded-full transition-[width] duration-150" style={{ width: `${ratio}%`, background: short ? "var(--color-debt)" : "var(--color-accent-lt)" }} />
           </div>
           <div className="hidden whitespace-nowrap text-[0.75rem] text-white/80 sm:block">
-            {!short && freeCash > 25000 ? `${fmtC(freeCash)} free cash · ` : ""}{jobs} {jobs === 1 ? "job" : "jobs"} cut
+            {!short && freeCash > 25000 ? `${fmtC(freeCash)} free cash · ` : ""}{Math.round(jobs)} {Math.round(jobs) === 1 ? "job" : "jobs"} cut
           </div>
         </div>
       </div>

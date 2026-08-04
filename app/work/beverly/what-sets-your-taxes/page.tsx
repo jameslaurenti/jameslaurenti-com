@@ -506,10 +506,10 @@ export default function WhatSetsYourTaxes() {
           <ul className="mt-3 max-w-[72ch] list-disc space-y-1.5 pl-5 text-[0.84375rem] leading-relaxed text-ink-mid">
             <li>
               Massachusetts Division of Local Services,{" "}
-              <A href="https://www.mass.gov/lists/proposition-2-12-information-and-resources" ext>
-                Proposition 2½ information and resources
+              <A href="https://www.mass.gov/info-details/proposition-2-12-and-tax-rate-process" ext>
+                Proposition 2½ and the tax rate process
               </A>{" "}
-              (levy primer, new-growth guidance, override and debt-exclusion ballot-question data).
+              (the levy limit, the levy ceiling, new growth, and how overrides differ from debt exclusions).
             </li>
             <li>
               DLS Municipal Databank: Schedule A revenues, Community Comparison Report, equalized-valuation and income trend reports,

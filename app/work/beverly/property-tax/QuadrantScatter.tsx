@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { useChartScale } from "@/lib/beverly/useChartScale";
 import {
   type TaxData,
   type Town,
@@ -50,6 +51,8 @@ function townXY(town: Town, fy: number): Pt | null {
 
 export default function QuadrantScatter({ data, year, view, selected, reducedMotion }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
+  // Keeps SVG labels at a readable on-screen size when the chart is scaled down.
+  const { fs } = useChartScale(svgRef, W);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const [tip, setTip] = useState<{ left: number; top: number } | null>(null);
@@ -132,7 +135,7 @@ export default function QuadrantScatter({ data, year, view, selected, reducedMot
         {X_TICKS.map((t) => (
           <g key={`x${t}`}>
             <line x1={px(normEff(t))} x2={px(normEff(t))} y1={PY0} y2={PY1} stroke="var(--color-rule)" strokeWidth={0.5} />
-            <text x={px(normEff(t))} y={PY1 + 12} textAnchor="middle" fontSize={8} fill="var(--color-ink-faint)">
+            <text x={px(normEff(t))} y={PY1 + 12} textAnchor="middle" fontSize={fs(8)} fill="var(--color-ink-faint)">
               {(t * 100).toFixed(1)}%
             </text>
           </g>
@@ -140,21 +143,21 @@ export default function QuadrantScatter({ data, year, view, selected, reducedMot
         {Y_TICKS.map((t) => (
           <g key={`y${t}`}>
             <line x1={PX0} x2={PX1} y1={py(normBurden(t))} y2={py(normBurden(t))} stroke="var(--color-rule)" strokeWidth={0.5} />
-            <text x={PX0 - 5} y={py(normBurden(t)) + 3} textAnchor="end" fontSize={8} fill="var(--color-ink-faint)">
+            <text x={PX0 - 5} y={py(normBurden(t)) + 3} textAnchor="end" fontSize={fs(8)} fill="var(--color-ink-faint)">
               {(t * 100).toFixed(0)}%
             </text>
           </g>
         ))}
 
         {/* axis titles */}
-        <text x={(PX0 + PX1) / 2} y={H - 4} textAnchor="middle" fontSize={9} fill="var(--color-ink-mid)">
+        <text x={(PX0 + PX1) / 2} y={H - 4} textAnchor="middle" fontSize={fs(9)} fill="var(--color-ink-mid)">
           Effective tax rate  (bill ÷ value)
         </text>
         <text
           x={12}
           y={(PY0 + PY1) / 2}
           textAnchor="middle"
-          fontSize={9}
+          fontSize={fs(9)}
           fill="var(--color-ink-mid)"
           transform={`rotate(-90 12 ${(PY0 + PY1) / 2})`}
         >
@@ -170,7 +173,7 @@ export default function QuadrantScatter({ data, year, view, selected, reducedMot
         )}
 
         {/* corner labels (neutral) */}
-        <g fill="var(--color-ink-faint)" fontSize={7} opacity={0.85}>
+        <g fill="var(--color-ink-faint)" fontSize={fs(7)} opacity={0.85}>
           <text x={PX1 - 3} y={PY0 + 10} textAnchor="end">higher rate · higher burden</text>
           <text x={PX0 + 3} y={PY0 + 10} textAnchor="start">lower rate · higher burden</text>
           <text x={PX1 - 3} y={PY1 - 4} textAnchor="end">higher rate · lower burden</text>

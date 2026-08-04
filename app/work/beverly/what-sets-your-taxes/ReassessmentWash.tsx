@@ -53,6 +53,7 @@ const BASE = (100 / SPAN) * 100;
 
 export default function ReassessmentWash() {
   const raf = useRef<number | null>(null);
+  const settle = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [t, setT] = useState(0);
   const [played, setPlayed] = useState(false);
   const [reduced, setReduced] = useState(false);
@@ -61,11 +62,13 @@ export default function ReassessmentWash() {
     setReduced(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
     return () => {
       if (raf.current) cancelAnimationFrame(raf.current);
+      if (settle.current) clearTimeout(settle.current);
     };
   }, []);
 
   const run = () => {
     if (raf.current) cancelAnimationFrame(raf.current);
+    if (settle.current) clearTimeout(settle.current);
     const t0 = performance.now();
     const step = (now: number) => {
       const p = Math.min(1, (now - t0) / DURATION);
@@ -73,6 +76,13 @@ export default function ReassessmentWash() {
       if (p < 1) raf.current = requestAnimationFrame(step);
     };
     raf.current = requestAnimationFrame(step);
+    // Browsers freeze requestAnimationFrame in a hidden tab. Without this the reader could
+    // press play, switch away, and come back to a panel captioned "after" still showing the
+    // before numbers. Timers keep running, so land on the end state regardless.
+    settle.current = setTimeout(() => {
+      if (raf.current) cancelAnimationFrame(raf.current);
+      setT(1);
+    }, DURATION + 120);
   };
 
   const trigger = () => {

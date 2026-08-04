@@ -1,11 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useChartScale } from "@/lib/beverly/useChartScale";
 
 type Town = { n: string; v: number; r: number; d: number; role: "cohort" | "other"; lab: string | null };
 
 const W = 720, H = 430, M = { l: 62, r: 18, t: 16, b: 46 };
-const PX0 = M.l, PX1 = W - M.r, PY0 = M.t, PY1 = H - M.b;
+const PX1 = W - M.r, PY0 = M.t;
 
 const kfmt = (v: number) => (v >= 1e6 ? `${(v / 1e6).toFixed(v >= 1e7 ? 0 : 1)}M` : v >= 1e3 ? `${Math.round(v / 1e3)}k` : `${Math.round(v)}`);
 
@@ -30,7 +31,16 @@ export default function RateScatter() {
   const [mode, setMode] = useState<"rate" | "dollars">("rate");
   const [hover, setHover] = useState<{ t: Town; left: number; top: number } | null>(null);
   const svgRef = useRef<SVGSVGElement>(null);
+  // Keeps SVG labels at a readable on-screen size when the chart is scaled down.
+  const { u, fs } = useChartScale(svgRef, W);
+  // Scaled-up tick labels need a wider gutter, or they run into the rotated axis title
+  // and off the left edge of the chart.
+  const PX0 = M.l + (u > 1 ? 34 : 0);
+  // Same reason on the bottom edge: bigger tick labels need room above the axis title.
+  const PY1 = H - M.b - (u > 1 ? 16 : 0);
+  const axisTitleX = u > 1 ? 30 : 14;
   const wrapRef = useRef<HTMLDivElement>(null);
+
 
   useEffect(() => {
     fetch("/data/ma-rate-scatter.json")
@@ -64,11 +74,30 @@ export default function RateScatter() {
       yTicks: niceTicks(0, ymax, 5),
       trend: { x1: X(tx0), y1: Y(Math.max(slope * Math.log10(tx0) + icpt, 0)), x2: X(tx1), y2: Y(Math.max(slope * Math.log10(tx1) + icpt, 0)) },
     };
-  }, [towns, mode]);
+  }, [towns, mode, PX0, PY1]);
 
   if (!towns || !geom) return <div className="h-[300px] animate-pulse rounded-md border border-rule bg-bg-card" aria-hidden />;
   const { X, Y, acc, xTicks, yTicks, trend } = geom;
   const yFmt = mode === "rate" ? (v: number) => `${v.toFixed(1)}%` : (v: number) => `$${kfmt(v)}`;
+
+  // Town labels sit next to their dot, but a few of the towns worth naming land close
+  // together, and the labels collide once they scale up on a phone. Walk them in order and
+  // push any that are still touching the previous one far enough down to clear it.
+  const lineH = fs(11) * 1.15;
+  const labelled = towns
+    .filter((t) => t.lab)
+    .map((t) => {
+      const x = X(t.v), dotY = Y(acc(t));
+      // Flip the label to the left of its dot near the right edge. The threshold scales with
+      // the text, or a wider label on a phone still runs off the chart.
+      const flipAt = PX1 - (t.lab ?? "").length * fs(6.2) - 12;
+      return { t, x, dotY, left: x > flipAt, y: dotY - 8 < PY0 + 4 ? dotY + 15 : dotY - 7 };
+    })
+    .sort((a, b) => a.y - b.y)
+    .map((l, i, arr) => {
+      if (i > 0 && l.y - arr[i - 1].y < lineH) l.y = arr[i - 1].y + lineH;
+      return l;
+    });
 
   function onMove(e: React.PointerEvent) {
     const svg = svgRef.current, wrap = wrapRef.current;
@@ -115,17 +144,17 @@ export default function RateScatter() {
           {yTicks.map((t) => (
             <g key={`y${t}`}>
               <line x1={PX0} x2={PX1} y1={Y(t)} y2={Y(t)} stroke="var(--color-rule)" strokeWidth={0.5} />
-              <text x={PX0 - 6} y={Y(t) + 3.5} textAnchor="end" fontSize={10} fill="var(--color-ink-faint)">{yFmt(t)}</text>
+              <text x={PX0 - 6} y={Y(t) + 3.5} textAnchor="end" fontSize={fs(10)} fill="var(--color-ink-faint)">{yFmt(t)}</text>
             </g>
           ))}
           {xTicks.map((t) => (
             <g key={`x${t}`}>
               <line x1={X(t)} x2={X(t)} y1={PY0} y2={PY1} stroke="var(--color-rule)" strokeWidth={0.5} />
-              <text x={X(t)} y={PY1 + 16} textAnchor="middle" fontSize={10} fill="var(--color-ink-faint)">${kfmt(t)}</text>
+              <text x={X(t)} y={PY1 + 16} textAnchor="middle" fontSize={fs(10)} fill="var(--color-ink-faint)">${kfmt(t)}</text>
             </g>
           ))}
-          <text x={(PX0 + PX1) / 2} y={H - 6} textAnchor="middle" fontSize={11} fill="var(--color-ink-mid)">Property value per resident</text>
-          <text x={14} y={(PY0 + PY1) / 2} textAnchor="middle" fontSize={11} fill="var(--color-ink-mid)" transform={`rotate(-90 14 ${(PY0 + PY1) / 2})`}>
+          <text x={(PX0 + PX1) / 2} y={H - 6} textAnchor="middle" fontSize={fs(11)} fill="var(--color-ink-mid)">Property value per resident</text>
+          <text x={axisTitleX} y={(PY0 + PY1) / 2} textAnchor="middle" fontSize={fs(11)} fill="var(--color-ink-mid)" transform={`rotate(-90 ${axisTitleX} ${(PY0 + PY1) / 2})`}>
             {mode === "rate" ? "Effective tax rate" : "Tax dollars per resident"}
           </text>
           <line x1={trend.x1} y1={trend.y1} x2={trend.x2} y2={trend.y2} stroke="var(--color-debt)" strokeWidth={2.5} strokeLinecap="round" opacity={0.9} />
@@ -135,15 +164,14 @@ export default function RateScatter() {
               <circle key={t.n} cx={X(t.v)} cy={Y(acc(t))} r={isC ? 5 : 3.3} fill={isC ? "var(--color-accent)" : "var(--color-ink-faint)"} fillOpacity={isC ? 1 : 0.5} stroke="var(--color-bg)" strokeWidth={0.5} />
             );
           })}
-          {towns.filter((t) => t.lab).map((t) => {
-            const x = X(t.v), y = Y(acc(t)), left = x > PX1 - 90;
+          {labelled.map(({ t, x, y, left }) => {
             return (
               <text
                 key={`l${t.n}`}
                 x={left ? x - 8 : x + 8}
-                y={y - 8 < PY0 + 4 ? y + 15 : y - 7}
+                y={y}
                 textAnchor={left ? "end" : "start"}
-                fontSize={t.role === "cohort" ? 11 : 10}
+                fontSize={fs(t.role === "cohort" ? 11 : 10)}
                 fontWeight={t.role === "cohort" ? 700 : 400}
                 fill={t.role === "cohort" ? "var(--color-ink)" : "var(--color-ink-mid)"}
                 style={{ paintOrder: "stroke", stroke: "var(--color-bg)", strokeWidth: 3 }}

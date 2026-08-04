@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useRef, useState } from "react";
+import { useChartScale } from "@/lib/beverly/useChartScale";
 import {
   type TaxData,
   type Town,
@@ -40,6 +41,10 @@ export default function PeerCohort({
   color: string;
 }) {
   const [basis, setBasis] = useState<Basis>("value");
+  // Keeps SVG labels at a readable on-screen size when the strip is scaled down.
+  // 340 is the burden strip's viewBox width, declared as W further down.
+  const svgRef = useRef<SVGSVGElement>(null);
+  const { fs } = useChartScale(svgRef, 340);
   const focus = metrics(town, year);
 
   const cohort = useMemo(() => {
@@ -153,19 +158,19 @@ export default function PeerCohort({
         <span className="text-[0.75rem] font-semibold text-ink">Tax burden</span>
         <span className="text-[0.6875rem] text-ink-faint">average bill as a share of median household income</span>
       </div>
-      <svg viewBox={`0 0 ${W} ${H}`} className="w-full" role="img"
+      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} className="w-full" role="img"
         aria-label={`${town.name}'s tax burden is ${fmtPct(focus.burden, 1)}, versus a peer median of ${fmtPct(med.burden, 1)}.`}>
         <line x1={PL} x2={PR} y1={cy} y2={cy} stroke="var(--color-rule)" />
         {/* peer median tick */}
         <line x1={x(med.burden)} x2={x(med.burden)} y1={cy - 8} y2={cy + 8} stroke="var(--color-ink-faint)" strokeDasharray="2 2" />
-        <text x={x(med.burden)} y={cy + 20} textAnchor="middle" fontSize={7.5} fill="var(--color-ink-faint)">
+        <text x={x(med.burden)} y={cy + 20} textAnchor="middle" fontSize={fs(7.5)} fill="var(--color-ink-faint)">
           peer median {fmtPct(med.burden, 1)}
         </text>
         {cohort.map((c) => (
           <circle key={c.t.name} cx={x(c.m.burden)} cy={cy} r={3} fill="var(--color-ink)" opacity={0.18} />
         ))}
         <circle cx={x(focus.burden)} cy={cy} r={5} fill={color} stroke="var(--color-bg)" strokeWidth={1.5} />
-        <text x={x(focus.burden)} y={cy - 10} textAnchor="middle" fontSize={8} fontWeight={600} fill="var(--color-ink)">
+        <text x={x(focus.burden)} y={cy - 10} textAnchor="middle" fontSize={fs(8)} fontWeight={600} fill="var(--color-ink)">
           {town.name} {fmtPct(focus.burden, 1)}
         </text>
       </svg>

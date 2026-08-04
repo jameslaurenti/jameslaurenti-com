@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useRef, useState } from "react";
+import { useChartScale } from "@/lib/beverly/useChartScale";
 import { type ShapeLabel, SHAPE_COLORS, SHAPE_DISPLAY } from "@/lib/beverly/taxData";
 
 export type ScatterPoint = {
@@ -14,7 +15,6 @@ export type ScatterPoint = {
 const W = 360;
 const H = 344;
 const M = { top: 16, right: 14, bottom: 40, left: 48 };
-const PX0 = M.left;
 const PX1 = W - M.right;
 const PY0 = M.top;
 const PY1 = H - M.bottom;
@@ -72,6 +72,10 @@ export default function ShapeScatter({
   reducedMotion,
 }: Props) {
   const svgRef = useRef<SVGSVGElement>(null);
+  // Keeps SVG labels at a readable on-screen size when the chart is scaled down.
+  const { u, fs } = useChartScale(svgRef, W);
+  // Scaled-up tick labels need a wider gutter, or they walk into the rotated axis title.
+  const PX0 = M.left + (u > 1 ? 12 : 0);
   const wrapRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState<string | null>(null);
   const [tip, setTip] = useState<{ left: number; top: number } | null>(null);
@@ -106,15 +110,18 @@ export default function ShapeScatter({
         : (v: number) => rng[0] + (v - dom[0]) / (dom[1] - dom[0]) * (rng[1] - rng[0]);
     const X = mk(xScale, xd, [PX0, PX1]);
     const Y = mk(yScale, yd, [PY1, PY0]);
-    const xTicks = xScale === "log" ? logTicks(xd[0], xd[1]) : niceTicks(xd[0], xd[1], 5);
-    const yTicks = yScale === "log" ? logTicks(yd[0], yd[1]) : niceTicks(yd[0], yd[1], 5);
+    // Labels scale up on narrow screens, so half as many ticks fit. Keeping every other one
+    // from index 0 preserves the zero line, which the drift diagonal is read against.
+    const thin = (t: number[]) => (PX0 > M.left && t.length > 5 ? t.filter((_, i) => i % 2 === 0) : t);
+    const xTicks = thin(xScale === "log" ? logTicks(xd[0], xd[1]) : niceTicks(xd[0], xd[1], 5));
+    const yTicks = thin(yScale === "log" ? logTicks(yd[0], yd[1]) : niceTicks(yd[0], yd[1], 5));
     let diag: { x1: number; y1: number; x2: number; y2: number } | null = null;
     if (diagonal) {
       const v0 = Math.max(xd[0], yd[0]), v1 = Math.min(xd[1], yd[1]);
       diag = { x1: X(v0), y1: Y(v0), x2: X(v1), y2: Y(v1) };
     }
     return { X, Y, xTicks, yTicks, diag };
-  }, [points, xScale, yScale, diagonal]);
+  }, [points, xScale, yScale, diagonal, PX0]);
 
   const dotTransition = reducedMotion ? "none" : "transform 0.5s cubic-bezier(0.4,0,0.2,1)";
   const selSet = new Set(selected);
@@ -164,7 +171,7 @@ export default function ShapeScatter({
         {yTicks.map((t) => (
           <g key={`y${t}`}>
             <line x1={PX0} x2={PX1} y1={Y(t)} y2={Y(t)} stroke="var(--color-rule)" strokeWidth={0.5} />
-            <text x={PX0 - 5} y={Y(t) + 3} textAnchor="end" fontSize={8} fill="var(--color-ink-faint)">
+            <text x={PX0 - 5} y={Y(t) + 3} textAnchor="end" fontSize={fs(8)} fill="var(--color-ink-faint)">
               {yFmt(t)}
             </text>
           </g>
@@ -172,20 +179,20 @@ export default function ShapeScatter({
         {xTicks.map((t) => (
           <g key={`x${t}`}>
             <line x1={X(t)} x2={X(t)} y1={PY0} y2={PY1} stroke="var(--color-rule)" strokeWidth={0.5} />
-            <text x={X(t)} y={PY1 + 12} textAnchor="middle" fontSize={8} fill="var(--color-ink-faint)">
+            <text x={X(t)} y={PY1 + 12} textAnchor="middle" fontSize={fs(8)} fill="var(--color-ink-faint)">
               {xFmt(t)}
             </text>
           </g>
         ))}
 
-        <text x={(PX0 + PX1) / 2} y={H - 4} textAnchor="middle" fontSize={9} fill="var(--color-ink-mid)">
+        <text x={(PX0 + PX1) / 2} y={H - 4} textAnchor="middle" fontSize={fs(9)} fill="var(--color-ink-mid)">
           {xLabel}
         </text>
         <text
           x={13}
           y={(PY0 + PY1) / 2}
           textAnchor="middle"
-          fontSize={9}
+          fontSize={fs(9)}
           fill="var(--color-ink-mid)"
           transform={`rotate(-90 13 ${(PY0 + PY1) / 2})`}
         >
@@ -195,10 +202,10 @@ export default function ShapeScatter({
         {diag && (
           <>
             <line x1={diag.x1} y1={diag.y1} x2={diag.x2} y2={diag.y2} stroke="var(--color-ink-faint)" strokeWidth={1.25} strokeDasharray="5 4" opacity={0.7} />
-            <text x={PX0 + 6} y={PY0 + 11} fontSize={7.5} fontStyle="italic" fill="var(--color-ink-faint)">
+            <text x={PX0 + 6} y={PY0 + 11} fontSize={fs(7.5)} fontStyle="italic" fill="var(--color-ink-faint)">
               values outran incomes
             </text>
-            <text x={PX1 - 4} y={PY1 - 6} textAnchor="end" fontSize={7.5} fontStyle="italic" fill="var(--color-ink-faint)">
+            <text x={PX1 - 4} y={PY1 - 6} textAnchor="end" fontSize={fs(7.5)} fontStyle="italic" fill="var(--color-ink-faint)">
               incomes kept pace
             </text>
           </>

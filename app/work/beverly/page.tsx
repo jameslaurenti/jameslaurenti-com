@@ -13,7 +13,7 @@ type Piece = {
   title: string;
   blurb: string;
   href?: string; // omitted while a piece is in progress
-  status?: "beta" | "soon" | "next";
+  status?: "beta" | "soon" | "later";
   meta?: string;
   alongside?: ToolLink[]; // tools/color that sit with this part of the story
 };
@@ -53,7 +53,7 @@ const groups: Group[] = [
         title: "The options",
         blurb:
           "What Beverly could do about the bigger gaps ahead, and what each choice costs. It follows the city's Deficit Reduction Committee as it weighs the real options, and the FY2028 shortfall nearly doubles this year's.",
-        status: "next",
+        status: "later",
       },
     ],
   },
@@ -65,7 +65,7 @@ const groups: Group[] = [
         title: "Who Beverly is",
         blurb:
           "A decade of budget choices, measured against six North Shore neighbors, and what they reveal about the town. The scorecard behind the options ahead.",
-        href: "/work/beverly/who-beverly-is",
+        status: "soon",
       },
       {
         title: "What sets your property taxes, and what doesn't",
@@ -101,12 +101,13 @@ const groups: Group[] = [
   },
 ];
 
-function StatusChip({ status }: { status: "beta" | "soon" | "next" }) {
-  const label = status === "beta" ? "Beta" : status === "next" ? "Next" : "In progress";
-  const isNext = status === "next";
+function StatusChip({ status }: { status: "beta" | "soon" | "later" }) {
+  const label = status === "beta" ? "Beta" : status === "soon" ? "Coming soon" : "Coming later";
+  // "Coming soon" is the near-term promise, so it carries the accent. "Coming later" stays quiet.
+  const isSoon = status === "soon";
   return (
     <span
-      className={`shrink-0 rounded-full uppercase ${isNext ? "border border-accent text-accent font-semibold" : "border border-ink-faint/40 text-ink-faint"}`}
+      className={`shrink-0 rounded-full uppercase ${isSoon ? "border border-accent text-accent font-semibold" : "border border-ink-faint/40 text-ink-faint"}`}
       style={{ fontSize: "0.6rem", padding: "0.12rem 0.5rem", letterSpacing: "0.1em" }}
     >
       {label}
@@ -226,7 +227,7 @@ export default function BeverlyCollection() {
                                 <Link href={t.href} className="rlink">
                                   {t.label}
                                 </Link>
-                                {t.why && <span className="text-ink-faint"> — {t.why}</span>}
+                                {t.why && <span className="text-ink-faint"> · {t.why}</span>}
                               </li>
                             ))}
                           </ul>
