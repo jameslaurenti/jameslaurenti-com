@@ -79,11 +79,11 @@ const NOTES: React.ReactNode[] = [
   <>Same source, function-by-function rankings, fiscal 2016 through 2025. <em>Confirmed.</em></>,
   <>Massachusetts DLS, Proposition 2½ override and debt-exclusion ballot-question results, retrieved 2026. Beverly appears in neither dataset: it has never held an operating-override or debt-exclusion vote. Among the cohort, only Marblehead and Swampscott have passed operating overrides (Marblehead&apos;s include a $15 million general override in June 2026, for schools, police, and libraries). Salem, Peabody, and Danvers have also never passed one. <em>Confirmed.</em></>,
   <>WBUR, GBH, and CBS Boston, November 2024. The Beverly Teachers Association struck beginning November 8, 2024, seeking smaller class sizes in the roughly 4,500-student district, twelve weeks of paid parental leave, and higher pay for paraprofessionals. A tentative agreement ended the strike in late November. <em>Confirmed.</em></>,
-  <>Massachusetts Department of Elementary and Secondary Education, in-district expenditures per pupil, fiscal 2024. <em>Confirmed.</em></>,
-  <>DESE, Chapter 70 district profiles, fiscal 2024. <em>Confirmed.</em></>,
-  <>DESE, Chapter 70 trends in aid and local contribution (equalized valuation, aggregate resident income, and low-income share, fiscal 2026), per capita on 2020 Census population. The 82.5 percent target local share is the statutory cap in the Chapter 70 formula. <em>Confirmed.</em></>,
+  <>Massachusetts Department of Elementary and Secondary Education, in-district expenditures per pupil, and the statewide percentile from the same series: 7th in fiscal 2020, 14th in fiscal 2022, 21st in fiscal 2024. Fiscal 2024 is the most recent year DESE has published for this measure; its Per Pupil Expenditure report has not released fiscal 2025. <em>Confirmed.</em></>,
+  <>DESE, Chapter 70 district profiles, fiscal 2025, the most recent year published. Local dollars per pupil is actual net school spending less Chapter 70 aid, over foundation enrollment: Marblehead $19,263, Gloucester $18,123, Swampscott $16,344, Danvers $16,270, Beverly $15,310, Salem $14,561, Peabody $11,219. <em>Confirmed.</em></>,
+  <>DESE, Chapter 70 district profiles, fiscal 2025. Money added above required net school spending, per pupil: Marblehead $8,767, Danvers $5,843, Gloucester $5,830, Swampscott $5,756, Beverly $4,301, Salem $3,943, Peabody $1,479. As a share of what the state requires, Beverly spends 129.9 percent against Danvers 143.9, Swampscott 143.6, Gloucester 136.2 and Marblehead 167.1; only Salem (122.5) and Peabody (109.3) are lower. Ability-to-pay inputs are equalized valuation, aggregate resident income and low-income share; the 82.5 percent target local share is the statutory cap in the formula. <em>Confirmed.</em></>,
   <>Class size and teacher pay, fiscal 2024. Students per teacher: Beverly 12.0 (Marblehead 10.6, Salem 10.7, Gloucester 10.9, Swampscott 11.0, Danvers 12.2, Peabody 12.3); Beverly&apos;s ratio has fallen from 14.6 in 2015, so the gap is narrowing. Average teacher salary: Beverly $87,991, sixth of seven (Danvers $97,514 highest, Gloucester $86,417 lowest). <em>Confirmed.</em></>,
-  <>Education spending, Schedule A: $76.1 million (fiscal 2024) to $82.3 million (fiscal 2025), up 8.2 percent; further increases of about 9 percent (fiscal 2026) and 5.28 percent (fiscal 2027) are budgeted, not yet actual. Statewide percentile: 7th in fiscal 2020, 21st in fiscal 2024. <em>Confirmed on the fiscal 2025 actual and the percentiles; later years budgeted.</em></>,
+  <>DESE Chapter 70, fiscal 2024 to fiscal 2025: Beverly&apos;s local dollars per pupil rose from $13,912 to $15,310, up 10.1 percent, against Marblehead 6.8, Gloucester 5.3, Danvers 4.5, Swampscott 3.9, Salem 2.9 and Peabody 2.7. That moved Beverly from sixth of seven to fifth and cut the Danvers gap from 12.0 to 6.3 percent. Separately, Schedule A education spending ran $76.1 million (fiscal 2024) to $82.3 million (fiscal 2025), up 8.2 percent, with further increases of about 9 percent (fiscal 2026) and 5.28 percent (fiscal 2027) budgeted, not yet actual. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, stabilization fund trend, fiscal 2013 through 2022; that series ends at fiscal 2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: fiscal 2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, certified free cash, fiscal 2014 through 2024. Cohort cushion is certified free cash (fiscal 2026) plus total stabilization (fiscal 2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, local receipt estimate versus actual, fiscal 2018 through 2024, excluding investment income. Beverly&apos;s range is +21.1 percent (fiscal 2020) to +50.7 percent (fiscal 2021). <em>Confirmed.</em></>,
@@ -271,10 +271,11 @@ export default function WhoBeverlyIs() {
             <P>
               By the crude number the state reports for general accounting, Beverly&apos;s school spending looks ordinary. But that number
               is measured per resident, not per student, which makes it a poor guide to what reaches a classroom. The measure built for
-              that is in-district spending per pupil, and on it Beverly spent $18,595 in fiscal 2024, last of the seven and the 21st
-              percentile statewide, less per pupil than roughly four out of five districts in Massachusetts.{fn(7)} Count every dollar,
-              including the tuition it pays to place some students in programs outside the district, and Beverly is still last per pupil.
-              It is last however you count it.
+              that is in-district spending per pupil, and the place to start is where Beverly sat before the strike: the 7th percentile
+              statewide in fiscal 2020, meaning it spent less per pupil than ninety-three districts out of every hundred. By fiscal 2024
+              it had reached $18,595, still last of the seven and still only the 21st percentile.{fn(7)} Count every dollar, including the
+              tuition it pays to place some students in programs outside the district, and Beverly is still last per pupil. It is last
+              however you count it.
             </P>
             <P>
               The obvious objection is that this is not a fair fight, that some of these towns just collect more from the state. So look
@@ -287,19 +288,20 @@ export default function WhoBeverlyIs() {
             <SchoolFundingStack />
 
             <P>
-              The objection is right about Salem. The state measures Salem&apos;s students as needier, so its foundation budget is larger
-              and its aid is more than double Beverly&apos;s per pupil.{fn(8)} But read the green segment, the money each town adds above
-              what it is required to spend. Beverly&apos;s $3,506 per pupil is second from the bottom, ahead of only Peabody. And Beverly
-              is not a shortchanged, low-aid town: the state already expects it, like four of its neighbors, to cover the largest local
-              share the formula allows, 82.5 percent of the foundation budget. Beverly is expected to pay near the top and chooses to add
-              near the bottom.{fn(9)}
+              Start with the town the objection cannot explain. Danvers matches Beverly on both measures the state uses to gauge what a
+              community can afford, property wealth and income, each within about ten percent. It has slightly less student need, takes
+              slightly less state aid, and has never passed an override either. It still puts in $16,270 of local money per pupil to
+              Beverly&apos;s $15,310. Gloucester sharpens the point from the other side: its residents earn 16 percent less than
+              Beverly&apos;s, and its schools serve nearly twice the share of low-income students, yet it funds its classrooms about a
+              fifth more richly anyway, $18,123 per pupil.{fn(8)}
             </P>
             <P>
-              The cleanest single comparison is Danvers, the one town that matches Beverly on both measures the state uses to gauge what a
-              community can afford, property wealth and income, each within about ten percent. Danvers has slightly less student need and
-              takes slightly less state aid, and it still puts in $15,574 of local money per pupil to Beverly&apos;s $13,912. Gloucester
-              sharpens the point from the other side: its residents earn 16 percent less than Beverly&apos;s, and its schools serve nearly
-              twice the share of low-income students, yet it funds its classrooms about a quarter more richly anyway, $17,209 per pupil.
+              For Salem and Peabody the objection has more to it. The state measures their students as needier, so their foundation
+              budgets are larger and their aid runs roughly double Beverly&apos;s per pupil. That is a real difference and it should count.
+              But read the green segment, the money each town adds above what it is required to spend. Beverly&apos;s $4,301 per pupil is
+              third from the bottom, ahead of only the two towns the state is already carrying. And Beverly is not a shortchanged, low-aid
+              town: the state expects it, like four of its neighbors, to cover the largest local share the formula allows, 82.5 percent of
+              the foundation budget. Beverly is expected to pay near the top and chooses to add near the bottom.{fn(9)}
             </P>
             <P>
               The underinvestment shows up in the two things the teachers walked out over. Beverly&apos;s classes run fuller than in the
@@ -308,10 +310,11 @@ export default function WhoBeverlyIs() {
               buys, and in November 2024 they are what emptied the schools for two weeks.
             </P>
             <P>
-              The strike did change the direction. After the 2024 settlement, Beverly&apos;s school spending rose about 8 percent in a
-              single year, and its statewide standing climbed from the 7th percentile in 2020 to the 21st in 2024.{fn(11)} That belongs
-              in the record. But it is a climb from the floor of its cohort and the bottom fifth of the state, its peers are rising too,
-              and one contract does not reverse a decade of position. A city that holds its classrooms at the bottom of the state is
+              The strike did change the direction, and the most recent year shows it. Between fiscal 2024 and fiscal 2025 Beverly raised
+              its local school spending 10.1 percent, the largest increase in the cohort and roughly double the pace of most of its
+              neighbors. It moved from sixth of seven to fifth, passing Salem, and the gap to Danvers narrowed from twelve percent to
+              six.{fn(11)} That belongs in the record. But it is a climb from the floor, its peers are rising too, and one contract does
+              not reverse a decade of position. A city that holds its classrooms at the bottom of the state is
               putting its money somewhere else. That is the next question.
             </P>
           </Reveal>

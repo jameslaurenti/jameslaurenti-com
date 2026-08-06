@@ -100,7 +100,7 @@ export function SchoolFundingStack() {
       title="Who pays for the schools, per pupil"
       note={
         <>
-          Per pupil, fiscal 2024, sorted by the green segment. State aid plus the required local contribution make up the foundation
+          Per pupil, fiscal 2025, sorted by the green segment. State aid plus the required local contribution make up the foundation
           budget the state sets; <b className="text-ink">added on top</b>{" "}is what each town chose to spend beyond it. Beverly&apos;s
           added spending is second from the bottom, ahead of only Peabody, though the state already expects it to cover one of the
           largest local shares in the group. Source: Massachusetts Department of Elementary and Secondary Education, Chapter 70.

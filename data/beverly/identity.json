@@ -1,48 +1,187 @@
 {
-  "_source": "Beverly identity analysis (draft_piece_a.md). Per-capita from DLS Schedule A FY14-24 + 2020 Census; school funding from DESE Chapter 70 FY24; receipts from DLS estimate-vs-actual FY18-24; pension from PERAC funded-ratio list; FY2024 free cash from Beverly City Council AgendaCenter orders.",
+  "_source": "Beverly identity analysis (draft_piece_a.md). Per-capita from DLS Schedule A FY14-24 + 2020 Census; school funding from DESE Chapter 70 FY25 (latest published); in-district per-pupil, class size and teacher salary remain FY24 because DESE's Per Pupil Expenditure report has not released FY25; receipts from DLS estimate-vs-actual FY18-24; pension from PERAC funded-ratio list; FY2024 free cash from Beverly City Council AgendaCenter orders.",
   "functionSpending": [
-    { "fn": "Total spending", "bev": 3152, "med": 3712, "rank": 6 },
-    { "fn": "Public safety", "bev": 380, "med": 454, "rank": 7 },
-    { "fn": "Debt service", "bev": 201, "med": 252, "rank": 6 },
-    { "fn": "General government", "bev": 139, "med": 166, "rank": 5 },
-    { "fn": "Public works", "bev": 121, "med": 246, "rank": 6 },
-    { "fn": "Culture and recreation", "bev": 81, "med": 70, "rank": 2 }
+    {
+      "fn": "Total spending",
+      "bev": 3152,
+      "med": 3712,
+      "rank": 6
+    },
+    {
+      "fn": "Public safety",
+      "bev": 380,
+      "med": 454,
+      "rank": 7
+    },
+    {
+      "fn": "Debt service",
+      "bev": 201,
+      "med": 252,
+      "rank": 6
+    },
+    {
+      "fn": "General government",
+      "bev": 139,
+      "med": 166,
+      "rank": 5
+    },
+    {
+      "fn": "Public works",
+      "bev": 121,
+      "med": 246,
+      "rank": 6
+    },
+    {
+      "fn": "Culture and recreation",
+      "bev": 81,
+      "med": 70,
+      "rank": 2
+    }
   ],
   "schoolFunding": [
-    { "town": "Marblehead", "aid": 2391, "req": 10144, "add": 7888 },
-    { "town": "Danvers", "aid": 2803, "req": 9967, "add": 5607 },
-    { "town": "Gloucester", "aid": 3733, "req": 11767, "add": 5442 },
-    { "town": "Swampscott", "aid": 2527, "req": 10325, "add": 5411 },
-    { "town": "Salem", "aid": 6534, "req": 10109, "add": 4046 },
-    { "town": "Beverly", "aid": 3203, "req": 10406, "add": 3506, "me": true },
-    { "town": "Peabody", "aid": 5934, "req": 9367, "add": 1561 }
+    {
+      "town": "Marblehead",
+      "aid": 2559,
+      "req": 10496,
+      "add": 8767
+    },
+    {
+      "town": "Danvers",
+      "aid": 2879,
+      "req": 10427,
+      "add": 5843
+    },
+    {
+      "town": "Gloucester",
+      "aid": 3822,
+      "req": 12293,
+      "add": 5830
+    },
+    {
+      "town": "Swampscott",
+      "aid": 2620,
+      "req": 10588,
+      "add": 5756
+    },
+    {
+      "town": "Beverly",
+      "aid": 3361,
+      "req": 11009,
+      "add": 4301,
+      "me": true
+    },
+    {
+      "town": "Salem",
+      "aid": 6910,
+      "req": 10617,
+      "add": 3943
+    },
+    {
+      "town": "Peabody",
+      "aid": 6198,
+      "req": 9740,
+      "add": 1479
+    }
   ],
   "receipts": [
-    { "town": "Beverly", "pct": 21.1, "rank": 1, "me": true },
-    { "town": "Marblehead", "pct": 20.7, "rank": 2 },
-    { "town": "Salem", "pct": 11.4, "rank": 3 },
-    { "town": "Gloucester", "pct": 10.4, "rank": 4 },
-    { "town": "Danvers", "pct": 1.7, "rank": 5 },
-    { "town": "Swampscott", "pct": 0.9, "rank": 6 },
-    { "town": "Peabody", "pct": -11.6, "rank": 7 }
+    {
+      "town": "Beverly",
+      "pct": 21.1,
+      "rank": 1,
+      "me": true
+    },
+    {
+      "town": "Marblehead",
+      "pct": 20.7,
+      "rank": 2
+    },
+    {
+      "town": "Salem",
+      "pct": 11.4,
+      "rank": 3
+    },
+    {
+      "town": "Gloucester",
+      "pct": 10.4,
+      "rank": 4
+    },
+    {
+      "town": "Danvers",
+      "pct": 1.7,
+      "rank": 5
+    },
+    {
+      "town": "Swampscott",
+      "pct": 0.9,
+      "rank": 6
+    },
+    {
+      "town": "Peabody",
+      "pct": -11.6,
+      "rank": 7
+    }
   ],
   "pension": [
-    { "town": "Swampscott", "funded": 75.3, "payoff": 2031 },
-    { "town": "Beverly", "funded": 75.3, "payoff": 2032, "me": true },
-    { "town": "Salem", "funded": 73.5, "payoff": 2032 },
-    { "town": "Gloucester", "funded": 60.4, "payoff": 2034 },
-    { "town": "Danvers", "funded": 64.5, "payoff": 2035 },
-    { "town": "Marblehead", "funded": 71.5, "payoff": 2036 },
-    { "town": "Peabody", "funded": 59.5, "payoff": 2036 }
+    {
+      "town": "Swampscott",
+      "funded": 75.3,
+      "payoff": 2031
+    },
+    {
+      "town": "Beverly",
+      "funded": 75.3,
+      "payoff": 2032,
+      "me": true
+    },
+    {
+      "town": "Salem",
+      "funded": 73.5,
+      "payoff": 2032
+    },
+    {
+      "town": "Gloucester",
+      "funded": 60.4,
+      "payoff": 2034
+    },
+    {
+      "town": "Danvers",
+      "funded": 64.5,
+      "payoff": 2035
+    },
+    {
+      "town": "Marblehead",
+      "funded": 71.5,
+      "payoff": 2036
+    },
+    {
+      "town": "Peabody",
+      "funded": 59.5,
+      "payoff": 2036
+    }
   ],
   "reserves": {
     "_note": "Stabilization trend 2013-2022 from the DLS Municipal Databank trend report, which ends at FY2022. FY2025 balances and FY2026 free cash from the DLS Cat-1 reports (Schedule A stabilization; CertifiedFreeCashBudget351), pulled 8/2026. The 2013 and 2022 figures are the general stabilization fund, so latest.general is the like-for-like comparison.",
     "stabilization": {
-      "start": { "year": 2013, "amt": 750000 },
-      "trendEnd": { "year": 2022, "amt": 16900000 },
-      "latest": { "fy": 2025, "general": 21961077, "specialPurpose": 2000903, "total": 23961980 }
+      "start": {
+        "year": 2013,
+        "amt": 750000
+      },
+      "trendEnd": {
+        "year": 2022,
+        "amt": 16900000
+      },
+      "latest": {
+        "fy": 2025,
+        "general": 21961077,
+        "specialPurpose": 2000903,
+        "total": 23961980
+      }
     },
-    "freeCash": { "fy": 2026, "amt": 10496162, "pctBudget": 6.04 },
+    "freeCash": {
+      "fy": 2026,
+      "amt": 10496162,
+      "pctBudget": 6.04
+    },
     "operatingBudget": 173873420,
     "cohortRank": {
       "_basis": "certified free cash (FY2026) plus total stabilization (FY2025), as a share of the prior-year operating budget",
@@ -52,12 +191,40 @@
     }
   },
   "freeCash2024": [
-    { "use": "Roads and sidewalks", "amt": 2.75, "kind": "capital" },
-    { "use": "A downtown parking lot and building, bought outright", "amt": 2.5, "kind": "capital" },
-    { "use": "The general stabilization fund", "amt": 1.14, "kind": "reserve" },
-    { "use": "The debt stabilization fund", "amt": 1.0, "kind": "reserve" },
-    { "use": "The retiree health care trust", "amt": 0.227, "kind": "reserve" },
-    { "use": "A restricted opioid-settlement fund", "amt": 0.107, "kind": "restricted" },
-    { "use": "Recurring services", "amt": 0, "kind": "none" }
+    {
+      "use": "Roads and sidewalks",
+      "amt": 2.75,
+      "kind": "capital"
+    },
+    {
+      "use": "A downtown parking lot and building, bought outright",
+      "amt": 2.5,
+      "kind": "capital"
+    },
+    {
+      "use": "The general stabilization fund",
+      "amt": 1.14,
+      "kind": "reserve"
+    },
+    {
+      "use": "The debt stabilization fund",
+      "amt": 1.0,
+      "kind": "reserve"
+    },
+    {
+      "use": "The retiree health care trust",
+      "amt": 0.227,
+      "kind": "reserve"
+    },
+    {
+      "use": "A restricted opioid-settlement fund",
+      "amt": 0.107,
+      "kind": "restricted"
+    },
+    {
+      "use": "Recurring services",
+      "amt": 0,
+      "kind": "none"
+    }
   ]
 }
