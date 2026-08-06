@@ -105,7 +105,7 @@ function ScissorsChart() {
     " Z";
   const mid = (lo + hi) / 2;
   return (
-    <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Spending rises faster than income, fiscal 2026 to 2030" className="w-full">
+    <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Spending rises faster than income, FY2026 to FY2030" className="w-full">
       <line x1={L} y1={B} x2={R} y2={B} stroke="var(--color-rule)" />
       <line x1={L} y1={T} x2={L} y2={B} stroke="var(--color-rule)" />
       <line x1={L} y1={y(mid)} x2={R} y2={y(mid)} strokeDasharray="2 6" opacity={0.5} stroke="var(--color-rule)" />
@@ -159,7 +159,7 @@ function CostGrowthChart() {
   const path = (vals: number[]) => vals.map((v, i) => `${i ? "L" : "M"}${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
   return (
     <div>
-      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Cumulative cost growth versus revenue, fiscal 2026 to 2030. Health insurance and pensions rise faster than revenue; salaries and debt slower." className="w-full">
+      <svg ref={svgRef} viewBox={`0 0 ${W} ${H}`} role="img" aria-label="Cumulative cost growth versus revenue, FY2026 to FY2030. Health insurance and pensions rise faster than revenue; salaries and debt slower." className="w-full">
         {[0, 7, 14, 21, 28].map((g) => (
           <g key={g}>
             <line x1={L} x2={R} y1={y(g)} y2={y(g)} stroke="var(--color-rule)" strokeWidth={0.5} />
@@ -193,7 +193,7 @@ function CostGrowthChart() {
 function DeficitBars() {
   const max = Math.max(...GAP_YEARS.map((y) => -y.deficit));
   return (
-    <div role="img" aria-label="The yearly shortfall grows from fiscal 2027 to fiscal 2030">
+    <div role="img" aria-label="The yearly shortfall grows from FY2027 to FY2030">
       {GAP_YEARS.map((y, i) => {
         const v = -y.deficit;
         const w = (v / max) * 93;
@@ -684,7 +684,7 @@ export default function BudgetExplainer() {
               <p className="mt-3 border-t border-rule pt-2.5 text-[0.78125rem] italic text-ink-faint">
                 Source: Massachusetts Division of Local Services{" "}
                 <A href="https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=Dashboard.Cat_1_Reports.CertifiedFreeCashBudget351" ext>Municipal Databank</A>:
-                certified free cash (fiscal 2026) plus total stabilization fund balances (fiscal 2025, the most recent reported),
+                certified free cash (FY2026) plus total stabilization fund balances (FY2025, the most recent reported),
                 each measured against the operating budget. Reserves here are the sum of the two.
               </p>
             </ChartCard>

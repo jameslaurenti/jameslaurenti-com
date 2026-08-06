@@ -106,8 +106,8 @@ const NOTES: React.ReactNode[] = [
     home&apos;s growth) ÷ (1 + the town&apos;s growth). <em>Illustrative.</em>
   </>,
   <>
-    Author&apos;s analysis of fiscal 2024 Schedule A General Fund revenues (Massachusetts Division of Local Services Municipal
-    Databank) against fiscal 2024 equalized valuation per capita and 2023 population (DLS Community Comparison Report). Effective rate
+    Author&apos;s analysis of FY2024 Schedule A General Fund revenues (Massachusetts Division of Local Services Municipal
+    Databank) against FY2024 equalized valuation per capita and 2023 population (DLS Community Comparison Report). Effective rate
     = total tax levy ÷ equalized valuation, the state&apos;s estimate of full and fair cash value, which puts every town on the same
     basis despite differences in local assessment practice and split residential and commercial rates. Across the 345 municipalities
     with clean data, the correlation between effective rate and property value per capita is about −0.61 (−0.75 on a log scale);
@@ -115,7 +115,7 @@ const NOTES: React.ReactNode[] = [
   </>,
   <>
     Author&apos;s analysis of Massachusetts Division of Local Services Proposition 2½ levy and valuation data (Excess Levy Capacity
-    report), fiscal 2022 through fiscal 2026, all 351 municipalities. The median town&apos;s total assessed value rose about 41 percent
+    report), FY2022 through FY2026, all 351 municipalities. The median town&apos;s total assessed value rose about 41 percent
     over the four years. A levy limit growing at the statutory 2.5 percent a year rises about 10 percent over the same span, before new
     growth. <em>Confirmed.</em>
   </>,
@@ -319,7 +319,7 @@ export default function WhatSetsYourTaxes() {
             <P>
               The reason is arithmetic, not virtue. A rate is the levy divided by the town&apos;s total property value, so two towns can
               collect identical dollars per resident and the one with pricier homes will post the lower rate, because it is dividing by a
-              bigger number. And that number keeps swelling. Between fiscal 2022 and fiscal 2026, the assessed value of the typical
+              bigger number. And that number keeps swelling. Between FY2022 and FY2026, the assessed value of the typical
               Massachusetts town rose about 41 percent while the capped levy could rise only about 10.<Fn n={4} /> Each revaluation, the
               rate dropped to keep the levy inside the larger value. It was not tracking anyone&apos;s decision about taxes. It was
               chasing the housing market.
