@@ -42,7 +42,7 @@ export function FunctionSpendingChart() {
       title="Spending per resident, by function"
       note={
         <>
-          Averages, fiscal 2014 through 2024, per resident. The bar is Beverly; the marker is the peer median of the seven towns.
+          Averages, FY2014 through FY2024, per resident. The bar is Beverly; the marker is the peer median of the seven towns.
           Beverly sits below the median on every core function and above it only on culture. Rank 1 is the highest spender. Source:
           Massachusetts Division of Local Services, Schedule A.
         </>
@@ -100,7 +100,7 @@ export function SchoolFundingStack() {
       title="Who pays for the schools, per pupil"
       note={
         <>
-          Per pupil, fiscal 2025, sorted by the green segment. State aid plus the required local contribution make up the foundation
+          Per pupil, FY2025, sorted by the green segment. State aid plus the required local contribution make up the foundation
           budget the state sets; <b className="text-ink">added on top</b>{" "}is what each town chose to spend beyond it. Beverly&apos;s
           added spending is second from the bottom, ahead of only Peabody, though the state already expects it to cover one of the
           largest local shares in the group. Source: Massachusetts Department of Elementary and Secondary Education, Chapter 70.
@@ -159,7 +159,7 @@ export function ReceiptsChart() {
       title="How far each town's revenue beats its own forecast"
       note={
         <>
-          Local receipts, actual collections versus the town&apos;s own estimate, fiscal 2018 through 2024, showing each town&apos;s
+          Local receipts, actual collections versus the town&apos;s own estimate, FY2018 through FY2024, showing each town&apos;s
           <em> smallest</em> overshoot in any single year. Even in the year it forecast most accurately, Beverly still collected 21
           percent more than it budgeted, the most conservative floor in the cohort. Source: DLS, local receipt estimate versus actual.
         </>
@@ -256,9 +256,9 @@ export function FreeCashDisposition() {
       title="Where the FY2024 surplus went"
       note={
         <>
-          The seven Beverly City Council orders that appropriated fiscal 2024 certified free cash, about $7.7 million of an $11.4
+          The seven Beverly City Council orders that appropriated FY2024 certified free cash, about $7.7 million of an $11.4
           million pool. Two-thirds went to capital, a third to reserves, and nothing to a recurring service. The remaining $3.6 million
-          was left unspent and recertified as free cash the next year. Source: Beverly City Council orders, fiscal 2024.
+          was left unspent and recertified as free cash the next year. Source: Beverly City Council orders, FY2024.
         </>
       }
     >
@@ -321,7 +321,7 @@ export function StabilizationLeap() {
       <p className="text-[0.90625rem] leading-snug text-ink-mid sm:border-l sm:border-rule sm:pl-6">
         Beverly&apos;s stabilization fund, its rainy-day account, grew{" "}
         <b className="text-ink">every single year</b>{" "}the state&apos;s trend report covers, {STAB.start.year} through{" "}
-        {STAB.trendEnd.year}, and it is higher again by fiscal {STAB.latest.fy}. A {fold}-fold rise. Nothing else in the
+        {STAB.trendEnd.year}, and it is higher again by FY{STAB.latest.fy}. A {fold}-fold rise. Nothing else in the
         budget moved like it.
       </p>
     </div>
