@@ -74,42 +74,42 @@ const A = (props: { href: string; children: React.ReactNode; ext?: boolean }) =>
 
 const NOTES: React.ReactNode[] = [
   <>The idea that a public budget is a government&apos;s real statement of priorities is a staple of public finance; the standard reference is Aaron Wildavsky, <em>The Politics of the Budgetary Process</em> (1964), and the popular phrasing, &quot;a budget is a moral document,&quot; is common in civic debate. <em>Framing, not a data point.</em></>,
-  <>Massachusetts Division of Local Services, Municipal Databank, Schedule A General Fund expenditures by function, fiscal 2014 through 2024, shown per capita on 2020 decennial Census population. <em>Confirmed.</em></>,
-  <>Author&apos;s analysis of fiscal 2024 Schedule A expenditures for all Massachusetts municipalities against 2023 population (DLS Community Comparison Report). Across the 345 municipalities with reported spending, the correlation between population and per-capita total spending is about +0.09, effectively zero. The strong negative relationship inside the seven-town cohort is a composition effect: its two smallest towns, Marblehead and Swampscott, are also its wealthiest and highest-spending. <em>Confirmed and reproducible from the DLS files.</em></>,
-  <>Same source, function-by-function rankings, fiscal 2016 through 2025. <em>Confirmed.</em></>,
-  <>Beverly culture-and-recreation spending, fiscal 2014 through 2025, second or third of seven per resident. The Beverly Arts District on Cabot Street was designated a cultural district by the Massachusetts Cultural Council in 2015; Massachusetts has several dozen such districts. <em>Confirmed.</em></>,
-  <>Massachusetts DLS, Proposition 2½ override and debt-exclusion ballot-question results, retrieved 2026. Beverly appears in neither dataset: it has never held an operating-override or debt-exclusion vote. Among the cohort, only Marblehead and Swampscott have passed operating overrides (Marblehead&apos;s include a $15 million general override in June 2026, for schools, police, and libraries). Salem, Peabody, and Danvers have also never passed one. <em>Confirmed.</em></>,
+  <>Massachusetts Division of Local Services, Municipal Databank, Schedule A General Fund expenditures by function, FY2014 through FY2024, shown per capita on 2020 decennial Census population. <em>Confirmed.</em></>,
+  <>Author&apos;s analysis of FY2024 Schedule A expenditures for all Massachusetts municipalities against 2023 population (DLS Community Comparison Report). Across the 345 municipalities with reported spending, the correlation between population and per-capita total spending is about +0.09, effectively zero. The strong negative relationship inside the seven-town cohort is a composition effect: its two smallest towns, Marblehead and Swampscott, are also its wealthiest and highest-spending. <em>Confirmed and reproducible from the DLS files.</em></>,
+  <>Same source, function-by-function rankings, FY2016 through FY2025. <em>Confirmed.</em></>,
+  <>Beverly culture-and-recreation spending, FY2014 through FY2025, second or third of seven per resident. The Beverly Arts District on Cabot Street was designated a cultural district by the Massachusetts Cultural Council in 2015; Massachusetts has several dozen such districts. <em>Confirmed.</em></>,
+  <>Massachusetts DLS, Proposition 2½ Override/Underride and Debt Exclusion ballot-question results, both re-pulled August 2026. These are two separate datasets and the distinction matters: an override permanently raises the levy limit, a debt exclusion raises it temporarily for one borrowing. DLS records votes from 1990 onward. Overrides held, and passed, across the cohort: Marblehead 8 of 21 (FY1991 to FY2027, the June 2026 ballot carrying both a $15,000,000 general operating override and a $2,298,575 public works override), Swampscott 7 of 13 (FY1991 to FY2006, last passed June 2005), Gloucester 0 of 2 (both 1991). Beverly, Salem, Peabody and Danvers have never held one. Debt exclusions held, and passed: Marblehead 47 of 48, Swampscott 5 of 5, Gloucester 2 of 2, Salem 1 of 1 (FY2027, a new high school). Beverly, Peabody and Danvers have never held one. 318 of the 351 municipalities appear in the debt-exclusion dataset, so Beverly is one of 33 that have never put one on the ballot. <em>Confirmed against both DLS datasets.</em></>,
   <>WBUR, GBH, and CBS Boston, November 2024. The Beverly Teachers Association struck beginning November 8, 2024, seeking smaller class sizes in the roughly 4,500-student district, twelve weeks of paid parental leave, and higher pay for paraprofessionals. A tentative agreement ended the strike in late November. <em>Confirmed.</em></>,
-  <>Massachusetts Department of Elementary and Secondary Education, in-district expenditures per pupil, and the statewide percentile from the same series: 7th in fiscal 2020, 14th in fiscal 2022, 21st in fiscal 2024. Fiscal 2024 is the most recent year DESE has published for this measure; its Per Pupil Expenditure report has not released fiscal 2025. <em>Confirmed.</em></>,
-  <>DESE, Chapter 70 district profiles, fiscal 2025, the most recent year published. Local dollars per pupil is actual net school spending less Chapter 70 aid, over foundation enrollment: Marblehead $19,263, Gloucester $18,123, Swampscott $16,344, Danvers $16,270, Beverly $15,310, Salem $14,561, Peabody $11,219. <em>Confirmed.</em></>,
-  <>DESE, Chapter 70 district profiles, fiscal 2025. Money added above required net school spending, per pupil: Marblehead $8,767, Danvers $5,843, Gloucester $5,830, Swampscott $5,756, Beverly $4,301, Salem $3,943, Peabody $1,479. As a share of what the state requires, Beverly spends 129.9 percent against Danvers 143.9, Swampscott 143.6, Gloucester 136.2 and Marblehead 167.1; only Salem (122.5) and Peabody (109.3) are lower. Ability-to-pay inputs are equalized valuation, aggregate resident income and low-income share; the 82.5 percent target local share is the statutory cap in the formula. <em>Confirmed.</em></>,
-  <>Class size and teacher pay, fiscal 2024. Students per teacher: Beverly 12.0 (Marblehead 10.6, Salem 10.7, Gloucester 10.9, Swampscott 11.0, Danvers 12.2, Peabody 12.3); Beverly&apos;s ratio has fallen from 14.6 in 2015, so the gap is narrowing. Average teacher salary: Beverly $87,991, sixth of seven (Danvers $97,514 highest, Gloucester $86,417 lowest). <em>Confirmed.</em></>,
-  <>DESE Chapter 70, fiscal 2024 to fiscal 2025: Beverly&apos;s local dollars per pupil rose from $13,912 to $15,310, up 10.1 percent, against Marblehead 6.8, Gloucester 5.3, Danvers 4.5, Swampscott 3.9, Salem 2.9 and Peabody 2.7. That moved Beverly from sixth of seven to fifth and cut the Danvers gap from 12.0 to 6.3 percent. Separately, Schedule A education spending ran $76.1 million (fiscal 2024) to $82.3 million (fiscal 2025), up 8.2 percent, with further increases of about 9 percent (fiscal 2026) and 5.28 percent (fiscal 2027) budgeted, not yet actual. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, stabilization fund trend, fiscal 2013 through 2022; that series ends at fiscal 2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: fiscal 2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, certified free cash, fiscal 2014 through 2024. Cohort cushion is certified free cash (fiscal 2026) plus total stabilization (fiscal 2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Beverly&apos;s own reserve policy sets a combined stabilization plus free-cash target of 13 to 23 percent, and free cash alone at 3 to 8 percent. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, local receipt estimate versus actual, fiscal 2018 through 2024, excluding investment income. Beverly&apos;s range is +21.1 percent (fiscal 2020) to +50.7 percent (fiscal 2021). Peabody is the only town in the cohort with a negative floor, at &minus;11.6 percent, meaning it collected less than it budgeted in at least one year. <em>Confirmed.</em></>,
-  <>Beverly other financing uses and transfers, fiscal 2021 through 2024. <em>Confirmed.</em></>,
-  <>Complete audit of Beverly City Council free-cash appropriation orders for fiscal 2024, from the AgendaCenter minutes. Seven approved orders totaling $7,719,626 against a certified pool of about $11.36 million: roads and sidewalks $2.75 million, a downtown parking lot and building $2.5 million, the stabilization fund $1,135,505 and the retiree-health trust $227,101, debt stabilization $1,000,000, and a restricted opioid-settlement fund $107,020. About $3.6 million of the pool was never appropriated and rolled forward. No order funded a recurring operating service. A $2,045,000 free-cash request for the main library&apos;s heating system was disapproved June 3, 2024, and funded from the debt stabilization fund instead. Corroborated by the city&apos;s own fiscal 2026 to 2030 forecast, which lists reserve uses as the City Hall project, roads and sidewalks, stabilization, and the retiree-health trust, and records the Forecast Committee&apos;s suggestion to consider lowering the free-cash target to fund operations, an option not taken. <em>Confirmed against the minutes.</em></>,
+  <>Massachusetts Department of Elementary and Secondary Education, in-district expenditures per pupil, and the statewide percentile from the same series: 7th in FY2020, 14th in FY2022, 21st in FY2024. Fiscal 2024 is the most recent year DESE has published for this measure; its Per Pupil Expenditure report has not released FY2025. <em>Confirmed.</em></>,
+  <>DESE, Chapter 70 district profiles, FY2025, the most recent year published. Local dollars per pupil is actual net school spending less Chapter 70 aid, over foundation enrollment: Marblehead $19,263, Gloucester $18,123, Swampscott $16,344, Danvers $16,270, Beverly $15,310, Salem $14,561, Peabody $11,219. <em>Confirmed.</em></>,
+  <>DESE, Chapter 70 district profiles, FY2025. Money added above required net school spending, per pupil: Marblehead $8,767, Danvers $5,843, Gloucester $5,830, Swampscott $5,756, Beverly $4,301, Salem $3,943, Peabody $1,479. As a share of what the state requires, Beverly spends 129.9 percent against Danvers 143.9, Swampscott 143.6, Gloucester 136.2 and Marblehead 167.1; only Salem (122.5) and Peabody (109.3) are lower. Ability-to-pay inputs are equalized valuation, aggregate resident income and low-income share; the 82.5 percent target local share is the statutory cap in the formula. <em>Confirmed.</em></>,
+  <>Class size and teacher pay, FY2024. Students per teacher: Beverly 12.0 (Marblehead 10.6, Salem 10.7, Gloucester 10.9, Swampscott 11.0, Danvers 12.2, Peabody 12.3); Beverly&apos;s ratio has fallen from 14.6 in 2015, so the gap is narrowing. Average teacher salary: Beverly $87,991, sixth of seven (Danvers $97,514 highest, Gloucester $86,417 lowest). <em>Confirmed.</em></>,
+  <>DESE Chapter 70, FY2024 to FY2025: Beverly&apos;s local dollars per pupil rose from $13,912 to $15,310, up 10.1 percent, against Marblehead 6.8, Gloucester 5.3, Danvers 4.5, Swampscott 3.9, Salem 2.9 and Peabody 2.7. That moved Beverly from sixth of seven to fifth and cut the Danvers gap from 12.0 to 6.3 percent. Separately, Schedule A education spending ran $76.1 million (FY2024) to $82.3 million (FY2025), up 8.2 percent, with further increases of about 9 percent (FY2026) and 5.28 percent (FY2027) budgeted, not yet actual. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, stabilization fund trend, FY2013 through FY2022; that series ends at FY2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: FY2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, certified free cash, FY2014 through FY2024. Cohort cushion is certified free cash (FY2026) plus total stabilization (FY2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Beverly&apos;s own reserve policy sets a combined stabilization plus free-cash target of 13 to 23 percent, free cash alone at 3 to 8 percent, and the stabilization fund at 10 to 15 percent; it also directs that on any positive free-cash certification the mayor shall request an appropriation of no less than 10 percent of it into stabilization within 90 days, and sizes the fund against &quot;three to four years of reduced revenue.&quot; The policy is set out in the city&apos;s FY2019 to FY2023 forecast, so it predates the current deficit rather than being written around it. Certified free cash by year: FY2023 $9.93 million, FY2024 $11.36 million, FY2025 $10.71 million, FY2026 $10.50 million. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, local receipt estimate versus actual, FY2018 through FY2024, excluding investment income. Beverly&apos;s range is +21.1 percent (FY2020) to +50.7 percent (FY2021). Peabody is the only town in the cohort with a negative floor, at &minus;11.6 percent, meaning it collected less than it budgeted in at least one year. <em>Confirmed.</em></>,
+  <>Beverly other financing uses and transfers, FY2021 through FY2024. <em>Confirmed.</em></>,
+  <>Complete audit of Beverly City Council free-cash appropriation orders for FY2024, from the AgendaCenter minutes. Seven approved orders totaling $7,719,626 against a certified pool of about $11.36 million: roads and sidewalks $2.75 million, a downtown parking lot and building $2.5 million, the stabilization fund $1,135,505 and the retiree-health trust $227,101, debt stabilization $1,000,000, and a restricted opioid-settlement fund $107,020. About $3.6 million of the pool was never appropriated and rolled forward. No order funded a recurring operating service. A $2,045,000 free-cash request for the main library&apos;s heating system was disapproved June 3, 2024, and funded from the debt stabilization fund instead. Corroborated by the city&apos;s own FY2026 to FY2030 forecast, which lists reserve uses as the City Hall project, roads and sidewalks, stabilization, and the retiree-health trust, and records the Forecast Committee&apos;s suggestion to consider lowering the free-cash target to fund operations, an option not taken. <em>Confirmed against the minutes.</em></>,
   <>Massachusetts School Building Authority board action, September 30, 2015: a grant of up to $49,199,215, or 56.19 percent of eligible costs, for a 231,509-square-foot school for 1,395 students; opened 2018. Total project cost about $109 million; the city&apos;s net share about $60 million after the grant. <em>Confirmed on the grant and square footage; the total and city share are from news coverage.</em></>,
-  <>Beverly debt service, $10,847,899 (fiscal 2019) to $7,186,751 (fiscal 2025), with a fiscal 2022 secondary peak of $10,440,569 attributed to a new police station. <em>Confirmed.</em></>,
-  <>PERAC funded-ratio list and the Beverly Retirement Board actuarial valuation, January 1, 2024. PERAC records Beverly&apos;s amortization as completed in 2032, with the appropriation rising to $18.58 million in fiscal 2031, falling to $11.74 million in fiscal 2032 (the last amortization payment), then to a $5.80 million normal cost from fiscal 2033. Amortization-completed years for the rest: Swampscott 2031, Salem 2032, Gloucester 2034, Danvers 2035, Marblehead and Peabody 2036. <em>Confirmed.</em></>,
+  <>Beverly debt service, $10,847,899 (FY2019) to $7,186,751 (FY2025), with a FY2022 secondary peak of $10,440,569 attributed to a new police station. <em>Confirmed.</em></>,
+  <>PERAC funded-ratio list and the Beverly Retirement Board actuarial valuation, January 1, 2024. PERAC records Beverly&apos;s amortization as completed in 2032, with the appropriation rising to $18.58 million in FY2031, falling to $11.74 million in FY2032 (the last amortization payment), then to a $5.80 million normal cost from FY2033. Amortization-completed years for the rest: Swampscott 2031, Salem 2032, Gloucester 2034, Danvers 2035, Marblehead and Peabody 2036. <em>Confirmed.</em></>,
   <>PERAC funded-ratio list: Beverly 75.3 percent (valuation 1/1/2024), Swampscott 75.3 (1/1/2025), Salem 73.5, Marblehead 71.5, Danvers 64.5, Gloucester 60.4, Peabody 59.5. Beverly is tied with Swampscott for the highest in the cohort and equal to the statewide group median. All seven towns maintain their own retirement board; Essex Regional is a separate system. <em>Confirmed.</em></>,
   <>U.S. Census, 2010 and 2020 decennial: Beverly 39,502 to 42,670. <em>Confirmed.</em></>,
   <>Boston Globe, January 20, 2023, citing Beverly&apos;s Planning Department: 168 units built between 2010 and 2014, and nearly 1,400 built or permitted since. The figure is &quot;built or permitted,&quot; not delivered, and runs to early 2023. <em>Confirmed as to the source.</em></>,
   <>City of Beverly, MBTA Communities multifamily zoning page: districts of about 98 acres zoned for 2,063 units, adopted November 12, 2024, state compliance confirmed April 2025. <em>Confirmed.</em></>,
   <>The Marblehead Town Meeting exchange (May 2026) drew wide coverage and roughly two million online views, and Marblehead was among the municipalities the attorney general pursued over MBTA Communities compliance. <em>Confirmed via contemporaneous news coverage.</em></>,
   <>Beverly new-growth split, 58 percent commercial and industrial, third of seven. Cummings Center square footage and history from Cummings Properties. <em>Confirmed on the split; the Cummings figures are company-published.</em></>,
-  <>DESE enrollment, fiscal 2015 through 2024. <em>Confirmed.</em></>,
-  <>Cohort: new growth averaging 1.5 percent of the levy, fiscal 2014 through 2025, second of seven behind Salem at 1.9 percent. Statewide: recent years about 1.2 to 1.3 percent of prior levy against a 1.2 percent statewide median, a flat trend. <em>Confirmed.</em></>,
-  <>Illustrative, out-of-cohort comparisons. Waltham: commercial and industrial property pays about 45.9 percent of the tax levy (fiscal 2026 split rate), spends roughly $23,800 per pupil (DESE, fiscal 2024), and has no recent operating override. Lexington: roughly six operating overrides plus debt exclusions over the years, spending about $24,300 per pupil on a low-need student body. Per-pupil here is actual net school spending per foundation pupil, a different basis than the in-district figure used elsewhere, shown only as relative context. <em>Illustrative.</em></>,
-  <>DLS assessed values by class, fiscal 2026: Beverly $264,717 per resident, fifth of seven. <em>Confirmed.</em></>,
+  <>DESE enrollment, FY2015 through FY2024. <em>Confirmed.</em></>,
+  <>Cohort: new growth averaging 1.5 percent of the levy, FY2014 through FY2025, second of seven behind Salem at 1.9 percent. Statewide: recent years about 1.2 to 1.3 percent of prior levy against a 1.2 percent statewide median, a flat trend. <em>Confirmed.</em></>,
+  <>Illustrative, out-of-cohort comparisons. Waltham: commercial and industrial property pays about 45.9 percent of the tax levy (FY2026 split rate), spends roughly $23,800 per pupil (DESE, FY2024), and has no recent operating override. Lexington: roughly six operating overrides plus debt exclusions over the years, spending about $24,300 per pupil on a low-need student body. Per-pupil here is actual net school spending per foundation pupil, a different basis than the in-district figure used elsewhere, shown only as relative context. <em>Illustrative.</em></>,
+  <>DLS assessed values by class, FY2026: Beverly $264,717 per resident, fifth of seven. <em>Confirmed.</em></>,
   <>Boston Globe, January 20, 2023, for the resident pushback; Beverly City Council zoning ordinances, February 13, 2023: eliminated the seven-story overlay on Rantoul Street, dropping the effective limit to five stories, and capped new construction on and near Cabot Street at four; retained the requirement that 12 percent of units in new projects of six or more be affordable, passed unanimously. <em>Confirmed on date and substance.</em></>,
   <>Pointer, not a source. <A href="https://openbeverly.org/pavement.html" ext>Open Beverly</A>, an independent data portal by a fellow Beverly resident, maps the city&apos;s own pavement-condition inventory, so you can look up any street&apos;s score across all six wards. The roads and public-works figures in the text are sourced at notes 4, 16, and 17.</>,
   <>Beverly City Council approved the negotiated eminent-domain taking of 218 to 226 Cabot Street and 8 Chapman Street on May 1, 2023. Purchase price $7.35 million; total authorization $8 million including about $650,000 of renovation. The city ultimately funded about $4.5 million from certified free cash across two years and borrowed the rest. Mayor Cahill cited 108 parking spaces; the city&apos;s current redevelopment page says 107. <em>Confirmed.</em></>,
-  <>Beverly Financial Forecast Report fiscal 2026 through 2030, December 2025: fiscal 2027 −$3.92 million, fiscal 2028 −$7.11 million, fiscal 2029 −$10.01 million, fiscal 2030 −$13.68 million. <em>Confirmed.</em></>,
+  <>Beverly Financial Forecast Report FY2026 through FY2030, December 2025: FY2027 −$3.92 million, FY2028 −$7.11 million, FY2029 −$10.01 million, FY2030 −$13.68 million. <em>Confirmed.</em></>,
   <>The <A href="/work/beverly/fy27-budget">FY2027 budget piece</A> in this series carries the primary sourcing for the trash-fee votes, the council amendments, and the final budget vote.</>,
-  <>General stabilization fund $21,961,077 (fiscal 2025, DLS Schedule A); certified free cash $10,496,162 (fiscal 2026), inside the city&apos;s 3-to-8-percent policy band. On the two together Beverly holds the largest cushion in the seven-town cohort, about 19.8 percent of its operating budget. The roughly $2 million rainy-day draw is reported in the FY2027 budget piece, sourced to the mayor. <em>Confirmed on the balances.</em></>,
-  <>Beverly fiscal 2021 budget, as reported by Patch. A $4.6 million pandemic revenue shortfall was closed with a 2.5 percent tax increase, new growth, about $1 million from reserves, and department reductions; state aid was projected down 17.5 percent; no layoffs. <em>Confirmed via Patch.</em></>,
+  <>General stabilization fund $21,961,077 (FY2025, DLS Schedule A); certified free cash $10,496,162 (FY2026), inside the city&apos;s 3-to-8-percent policy band. On the two together Beverly holds the largest cushion in the seven-town cohort, about 19.8 percent of its operating budget. The roughly $7 million of reserve draws before the FY2026 close, and their destinations, come from the city&apos;s own FY2026 to FY2030 forecast. <em>Confirmed on the balances; the draw total is the city&apos;s own figure.</em></>,
+  <>Beverly FY2021 budget, as reported by Patch. A $4.6 million pandemic revenue shortfall was closed with a 2.5 percent tax increase, new growth, about $1 million from reserves, and department reductions; state aid was projected down 17.5 percent; no layoffs. <em>Confirmed via Patch.</em></>,
 ];
 
 export default function WhoBeverlyIs() {
@@ -174,12 +174,13 @@ export default function WhoBeverlyIs() {
               Gloucester, Marblehead, and Swampscott. They share a region, a housing market, a commuter rail line, and the same state
               rules. Where Beverly looks like its neighbors, the shared rules are the likeliest
               explanation. Where it stands apart, a choice Beverly made usually is. That is a place to start looking, not a verdict:
-              two towns can arrive at the same number by very different routes, which is why the sections that follow show the working.
+              two towns can arrive at the same number by very different routes, which is why every comparison here comes with the
+              reasoning behind it.
             </P>
             <P>
-              Most people here already have a strong opinion about one or two of these. The teachers&apos; strike in 2024. The trash fee.
-              The City Hall renovation. The apartment buildings on Rantoul Street. The city spending millions to buy the old Family
-              Dollar building and save a parking lot. This piece will not claim they were secretly one decision. It will lay out the
+              Most people here already have a strong opinion about one or two of the last few years&apos; flashpoints. The teachers&apos;
+              strike in 2024. The trash fee. The City Hall renovation. The apartment buildings on Rantoul Street. The city spending
+              millions to buy the old Family Dollar building and save a parking lot. This piece will not claim they were secretly one decision. It will lay out the
               decade of budget choices sitting underneath them, so you can see the fuller context around decisions you have
               probably already formed a view about.
             </P>
@@ -187,10 +188,13 @@ export default function WhoBeverlyIs() {
               Start with what Beverly gets right, because it is real. Balancing the budget is not the evidence; state law requires that
               of every city. The evidence is narrower and more specific. Beverly carries less debt per resident than almost every town
               around it. Its pension is tied for the best funded in the cohort. Its reserves sit inside the 13 to 23 percent band the city
-              set for itself, in the upper half of its own policy rather than above it.
+              set for itself, in the upper half of its own policy rather than above it. That band is the city&apos;s own rule, which
+              invites the obvious objection. Two things answer it. Beverly wrote the policy years before this squeeze, and it has held
+              to it since. And the policy is not a loose aspiration: it commits the mayor to sweeping at least a tenth of every
+              free-cash certification into savings within ninety days.{fn(14)}
             </P>
             <P>
-              If that does not match what you have watched these last few years, hold onto that. The City Hall fight, the money spent on
+              If that does not match how the last few years have felt, hold onto that. The City Hall fight, the money spent on
               the old Family Dollar building, the arguments about what the city can and cannot afford: those are real, and this piece gets
               to all of them. The claim here is only that on the measures an auditor or a bond rating agency uses, Beverly does well. This
               piece asks a narrower question: careful toward what end?
@@ -258,15 +262,19 @@ export default function WhoBeverlyIs() {
             <P>
               One caveat about the neighbors, because it changes how to read the gap. The two that spend the most, Marblehead and
               Swampscott, are override towns. Proposition 2½, the state law that caps how fast a town&apos;s property tax revenue can
-              rise, lets a community tax above its cap only when its voters approve it, and theirs have: Marblehead has passed eight of the
-              twenty-one override votes it has held, Swampscott seven of thirteen, most recently a $15 million general override in
-              Marblehead in June 2026.{fn(6)} That extra spending is money residents chose to raise. Most of the cohort,
-              Beverly included, has never put the question to its voters. So the fair comparison is Beverly against the towns under the same limit, and
-              there Beverly still comes in low. What Beverly does instead is the rest of this story.
+              rise, lets a community tax above its cap only when its voters approve it, and theirs have. Since the state began keeping
+              the record in 1990, Marblehead has held 21 override votes and passed 8 of them, most recently a $15 million general
+              override in June 2026. Swampscott has held 13 and passed 7, though its last win was in 2005; an override is permanent, so
+              those dollars are still in its budget compounding.{fn(6)} That extra spending is money residents agreed to raise.
+              Beverly has never held one. In thirty-five years it has not put an override or a debt exclusion on the ballot even once,
+              which puts it in a minority of 33 communities statewide. So the fair comparison is Beverly against the towns living inside
+              the same limit, and there Beverly still comes in low.
             </P>
             <P>
-              The schools are the exception that isn&apos;t. They sidestep the size question entirely, because they are measured per
-              student and adjusted for how much the state says each district needs. On that measure Beverly is not mid-pack. It is last.
+              Where the money goes instead is the subject of section 03. First, the part of the budget that made the pattern
+              impossible to ignore. The schools are the exception that isn&apos;t: they sidestep the size question entirely, because
+              they are measured per student, and the state publishes what each district needs as well as what it spends. On dollars
+              per pupil Beverly is not mid-pack. It is last, and the need adjustment does not rescue it.
             </P>
           </Reveal>
         </section>
@@ -288,7 +296,8 @@ export default function WhoBeverlyIs() {
               By the crude number the state reports for general accounting, Beverly&apos;s school spending looks ordinary. But that number
               is measured per resident, not per student, which makes it a poor guide to what reaches a classroom. The measure built for
               that is in-district spending per pupil, and the place to start is where Beverly sat before the strike: the 7th percentile
-              statewide in fiscal 2020, meaning it spent less per pupil than ninety-three districts out of every hundred. By fiscal 2024
+              statewide in FY2020, the budget year ending June 2020, meaning it spent less per pupil than ninety-three districts out
+              of every hundred. By FY2024
               it had reached $18,595, still last of the seven and still only the 21st percentile.{fn(8)} Count every dollar, including the
               tuition it pays to place some students in programs outside the district, and Beverly is still last per pupil. It is last
               however you count it.
@@ -326,12 +335,22 @@ export default function WhoBeverlyIs() {
               buys, and in November 2024 they are what emptied the schools for two weeks.
             </P>
             <P>
-              The strike did change the direction, and the most recent year shows it. Between fiscal 2024 and fiscal 2025 Beverly raised
+              The strike did change the direction, and the most recent year shows it. Between FY2024 and FY2025 Beverly raised
               its local school spending 10.1 percent, the largest increase in the cohort and roughly double the pace of most of its
               neighbors. It moved from sixth of seven to fifth, passing Salem, and the gap to Danvers narrowed from twelve percent to
               six.{fn(12)} That belongs in the record. But it is a climb from the floor, its peers are rising too, and one contract does
-              not reverse a decade of position. A city that holds its classrooms at the bottom of the state is
-              putting its money somewhere else. That is the next question.
+              not reverse a decade of position.
+            </P>
+            <P>
+              It also has a cost the city is now carrying. School spending rose about 9 percent in FY2026 and another 5.28 percent in
+              FY2027, and those raises are permanent: a settled contract is a recurring obligation, not a one-year expense.{fn(12)} A
+              good part of the gap the city is now closing with cuts elsewhere is the bill for finally paying the schools closer to
+              what its neighbors pay. That is what it costs to correct a decade at the bottom, and it is worth being plain that the
+              correction and the squeeze are the same story rather than two.
+            </P>
+            <P>
+              Still, a city that held its classrooms at the bottom of the state for a decade was putting its money somewhere else.
+              That is the next question.
             </P>
           </Reveal>
         </section>
@@ -350,7 +369,7 @@ export default function WhoBeverlyIs() {
 
             <h3 className="mt-8 font-display text-xl font-semibold text-ink">The surplus machine</h3>
             <P>
-              Start with savings. Beverly&apos;s stabilization fund, its rainy-day account, held $750,000 in 2013. By fiscal 2025 it
+              Start with savings. Beverly&apos;s stabilization fund, its rainy-day account, held $750,000 in 2013. By FY2025 it
               held about $22 million, and close to $24 million counting the special-purpose accounts beside it. It grew in every year
               the state&apos;s trend report covers.{fn(13)}
             </P>
@@ -358,9 +377,9 @@ export default function WhoBeverlyIs() {
             <StabilizationLeap />
 
             <P>
-              On top of that, the city certified free cash, the surplus left when the books close, in every year from fiscal 2014 through
+              On top of that, the city certified free cash, the surplus left when the books close, in every year from FY2014 through
               2024, lately running about $10 million a year.{fn(14)} Hold that next to the problem. The deficit now forcing service cuts
-              is {gapM(FY27)} this year, and on the city&apos;s own projection it reaches {gapM(FY30)} by fiscal 2030. Beverly&apos;s
+              is {gapM(FY27)} this year, and on the city&apos;s own projection it reaches {gapM(FY30)} by FY2030. Beverly&apos;s
               yearly surplus is more than twice this year&apos;s gap. The money exists. Where it goes is not services.
             </P>
             <P>
@@ -372,9 +391,10 @@ export default function WhoBeverlyIs() {
               through the years the services were being trimmed.{fn(14)}
             </P>
             <P>
-              Where does a $10 million surplus come from every year? Partly from a habit. Local receipts, the money a city takes in
-              outside property taxes, run $11 to $15 million a year for Beverly, and cities must estimate that revenue before the year
-              begins. Beverly estimates it low and beats the estimate every year. Even in its most accurate year, it collected 21 percent
+              Where does a $10 million surplus come from every year? Free cash has two sources anywhere: money departments were
+              given but did not spend, and revenue that came in above what the budget assumed. Every city has both. The second is
+              where Beverly separates from its neighbors. Local receipts, the money a city takes in outside property taxes, run $11 to
+              $15 million a year for Beverly, and cities must estimate that revenue before the year begins. Beverly estimates it low and beats the estimate every year. Even in its most accurate year, it collected 21 percent
               more than it budgeted, the most conservative floor of any town in the cohort.{fn(15)}
             </P>
 
@@ -388,7 +408,7 @@ export default function WhoBeverlyIs() {
               could have been operating revenue into a pot that, by its own rules, cannot be spent on operations.
             </P>
             <P>
-              That pot goes where one-time money is allowed to go. Fiscal 2024 is a closed year now, every Council order on the record, so
+              That pot goes where one-time money is allowed to go. FY2024 is a closed year now, every Council order on the record, so
               its free cash can be traced in full.{fn(16)}
             </P>
 
@@ -396,10 +416,16 @@ export default function WhoBeverlyIs() {
 
             <P>
               The one order that came closest to breaking the pattern confirms it. A $2 million free-cash request to replace the main
-              library&apos;s heating system was voted down, and the same repair was paid for out of the debt stabilization fund, a separate
-              reserve the city keeps for debt and capital rather than the rainy-day fund above. Even
-              the capital project that reached for free cash was routed through a reserve, not an operating line. The reserves were being
-              fed, not drained, straight through the years the squeeze was building.{fn(17)}
+              library&apos;s heating system was voted down. The same repair was then paid for out of the debt stabilization fund.
+            </P>
+            <P>
+              That is a third account, and it is worth pausing on, because Beverly runs its savings in more than one pot. State law
+              lets a city open a stabilization fund earmarked for a single purpose alongside its general rainy-day fund. Beverly keeps
+              one for debt and capital. It has no revenue of its own: the Council fills it by voting transfers in, mostly from free
+              cash, and it held about $2 million at the close of FY2025. So the same surplus paid for the boiler either way. The
+              difference is that the money went to a reserve first and was spent from there, which keeps it walled off from the
+              operating budget. Even the capital project that reached for free cash was routed through a reserve rather than an
+              operating line. The reserves were being fed, not drained, straight through the years the squeeze was building.{fn(17)}
             </P>
 
             <h3 className="mt-10 font-display text-xl font-semibold text-ink">What it buys</h3>
@@ -419,7 +445,7 @@ export default function WhoBeverlyIs() {
             <P>
               The sharpest version of the pattern is the pension. Every Massachusetts city owes its retirement system an unfunded
               liability, the benefits already promised to workers but not yet backed by money in the fund, and pays it down on a
-              state-approved schedule that must finish by fiscal 2040. Beverly&apos;s finishes early, in 2032, and it enters this stretch
+              state-approved schedule that must finish by FY2040. Beverly&apos;s finishes early, in 2032, and it enters this stretch
               tied for the best-funded system in the cohort, at 75 percent, though in absolute terms that is merely the statewide median.
               It reaches that mark on a leaner budget than the two cohort towns that vote to tax themselves above the cap.{fn(20)}
             </P>
@@ -471,11 +497,11 @@ export default function WhoBeverlyIs() {
               need schools and roads and trash collection. Commercial and lab space pays into the same levy without sending children to
               school or filling the streets, which makes it the highest-margin revenue a city can add. Beverly&apos;s new growth leaned
               toward the profitable side, 58 percent commercial and industrial, anchored by the Cummings Center&apos;s two million square
-              feet of offices and labs.{fn(26)} The residential half still showed up where you would expect. Between fiscal 2015 and 2024
+              feet of offices and labs.{fn(26)} The residential half still showed up where you would expect. Between FY2015 and FY2024
               every other district in the cohort lost students, some sharply, while Beverly&apos;s enrollment held roughly flat, the only
               one that did not shrink.{fn(27)} The cohort lost about 7 percent of its students over the decade; had Beverly followed that
               trend it would have several hundred fewer children in its schools today. Its apartments did not flood the district, but they
-              kept it full while its neighbors emptied, and Beverly met that demand at the bottom of the cohort per pupil.
+              kept it full while its neighbors emptied. Beverly met that demand while spending less per pupil than any of them.
             </P>
             <P>
               Notice the shape. On spending, Beverly ranks low in its cohort and low statewide. On growth, it ranks high in its cohort but
@@ -492,7 +518,19 @@ export default function WhoBeverlyIs() {
               shapes what the town can do. But it is not the reason services sit where they do. Beverly grows its base about as well as
               anyone in the cohort, taxes it to the ceiling every year, and has never once asked voters for more. So the explanation people
               reach for first, that there simply is not enough money, does not hold. What is left is a set of choices about where the money
-              that does arrive gets sent. The next section is about Beverly deciding to slow the growth down.
+              that does arrive gets sent.
+            </P>
+            <P>
+              One caution about that, because it has a shelf life. &quot;The surplus is bigger than the gap&quot; is true this year and
+              was true for the last several. It stops being true soon. The city&apos;s own forecast puts the gap at $10.01 million in
+              FY2029 and $13.68 million in FY2030, against a surplus that has run between $9.9 and $11.4 million a year.{fn(34)} Within
+              about three years the annual surplus no longer covers the annual gap even in principle, and the choices described here get
+              harder rather than easier. The argument of this section is that Beverly has had room to choose. It is not an argument that
+              the room lasts.
+            </P>
+            <P>
+              Growth is what created that room, which makes what Beverly did next the most revealing decision in the decade. Starting in
+              2023, it began easing off the one lever it fully controls.
             </P>
           </Reveal>
         </section>
@@ -502,18 +540,18 @@ export default function WhoBeverlyIs() {
           <Reveal>
             <SectionNum>05 · The calibration</SectionNum>
             <h2 className="font-display text-3xl font-semibold leading-tight sm:text-4xl">
-              By 2023, Beverly began to pump the brakes, with the two tools it always reaches for.
+              By 2023, Beverly began to pump the brakes, with the two tools it reaches for most.
             </h2>
             <P>
-              Two moves in 2023 show what that looked like. Both were made with the same two tools Beverly reaches for whenever it acts:
-              the rulebook and the checkbook.
+              Two moves in 2023 show what that looked like. Both were made with the same two tools: the rulebook and the checkbook.
             </P>
             <P>
               The first move was zoning. After the Rantoul Street apartment wave, residents pushed back, and the Boston Globe caught the
               mood in January 2023: traffic, a five-story building out of scale with its neighbors, poorly maintained streets, and open
-              questions about whether Beverly had the resources to keep up with its own growth.{fn(31)} Those worries had a basis: Beverly
-              runs the leanest public works budget in the cohort. The catch-up spending on roads came later, and when it came it came from
-              free cash rather than the operating budget.{fn(32)}
+              questions about whether Beverly had the resources to keep up with its own growth.{fn(31)} The complaint about the streets
+              had a basis in the budget. Beverly runs the leanest public works operation in the cohort, and the money it has since put
+              into repaving came out of free cash rather than the operating budget, which is to say it arrived as a series of one-time
+              appropriations rather than as a bigger standing road program.{fn(32)}
             </P>
             <P>
               Weeks later, on February 13, the City Council rewrote the downtown rules. It eliminated the overlay that had allowed
@@ -532,6 +570,10 @@ export default function WhoBeverlyIs() {
             <P>
               Read that against the record. A city that permitted roughly 1,400 units and zoned for state-mandated density spent $7.4
               million to stop one downtown parcel from becoming apartments, in order to keep a parking lot.
+            </P>
+            <P>
+              Whether that was a good trade depends on what you think growth is for, and there are two coherent answers. Both are held
+              by reasonable people in Beverly, and they disagree about something real.
             </P>
 
             <div className="my-7 grid gap-3 sm:grid-cols-2">
@@ -554,7 +596,8 @@ export default function WhoBeverlyIs() {
             </div>
             <P>
               Both are real, and the trade between them is the actual argument, not the caricature of a city that simply changed its
-              mind. This piece will not pick. What is not in question is how Beverly answered the friction of its own growth. It changed a rule and it bought a building. It did not add the services that growth demands: no new public works
+              mind. Which of those two answers should win is a judgment about what residents want their city to be, and this piece does
+              not make it. What is not in question is how Beverly answered the friction of its own growth. It changed a rule and it bought a building. It did not add the services that growth demands: no new public works
               crews for the denser streets, no new teachers for the students it alone kept. Even while slowing down, Beverly reached for
               the rulebook and the checkbook, and left the service side where it has always been.
             </P>
@@ -570,22 +613,32 @@ export default function WhoBeverlyIs() {
             </h2>
             <P>
               In December 2025, Beverly&apos;s Financial Forecasting Committee reported that the city faced a {gapM(FY27)} gap in the
-              fiscal 2027 budget, and that on current trends the gap reaches {gapM(FY30)} by fiscal 2030. Massachusetts requires a
+              FY2027 budget, and that on current trends the gap reaches {gapM(FY30)} by FY2030. Massachusetts requires a
               balanced budget every year, so the gap has to be closed each year.{fn(34)}
             </P>
             <P>
-              The fiscal 2027 budget closed the first year of that gap. The mechanics are covered in the{" "}
+              The FY2027 budget closed the first year of that gap. The mechanics are covered in the{" "}
               <A href="/work/beverly/fy27-budget">previous piece</A>, and the short version is fees and cuts: a higher trash fee, tighter
               department budgets, reduced library hours, the elimination of the city&apos;s single municipal bus line, and positions lost
               across the mayor&apos;s office, planning, the Council on Aging, and one each in police and fire by attrition.{fn(35)}
             </P>
             <P>
               Here is the part that belongs in this piece. Beverly closed that gap while holding about $22 million in its stabilization
-              fund, separately from the roughly $10.5 million of free cash it certified that year, an amount inside the city&apos;s own
-              policy target. The reserves were not untouched. The mayor noted spending roughly $2 million from the rainy-day fund, part of
-              about $7 million drawn from reserves before the year closed, which the city&apos;s own forecast accounts for as the City Hall
-              project, roads and sidewalks, and transfers into the stabilization and retiree-health funds. Money left the reserves. None of
-              it went to the services being cut.{fn(36)}
+              fund, and separately certifying roughly $10.5 million of free cash, an amount inside the city&apos;s own policy target. The
+              money in hand when the cuts were made was more than twice the size of the gap the cuts were closing.{fn(36)}
+            </P>
+            <P>
+              And the habit that produces it did not change. Beverly has certified between $9.9 and $11.4 million of free cash in each of
+              the last four years.{fn(14)} If FY2027 lands anywhere in that range, the city will book another surplus larger than the
+              deficit it just closed, certified in the fall, months after the library hours were shortened and the bus line was
+              eliminated. That is not a prediction of waste. It is the mechanism described earlier running one more time: revenue the
+              city declined to forecast cannot be spent on the services the forecast could not afford. The cuts and the surplus are
+              produced by the same decision.
+            </P>
+            <P>
+              None of that means the reserves went untouched. Roughly $7 million left them before the year closed, which the city&apos;s
+              own forecast accounts for as the City Hall project, roads and sidewalks, and transfers into the stabilization and
+              retiree-health funds. Money moved. It went to buildings and to savings, not to the services being cut.{fn(36)}
             </P>
             <P>
               This is not a city that refuses to touch its reserves: in 2020, when the pandemic opened a $4.6 million hole and state
@@ -594,9 +647,9 @@ export default function WhoBeverlyIs() {
               reserve is for: a sharp one-year shock bridged until revenue comes back.
             </P>
             <P>
-              The fiscal 2027 deficit is a different kind of problem, and the difference is the point. It is not a one-year shock but a
+              The FY2027 deficit is a different kind of problem, and the difference is the point. It is not a one-year shock but a
               structural one, a permanent gap between how fast costs rise and how fast revenue can. Reserves are one-time money, and
-              one-time money cannot cover a recurring cost. Beverly has held that line firmly. Fiscal 2024 is the year traced in full
+              one-time money cannot cover a recurring cost. Beverly has held that line firmly. FY2024 is the year traced in full
               here, and not one dollar of free cash went to a recurring service. So when the structural squeeze finally arrived, it
               arrived as service cuts, not a drawdown. The decade of choices
               described here was made when choosing was cheap. Fiscal 2027 is the first year it was expensive. Fiscal 2030, on the

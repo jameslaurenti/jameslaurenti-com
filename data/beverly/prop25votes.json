@@ -1,0 +1,95 @@
+{
+  "_source": "MA DLS Prop 2.5 Override/Underride and Debt Exclusion ballot-question datasets (dls-gw.dor.state.ma.us), re-pulled 2026-08-06. DLS records votes from 1990 onward. 'held' counts every vote on the ballot; 'passed' counts WIN rows.",
+  "overrides": {
+    "_note": "Override/underride dataset. Towns absent from the dataset have never held a vote.",
+    "Marblehead": {
+      "held": 21,
+      "passed": 8,
+      "fyFirst": 1991,
+      "fyLast": 2027,
+      "lastWin": "June 2026"
+    },
+    "Swampscott": {
+      "held": 13,
+      "passed": 7,
+      "fyFirst": 1991,
+      "fyLast": 2006,
+      "lastWin": "June 2005"
+    },
+    "Gloucester": {
+      "held": 2,
+      "passed": 0,
+      "fyFirst": 1992,
+      "fyLast": 1992,
+      "lastWin": null
+    },
+    "Beverly": {
+      "held": 0,
+      "passed": 0
+    },
+    "Salem": {
+      "held": 0,
+      "passed": 0
+    },
+    "Peabody": {
+      "held": 0,
+      "passed": 0
+    },
+    "Danvers": {
+      "held": 0,
+      "passed": 0
+    }
+  },
+  "debtExclusions": {
+    "_note": "Debt exclusion dataset lists 318 of 351 MA municipalities; the other 33, Beverly among them, have never held one.",
+    "statewideMunicipalitiesAppearing": 318,
+    "statewideTotal": 351,
+    "Marblehead": {
+      "held": 48,
+      "passed": 47,
+      "fyFirst": 1990,
+      "fyLast": 2023
+    },
+    "Swampscott": {
+      "held": 5,
+      "passed": 5,
+      "fyFirst": 2000,
+      "fyLast": 2022
+    },
+    "Gloucester": {
+      "held": 2,
+      "passed": 2,
+      "fyFirst": 2000,
+      "fyLast": 2023
+    },
+    "Salem": {
+      "held": 1,
+      "passed": 1,
+      "fyFirst": 2027,
+      "fyLast": 2027,
+      "purpose": "Construction of new high school"
+    },
+    "Beverly": {
+      "held": 0,
+      "passed": 0
+    },
+    "Peabody": {
+      "held": 0,
+      "passed": 0
+    },
+    "Danvers": {
+      "held": 0,
+      "passed": 0
+    }
+  },
+  "marbleheadJune2026": [
+    {
+      "amount": 15000000,
+      "dept": "GENERAL OPERATING"
+    },
+    {
+      "amount": 2298575,
+      "dept": "PUBLIC WORKS & FACILITIES"
+    }
+  ]
+}
