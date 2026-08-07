@@ -85,40 +85,47 @@
   ],
   "receipts": [
     {
-      "town": "Beverly",
-      "pct": 21.1,
-      "rank": 1,
-      "me": true
-    },
-    {
       "town": "Marblehead",
       "pct": 20.7,
-      "rank": 2
+      "rank": 1,
+      "med": 61.7
+    },
+    {
+      "town": "Beverly",
+      "pct": 21.1,
+      "rank": 2,
+      "me": true,
+      "med": 32.0
     },
     {
       "town": "Salem",
       "pct": 11.4,
-      "rank": 3
-    },
-    {
-      "town": "Gloucester",
-      "pct": 10.4,
-      "rank": 4
-    },
-    {
-      "town": "Danvers",
-      "pct": 1.7,
-      "rank": 5
+      "rank": 3,
+      "med": 31.4
     },
     {
       "town": "Swampscott",
       "pct": 0.9,
-      "rank": 6
+      "rank": 4,
+      "med": 18.8
+    },
+    {
+      "town": "Danvers",
+      "pct": 1.7,
+      "rank": 5,
+      "med": 16.8
+    },
+    {
+      "town": "Gloucester",
+      "pct": 10.4,
+      "rank": 6,
+      "med": 16.4
     },
     {
       "town": "Peabody",
       "pct": -11.6,
-      "rank": 7
+      "rank": 7,
+      "med": 4.6
     }
   ],
   "pension": [
@@ -221,5 +228,25 @@
       "amt": 0.107,
       "kind": "restricted"
     }
-  ]
+  ],
+  "receiptsStatewide": {
+    "_note": "DLS 'Local Receipt Estimate vs. Actual', FY2024, all 351 municipalities, pulled 2026-08-07 by pull_receipts_statewide.py. Overage excludes investment income. Single-year cross-section: every town faced the same year, but noisy for any one town.",
+    "fy": 2024,
+    "n": 351,
+    "median": 24.0,
+    "mean": 36.5,
+    "p25": 15.1,
+    "p75": 38.8,
+    "p90": 64.5,
+    "beverlyPct": 49.2,
+    "beverlyRank": 61,
+    "sizeBand": {
+      "_def": "receipts base $3.4M-$30M, against Beverly's $10.2M",
+      "n": 175,
+      "median": 21.8,
+      "p75": 32.2,
+      "p90": 49.2,
+      "beverlyRank": 18
+    }
+  }
 }

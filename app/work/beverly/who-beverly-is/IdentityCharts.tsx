@@ -150,8 +150,8 @@ export function SchoolFundingStack() {
 // ---- 3. Receipts: smallest yearly overshoot, diverging around zero ----
 export function ReceiptsChart() {
   const rows = identity.receipts;
-  const maxNeg = Math.max(0, ...rows.map((r) => -r.pct));
-  const maxPos = Math.max(...rows.map((r) => r.pct));
+  const maxNeg = Math.max(0, ...rows.map((r) => -r.med));
+  const maxPos = Math.max(...rows.map((r) => r.med));
   const span = maxNeg + maxPos;
   const zeroX = (maxNeg / span) * 100;
   return (
@@ -159,18 +159,19 @@ export function ReceiptsChart() {
       title="How far each town's revenue beats its own forecast"
       note={
         <>
-          Local receipts, actual collections versus the town&apos;s own estimate, FY2018 through FY2024, showing each town&apos;s
-          <em> smallest</em> overshoot in any single year. Even in the year it forecast most accurately, Beverly still collected 21
-          percent more than it budgeted, the most conservative floor in the cohort. Source: DLS, local receipt estimate versus actual.
+          Local receipts, actual collections versus the town&apos;s own estimate, FY2018 through FY2024. The bar is the
+          <em> typical</em> year; the second figure is each town&apos;s <em>smallest</em> overshoot in any single year. Marblehead
+          under-forecasts by more than Beverly in a normal year. What sets Beverly apart is the floor: it is the one town that has
+          never had a year where the estimate came close. Source: DLS, local receipt estimate versus actual.
         </>
       }
     >
       <div className="flex flex-col gap-1.5">
         {rows.map((r) => {
-          const neg = r.pct < 0;
-          const w = (Math.abs(r.pct) / span) * 100;
+          const neg = r.med < 0;
+          const w = (Math.abs(r.med) / span) * 100;
           return (
-            <div key={r.town} className="grid grid-cols-[84px_1fr_56px] items-center gap-2 sm:grid-cols-[96px_1fr_56px]">
+            <div key={r.town} className="grid grid-cols-[84px_1fr_56px_52px] items-center gap-2 sm:grid-cols-[96px_1fr_56px_58px]">
               <div className={`text-[0.8125rem] ${r.me ? "font-bold text-ink" : "text-ink-mid"}`}>{r.town}</div>
               <div className="relative h-5">
                 <div className="absolute inset-y-[-3px] w-px bg-ink/40" style={{ left: `${zeroX}%` }} />
@@ -184,6 +185,13 @@ export function ReceiptsChart() {
                 />
               </div>
               <div className={`text-right text-[0.78125rem] font-bold tabular-nums ${neg ? "text-debt" : r.me ? "text-accent" : "text-ink-faint"}`}>
+                {r.med > 0 ? "+" : ""}
+                {r.med}%
+              </div>
+              <div
+                className={`text-right text-[0.6875rem] tabular-nums ${r.pct < 0 ? "text-debt" : "text-ink-faint"}`}
+                title="smallest overshoot in any single year"
+              >
                 {r.pct > 0 ? "+" : ""}
                 {r.pct}%
               </div>
