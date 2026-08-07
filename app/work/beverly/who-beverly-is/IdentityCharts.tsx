@@ -243,13 +243,11 @@ export function FreeCashDisposition() {
     capital: "var(--color-gold-strong)",
     reserve: "var(--color-accent)",
     restricted: "color-mix(in srgb, var(--color-ink) 40%, var(--color-bg))",
-    none: "var(--color-debt)",
   };
   const groups = [
     { kind: "capital", label: "Capital" },
     { kind: "reserve", label: "Reserves" },
     { kind: "restricted", label: "Restricted" },
-    { kind: "none", label: "Recurring services" },
   ].map((g) => ({ ...g, sum: rows.filter((r) => r.kind === g.kind).reduce((s, r) => s + r.amt, 0) }));
   return (
     <ChartCard
@@ -257,8 +255,9 @@ export function FreeCashDisposition() {
       note={
         <>
           The seven Beverly City Council orders that appropriated FY2024 certified free cash, about $7.7 million of an $11.4
-          million pool. Two-thirds went to capital, a third to reserves, and nothing to a recurring service. The remaining $3.6 million
-          was left unspent and recertified as free cash the next year. Source: Beverly City Council orders, FY2024.
+          million pool. Two-thirds went to capital, a third to reserves. That is the allocation the state prescribes for one-time
+          money, so this split is not itself a criticism. The remaining $3.6 million was left unspent and recertified as free cash
+          the next year. Source: Beverly City Council orders, FY2024.
         </>
       }
     >
@@ -280,10 +279,8 @@ export function FreeCashDisposition() {
         {rows.map((r) => (
           <li key={r.use} className="flex items-center gap-3 py-2">
             <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: kindColor[r.kind] }} />
-            <span className={`flex-1 text-[0.875rem] leading-tight ${r.kind === "none" ? "font-semibold text-debt" : "text-ink"}`}>{r.use}</span>
-            <span className={`shrink-0 text-[0.84375rem] font-bold tabular-nums ${r.kind === "none" ? "text-debt" : "text-ink"}`}>
-              {r.amt === 0 ? "$0" : `$${r.amt}M`}
-            </span>
+            <span className="flex-1 text-[0.875rem] leading-tight text-ink">{r.use}</span>
+            <span className="shrink-0 text-[0.84375rem] font-bold tabular-nums text-ink">{`$${r.amt}M`}</span>
           </li>
         ))}
       </ul>

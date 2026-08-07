@@ -86,8 +86,8 @@ const NOTES: React.ReactNode[] = [
   <>Class size and teacher pay, FY2024. Students per teacher: Beverly 12.0 (Marblehead 10.6, Salem 10.7, Gloucester 10.9, Swampscott 11.0, Danvers 12.2, Peabody 12.3); Beverly&apos;s ratio has fallen from 14.6 in 2015, so the gap is narrowing. Average teacher salary: Beverly $87,991, sixth of seven (Danvers $97,514 highest, Gloucester $86,417 lowest). <em>Confirmed.</em></>,
   <>DESE Chapter 70, FY2024 to FY2025: Beverly&apos;s local dollars per pupil rose from $13,912 to $15,310, up 10.1 percent, against Marblehead 6.8, Gloucester 5.3, Danvers 4.5, Swampscott 3.9, Salem 2.9 and Peabody 2.7. That moved Beverly from sixth of seven to fifth and cut the Danvers gap from 12.0 to 6.3 percent. Separately, Schedule A education spending ran $76.1 million (FY2024) to $82.3 million (FY2025), up 8.2 percent, with further increases of about 9 percent (FY2026) and 5.28 percent (FY2027) budgeted, not yet actual. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, stabilization fund trend, FY2013 through FY2022; that series ends at FY2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: FY2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, certified free cash, FY2014 through FY2024. Cohort cushion is certified free cash (FY2026) plus total stabilization (FY2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Beverly&apos;s own reserve policy sets a combined stabilization plus free-cash target of 13 to 23 percent, free cash alone at 3 to 8 percent, and the stabilization fund at 10 to 15 percent; it also directs that on any positive free-cash certification the mayor shall request an appropriation of no less than 10 percent of it into stabilization within 90 days, and sizes the fund against &quot;three to four years of reduced revenue.&quot; The policy is set out in the city&apos;s FY2019 to FY2023 forecast, so it predates the current deficit rather than being written around it. Certified free cash by year: FY2023 $9.93 million, FY2024 $11.36 million, FY2025 $10.71 million, FY2026 $10.50 million. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, local receipt estimate versus actual, FY2018 through FY2024, excluding investment income. Beverly&apos;s range is +21.1 percent (FY2020) to +50.7 percent (FY2021). Peabody is the only town in the cohort with a negative floor, at &minus;11.6 percent, meaning it collected less than it budgeted in at least one year. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, certified free cash, FY2014 through FY2024. Cohort cushion is certified free cash (FY2026) plus total stabilization (FY2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Beverly&apos;s own reserve policy sets a combined stabilization plus free-cash target of 13 to 23 percent, free cash alone at 3 to 8 percent, and the stabilization fund at 10 to 15 percent; it also directs that on any positive free-cash certification the mayor shall request an appropriation of no less than 10 percent of it into stabilization within 90 days, and sizes the fund against &quot;three to four years of reduced revenue.&quot; The policy is set out in the city&apos;s FY2019 to FY2023 forecast, so it predates the current deficit rather than being written around it. Certified free cash by year: FY2023 $9.93 million, FY2024 $11.36 million, FY2025 $10.71 million, FY2026 $10.50 million. Statewide context, from the DLS report Certified Free Cash as a Percent of Budget, all 351 municipalities, FY2026 against the prior-year operating budget: the median is 7.02 percent and the mean 8.42 percent; Beverly&apos;s 6.04 percent ranks 209th. Only 64 municipalities (18 percent) sit inside the 5-to-7-percent range DLS recommends, 110 are below it and 177 above. Note that certified free cash carries forward any prior-year amount left unappropriated, so a high figure can reflect either a large surplus or an unspent one. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, local receipt estimate versus actual, FY2018 through FY2024, excluding investment income. Beverly&apos;s range is +21.1 percent (FY2020) to +50.7 percent (FY2021). Peabody is the only town in the cohort with a negative floor, at &minus;11.6 percent, meaning it collected less than it budgeted in at least one year. In dollars, Beverly&apos;s receipts came in above estimate by $22.6 million across FY2018 to FY2024, an average of $3.23 million a year; measured against certified free cash in the two most recent closed years that is 33 percent (FY2023) and 44 percent (FY2024). The comparison here is to the six neighbouring communities, not to the state as a whole. <em>Confirmed for the cohort; not tested statewide.</em></>,
   <>Beverly other financing uses and transfers, FY2021 through FY2024. <em>Confirmed.</em></>,
   <>Complete audit of Beverly City Council free-cash appropriation orders for FY2024, from the AgendaCenter minutes. Seven approved orders totaling $7,719,626 against a certified pool of about $11.36 million: roads and sidewalks $2.75 million, a downtown parking lot and building $2.5 million, the stabilization fund $1,135,505 and the retiree-health trust $227,101, debt stabilization $1,000,000, and a restricted opioid-settlement fund $107,020. About $3.6 million of the pool was never appropriated and rolled forward. No order funded a recurring operating service. A $2,045,000 free-cash request for the main library&apos;s heating system was disapproved June 3, 2024, and funded from the debt stabilization fund instead. Corroborated by the city&apos;s own FY2026 to FY2030 forecast, which lists reserve uses as the City Hall project, roads and sidewalks, stabilization, and the retiree-health trust, and records the Forecast Committee&apos;s suggestion to consider lowering the free-cash target to fund operations, an option not taken. <em>Confirmed against the minutes.</em></>,
   <>Massachusetts School Building Authority board action, September 30, 2015: a grant of up to $49,199,215, or 56.19 percent of eligible costs, for a 231,509-square-foot school for 1,395 students; opened 2018. Total project cost about $109 million; the city&apos;s net share about $60 million after the grant. <em>Confirmed on the grant and square footage; the total and city share are from news coverage.</em></>,
@@ -378,15 +378,20 @@ export default function WhoBeverlyIs() {
 
             <P>
               On top of that, the city certified free cash, the surplus left when the books close, in every year from FY2014 through
-              2024, lately running about $10 million a year.{fn(14)} Hold that next to the problem. The deficit now forcing service cuts
-              is {gapM(FY27)} this year, and on the city&apos;s own projection it reaches {gapM(FY30)} by FY2030. Beverly&apos;s
-              yearly surplus is more than twice this year&apos;s gap. The money exists. Where it goes is not services.
+              2024, lately running about $10 million a year.{fn(14)} Two things have to be said before that number can mean anything.
+              A surplus of that size is ordinary: the median Massachusetts municipality certifies free cash worth 7.0 percent of its
+              budget, and Beverly&apos;s 6.0 percent ranks 209th of 351. Two-thirds of the state carries more relative to budget than
+              Beverly does. And a surplus cannot simply be handed to the services being cut, because one-time money cannot pay a
+              recurring salary, a point this piece returns to below. So the question worth asking is not why Beverly declines to spend
+              its surplus on teachers. It is why so much of the city&apos;s revenue keeps arriving as surplus in the first place.{fn(14)}
             </P>
             <P>
-              That is not ordinary for the area. Counting the two pots together, the $22 million savings account and the roughly $10.5
-              million of year-end surplus, Beverly holds about 19.8 percent of a year&apos;s operating budget in reserve, the largest
-              cushion of the seven. Salem is next at 17.8 percent. Marblehead holds 6.2. One thing belongs in the same breath: Beverly is
-              not breaching a rule here. Its own reserve policy sets a combined target of 13 to 23 percent, so this is the upper half of a
+              The savings account is the part that stands out. Counting the two pots together, the $22 million stabilization balance
+              and the roughly $10.5 million of year-end surplus, Beverly holds about 19.8 percent of a year&apos;s operating budget in
+              reserve, the largest cushion of the seven. Salem is next at 17.8 percent, then Swampscott at 16.7. Marblehead holds 6.2.
+              Nearly all of Beverly&apos;s lead is in stabilization rather than in the annual surplus, and four of the seven are in
+              double digits, so this is a lead and not a chasm. One thing belongs in the same breath: Beverly is not breaching a rule
+              here. Its own reserve policy sets a combined target of 13 to 23 percent, so this is the upper half of a
               band the city wrote for itself. The question is not why the cushion is large. It is why it stayed near the top of that band
               through the years the services were being trimmed.{fn(14)}
             </P>
@@ -401,11 +406,24 @@ export default function WhoBeverlyIs() {
             <ReceiptsChart />
 
             <P>
-              Under-forecasting revenue is legal, common, and encouraged by the state. But Beverly does it harder than anyone around it,
-              and the effect is not neutral. Money the city forecasts lands in the operating budget, where it can pay a teacher or a
+              Under-forecasting revenue is legal, common, and instructed by the state, and it is worth being precise about how much
+              it explains. Beverly&apos;s receipts have come in over budget by about $3.2 million a year on average, which is roughly a
+              third to a half of the free cash it certifies. The rest is money departments did not spend. So this habit is a large part
+              of the engine, not the whole of it.{fn(15)}
+            </P>
+            <P>
+              The effect is not neutral, though. Money the city forecasts lands in the operating budget, where it can pay a teacher or a
               firefighter. Money that arrives instead as a year-end surplus is &quot;one-time&quot; money, and one-time money is not
-              supposed to fund recurring costs, because the job vanishes the first year the surplus dips. So the habit quietly sorts what
-              could have been operating revenue into a pot that, by its own rules, cannot be spent on operations.
+              supposed to fund recurring costs, because the job vanishes the first year the surplus dips. So the habit sorts what could
+              have been operating revenue into a pot that, by its own rules, cannot be spent on operations.
+            </P>
+            <P>
+              There is a real defence of that, and it should be said plainly rather than left for a critic to supply. Estimating low is
+              insurance. Budget the extra $3.2 million into salaries and the city has made a permanent commitment against revenue that
+              moves with the economy, under a levy it cannot raise to cover a miss. Beverly&apos;s own worst year still came in 21
+              percent above estimate, so the insurance has never been called on, but that is what it is for. The honest version of the
+              criticism is not that conservatism is wrong. It is that insurance has a price, the price is paid in services, and a city
+              that has beaten its own estimate every year for a decade might reasonably ask whether it is over-insured.
             </P>
             <P>
               That pot goes where one-time money is allowed to go. FY2024 is a closed year now, every Council order on the record, so
@@ -623,17 +641,18 @@ export default function WhoBeverlyIs() {
               across the mayor&apos;s office, planning, the Council on Aging, and one each in police and fire by attrition.{fn(35)}
             </P>
             <P>
-              Here is the part that belongs in this piece. Beverly closed that gap while holding about $22 million in its stabilization
-              fund, and separately certifying roughly $10.5 million of free cash, an amount inside the city&apos;s own policy target. The
-              money in hand when the cuts were made was more than twice the size of the gap the cuts were closing.{fn(36)}
+              Here is the part that belongs in this piece, and it has to be put carefully. Beverly closed that gap while holding
+              about $22 million in stabilization and certifying roughly $10.5 million of free cash. Neither of those could have been
+              spent on the library hours or the bus line without breaking the rule against paying recurring costs with one-time money,
+              and that rule is sound. Anyone who says the city simply refused to open the vault is wrong.{fn(36)}
             </P>
             <P>
-              And the habit that produces it did not change. Beverly has certified between $9.9 and $11.4 million of free cash in each of
-              the last four years.{fn(14)} If FY2027 lands anywhere in that range, the city will book another surplus larger than the
-              deficit it just closed, certified in the fall, months after the library hours were shortened and the bus line was
-              eliminated. That is not a prediction of waste. It is the mechanism described earlier running one more time: revenue the
-              city declined to forecast cannot be spent on the services the forecast could not afford. The cuts and the surplus are
-              produced by the same decision.
+              The narrower point is about forecasting rather than spending. Beverly has certified between $9.9 and $11.4 million of
+              free cash in each of the last four years.{fn(14)} A surplus that steady is not really a surprise, and revenue a city can
+              count on four years running is closer to recurring revenue than the budget treats it as. Had more of it been forecast,
+              it would have entered the operating budget, where it could have funded a recurring service. Forecast conservatively, it
+              arrives after the year closes, when the only lawful uses left are capital and reserves. The cuts and the surplus are
+              downstream of the same decision, and that decision is made before the year starts, not after.
             </P>
             <P>
               None of that means the reserves went untouched. Roughly $7 million left them before the year closed, which the city&apos;s
@@ -649,9 +668,8 @@ export default function WhoBeverlyIs() {
             <P>
               The FY2027 deficit is a different kind of problem, and the difference is the point. It is not a one-year shock but a
               structural one, a permanent gap between how fast costs rise and how fast revenue can. Reserves are one-time money, and
-              one-time money cannot cover a recurring cost. Beverly has held that line firmly. FY2024 is the year traced in full
-              here, and not one dollar of free cash went to a recurring service. So when the structural squeeze finally arrived, it
-              arrived as service cuts, not a drawdown. The decade of choices
+              one-time money cannot cover a recurring cost. Beverly has held that line, correctly. So when the structural squeeze
+              finally arrived, it arrived as service cuts rather than a drawdown, and it was always going to. The decade of choices
               described here was made when choosing was cheap. FY2027 is the first year it was expensive. FY2030, on the
               city&apos;s own projection, is more than three times harder.
             </P>

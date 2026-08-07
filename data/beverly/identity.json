@@ -220,11 +220,6 @@
       "use": "A restricted opioid-settlement fund",
       "amt": 0.107,
       "kind": "restricted"
-    },
-    {
-      "use": "Recurring services",
-      "amt": 0,
-      "kind": "none"
     }
   ]
 }
