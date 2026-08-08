@@ -240,7 +240,7 @@ export default function WhoBeverlyIs() {
 
             <P>
               The obvious objection is size. Maybe bigger places get an economy of scale, and spend less per person because of it. It is a fair question, and the answer is no.
-              Across all of Massachusetts, how big a town is tells you almost nothing about what it spends per resident.{fn(3)} Within
+              Across all of Massachusetts, how big a town is tells you almost nothing about what it spends per resident.{fn(3)}{" "}Within
               this particular group the smallest towns happen to be the biggest spenders, but that is a fact about which seven towns are
               being compared, not a law of arithmetic. Beverly&apos;s low spending is a choice, made on a middle-of-the-road tax base
               rather than a rich one.
@@ -258,7 +258,7 @@ export default function WhoBeverlyIs() {
             <P>
               One function breaks the pattern, and the chart shows it. Culture and recreation, meaning the library, the parks, and the
               theaters and galleries of the Cabot Street corridor, is the one thing Beverly funds above its peers, though it is only about
-              two percent of the budget. The state designated that corridor a cultural district in 2015.{fn(5)} So the pattern is more
+              two percent of the budget. The state designated that corridor a cultural district in 2015.{fn(5)}{" "}So the pattern is more
               specific than &quot;spends little.&quot; Beverly holds down the core services and pays for the amenities that give the place
               its character.
             </P>
@@ -268,7 +268,7 @@ export default function WhoBeverlyIs() {
               rise, lets a community tax above its cap only when its voters approve it, and theirs have. Since the state began keeping
               the record in 1990, Marblehead has held 21 override votes and passed 8 of them, most recently a $15 million general
               override in June 2026. Swampscott has held 13 and passed 7, though its last win was in 2005; an override is permanent, so
-              those dollars are still in its budget compounding.{fn(6)} That extra spending is money residents agreed to raise.
+              those dollars are still in its budget compounding.{fn(6)}{" "}That extra spending is money residents agreed to raise.
               Beverly has never held one. In thirty-five years it has not put an override or a debt exclusion on the ballot even once,
               which puts it in a minority of 33 communities statewide. So the fair comparison is Beverly against the towns living inside
               the same limit, and there Beverly still comes in low.
@@ -291,7 +291,7 @@ export default function WhoBeverlyIs() {
             </h2>
             <P>
               On November 8, 2024, Beverly&apos;s teachers went on strike, with class size among their central demands, and stayed out
-              more than two weeks.{fn(7)} One caution before the numbers: this section measures what Beverly chooses to spend on its
+              more than two weeks.{fn(7)}{" "}One caution before the numbers: this section measures what Beverly chooses to spend on its
               schools, not how good those schools are. Money does not guarantee results. But spending is a choice, and among the clearest
               a town makes.
             </P>
@@ -301,7 +301,7 @@ export default function WhoBeverlyIs() {
               that is in-district spending per pupil, and the place to start is where Beverly sat before the strike: the 7th percentile
               statewide in FY2020, the budget year ending June 2020, meaning it spent less per pupil than ninety-three districts out
               of every hundred. By FY2024
-              it had reached $18,595, still last of the seven and still only the 21st percentile.{fn(8)} Count every dollar, including the
+              it had reached $18,595, still last of the seven and still only the 21st percentile.{fn(8)}{" "}Count every dollar, including the
               tuition it pays to place some students in programs outside the district, and Beverly is still last per pupil. It is last
               however you count it.
             </P>
@@ -334,19 +334,19 @@ export default function WhoBeverlyIs() {
             <P>
               The underinvestment shows up in the two things the teachers walked out over. Beverly&apos;s classes run fuller than in the
               towns that spend the most on schools, about 12 students per teacher against 10.6 in Marblehead. And its teachers are paid
-              near the bottom of the cohort, sixth of seven.{fn(11)} Fuller classes and lower pay are part of what last-place spending
+              near the bottom of the cohort, sixth of seven.{fn(11)}{" "}Fuller classes and lower pay are part of what last-place spending
               buys, and in November 2024 they are what emptied the schools for two weeks.
             </P>
             <P>
               The strike did change the direction, and the most recent year shows it. Between FY2024 and FY2025 Beverly raised
               its local school spending 10.1 percent, the largest increase in the cohort and roughly double the pace of most of its
               neighbors. It moved from sixth of seven to fifth, passing Salem, and the gap to Danvers narrowed from twelve percent to
-              six.{fn(12)} That belongs in the record. But it is a climb from the floor, its peers are rising too, and one contract does
+              six.{fn(12)}{" "}That belongs in the record. But it is a climb from the floor, its peers are rising too, and one contract does
               not reverse a decade of position.
             </P>
             <P>
               It also has a cost the city is now carrying. School spending rose about 9 percent in FY2026 and another 5.28 percent in
-              FY2027, and those raises are permanent: a settled contract is a recurring obligation, not a one-year expense.{fn(12)} A
+              FY2027, and those raises are permanent: a settled contract is a recurring obligation, not a one-year expense.{fn(12)}{" "}A
               good part of the gap the city is now closing with cuts elsewhere is the bill for finally paying the schools closer to
               what its neighbors pay. That is what it costs to correct a decade at the bottom, and it is worth being plain that the
               correction and the squeeze are the same story rather than two.
@@ -396,14 +396,14 @@ export default function WhoBeverlyIs() {
               The balance is where it separates. Beverly holds 13.8 percent of a year&apos;s budget in stabilization against a statewide
               median of 9.2, which puts it in the top third of Massachusetts and first among its neighbours. Counting the surplus
               alongside it, the cushion reaches 19.8 percent of the operating budget, the largest of the seven, with Salem next at 17.8
-              and Swampscott at 16.7.{fn(14)} An ordinary inflow has produced an above-average balance, which can only mean the money is
+              and Swampscott at 16.7.{fn(14)}{" "}An ordinary inflow has produced an above-average balance, which can only mean the money is
               being kept rather than spent. That is not an accusation. It is what a reserve policy is for, and Beverly&apos;s requires
               the mayor to sweep at least a tenth of every certification into savings within ninety days.
             </P>
             <P>
               Marblehead is the proof that this is a choice and not a rule everyone follows. It under-forecasts its revenue harder than
               Beverly does, 62 percent in a typical year against 32, so it generates the larger surplus of the two. It then holds 0.52
-              percent of its budget in stabilization, second-lowest in Massachusetts.{fn(14)} Marblehead spends what it finds and
+              percent of its budget in stabilization, second-lowest in Massachusetts.{fn(14)}{" "}Marblehead spends what it finds and
               Beverly banks it. Both are following the rules. They are answering a different question about what the money is for.
             </P>
             <P>
@@ -477,7 +477,7 @@ export default function WhoBeverlyIs() {
             <P>
               The biggest thing Beverly buys with borrowed money is a building. The marquee project of the decade is the new Briscoe
               Middle School, 1,395 students, opened in 2018: a roughly $109 million project, of which about $49 million came as a state
-              grant and the remaining $60 million was borrowed by the city.{fn(18)} Beverly bonded $60 million for the building and then
+              grant and the remaining $60 million was borrowed by the city.{fn(18)}{" "}Beverly bonded $60 million for the building and then
               staffed the classrooms inside it at the bottom of the cohort, in the same years. And it kept even the borrowing lean: for
               all that it builds, Beverly carries less debt per resident than almost every town in the cohort.{fn(19)}
             </P>
@@ -498,7 +498,7 @@ export default function WhoBeverlyIs() {
             <PensionTable />
 
             <P>
-              Paying a debt early is, in one light, the definition of prudence.{fn(21)} It is also not free. The pension payment is one of
+              Paying a debt early is, in one light, the definition of prudence.{fn(21)}{" "}It is also not free. The pension payment is one of
               the largest fixed costs in the budget, and retiring it early means a heavier bill in the years before it ends, the same
               years the city is eliminating its bus line and trimming its libraries. It is the school-building trade on a longer clock.
             </P>
@@ -520,16 +520,16 @@ export default function WhoBeverlyIs() {
             <P>
               The reserves and thin services might describe a town of modest means making do with little. They do not. Over the same
               decade it held services at the bottom of the cohort, Beverly was one of the fastest-growing communities on the North Shore.
-              Its population rose 8.0 percent between the 2010 and 2020 censuses, second in the cohort.{fn(22)} About 168 housing units
+              Its population rose 8.0 percent between the 2010 and 2020 censuses, second in the cohort.{fn(22)}{" "}About 168 housing units
               were built citywide from 2010 to 2014, and nearly 1,400 were built or permitted in the years after, most of it dense and
               downtown along the Rantoul Street corridor.{fn(23)}
             </P>
             <P>
               Beverly also did the thing many of its neighbors would not. When the state&apos;s MBTA Communities law required cities on the
               transit system to zone for multifamily housing, Beverly complied on time, zoning about 98 acres near the Depot for 2,063
-              units, and was not among the towns the attorney general later sued.{fn(24)} The contrast played out next door in 2026, when
+              units, and was not among the towns the attorney general later sued.{fn(24)}{" "}The contrast played out next door in 2026, when
               a Marblehead resident asked at a Town Meeting whether his town was quietly dodging the same law, a question that drew two
-              million views online.{fn(25)} Beverly took the law seriously. Marblehead made the news for not.
+              million views online.{fn(25)}{" "}Beverly took the law seriously. Marblehead made the news for not.
             </P>
             <P>
               Here is why that matters to the budget. Growth is not just construction; it is revenue, and revenue of an unusual kind.
@@ -542,24 +542,24 @@ export default function WhoBeverlyIs() {
               need schools and roads and trash collection. Commercial and lab space pays into the same levy without sending children to
               school or filling the streets, which makes it the highest-margin revenue a city can add. Beverly&apos;s new growth leaned
               toward the profitable side, 58 percent commercial and industrial, anchored by the Cummings Center&apos;s two million square
-              feet of offices and labs.{fn(26)} The residential half still showed up where you would expect. Between FY2015 and FY2024
+              feet of offices and labs.{fn(26)}{" "}The residential half still showed up where you would expect. Between FY2015 and FY2024
               every other district in the cohort lost students, some sharply, while Beverly&apos;s enrollment held roughly flat, the only
-              one that did not shrink.{fn(27)} The cohort lost about 7 percent of its students over the decade; had Beverly followed that
+              one that did not shrink.{fn(27)}{" "}The cohort lost about 7 percent of its students over the decade; had Beverly followed that
               trend it would have several hundred fewer children in its schools today. Its apartments did not flood the district, but they
               kept it full while its neighbors emptied. Beverly met that demand while spending less per pupil than any of them.
             </P>
             <P>
               Notice the shape. On spending, Beverly ranks low in its cohort and low statewide. On growth, it ranks high in its cohort but
-              only average for the state, its new growth running near the statewide median.{fn(28)} It is worth knowing what the top of
+              only average for the state, its new growth running near the statewide median.{fn(28)}{" "}It is worth knowing what the top of
               that range looks like. Waltham, on the Route 128 lab corridor, lets commercial property cover close to half its tax levy,
-              which funds schools near the top of the state with low residential taxes and no override.{fn(29)} Beverly runs a far smaller
+              which funds schools near the top of the state with low residential taxes and no override.{fn(29)}{" "}Beverly runs a far smaller
               version of the same playbook, and it banks the proceeds rather than spending them. Nobody should expect Beverly to become
               Waltham. But average-for-the-state is also headroom: a decade-long record of adding taxable value, a base nowhere near built
               out, and every additional million dollars of new growth a million dollars of permanent, compounding revenue.
             </P>
             <P>
               None of this makes Beverly rich. Its tax base is about $265,000 of assessed value per resident, fifth of the seven. It has
-              neither the coastline that lifts Marblehead and Gloucester nor the retail base that lifts Peabody.{fn(30)} A middling base
+              neither the coastline that lifts Marblehead and Gloucester nor the retail base that lifts Peabody.{fn(30)}{" "}A middling base
               shapes what the town can do. But it is not the reason services sit where they do. Beverly grows its base about as well as
               anyone in the cohort, taxes it to the ceiling every year, and has never once asked voters for more. So the explanation people
               reach for first, that there simply is not enough money, does not hold. What is left is a set of choices about where the money
@@ -568,7 +568,7 @@ export default function WhoBeverlyIs() {
             <P>
               One caution about that, because it has a shelf life. &quot;The surplus is bigger than the gap&quot; is true this year and
               was true for the last several. It stops being true soon. The city&apos;s own forecast puts the gap at $10.01 million in
-              FY2029 and $13.68 million in FY2030, against a surplus that has run between $9.9 and $11.4 million a year.{fn(34)} Within
+              FY2029 and $13.68 million in FY2030, against a surplus that has run between $9.9 and $11.4 million a year.{fn(34)}{" "}Within
               about three years the annual surplus no longer covers the annual gap even in principle, and the choices described here get
               harder rather than easier. The argument of this section is that Beverly has had room to choose. It is not an argument that
               the room lasts.
@@ -593,7 +593,7 @@ export default function WhoBeverlyIs() {
             <P>
               The first move was zoning. After the Rantoul Street apartment wave, residents pushed back, and the Boston Globe caught the
               mood in January 2023: traffic, a five-story building out of scale with its neighbors, poorly maintained streets, and open
-              questions about whether Beverly had the resources to keep up with its own growth.{fn(31)} The complaint about the streets
+              questions about whether Beverly had the resources to keep up with its own growth.{fn(31)}{" "}The complaint about the streets
               had a basis in the budget. Beverly runs the leanest public works operation in the cohort, and the money it has since put
               into repaving came out of free cash rather than the operating budget, which is to say it arrived as a series of one-time
               appropriations rather than as a bigger standing road program.{fn(32)}
@@ -675,7 +675,7 @@ export default function WhoBeverlyIs() {
             </P>
             <P>
               The narrower point is about forecasting rather than spending. Beverly has certified between $9.9 and $11.4 million of
-              free cash in each of the last four years.{fn(14)} A surplus that steady is not really a surprise, and revenue a city can
+              free cash in each of the last four years.{fn(14)}{" "}A surplus that steady is not really a surprise, and revenue a city can
               count on four years running is closer to recurring revenue than the budget treats it as. Had more of it been forecast,
               it would have entered the operating budget, where it could have funded a recurring service. Forecast conservatively, it
               arrives after the year closes, when the only lawful uses left are capital and reserves. The cuts and the surplus are
@@ -689,7 +689,7 @@ export default function WhoBeverlyIs() {
             <P>
               This is not a city that refuses to touch its reserves: in 2020, when the pandemic opened a $4.6 million hole and state
               aid fell more than 17 percent in a single year, Beverly drew about $1 million from the rainy-day fund, leaned on new growth
-              and a tax increase, trimmed departments, and laid no one off.{fn(37)} That is what a
+              and a tax increase, trimmed departments, and laid no one off.{fn(37)}{" "}That is what a
               reserve is for: a sharp one-year shock bridged until revenue comes back.
             </P>
             <P>

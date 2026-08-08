@@ -306,7 +306,7 @@ export default function FY27Budget() {
             them. Each year the maximum increase is 2.5% of the prior year&apos;s levy, the total collected from all property taxes, plus
             revenue from newly built properties. Beverly cannot raise property taxes faster than that unless voters approve it: an override
             for ongoing spending, or a debt exclusion, a temporary version tied to a specific borrowing. Beverly has not passed one in
-            recent history. Marblehead, next door, approved a $15 million override on June 9, 2026.{fn(1)} This year, all of Beverly&apos;s
+            recent history. Marblehead, next door, approved a $15 million override on June 9, 2026.{fn(1)}{" "}This year, all of Beverly&apos;s
             revenue sources combined brought in $7.2 million more than last year.
           </Narrative>
           <Topline tone="rev" number="+$7.2M">
@@ -429,7 +429,7 @@ export default function FY27Budget() {
             </Callout>
             <LineRow
               label="Essex Tech (North Shore Agricultural and Technical School)"
-              desc={<>Beverly is one of 17 member communities that support Essex Tech. The city&apos;s annual payment is set by a formula in the school&apos;s founding legislation: costs are split based on how many Beverly students attend relative to other towns.{fn(4)} Beverly does not control the school&apos;s per-student costs or how many Beverly students apply. This year&apos;s assessment rose 17.4%, adding $690K.</>}
+              desc={<>Beverly is one of 17 member communities that support Essex Tech. The city&apos;s annual payment is set by a formula in the school&apos;s founding legislation: costs are split based on how many Beverly students attend relative to other towns.{fn(4)}{" "}Beverly does not control the school&apos;s per-student costs or how many Beverly students apply. This year&apos;s assessment rose 17.4%, adding $690K.</>}
               badges={<Badge kind="confirmed">budget book + transmittal letter</Badge>}
               amount="-$690K" amountTone="cost" pct="7% of cost growth" bar={{ pct: 15, tone: "cost" }}
             />
@@ -489,7 +489,7 @@ export default function FY27Budget() {
             />
             <LineRow
               label="Debt service on existing loans"
-              desc={<>Only roughly +$176K this year, an unusually small increase given that the City Hall renovation loan payments have started.{fn(5)} Beverly&apos;s debt service historically runs near 5-7% of the total budget. At 5.01% in FY27 it is at the low end of that range. The reason debt payments barely moved is explained in the callout below.</>}
+              desc={<>Only roughly +$176K this year, an unusually small increase given that the City Hall renovation loan payments have started.{fn(5)}{" "}Beverly&apos;s debt service historically runs near 5-7% of the total budget. At 5.01% in FY27 it is at the low end of that range. The reason debt payments barely moved is explained in the callout below.</>}
               badges={<Badge kind="confirmed">budget book + City Hall presentation, slide 27</Badge>}
               amount="-~$176K" amountTone="cost" pct="2% of cost growth" bar={{ pct: 4, tone: "cost" }}
             />
@@ -542,7 +542,7 @@ export default function FY27Budget() {
                 FY28 is when both loans run at once, adding about $2.4M in City Hall payments. The rest of the portfolio keeps shrinking,
                 which absorbs much of that. Debt service is projected to hold near 5% of the budget through FY2032. Two ways to read that.
                 Level: 5% sits at the bottom of the 5-7% range Beverly has run for decades. Direction: the state treats debt as a fiscal
-                stress problem when payments grow to the point of crowding out everyday services.{fn(11)} None of Beverly&apos;s neighbors
+                stress problem when payments grow to the point of crowding out everyday services.{fn(11)}{" "}None of Beverly&apos;s neighbors
                 shows that kind of stress, but Massachusetts has a live example: Quincy. Quincy&apos;s own breakdown puts debt service at
                 19.54% of its FY26 budget, nearly four times Beverly&apos;s share, swollen partly by borrowing against its pension
                 obligations. Both major rating agencies have downgraded it. Per resident, Quincy spends about $882 a year on debt payments;
@@ -585,7 +585,7 @@ export default function FY27Budget() {
             two roommates. Their electric bill is $500, but each roommate pays only $100, leaving $300 unpaid. The landlord covers that $300
             out of the rent he collects across the whole building. Every dollar spent covering that one unit&apos;s shortfall is a dollar he
             cannot spend on the building or staff. Beverly runs several of these accounts, called enterprise funds, and trash is the odd one
-            out. Water and sewer are enterprise funds too, and fees cover more than 90% of their cost.{fn(12)} Trash was the exception.
+            out. Water and sewer are enterprise funds too, and fees cover more than 90% of their cost.{fn(12)}{" "}Trash was the exception.
             Residents paid $100 per year, the real cost was far higher, and the general fund (the same pot that pays for schools, police, and
             roads) covered the $2.48M shortfall. This year the new hauler contract alone jumped $1.3M. Either way, the cost reaches every
             resident, homeowners on the tax bill and, indirectly, renters through what landlords charge.
@@ -607,7 +607,7 @@ export default function FY27Budget() {
             />
             <OptionCard
               eyebrow="Option B: Mayor's prior proposal" title="Raise to $425 standard bin"
-              desc={<>Per Patch reporting on the fee vote,{fn(7)} the mayor&apos;s prior proposal was $425 for a standard bin, $280 for a smaller bin.</>}
+              desc={<>Per Patch reporting on the fee vote,{fn(7)}{" "}the mayor&apos;s prior proposal was $425 for a standard bin, $280 for a smaller bin.</>}
               chain={[["Cost to run sanitation", "$5.27M", ""], ["Resident fees (at $425)", "-$5.21M", "rev"], ["Other fund income", "-$0.20M", "rev"]]}
               pivot={["General fund must cover the rest", "~$0"]}
               bridge={<>That is <b>$2.48M less</b>{" "}than last year&apos;s subsidy. Nearly the entire deficit is erased.</>}
@@ -790,7 +790,7 @@ export default function FY27Budget() {
             trajectory holds: raising kindergarten fees, cutting the school budget, bringing the city&apos;s share of health insurance below
             80%, cautioning unions that raises above the 2.5% the tax cap allows may not be affordable, and leaning on the state for more aid.
             He was not endorsing these as a platform. He was naming them as the uncomfortable levers a city reaches for when the easy ones
-            are gone, and he called it a &quot;break glass&quot; moment.{fn(8)} The specific list matters less than the direction it points.
+            are gone, and he called it a &quot;break glass&quot; moment.{fn(8)}{" "}The specific list matters less than the direction it points.
             This was not the hard year. Next year is harder.
           </Narrative>
           <Narrative>
