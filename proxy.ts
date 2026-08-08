@@ -17,5 +17,5 @@ export function proxy(req: NextRequest) {
 
 // Must be a static literal; Next reads this at build time.
 export const config = {
-  matcher: ["/work/beverly/who-beverly-is"],
+  matcher: ["/work/beverly/who-beverly-is", "/work/beverly/who-beverly-is-v2"],
 };

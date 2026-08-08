@@ -85,40 +85,47 @@
   ],
   "receipts": [
     {
-      "town": "Beverly",
-      "pct": 21.1,
-      "rank": 1,
-      "me": true
-    },
-    {
       "town": "Marblehead",
       "pct": 20.7,
-      "rank": 2
+      "rank": 1,
+      "med": 61.7
+    },
+    {
+      "town": "Beverly",
+      "pct": 21.1,
+      "rank": 2,
+      "me": true,
+      "med": 32.0
     },
     {
       "town": "Salem",
       "pct": 11.4,
-      "rank": 3
-    },
-    {
-      "town": "Gloucester",
-      "pct": 10.4,
-      "rank": 4
-    },
-    {
-      "town": "Danvers",
-      "pct": 1.7,
-      "rank": 5
+      "rank": 3,
+      "med": 31.4
     },
     {
       "town": "Swampscott",
       "pct": 0.9,
-      "rank": 6
+      "rank": 4,
+      "med": 18.8
+    },
+    {
+      "town": "Danvers",
+      "pct": 1.7,
+      "rank": 5,
+      "med": 16.8
+    },
+    {
+      "town": "Gloucester",
+      "pct": 10.4,
+      "rank": 6,
+      "med": 16.4
     },
     {
       "town": "Peabody",
       "pct": -11.6,
-      "rank": 7
+      "rank": 7,
+      "med": 4.6
     }
   ],
   "pension": [
@@ -220,11 +227,89 @@
       "use": "A restricted opioid-settlement fund",
       "amt": 0.107,
       "kind": "restricted"
-    },
-    {
-      "use": "Recurring services",
-      "amt": 0,
-      "kind": "none"
     }
-  ]
+  ],
+  "receiptsStatewide": {
+    "_note": "DLS 'Local Receipt Estimate vs. Actual', FY2024, all 351 municipalities, pulled 2026-08-07 by pull_receipts_statewide.py. Overage excludes investment income. Single-year cross-section: every town faced the same year, but noisy for any one town.",
+    "fy": 2024,
+    "n": 351,
+    "median": 24.0,
+    "mean": 36.5,
+    "p25": 15.1,
+    "p75": 38.8,
+    "p90": 64.5,
+    "beverlyPct": 49.2,
+    "beverlyRank": 61,
+    "sizeBand": {
+      "_def": "receipts base $3.4M-$30M, against Beverly's $10.2M",
+      "n": 175,
+      "median": 21.8,
+      "p75": 32.2,
+      "p90": 49.2,
+      "beverlyRank": 18
+    }
+  },
+  "reservesStatewide": {
+    "_note": "DLS Cat-1 reports, pulled 2026-08-08 by pull_stabilization_statewide.py and pull_freecash_statewide.py. Stabilization is total (general + special purpose) over operating budget, FY2025, 341 municipalities reporting usable figures. Free cash is FY2026 over prior-year budget, 351 municipalities.",
+    "stabilization": {
+      "fy": 2025,
+      "n": 341,
+      "median": 9.22,
+      "mean": 12.5,
+      "p25": 6.07,
+      "p75": 13.89,
+      "p90": 24.33,
+      "beverlyPct": 13.78,
+      "beverlyRank": 89,
+      "beverlyPercentile": 74,
+      "sizeBand": {
+        "_def": "operating budget $60M-$400M against Beverly's $174M",
+        "n": 140,
+        "median": 9.1,
+        "beverlyRank": 28
+      }
+    },
+    "freeCash": {
+      "fy": 2026,
+      "n": 351,
+      "median": 7.02,
+      "mean": 8.42,
+      "beverlyPct": 6.04,
+      "beverlyRank": 209
+    },
+    "conversion": {
+      "_def": "stabilization % divided by free cash %, i.e. how many years of surplus a town holds in savings; towns with a negligible surplus excluded",
+      "n": 334,
+      "median": 1.27,
+      "beverly": 2.28,
+      "beverlyRank": 97,
+      "cohort": {
+        "Gloucester": 4.09,
+        "Swampscott": 2.71,
+        "Beverly": 2.28,
+        "Salem": 1.43,
+        "Danvers": 0.67,
+        "Peabody": 0.39,
+        "Marblehead": 0.09
+      }
+    },
+    "cohortStabilizationPct": {
+      "Beverly": 13.78,
+      "Swampscott": 12.2,
+      "Gloucester": 11.45,
+      "Salem": 10.48,
+      "Danvers": 5.62,
+      "Peabody": 1.87,
+      "Marblehead": 0.52
+    },
+    "cohortStabilizationRank": {
+      "Beverly": 89,
+      "Swampscott": 112,
+      "Gloucester": 128,
+      "Salem": 145,
+      "Danvers": 268,
+      "Peabody": 335,
+      "Marblehead": 340
+    }
+  }
 }

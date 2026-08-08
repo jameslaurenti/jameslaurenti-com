@@ -1,6 +1,7 @@
 "use client";
 
-import identity from "@/data/beverly/identity.json";
+// v2 review copy: forked data so edits here cannot alter the published v1 page.
+import identity from "@/data/beverly/identity-v2.json";
 
 const usd = (n: number) => `$${Math.round(n).toLocaleString("en-US")}`;
 const ordinal = (n: number) => {
@@ -150,8 +151,8 @@ export function SchoolFundingStack() {
 // ---- 3. Receipts: smallest yearly overshoot, diverging around zero ----
 export function ReceiptsChart() {
   const rows = identity.receipts;
-  const maxNeg = Math.max(0, ...rows.map((r) => -r.pct));
-  const maxPos = Math.max(...rows.map((r) => r.pct));
+  const maxNeg = Math.max(0, ...rows.map((r) => -r.med));
+  const maxPos = Math.max(...rows.map((r) => r.med));
   const span = maxNeg + maxPos;
   const zeroX = (maxNeg / span) * 100;
   return (
@@ -159,18 +160,26 @@ export function ReceiptsChart() {
       title="How far each town's revenue beats its own forecast"
       note={
         <>
-          Local receipts, actual collections versus the town&apos;s own estimate, FY2018 through FY2024, showing each town&apos;s
-          <em> smallest</em> overshoot in any single year. Even in the year it forecast most accurately, Beverly still collected 21
-          percent more than it budgeted, the most conservative floor in the cohort. Source: DLS, local receipt estimate versus actual.
+          Local receipts, actual collections versus the town&apos;s own estimate, FY2018 through FY2024. The bar is the
+          <em>typical</em> year, the middle of the seven; the second figure is the <em>floor</em>, each town&apos;s smallest
+          overshoot in any single year. Marblehead under-forecasts by more than Beverly in a typical year. What sets Beverly apart
+          is the floor: it is the one town that has never had a year where the estimate came close. Source: DLS, local receipt
+          estimate versus actual.
         </>
       }
     >
+      <div className="mb-1.5 grid grid-cols-[84px_1fr_56px_52px] gap-2 text-[0.625rem] font-bold uppercase tracking-wider text-ink-faint sm:grid-cols-[96px_1fr_56px_58px]">
+        <span />
+        <span />
+        <span className="text-right">Typical</span>
+        <span className="text-right">Floor</span>
+      </div>
       <div className="flex flex-col gap-1.5">
         {rows.map((r) => {
-          const neg = r.pct < 0;
-          const w = (Math.abs(r.pct) / span) * 100;
+          const neg = r.med < 0;
+          const w = (Math.abs(r.med) / span) * 100;
           return (
-            <div key={r.town} className="grid grid-cols-[84px_1fr_56px] items-center gap-2 sm:grid-cols-[96px_1fr_56px]">
+            <div key={r.town} className="grid grid-cols-[84px_1fr_56px_52px] items-center gap-2 sm:grid-cols-[96px_1fr_56px_58px]">
               <div className={`text-[0.8125rem] ${r.me ? "font-bold text-ink" : "text-ink-mid"}`}>{r.town}</div>
               <div className="relative h-5">
                 <div className="absolute inset-y-[-3px] w-px bg-ink/40" style={{ left: `${zeroX}%` }} />
@@ -184,6 +193,13 @@ export function ReceiptsChart() {
                 />
               </div>
               <div className={`text-right text-[0.78125rem] font-bold tabular-nums ${neg ? "text-debt" : r.me ? "text-accent" : "text-ink-faint"}`}>
+                {r.med > 0 ? "+" : ""}
+                {r.med}%
+              </div>
+              <div
+                className={`text-right text-[0.6875rem] tabular-nums ${r.pct < 0 ? "text-debt" : "text-ink-faint"}`}
+                title="smallest overshoot in any single year"
+              >
                 {r.pct > 0 ? "+" : ""}
                 {r.pct}%
               </div>
@@ -243,13 +259,11 @@ export function FreeCashDisposition() {
     capital: "var(--color-gold-strong)",
     reserve: "var(--color-accent)",
     restricted: "color-mix(in srgb, var(--color-ink) 40%, var(--color-bg))",
-    none: "var(--color-debt)",
   };
   const groups = [
     { kind: "capital", label: "Capital" },
     { kind: "reserve", label: "Reserves" },
     { kind: "restricted", label: "Restricted" },
-    { kind: "none", label: "Recurring services" },
   ].map((g) => ({ ...g, sum: rows.filter((r) => r.kind === g.kind).reduce((s, r) => s + r.amt, 0) }));
   return (
     <ChartCard
@@ -257,8 +271,9 @@ export function FreeCashDisposition() {
       note={
         <>
           The seven Beverly City Council orders that appropriated FY2024 certified free cash, about $7.7 million of an $11.4
-          million pool. Two-thirds went to capital, a third to reserves, and nothing to a recurring service. The remaining $3.6 million
-          was left unspent and recertified as free cash the next year. Source: Beverly City Council orders, FY2024.
+          million pool. Two-thirds went to capital, a third to reserves. That is the allocation the state prescribes for one-time
+          money, so this split is not itself a criticism. The remaining $3.6 million was left unspent and recertified as free cash
+          the next year. Source: Beverly City Council orders, FY2024.
         </>
       }
     >
@@ -280,10 +295,8 @@ export function FreeCashDisposition() {
         {rows.map((r) => (
           <li key={r.use} className="flex items-center gap-3 py-2">
             <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: kindColor[r.kind] }} />
-            <span className={`flex-1 text-[0.875rem] leading-tight ${r.kind === "none" ? "font-semibold text-debt" : "text-ink"}`}>{r.use}</span>
-            <span className={`shrink-0 text-[0.84375rem] font-bold tabular-nums ${r.kind === "none" ? "text-debt" : "text-ink"}`}>
-              {r.amt === 0 ? "$0" : `$${r.amt}M`}
-            </span>
+            <span className="flex-1 text-[0.875rem] leading-tight text-ink">{r.use}</span>
+            <span className="shrink-0 text-[0.84375rem] font-bold tabular-nums text-ink">{`$${r.amt}M`}</span>
           </li>
         ))}
       </ul>
