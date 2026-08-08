@@ -160,12 +160,19 @@ export function ReceiptsChart() {
       note={
         <>
           Local receipts, actual collections versus the town&apos;s own estimate, FY2018 through FY2024. The bar is the
-          <em> typical</em> year; the second figure is each town&apos;s <em>smallest</em> overshoot in any single year. Marblehead
-          under-forecasts by more than Beverly in a normal year. What sets Beverly apart is the floor: it is the one town that has
-          never had a year where the estimate came close. Source: DLS, local receipt estimate versus actual.
+          <em>typical</em> year, the middle of the seven; the second figure is the <em>floor</em>, each town&apos;s smallest
+          overshoot in any single year. Marblehead under-forecasts by more than Beverly in a typical year. What sets Beverly apart
+          is the floor: it is the one town that has never had a year where the estimate came close. Source: DLS, local receipt
+          estimate versus actual.
         </>
       }
     >
+      <div className="mb-1.5 grid grid-cols-[84px_1fr_56px_52px] gap-2 text-[0.625rem] font-bold uppercase tracking-wider text-ink-faint sm:grid-cols-[96px_1fr_56px_58px]">
+        <span />
+        <span />
+        <span className="text-right">Typical</span>
+        <span className="text-right">Floor</span>
+      </div>
       <div className="flex flex-col gap-1.5">
         {rows.map((r) => {
           const neg = r.med < 0;

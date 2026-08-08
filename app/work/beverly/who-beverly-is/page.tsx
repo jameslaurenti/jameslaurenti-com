@@ -400,7 +400,8 @@ export default function WhoBeverlyIs() {
               given but did not spend, and revenue that came in above what the budget assumed. Every city has both. The second is
               where Beverly separates from its neighbors. Local receipts, the money a city takes in outside property taxes, run $11 to
               $15 million a year for Beverly, and cities must estimate that revenue before the year begins. Beverly estimates it low
-              and beats the estimate every year, by 32 percent in a typical year. Statewide that is high but not rare: against the
+              and beats the estimate every year, by 32 percent in a typical year, meaning the middle year of the seven on record rather
+              than the average, which one unusual year would skew. Statewide that is high but not rare: against the
               175 Massachusetts communities with a similar-sized receipts base, Beverly&apos;s FY2024 overshoot ranked 18th, and the
               median community still collected about 22 percent more than it budgeted. Under-forecasting is how Massachusetts
               budgets.{fn(15)}
@@ -410,9 +411,9 @@ export default function WhoBeverlyIs() {
 
             <P>
               What separates Beverly is not the size of the habit but its consistency. Marblehead under-forecasts far harder in a
-              normal year, 62 percent against Beverly&apos;s 32. But Marblehead misses in both directions, and so does everyone else
+              typical year, 62 percent against Beverly&apos;s 32. But Marblehead misses in both directions, and so does everyone else
               here. Beverly does not. Its most accurate year in seven still came in 21 percent high, the best floor in the cohort, and
-              a floor that happens to sit almost exactly where a typical comparable community lands in an ordinary year. Beverly&apos;s
+              a floor that happens to sit almost exactly where a comparably sized Massachusetts community lands in an ordinary year. Beverly&apos;s
               worst case is everyone else&apos;s normal.{fn(15)}
             </P>
             <P>
