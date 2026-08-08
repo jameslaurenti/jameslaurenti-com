@@ -7,6 +7,8 @@ import {
   FunctionSpendingChart,
   SchoolFundingStack,
   ReceiptsChart,
+  NewGrowthCohort,
+  GrowthVsService,
   PensionTable,
   FreeCashDisposition,
   StabilizationLeap,
@@ -98,8 +100,8 @@ const NOTES: React.ReactNode[] = [
   <>Boston Globe, January 20, 2023, citing Beverly&apos;s Planning Department: 168 units built between 2010 and 2014, and nearly 1,400 built or permitted since. The figure is &quot;built or permitted,&quot; not delivered, and runs to early 2023. <em>Confirmed as to the source.</em></>,
   <>City of Beverly, MBTA Communities multifamily zoning page: districts of about 98 acres zoned for 2,063 units, adopted November 12, 2024, state compliance confirmed April 2025. <em>Confirmed.</em></>,
   <>The Marblehead Town Meeting exchange (May 2026) drew wide coverage and roughly two million online views, and Marblehead was among the municipalities the attorney general pursued over MBTA Communities compliance. <em>Confirmed via contemporaneous news coverage.</em></>,
-  <>Beverly new-growth split, 58 percent commercial and industrial, third of seven. Cummings Center square footage and history from Cummings Properties. <em>Confirmed on the split; the Cummings figures are company-published.</em></>,
-  <>DESE enrollment, FY2015 through FY2024. <em>Confirmed.</em></>,
+  <>Beverly new-growth split, 58 percent commercial and industrial, third of seven. Cohort new growth averaged as a percent of the prior year&apos;s levy, FY2014 to FY2025, with the residential share of that growth in brackets: Salem 1.87 (40), Beverly 1.50 (42), Gloucester 1.38 (70), Swampscott 1.14 (64), Danvers 1.13 (43), Peabody 0.98 (27), Marblehead 0.64 (79). Statewide median is about 1.2 percent of prior levy, so Beverly is second in the cohort and modestly above the state middle. Source: MA DLS New Growth Analysis. Cummings Center square footage and history from Cummings Properties. <em>Confirmed on the split and the cohort figures; the Cummings figures are company-published.</em></>,
+  <>Enrollment change FY2015 to FY2024 is Chapter 70 <em>foundation</em> enrollment, the same series behind the per-pupil figures elsewhere in this piece: Beverly 4,345 to 4,541 (+4.5 percent), Peabody &minus;0.5, Swampscott &minus;5.6, Gloucester &minus;9.3, Danvers &minus;10.8, Salem &minus;12.2, Marblehead &minus;21.0. DESE&apos;s headcount series is a different count and moves more modestly, showing Beverly up about 1 percent over the same span; the ranking is the same on either basis, and Beverly is the only district that did not shrink. Population change is the 2010 and 2020 decennial Census. <em>Confirmed.</em></>,
   <>Cohort: new growth averaging 1.5 percent of the levy, FY2014 through FY2025, second of seven behind Salem at 1.9 percent. Statewide: recent years about 1.2 to 1.3 percent of prior levy against a 1.2 percent statewide median, a flat trend. <em>Confirmed.</em></>,
   <>Illustrative, out-of-cohort comparisons. Waltham: commercial and industrial property pays about 45.9 percent of the tax levy (FY2026 split rate), spends roughly $23,800 per pupil (DESE, FY2024), and has no recent operating override. Lexington: roughly six operating overrides plus debt exclusions over the years, spending about $24,300 per pupil on a low-need student body. Per-pupil here is actual net school spending per foundation pupil, a different basis than the in-district figure used elsewhere, shown only as relative context. <em>Illustrative.</em></>,
   <>DLS assessed values by class, FY2026: Beverly $264,717 per resident, fifth of seven. <em>Confirmed.</em></>,
@@ -460,6 +462,11 @@ export default function WhoBeverlyIs() {
             <FreeCashDisposition />
 
             <P>
+              Two things stand out in that picture. Capital took roughly twice what reserves did. And a third of the pool, about
+              $3.6 million, was never appropriated at all: it simply sat, and was recertified as free cash the following year. In a
+              year the city was tightening departments, the largest single destination of the surplus after roads was nowhere.
+            </P>
+            <P>
               The one order that came closest to breaking the pattern confirms it. A $2 million free-cash request to replace the main
               library&apos;s heating system was voted down. The same repair was then paid for out of the debt stabilization fund.
             </P>
@@ -542,12 +549,20 @@ export default function WhoBeverlyIs() {
               need schools and roads and trash collection. Commercial and lab space pays into the same levy without sending children to
               school or filling the streets, which makes it the highest-margin revenue a city can add. Beverly&apos;s new growth leaned
               toward the profitable side, 58 percent commercial and industrial, anchored by the Cummings Center&apos;s two million square
-              feet of offices and labs.{fn(26)}{" "}The residential half still showed up where you would expect. Between FY2015 and FY2024
-              every other district in the cohort lost students, some sharply, while Beverly&apos;s enrollment held roughly flat, the only
-              one that did not shrink.{fn(27)}{" "}The cohort lost about 7 percent of its students over the decade; had Beverly followed that
-              trend it would have several hundred fewer children in its schools today. Its apartments did not flood the district, but they
-              kept it full while its neighbors emptied. Beverly met that demand while spending less per pupil than any of them.
+              feet of offices and labs.{fn(26)}
             </P>
+
+            <NewGrowthCohort />
+
+            <P>
+              The residential half still showed up where you would expect. Every town in the cohort gained population between the
+              2010 and 2020 censuses. Only Beverly&apos;s schools grew alongside, and every other district lost students, some of
+              them sharply: Marblehead is down a fifth.{fn(27)}{" "}Had Beverly followed the cohort trend it would have several
+              hundred fewer children in its schools today. Its apartments did not flood the district, but they kept it full while
+              its neighbours emptied, and Beverly met that demand while spending less per pupil than any of them.
+            </P>
+
+            <GrowthVsService />
             <P>
               Notice the shape. On spending, Beverly ranks low in its cohort and low statewide. On growth, it ranks high in its cohort but
               only average for the state, its new growth running near the statewide median.{fn(28)}{" "}It is worth knowing what the top of

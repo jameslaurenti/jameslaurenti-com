@@ -88,23 +88,27 @@ export function FunctionSpendingChart() {
 }
 
 // ---- 2. School funding stack: aid + required + added-on-top ----
+// Sorted by TOTAL, not by the green segment. Sorting by the discretionary part alone
+// made the right-hand number look like it labelled the whole bar, and hid that Beverly
+// is sixth of seven on total spending too, not only on the part it chooses.
 export function SchoolFundingStack() {
-  const rows = identity.schoolFunding;
+  const rows = [...identity.schoolFunding].sort((a, b) => b.aid + b.req + b.add - (a.aid + a.req + a.add));
   const maxTotal = Math.max(...rows.map((r) => r.aid + r.req + r.add)) * 1.02;
   const seg = [
     { key: "aid" as const, label: "State aid", color: "var(--color-ink-faint)" },
     { key: "req" as const, label: "Required local", color: "color-mix(in srgb, var(--color-ink) 55%, var(--color-bg))" },
-    { key: "add" as const, label: "Added on top (the choice)", color: "var(--color-accent)" },
+    { key: "add" as const, label: "Added by choice", color: "var(--color-accent)" },
   ];
   return (
     <ChartCard
       title="Who pays for the schools, per pupil"
       note={
         <>
-          Per pupil, FY2025, sorted by the green segment. State aid plus the required local contribution make up the foundation
-          budget the state sets; <b className="text-ink">added on top</b>{" "}is what each town chose to spend beyond it. Beverly&apos;s
-          added spending is second from the bottom, ahead of only Peabody, though the state already expects it to cover one of the
-          largest local shares in the group. Source: Massachusetts Department of Elementary and Secondary Education, Chapter 70.
+          Per pupil, FY2025, sorted by total spending. State aid plus the required local contribution make up the foundation budget
+          the state sets; <b className="text-ink">added by choice</b>{" "}is what each town spends beyond it. Beverly is sixth of
+          seven on the total and fifth on the part it chooses. Salem shows why both columns matter: a high total built largely on
+          state aid, with a small discretionary share. Source: Massachusetts Department of Elementary and Secondary Education,
+          Chapter 70.
         </>
       }
     >
@@ -115,31 +119,37 @@ export function SchoolFundingStack() {
           </span>
         ))}
       </div>
+      <div className="mb-1.5 grid grid-cols-[76px_1fr_58px_54px] gap-2 text-[0.625rem] font-bold uppercase tracking-wider text-ink-faint sm:grid-cols-[92px_1fr_66px_60px]">
+        <span />
+        <span />
+        <span className="text-right">Total</span>
+        <span className="text-right">Added</span>
+      </div>
       <div className="flex flex-col gap-2">
         {rows.map((r) => {
           const total = r.aid + r.req + r.add;
           return (
-            <div key={r.town} className="grid grid-cols-[84px_1fr] items-center gap-2 sm:grid-cols-[96px_1fr]">
+            <div
+              key={r.town}
+              className="grid grid-cols-[76px_1fr_58px_54px] items-center gap-2 sm:grid-cols-[92px_1fr_66px_60px]"
+            >
               <div className={`text-[0.8125rem] leading-tight ${r.me ? "font-bold text-ink" : "text-ink-mid"}`}>{r.town}</div>
-              <div className="flex items-center gap-2">
-                <div
-                  className="flex h-7 overflow-hidden rounded-sm"
-                  style={{ width: `${(total / maxTotal) * 100}%`, outline: r.me ? "2px solid var(--color-accent)" : "none", outlineOffset: 1 }}
-                >
-                  {seg.map((s, i) => (
-                    <div
-                      key={s.key}
-                      style={{
-                        width: `${(r[s.key] / total) * 100}%`,
-                        background: s.color,
-                        marginLeft: i > 0 ? 2 : 0,
-                      }}
-                      title={`${s.label}: ${usd(r[s.key])}`}
-                    />
-                  ))}
-                </div>
-                <span className="shrink-0 text-[0.78125rem] font-bold tabular-nums text-accent">{usd(r.add)}</span>
+              <div
+                className="flex h-7 overflow-hidden rounded-sm"
+                style={{ width: `${(total / maxTotal) * 100}%`, outline: r.me ? "2px solid var(--color-accent)" : "none", outlineOffset: 1 }}
+              >
+                {seg.map((s, i) => (
+                  <div
+                    key={s.key}
+                    style={{ width: `${(r[s.key] / total) * 100}%`, background: s.color, marginLeft: i > 0 ? 2 : 0 }}
+                    title={`${s.label}: ${usd(r[s.key])}`}
+                  />
+                ))}
               </div>
+              <span className={`text-right text-[0.78125rem] font-bold tabular-nums ${r.me ? "text-ink" : "text-ink-mid"}`}>
+                {usd(total)}
+              </span>
+              <span className="text-right text-[0.78125rem] font-bold tabular-nums text-accent">{usd(r.add)}</span>
             </div>
           );
         })}
@@ -252,31 +262,41 @@ export function PensionTable() {
 }
 
 // ---- 5. FY2024 free cash disposition ----
+// Now covers the whole certified pool rather than only the seven orders. A third of the
+// money was never appropriated, which is too large a share to leave out of the picture,
+// and the categories are labelled rather than left as unexplained colours.
 export function FreeCashDisposition() {
   const rows = identity.freeCash2024;
-  const total = rows.reduce((s, r) => s + r.amt, 0);
-  const kindColor: Record<string, string> = {
-    capital: "var(--color-gold-strong)",
-    reserve: "var(--color-accent)",
-    restricted: "color-mix(in srgb, var(--color-ink) 40%, var(--color-bg))",
-  };
+  const meta = identity.freeCash2024Meta;
+  const total = meta.poolM;
   const groups = [
-    { kind: "capital", label: "Capital" },
-    { kind: "reserve", label: "Reserves" },
-    { kind: "restricted", label: "Restricted" },
+    { kind: "capital", label: "Capital projects", color: "var(--color-gold-strong)" },
+    { kind: "reserve", label: "Into reserves", color: "var(--color-accent)" },
+    { kind: "restricted", label: "Restricted grant", color: "color-mix(in srgb, var(--color-ink) 40%, var(--color-bg))" },
+    { kind: "rollover", label: "Not appropriated", color: "var(--color-cuts)" },
   ].map((g) => ({ ...g, sum: rows.filter((r) => r.kind === g.kind).reduce((s, r) => s + r.amt, 0) }));
+  const color = Object.fromEntries(groups.map((g) => [g.kind, g.color])) as Record<string, string>;
   return (
     <ChartCard
       title="Where the FY2024 surplus went"
       note={
         <>
-          The seven Beverly City Council orders that appropriated FY2024 certified free cash, about $7.7 million of an $11.4
-          million pool. Two-thirds went to capital, a third to reserves. That is the allocation the state prescribes for one-time
-          money, so this split is not itself a criticism. The remaining $3.6 million was left unspent and recertified as free cash
-          the next year. Source: Beverly City Council orders, FY2024.
+          The whole ${total} million certified pool. Seven Beverly City Council orders appropriated $7.7 million of it; the
+          remaining ${meta.rolloverM} million was never appropriated and was recertified as free cash the next year. Capital and
+          reserves are the allocation the state prescribes for one-time money, so that split is not itself a criticism. Source:
+          Beverly City Council orders, FY2024.
         </>
       }
     >
+      <div className="mb-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[0.75rem]">
+        {groups.map((g) => (
+          <span key={g.kind} className="inline-flex items-center gap-1.5">
+            <i className="inline-block h-2.5 w-4 rounded-sm" style={{ background: g.color }} />
+            {g.label} <span className="font-bold tabular-nums text-ink">${g.sum.toFixed(2)}M</span>
+            <span className="text-ink-faint">({Math.round((g.sum / total) * 100)}%)</span>
+          </span>
+        ))}
+      </div>
       <div className="mb-4 flex h-8 overflow-hidden rounded-md">
         {groups
           .filter((g) => g.sum > 0)
@@ -284,8 +304,8 @@ export function FreeCashDisposition() {
             <div
               key={g.kind}
               className="flex items-center justify-center text-[0.6875rem] font-bold text-white"
-              style={{ width: `${(g.sum / total) * 100}%`, background: kindColor[g.kind], marginLeft: i > 0 ? 2 : 0 }}
-              title={`${g.label}: ${g.sum.toFixed(2)}M`}
+              style={{ width: `${(g.sum / total) * 100}%`, background: g.color, marginLeft: i > 0 ? 2 : 0 }}
+              title={`${g.label}: $${g.sum.toFixed(2)}M`}
             >
               {g.sum / total > 0.12 ? `${Math.round((g.sum / total) * 100)}%` : ""}
             </div>
@@ -294,12 +314,132 @@ export function FreeCashDisposition() {
       <ul className="flex flex-col divide-y divide-rule">
         {rows.map((r) => (
           <li key={r.use} className="flex items-center gap-3 py-2">
-            <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: kindColor[r.kind] }} />
+            <span className="h-2.5 w-2.5 shrink-0 rounded-full" style={{ background: color[r.kind] }} />
             <span className="flex-1 text-[0.875rem] leading-tight text-ink">{r.use}</span>
             <span className="shrink-0 text-[0.84375rem] font-bold tabular-nums text-ink">{`$${r.amt}M`}</span>
           </li>
         ))}
       </ul>
+    </ChartCard>
+  );
+}
+
+// ---- 6. Development: how fast, and what kind ----
+// Same grammar as the school stack: bar length is the total, segments are the mix.
+export function NewGrowthCohort() {
+  const { rows, statewideMedianPct } = identity.newGrowthCohort;
+  const max = Math.max(...rows.map((r) => r.pace)) * 1.08;
+  const seg = [
+    { key: "cipPct" as const, label: "Commercial and industrial", color: "var(--color-accent)" },
+    { key: "resPct" as const, label: "Residential", color: "color-mix(in srgb, var(--color-ink) 45%, var(--color-bg))" },
+  ];
+  return (
+    <ChartCard
+      title="How much new tax base each town adds, and what kind"
+      note={
+        <>
+          New growth as a share of the prior year&apos;s levy, averaged FY2014 to FY2025. Bar length is the pace; the split is what
+          the growth was made of. Commercial and industrial growth pays into the levy without adding students or filling the
+          streets, so the mix matters as much as the total. The dashed line is the statewide median, about{" "}
+          {statewideMedianPct} percent: Beverly is second in its cohort and a little above average for Massachusetts. Source: MA
+          DLS New Growth Analysis.
+        </>
+      }
+    >
+      <div className="mb-3.5 flex flex-wrap gap-x-4 gap-y-1.5 text-[0.75rem]">
+        {seg.map((x) => (
+          <span key={x.key} className="inline-flex items-center gap-1.5">
+            <i className="inline-block h-2.5 w-4 rounded-sm" style={{ background: x.color }} /> {x.label}
+          </span>
+        ))}
+      </div>
+      <div className="flex flex-col gap-2">
+        {rows.map((r) => (
+          <div key={r.town} className="grid grid-cols-[76px_1fr_52px] items-center gap-2 sm:grid-cols-[92px_1fr_56px]">
+            <div className={`text-[0.8125rem] leading-tight ${r.me ? "font-bold text-ink" : "text-ink-mid"}`}>{r.town}</div>
+            <div className="relative h-6">
+              <div
+                className="absolute inset-y-[-4px] border-l border-dashed border-ink/45"
+                style={{ left: `${(statewideMedianPct / max) * 100}%` }}
+                title={`Statewide median ${statewideMedianPct}%`}
+              />
+              <div
+                className="flex h-6 overflow-hidden rounded-sm"
+                style={{ width: `${(r.pace / max) * 100}%`, outline: r.me ? "2px solid var(--color-accent)" : "none", outlineOffset: 1 }}
+              >
+                {seg.map((x, i2) => (
+                  <div
+                    key={x.key}
+                    style={{ width: `${r[x.key]}%`, background: x.color, marginLeft: i2 > 0 ? 2 : 0 }}
+                    title={`${x.label}: ${r[x.key]}% of new growth`}
+                  />
+                ))}
+              </div>
+            </div>
+            <span className={`text-right text-[0.78125rem] font-bold tabular-nums ${r.me ? "text-accent" : "text-ink-faint"}`}>
+              {r.pace.toFixed(2)}%
+            </span>
+          </div>
+        ))}
+      </div>
+    </ChartCard>
+  );
+}
+
+// ---- 7. Growth in people vs growth in students vs what the classroom feels like ----
+export function GrowthVsService() {
+  const rows = identity.growthVsService.rows;
+  const span = Math.max(...rows.map((r) => Math.max(Math.abs(r.popPct), Math.abs(r.enrPct)))) * 1.1;
+  const bar = (v: number, color: string) => {
+    const w = (Math.abs(v) / (span * 2)) * 100;
+    return (
+      <div className="relative h-4">
+        <div className="absolute inset-y-[-2px] left-1/2 w-px bg-ink/35" />
+        <div
+          className="absolute inset-y-0 rounded-sm"
+          style={{ left: v < 0 ? `calc(50% - ${w}%)` : "50%", width: `${w}%`, background: color }}
+        />
+      </div>
+    );
+  };
+  return (
+    <ChartCard
+      title="More people everywhere, fewer students almost everywhere"
+      note={
+        <>
+          Population change across the 2010 and 2020 censuses, against the change in Chapter 70 foundation enrollment from FY2015
+          to FY2024, with FY2024 class size alongside. Every town in the cohort grew. Only Beverly&apos;s schools grew with it, and
+          it runs among the fullest classrooms of the seven. Marblehead is the opposite case: modest population growth and a fifth
+          of its student body gone. Sources: US Census; DESE Chapter 70 and staffing.
+        </>
+      }
+    >
+      <div className="mb-1.5 grid grid-cols-[76px_1fr_1fr_48px] gap-2 text-[0.625rem] font-bold uppercase tracking-wider text-ink-faint sm:grid-cols-[92px_1fr_1fr_54px]">
+        <span />
+        <span className="text-center">Population</span>
+        <span className="text-center">Students</span>
+        <span className="text-right">Per tchr</span>
+      </div>
+      <div className="flex flex-col gap-2.5">
+        {rows.map((r) => (
+          <div key={r.town} className="grid grid-cols-[76px_1fr_1fr_48px] items-center gap-2 sm:grid-cols-[92px_1fr_1fr_54px]">
+            <div className={`text-[0.8125rem] leading-tight ${r.me ? "font-bold text-ink" : "text-ink-mid"}`}>{r.town}</div>
+            <div>
+              {bar(r.popPct, "var(--color-accent)")}
+              <div className="mt-0.5 text-center text-[0.6875rem] tabular-nums text-ink-faint">{r.popPct > 0 ? "+" : ""}{r.popPct}%</div>
+            </div>
+            <div>
+              {bar(r.enrPct, r.enrPct < 0 ? "var(--color-debt)" : "var(--color-accent)")}
+              <div className={`mt-0.5 text-center text-[0.6875rem] tabular-nums ${r.enrPct < 0 ? "text-debt" : "text-ink-faint"}`}>
+                {r.enrPct > 0 ? "+" : ""}{r.enrPct}%
+              </div>
+            </div>
+            <span className={`text-right text-[0.78125rem] font-bold tabular-nums ${r.me ? "text-ink" : "text-ink-faint"}`}>
+              {r.studentsPerTeacher}
+            </span>
+          </div>
+        ))}
+      </div>
     </ChartCard>
   );
 }

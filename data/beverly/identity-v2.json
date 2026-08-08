@@ -227,6 +227,11 @@
       "use": "A restricted opioid-settlement fund",
       "amt": 0.107,
       "kind": "restricted"
+    },
+    {
+      "use": "Left unappropriated, rolled into the next year",
+      "amt": 3.636,
+      "kind": "rollover"
     }
   ],
   "receiptsStatewide": {
@@ -311,5 +316,120 @@
       "Peabody": 335,
       "Marblehead": 340
     }
+  },
+  "freeCash2024Meta": {
+    "poolM": 11.36,
+    "appropriatedM": 7.724,
+    "rolloverM": 3.636,
+    "_note": "FY2024 certified pool $11.36M. Seven council orders appropriated $7,719,626; the remainder was never appropriated and was recertified as free cash the following year."
+  },
+  "newGrowthCohort": {
+    "_note": "Average new growth as a percent of the prior year's levy, FY2014-2025, with the residential/commercial split of that growth. Source: MA DLS New Growth Analysis, via build_dev.py. Statewide median is about 1.2 percent of prior levy.",
+    "statewideMedianPct": 1.2,
+    "rows": [
+      {
+        "town": "Salem",
+        "pace": 1.87,
+        "resPct": 40,
+        "cipPct": 60,
+        "me": false
+      },
+      {
+        "town": "Beverly",
+        "pace": 1.5,
+        "resPct": 42,
+        "cipPct": 58,
+        "me": true
+      },
+      {
+        "town": "Gloucester",
+        "pace": 1.38,
+        "resPct": 70,
+        "cipPct": 30,
+        "me": false
+      },
+      {
+        "town": "Swampscott",
+        "pace": 1.14,
+        "resPct": 64,
+        "cipPct": 36,
+        "me": false
+      },
+      {
+        "town": "Danvers",
+        "pace": 1.13,
+        "resPct": 43,
+        "cipPct": 57,
+        "me": false
+      },
+      {
+        "town": "Peabody",
+        "pace": 0.98,
+        "resPct": 27,
+        "cipPct": 73,
+        "me": false
+      },
+      {
+        "town": "Marblehead",
+        "pace": 0.64,
+        "resPct": 79,
+        "cipPct": 21,
+        "me": false
+      }
+    ]
+  },
+  "growthVsService": {
+    "_note": "Population change 2010-2020 (US Census decennial). Enrollment change FY2015-FY2024 is Chapter 70 FOUNDATION enrollment, the same series behind the per-pupil figures elsewhere in this piece; DESE's headcount series moves differently and shows Beverly about +1 percent. Students per teacher is FY2024 (DESE).",
+    "rows": [
+      {
+        "town": "Swampscott",
+        "popPct": 9.6,
+        "enrPct": -5.6,
+        "studentsPerTeacher": 11.0,
+        "me": false
+      },
+      {
+        "town": "Beverly",
+        "popPct": 8.0,
+        "enrPct": 4.5,
+        "studentsPerTeacher": 12.0,
+        "me": true
+      },
+      {
+        "town": "Salem",
+        "popPct": 7.6,
+        "enrPct": -12.2,
+        "studentsPerTeacher": 10.7,
+        "me": false
+      },
+      {
+        "town": "Peabody",
+        "popPct": 6.3,
+        "enrPct": -0.5,
+        "studentsPerTeacher": 12.3,
+        "me": false
+      },
+      {
+        "town": "Danvers",
+        "popPct": 6.0,
+        "enrPct": -10.8,
+        "studentsPerTeacher": 12.2,
+        "me": false
+      },
+      {
+        "town": "Gloucester",
+        "popPct": 3.3,
+        "enrPct": -9.3,
+        "studentsPerTeacher": 10.9,
+        "me": false
+      },
+      {
+        "town": "Marblehead",
+        "popPct": 3.2,
+        "enrPct": -21.0,
+        "studentsPerTeacher": 10.6,
+        "me": false
+      }
+    ]
   }
 }
