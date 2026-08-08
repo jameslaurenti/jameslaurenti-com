@@ -248,5 +248,68 @@
       "p90": 49.2,
       "beverlyRank": 18
     }
+  },
+  "reservesStatewide": {
+    "_note": "DLS Cat-1 reports, pulled 2026-08-08 by pull_stabilization_statewide.py and pull_freecash_statewide.py. Stabilization is total (general + special purpose) over operating budget, FY2025, 341 municipalities reporting usable figures. Free cash is FY2026 over prior-year budget, 351 municipalities.",
+    "stabilization": {
+      "fy": 2025,
+      "n": 341,
+      "median": 9.22,
+      "mean": 12.5,
+      "p25": 6.07,
+      "p75": 13.89,
+      "p90": 24.33,
+      "beverlyPct": 13.78,
+      "beverlyRank": 89,
+      "beverlyPercentile": 74,
+      "sizeBand": {
+        "_def": "operating budget $60M-$400M against Beverly's $174M",
+        "n": 140,
+        "median": 9.1,
+        "beverlyRank": 28
+      }
+    },
+    "freeCash": {
+      "fy": 2026,
+      "n": 351,
+      "median": 7.02,
+      "mean": 8.42,
+      "beverlyPct": 6.04,
+      "beverlyRank": 209
+    },
+    "conversion": {
+      "_def": "stabilization % divided by free cash %, i.e. how many years of surplus a town holds in savings; towns with a negligible surplus excluded",
+      "n": 334,
+      "median": 1.27,
+      "beverly": 2.28,
+      "beverlyRank": 97,
+      "cohort": {
+        "Gloucester": 4.09,
+        "Swampscott": 2.71,
+        "Beverly": 2.28,
+        "Salem": 1.43,
+        "Danvers": 0.67,
+        "Peabody": 0.39,
+        "Marblehead": 0.09
+      }
+    },
+    "cohortStabilizationPct": {
+      "Beverly": 13.78,
+      "Swampscott": 12.2,
+      "Gloucester": 11.45,
+      "Salem": 10.48,
+      "Danvers": 5.62,
+      "Peabody": 1.87,
+      "Marblehead": 0.52
+    },
+    "cohortStabilizationRank": {
+      "Beverly": 89,
+      "Swampscott": 112,
+      "Gloucester": 128,
+      "Salem": 145,
+      "Danvers": 268,
+      "Peabody": 335,
+      "Marblehead": 340
+    }
   }
 }

@@ -85,8 +85,8 @@ const NOTES: React.ReactNode[] = [
   <>DESE, Chapter 70 district profiles, FY2025. Money added above required net school spending, per pupil: Marblehead $8,767, Danvers $5,843, Gloucester $5,830, Swampscott $5,756, Beverly $4,301, Salem $3,943, Peabody $1,479. As a share of what the state requires, Beverly spends 129.9 percent against Danvers 143.9, Swampscott 143.6, Gloucester 136.2 and Marblehead 167.1; only Salem (122.5) and Peabody (109.3) are lower. Ability-to-pay inputs are equalized valuation, aggregate resident income and low-income share; the 82.5 percent target local share is the statutory cap in the formula. <em>Confirmed.</em></>,
   <>Class size and teacher pay, FY2024. Students per teacher: Beverly 12.0 (Marblehead 10.6, Salem 10.7, Gloucester 10.9, Swampscott 11.0, Danvers 12.2, Peabody 12.3); Beverly&apos;s ratio has fallen from 14.6 in 2015, so the gap is narrowing. Average teacher salary: Beverly $87,991, sixth of seven (Danvers $97,514 highest, Gloucester $86,417 lowest). <em>Confirmed.</em></>,
   <>DESE Chapter 70, FY2024 to FY2025: Beverly&apos;s local dollars per pupil rose from $13,912 to $15,310, up 10.1 percent, against Marblehead 6.8, Gloucester 5.3, Danvers 4.5, Swampscott 3.9, Salem 2.9 and Peabody 2.7. That moved Beverly from sixth of seven to fifth and cut the Danvers gap from 12.0 to 6.3 percent. Separately, Schedule A education spending ran $76.1 million (FY2024) to $82.3 million (FY2025), up 8.2 percent, with further increases of about 9 percent (FY2026) and 5.28 percent (FY2027) budgeted, not yet actual. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, stabilization fund trend, FY2013 through FY2022; that series ends at FY2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: FY2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. <em>Confirmed.</em></>,
-  <>DLS Municipal Databank, certified free cash, FY2014 through FY2024. Cohort cushion is certified free cash (FY2026) plus total stabilization (FY2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Beverly&apos;s own reserve policy sets a combined stabilization plus free-cash target of 13 to 23 percent, free cash alone at 3 to 8 percent, and the stabilization fund at 10 to 15 percent; it also directs that on any positive free-cash certification the mayor shall request an appropriation of no less than 10 percent of it into stabilization within 90 days, and sizes the fund against &quot;three to four years of reduced revenue.&quot; The policy is set out in the city&apos;s FY2019 to FY2023 forecast, so it predates the current deficit rather than being written around it. Certified free cash by year: FY2023 $9.93 million, FY2024 $11.36 million, FY2025 $10.71 million, FY2026 $10.50 million. Statewide context, from the DLS report Certified Free Cash as a Percent of Budget, all 351 municipalities, FY2026 against the prior-year operating budget: the median is 7.02 percent and the mean 8.42 percent; Beverly&apos;s 6.04 percent ranks 209th. Only 64 municipalities (18 percent) sit inside the 5-to-7-percent range DLS recommends, 110 are below it and 177 above. Note that certified free cash carries forward any prior-year amount left unappropriated, so a high figure can reflect either a large surplus or an unspent one. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, stabilization fund trend, FY2013 through FY2022; that series ends at FY2022, and it is the source for the year-by-year growth. Later balances come from the Schedule A stabilization report: FY2025 general stabilization $21,961,077, special purpose $2,000,903, total $23,961,980. The 2013 and 2022 figures are the general fund, so the multiple compares like with like. The years between 2022 and 2025 are not covered by the trend report, so the every-year claim stops at 2022. The two percentiles paired in the text come from different DLS series and are stated on their own terms: 21st percentile is Beverly&apos;s in-district spending per pupil among Massachusetts districts (DESE, FY2024, note 8); 74th percentile is its total stabilization balance as a share of operating budget among the 341 municipalities reporting one (FY2025, note 14). <em>Confirmed.</em></>,
+  <>DLS Municipal Databank, certified free cash, FY2014 through FY2024. Cohort cushion is certified free cash (FY2026) plus total stabilization (FY2025) as a share of the operating budget: Beverly 19.8 percent, Salem 17.8, Swampscott 16.7, Gloucester 14.3, Danvers 14.0, Peabody 6.6, Marblehead 6.2. Beverly&apos;s own reserve policy sets a combined stabilization plus free-cash target of 13 to 23 percent, free cash alone at 3 to 8 percent, and the stabilization fund at 10 to 15 percent; it also directs that on any positive free-cash certification the mayor shall request an appropriation of no less than 10 percent of it into stabilization within 90 days, and sizes the fund against &quot;three to four years of reduced revenue.&quot; The policy is set out in the city&apos;s FY2019 to FY2023 forecast, so it predates the current deficit rather than being written around it. Certified free cash by year: FY2023 $9.93 million, FY2024 $11.36 million, FY2025 $10.71 million, FY2026 $10.50 million. Statewide context, from the DLS report Certified Free Cash as a Percent of Budget, all 351 municipalities, FY2026 against the prior-year operating budget: the median is 7.02 percent and the mean 8.42 percent; Beverly&apos;s 6.04 percent ranks 209th. Only 64 municipalities (18 percent) sit inside the 5-to-7-percent range DLS recommends, 110 are below it and 177 above. Note that certified free cash carries forward any prior-year amount left unappropriated, so a high figure can reflect either a large surplus or an unspent one. Stabilization statewide, from the DLS report Stabilization Fund Balance as a Percent of Budget, FY2025, total general plus special purpose over operating budget, 341 municipalities reporting: median 9.22 percent, mean 12.50, 75th percentile 13.89. Beverly&apos;s 13.78 percent ranks 89th, about the 74th percentile; among the 140 communities with budgets between $60 million and $400 million it ranks 28th. Cohort stabilization: Beverly 13.78 percent, Swampscott 12.20, Gloucester 11.45, Salem 10.48, Danvers 5.62, Peabody 1.87, Marblehead 0.52, which is 340th of 341 statewide. Dividing stabilization by free cash gives a rough measure of how many years of surplus a town holds in savings: the statewide median is 1.27, Beverly is 2.28 and ranks 97th of the 334 communities with a surplus large enough to make the ratio meaningful. Beverly is above the median on that measure but not at the extreme, and two of its own neighbours are higher, Gloucester at 4.09 and Swampscott at 2.71. Composition differs and is worth noting: about 92 percent of Beverly&apos;s stabilization balance is the general fund rather than accounts earmarked for a specific purpose, where Gloucester&apos;s is about 77 percent earmarked. Salem&apos;s is slightly less earmarked than Beverly&apos;s, so Beverly holds the largest cushion but not the least restricted one. <em>Confirmed.</em></>,
   <>DLS Municipal Databank, local receipt estimate versus actual, FY2018 through FY2024, excluding investment income. Beverly&apos;s range is +21.1 percent (FY2020) to +50.7 percent (FY2021), median +32.0. Cohort medians: Marblehead +61.7, Beverly +32.0, Salem +31.4, Swampscott +18.8, Danvers +16.8, Gloucester +16.4, Peabody +4.6. Cohort floors, the smallest overshoot in any single year: Beverly +21.1, Marblehead +20.7, Salem +11.4, Gloucester +10.4, Danvers +1.7, Swampscott +0.9, Peabody &minus;11.6. Beverly leads on the floor and is second on the median, so the distinguishing feature is consistency rather than magnitude. In dollars, Beverly&apos;s receipts came in above estimate by $22.6 million across FY2018 to FY2024, an average of $3.23 million a year; against certified free cash that is 33 percent (FY2023) and 44 percent (FY2024). Statewide comparison, from the DLS Local Receipt Estimate vs. Actual report for all 351 municipalities in FY2024, investment income excluded: median +24.0 percent, mean +36.5. Beverly&apos;s +49.2 ranked 61st of 351; among the 175 communities with a receipts base between $3.4 million and $30 million, against Beverly&apos;s $10.2 million, it ranked 18th and the median was +21.8 percent. That is a single-year cross-section, so it is a fair comparison across towns facing the same year but noisy for any one town. <em>Confirmed; cohort figures FY2018-24, statewide figures FY2024 only.</em></>,
   <>Beverly other financing uses and transfers, FY2021 through FY2024. <em>Confirmed.</em></>,
   <>Complete audit of Beverly City Council free-cash appropriation orders for FY2024, from the AgendaCenter minutes. Seven approved orders totaling $7,719,626 against a certified pool of about $11.36 million: roads and sidewalks $2.75 million, a downtown parking lot and building $2.5 million, the stabilization fund $1,135,505 and the retiree-health trust $227,101, debt stabilization $1,000,000, and a restricted opioid-settlement fund $107,020. About $3.6 million of the pool was never appropriated and rolled forward. No order funded a recurring operating service. A $2,045,000 free-cash request for the main library&apos;s heating system was disapproved June 3, 2024, and funded from the debt stabilization fund instead. Corroborated by the city&apos;s own FY2026 to FY2030 forecast, which lists reserve uses as the City Hall project, roads and sidewalks, stabilization, and the retiree-health trust, and records the Forecast Committee&apos;s suggestion to consider lowering the free-cash target to fund operations, an option not taken. <em>Confirmed against the minutes.</em></>,
@@ -248,9 +248,12 @@ export default function WhoBeverlyIs() {
             <P>
               What makes it a pattern rather than a quirk is the consistency. This is not one underfunded department. Public safety,
               public works, general government, debt service: the whole shape of the budget sits low, and it has for a decade.{fn(4)}{" "}
-              Public works comes with one asterisk. Beverly pays for some of its roads out of free cash rather than the operating budget,
-              so the operating figure understates the real total. Counted in full, its road spending still lands below the regional
-              median.
+              Public works is worth a note, because the obvious objection does not survive. Beverly pays for some of its repaving out
+              of free cash rather than the operating budget, but Schedule A reports operating spending for every community on the same
+              basis and capital road work sits outside it everywhere, so nothing here is hiding in Beverly&apos;s favour. Marblehead
+              makes the point. It spends more than twice what Beverly does per resident on public works and then asks its voters for
+              capital road money on top: its FY2024 debt exclusion paid for road and sidewalk improvements alongside roofs, HVAC and a
+              salt shed. Beverly repaves from its surplus, inside the levy, without a vote.{fn(32)}
             </P>
             <P>
               One function breaks the pattern, and the chart shows it. Culture and recreation, meaning the library, the parks, and the
@@ -377,23 +380,37 @@ export default function WhoBeverlyIs() {
             <StabilizationLeap />
 
             <P>
-              On top of that, the city certified free cash, the surplus left when the books close, in every year from FY2014 through
-              2024, lately running about $10 million a year.{fn(14)} Two things have to be said before that number can mean anything.
-              A surplus of that size is ordinary: the median Massachusetts municipality certifies free cash worth 7.0 percent of its
-              budget, and Beverly&apos;s 6.0 percent ranks 209th of 351. Two-thirds of the state carries more relative to budget than
-              Beverly does. And a surplus cannot simply be handed to the services being cut, because one-time money cannot pay a
-              recurring salary, a point this piece returns to below. So the question worth asking is not why Beverly declines to spend
-              its surplus on teachers. It is why so much of the city&apos;s revenue keeps arriving as surplus in the first place.{fn(14)}
+              Set two statewide numbers side by side. On money spent in its classrooms, Beverly sits at the 21st percentile of
+              Massachusetts districts. On money held in savings, it sits at the 74th percentile of Massachusetts municipalities.{fn(8)}{fn(14)}
+              Neither figure is a record. But a city lands in the bottom quarter of the state on one and the top third on the other only
+              by choosing to, year after year, and the distance between those two numbers is what this section is about.
             </P>
             <P>
-              The savings account is the part that stands out. Counting the two pots together, the $22 million stabilization balance
-              and the roughly $10.5 million of year-end surplus, Beverly holds about 19.8 percent of a year&apos;s operating budget in
-              reserve, the largest cushion of the seven. Salem is next at 17.8 percent, then Swampscott at 16.7. Marblehead holds 6.2.
-              Nearly all of Beverly&apos;s lead is in stabilization rather than in the annual surplus, and four of the seven are in
-              double digits, so this is a lead and not a chasm. One thing belongs in the same breath: Beverly is not breaching a rule
-              here. Its own reserve policy sets a combined target of 13 to 23 percent, so this is the upper half of a
-              band the city wrote for itself. The question is not why the cushion is large. It is why it stayed near the top of that band
-              through the years the services were being trimmed.{fn(14)}
+              Start with what the savings are not. They are not the product of an unusual surplus. The city certified free cash, the
+              money left over when the books close, in every year from FY2014 through FY2024, lately about $10 million a year. That
+              sounds enormous and is thoroughly ordinary: the median Massachusetts municipality certifies free cash worth 7.0 percent of
+              its budget, and Beverly&apos;s 6.0 percent ranks 209th of 351. Two-thirds of the state runs a bigger annual surplus
+              relative to budget than Beverly does.{fn(14)}
+            </P>
+            <P>
+              The balance is where it separates. Beverly holds 13.8 percent of a year&apos;s budget in stabilization against a statewide
+              median of 9.2, which puts it in the top third of Massachusetts and first among its neighbours. Counting the surplus
+              alongside it, the cushion reaches 19.8 percent of the operating budget, the largest of the seven, with Salem next at 17.8
+              and Swampscott at 16.7.{fn(14)} An ordinary inflow has produced an above-average balance, which can only mean the money is
+              being kept rather than spent. That is not an accusation. It is what a reserve policy is for, and Beverly&apos;s requires
+              the mayor to sweep at least a tenth of every certification into savings within ninety days.
+            </P>
+            <P>
+              Marblehead is the proof that this is a choice and not a rule everyone follows. It under-forecasts its revenue harder than
+              Beverly does, 62 percent in a typical year against 32, so it generates the larger surplus of the two. It then holds 0.52
+              percent of its budget in stabilization, second-lowest in Massachusetts.{fn(14)} Marblehead spends what it finds and
+              Beverly banks it. Both are following the rules. They are answering a different question about what the money is for.
+            </P>
+            <P>
+              One thing belongs in the same breath: Beverly is not breaching anything. Its own reserve policy sets a combined target of
+              13 to 23 percent, so this is the upper half of a band the city wrote for itself years before the current squeeze. The
+              question is not why the cushion is large. It is why it stayed near the top of that band through the years the services
+              were being trimmed.{fn(14)}
             </P>
             <P>
               Where does a $10 million surplus come from every year? Free cash has two sources anywhere: money departments were
@@ -401,10 +418,10 @@ export default function WhoBeverlyIs() {
               where Beverly separates from its neighbors. Local receipts, the money a city takes in outside property taxes, run $11 to
               $15 million a year for Beverly, and cities must estimate that revenue before the year begins. Beverly estimates it low
               and beats the estimate every year, by 32 percent in a typical year, meaning the middle year of the seven on record rather
-              than the average, which one unusual year would skew. Statewide that is high but not rare: against the
-              175 Massachusetts communities with a similar-sized receipts base, Beverly&apos;s FY2024 overshoot ranked 18th, and the
-              median community still collected about 22 percent more than it budgeted. Under-forecasting is how Massachusetts
-              budgets.{fn(15)}
+              than the average, which one unusual year would skew. Statewide that puts it in the top tenth: against the 175
+              Massachusetts communities with a similar-sized receipts base, Beverly&apos;s FY2024 overshoot ranked 18th. Estimating low
+              is normal here, and the median comparable community still collected about 22 percent more than it budgeted, but Beverly
+              does it harder than nine in ten of them.{fn(15)}
             </P>
 
             <ReceiptsChart />
