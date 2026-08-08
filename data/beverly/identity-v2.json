@@ -379,56 +379,91 @@
     ]
   },
   "growthVsService": {
-    "_note": "Population change 2010-2020 (US Census decennial). Enrollment change FY2015-FY2024 is Chapter 70 FOUNDATION enrollment, the same series behind the per-pupil figures elsewhere in this piece; DESE's headcount series moves differently and shows Beverly about +1 percent. Students per teacher is FY2024 (DESE).",
+    "_note": "Population change 2010-2020 (US Census decennial). Enrollment change FY2015-FY2024 is Chapter 70 FOUNDATION enrollment, the same series behind the per-pupil figures elsewhere; DESE's headcount series moves differently and shows Beverly about +1 percent. Class size is DESE's own published Student/Teacher Ratio from the Teacher Data statewide report, so the basis is consistent across years. 2025-26 is the current school year and is included because Beverly moves against the cohort in it.",
     "rows": [
       {
         "town": "Swampscott",
         "popPct": 9.6,
         "enrPct": -5.6,
-        "studentsPerTeacher": 11.0,
-        "me": false
+        "me": false,
+        "ratio2015": 12.3,
+        "ratio2024": 11.0,
+        "ratio2026": 11.2,
+        "fte2015": 182.9,
+        "fte2024": 188.1,
+        "fte2026": 186.0
       },
       {
         "town": "Beverly",
         "popPct": 8.0,
         "enrPct": 4.5,
-        "studentsPerTeacher": 12.0,
-        "me": true
+        "me": true,
+        "ratio2015": 14.8,
+        "ratio2024": 11.9,
+        "ratio2026": 12.7,
+        "fte2015": 303.5,
+        "fte2024": 378.3,
+        "fte2026": 354.0
       },
       {
         "town": "Salem",
         "popPct": 7.6,
         "enrPct": -12.2,
-        "studentsPerTeacher": 10.7,
-        "me": false
+        "me": false,
+        "ratio2015": 10.0,
+        "ratio2024": 10.6,
+        "ratio2026": 10.7,
+        "fte2015": 419.1,
+        "fte2024": 357.9,
+        "fte2026": 364.9
       },
       {
         "town": "Peabody",
         "popPct": 6.3,
         "enrPct": -0.5,
-        "studentsPerTeacher": 12.3,
-        "me": false
+        "me": false,
+        "ratio2015": 13.7,
+        "ratio2024": 12.2,
+        "ratio2026": 12.0,
+        "fte2015": 436.1,
+        "fte2024": 479.8,
+        "fte2026": 465.0
       },
       {
         "town": "Danvers",
         "popPct": 6.0,
         "enrPct": -10.8,
-        "studentsPerTeacher": 12.2,
-        "me": false
+        "me": false,
+        "ratio2015": 13.3,
+        "ratio2024": 12.0,
+        "ratio2026": 11.2,
+        "fte2015": 268.9,
+        "fte2024": 272.0,
+        "fte2026": 279.1
       },
       {
         "town": "Gloucester",
         "popPct": 3.3,
         "enrPct": -9.3,
-        "studentsPerTeacher": 10.9,
-        "me": false
+        "me": false,
+        "ratio2015": 11.2,
+        "ratio2024": 10.7,
+        "ratio2026": 10.6,
+        "fte2015": 264.1,
+        "fte2024": 267.9,
+        "fte2026": 263.2
       },
       {
         "town": "Marblehead",
         "popPct": 3.2,
         "enrPct": -21.0,
-        "studentsPerTeacher": 10.6,
-        "me": false
+        "me": false,
+        "ratio2015": 12.6,
+        "ratio2024": 10.6,
+        "ratio2026": 10.6,
+        "fte2015": 256.8,
+        "fte2024": 245.8,
+        "fte2026": 224.8
       }
     ]
   }

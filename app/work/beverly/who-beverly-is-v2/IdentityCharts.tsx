@@ -386,7 +386,7 @@ export function NewGrowthCohort() {
   );
 }
 
-// ---- 7. Growth in people vs growth in students vs what the classroom feels like ----
+// ---- 7. Growth in people vs students vs what the classroom feels like ----
 export function GrowthVsService() {
   const rows = identity.growthVsService.rows;
   const span = Math.max(...rows.map((r) => Math.max(Math.abs(r.popPct), Math.abs(r.enrPct)))) * 1.1;
@@ -407,38 +407,54 @@ export function GrowthVsService() {
       title="More people everywhere, fewer students almost everywhere"
       note={
         <>
-          Population change across the 2010 and 2020 censuses, against the change in Chapter 70 foundation enrollment from FY2015
-          to FY2024, with FY2024 class size alongside. Every town in the cohort grew. Only Beverly&apos;s schools grew with it, and
-          it runs among the fullest classrooms of the seven. Marblehead is the opposite case: modest population growth and a fifth
-          of its student body gone. Sources: US Census; DESE Chapter 70 and staffing.
+          Population change across the 2010 and 2020 censuses; the change in Chapter 70 foundation enrollment from FY2015 to
+          FY2024; and DESE&apos;s published class size for the same span. Every town grew. Only Beverly&apos;s schools grew with it.
+          Beverly also cut its class size the most of the seven, from much the worst starting point, and still ended the period
+          third highest. The last column is this school year, where Beverly moves against the cohort. Sources: US Census; DESE
+          Chapter 70 and Teacher Data.
         </>
       }
     >
-      <div className="mb-1.5 grid grid-cols-[76px_1fr_1fr_48px] gap-2 text-[0.625rem] font-bold uppercase tracking-wider text-ink-faint sm:grid-cols-[92px_1fr_1fr_54px]">
+      <div className="mb-1.5 grid grid-cols-[74px_1fr_1fr_76px] gap-1.5 text-[0.625rem] font-bold uppercase tracking-wider text-ink-faint sm:grid-cols-[92px_1fr_1fr_104px]">
         <span />
         <span className="text-center">Population</span>
         <span className="text-center">Students</span>
-        <span className="text-right">Per tchr</span>
+        <span className="text-right">Class size</span>
       </div>
       <div className="flex flex-col gap-2.5">
-        {rows.map((r) => (
-          <div key={r.town} className="grid grid-cols-[76px_1fr_1fr_48px] items-center gap-2 sm:grid-cols-[92px_1fr_1fr_54px]">
-            <div className={`text-[0.8125rem] leading-tight ${r.me ? "font-bold text-ink" : "text-ink-mid"}`}>{r.town}</div>
-            <div>
-              {bar(r.popPct, "var(--color-accent)")}
-              <div className="mt-0.5 text-center text-[0.6875rem] tabular-nums text-ink-faint">{r.popPct > 0 ? "+" : ""}{r.popPct}%</div>
-            </div>
-            <div>
-              {bar(r.enrPct, r.enrPct < 0 ? "var(--color-debt)" : "var(--color-accent)")}
-              <div className={`mt-0.5 text-center text-[0.6875rem] tabular-nums ${r.enrPct < 0 ? "text-debt" : "text-ink-faint"}`}>
-                {r.enrPct > 0 ? "+" : ""}{r.enrPct}%
+        {rows.map((r) => {
+          const better = r.ratio2024 < r.ratio2015;
+          return (
+            <div
+              key={r.town}
+              className="grid grid-cols-[74px_1fr_1fr_76px] items-center gap-1.5 sm:grid-cols-[92px_1fr_1fr_104px]"
+            >
+              <div className={`text-[0.78125rem] leading-tight ${r.me ? "font-bold text-ink" : "text-ink-mid"}`}>{r.town}</div>
+              <div>
+                {bar(r.popPct, "var(--color-accent)")}
+                <div className="mt-0.5 text-center text-[0.6875rem] tabular-nums text-ink-faint">
+                  {r.popPct > 0 ? "+" : ""}
+                  {r.popPct}%
+                </div>
+              </div>
+              <div>
+                {bar(r.enrPct, r.enrPct < 0 ? "var(--color-debt)" : "var(--color-accent)")}
+                <div className={`mt-0.5 text-center text-[0.6875rem] tabular-nums ${r.enrPct < 0 ? "text-debt" : "text-ink-faint"}`}>
+                  {r.enrPct > 0 ? "+" : ""}
+                  {r.enrPct}%
+                </div>
+              </div>
+              <div className="text-right text-[0.6875rem] tabular-nums leading-tight">
+                <span className="text-ink-faint">{r.ratio2015.toFixed(1)}</span>
+                <span className="text-ink-faint"> &rarr; </span>
+                <span className={`font-bold ${better ? "text-accent" : "text-debt"}`}>{r.ratio2024.toFixed(1)}</span>
+                <div className="text-[0.625rem] text-ink-faint">
+                  now <span className={r.ratio2026 > r.ratio2024 ? "font-bold text-debt" : ""}>{r.ratio2026.toFixed(1)}</span>
+                </div>
               </div>
             </div>
-            <span className={`text-right text-[0.78125rem] font-bold tabular-nums ${r.me ? "text-ink" : "text-ink-faint"}`}>
-              {r.studentsPerTeacher}
-            </span>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </ChartCard>
   );
