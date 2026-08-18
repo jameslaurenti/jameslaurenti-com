@@ -1,0 +1,20 @@
+{
+  "_meta": {
+    "title": "Harborlight upcoming dates",
+    "source": "Compiled from Harborlight Montessori school emails (Notes from Marcy, school-wide announcements)",
+    "confidence": "confirmed",
+    "retrieved": "2026-08-17",
+    "generator": "harborlight digest pipeline (backfill)",
+    "notes": "Curated upcoming dates only, deduped across notes with the most recent note winning where calendars conflict. Regenerated each run from the newest authoritative notes. Sorted ascending by date."
+  },
+  "events": [
+    { "date": "2026-08-17", "label": "Whalemobile visits each class", "category": "childrens_house_weekly", "source": "Notes from Marcy, 8/16/2026" },
+    { "date": "2026-08-25", "label": "Last day of Summer Program (Infant/Toddler and Children's House)", "category": "childrens_house_weekly", "source": "Notes from Marcy, 8/16/2026" },
+    { "date": "2026-08-26", "label": "Teacher Prep Week begins, school closed through Aug 28", "category": "childrens_house_weekly", "source": "Notes from Marcy, 8/16/2026" },
+    { "date": "2026-09-02", "label": "Classroom Visit Day and Popsicle Party, 10:00 a.m. to 12:00 p.m.", "category": "childrens_house_weekly", "source": "Notes from Marcy, 8/16/2026" },
+    { "date": "2026-09-03", "label": "First day of the 2026-27 school year", "category": "childrens_house_weekly", "source": "Notes from Marcy, 8/16/2026" },
+    { "date": "2026-09-07", "label": "Labor Day, school closed", "category": "childrens_house_weekly", "source": "Notes from Marcy, 8/16/2026" },
+    { "date": "2026-09-18", "label": "Beverly MomBall opening ceremony 5:30 p.m., games begin", "category": "school_wide", "source": "School-wide, 7/23/2026" },
+    { "date": "2026-09-20", "label": "Beverly MomBall championship games", "category": "school_wide", "source": "School-wide, 7/23/2026" }
+  ]
+}

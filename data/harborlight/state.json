@@ -1,0 +1,36 @@
+{
+  "_meta": {
+    "title": "Harborlight digest pipeline state",
+    "notes": "Watermark for the digest pipeline. lastProcessedDate is the date of the newest email folded into digest.json. processedThreadIds lists Gmail thread ids already evaluated (included or excluded) so a run does not reprocess them. Update this file at the end of each run.",
+    "generator": "harborlight digest pipeline (backfill)"
+  },
+  "lastProcessedDate": "2026-08-16T19:06:05Z",
+  "lastRun": null,
+  "processedThreadIds": [
+    "1a00bf78a38fa1f8",
+    "19fe7eb1b3b36405",
+    "19fc3d9b4b531c7f",
+    "19f9fd1616af82d1",
+    "19f910392e518dda",
+    "19f7bc4d793602e9",
+    "19f6667ad0fe1684",
+    "19f620a81faae83f",
+    "19f5b60c57db081f",
+    "19f57b3dc7e184d7",
+    "19f33abe99a3b454",
+    "19f0f9f4c1dcfe83",
+    "19f00b27d370b492",
+    "19ee0974bb468ef5",
+    "19ed0e38d7f4187a",
+    "19ed0036c90fb157",
+    "19ec786a249251c3",
+    "19ec7869c6f5159e",
+    "19ebd28d7d75c2a7",
+    "19ea38852140b303"
+  ],
+  "excludedThreadIds": [
+    "19fc8a5e46b107ec",
+    "19fb03c5b41b063b",
+    "19fbda37419d47a0"
+  ]
+}
