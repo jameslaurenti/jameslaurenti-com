@@ -4,15 +4,18 @@ import Link from "next/link";
 /**
  * A digest of Beverly city meetings for a fixed two-week window.
  *
- * Unlike the other pieces in this collection it has no data layer. The window is closed,
- * the figures came out of agendas, minutes and meeting recordings by hand, and each one
- * carries a tag for which of those it came from. DOCUMENT is quotable. RECORDING is an
- * automatic transcript nobody has checked against the audio yet, and the page says so
- * rather than letting the two read as equally settled.
+ * Unlike the other pieces in this collection it has no data layer. The window is closed
+ * and the figures were read out of agendas, minutes and meeting recordings by hand.
+ *
+ * Provenance is carried in plain words, not a badge system: the source line under each
+ * heading says whether the section rests on a filed document or on a meeting recording
+ * nobody has checked against the audio. An earlier version used colour-coded DOCUMENT
+ * and RECORDING tags with a key at the foot of the page. It asked the reader to learn a
+ * legend they would never scroll down to find.
  *
  * Deliberately not linked from the section index: shared by direct link while it is a
- * proof of concept. Adding a `piece` entry to app/work/beverly/page.tsx is what would
- * put it in the nav.
+ * prototype. Adding a `piece` entry to app/work/beverly/page.tsx is what would put it
+ * in the nav.
  */
 
 /* ---------------- building blocks ---------------- */
@@ -23,29 +26,18 @@ const A = ({ href, children }: { href: string; children: ReactNode }) => (
   </a>
 );
 
-const TAG =
-  "inline-block shrink-0 rounded-sm border px-1.5 py-0.5 text-[0.625rem] font-semibold uppercase leading-none tracking-[0.1em]";
-
-const Tag = ({ kind }: { kind: "doc" | "rec" }) =>
-  kind === "doc" ? (
-    <span className={TAG + " border-accent/40 bg-accent-glow text-accent"}>Document</span>
-  ) : (
-    <span className={TAG + " border-gold/50 bg-gold/10 text-gold-strong"}>Recording</span>
-  );
-
-const SrcLine = ({ kind, children }: { kind: "doc" | "rec"; children: ReactNode }) => (
-  <p className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1 text-[0.8125rem] text-ink-faint">
-    <Tag kind={kind} />
-    <span>{children}</span>
-  </p>
-);
-
 const Eyebrow = ({ children }: { children: ReactNode }) => (
-  <span className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-debt">{children}</span>
+  <span className="text-[0.8125rem] font-bold uppercase tracking-[0.18em] text-debt">
+    {children}
+  </span>
 );
 
 const H2 = ({ children }: { children: ReactNode }) => (
   <h2 className="mt-2 font-display text-3xl font-semibold leading-tight sm:text-4xl">{children}</h2>
+);
+
+const Source = ({ children }: { children: ReactNode }) => (
+  <p className="mt-2.5 text-[0.9375rem] leading-relaxed text-ink-mid">{children}</p>
 );
 
 const Fig = ({ children }: { children: ReactNode }) => (
@@ -53,8 +45,8 @@ const Fig = ({ children }: { children: ReactNode }) => (
 );
 
 const More = ({ children }: { children: ReactNode }) => (
-  <p className="mt-8 flex flex-wrap items-baseline gap-x-5 gap-y-1.5 border-t border-rule pt-3 text-[0.9375rem]">
-    <span className="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
+  <p className="mt-8 flex flex-wrap items-baseline gap-x-5 gap-y-1.5 border-t border-rule pt-3 text-[1rem]">
+    <span className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-ink-mid">
       More on this
     </span>
     {children}
@@ -62,9 +54,9 @@ const More = ({ children }: { children: ReactNode }) => (
 );
 
 const SECTION = "scroll-mt-24 border-b border-rule py-14";
-const BODY = "mt-4 max-w-[63ch] leading-relaxed";
-const TH =
-  "px-4 py-2.5 text-left text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-ink-faint";
+const BODY = "mt-4 max-w-[63ch] text-[1.0625rem] leading-[1.75]";
+const LIST = "mt-4 max-w-[63ch] list-disc space-y-2 pl-5 text-[1.0625rem] leading-[1.75]";
+const TH = "px-4 py-2.5 text-left text-[0.75rem] font-bold uppercase tracking-[0.12em] text-ink-mid";
 
 /* ---------------- calendar ---------------- */
 
@@ -175,7 +167,7 @@ const CONTENTS: [string, string, string][] = [
   ["pilot", "Why PILOT payments keep coming up", ""],
   ["council", "Two items pending before the Council", "Human Rights funding, Flock cameras"],
   ["horizon", "On the horizon", "school redistricting, e-bikes"],
-  ["method", "How this was made", ""],
+  ["method", "Ground rules and sources", ""],
 ];
 
 const VOTE: [string, string][] = [
@@ -186,7 +178,7 @@ const VOTE: [string, string][] = [
 ];
 
 const PILOT_COUNTS: [string, string][] = [
-  ["DRC minutes, Aug 18", "Three, named with amounts"],
+  ["Committee minutes, Aug 18", "Three, named with amounts"],
   ["School Committee, Aug 26", "Four"],
   ["City Council, Sep 8", "“Four… okay, three”"],
 ];
@@ -195,7 +187,10 @@ const SOURCES: { head: string; links: { href: string; label: string }[] }[] = [
   {
     head: "Watch the meetings",
     links: [
-      { href: "https://www.youtube.com/channel/UCsloEZrieQqRUqra1diSk1w", label: "BevCam on YouTube" },
+      {
+        href: "https://www.youtube.com/channel/UCsloEZrieQqRUqra1diSk1w",
+        label: "BevCam on YouTube",
+      },
       { href: "https://bevcam.org/video/live-stream/", label: "BevCam live stream" },
       { href: "https://www.youtube.com/watch?v=ZcGKpUHCLdM", label: "City Council, Sep 8" },
       { href: "https://www.youtube.com/watch?v=aO3GZE4uYMs", label: "School Committee, Aug 26" },
@@ -244,7 +239,7 @@ export default function MeetingDigest() {
       <div className="mx-auto max-w-3xl px-6 pb-24">
         {/* hero */}
         <header className="border-b border-rule py-14 sm:py-20">
-          <Eyebrow>Beverly, Massachusetts &middot; Aug 26 to Sep 9, 2026</Eyebrow>
+          <Eyebrow>Beverly, Massachusetts · Aug 26 to Sep 9, 2026</Eyebrow>
           <h1 className="mt-2 font-display text-4xl font-extrabold leading-[1.05] tracking-tight sm:text-6xl">
             Beverly Meeting Digest
           </h1>
@@ -252,51 +247,54 @@ export default function MeetingDigest() {
             What the City Council, School Committee and Deficit Reduction Committee took up between
             August 26 and September 9, plus the dates coming next.
           </p>
-          <p className="mt-6 text-[0.8125rem] leading-relaxed text-ink-faint">
-            Four meetings, three bodies. Independent, and not a City of Beverly publication. Every
-            claim below is tagged with where it came from.
+          <p className="mt-6 text-[0.9375rem] leading-relaxed text-ink-mid">
+            Four meetings, three bodies. Independent, and not a City of Beverly publication.
           </p>
 
-          {/* why this exists */}
+          {/* the note */}
           <div className="mt-8 rounded-lg border border-rule bg-bg-card/60 px-6 py-6 shadow-sm">
             {/* h2, not h3: this card sits directly under the h1, before any section heading. */}
-            <h2 className="font-display text-lg font-semibold">Why this exists</h2>
-            <p className="mt-2 max-w-[63ch] text-[0.9375rem] leading-relaxed">
-              This is a proof of concept, and I built it for myself first. I have been trying to stay
-              on top of what is actually happening in Beverly&apos;s city government, and I keep
-              running into the same problem: doing that properly means attending meetings in person
-              or watching hours of BevCam footage, and I cannot commit that kind of time on a regular
-              basis.
+            <h2 className="font-display text-lg font-semibold">A note on what this is</h2>
+            <p className="mt-2.5 max-w-[63ch] text-[1.0625rem] leading-[1.75]">
+              This is a prototype. I built it for myself first.
             </p>
-            <p className="mt-3 max-w-[63ch] text-[0.9375rem] leading-relaxed">
-              So I started pulling the meetings apart afterward and writing down what changed. This
-              page is that, tidied up enough to be useful to someone other than me. It is an
-              experiment in whether a digest like this is worth doing regularly.
+            <p className="mt-3 max-w-[63ch] text-[1.0625rem] leading-[1.75]">
+              Keeping up with what the city is actually doing has become a bit of a thing for me
+              lately. But I have small kids, so I am not getting to meetings in person, and BevCam
+              runs to hours of video a week. That is a real commitment for anyone.
             </p>
-            <p className="mt-3 max-w-[63ch] text-[0.9375rem] leading-relaxed text-ink-faint">
-              If it is useful, take it. If something here is wrong,{" "}
+            <p className="mt-3 max-w-[63ch] text-[1.0625rem] leading-[1.75]">
+              So: take the recordings, turn them into transcripts, clean those up, and pull out what
+              is worth knowing for the week ahead. Ten minutes with a coffee instead of three hours
+              on the couch.
+            </p>
+            <p className="mt-3 max-w-[63ch] text-[1.0625rem] leading-[1.75]">
+              One caveat, and it matters. This starts from automatic transcripts, and they get names
+              and numbers wrong. I check what I can against the city&apos;s posted agendas and
+              minutes, and I say underneath each item below which of the two it came from.
+              Everything is linked so you can check me. If I have something wrong,{" "}
               <Link href="/contact" className="rlink">
                 tell me
               </Link>{" "}
-              and I will correct it.
+              and I will fix it.
             </p>
           </div>
 
           {/* contents */}
           <nav aria-label="In this issue" className="mt-8 border-l-2 border-accent pl-5">
-            <h2 className="text-[0.6875rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
+            <h2 className="text-[0.75rem] font-bold uppercase tracking-[0.14em] text-ink-mid">
               In this issue
             </h2>
-            <ol className="mt-2 space-y-1">
+            <ol className="mt-2.5 space-y-1.5">
               {CONTENTS.map(([id, label, sub], i) => (
-                <li key={id} className="text-[0.9375rem] leading-snug">
-                  <span className="mr-2 tabular-nums text-ink-faint">
+                <li key={id} className="text-[1rem] leading-snug">
+                  <span className="mr-2 tabular-nums text-ink-mid">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <a href={"#" + id} className="font-medium text-accent hover:underline">
                     {label}
                   </a>
-                  {sub ? <span className="text-ink-faint"> ({sub})</span> : null}
+                  {sub ? <span className="text-ink-mid"> ({sub})</span> : null}
                 </li>
               ))}
             </ol>
@@ -305,12 +303,12 @@ export default function MeetingDigest() {
 
         {/* 01 dates */}
         <section id="dates" className={SECTION}>
-          <Eyebrow>01 &middot; Calendar</Eyebrow>
+          <Eyebrow>01 · Calendar</Eyebrow>
           <H2>Dates to calendar</H2>
-          <SrcLine kind="doc">Posted agendas and meeting notices</SrcLine>
+          <Source>From posted agendas and meeting notices.</Source>
 
           <div className="mt-6 overflow-x-auto rounded-lg border border-rule bg-bg-card/50">
-            <table className="w-full min-w-[38rem] border-collapse text-[0.9375rem]">
+            <table className="w-full min-w-[38rem] border-collapse text-[1rem]">
               <thead>
                 <tr className="border-b border-rule">
                   <th scope="col" className={TH}>
@@ -327,17 +325,17 @@ export default function MeetingDigest() {
               <tbody>
                 {DATES.map((d) => (
                   <tr key={d.when} className="border-b border-rule/60 last:border-0">
-                    <td className="whitespace-nowrap px-4 py-3 align-top text-[0.875rem] font-medium tabular-nums text-accent">
+                    <td className="whitespace-nowrap px-4 py-3.5 align-top text-[0.9375rem] font-semibold tabular-nums text-accent">
                       {d.when}
                     </td>
-                    <td className="px-4 py-3 align-top leading-snug">{d.what}</td>
-                    <td className="w-px whitespace-nowrap px-4 py-3 align-top">
+                    <td className="px-4 py-3.5 align-top leading-relaxed">{d.what}</td>
+                    <td className="w-px whitespace-nowrap px-4 py-3.5 align-top">
                       <a
                         href={d.cal}
                         target="_blank"
                         rel="noopener"
                         aria-label={"Add " + d.label + " to Google Calendar"}
-                        className="inline-block rounded border border-rule bg-bg px-2 py-1 text-[0.6875rem] font-semibold text-accent transition-colors hover:border-accent hover:bg-accent-glow"
+                        className="inline-block rounded border border-rule bg-bg px-2.5 py-1.5 text-[0.75rem] font-semibold text-accent transition-colors hover:border-accent hover:bg-accent-glow"
                       >
                         + Cal
                       </a>
@@ -347,7 +345,7 @@ export default function MeetingDigest() {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 max-w-[63ch] text-[0.8125rem] leading-relaxed text-ink-faint">
+          <p className="mt-3 max-w-[63ch] text-[0.9375rem] leading-relaxed text-ink-mid">
             Times are as posted and can change. Venues for October and later may shift because of the
             City Hall renovation, so check the posted agenda before you go.
           </p>
@@ -355,17 +353,19 @@ export default function MeetingDigest() {
 
         {/* 02 dollar store */}
         <section id="dollar" className={SECTION}>
-          <Eyebrow>02 &middot; Development</Eyebrow>
+          <Eyebrow>02 · Development</Eyebrow>
           <H2>Dollar store site proposals rejected, going back to market</H2>
-          <SrcLine kind="rec">
-            Mayor&apos;s quarterly update to Council, Sep 8. Not yet checked against audio.
-          </SrcLine>
+          <Source>
+            From the recording of the Mayor&apos;s quarterly update to Council, September 8. Not
+            checked against the audio.
+          </Source>
 
           <p className={BODY}>
             The Mayor reported that the city has{" "}
-            <b className="font-semibold">rejected the proposals it received</b> through its request
-            for proposals on the former dollar store site. He described a two-part proposal from a
-            single respondent and said neither part met the community&apos;s needs.
+            <b className="font-semibold">rejected the proposals it received</b>{" "}
+            through its request for proposals on the former dollar store site. He described a
+            two-part proposal from a single respondent and said neither part met the
+            community&apos;s needs.
           </p>
           <p className={BODY}>
             He said the city had expected stronger interest, and had anticipated responses covering a
@@ -400,17 +400,20 @@ export default function MeetingDigest() {
 
         {/* 03 crypto */}
         <section id="crypto" className={SECTION}>
-          <Eyebrow>03 &middot; Returns Sep 21</Eyebrow>
+          <Eyebrow>03 · Returns Sep 21</Eyebrow>
           <H2>Crypto kiosk ban passes first reading</H2>
-          <SrcLine kind="doc">Ordinance text, Council agenda packet, Sep 8</SrcLine>
+          <Source>
+            From the ordinance text filed in the September 8 Council agenda packet. Quoted figures
+            are as written in the ordinance.
+          </Source>
 
           <dl className="mt-6 flex flex-wrap gap-x-10 gap-y-4 border-y border-rule py-4">
             {VOTE.map(([k, v]) => (
               <div key={k}>
-                <dt className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-ink-faint">
+                <dt className="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-ink-mid">
                   {k}
                 </dt>
-                <dd className="mt-0.5 font-display text-lg font-semibold tabular-nums">{v}</dd>
+                <dd className="mt-1 font-display text-xl font-semibold tabular-nums">{v}</dd>
               </div>
             ))}
           </dl>
@@ -422,7 +425,7 @@ export default function MeetingDigest() {
             unanimously.
           </p>
           <p className={BODY}>The findings written into the ordinance state:</p>
-          <ul className="mt-3 max-w-[63ch] list-disc space-y-2 pl-5 leading-relaxed">
+          <ul className={LIST}>
             <li>
               Approximately <Fig>13</Fig> active kiosks operate in Beverly, plus two locations
               offering crypto purchase at the register.
@@ -459,11 +462,12 @@ export default function MeetingDigest() {
 
         {/* 04 city hall */}
         <section id="cityhall" className={SECTION}>
-          <Eyebrow>04 &middot; Practical</Eyebrow>
+          <Eyebrow>04 · Practical</Eyebrow>
           <H2>City Hall relocating in October</H2>
-          <SrcLine kind="rec">
-            Mayor&apos;s quarterly update to Council, Sep 8. Not yet checked against audio.
-          </SrcLine>
+          <Source>
+            From the recording of the Mayor&apos;s quarterly update to Council, September 8. Not
+            checked against the audio.
+          </Source>
 
           <p className={BODY}>
             City staff will move from 191 Cabot Street to the{" "}
@@ -498,9 +502,12 @@ export default function MeetingDigest() {
 
         {/* 05 buses */}
         <section id="buses" className={SECTION}>
-          <Eyebrow>05 &middot; School transportation</Eyebrow>
+          <Eyebrow>05 · School transportation</Eyebrow>
           <H2>Late buses in the first week of school</H2>
-          <SrcLine kind="rec">School Committee, Sep 9. Not yet checked against audio.</SrcLine>
+          <Source>
+            From the recording of the School Committee meeting, September 9. Not checked against the
+            audio.
+          </Source>
 
           <p className={BODY}>
             Committee members reported hearing from families whose children arrived at school up to
@@ -541,9 +548,9 @@ export default function MeetingDigest() {
 
         {/* 06 drc */}
         <section id="drc" className={SECTION}>
-          <Eyebrow>06 &middot; Deficit Reduction Committee</Eyebrow>
+          <Eyebrow>06 · Deficit Reduction Committee</Eyebrow>
           <H2>From brainstorming into research</H2>
-          <SrcLine kind="doc">Committee minutes and agendas, Jul 20 to Sep 14</SrcLine>
+          <Source>From the committee&apos;s posted minutes and agendas, July 20 to September 14.</Source>
 
           <p className={BODY}>
             The committee was formed this summer at the request of two city councillors. It includes
@@ -598,19 +605,16 @@ export default function MeetingDigest() {
 
         {/* 07 pilots */}
         <section id="pilot" className={SECTION}>
-          <Eyebrow>07 &middot; Tax-exempt property</Eyebrow>
+          <Eyebrow>07 · Tax-exempt property</Eyebrow>
           <H2>Why PILOT payments keep coming up</H2>
-          <SrcLine kind="doc">DRC minutes, Aug 18</SrcLine>
+          <Source>From the Deficit Reduction Committee&apos;s posted minutes of August 18.</Source>
 
           <p className={BODY}>
             The subject surfaced at all three bodies during these two weeks, which is less of a
-            coincidence than it looks.{" "}
-            <b className="font-semibold">
-              PILOTs are one of the Deficit Reduction Committee&apos;s assigned research areas
-            </b>
-            , and the two members leading that research are also School Committee members. They
-            reported back to the School Committee on August 26, while the two councillors on the
-            committee raised it at the Council on September 8.
+            coincidence than it looks. PILOTs are one of the Deficit Reduction Committee&apos;s
+            assigned research areas, and the two members leading that research are also School
+            Committee members. They reported back to the School Committee on August 26, while the two
+            councillors on the committee raised it at the Council on September 8.
           </p>
           <p className={BODY}>
             A short definition, since the term gets used at meetings without one. Colleges,
@@ -623,7 +627,7 @@ export default function MeetingDigest() {
             The committee&apos;s August 18 minutes record roughly <Fig>81</Fig> tax-exempt properties
             in Beverly, with a small number making payments:
           </p>
-          <ul className="mt-3 max-w-[63ch] list-disc space-y-2 pl-5 leading-relaxed">
+          <ul className={LIST}>
             <li>
               <b className="font-semibold">Endicott College</b>, <Fig>$167,000</Fig> a year, recorded
               in the minutes as a donation
@@ -642,10 +646,10 @@ export default function MeetingDigest() {
             contributes back to the community.
           </p>
           <p className={BODY}>
-            <Tag kind="rec" /> At the committee&apos;s August 31 meeting, a member cited research
-            putting Lahey&apos;s annual payment to the Town of Burlington at approximately{" "}
-            <Fig>$500,000</Fig>. That figure comes from the meeting recording rather than the
-            minutes, and has not been checked against audio.
+            At the committee&apos;s August 31 meeting, a member cited research putting Lahey&apos;s
+            annual payment to the Town of Burlington at approximately <Fig>$500,000</Fig>. That one
+            comes from the meeting recording rather than the minutes, and has not been checked
+            against the audio.
           </p>
           <p className={BODY}>
             Two councillors indicated they intend to request that the Council establish a{" "}
@@ -655,26 +659,26 @@ export default function MeetingDigest() {
           </p>
 
           {/* contested count */}
-          <div className="mt-8 max-w-[63ch] rounded-lg border border-gold/50 bg-gold/10 px-6 py-5">
-            <h3 className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-gold-strong">
+          <div className="mt-8 max-w-[63ch] rounded-lg border border-rule bg-bg-card/60 px-6 py-5">
+            <h3 className="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-debt">
               One number is stated inconsistently
             </h3>
-            <p className="mt-2 text-[0.9375rem] leading-relaxed">
+            <p className="mt-2.5 text-[1.0625rem] leading-[1.75]">
               How many exempt properties currently pay is given differently in three places within
               two weeks:
             </p>
-            <table className="mt-3 w-full border-collapse text-[0.875rem]">
+            <table className="mt-3 w-full border-collapse text-[0.9375rem]">
               <thead>
-                <tr className="border-b border-gold/40">
+                <tr className="border-b border-rule">
                   <th
                     scope="col"
-                    className="py-1.5 pr-4 text-left text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-gold-strong"
+                    className="py-2 pr-4 text-left text-[0.75rem] font-bold uppercase tracking-[0.12em] text-ink-mid"
                   >
                     Source
                   </th>
                   <th
                     scope="col"
-                    className="py-1.5 text-left text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-gold-strong"
+                    className="py-2 text-left text-[0.75rem] font-bold uppercase tracking-[0.12em] text-ink-mid"
                   >
                     Says
                   </th>
@@ -682,16 +686,16 @@ export default function MeetingDigest() {
               </thead>
               <tbody>
                 {PILOT_COUNTS.map(([src, says]) => (
-                  <tr key={src} className="border-b border-gold/25 last:border-0">
-                    <td className="py-1.5 pr-4 align-top">{src}</td>
-                    <td className="py-1.5 align-top">{says}</td>
+                  <tr key={src} className="border-b border-rule/50 last:border-0">
+                    <td className="py-2 pr-4 align-top">{src}</td>
+                    <td className="py-2 align-top">{says}</td>
                   </tr>
                 ))}
               </tbody>
             </table>
-            <p className="mt-3 text-[0.9375rem] leading-relaxed">
+            <p className="mt-3 text-[1.0625rem] leading-[1.75]">
               The count of 81 exempt properties is consistent across all three. The number of payers
-              is not.
+              is not. This page shows the disagreement rather than picking one.
             </p>
           </div>
 
@@ -707,14 +711,15 @@ export default function MeetingDigest() {
 
         {/* 08 council */}
         <section id="council" className={SECTION}>
-          <Eyebrow>08 &middot; In committee</Eyebrow>
+          <Eyebrow>08 · In committee</Eyebrow>
           <H2>Two items pending before the Council</H2>
-          <SrcLine kind="doc">Council agenda, Sep 8</SrcLine>
+          <Source>From the posted Council agenda of September 8.</Source>
 
           <p className={BODY}>
             <b className="font-semibold">Order #213, Human Rights Committee funding.</b> Councilor
             Houseman has filed a formal request that the Mayor raise and appropriate{" "}
-            <Fig>$20,000</Fig> for the Beverly Human Rights Committee. The city&apos;s DEIB Director
+            <Fig>$20,000</Fig>{" "}
+            for the Beverly Human Rights Committee. The city&apos;s DEIB Director
             position was not funded in the FY27 budget. The order is being held in the Finance and
             Property committee at the sponsor&apos;s request while discussions with the Mayor
             continue.
@@ -737,22 +742,24 @@ export default function MeetingDigest() {
 
         {/* 09 horizon */}
         <section id="horizon" className={SECTION}>
-          <Eyebrow>09 &middot; On the horizon</Eyebrow>
+          <Eyebrow>09 · On the horizon</Eyebrow>
           <H2>Redistricting and e-bikes at the schools</H2>
-          <SrcLine kind="rec">
-            School Committee, Aug 26 and Sep 9. Not yet checked against audio.
-          </SrcLine>
+          <Source>
+            From the recordings of the School Committee meetings of August 26 and September 9. Not
+            checked against the audio.
+          </Source>
 
           <p className={BODY}>
-            <b className="font-semibold">School district lines.</b> The Committee President noted that
-            the city charter provides for reviewing the districting plan every ten years, and said
-            the Committee expects to discuss enrollment data and move in patterns this year. She also
-            noted two potential housing developments on the near horizon, which bear on any redraw.
-            No redistricting process has been started.
+            <b className="font-semibold">School district lines.</b> The Committee President noted
+            that the city charter provides for reviewing the districting plan every ten years, and
+            said the Committee expects to discuss enrollment data and move in patterns this year. She
+            also noted two potential housing developments on the near horizon, which bear on any
+            redraw. No redistricting process has been started.
           </p>
           <p className={BODY}>
-            <b className="font-semibold">E-bikes and e-scooters.</b> The Superintendent said he is
-            considering a district ban through grade eight, citing injury reports and state
+            <b className="font-semibold">E-bikes and e-scooters.</b>{" "}
+            The Superintendent said he is considering a district ban through grade eight, citing
+            injury reports and state
             legislation awaiting the Governor&apos;s signature that would classify these vehicles and
             require registration and licensing. A member asked what mechanism would be used, noting
             that either a handbook change or a policy change would require School Committee action.
@@ -769,68 +776,46 @@ export default function MeetingDigest() {
           </More>
         </section>
 
-        {/* 10 method */}
+        {/* 10 ground rules */}
         <section id="method" className="scroll-mt-24 py-14">
-          <Eyebrow>10 &middot; Method</Eyebrow>
-          <H2>How this was made</H2>
+          <Eyebrow>10 · Ground rules</Eyebrow>
+          <H2>Ground rules and sources</H2>
 
           <p className={BODY}>
-            Every claim above carries a tag showing where it came from, because the two sources are
-            not equally reliable.
+            Four things I hold to, so you know what is not here.
           </p>
+          <ul className={LIST}>
+            <li>
+              <b className="font-semibold">Members of the public are not named or quoted.</b> Several
+              comments at these meetings involved family or medical details.
+            </li>
+            <li>
+              <b className="font-semibold">
+                Individual votes are attributed only where a roll call was taken.
+              </b>{" "}
+              Most Council votes are voice votes, where the tally is the only fact on the record.
+            </li>
+            <li>
+              <b className="font-semibold">
+                Research figures produced by individual committee members are linked, not
+                reproduced.
+              </b>{" "}
+              Preliminary modeling reads as a proposal once it is separated from the document it sits
+              in.
+            </li>
+            <li>
+              <b className="font-semibold">The respondent to the dollar store RFP is not named.</b>{" "}
+              That detail comes from an unverified recording and the substance does not depend on it.
+            </li>
+          </ul>
 
-          <dl className="mt-6 max-w-[63ch] space-y-3 rounded-lg border border-rule bg-bg-card/60 px-6 py-5">
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <dt>
-                <Tag kind="doc" />
-              </dt>
-              <dd className="flex-1 text-[0.9375rem] leading-relaxed">
-                From an official agenda, approved minutes, ordinance text or committee packet.
-                Quotable as written.
-              </dd>
-            </div>
-            <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-              <dt>
-                <Tag kind="rec" />
-              </dt>
-              <dd className="flex-1 text-[0.9375rem] leading-relaxed">
-                From a meeting recording transcribed automatically.{" "}
-                <b className="font-semibold">Not yet checked against the audio.</b> Figures in these
-                sections should be verified before being repeated elsewhere.
-              </dd>
-            </div>
-          </dl>
-
-          <p className={BODY}>
-            Four notes on what is and is not here.{" "}
-            <b className="font-semibold">
-              Members of the public who spoke at these meetings are not named or quoted
-            </b>
-            , as several comments involved family or medical details.{" "}
-            <b className="font-semibold">
-              Individual votes are attributed only where a roll call was taken.
-            </b>{" "}
-            Most Council votes are voice votes, where the tally is the only fact on the record.{" "}
-            <b className="font-semibold">
-              Research figures produced by individual committee members are not reproduced
-            </b>
-            , because preliminary modeling reads as a projection once separated from the document it
-            appears in. And{" "}
-            <b className="font-semibold">the respondent to the dollar store RFP is not named</b>,
-            since that detail comes from an unverified recording and the substance does not depend on
-            it.
-          </p>
-          <p className={BODY}>
-            Where sources disagree, the disagreement is shown rather than resolved.
-          </p>
-
-          <div className="mt-8 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3">
             {SOURCES.map((col) => (
               <div key={col.head}>
-                <h3 className="text-[0.6875rem] font-bold uppercase tracking-[0.12em] text-ink-faint">
+                <h3 className="text-[0.75rem] font-bold uppercase tracking-[0.12em] text-ink-mid">
                   {col.head}
                 </h3>
-                <ul className="mt-2 space-y-1.5 text-[0.9375rem] leading-snug">
+                <ul className="mt-2.5 space-y-2 text-[1rem] leading-snug">
                   {col.links.map((l) => (
                     <li key={l.href + l.label}>
                       <A href={l.href}>{l.label}</A>
@@ -842,7 +827,7 @@ export default function MeetingDigest() {
           </div>
         </section>
 
-        <footer className="border-t border-rule pt-6 text-[0.8125rem] leading-relaxed text-ink-faint">
+        <footer className="border-t border-rule pt-6 text-[0.9375rem] leading-relaxed text-ink-mid">
           <p className="max-w-[63ch]">
             I compile this from public meeting recordings and city records. It is not affiliated
             with, endorsed by, or speaking for the City of Beverly, Beverly Public Schools, or any
