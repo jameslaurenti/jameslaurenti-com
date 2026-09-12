@@ -14,15 +14,15 @@ const currentlyInto = [
 const whatIMake = [
   {
     mode: "How things work",
-    body: "Tools and writing that take something tangled and make it legible. Right now: Beverly's budget and the development reshaping a fast-growing city, broken down so residents can actually follow along.",
-    cta: "See the work →",
-    href: "/work",
+    body: "Tools and writing that take something tangled and make it legible. Right now: Beverly's budget, the development reshaping a fast-growing city, and a weekly digest of what the city's boards actually did.",
+    cta: "See the Beverly work →",
+    href: "/work/beverly",
   },
   {
     mode: "What things mean",
-    body: "Essays and experiments on memory, identity, and what's worth paying attention to. Starting with one on why being understood holds us together.",
+    body: "Essays on memory, identity, and what's worth paying attention to. Starting with one on why being understood holds us together.",
     cta: "Read →",
-    href: "/work",
+    href: "/writing",
   },
 ];
 
@@ -97,7 +97,10 @@ export default function Home() {
 
       {/* Currently into strip — full width */}
       <div className="border-t border-rule border-b border-rule">
-        <div className="flex overflow-x-auto">
+        {/* Wraps on a phone rather than scrolling sideways. Horizontal scroll is
+            acceptable for a decorative strip on a wide screen and irritating on a
+            small one, where it hides half the items behind a gesture. */}
+        <div className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto">
           <div
             className="shrink-0 border-r border-rule flex items-center"
             style={{ padding: "1.2rem 2rem" }}

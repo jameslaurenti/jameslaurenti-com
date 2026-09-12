@@ -1,6 +1,11 @@
 {
   "redirects": [
     {
+      "source": "/work/the-crystal-and-the-salute",
+      "destination": "/writing/the-crystal-and-the-salute",
+      "permanent": true
+    },
+    {
       "source": "/beverly-development",
       "destination": "/work/beverly/development-map",
       "permanent": true

@@ -16,8 +16,8 @@ type Entry = {
   href: string;
 };
 
-// Flat, tagged index. Adding a piece later is a one-object change; the tag is a
-// field, so promoting to two dedicated section pages stays a refactor of this list.
+// Legacy index. The nav now points at /work/beverly and /writing directly; this page
+// stays so older links and search results still land somewhere useful.
 const entries: Entry[] = [
   {
     title: "What Beverly Does Next",
@@ -31,7 +31,7 @@ const entries: Entry[] = [
     tag: "What things mean",
     blurb:
       "Girard, Rilke, and why being truly understood is one of the things that keeps us intact.",
-    href: "/work/the-crystal-and-the-salute",
+    href: "/writing/the-crystal-and-the-salute",
   },
 ];
 
