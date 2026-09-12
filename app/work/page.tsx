@@ -16,7 +16,7 @@ type Entry = {
   href: string;
 };
 
-// Legacy index. The nav now points at /work/beverly and /writing directly; this page
+// Legacy index. The nav now points at /beverly and /writing directly; this page
 // stays so older links and search results still land somewhere useful.
 const entries: Entry[] = [
   {
@@ -24,7 +24,7 @@ const entries: Entry[] = [
     tag: "How things work",
     blurb:
       "Beverly's budget is tightening, and the choices ahead will shape the town. Plain-language pieces and tools to help residents understand it and weigh in.",
-    href: "/work/beverly",
+    href: "/beverly",
   },
   {
     title: "The Crystal and the Salute",

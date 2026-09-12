@@ -24,7 +24,7 @@ export default function About() {
         </p>
         <p>
           Right now most of it points at{" "}
-          <Link href="/work/beverly" className="rlink">
+          <Link href="/beverly" className="rlink">
             Beverly, Massachusetts
           </Link>
           , where I live. The city&apos;s budget is tightening and the choices

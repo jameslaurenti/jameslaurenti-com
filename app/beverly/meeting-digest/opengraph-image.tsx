@@ -1,9 +1,10 @@
 import { ImageResponse } from "next/og";
 
-// Applies to /work/beverly and every page nested under it, so each piece gets a real card
-// instead of inheriting the site-wide one. The per-page title and description come from each
-// route's own metadata; this is the shared image behind them.
-export const alt = "What Beverly Does Next: plain-language pieces and tools on the city budget";
+// The digest sits under /beverly for URL tidiness but is not part of the
+// "What Beverly Does Next" collection, so it cannot use the shared card: that image
+// has the collection name set across it, which made every shared link advertise the
+// collection instead of the digest. Same palette and furniture, its own words.
+export const alt = "Beverly Meeting Digest: what the city's boards did, and what is coming next";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -38,7 +39,7 @@ export default async function Image() {
               fontWeight: 700,
             }}
           >
-            Beverly, Massachusetts
+            Beverly, Massachusetts · Aug 26 to Sep 9, 2026
           </div>
           <div
             style={{
@@ -51,7 +52,7 @@ export default async function Image() {
               maxWidth: 960,
             }}
           >
-            What Beverly Does Next
+            Beverly Meeting Digest
           </div>
           <div
             style={{
@@ -59,17 +60,20 @@ export default async function Image() {
               fontSize: 34,
               lineHeight: 1.35,
               color: INK_MID,
-              maxWidth: 900,
+              maxWidth: 940,
             }}
           >
-            The city budget in plain language, with tools to poke at the numbers yourself.
+            What the City Council, School Committee and Deficit Reduction Committee took up, plus
+            the dates coming next.
           </div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-          <div style={{ width: 76, height: 8, background: ACCENT, borderRadius: 4, display: "flex" }} />
+          <div
+            style={{ width: 76, height: 8, background: ACCENT, borderRadius: 4, display: "flex" }}
+          />
           <div style={{ fontSize: 28, color: INK_MID }}>
-            jameslaurenti.com · Nonpartisan and sourced
+            jameslaurenti.com · Independent and sourced
           </div>
         </div>
       </div>

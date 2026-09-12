@@ -10,10 +10,10 @@ export const metadata: Metadata = {
     type: "article",
     title: "MA property tax explorer",
     description: "All 351 Massachusetts cities and towns on the same footing: what an average bill is, how hard it lands on local incomes, how each town funds itself, and whether values have outrun incomes.",
-    url: "/work/beverly/property-tax",
+    url: "/beverly/property-tax",
     // Defining openGraph here replaces the block inherited from the collection,
     // images included, so the shared card has to be named explicitly.
-    images: ["/work/beverly/opengraph-image"],
+    images: ["/beverly/opengraph-image"],
   },
 };
 
@@ -37,7 +37,7 @@ export default function MaPropertyTaxPage() {
           <em>posted rate</em>, the dollars-per-thousand figure printed on your bill, is the least useful number
           on it, and it usually runs the opposite way you would expect, lowest in the most expensive towns. The
           companion article{" "}
-          <Link href="/work/beverly/what-sets-your-taxes" target="_blank" rel="noopener">
+          <Link href="/beverly/what-sets-your-taxes" target="_blank" rel="noopener">
             what sets your property taxes, and what doesn&apos;t
           </Link>{" "}
           explains why. The rate on the chart below is the other one, the <em>effective rate</em>: what the

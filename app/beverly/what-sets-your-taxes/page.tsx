@@ -165,10 +165,10 @@ const NOTES: React.ReactNode[] = [
   <>
     Same DLS ballot-question data. Beverly appears in neither the override nor the debt-exclusion dataset: it has never held either
     vote in the life of the law, funding both operations and buildings inside the 2.5 percent levy cap. Detailed treatment in the{" "}
-    <A href="/work/beverly">Beverly piece</A>. <em>Confirmed.</em>
+    <A href="/beverly">Beverly piece</A>. <em>Confirmed.</em>
   </>,
   <>
-    The companion <A href="/work/beverly/property-tax">MA property tax explorer</A> scores every municipality on the three levers and on its
+    The companion <A href="/beverly/property-tax">MA property tax explorer</A> scores every municipality on the three levers and on its
     property-value-versus-income drift, and returns the towns most similar in shape to any one you pick. <em>Interactive; underlying
     data as in notes 3, 7, 8, and 9.</em>
   </>,
@@ -194,7 +194,7 @@ export default function WhatSetsYourTaxes() {
           <p className="mt-8 max-w-[60ch] text-[0.8125rem] leading-relaxed text-ink-faint">
             A nonpartisan, statewide explainer. Figures from the Massachusetts Division of Local Services and the U.S. Census, with
             sources at the bottom. It grew out of a closer look at one city:{" "}
-            <A href="/work/beverly">What Beverly Does Next</A>.
+            <A href="/beverly">What Beverly Does Next</A>.
           </p>
         </header>
 
@@ -384,7 +384,7 @@ export default function WhatSetsYourTaxes() {
 
             <ExploreCallout>
               See how far your own town&apos;s property values and residents&apos; incomes have pulled apart in the{" "}
-              <A href="/work/beverly/property-tax?lens=drift">explorer&apos;s Drift view</A>.
+              <A href="/beverly/property-tax?lens=drift">explorer&apos;s Drift view</A>.
             </ExploreCallout>
           </Reveal>
         </section>
@@ -448,7 +448,7 @@ export default function WhatSetsYourTaxes() {
 
             <ExploreCallout>
               Every town&apos;s blend of these three levers is its fiscal fingerprint. Map any town by the same levers in the{" "}
-              <A href="/work/beverly/property-tax?lens=shape">explorer&apos;s Town&apos;s shape view</A>.
+              <A href="/beverly/property-tax?lens=shape">explorer&apos;s Town&apos;s shape view</A>.
             </ExploreCallout>
           </Reveal>
         </section>
@@ -475,9 +475,9 @@ export default function WhatSetsYourTaxes() {
             <div className="mt-8 rounded-r-md border-l-4 border-gold bg-bg-card/50 px-6 py-6">
               <p className="max-w-[64ch] text-[1rem] leading-relaxed text-ink">
                 For a close look at how one city played that hand across a decade of its own budgets, see{" "}
-                <A href="/work/beverly">What Beverly Does Next</A>, the second lever made concrete: a town that grew its base and never
+                <A href="/beverly">What Beverly Does Next</A>, the second lever made concrete: a town that grew its base and never
                 went to the voters. And to place your own town, the{" "}
-                <A href="/work/beverly/property-tax">MA property tax explorer</A>{" "}maps every community in Massachusetts by those three levers,
+                <A href="/beverly/property-tax">MA property tax explorer</A>{" "}maps every community in Massachusetts by those three levers,
                 and shows whether its property values have outrun its residents&apos; incomes.<Fn n={14} />
               </p>
             </div>

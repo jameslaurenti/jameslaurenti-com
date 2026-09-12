@@ -14,7 +14,7 @@ export default function BeverlyDevelopmentMapPage() {
       <div className="shrink-0 border-b border-rule bg-bg">
         <div className="px-6 py-2.5 flex items-center justify-between gap-4">
           <Link
-            href="/work/beverly"
+            href="/beverly"
             className="text-sm font-medium text-accent hover:text-accent-lt transition-colors"
           >
             ← Beverly

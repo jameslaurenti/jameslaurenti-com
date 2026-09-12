@@ -9,10 +9,10 @@ export const metadata: Metadata = {
     title: "Find the money: the Beverly budget challenge",
     description:
       "Beverly's actual FY2027 budget, and the chair. Put the trash fee back, restore the bus line, then find the money somewhere else. It is harder than just cutting the waste.",
-    url: "/work/beverly/budget-challenge",
+    url: "/beverly/budget-challenge",
     // Defining openGraph here replaces the block inherited from the collection,
     // images included, so the shared card has to be named explicitly.
-    images: ["/work/beverly/opengraph-image"],
+    images: ["/beverly/opengraph-image"],
   },
 };
 

@@ -72,7 +72,7 @@ export default function Writing() {
         style={{ fontSize: "0.92rem", maxWidth: "60ch" }}
       >
         More of my time currently goes to{" "}
-        <Link href="/work/beverly" className="rlink">
+        <Link href="/beverly" className="rlink">
           the Beverly work
         </Link>
         , which is its own section.

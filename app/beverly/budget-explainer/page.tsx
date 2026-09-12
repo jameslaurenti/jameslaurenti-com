@@ -327,8 +327,8 @@ export default function BudgetExplainer() {
           </p>
           <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-faint">
             This explains how Beverly&apos;s budget works structurally, the machinery that holds in any year.
-            For how one year&apos;s gap actually got closed, see <A href="/work/beverly/fy27-budget">The FY2027 budget</A>.
-            To see how Beverly compares to every town in the state, there&apos;s <A href="/work/beverly/property-tax">the MA property tax explorer</A>.
+            For how one year&apos;s gap actually got closed, see <A href="/beverly/fy27-budget">The FY2027 budget</A>.
+            To see how Beverly compares to every town in the state, there&apos;s <A href="/beverly/property-tax">the MA property tax explorer</A>.
           </p>
 
           {/* translation key */}
@@ -571,7 +571,7 @@ export default function BudgetExplainer() {
               risk, not arithmetic.
             </div>
             <p className="mt-6">
-              Think the money&apos;s just sitting there? <A href="/work/beverly/budget-challenge">Try finding it yourself.</A>
+              Think the money&apos;s just sitting there? <A href="/beverly/budget-challenge">Try finding it yourself.</A>
             </p>
           </Reveal>
         </section>

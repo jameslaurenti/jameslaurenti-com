@@ -1,23 +1,33 @@
 {
   "redirects": [
     {
+      "source": "/work/beverly",
+      "destination": "/beverly",
+      "permanent": true
+    },
+    {
+      "source": "/work/beverly/:path*",
+      "destination": "/beverly/:path*",
+      "permanent": true
+    },
+    {
       "source": "/work/the-crystal-and-the-salute",
       "destination": "/writing/the-crystal-and-the-salute",
       "permanent": true
     },
     {
       "source": "/beverly-development",
-      "destination": "/work/beverly/development-map",
+      "destination": "/beverly/development-map",
       "permanent": true
     },
     {
       "source": "/beverly-budget",
-      "destination": "/work/beverly/budget-explainer",
+      "destination": "/beverly/budget-explainer",
       "permanent": true
     },
     {
       "source": "/beverly-fy27budget",
-      "destination": "/work/beverly/fy27-budget",
+      "destination": "/beverly/fy27-budget",
       "permanent": false
     }
   ]

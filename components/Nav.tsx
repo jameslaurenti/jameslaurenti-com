@@ -8,13 +8,10 @@ import { useState } from "react";
  * "Work" is gone on purpose. It framed everything as portfolio, which was right when
  * this site existed for recruiters and is wrong now that most of it is civic writing
  * about one city. The two bodies of work are named for what they are instead.
- *
- * Beverly still lives under /work/beverly. Moving it to /beverly is the next step and
- * is deferred only because there is uncommitted work inside that directory.
  */
 const links = [
   { href: "/", label: "Home" },
-  { href: "/work/beverly", label: "Beverly" },
+  { href: "/beverly", label: "Beverly" },
   { href: "/writing", label: "Writing" },
   { href: "/about", label: "About" },
   { href: "/contact", label: "Contact" },

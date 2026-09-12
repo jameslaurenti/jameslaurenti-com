@@ -10,7 +10,7 @@ export const metadata: Metadata = {
     title: "What Beverly Does Next",
     description:
       "Beverly's budget is tightening, and the choices ahead will shape the town. Plain-language pieces and tools to help residents understand it. Nonpartisan and sourced.",
-    url: "/work/beverly",
+    url: "/beverly",
   },
 };
 
@@ -43,18 +43,18 @@ const groups: Group[] = [
         title: "How the budget works",
         blurb:
           "Why the city keeps running short: a state cap on how fast it can raise money, and costs that outrun it. The problem, in plain language.",
-        href: "/work/beverly/budget-explainer",
+        href: "/beverly/budget-explainer",
         alongside: [
-          { label: "MA property tax explorer", href: "/work/beverly/property-tax", why: "how Beverly's taxes compare to every MA town" },
-          { label: "Development map", href: "/work/beverly/development-map", why: "where Beverly's new tax base is being built" },
+          { label: "MA property tax explorer", href: "/beverly/property-tax", why: "how Beverly's taxes compare to every MA town" },
+          { label: "Development map", href: "/beverly/development-map", why: "where Beverly's new tax base is being built" },
         ],
       },
       {
         title: "The FY2027 budget",
         blurb:
           "The year the gap got real: rising costs, the trash-fee fight, and what was cut to balance one budget.",
-        href: "/work/beverly/fy27-budget",
-        alongside: [{ label: "Find the money", href: "/work/beverly/budget-challenge", why: "try closing this year's gap yourself" }],
+        href: "/beverly/fy27-budget",
+        alongside: [{ label: "Find the money", href: "/beverly/budget-challenge", why: "try closing this year's gap yourself" }],
       },
       {
         title: "The options",
@@ -78,7 +78,7 @@ const groups: Group[] = [
         title: "What sets your property taxes, and what doesn't",
         blurb:
           "How the property tax really works across Massachusetts, and why the wealthiest towns are not the highest-taxed. Statewide, not just Beverly.",
-        href: "/work/beverly/what-sets-your-taxes",
+        href: "/beverly/what-sets-your-taxes",
       },
     ],
   },
@@ -90,18 +90,18 @@ const groups: Group[] = [
         title: "MA property tax explorer",
         blurb:
           "Every Massachusetts town: your bill and rate across the decade, your town's fiscal shape and the towns most like it, and whether its property values outran its residents' incomes.",
-        href: "/work/beverly/property-tax",
+        href: "/beverly/property-tax",
       },
       {
         title: "Find the money",
         blurb:
           'The actual budget, and a chance to close the gap yourself. It’s harder than "just cut the waste."',
-        href: "/work/beverly/budget-challenge",
+        href: "/beverly/budget-challenge",
       },
       {
         title: "The development map",
         blurb: "Where Beverly is changing, parcel by parcel.",
-        href: "/work/beverly/development-map",
+        href: "/beverly/development-map",
         status: "beta",
       },
     ],

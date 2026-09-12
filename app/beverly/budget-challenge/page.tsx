@@ -436,7 +436,7 @@ export default function BudgetChallenge() {
         <footer className="pb-8 text-[0.84375rem] leading-relaxed text-ink-faint [&_b]:font-semibold [&_b]:text-ink">
           <p className="mb-3 max-w-[72ch]">
             <b>How this works.</b>{" "}The trash options, the itemized cuts, the Council amendments, and this year&apos;s new growth are from
-            Beverly&apos;s FY2027 budget and the <Link href="/work/beverly/fy27-budget" className="rlink">FY2027 walkthrough</Link>. The cuts in the mayor&apos;s
+            Beverly&apos;s FY2027 budget and the <Link href="/beverly/fy27-budget" className="rlink">FY2027 walkthrough</Link>. The cuts in the mayor&apos;s
             proposed budget balance it. The reading that the Council&apos;s June-23 additions sat on top of an already-balanced budget, and
             so land in free cash rather than closing anything, is this tool&apos;s, drawn from the sequence of votes rather than stated in
             any city document. Job estimates assume an average position, with benefits, costs about $95,000. Revenue levers marked{" "}

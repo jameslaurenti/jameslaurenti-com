@@ -3,9 +3,9 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const HUB = "/work/beverly";
+const HUB = "/beverly";
 
-// Pieces that sit under /work/beverly for URL tidiness but are not part of the
+// Pieces that sit under /beverly for URL tidiness but are not part of the
 // "What Beverly Does Next" collection, and are not listed in its index. They get a trail
 // back to /work only: naming the collection in their crumb claimed a membership they do
 // not have.

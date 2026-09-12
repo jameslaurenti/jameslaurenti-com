@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     type: "article",
     title: "How Beverly's budget works",
     description: "Why the city keeps running short: a state cap on how fast it can raise money, and costs that outrun it. The problem, in plain language.",
-    url: "/work/beverly/budget-explainer",
+    url: "/beverly/budget-explainer",
     // Defining openGraph here replaces the block inherited from the collection,
     // images included, so the shared card has to be named explicitly.
-    images: ["/work/beverly/opengraph-image"],
+    images: ["/beverly/opengraph-image"],
   },
 };
 

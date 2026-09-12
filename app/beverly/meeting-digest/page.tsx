@@ -14,7 +14,7 @@ import Link from "next/link";
  * legend they would never scroll down to find.
  *
  * Deliberately not linked from the section index: shared by direct link while it is a
- * prototype. Adding a `piece` entry to app/work/beverly/page.tsx is what would put it
+ * prototype. Adding a `piece` entry to app/beverly/page.tsx is what would put it
  * in the nav.
  */
 

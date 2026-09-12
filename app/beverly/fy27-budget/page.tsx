@@ -275,7 +275,7 @@ export default function FY27Budget() {
           </div>
           <p className="mt-6 max-w-[64ch] text-[1rem] leading-relaxed text-ink-mid">
             This piece walks through each part in plain language, with sources noted throughout. It builds on an earlier explainer,{" "}
-            <A href="/work/beverly/budget-explainer">How Beverly&apos;s budget works</A>, which lays out why the gap exists in the first
+            <A href="/beverly/budget-explainer">How Beverly&apos;s budget works</A>, which lays out why the gap exists in the first
             place. Use the tracker above to follow along.
           </p>
         </div>
@@ -795,7 +795,7 @@ export default function FY27Budget() {
           </Narrative>
           <Narrative>
             If you want the structural squeeze underneath all of this, or where residents can weigh in before the next budget, the{" "}
-            <A href="/work/beverly/budget-explainer">earlier explainer</A> covers both. What the decade of choices underneath this year
+            <A href="/beverly/budget-explainer">earlier explainer</A> covers both. What the decade of choices underneath this year
             says about the town is the subject of a companion piece, coming soon. This piece has stuck to the mechanics of how the money
             moved, not the politics of the moment.
           </Narrative>

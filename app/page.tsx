@@ -16,7 +16,7 @@ const whatIMake = [
     mode: "How things work",
     body: "Tools and writing that take something tangled and make it legible. Right now: Beverly's budget, the development reshaping a fast-growing city, and a weekly digest of what the city's boards actually did.",
     cta: "See the Beverly work →",
-    href: "/work/beverly",
+    href: "/beverly",
   },
   {
     mode: "What things mean",

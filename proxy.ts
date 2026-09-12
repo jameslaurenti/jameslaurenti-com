@@ -39,8 +39,8 @@ export function proxy(req: NextRequest) {
 // digest page only, so /harborlight/enter and /harborlight/feed/* stay ungated.
 export const config = {
   matcher: [
-    "/work/beverly/who-beverly-is",
-    "/work/beverly/who-beverly-is-v2",
+    "/beverly/who-beverly-is",
+    "/beverly/who-beverly-is-v2",
     "/harborlight",
   ],
 };

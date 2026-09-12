@@ -8,10 +8,10 @@ export const metadata: Metadata = {
     type: "article",
     title: "What sets your property taxes, and what doesn't",
     description: "How the property tax really works across Massachusetts, and why the wealthiest towns are not the highest-taxed. Statewide, not just Beverly.",
-    url: "/work/beverly/what-sets-your-taxes",
+    url: "/beverly/what-sets-your-taxes",
     // Defining openGraph here replaces the block inherited from the collection,
     // images included, so the shared card has to be named explicitly.
-    images: ["/work/beverly/opengraph-image"],
+    images: ["/beverly/opengraph-image"],
   },
 };
 

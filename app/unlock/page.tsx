@@ -55,7 +55,7 @@ export default async function UnlockPage({
         You&apos;ve reached a piece that is still being edited. It&apos;s shared with a few readers for comment before it
         goes up properly, so it needs a password. If you were sent here, you have it. If you landed here by accident,
         the finished work is on the{" "}
-        <a href="/work/beverly" className="rlink">
+        <a href="/beverly" className="rlink">
           Beverly page
         </a>
         .
