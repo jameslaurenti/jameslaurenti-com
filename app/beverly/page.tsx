@@ -158,6 +158,43 @@ export default function BeverlyCollection() {
         Nonpartisan, sourced, and built for people who don&apos;t have time to dig.
       </p>
 
+      {/*
+        The digest sits above the library because it is a different kind of thing: dated
+        and recurring, where everything below is evergreen and stays true for years.
+        Folding a September issue into a list of explainers would make both harder to scan.
+
+        This is also what LISTS the digest. It is currently unlisted and noindex; keeping
+        or removing this block is the decision about whether that changes. An "all issues"
+        link belongs here too, once there is more than one issue to archive.
+      */}
+      <Link
+        href="/beverly/meeting-digest"
+        className="group block rounded-lg border border-accent/35 bg-accent-glow px-6 py-6 sm:px-7 mb-12 transition-colors hover:bg-bg-card"
+      >
+        <div className="flex items-baseline justify-between gap-3 flex-wrap">
+          <span
+            className="font-semibold uppercase text-accent"
+            style={{ fontSize: "0.72rem", letterSpacing: "0.16em" }}
+          >
+            The weekly digest
+          </span>
+          <span className="text-ink-faint" style={{ fontSize: "0.75rem" }}>
+            New issue Mondays
+          </span>
+        </div>
+        <h2 className="font-display text-2xl font-semibold tracking-tight mt-2 transition-colors group-hover:text-accent">
+          Issue No. 1 &middot; Week of September 14
+        </h2>
+        <p className="mt-2 text-ink-mid leading-relaxed">
+          What the City Council, School Committee and Deficit Reduction Committee actually
+          did last week, the dates worth putting in your calendar, and a link straight into
+          the recording for anything you want to hear for yourself.
+        </p>
+        <span className="mt-4 inline-block text-accent" style={{ fontSize: "0.85rem" }}>
+          Read this issue &rarr;
+        </span>
+      </Link>
+
       <div className="flex flex-col gap-12">
         {groups.map((group) => (
           <section key={group.label}>

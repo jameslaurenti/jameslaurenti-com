@@ -95,44 +95,7 @@ export default function Home() {
         </p>
       </section>
 
-      {/* Currently into strip — full width */}
-      <div className="border-t border-rule border-b border-rule">
-        {/* Wraps on a phone rather than scrolling sideways. Horizontal scroll is
-            acceptable for a decorative strip on a wide screen and irritating on a
-            small one, where it hides half the items behind a gesture. */}
-        <div className="flex flex-wrap sm:flex-nowrap sm:overflow-x-auto">
-          <div
-            className="shrink-0 border-r border-rule flex items-center"
-            style={{ padding: "1.2rem 2rem" }}
-          >
-            <span
-              className="text-ink-faint uppercase whitespace-nowrap"
-              style={{ fontSize: "0.67rem", letterSpacing: "0.18em" }}
-            >
-              Currently into
-            </span>
-          </div>
-          {currentlyInto.map((item) => (
-            <div
-              key={item.label}
-              className="shrink-0 border-r border-rule hover:bg-bg-card transition-colors"
-              style={{ padding: "1.2rem 1.75rem", minWidth: "170px" }}
-            >
-              <div
-                className="text-ink-faint uppercase mb-1"
-                style={{ fontSize: "0.64rem", letterSpacing: "0.1em" }}
-              >
-                {item.label}
-              </div>
-              <div className="text-ink font-normal" style={{ fontSize: "0.87rem" }}>
-                {item.value}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* What I make section */}
+      {/* What I make */}
       <div className="flex items-center gap-4 px-10 pt-14 mb-10">
         <span
           className="font-display font-semibold text-ink shrink-0"
@@ -172,23 +135,41 @@ export default function Home() {
       </div>
 
       {/*
-        Making things section — hidden until content exists.
-        To re-enable: uncomment below and add Making Things back to Nav links.
+        Currently into. Was a single scrolling row, which could not work: eight items of
+        very different lengths in one line either overflow or get cut off, and on a phone
+        half of them hid behind a sideways gesture. It is a grid now, same gap-px idiom as
+        the cards above, so every item is visible at every width.
 
-      <div className="flex items-center gap-4 px-10 mb-10">
+        It also moved below the work rather than interrupting the way to it. The personality
+        is worth keeping; it just reads better as a closing note than as a speed bump.
+      */}
+      <div className="flex items-center gap-4 px-10 mb-6">
         <span
           className="text-ink-faint uppercase shrink-0"
           style={{ fontSize: "0.67rem", letterSpacing: "0.18em" }}
         >
-          Making things
+          Currently into
         </span>
         <div className="flex-1 h-px bg-rule" />
       </div>
 
-      <div className="mx-10 mb-16 border-t border-rule">
-        rows go here — pull from getAllPosts() when content exists
+      <div className="px-10 mb-16">
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-rule">
+          {currentlyInto.map((item) => (
+            <div key={item.label} className="bg-bg" style={{ padding: "1.1rem 1.25rem" }}>
+              <div
+                className="text-ink-faint uppercase mb-1"
+                style={{ fontSize: "0.64rem", letterSpacing: "0.1em" }}
+              >
+                {item.label}
+              </div>
+              <div className="text-ink leading-snug" style={{ fontSize: "0.87rem" }}>
+                {item.value}
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
-      */}
 
     </div>
   );
