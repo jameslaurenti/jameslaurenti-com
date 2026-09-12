@@ -1,0 +1,133 @@
+{
+  "_meta": {
+    "title": "Vehicle-related police incidents in Beverly, MA",
+    "source": "BevScan (scanner.beverlybrief.com), public incidents API",
+    "sourceUrl": "https://scanner.beverlybrief.com",
+    "confidence": "modeled",
+    "retrieved": "2026-09-05T17:00:17.208Z",
+    "coverageStart": "2026-08-27T16:41:32.000Z",
+    "coverageEnd": "2026-09-05T17:00:17.208Z",
+    "coverageDays": 9.01,
+    "coverageIsWholeArchive": false,
+    "defaultWindowDays": 7,
+    "counts": {
+      "total": 8,
+      "confirmed": 3,
+      "suspicious": 5,
+      "last7Days": 6,
+      "last7DaysConfirmed": 3,
+      "last7DaysSuspicious": 3,
+      "perDayOverCoverage": 0.89,
+      "droppedUnresolvable": 1,
+      "duplicatesMerged": 1,
+      "incidentsScanned": 500
+    },
+    "notes": "Built from police-scanner radio traffic, not police reports. Incident type is inferred from AI-generated transcript text because BevScan's category vocabulary has no vehicle-specific value. Locations are rounded down to the block and geocoded with the US Census Bureau geocoder; no house number is stored. Summary text is never copied from the source because it contains suspect descriptions. Coverage is limited to the window BevScan's 500-record API serves completely; older weeks are not comparable and are excluded rather than shown as a baseline. Not an official record."
+  },
+  "incidents": [
+    {
+      "id": "e9ca5b6c-bf3d-4b5d-bdbc-940e494c946e",
+      "caseNumber": "BEV-090326-057",
+      "at": "2026-09-04T00:20:59+00:00",
+      "kind": "confirmed",
+      "label": "Vehicle break-in reported",
+      "category": "theft",
+      "location": "1500 block of Broughton Dr",
+      "precision": "block",
+      "lat": 42.57319,
+      "lon": -70.87354,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=e9ca5b6c-bf3d-4b5d-bdbc-940e494c946e"
+    },
+    {
+      "id": "9136978c-67fd-48e5-ba07-5aa75d53b197",
+      "caseNumber": "BEV-090326-011",
+      "at": "2026-09-03T16:26:21+00:00",
+      "kind": "confirmed",
+      "label": "Vehicle break-in reported",
+      "category": "theft",
+      "location": "400 block of Broughton Dr",
+      "precision": "block",
+      "lat": 42.57132,
+      "lon": -70.87476,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=9136978c-67fd-48e5-ba07-5aa75d53b197"
+    },
+    {
+      "id": "c0177618-e1c1-41af-ad51-e1494e4106bf",
+      "caseNumber": "BEV-090326-003",
+      "at": "2026-09-03T10:24:16+00:00",
+      "kind": "confirmed",
+      "label": "Vehicle break-in reported",
+      "category": "theft",
+      "location": "Boden St",
+      "precision": "street",
+      "lat": 42.55495,
+      "lon": -70.86186,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=c0177618-e1c1-41af-ad51-e1494e4106bf"
+    },
+    {
+      "id": "d7a4fdb1-07f9-4c9b-b6c0-836c37f41909",
+      "caseNumber": "BEV-090226-005",
+      "at": "2026-09-02T11:16:26+00:00",
+      "kind": "suspicious",
+      "label": "Suspicious activity near a vehicle",
+      "category": "suspicious",
+      "location": "Arthur St",
+      "precision": "street",
+      "lat": 42.55103,
+      "lon": -70.88127,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=d7a4fdb1-07f9-4c9b-b6c0-836c37f41909"
+    },
+    {
+      "id": "49a942c8-baf6-4553-82bc-3ed7f487d6b5",
+      "caseNumber": "BEV-090126-042",
+      "at": "2026-09-01T22:26:44+00:00",
+      "kind": "suspicious",
+      "label": "Attempted vehicle entry, suspicious activity call",
+      "category": "suspicious",
+      "location": "First block of Federal St",
+      "precision": "block",
+      "lat": 42.55,
+      "lon": -70.88278,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=49a942c8-baf6-4553-82bc-3ed7f487d6b5"
+    },
+    {
+      "id": "45d43539-f550-44e7-b220-f83906ebb60f",
+      "caseNumber": "BEV-090126-029",
+      "at": "2026-09-01T17:05:24+00:00",
+      "kind": "suspicious",
+      "label": "Attempted vehicle entry, suspicious activity call",
+      "category": "suspicious",
+      "location": "First block of Abbott St",
+      "precision": "block",
+      "lat": 42.54631,
+      "lon": -70.87514,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=45d43539-f550-44e7-b220-f83906ebb60f"
+    },
+    {
+      "id": "a27ae135-bc57-4bc4-95cf-c5d7ef6f1ef1",
+      "caseNumber": "BEV-082926-019",
+      "at": "2026-08-29T11:26:00+00:00",
+      "kind": "suspicious",
+      "label": "Car doors checked, suspicious activity call",
+      "category": "suspicious",
+      "location": "First block of Edwards St",
+      "precision": "block",
+      "lat": 42.54365,
+      "lon": -70.8841,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=a27ae135-bc57-4bc4-95cf-c5d7ef6f1ef1"
+    },
+    {
+      "id": "0914767c-89d9-4a4a-af7a-a89daace4b1f",
+      "caseNumber": "BEV-082926-011",
+      "at": "2026-08-29T07:11:17+00:00",
+      "kind": "suspicious",
+      "label": "Attempted vehicle entry, suspicious activity call",
+      "category": "theft",
+      "location": "First block of Lyman St",
+      "precision": "block",
+      "lat": 42.56174,
+      "lon": -70.88016,
+      "url": "https://scanner.beverlybrief.com/incidents?focus=0914767c-89d9-4a4a-af7a-a89daace4b1f"
+    }
+  ]
+}

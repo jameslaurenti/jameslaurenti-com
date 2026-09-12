@@ -3,16 +3,21 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-maplibre-worker.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-maplibre-worker.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "a11y:contrast": "node scripts/check-contrast.mjs",
     "a11y:contrast:ci": "node scripts/check-contrast.mjs --ci",
-    "a11y": "pa11y-ci"
+    "a11y": "pa11y-ci",
+    "beverly:vehicle-incidents": "node scripts/beverly-vehicle-incidents/fetch.mjs",
+    "maplibre:sync": "node scripts/copy-maplibre-worker.mjs"
   },
   "dependencies": {
     "gray-matter": "^4.0.3",
+    "maplibre-gl": "^6.7.0",
     "next": "16.2.4",
     "react": "19.2.4",
     "react-dom": "19.2.4",

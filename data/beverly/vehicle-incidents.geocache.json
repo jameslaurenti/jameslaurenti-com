@@ -1,0 +1,61 @@
+{
+  "1550 Broughton Drive, Beverly, MA": {
+    "lat": 42.573187639755,
+    "lon": -70.873543317732,
+    "matched": "1550 BROUGHTON DR, BEVERLY, MA, 01915"
+  },
+  "250 Arthur Street, Beverly, MA": null,
+  "250 Boden, Beverly, MA": null,
+  "450 Broughton Drive, Beverly, MA": {
+    "lat": 42.571317493792,
+    "lon": -70.874760676828,
+    "matched": "450 BROUGHTON DR, BEVERLY, MA, 01915"
+  },
+  "50 Abbott Street, Beverly, MA": {
+    "lat": 42.546310914172,
+    "lon": -70.875144311064,
+    "matched": "50 ABBOTT ST, BEVERLY, MA, 01915"
+  },
+  "50 Arthur Street, Beverly, MA": {
+    "lat": 42.551033738091,
+    "lon": -70.881272806062,
+    "matched": "50 ARTHUR ST, BEVERLY, MA, 01915"
+  },
+  "50 Boden, Beverly, MA": {
+    "lat": 42.554952574782,
+    "lon": -70.861860459707,
+    "matched": "50 BODEN ST, BEVERLY, MA, 01915"
+  },
+  "50 Edwards Street, Beverly, MA": {
+    "lat": 42.54365471101,
+    "lon": -70.884101211133,
+    "matched": "50 EDWARDS ST, BEVERLY, MA, 01915"
+  },
+  "50 Federal Street, Beverly, MA": {
+    "lat": 42.549995261809,
+    "lon": -70.882783810971,
+    "matched": "50 FEDERAL ST, BEVERLY, MA, 01915"
+  },
+  "50 Federal, Beverly, MA": {
+    "lat": 42.549995261809,
+    "lon": -70.882783810971,
+    "matched": "50 FEDERAL ST, BEVERLY, MA, 01915"
+  },
+  "50 Leather Street, Beverly, MA": {
+    "lat": 42.569726300608,
+    "lon": -70.800687434977,
+    "matched": "50 LEATHER LN, BEVERLY, MA, 01915"
+  },
+  "50 Lyman Street, Beverly, MA": {
+    "lat": 42.561738735006,
+    "lon": -70.880163340693,
+    "matched": "50 LYMAN ST, BEVERLY, MA, 01915"
+  },
+  "500 Arthur Street, Beverly, MA": null,
+  "500 Boden, Beverly, MA": null,
+  "710 Boden, Beverly, MA": null,
+  "725 Boden, Beverly, MA": null,
+  "750 Boden, Beverly, MA": null,
+  "775 Boden, Beverly, MA": null,
+  "790 Boden, Beverly, MA": null
+}

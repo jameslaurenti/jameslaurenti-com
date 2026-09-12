@@ -104,6 +104,13 @@ const groups: Group[] = [
         href: "/work/beverly/development-map",
         status: "beta",
       },
+      {
+        title: "Vehicle break-ins on the police scanner",
+        blurb:
+          "Where car break-in and car-check calls went out over the radio, at block level. Built from scanner transcripts rather than police reports, so it undercounts, and it says so.",
+        href: "/work/beverly/vehicle-incidents",
+        status: "beta",
+      },
     ],
   },
 ];
