@@ -4,27 +4,33 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const HUB = "/beverly";
-
-// Pieces that sit under /beverly for URL tidiness but are not part of the
-// "What Beverly Does Next" collection, and are not listed in its index. They get a trail
-// back to /work only: naming the collection in their crumb claimed a membership they do
-// not have.
-const STANDALONE = [`${HUB}/digest`];
+const DIGEST = `${HUB}/digest`;
 
 /**
  * Trail back out of a Beverly piece.
  *
- * Without it the only way up is the "Work" item in the site nav, which skips the collection
- * entirely and lands on the index of everything.
+ * Two kinds of thing live under /beverly and they need different trails:
  *
- * Hidden on the hub itself (nothing to go back to) and on the development map, which is a
- * full-height immersive view with its own back-bar.
+ * - Pieces in the "What Beverly Does Next" collection go back to the hub, which is what
+ *   the nav's "Beverly" item points at.
+ * - Digest issues go back to the digest archive. They sit at this URL for tidiness but
+ *   are not part of that collection, and naming it in their crumb would claim a
+ *   membership they do not have. The archive is also otherwise unreachable from inside
+ *   an issue, so this is the crumb that does real work.
+ *
+ * Hidden where there is nothing useful above: the hub itself, the archive index (one
+ * click below a nav item), and the development map, a full-height immersive view with
+ * its own back-bar.
  */
 export default function Breadcrumb() {
-  const path = usePathname();
-  if (path === HUB || path === `${HUB}/` || path.startsWith(`${HUB}/development-map`)) return null;
+  const path = usePathname().replace(/\/$/, "") || "/";
 
-  const standalone = STANDALONE.some((p) => path === p || path.startsWith(`${p}/`));
+  if (path === HUB || path === DIGEST) return null;
+  if (path.startsWith(`${HUB}/development-map`)) return null;
+
+  const inDigest = path.startsWith(`${DIGEST}/`);
+  const href = inDigest ? DIGEST : HUB;
+  const label = inDigest ? "Beverly Meeting Digest" : "What Beverly Does Next";
 
   return (
     // Sticks under the site nav (h-14) so the way back stays reachable in pieces that run
@@ -34,33 +40,17 @@ export default function Breadcrumb() {
       className="sticky top-14 z-30 h-9 border-b border-rule bg-bg"
     >
       <ol className="mx-auto flex h-full max-w-3xl flex-wrap items-center gap-1.5 px-6 text-[0.8125rem] text-ink-faint">
+        <li aria-hidden className="select-none text-ink-faint/60">
+          &larr;
+        </li>
         <li>
           <Link
-            href="/work"
-            className={
-              standalone
-                ? "font-medium text-accent transition-colors hover:text-accent-deep"
-                : "transition-colors hover:text-accent"
-            }
+            href={href}
+            className="font-medium text-accent transition-colors hover:text-accent-deep"
           >
-            Work
+            {label}
           </Link>
         </li>
-        {standalone ? null : (
-          <>
-            <li aria-hidden className="select-none text-ink-faint/60">
-              /
-            </li>
-            <li>
-              <Link
-                href={HUB}
-                className="font-medium text-accent transition-colors hover:text-accent-deep"
-              >
-                What Beverly Does Next
-              </Link>
-            </li>
-          </>
-        )}
       </ol>
     </nav>
   );
