@@ -49,12 +49,40 @@ export default function DigestArchive() {
       <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
         Beverly Meeting Digest
       </h1>
-      <p className="text-ink-mid mb-12 leading-relaxed" style={{ maxWidth: "62ch" }}>
+      <p className="text-ink-mid mb-6 leading-relaxed" style={{ maxWidth: "62ch" }}>
         A weekly summary of what Beverly&apos;s boards actually did, and what is coming up.
         Built from the meeting recordings and the city&apos;s own posted documents, with a
         link into the recording for anything you want to hear yourself. Independent, and not
         a City of Beverly publication.
       </p>
+
+      {/* The standing note lives here rather than at the top of every issue. It explains
+          the project once, to someone arriving at the section, instead of re-introducing
+          itself to a returning reader every week. */}
+      <div className="mb-12 rounded-lg border border-rule bg-bg-card/60 px-6 py-6 shadow-sm">
+        <h2 className="font-display text-lg font-semibold">Why this exists</h2>
+        <p className="mt-2.5 text-[0.97rem] leading-relaxed" style={{ maxWidth: "63ch" }}>
+          I built it for myself first. Keeping up with what the city is actually doing has
+          become a bit of a thing for me, but I have small kids, so I am not getting to
+          meetings in person, and BevCam runs to hours of video a week. That is a real
+          commitment for anyone.
+        </p>
+        <p className="mt-3 text-[0.97rem] leading-relaxed" style={{ maxWidth: "63ch" }}>
+          So: take the recordings, turn them into transcripts, clean those up, and pull out
+          what is worth knowing for the week ahead. Ten minutes with a coffee instead of
+          three hours on the couch.
+        </p>
+        <p className="mt-3 text-[0.97rem] leading-relaxed text-ink-faint" style={{ maxWidth: "63ch" }}>
+          One caveat, and it matters. This starts from automatic transcripts, and they get
+          names and numbers wrong. I check what I can against the city&apos;s posted agendas
+          and minutes, and every issue says underneath each item which of the two it came
+          from. Everything is linked so you can check me. If I have something wrong,{" "}
+          <Link href="/contact" className="rlink">
+            tell me
+          </Link>{" "}
+          and I will fix it.
+        </p>
+      </div>
 
       <div className="flex flex-col">
         {issues.map((issue) => (
