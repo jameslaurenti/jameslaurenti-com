@@ -11,8 +11,11 @@ export const metadata: Metadata = {
  * Deliberately short and in the first person.
  *
  * Length reads as guilt on a page like this: the more elaborate the disclosure, the more
- * it sounds like something is being managed. Say what is collected, say why, say how to
- * stop it, and stop talking.
+ * it sounds like something is being managed. Say what is collected, say why, make the
+ * opt-out genuinely easy, and stop talking.
+ *
+ * The opt-out links are real rather than decorative. The analytics wrapper no-ops when
+ * gtag is absent, so "nothing will break" is a fact about the code and not a hope.
  */
 export default function Privacy() {
   return (
@@ -24,24 +27,40 @@ export default function Privacy() {
       <div className="prose text-ink">
         <p>
           I use Google Analytics to see which pieces get read and which links people
-          actually follow. Mostly that comes down to one question. When I link to the
-          recording of a meeting, does anyone open it? If people do, the work of making
-          everything checkable is worth it. If nobody does, I should spend that effort
-          somewhere more useful.
+          follow. It tells me what people here are actually interested in, which helps me
+          work out what to write next and how to make this more useful.
         </p>
         <p>
           It is ordinary traffic measurement. I do not collect your name or your email,
-          and none of it tells me who you are. I am not selling anything, there are no
-          ads here, and I do not share any of it with anyone.
+          and none of it tells me who you are. I am not selling anything, there are no ads
+          here, and I do not share any of it with anyone.
         </p>
         <p>
-          The reason I bother is that the feedback I get is wonderful and comes from
-          about six people. I would rather know whether this is genuinely useful than
-          guess from the kindness of whoever takes the time to write.
+          People do write to me, and I am grateful for every one of those notes. But far
+          more people read this than write about it, and I would rather understand the
+          whole picture than only the part of it that is kind enough to send a message.
         </p>
         <p>
-          If you would rather not be counted, any content blocker will stop it, and
-          nothing on the site will break if you do.
+          If you would rather not be counted, any content blocker will stop it and nothing
+          on the site will break.{" "}
+          <a
+            href="https://ublockorigin.com/"
+            target="_blank"
+            rel="noopener"
+            className="rlink"
+          >
+            uBlock Origin
+          </a>{" "}
+          is a good free one, or Google publishes its own{" "}
+          <a
+            href="https://tools.google.com/dlpage/gaoptout"
+            target="_blank"
+            rel="noopener"
+            className="rlink"
+          >
+            opt-out add-on
+          </a>{" "}
+          if you would rather switch off just the analytics.
         </p>
         <p>
           Questions, or anything here you think I have got wrong,{" "}
