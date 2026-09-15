@@ -1,12 +1,14 @@
 import Link from "next/link";
 
-const currentlyInto = [
-  { label: "Reading", value: "The Goldfinch" },
-  { label: "Listening", value: "Radiohead — OK Computer through Amnesiac" },
-  { label: "Drinking", value: "Austrian reds — St. Laurent" },
-  { label: "Thinking about", value: "If souls are individual or collective" },
-  { label: "Watching", value: "Crows. Just crows." },
-  { label: "Playing", value: "Old-school JRPGs" },
+/**
+ * Split deliberately. A uniform grid gave eight things identical visual weight, which
+ * flattens a joke and an album title into the same box. Personality lives in the
+ * unevenness, so two or three items get a sentence and the rest stay a list.
+ */
+const currentlyRest = [
+  { label: "Listening", value: "Geese, Getting Killed" },
+  { label: "Playing", value: "Hollow Knight: Silksong" },
+  { label: "Drinking", value: "Austrian reds, St. Laurent" },
   { label: "Photographing", value: "My daughters negotiating their world" },
   { label: "Skeptical of", value: "FOMO merchants" },
 ];
@@ -134,15 +136,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/*
-        Currently into. Was a single scrolling row, which could not work: eight items of
-        very different lengths in one line either overflow or get cut off, and on a phone
-        half of them hid behind a sideways gesture. It is a grid now, same gap-px idiom as
-        the cards above, so every item is visible at every width.
-
-        It also moved below the work rather than interrupting the way to it. The personality
-        is worth keeping; it just reads better as a closing note than as a speed bump.
-      */}
+      {/* Currently into. See the note on currentlyRest above for why this is not a grid. */}
       <div className="flex items-center gap-4 px-10 mb-6">
         <span
           className="text-ink-faint uppercase shrink-0"
@@ -154,20 +148,36 @@ export default function Home() {
       </div>
 
       <div className="px-10 mb-16">
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-px bg-rule">
-          {currentlyInto.map((item) => (
-            <div key={item.label} className="bg-bg" style={{ padding: "1.1rem 1.25rem" }}>
+        <div className="grid gap-6 sm:grid-cols-[1.25fr_1fr] sm:gap-10">
+          <p
+            className="text-ink-mid"
+            style={{ fontSize: "1.02rem", lineHeight: 1.7, maxWidth: "48ch" }}
+          >
+            Watching more <span className="text-ink font-medium">BevCam footage</span> than is
+            strictly healthy. Reading{" "}
+            <span className="text-ink font-medium">Dungeon Crawler Carl</span> on a promise to
+            myself that I will finish it. Thinking about what AI is actually worth, and not
+            landing anywhere comfortable.
+          </p>
+
+          <div>
+            {currentlyRest.map((item, i) => (
               <div
-                className="text-ink-faint uppercase mb-1"
-                style={{ fontSize: "0.64rem", letterSpacing: "0.1em" }}
+                key={item.label}
+                className={i === 0 ? "py-2" : "py-2 border-t border-rule"}
               >
-                {item.label}
+                <div
+                  className="text-ink-faint uppercase"
+                  style={{ fontSize: "0.64rem", letterSpacing: "0.1em" }}
+                >
+                  {item.label}
+                </div>
+                <div className="text-ink-mid" style={{ fontSize: "0.87rem" }}>
+                  {item.value}
+                </div>
               </div>
-              <div className="text-ink leading-snug" style={{ fontSize: "0.87rem" }}>
-                {item.value}
-              </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
 

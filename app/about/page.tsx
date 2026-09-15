@@ -4,7 +4,7 @@ import Link from "next/link";
 export const metadata: Metadata = {
   title: "About — James Laurenti",
   description:
-    "Two kinds of curiosity: figuring out how things work, and chasing what things mean. Currently pointed mostly at Beverly, Massachusetts.",
+    "Figuring out how things work, and chasing what things mean. Two kinds of curiosity, currently pointed mostly at Beverly, Massachusetts.",
 };
 
 export default function About() {
@@ -42,7 +42,7 @@ export default function About() {
         <p>
           By trade I&apos;m a Principal PM at Grubhub, seven years now, most
           recently on retention and Care. Those two sit at opposite ends of the
-          same problem: keeping people&apos;s trust, and rebuilding it when
+          same problem, keeping people&apos;s trust and rebuilding it when
           something breaks. Before that I spent a decade building ecommerce for
           wine and spirits retailers, which is how I came into product sideways,
           through retail. My family runs a liquor store in New Jersey. The longer
@@ -53,7 +53,7 @@ export default function About() {
           .
         </p>
         <p>
-          Outside the job: the NYT crossword, Formula 1, live music, museums,
+          Outside the job there&apos;s the NYT crossword, Formula 1, live music, museums,
           plays, something creative most months if I can manage it. Two daughters
           who are sharper and funnier than I am, and who keep my ego correctly
           sized.

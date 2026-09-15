@@ -13,12 +13,12 @@ export const metadata: Metadata = {
     title: "Beverly Meeting Digest, Aug 26 to Sep 9, 2026",
     description:
       "What the City Council, School Committee and Deficit Reduction Committee took up, plus the dates coming next. Every claim tagged by source.",
-    url: "/beverly/meeting-digest",
+    url: "/beverly/digest/2026-09-11",
     // Declaring openGraph here replaces the block inherited from the collection,
     // images included, so the card has to be named explicitly. This points at the
     // digest's own opengraph-image.tsx, not the collection's: the shared one has
     // "What Beverly Does Next" set across it, which is not what this page is.
-    images: ["/beverly/meeting-digest/opengraph-image"],
+    images: ["/beverly/digest/2026-09-11/opengraph-image"],
   },
 };
 

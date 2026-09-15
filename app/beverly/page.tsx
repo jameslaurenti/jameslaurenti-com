@@ -168,7 +168,7 @@ export default function BeverlyCollection() {
         link belongs here too, once there is more than one issue to archive.
       */}
       <Link
-        href="/beverly/meeting-digest"
+        href="/beverly/digest/2026-09-11"
         className="group block rounded-lg border border-accent/35 bg-accent-glow px-6 py-6 sm:px-7 mb-12 transition-colors hover:bg-bg-card"
       >
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
@@ -194,6 +194,11 @@ export default function BeverlyCollection() {
           Read this issue &rarr;
         </span>
       </Link>
+      <p className="-mt-8 mb-12">
+        <Link href="/beverly/digest" className="rlink" style={{ fontSize: "0.88rem" }}>
+          All issues
+        </Link>
+      </p>
 
       <div className="flex flex-col gap-12">
         {groups.map((group) => (

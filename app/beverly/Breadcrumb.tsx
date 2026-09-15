@@ -9,7 +9,7 @@ const HUB = "/beverly";
 // "What Beverly Does Next" collection, and are not listed in its index. They get a trail
 // back to /work only: naming the collection in their crumb claimed a membership they do
 // not have.
-const STANDALONE = [`${HUB}/meeting-digest`];
+const STANDALONE = [`${HUB}/digest`];
 
 /**
  * Trail back out of a Beverly piece.
