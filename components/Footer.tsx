@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="border-t border-rule mt-20">
@@ -9,6 +11,12 @@ export default function Footer() {
           James Laurenti
         </span>
         <div className="flex items-center gap-5">
+          <Link
+            href="/privacy"
+            className="text-sm text-ink-faint hover:text-accent transition-colors"
+          >
+            Analytics
+          </Link>
           <a
             href="https://linkedin.com/in/james-laurenti"
             target="_blank"
