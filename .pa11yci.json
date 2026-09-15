@@ -14,6 +14,12 @@
     "http://localhost:3000/beverly/property-tax",
     "http://localhost:3000/beverly/who-beverly-is",
     "http://localhost:3000/beverly/what-sets-your-taxes",
-    "http://localhost:3000/beverly/development-map"
+    "http://localhost:3000/beverly/development-map",
+    "http://localhost:3000/",
+    "http://localhost:3000/about",
+    "http://localhost:3000/writing",
+    "http://localhost:3000/privacy",
+    "http://localhost:3000/beverly/digest",
+    "http://localhost:3000/beverly/digest/2026-09-11"
   ]
 }
