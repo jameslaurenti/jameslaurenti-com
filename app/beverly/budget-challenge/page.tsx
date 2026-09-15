@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { track, trackOnce } from "@/lib/analytics";
 import Link from "next/link";
 import forecast from "@/data/beverly/forecast.json";
 
@@ -99,6 +100,23 @@ export default function BudgetChallenge() {
   const [override, setOverride] = useState(0);
   const [overrideOn, setOverrideOn] = useState(false);
   const [devOn, setDevOn] = useState(false);
+
+  /**
+   * Interaction tracking. Two questions only: which levers people actually reach for,
+   * and whether they manage to close the gap. Nothing here records a value a person
+   * chose, just that a control was touched.
+   *
+   * Counted once per control per page load. Without that, dragging the override slider
+   * would send a few hundred events and the data would be whoever fidgeted most.
+   */
+  const leversUsed = useRef(new Set<string>());
+  const outcomeSent = useRef(false);
+
+  const lever = useCallback((control: string) => {
+    leversUsed.current.add(control);
+    trackOnce("tool_used", control, { surface: "find-the-money", control });
+  }, []);
+
   const [dev, setDev] = useState(DEV.actual);
   const [deeper, setDeeper] = useState<Record<string, number>>({ schools: 0, police: 0, fire: 0, dpw: 0 });
 
@@ -119,6 +137,41 @@ export default function BudgetChallenge() {
 
   const short = operating < -25000;
   const ratio = Math.min(100, gap > 0 ? ((gap + Math.min(0, operating)) / gap) * 100 : 100);
+
+  // Closing the gap is the point of the piece. If most people who engage cannot do it,
+  // the argument lands; if everyone closes it in four clicks, the scenario is too soft
+  // and the tool is quietly making the opposite case.
+  useEffect(() => {
+    if (outcomeSent.current || short) return;
+    // The default state can already be balanced, so without this every passive page
+    // load would report a success nobody achieved.
+    if (leversUsed.current.size === 0) return;
+    outcomeSent.current = true;
+    track("tool_outcome", {
+      surface: "find-the-money",
+      closed: true,
+      remaining_usd: 0,
+      levers_used: leversUsed.current.size,
+    });
+  }, [short]);
+
+  // Someone who tried and gave up is as informative as someone who succeeded, so report
+  // that too rather than only counting the wins.
+  useEffect(() => {
+    const report = () => {
+      if (outcomeSent.current || leversUsed.current.size === 0) return;
+      outcomeSent.current = true;
+      track("tool_outcome", {
+        surface: "find-the-money",
+        closed: false,
+        // Raw dollars, the unit the whole tool works in, rounded to the nearest thousand.
+        remaining_usd: Math.round(Math.max(0, -operating) / 1000) * 1000,
+        levers_used: leversUsed.current.size,
+      });
+    };
+    window.addEventListener("pagehide", report);
+    return () => window.removeEventListener("pagehide", report);
+  }, [operating]);
 
   return (
     <div className="bg-bg text-ink">
@@ -168,7 +221,7 @@ export default function BudgetChallenge() {
               const t = TRASH[k];
               const on = trash === k;
               return (
-                <button key={k} onClick={() => setTrash(k)} aria-pressed={on} className="rounded-md border bg-bg px-4 py-3.5 text-left transition-colors" style={{ borderColor: on ? "var(--color-gold-strong)" : "var(--color-rule)", borderWidth: on ? 2 : 1 }}>
+                <button key={k} onClick={() => { lever("trash-fee"); setTrash(k); }} aria-pressed={on} className="rounded-md border bg-bg px-4 py-3.5 text-left transition-colors" style={{ borderColor: on ? "var(--color-gold-strong)" : "var(--color-rule)", borderWidth: on ? 2 : 1 }}>
                   <div className="flex items-center justify-between">
                     <span className="text-[0.6875rem] font-semibold uppercase tracking-wide" style={{ color: on ? "var(--color-gold-strong)" : "var(--color-ink-faint)" }}>
                       {k === "A" ? "Do nothing" : k === "C" ? "What they did" : "Mayor's plan"}
@@ -198,7 +251,7 @@ export default function BudgetChallenge() {
               const on = mayorKept[c.id];
               return (
                 <label key={c.id} className="flex cursor-pointer items-start gap-3 rounded-md border border-rule bg-bg-card/40 px-4 py-3">
-                  <input type="checkbox" checked={on} onChange={(e) => setMayorKept((p) => ({ ...p, [c.id]: e.target.checked }))} className="mt-0.5 h-4 w-4 shrink-0" style={{ accentColor: "var(--color-debt)" }} />
+                  <input type="checkbox" checked={on} onChange={(e) => { lever("keep-mayor-cut"); setMayorKept((p) => ({ ...p, [c.id]: e.target.checked })); }} className="mt-0.5 h-4 w-4 shrink-0" style={{ accentColor: "var(--color-debt)" }} />
                   <div className="flex-1">
                     <div className="flex items-baseline justify-between gap-3">
                       <span className={`text-[0.9375rem] font-medium ${on ? "text-ink" : "text-ink-faint line-through"}`}>{c.nm}</span>
@@ -230,7 +283,7 @@ export default function BudgetChallenge() {
               const on = councilKept[c.id];
               return (
                 <label key={c.id} className="flex cursor-pointer items-start gap-3 rounded-md border border-l-4 border-rule border-l-gold bg-bg-card/40 px-4 py-3">
-                  <input type="checkbox" checked={on} onChange={(e) => setCouncilKept((p) => ({ ...p, [c.id]: e.target.checked }))} className="mt-0.5 h-4 w-4 shrink-0" style={{ accentColor: "var(--color-gold-strong)" }} />
+                  <input type="checkbox" checked={on} onChange={(e) => { lever("keep-council-cut"); setCouncilKept((p) => ({ ...p, [c.id]: e.target.checked })); }} className="mt-0.5 h-4 w-4 shrink-0" style={{ accentColor: "var(--color-gold-strong)" }} />
                   <div className="flex-1">
                     <div className="flex items-baseline justify-between gap-3">
                       <span className={`text-[0.9375rem] font-medium ${on ? "text-ink" : "text-ink-faint line-through"}`}>{c.nm}</span>
@@ -272,7 +325,7 @@ export default function BudgetChallenge() {
             <div className="mt-3 border-t border-rule pt-3">
               {!overrideOn ? (
                 <button
-                  onClick={() => setOverrideOn(true)}
+                  onClick={() => { lever("override"); setOverrideOn(true); }}
                   className="flex w-full items-center justify-center gap-1.5 rounded-md border border-accent bg-accent/5 px-3 py-2 text-[0.8125rem] font-semibold text-accent transition-colors hover:bg-accent/10"
                 >
                   <span aria-hidden className="text-[1rem] leading-none">+</span> Add a Proposition 2½ override
@@ -286,7 +339,7 @@ export default function BudgetChallenge() {
                     </span>
                     <span className="shrink-0 text-[0.8125rem] font-bold tabular-nums text-accent">{override > 0 ? `+${fmt(override)}` : "drag to set"}</span>
                   </div>
-                  <input type="range" min={0} max={OVERRIDE_MAX} step={100000} value={override} onChange={(e) => setOverride(+e.target.value)} aria-label="Override size" className="mt-2 w-full" style={{ accentColor: "var(--color-accent)", height: 22 }} />
+                  <input type="range" min={0} max={OVERRIDE_MAX} step={100000} value={override} onChange={(e) => { lever("override-amount"); setOverride(+e.target.value); }} aria-label="Override size" className="mt-2 w-full" style={{ accentColor: "var(--color-accent)", height: 22 }} />
                   <div className="mt-0.5 text-[0.78125rem] leading-relaxed text-ink-faint">The only way to raise property taxes past the cap, and the only lever that can close the whole gap on its own. It is a permanent increase and requires a majority citywide vote. Beverly has never passed one; Marblehead did, in 2026.</div>
                 </>
               )}
@@ -301,7 +354,7 @@ export default function BudgetChallenge() {
                 {!devOn ? (
                   <span className="flex items-center gap-1.5">
                     <span className="rounded-sm px-1.5 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wide" style={{ background: tintInk(), color: "var(--color-ink-faint)" }}>locked</span>
-                    <button onClick={() => setDevOn(true)} className="rounded-sm border border-accent px-1.5 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wide text-accent transition-colors hover:bg-accent/10">Unlock</button>
+                    <button onClick={() => { lever("unlock-development"); setDevOn(true); }} className="rounded-sm border border-accent px-1.5 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wide text-accent transition-colors hover:bg-accent/10">Unlock</button>
                   </span>
                 ) : (
                   <span className="rounded-sm px-1.5 py-0.5 text-[0.6875rem] font-bold uppercase tracking-wide" style={{ background: "color-mix(in srgb, var(--color-accent) 14%, var(--color-bg))", color: "var(--color-accent-deep)" }}>exploring</span>
@@ -353,7 +406,7 @@ export default function BudgetChallenge() {
               return (
                 <div key={r.id} className="rounded-md border border-rule bg-bg-card/40 px-4 py-3">
                   <label className="flex cursor-pointer items-start gap-3">
-                    <input type="checkbox" checked={on} onChange={(e) => setRev((p) => ({ ...p, [r.id]: e.target.checked }))} className="mt-0.5 h-4 w-4 shrink-0" style={{ accentColor: "var(--color-accent)" }} />
+                    <input type="checkbox" checked={on} onChange={(e) => { lever("revenue-option"); setRev((p) => ({ ...p, [r.id]: e.target.checked })); }} className="mt-0.5 h-4 w-4 shrink-0" style={{ accentColor: "var(--color-accent)" }} />
                     <div className="flex-1">
                       <div className="flex items-baseline justify-between gap-3">
                         <span className="flex flex-wrap items-center gap-2 text-[0.9375rem] font-medium text-ink">

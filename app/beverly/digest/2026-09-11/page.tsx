@@ -1,5 +1,6 @@
 import type { ReactNode } from "react";
 import Link from "next/link";
+import PageTracking from "@/components/PageTracking";
 
 /**
  * Issue 1 of the weekly digest, covering Aug 26 to Sep 9, 2026.
@@ -17,8 +18,29 @@ import Link from "next/link";
 
 /* ---------------- building blocks ---------------- */
 
+/** Background reading. Deliberately a different event from a primary source. */
 const A = ({ href, children }: { href: string; children: ReactNode }) => (
-  <a href={href} target="_blank" rel="noopener" className="rlink">
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener"
+    className="rlink"
+    data-track="read_more_clicked"
+  >
+    {children}
+  </a>
+);
+
+/** A primary source: the recording, the filed ordinance, the committee's own minutes. */
+const Src = ({ href, children }: { href: string; children: ReactNode }) => (
+  <a
+    href={href}
+    target="_blank"
+    rel="noopener"
+    className="rlink"
+    data-track="source_opened"
+    data-placement="sources-row"
+  >
     {children}
   </a>
 );
@@ -49,6 +71,9 @@ const Hear = ({ href, title, meta }: { href: string; title: string; meta: string
     target="_blank"
     rel="noopener"
     className="mb-2.5 flex max-w-[63ch] items-center gap-3 rounded-md border border-accent/30 bg-accent-glow px-3.5 py-3 no-underline transition-colors hover:border-accent hover:bg-white"
+    data-track="source_opened"
+    data-placement="hear-button"
+    data-seconds={href.match(/[?&]t=(\d+)s/)?.[1] ?? ""}
   >
     <span
       aria-hidden
@@ -176,6 +201,7 @@ const drewOn: [string, string, string][] = [
 export default function DigestIssue1() {
   return (
     <div className="bg-bg text-ink">
+      <PageTracking surface="digest" issue="2026-09-11" depth />
       <div className="mx-auto max-w-3xl px-6 pb-24">
         <header className="border-b border-rule pb-7 pt-14">
           <p className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-debt">
@@ -246,6 +272,9 @@ export default function DigestIssue1() {
                     target="_blank"
                     rel="noopener"
                     className="inline-flex min-h-10 items-center justify-center rounded border border-rule bg-white px-3.5 text-[0.85rem] font-semibold text-accent no-underline transition-colors hover:border-accent hover:bg-accent-glow"
+                    data-track="calendar_added"
+                    data-meeting={e.what}
+                    data-meeting-date={e.date}
                   >
                     Add to calendar
                   </a>
@@ -306,8 +335,8 @@ export default function DigestIssue1() {
           <Refs
             sources={
               <>
-                <A href={CC8}>Full Sep 8 meeting</A>
-                <A href="https://beverlyma.gov/AgendaCenter/City-Council-49/">Council agendas</A>
+                <Src href={CC8}>Full Sep 8 meeting</Src>
+                <Src href="https://beverlyma.gov/AgendaCenter/City-Council-49/">Council agendas</Src>
               </>
             }
             more={<A href="https://www.massdevelopment.com/">What MassDevelopment does</A>}
@@ -365,10 +394,10 @@ export default function DigestIssue1() {
           <Refs
             sources={
               <>
-                <A href="https://beverlyma.gov/AgendaCenter/ViewFile/Agenda/_09082026-2890">
+                <Src href="https://beverlyma.gov/AgendaCenter/ViewFile/Agenda/_09082026-2890">
                   Ordinance text, Sep 8 packet
-                </A>
-                <A href={CC8}>Full Sep 8 meeting</A>
+                </Src>
+                <Src href={CC8}>Full Sep 8 meeting</Src>
               </>
             }
             more={
@@ -424,7 +453,7 @@ export default function DigestIssue1() {
             />
           </div>
           <Refs
-            sources={<A href={CC8}>Full Sep 8 meeting</A>}
+            sources={<Src href={CC8}>Full Sep 8 meeting</Src>}
             more={<A href="https://beverlyma.gov/">City department directory</A>}
           />
         </section>
@@ -470,7 +499,7 @@ export default function DigestIssue1() {
             />
           </div>
           <Refs
-            sources={<A href={SC9}>Full Sep 9 meeting</A>}
+            sources={<Src href={SC9}>Full Sep 9 meeting</Src>}
             more={
               <A href="https://www.beverlyschools.org/apps/pages/index.jsp?uREC_ID=2083091&type=d&pREC_ID=2133565">
                 Contact your School Committee member
@@ -525,10 +554,10 @@ export default function DigestIssue1() {
           <Refs
             sources={
               <>
-                <A href={SC2}>Full Sep 2 meeting</A>
-                <A href="https://www.beverlyschools.org/apps/pages/index.jsp?uREC_ID=2083160&type=d&pREC_ID=2756436">
+                <Src href={SC2}>Full Sep 2 meeting</Src>
+                <Src href="https://www.beverlyschools.org/apps/pages/index.jsp?uREC_ID=2083160&type=d&pREC_ID=2756436">
                   School Committee agendas
-                </A>
+                </Src>
               </>
             }
           />
@@ -585,12 +614,12 @@ export default function DigestIssue1() {
           <Refs
             sources={
               <>
-                <A href="https://beverlyma.gov/AgendaCenter/Deficit-Reduction-Committee-65/">
+                <Src href="https://beverlyma.gov/AgendaCenter/Deficit-Reduction-Committee-65/">
                   Committee agendas and minutes
-                </A>
-                <A href="https://beverlyma.gov/DocumentCenter/View/7440/Proposed-FY-2027-City-Budget">
+                </Src>
+                <Src href="https://beverlyma.gov/DocumentCenter/View/7440/Proposed-FY-2027-City-Budget">
                   Proposed FY2027 budget
-                </A>
+                </Src>
               </>
             }
           />
@@ -684,9 +713,9 @@ export default function DigestIssue1() {
           </div>
           <Refs
             sources={
-              <A href="https://beverlyma.gov/AgendaCenter/Deficit-Reduction-Committee-65/">
+              <Src href="https://beverlyma.gov/AgendaCenter/Deficit-Reduction-Committee-65/">
                 Aug 18 minutes, with the payer list
-              </A>
+              </Src>
             }
             more={
               <A href="https://www.lincolninst.edu/publications/policy-focus-reports/payments-in-lieu-taxes/">
@@ -720,10 +749,10 @@ export default function DigestIssue1() {
           <Refs
             sources={
               <>
-                <A href="https://beverlyma.gov/AgendaCenter/City-Council-49/">
+                <Src href="https://beverlyma.gov/AgendaCenter/City-Council-49/">
                   Agendas and committee reports
-                </A>
-                <A href="https://beverlyma.gov/429/City-Council">Council members and wards</A>
+                </Src>
+                <Src href="https://beverlyma.gov/429/City-Council">Council members and wards</Src>
               </>
             }
           />
@@ -763,7 +792,7 @@ export default function DigestIssue1() {
             />
           </div>
           <Refs
-            sources={<A href={SC9}>Full Sep 9 meeting</A>}
+            sources={<Src href={SC9}>Full Sep 9 meeting</Src>}
             more={<A href="https://malegislature.gov/">Track the state bill</A>}
           />
         </section>
@@ -775,7 +804,7 @@ export default function DigestIssue1() {
             {drewOn.map(([date, label, href]) => (
               <li key={date} className="mb-1.5 flex flex-wrap gap-2">
                 <span className="min-w-[5.5rem] tabular-nums text-ink-faint">{date}</span>
-                <A href={href}>{label}</A>
+                <Src href={href}>{label}</Src>
               </li>
             ))}
           </ul>
