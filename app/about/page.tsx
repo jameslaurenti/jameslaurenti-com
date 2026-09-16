@@ -45,12 +45,7 @@ export default function About() {
           same problem, keeping people&apos;s trust and rebuilding it when
           something breaks. Before that I spent a decade building ecommerce for
           wine and spirits retailers, which is how I came into product sideways,
-          through retail. My family runs a liquor store in New Jersey. The longer
-          version is on my{" "}
-          <a href="/resume.pdf" className="rlink">
-            resume
-          </a>
-          .
+          through retail. My family runs a liquor store in New Jersey.
         </p>
         <p>
           Outside the job there&apos;s the NYT crossword, Formula 1, live music, museums,
