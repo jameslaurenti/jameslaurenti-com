@@ -84,36 +84,11 @@ export default function DigestArchive() {
         </p>
       </div>
 
-      {/* The calendar does the same job as the digest, earlier: subscribe once and the
-          meetings turn up in the calendar you already keep. webcal:// makes most desktop
-          and phone clients offer to subscribe rather than download a dead snapshot, which
-          is the whole difference between this and the per-event buttons inside an issue. */}
-      <div className="mb-12 rounded-lg border border-rule px-6 py-5">
-        <h2 className="font-display text-lg font-semibold">Put the meetings in your calendar</h2>
-        <p className="mt-2 text-[0.97rem] leading-relaxed" style={{ maxWidth: "63ch" }}>
-          Every meeting listed here, as a calendar you subscribe to once. New meetings
-          appear on their own, and anything the city has not confirmed shows up marked
-          tentative rather than pretending to be settled.
-        </p>
-        <div className="mt-4 flex flex-wrap items-center gap-3">
-          <a
-            href="webcal://www.jameslaurenti.com/beverly/meetings.ics"
-            className="inline-flex min-h-10 items-center rounded border border-rule bg-white px-4 text-[0.9rem] font-semibold text-accent no-underline transition-colors hover:border-accent hover:bg-accent-glow"
-            data-track="calendar_added"
-            data-placement="archive-subscribe"
-          >
-            Subscribe in your calendar
-          </a>
-          <a
-            href="/beverly/meetings.ics"
-            className="rlink text-[0.88rem]"
-            data-track="calendar_added"
-            data-placement="archive-download"
-          >
-            or download the file
-          </a>
-        </div>
-      </div>
+      {/* The subscribe-to-all-meetings block was here and is deliberately not shipped yet.
+          The feed itself still serves at /beverly/meetings.ics; it is simply unlinked.
+          Two things to solve before it comes back: a single webcal:// link does not work
+          for Google Calendar on the web, which is where most people keep a calendar, and
+          the archive index is the wrong place to offer it. Restore from bdfc710. */}
 
       <div className="flex flex-col">
         {issues.map((issue) => (
