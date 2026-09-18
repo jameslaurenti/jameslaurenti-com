@@ -9,6 +9,7 @@
     "lint": "eslint",
     "a11y:contrast": "node scripts/check-contrast.mjs",
     "a11y:contrast:ci": "node scripts/check-contrast.mjs --ci",
+    "qa:issue": "node scripts/qa-issue.mjs",
     "a11y": "pa11y-ci"
   },
   "dependencies": {
