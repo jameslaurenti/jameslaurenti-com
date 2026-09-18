@@ -1,4 +1,5 @@
 import { meetings, type Meeting } from "@/data/beverly/meetings";
+import { escapeText as esc, fold, stamp, dateOnly, nextDay, PRODID } from "@/lib/ics";
 
 /**
  * A subscribable calendar of Beverly public meetings.
@@ -14,50 +15,6 @@ import { meetings, type Meeting } from "@/data/beverly/meetings";
 
 const DOMAIN = "jameslaurenti.com";
 const SITE = `https://www.${DOMAIN}`;
-
-/** Escape a TEXT value per RFC 5545 section 3.3.11. Order matters: backslash first. */
-function esc(value: string): string {
-  return value
-    .replace(/\\/g, "\\\\")
-    .replace(/;/g, "\\;")
-    .replace(/,/g, "\\,")
-    .replace(/\r?\n/g, "\\n");
-}
-
-/**
- * Fold to 75 OCTETS, not characters. A multi-byte character split across a fold is
- * corrupt, so this measures in UTF-8 bytes and never breaks one apart.
- */
-function fold(line: string): string {
-  const bytes = Buffer.from(line, "utf8");
-  if (bytes.length <= 75) return line;
-
-  const out: string[] = [];
-  let start = 0;
-  let limit = 75; // first line takes 75; continuations lose one octet to the leading space
-
-  while (start < bytes.length) {
-    let end = Math.min(start + limit, bytes.length);
-    // Never split a UTF-8 continuation byte (10xxxxxx) from its leader.
-    while (end > start && end < bytes.length && (bytes[end] & 0xc0) === 0x80) end--;
-    out.push(bytes.subarray(start, end).toString("utf8"));
-    start = end;
-    limit = 74;
-  }
-  return out.join("\r\n ");
-}
-
-/** 2026-09-14T22:00:00Z -> 20260914T220000Z */
-const stamp = (iso: string) => iso.replace(/[-:]/g, "").replace(/\.\d{3}/, "");
-/** 2026-10-20 -> 20261020 */
-const dateOnly = (iso: string) => iso.slice(0, 10).replace(/-/g, "");
-
-/** All-day DTEND is exclusive, so a one-day event ends the following day. */
-function nextDay(iso: string): string {
-  const d = new Date(`${iso.slice(0, 10)}T00:00:00Z`);
-  d.setUTCDate(d.getUTCDate() + 1);
-  return d.toISOString().slice(0, 10).replace(/-/g, "");
-}
 
 function event(m: Meeting): string[] {
   const lines: string[] = ["BEGIN:VEVENT", `UID:${m.id}@${DOMAIN}`, `DTSTAMP:${stamp(m.updated)}`];
@@ -91,7 +48,7 @@ function calendar(): string {
   const lines: string[] = [
     "BEGIN:VCALENDAR",
     "VERSION:2.0",
-    "PRODID:-//James Laurenti//Beverly Meeting Digest//EN",
+    `PRODID:${PRODID}`,
     "CALSCALE:GREGORIAN",
     "METHOD:PUBLISH",
     "X-WR-CALNAME:Beverly city meetings",
