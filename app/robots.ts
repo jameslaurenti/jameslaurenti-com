@@ -3,15 +3,14 @@ import type { MetadataRoute } from "next";
 const SITE = "https://www.jameslaurenti.com";
 
 /**
- * Crawling and indexing are different levers, and mixing them up is the usual mistake.
+ * Disallow is for anything that should not be FETCHED, which is a stronger thing than
+ * not being indexed.
  *
- * A page that carries `robots: { index: false }` must still be CRAWLABLE, or the crawler
- * never reads the tag telling it to stay out, and the URL can end up listed anyway from
- * inbound links. So the noindex pages are deliberately NOT disallowed here:
- * /beverly/pension-cliff, /beverly/bridge-model, /beverly/who-beverly-is(-v2).
- *
- * Disallow is for things that should not be fetched at all: a private feed keyed by token,
- * the gate pages that guard drafts, and Next's internals.
+ * The unfinished Beverly pages are listed here on purpose. They keep their `noindex` tags
+ * as well, but the point is that they are drafts, and drafts should not be read by
+ * crawlers at all rather than read and then politely left out. The usual argument against
+ * this is that a disallowed URL can still surface as a bare link if something points at
+ * it; nothing points at any of these, so that does not apply.
  */
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -19,7 +18,19 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/harborlight", "/harborlight/", "/unlock", "/api/", "/_next/"],
+        disallow: [
+          // Private or token-keyed.
+          "/harborlight",
+          "/harborlight/",
+          "/unlock",
+          "/api/",
+          "/_next/",
+          // Unfinished work. Also noindex; this keeps crawlers out of it entirely.
+          "/beverly/pension-cliff",
+          "/beverly/bridge-model",
+          "/beverly/who-beverly-is",
+          "/beverly/who-beverly-is-v2",
+        ],
       },
     ],
     sitemap: `${SITE}/sitemap.xml`,
