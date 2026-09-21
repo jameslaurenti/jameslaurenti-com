@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { issues } from "@/data/beverly/digestIssues";
 
 export const metadata: Metadata = {
   title: "Beverly Meeting Digest, all issues — James Laurenti",
   description:
     "Every issue of the weekly digest of Beverly city meetings. What the boards did, and what is coming next.",
-  // Out of search while the digest is a prototype, matching the issue pages.
-  robots: { index: false, follow: true },
   openGraph: {
     type: "website",
     title: "Beverly Meeting Digest, all issues",
@@ -24,32 +23,6 @@ export const metadata: Metadata = {
  * exist somewhere. A dated list is very likely enough forever; if it ever is not, that
  * is the point to add filtering, not before.
  */
-type Issue = {
-  slug: string;
-  number: number;
-  published: string;
-  covering: string;
-  teaser: string;
-};
-
-const issues: Issue[] = [
-  {
-    slug: "2026-09-21",
-    number: 2,
-    published: "September 21, 2026",
-    covering: "September 10 to 20",
-    teaser:
-      "Beverly can stop raising its pension payment, worth about $700,000 next year. The committee looking at the deficit heard what a city-run electric utility would take. And the School Committee ratified two union agreements, by name.",
-  },
-  {
-    slug: "2026-09-11",
-    number: 1,
-    published: "September 11, 2026",
-    covering: "August 26 to September 9",
-    teaser:
-      "The Council rejected every proposal for the former dollar store site. A ban on crypto kiosks passed first reading nine to nothing. City Hall moves across the street in October, and Council meetings move with it.",
-  },
-];
 
 export default function DigestArchive() {
   return (

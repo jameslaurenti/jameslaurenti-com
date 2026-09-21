@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { latestIssue } from "@/data/beverly/digestIssues";
 
 export const metadata: Metadata = {
   title: "What Beverly Does Next — James Laurenti",
@@ -144,6 +145,7 @@ function PieceHeaderBlurb({ piece }: { piece: Piece }) {
 }
 
 export default function BeverlyCollection() {
+  const current = latestIssue();
   return (
     <div className="max-w-3xl mx-auto px-6 py-16 sm:py-24">
       <h1 className="font-display text-3xl sm:text-4xl font-semibold tracking-tight mb-4">
@@ -163,12 +165,12 @@ export default function BeverlyCollection() {
         and recurring, where everything below is evergreen and stays true for years.
         Folding a September issue into a list of explainers would make both harder to scan.
 
-        This is also what LISTS the digest. It is currently unlisted and noindex; keeping
-        or removing this block is the decision about whether that changes. An "all issues"
-        link belongs here too, once there is more than one issue to archive.
+        The card always shows the newest issue, read from data/beverly/digestIssues.ts.
+        A weekly cadence is exactly the kind of thing a hand-edited link stops keeping up
+        with, so publishing an issue should be the only step.
       */}
       <Link
-        href="/beverly/digest/2026-09-11"
+        href={`/beverly/digest/${current.slug}`}
         className="group block rounded-lg border border-accent/35 bg-accent-glow px-6 py-6 sm:px-7 mb-12 transition-colors hover:bg-bg-card"
       >
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
@@ -183,13 +185,9 @@ export default function BeverlyCollection() {
           </span>
         </div>
         <h2 className="font-display text-2xl font-semibold tracking-tight mt-2 transition-colors group-hover:text-accent">
-          Issue No. 1 &middot; Week of September 14
+          Issue No. {current.number} &middot; Covering {current.covering}
         </h2>
-        <p className="mt-2 text-ink-mid leading-relaxed">
-          What the City Council, School Committee and Deficit Reduction Committee actually
-          did last week, the dates worth putting in your calendar, and a link straight into
-          the recording for anything you want to hear for yourself.
-        </p>
+        <p className="mt-2 text-ink-mid leading-relaxed">{current.teaser}</p>
         <span className="mt-4 inline-block text-accent" style={{ fontSize: "0.85rem" }}>
           Read this issue &rarr;
         </span>
