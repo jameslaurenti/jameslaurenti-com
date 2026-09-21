@@ -686,11 +686,11 @@ export default function DigestIssue2() {
           <p className={BODY}>
             It is paid out of the Council&apos;s own budget, and that line was cut in June. On a
             motion from Councilor Houseman, seconded by Rotondo, the Council voted nine to nothing
-            to reduce it from <Fig>$79,869.75</Fig> to <Fig>$59,869.75</Fig>. The outgoing analyst
+            to reduce it from <Fig>$79,869.75</Fig> to <Fig>$59,869.75</Fig>. The analyst
             backed the cut and said he could make it work. The city solicitor advised it was within
             the charter because he is paid per diem rather than on salary, and his rate, treated as
-            an annual figure, already clears the fifty percent floor. Whoever holds the job this
-            year works from the smaller number.
+            an annual figure, already clears the fifty percent floor. The job runs on the smaller
+            number this year.
           </p>
           <p className={BODY}>
             One thing has not been said at any public meeting: why the Council is taking resumes
