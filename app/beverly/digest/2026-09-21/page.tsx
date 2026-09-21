@@ -675,8 +675,8 @@ export default function DigestIssue2() {
             again Thursday and twice on Monday the 28th
           </From>
           <p className={BODY}>
-            The Council is replacing its budget and management analyst, a post it has had for
-            about thirty years. It was created after a stretch of financial trouble, on the
+            The Council is taking resumes for its budget and management analyst, a post it has
+            had for about thirty years. It was created after a stretch of financial trouble, on the
             reasoning that councilors are not trained in municipal finance and needed someone
             reading the numbers for them rather than for the administration. The charter protects
             the job from exactly the pressure you would expect: the line can never fall below half
@@ -689,8 +689,16 @@ export default function DigestIssue2() {
             to reduce it from <Fig>$79,869.75</Fig> to <Fig>$59,869.75</Fig>. The outgoing analyst
             backed the cut and said he could make it work. The city solicitor advised it was within
             the charter because he is paid per diem rather than on salary, and his rate, treated as
-            an annual figure, already clears the fifty percent floor. Whoever takes the job next
-            starts from the smaller number.
+            an annual figure, already clears the fifty percent floor. Whoever holds the job this
+            year works from the smaller number.
+          </p>
+          <p className={BODY}>
+            One thing has not been said at any public meeting: why the Council is taking resumes
+            now. The analyst who has held the post for the last ten years has not announced that
+            he is leaving, and nothing in the June budget meetings or the September 8 Council
+            meeting explains it. He is engaged per diem rather than salaried, so this may be a
+            routine re-advertisement rather than a departure. The screening committee will put
+            three candidates in front of the full Council either way.
           </p>
           <p className={BODY}>
             The committee is Councilors Rotondo, Spang and Houseman, and it has been working
