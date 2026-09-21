@@ -34,6 +34,14 @@ type Issue = {
 
 const issues: Issue[] = [
   {
+    slug: "2026-09-21",
+    number: 2,
+    published: "September 21, 2026",
+    covering: "September 10 to 20",
+    teaser:
+      "Beverly can stop raising its pension payment, worth about $700,000 next year. The committee looking at the deficit heard what a city-run electric utility would take. And the School Committee ratified two union agreements, by name.",
+  },
+  {
     slug: "2026-09-11",
     number: 1,
     published: "September 11, 2026",
