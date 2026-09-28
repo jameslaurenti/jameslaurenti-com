@@ -75,24 +75,85 @@ const isGCal = (h) => h.includes("calendar.google.com");
 
 /**
  * Deep links are the highest-value check here: a wrong `t=` still renders perfectly and
- * simply drops the reader somewhere the sentence did not promise. Each Hear button prints
- * its own timestamp in its label, so the two can be compared.
+ * simply drops the reader somewhere the sentence did not promise.
+ *
+ * From issue 3 on, every timestamped link carries its own printed time in `data-moment`,
+ * so each link is checked against its own label. Issues 1 and 2 predate that and print
+ * "from 1:38:09" in the Hear button instead; for those the old page-wide match still runs.
  */
 head(`RECORDING DEEP LINKS`);
 const hhmmss = (s) => new Date(s * 1000).toISOString().substring(11, 19).replace(/^00:/, "");
-const labels = [...html.matchAll(/from (\d{1,2}:\d{2}(?::\d{2})?)</g)].map((m) => m[1]);
-const stamped = hrefs.filter((h) => isYouTube(h) && /[?&]t=/.test(h));
+const same = (a, b) => a === b || `0${a}` === b || a === `0${b}`;
+const legacy = [...html.matchAll(/from (\d{1,2}:\d{2}(?::\d{2})?)</g)].map((m) => m[1]);
 
-for (const h of stamped) {
-  const u = new URL(h);
+const stamped = [...html.matchAll(/<a\b[^>]*>/g)]
+  .map(([tag]) => ({
+    href: (tag.match(/href="([^"]+)"/) || [])[1]?.replace(/&amp;/g, "&"),
+    moment: (tag.match(/data-moment="([^"]+)"/) || [])[1],
+    placement: (tag.match(/data-placement="([^"]+)"/) || [])[1] ?? "",
+  }))
+  .filter((a) => a.href && isYouTube(a.href) && /[?&]t=/.test(a.href));
+
+for (const a of stamped) {
+  const u = new URL(a.href);
   const secs = Number(String(u.searchParams.get("t")).replace("s", ""));
   const shown = hhmmss(secs);
-  const claimed = labels.find((l) => l === shown || `0${l}` === shown || l === `0${shown}`);
-  line(claimed ? "ok" : "CHECK", `v=${u.searchParams.get("v")}  t=${secs}s  ->  ${shown}`);
+  const ok = a.moment ? same(a.moment, shown) : legacy.some((l) => same(l, shown));
+  const how = a.moment ? `labelled ${a.moment}` : "legacy label";
+  line(
+    ok ? "ok" : "CHECK",
+    `v=${u.searchParams.get("v")}  t=${secs}s  ->  ${shown}  (${a.placement || "link"}, ${how})`
+  );
 }
 if (!stamped.length) line("CHECK", "no timestamped recording links found");
-if (labels.length !== stamped.length) {
-  line("CHECK", `${labels.length} printed timestamps vs ${stamped.length} deep links`);
+
+/**
+ * The JSX compiler occasionally drops the space between an inline element and the text that
+ * follows it, so a sentence renders as "</a>Capital planning". It has happened in issues 2
+ * and 3 on source lines that look correct, which is why this checks the rendered HTML rather
+ * than the source. Chip internals (the play icon beside its time) are spaced by layout, not
+ * text, and are excluded.
+ */
+head(`TEXT SPACING`);
+{
+  const prose = html.slice(html.indexOf("<header")).replace(/<!-- -->/g, "");
+  const afterInline = [...prose.matchAll(/(.{0,40})<\/(a|b|strong|em)>([A-Za-z0-9$][^<]{0,20})/g)];
+  const afterFigure = [
+    ...prose.matchAll(/(.{0,40})<span class="font-bold tabular-nums">[^<]*<\/span>([A-Za-z0-9$][^<]{0,20})/g),
+  ];
+  const lost = [
+    ...afterInline.map((m) => [m[1], m[3]]),
+    ...afterFigure.map((m) => [m[1], m[2]]),
+  ];
+  if (!lost.length) line("ok", "no lost spaces after links, bold text or figures");
+  for (const [before, after] of lost) {
+    line("CHECK", `lost space: ...${before.replace(/<[^>]+>/g, "").slice(-24)}|${after}`);
+  }
+}
+
+/**
+ * Links into long PDFs carry #page=N, which desktop browsers honor and phone PDF viewers
+ * mostly ignore. So the label prints the page too, "(p. 58)", and the two must agree.
+ */
+head(`PDF PAGE LABELS`);
+{
+  const paged = [...html.matchAll(/<a\b[^>]*href="([^"]*#page=(\d+))"[^>]*>([\s\S]*?)<\/a>/g)].map(
+    (m) => ({ href: m[1], page: m[2], label: m[3]
+        .replace(/<[^>]+>/g, "")
+        .replace(/&#x27;|&#39;/g, "'")
+        .replace(/&amp;/g, "&")
+        .replace(/\s+/g, " ")
+        .trim(),
+    })
+  );
+  if (!paged.length) line("ok", "no page-anchored PDF links");
+  for (const a of paged) {
+    const printed = (a.label.match(/\(p\. (\d+)\)/) || [])[1];
+    line(
+      printed === a.page ? "ok" : "CHECK",
+      `#page=${a.page}  ->  "${a.label}"${printed ? "" : "  (no page in label)"}`
+    );
+  }
 }
 
 head(`LINKS`);

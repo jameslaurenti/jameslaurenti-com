@@ -85,6 +85,34 @@ Fidelity is the point of this project. Every published figure must be traceable.
   a chart imply a modeled number is a source number.
 - When a value updates (e.g. the Jan 2026 pension valuation), change it in the data
   layer only.
+- When a link points into a long PDF, add `#page=N` to the URL and print the page in
+  the label: "Mayor's letter (p. 58)". Desktop browsers honor the anchor; phone PDF
+  viewers mostly ignore it, so the label is what gets a phone reader there.
+  `qa:issue` checks that the two agree.
+
+## Attribution in the digest
+
+Who filed an order and whose idea it was are different facts. Treat them differently.
+
+- **Filer.** Name the formal filer of every order the digest reports on. Take it from
+  the signed filing letter in the agenda packet, not the agenda's section heading,
+  which undercounts co-signers: in Sep 2026, #187 (crypto machines) and #222 (Human
+  Rights Committee quorum) both sat under "Communications from His Honor the Mayor"
+  and both letters were co-signed by councilors. For a single-order item the filer
+  goes in the byline; for an item covering several orders, name each filer in the
+  text. Link the filing letter under "Go deeper."
+- **Verbs.** "Submitted by the Mayor" for mayoral transmittals, "filed by Councilor X"
+  for council orders. For petitions and licenses, name the applicant (National Grid,
+  GoNetSpeed), not the City Clerk who transmits them.
+- **Origin.** Say whose idea it was only when someone states it on the record, and
+  credit the claim to them: "By Councilor Rotondo's account, it started with Councilor
+  Crowley." Never infer origin from who speaks most or who seems invested.
+- **When filer and origin differ, give both**, the filer in the byline and the origin
+  in the text, attributed.
+- **Symmetry.** Would the same sentence be written if the measure were unpopular?
+  Name filers on everything, not only on measures readers will like.
+- **Credit stays short.** One sentence. A thank-you round on the floor is not news.
+- **Votes stay separate.** Individual attribution only on roll calls.
 
 ## Data layer
 
