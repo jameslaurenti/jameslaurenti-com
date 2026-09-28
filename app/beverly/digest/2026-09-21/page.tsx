@@ -110,7 +110,7 @@ const contents: [string, string][] = [
   ["parking", "Paid parking, and the range it might raise"],
   ["insurance", "What changing the health insurance split would save"],
   ["dispatch", "Regional dispatch, and an argument for going the other way"],
-  ["contracts", "Two union agreements ratified, by name"],
+  ["contracts", "Three union agreements ratified, by name"],
   ["planning", "Planning Board takes up a 24-hour McDonald's"],
   ["thisweek", "Tonight: a crypto vote, and $20,000 for the Human Rights Committee"],
   ["analyst", "The Council is hiring its own budget analyst"],
@@ -229,11 +229,12 @@ export default function DigestIssue2() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            The Council votes tonight on whether to ban crypto kiosks for good, and decides
-            whether to send $20,000 to the Human Rights Committee. The deficit reduction committee
+            The Council votes tonight on whether to ban crypto kiosks for good, and a
+            three-member committee takes up a request that the Mayor put $20,000 toward the Human
+            Rights Committee. The deficit reduction committee
             spent Monday bringing in outside experts to stress-test its ideas, among them a
             city-owned electric utility, and came away with the best budget news of the year,
-            which is about pensions. The School Committee ratified two union agreements at an
+            which is about pensions. The School Committee ratified three union agreements at an
             extra meeting on Wednesday. And the Council has started hiring a budget analyst of
             its own.
           </p>
@@ -481,17 +482,18 @@ export default function DigestIssue2() {
         {/* ---- 06 ---- */}
         <section id="contracts" className={SECTION}>
           <Eyebrow>06 &middot; Schools</Eyebrow>
-          <H2>Two union agreements ratified, by name</H2>
+          <H2>Three union agreements ratified, by name</H2>
           <From>School Committee, special meeting &middot; Wednesday, September 16</From>
           <p className={BODY}>
             The School Committee held an extra meeting on Wednesday evening, fully remote, lasting
             eighteen minutes. Ten of those were in executive session. It came back into open
-            session and ratified agreements with two groups of staff, the clerks and the cafeteria
-            workers, each by a roll call vote of <Fig>seven to nothing</Fig>.
+            session and ratified agreements with three groups of staff, the clerks, the crossing
+            guards and the cafeteria workers, each by a roll call vote of{" "}
+            <Fig>seven to nothing</Fig>.
           </p>
           <p className={BODY}>
             Because the meeting was remote, every vote had to be a roll call, so the record is
-            unusually clear about who voted. Voting yes on both: Mayor Michael Cahill, Geraldine
+            unusually clear about who voted. Voting yes on all three: Mayor Michael Cahill, Geraldine
             Cahill, Catherine Frost, Madeline Lennox, Kimberley Coelho, Kaarin Robinson and
             president Lorinda Visnick. Lindsay Harnden and John Taylor were not present.
           </p>
@@ -599,8 +601,8 @@ export default function DigestIssue2() {
             final passage.
           </p>
           <p className={BODY}>
-            Two committee reports also come up, and both carry items residents have already
-            turned up to speak about. Committees can step out to confer, but they report back in
+            Three committee reports also come up, and two of them carry items residents have
+            already turned up to speak about. Committees can step out to confer, but they report back in
             the chamber and any vote is taken there, in front of the room and on the recording.
             The agenda says the Council is likely to act on what they report, unless a matter is
             held in committee.
@@ -708,7 +710,7 @@ export default function DigestIssue2() {
             reading applications.
           </p>
           <p className={BODY}>
-            From here it moves quickly. Thursday morning it finalises the questions and fixes
+            From here it moves quickly. Thursday morning it finalizes the questions and fixes
             interview dates. On Monday the 28th it interviews from nine until three, breaks for
             lunch, and reconvenes that evening to choose finalists.
           </p>

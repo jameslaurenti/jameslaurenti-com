@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     type: "article",
     title: "Beverly Meeting Digest, Sep 10 to Sep 20, 2026",
     description:
-      "A pension increase the city can stop paying, a city-run electric utility on the table, and two union agreements ratified by name. Every claim tagged by source.",
+      "A pension increase the city can stop paying, a city-run electric utility on the table, and three union agreements ratified by name. Every claim tagged by source.",
     url: "/beverly/digest/2026-09-21",
     // This issue's own card. The dates are baked into the image, so it cannot reuse
     // another issue's.

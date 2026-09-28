@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 // the standfirst are baked into the image, so pointing a new issue at an old card ships a
 // share preview with the wrong week on it.
 export const alt =
-  "Beverly Meeting Digest, September 10 to 20, 2026: pensions, a city-run electric utility, and two union agreements";
+  "Beverly Meeting Digest, September 10 to 20, 2026: pensions, a city-run electric utility, and three union agreements";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -64,7 +64,7 @@ export default async function Image() {
             }}
           >
             A pension increase the city can stop paying, a city-run electric utility on the
-            table, and two union agreements ratified by name.
+            table, and three union agreements ratified by name.
           </div>
         </div>
 
