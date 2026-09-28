@@ -23,12 +23,20 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-09-28",
+    number: 3,
+    published: "September 28, 2026",
+    covering: "September 21 to 27",
+    teaser:
+      "Cryptocurrency machines are banned, with thirty days for the ones already here to go. Owners who let trees or shrubs block the sidewalk could be billed and liened. And $2.46 million in preservation grants is open, first applications due October 8.",
+  },
+  {
     slug: "2026-09-21",
     number: 2,
     published: "September 21, 2026",
     covering: "September 10 to 20",
     teaser:
-      "Beverly can stop raising its pension payment, worth about $700,000 next year. The committee looking at the deficit heard what a city-run electric utility would take. And the School Committee ratified two union agreements, by name.",
+      "Beverly can stop raising its pension payment, worth about $700,000 next year. The committee looking at the deficit heard what a city-run electric utility would take. And the School Committee ratified three union agreements, by name.",
   },
   {
     slug: "2026-09-11",
