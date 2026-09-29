@@ -539,8 +539,10 @@ export default function DigestIssue3() {
             toward the committee, is still in Finance and Property. Houseman filed it after what
             his letter calls supportive discussions with the Mayor and the committee&apos;s chair,
             then asked that it wait until he knew how the Mayor wanted to structure it. He was not
-            at the meeting on the 21st. Finance and Property met during the recess, away from the
-            microphones, so what was said about it is not on the record.
+            at the meeting on the 21st. Finance and Property met during the recess without a live
+            microphone, so its discussion is not in the BevCam recording. Like every Council
+            committee meeting, it was public, and a clerk took minutes. The full Council approves
+            those minutes at a later meeting, and they are then posted online.
           </p>
           <p className={BODY}>
             All of this is live because of the budget. The city&apos;s diversity, equity and
@@ -569,6 +571,7 @@ export default function DigestIssue3() {
                 <Src href={`${AGENDA}/ViewFile/Agenda/_09212026-2914#page=4`}>
                   Finance and Property sheet (p. 4)
                 </Src>
+                <Src href={`${PACKET_0921}#page=138`}>Council rules, Rule 22 (p. 138)</Src>
                 <Src href={CC21}>Full recording</Src>
               </>
             }
@@ -770,7 +773,8 @@ export default function DigestIssue3() {
             Zoning there allows <Fig>35 feet</Fig>, and the developer wants{" "}
             <Fig>46.5</Fig>{" "}
             for a sloped roof that it says would hide rooftop equipment. The meeting was not
-            recorded, so the outcome is not yet known. Councilor Feldman said the project goes to
+            televised, so the outcome will be reported once the board posts its decision or
+            minutes. Councilor Feldman said the project goes to
             the Planning Board in October, with another neighborhood meeting to come.{" "}
             <Moment src={CC21} s={7301} />
           </p>
@@ -860,12 +864,12 @@ export default function DigestIssue3() {
 
         <div className="mt-12 max-w-[63ch] border-y border-rule py-3.5">
           <p className="text-[0.93rem] leading-relaxed text-ink-mid">
-            <b className="text-ink">Also met, with no public recording:</b>{" "}
+            <b className="text-ink">Also met, without video:</b>{" "}
             Library Trustees on Tuesday; the Airport Commission, the Zoning Board of Appeals and
             the South Essex Sewerage Board on Wednesday; and on Thursday the Board of Assessors,
             the Housing Authority, the Economic and Community Development Council, the Veterans
-            Advisory Committee and the Retirement Board. For those, the posted agenda and any
-            minutes are the whole public record.{" "}
+            Advisory Committee and the Retirement Board. For those, the record is the posted
+            agenda now and the minutes once they are approved.{" "}
             <Src href={AGENDA}>Agendas</Src>
           </p>
         </div>
@@ -1020,9 +1024,17 @@ export default function DigestIssue3() {
             id="corrections-title"
             className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint"
           >
-            Corrections to issue 2
+            Corrections
           </h2>
           <p className="mt-2 text-[0.93rem] leading-relaxed text-ink-mid">
+            <b className="text-ink">To this issue:</b>{" "}
+            An earlier version said the Finance and Property discussion of Order #213 was not on
+            the record. Council committee meetings are public and minuted. What is missing is
+            video, since the committee met without a live microphone. Its minutes will be posted
+            once the Council approves them.
+          </p>
+          <p className="mt-2 text-[0.93rem] leading-relaxed text-ink-mid">
+            <b className="text-ink">To issue 2:</b>{" "}
             The School Committee ratified three union agreements on September 16, not two; we left
             out the crossing guards&apos;. The $20,000 request for the Human Rights Committee was
             before a three-member Council committee, not the full Council. And the Council&apos;s
