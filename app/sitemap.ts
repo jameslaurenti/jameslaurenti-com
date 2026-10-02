@@ -13,6 +13,7 @@ const SITE = "https://www.jameslaurenti.com";
  *   /beverly/bridge-model         noindex, unlinked exploratory work
  *   /beverly/who-beverly-is(-v2)  behind the unlock gate
  *   /harborlight/*, /unlock       private or token-based
+ *   /experiments/*                unlisted experiments, noindex via next.config.ts headers
  *   /work                         still resolves for old links, but nothing points at it
  *                                 any more and it is not worth surfacing again
  */
