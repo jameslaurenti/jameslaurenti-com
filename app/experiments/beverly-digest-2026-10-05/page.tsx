@@ -280,7 +280,7 @@ const ahead: Ev[] = [
 export default function DigestIssue4() {
   return (
     <div className="bg-bg text-ink">
-      {/* DRAFT: preview views are tagged apart so they never count toward issue 4. Set to
+      {/* DRAFT: review views are tagged apart so they never count toward issue 4. Set to
           "2026-10-05" when this moves to app/beverly/digest/2026-10-05. */}
       <PageTracking surface="digest" issue="2026-10-05-preview" depth />
       {/* DRAFT: remove this banner before publishing. qa:issue fails while it is here. */}

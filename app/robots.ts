@@ -30,8 +30,6 @@ export default function robots(): MetadataRoute.Robots {
           "/beverly/bridge-model",
           "/beverly/who-beverly-is",
           "/beverly/who-beverly-is-v2",
-          // Pre-publication review copies, live in production but unlisted.
-          "/preview/",
         ],
       },
     ],

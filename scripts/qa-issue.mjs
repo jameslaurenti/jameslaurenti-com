@@ -40,7 +40,7 @@ if (!slug) {
   console.error("No dated issue directory found under app/beverly/digest/.");
   process.exit(1);
 }
-// --path checks a copy somewhere else, e.g. a review copy under /preview/.
+// --path checks a copy somewhere else, e.g. a review copy under /experiments/.
 const url = `${BASE}${flag("path", `/beverly/digest/${slug}`)}`;
 
 let failures = 0;

@@ -4,17 +4,18 @@ export const metadata: Metadata = {
   title: "Beverly Meeting Digest: Sep 28 to Oct 4, 2026 — James Laurenti",
   description:
     "The deficit committee made a first pass at sorting its ideas before its October 20 presentation. Tonight the Council takes up a pause on data centers, a final vote on fines for private trees and shrubs that block the sidewalk, and two oversight ordinances. Plus where the Varian cleanup stands, and this year's MCAS.",
-  // DRAFT: remove before publishing. qa:issue fails while this is here.
+  // DRAFT: remove before publishing. qa:issue fails while this is here. (Under /experiments
+  // the next.config header also sends noindex; this tag is the belt to its braces.)
   robots: { index: false, follow: false },
   openGraph: {
     type: "article",
     title: "Beverly Meeting Digest, Sep 28 to Oct 4, 2026",
     description:
       "A first pass at the deficit committee's ideas, a proposed pause on data centers, and where the Varian cleanup stands. Every claim tagged by source.",
-    url: "/preview/beverly-digest-2026-10-05",
+    url: "/experiments/beverly-digest-2026-10-05",
     // This issue's own card. The dates are baked into the image, so it cannot reuse
     // another issue's.
-    images: ["/preview/beverly-digest-2026-10-05/opengraph-image"],
+    images: ["/experiments/beverly-digest-2026-10-05/opengraph-image"],
   },
 };
 
