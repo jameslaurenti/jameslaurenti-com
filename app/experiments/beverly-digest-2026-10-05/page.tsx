@@ -239,7 +239,7 @@ const ahead: Ev[] = [
     date: "Oct 20",
     what: "Deficit Reduction Committee: first public presentation",
     detail:
-      "Planned for 6:00 to 7:30pm, with BevCam booked. The committee has asked the Senior Center to host; the city calendar does not list it yet. A first pass, with time for questions.",
+      "Planned for 6:00 to 7:30pm, and BevCam is set to carry it. The committee has asked the Senior Center to host; the city calendar does not list it yet. A first pass, with time for questions.",
     cal: {
       id: "drc-public-2026-10-20",
       title: "Deficit Reduction Committee: first public presentation",
@@ -301,11 +301,11 @@ export default function DigestIssue4() {
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
             The deficit committee made a first pass at its ideas, three weeks before presenting
-            them. The Varian cleanup is halfway to its target temperature, and this year&apos;s
-            MCAS results are out. Tonight&apos;s Council agenda is a full one: a proposed pause on
-            data centers, a final vote on fines for private trees and shrubs that block the
-            sidewalk, and two proposals for more Council say
-            over travel and long contracts.
+            them. The Varian site cleanup gave its first public update since its main treatment
+            began, and this year&apos;s MCAS results are out. Tonight&apos;s Council agenda is a
+            full one: a proposed pause on data centers, a final vote on fines for private trees
+            and shrubs that block the sidewalk, and two proposals for more Council say over
+            travel and long contracts.
           </p>
         </header>
 
@@ -386,14 +386,12 @@ export default function DigestIssue4() {
           </p>
           <Note>
             <b>Read this as a draft.</b>{" "}
-            The &ldquo;yes&rdquo; group means feasible but possibly in need of more research,
-            not a final recommendation.{" "}
-            <Moment src={DRC28} s={4993} />{" "}The sorted list is being cleaned up, every
-            member can still edit it, and the committee plans at least one more working meeting
-            before it presents to the public on October 20.{" "}
-            <Moment src={DRC28} s={7090} />{" "}Ideas can move between groups before then,
-            and after. The committee does not vote and does not set policy: the Mayor writes the
-            budget and the Council votes on it.{" "}
+            &ldquo;Yes&rdquo; means feasible, possibly with more research needed, not a final
+            recommendation.{" "}
+            <Moment src={DRC28} s={4993} />{" "}The list is a work in progress and can change
+            before October 20, and after.{" "}
+            <Moment src={DRC28} s={7090} />{" "}The committee does not vote or set policy: the
+            Mayor writes the budget and the Council votes on it.{" "}
             <Moment src={DRC28} s={94} />
           </Note>
           <p className={BODY}>Here is where things stood when the meeting ended.</p>
@@ -410,11 +408,11 @@ export default function DigestIssue4() {
                   <Moment src={DRC28} s={5238} />
                 </li>
                 <li>
-                  Forming a committee to seek more payments in lieu of taxes from tax-exempt institutions. The recommendation is the committee, not a dollar figure.{" "}
+                  Forming a committee to seek more payments in lieu of taxes (PILOTs) from tax-exempt institutions. The recommendation is the committee, not a dollar figure.{" "}
                   <Moment src={DRC28} s={1227} /> <Moment src={DRC28} s={5365} />
                 </li>
                 <li>
-                  Reviewing every city fee every year or two, so fees keep pace with costs in small steps instead of falling behind. It grew out of the trash fee, which members said went from about $100 to $400 after years without an increase.{" "}
+                  Reviewing every city fee every year or two, so fees keep pace with costs in small steps instead of falling behind. It grew out of the trash fee, which members said nearly quadrupled after years without an increase.{" "}
                   <Moment src={DRC28} s={5329} />
                 </li>
               </ul>
@@ -436,7 +434,7 @@ export default function DigestIssue4() {
               <b>No, with an explanation.</b>
               <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
                 <li>
-                  Deferring pension payments: not needed, members said, now that the city can stop raising its payment.{" "}
+                  Changing the pension funding schedule to lower the city&apos;s yearly contribution. Members said there is no need: the city can already hold that contribution flat instead of raising it each year.{" "}
                   <Moment src={DRC28} s={5980} />
                 </li>
                 <li>
@@ -444,7 +442,7 @@ export default function DigestIssue4() {
                   <Moment src={DRC28} s={6843} />
                 </li>
                 <li>
-                  Joining a regional dispatch center, which has no room for Beverly.{" "}
+                  Closing Beverly&apos;s own dispatch center to join a regional one, which has no room for Beverly.{" "}
                   <Moment src={DRC28} s={7090} />
                 </li>
                 <li>
@@ -479,7 +477,7 @@ export default function DigestIssue4() {
           </p>
           <p className={BODY}>
             The first public presentation is planned for Tuesday, October 20, from 6:00 to
-            7:30pm, with BevCam booked. The committee has asked the Senior Center to host; the
+            7:30pm, and BevCam is set to carry it. The committee has asked the Senior Center to host; the
             city calendar does not list it yet. Members talked about a short presentation
             followed by questions from a sign-up sheet, and about smaller listening sessions
             around the city, possibly starting in early November.{" "}
@@ -550,7 +548,7 @@ export default function DigestIssue4() {
           </p>
           <p className={BODY}>
             <b>Is it on schedule?</b>{" "}
-            Behind the early plans. The first schedule, in June 2023, had heating starting that
+            It is running behind the original plan. The first schedule, in June 2023, had heating starting that
             winter. Buried asbestos debris, contamination at the edge of the work area and extra
             vapor protections for the occupied building pushed it back. The most recent schedule,
             published in May 2026, had heating starting that month; it started in late July.
@@ -674,7 +672,8 @@ export default function DigestIssue4() {
           </p>
           <p className={BODY}>
             The district presents its own results to the School Committee&apos;s curriculum
-            subcommittee, elementary in October and secondary in November.{" "}
+            subcommittee: the elementary schools in October, the middle and high schools in
+            November.{" "}
             <Moment src={CISL23} s={2721} />
           </p>
           <Refs
@@ -754,8 +753,9 @@ export default function DigestIssue4() {
 
         <p className={BODY}>
           The City Council meets at 7:00pm in the Beverly Middle School library, 502 Cabot St,
-          its first meeting there while City Hall is renovated. To speak at public comment, sign
-          up with the city clerk by 9:30 this morning.
+          its first meeting there while City Hall is renovated. Public comment sign-up closed at
+          9:30 this morning; for future meetings, sign up with the city clerk by 9:30 that
+          morning.
         </p>
         <div className="mt-5 flex flex-wrap gap-2.5">
           <AddToCalendar
@@ -850,8 +850,7 @@ export default function DigestIssue4() {
             of clear space above the sidewalk and{" "}
             <Fig>14 feet</Fig>{" "}
             above the street, and nothing taller than 30 inches within 30 feet of a corner, where
-            drivers need to see. One thing the text does not spell out is who is fined when the
-            problem is a tree in the public way.
+            drivers need to see.
           </p>
           <Refs
             sources={
@@ -887,13 +886,15 @@ export default function DigestIssue4() {
             <Fig>$13,500</Fig>{" "}
             that pays for travel among other things, saying the Mayor should not travel out of
             state while police, fire and school jobs were being cut.{" "}
-            <Moment src={BUD23} s={1441} />{" "}That failed; the Council cut the line to{" "}
-            <Fig>$10,000</Fig>{" "}
-            instead, 9 to 0.{" "}
+            <Moment src={BUD23} s={1441} />{" "}The Council instead adopted Councilor
+            Houseman&apos;s amendment cutting the line to{" "}
+            <Fig>$10,000</Fig>, 9 to 0.{" "}
             <Moment src={BUD23} s={2114} />{" "}The Mayor said conferences bring value home, and
-            that the line also paid this year for a restroom trailer at the high school field and
-            a nonprofit crew that painted about 300 fire hydrants.{" "}
-            <Moment src={BUD23} s={1678} />
+            that the same line also paid this year for a restroom trailer at the high school field
+            and for a program with Triangle, a nonprofit serving adults with disabilities, whose
+            participants painted about 300 fire hydrants.{" "}
+            <Moment src={BUD23} s={1678} />{" "}
+            <Moment src={BUD23} s={1832} />
           </p>
           <p className={BODY}>
             <b>Order #260</b>{" "}
