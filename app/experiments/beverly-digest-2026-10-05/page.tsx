@@ -380,8 +380,7 @@ export default function DigestIssue4() {
           <p className={BODY}>
             On September 28 the Deficit Reduction Committee went through the ideas it has
             gathered since July and put each one into one of four groups: yes, maybe, no and
-            exploring. It is the first time the committee has signaled, even tentatively, where
-            it leans on any of them.{" "}
+            exploring. It is the first time the committee has sorted its full list.{" "}
             <Moment src={DRC28} s={7230} />
           </p>
           <Note>
@@ -422,7 +421,7 @@ export default function DigestIssue4() {
               <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
                 <li>
                   The share of health insurance premiums paid by employees and by retirees, marked &ldquo;closer to yes.&rdquo; Employees&apos; share is negotiated with their unions.{" "}
-                  <Moment src={DRC28} s={6030} />
+                  <Moment src={DRC28} s={6030} /> <Moment src={DRC28} s={6100} />
                 </li>
                 <li>
                   Sharing services with other communities, such as out-of-district school transportation.{" "}
@@ -438,7 +437,7 @@ export default function DigestIssue4() {
                   <Moment src={DRC28} s={5980} />
                 </li>
                 <li>
-                  More cannabis revenue: there is room for one more license and the market is crowded, with a note that the city should be easier to work with in general.{" "}
+                  More cannabis revenue: there is room for one more license and the market is crowded, with members noting the city should be easier to work with in general.{" "}
                   <Moment src={DRC28} s={6843} />
                 </li>
                 <li>
@@ -486,8 +485,7 @@ export default function DigestIssue4() {
           <p className="mt-4 max-w-[63ch] text-[0.9rem] italic leading-relaxed text-ink-mid">
             Disclosure: James Laurenti, who writes this digest, came up at this meeting. A member
             said she had met with him about the committee&apos;s benchmarking work and that he
-            sent her information afterward, and another mentioned his research on Massachusetts
-            override history.{" "}
+            sent her information afterward, and another mentioned research he had shared.{" "}
             <Moment src={DRC28} s={2964} />
           </p>
           <Refs
@@ -531,8 +529,8 @@ export default function DigestIssue4() {
           <p className={BODY}>
             The state environmental agency oversees the work, and residents petitioned in 1992
             for public meetings like this one. The chemicals have moved west in groundwater toward
-            Tozer Road. The state&apos;s current finding is no significant risk to residents or
-            workers, and a vapor removal system runs at one nearby home as a precaution.
+            Tozer Road. The cleanup&apos;s 2023 risk assessment, filed with the state, found no significant
+            risk to residents or workers. A vapor removal system runs at one nearby home.
           </p>
           <p className={BODY}>
             Heating under Building 3 began in late July, to turn the chemicals into vapor and
@@ -552,13 +550,13 @@ export default function DigestIssue4() {
             winter. Buried asbestos debris, contamination at the edge of the work area and extra
             vapor protections for the occupied building pushed it back. The most recent schedule,
             published in May 2026, had heating starting that month; it started in late July.
+            All were labeled estimates.
           </p>
           <p className={BODY}>
             <b>When will it be done?</b>{" "}
             No end date has been published. The 2023 cleanup plan estimated about a year and a
             half of heating, three years of biological treatment and two of natural breakdown for
-            the Building 3 area, about six and a half years in all. Counted from this summer, that
-            points to the early 2030s. That is our arithmetic, not the team&apos;s.{" "}
+            the Building 3 area, about six and a half years in all.{" "}
             <Moment src={VAR30} s={3876} />
           </p>
           <p className={BODY}>
@@ -609,7 +607,7 @@ export default function DigestIssue4() {
             about how much of that is effort rather than learning.
           </p>
           <p className={BODY}>
-            Beverly&apos;s grades 3 to 8 held or rose and stayed well above the state. Grade 10
+            Beverly&apos;s grades 3 to 8 held or rose and stayed 5 to 10 points above the state. Grade 10
             is close to the state, with math up four points and science down eight. The share of
             students meeting or exceeding expectations:
           </p>
@@ -666,9 +664,10 @@ export default function DigestIssue4() {
             of their{" "}
             <Fig>177</Fig>{" "}
             tests, 93%, short of the 95% every group must reach. The state requires a school
-            flagged this way to find out why and fix it this school year; its guidance says each
-            student&apos;s education plan should spell out how, not whether, the student is
-            tested.
+            flagged this way to identify the causes and address them this school year. Students
+            with disabilities can take MCAS with accommodations or in an alternate form, and the
+            state&apos;s guidance says each student&apos;s education plan should spell out how,
+            not whether, the student is tested.
           </p>
           <p className={BODY}>
             The district presents its own results to the School Committee&apos;s curriculum
@@ -710,9 +709,10 @@ export default function DigestIssue4() {
           <H2>Stop &amp; Shop site: the Planning Board takes it up</H2>
           <From>Planning Board agenda, Tuesday, October 6</From>
           <p className={BODY}>
-            The proposal to replace the North Beverly Stop &amp; Shop at 37 Enon Street with{" "}
+            The proposal for 37 Enon Street,{" "}
             <Fig>179</Fig>{" "}
-            apartments and about 2,600 square feet of retail is now before the Planning Board,
+            apartments and about 2,600 square feet of retail in place of the North Beverly Stop
+            &amp; Shop if the store does not renew its lease, is now before the Planning Board,
             which sets its hearing dates on October 6. The board&apos;s agenda adds detail: 60%
             of the apartments would have one bedroom and 40% two, and{" "}
             <Fig>22</Fig>, or 12%, would be affordable to households at or below 60% of the area
@@ -788,8 +788,8 @@ export default function DigestIssue4() {
             Director Darlene Wynne
           </From>
           <p className={BODY}>
-            Beverly&apos;s zoning code does not mention data centers: they are neither listed as
-            an allowed use nor restricted.{" "}
+            Beverly&apos;s zoning code does not list data centers as an allowed use or restrict
+            them.{" "}
             <b>Order #250</b>{" "}
             would pause them while the city writes rules. Until the Council adopts a zoning
             ordinance for data centers, or through November 30, 2027, whichever comes first, the
@@ -891,8 +891,7 @@ export default function DigestIssue4() {
             <Fig>$10,000</Fig>, 9 to 0.{" "}
             <Moment src={BUD23} s={2114} />{" "}The Mayor said conferences bring value home, and
             that the same line also paid this year for a restroom trailer at the high school field
-            and for a program with Triangle, a nonprofit serving adults with disabilities, whose
-            participants painted about 300 fire hydrants.{" "}
+            and for a nonprofit program whose participants painted about 300 fire hydrants.{" "}
             <Moment src={BUD23} s={1678} />{" "}
             <Moment src={BUD23} s={1832} />
           </p>
