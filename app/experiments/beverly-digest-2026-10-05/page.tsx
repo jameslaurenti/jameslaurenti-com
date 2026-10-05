@@ -420,8 +420,8 @@ export default function DigestIssue4() {
               <b>Maybe.</b>
               <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
                 <li>
-                  The share of health insurance premiums paid by employees and by retirees, marked &ldquo;closer to yes.&rdquo; Employees&apos; share is negotiated with their unions.{" "}
-                  <Moment src={DRC28} s={6030} /> <Moment src={DRC28} s={6100} />
+                  The share of health insurance premiums paid by employees and by retirees. Employees&apos; share is negotiated with their unions.{" "}
+                  <Moment src={DRC28} s={6030} />
                 </li>
                 <li>
                   Sharing services with other communities, such as out-of-district school transportation.{" "}
@@ -909,12 +909,13 @@ export default function DigestIssue4() {
             officer, and we found no rule on contract length in the city&apos;s own code.
           </p>
           <p className={BODY}>
-            Other cities handle it differently. Salem writes a council-vote rule for contracts
+            Nearby communities handle it differently. Salem writes a council-vote rule for contracts
             over three years into its ordinances, as #260 would, and used it in 2024 to approve a
             20-year energy contract. Gloucester&apos;s Council votes on each long contract as it
             comes up.
-            Fitchburg goes the other way, giving its procurement officer standing authority for
-            contracts of up to five years. Those are three cities we checked, not a survey.
+            Marblehead goes the other way: its Town Meeting gives blanket permission for contracts
+            longer than three years, as a routine consent item. Those are three communities we
+            checked, not a survey.
           </p>
           <Refs
             sources={
@@ -928,6 +929,9 @@ export default function DigestIssue4() {
               <>
                 <Src href={`${MGL}/PartI/TitleIII/Chapter30B/Section12`}>State procurement law, c. 30B &sect;12</Src>
                 <Src href="https://www.salemma.gov/ArchiveCenter/ViewFile/Item/1237">Salem&apos;s 2024 vote</Src>
+                <Src href="https://marbleheadcurrent.org/marblehead-current-2026-town-meeting-guide/">
+                  Marblehead&apos;s 2026 Town Meeting guide
+                </Src>
               </>
             }
           />
