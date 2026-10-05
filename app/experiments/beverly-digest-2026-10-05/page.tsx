@@ -911,11 +911,10 @@ export default function DigestIssue4() {
           <p className={BODY}>
             Nearby communities handle it differently. Salem writes a council-vote rule for contracts
             over three years into its ordinances, as #260 would, and used it in 2024 to approve a
-            20-year energy contract. Gloucester&apos;s Council votes on each long contract as it
-            comes up.
-            Marblehead goes the other way: its Town Meeting gives blanket permission for contracts
-            longer than three years, as a routine consent item. Those are three communities we
-            checked, not a survey.
+            20-year energy contract. Peabody and Gloucester vote on each long contract as it comes up; Peabody did so in
+            2023 for a fire engine lease. Ipswich goes the other way: in 2025 its Town Meeting
+            gave the town manager blanket permission for contracts of up to five years. Those are
+            four communities we checked, not a survey.
           </p>
           <Refs
             sources={
@@ -929,8 +928,11 @@ export default function DigestIssue4() {
               <>
                 <Src href={`${MGL}/PartI/TitleIII/Chapter30B/Section12`}>State procurement law, c. 30B &sect;12</Src>
                 <Src href="https://www.salemma.gov/ArchiveCenter/ViewFile/Item/1237">Salem&apos;s 2024 vote</Src>
-                <Src href="https://marbleheadcurrent.org/marblehead-current-2026-town-meeting-guide/">
-                  Marblehead&apos;s 2026 Town Meeting guide
+                <Src href="https://peabody-ma.gov/pdf_minutes/city_council/071323%20REG.%20MEETING%20MINS.pdf">
+                  Peabody&apos;s 2023 vote
+                </Src>
+                <Src href="https://www.ipswichma.gov/DocumentCenter/View/18424/2025-10-28-Special-Town-Meeting-Record-of-Action#page=8">
+                  Ipswich&apos;s 2025 vote (p. 8)
                 </Src>
               </>
             }
