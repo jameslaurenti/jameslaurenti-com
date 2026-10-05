@@ -280,13 +280,7 @@ const ahead: Ev[] = [
 export default function DigestIssue4() {
   return (
     <div className="bg-bg text-ink">
-      {/* DRAFT: review views are tagged apart so they never count toward issue 4. Set to
-          "2026-10-05" when this moves to app/beverly/digest/2026-10-05. */}
-      <PageTracking surface="digest" issue="2026-10-05-preview" depth />
-      {/* DRAFT: remove this banner before publishing. qa:issue fails while it is here. */}
-      <div className="bg-gold-strong/20 px-6 py-2 text-center text-[0.8rem] font-bold uppercase tracking-[0.14em] text-ink">
-        DRAFT, NOT PUBLISHED &middot; for review only
-      </div>
+      <PageTracking surface="digest" issue="2026-10-05" depth />
       <div className="mx-auto max-w-3xl px-6 pb-24">
         <header className="border-b border-rule pb-7 pt-14">
           <p className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-debt">
@@ -753,9 +747,8 @@ export default function DigestIssue4() {
 
         <p className={BODY}>
           The City Council meets at 7:00pm in the Beverly Middle School library, 502 Cabot St,
-          its first meeting there while City Hall is renovated. Public comment sign-up closed at
-          9:30 this morning; for future meetings, sign up with the city clerk by 9:30 that
-          morning.
+          its first meeting there while City Hall is renovated. To speak at public comment, sign up with the city clerk by 9:30 the morning of the
+          meeting.
         </p>
         <div className="mt-5 flex flex-wrap gap-2.5">
           <AddToCalendar

@@ -18,6 +18,17 @@ const nextConfig: NextConfig = {
     ];
   },
 
+  // Review copies that have since been published: send the shared link to the real page.
+  async redirects() {
+    return [
+      {
+        source: "/experiments/beverly-digest-2026-10-05",
+        destination: "/beverly/digest/2026-10-05",
+        permanent: false,
+      },
+    ];
+  },
+
   // Serve /experiments/<name>/index.html at /experiments/<name>. These run after the
   // filesystem check, so a real file such as /experiments/foo.json is served as itself.
   async rewrites() {

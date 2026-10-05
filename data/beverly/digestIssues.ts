@@ -23,6 +23,14 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-10-05",
+    number: 4,
+    published: "October 5, 2026",
+    covering: "September 28 to October 4",
+    teaser:
+      "The deficit committee made a first pass at its ideas, three weeks before presenting them. The Varian cleanup gave its first update since its main treatment began, and this year's MCAS results are out. Tonight the Council takes up a pause on data centers and two oversight ordinances.",
+  },
+  {
     slug: "2026-09-28",
     number: 3,
     published: "September 28, 2026",
