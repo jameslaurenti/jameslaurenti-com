@@ -33,3 +33,14 @@ Open [http://localhost:3000](http://localhost:3000).
 ## Built with
 
 Designed and built with [Claude Code](https://claude.ai/code).
+
+## License
+
+- **Code** is MIT licensed; see [LICENSE](LICENSE). Fork it, adapt it, build your own town's version.
+- **The Beverly Meeting Digest** (the issues under `app/beverly/digest/`, and the feeds at
+  `/beverly/digest/feed.xml` and `/beverly/digest/stories.xml`) is dedicated to the public domain
+  under [CC0 1.0](https://creativecommons.org/publicdomain/zero/1.0/). Reuse, adapt or republish it,
+  no permission needed. A link back is appreciated, and please keep the links to recordings and
+  documents so readers can check the work.
+- **Other writing on the site** (essays and explainers) is not covered by either and remains
+  © James Laurenti unless it says otherwise.

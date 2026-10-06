@@ -169,3 +169,19 @@ Reference components handed off from the claude.ai project live in
   `beverly-story-roadmap.md`) and `reference/` handoff components.
 
 If you add a piece that needs recharts, remember it is not installed yet.
+
+## Digest feeds and reuse
+
+The digest is CC0 (public domain dedication). Two RSS feeds are built from the published issue
+pages by `lib/beverly/digestFeed.ts`: `/beverly/digest/feed.xml` (one entry per issue, for email)
+and `/beverly/digest/stories.xml` (one entry per story, for people adapting single items). They
+read the rendered page, so new issues must keep the structure they rely on:
+
+- each story is a `<section id="...">` whose `<h2>` is its headline, with the eyebrow as the first `<span>`;
+- recording links use the `Hear` and `Moment` components (`data-placement` "hear-button" / "inline-moment");
+- calendar controls are `AddToCalendar` (`<details>`), which the feed strips;
+- calendar-style sections use the ids `ahead`, `horizon`, `dates` or `corrections`, which the
+  stories feed skips. Add new ones to `NOT_STORIES` if a new listing section appears.
+
+The reuse note shows under every digest page from `app/beverly/digest/layout.tsx`.
+
