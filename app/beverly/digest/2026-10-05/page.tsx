@@ -361,7 +361,7 @@ export default function DigestIssue4() {
         </h2>
 
         {/* ---- 01 ---- */}
-        <section id="deficit" className={SECTION}>
+        <section id="deficit" data-dek={"For the first time, the Deficit Reduction Committee sorted its ideas into yes, maybe, no and exploring. It's a work in progress ahead of its Oct. 20 presentation."} className={SECTION}>
           <Eyebrow>01 &middot; A first pass, not a final list</Eyebrow>
           <H2>The deficit committee makes a first pass at its list</H2>
           <From>Deficit Reduction Committee &middot; Monday, September 28</From>
@@ -500,7 +500,7 @@ export default function DigestIssue4() {
         </section>
 
         {/* ---- 02 ---- */}
-        <section id="varian" className={SECTION}>
+        <section id="varian" data-dek={"The cleanup at the former Varian plant gave its first public update since heating began under Building 3."} className={SECTION}>
           <Eyebrow>02 &middot; Environment</Eyebrow>
           <H2>The Varian cleanup, and where it stands</H2>
           <From>
@@ -587,7 +587,7 @@ export default function DigestIssue4() {
         </section>
 
         {/* ---- 03 ---- */}
-        <section id="mcas" className={SECTION}>
+        <section id="mcas" data-dek={"Beverly's grades 3 to 8 stayed 5 to 10 points above the state, and grade 10 is close to it. The state flagged Beverly High because too few students in one group took the test."} className={SECTION}>
           <Eyebrow>03 &middot; Schools</Eyebrow>
           <H2>This year&apos;s MCAS, and how to read it</H2>
           <From>
@@ -698,7 +698,7 @@ export default function DigestIssue4() {
         </section>
 
         {/* ---- 04 ---- */}
-        <section id="enon" className={SECTION}>
+        <section id="enon" data-dek={"The Planning Board sets hearing dates for the 179 apartments proposed for the Stop & Shop site, including 22 affordable units and fewer parking spaces than zoning requires."} className={SECTION}>
           <Eyebrow>04 &middot; Development</Eyebrow>
           <H2>Stop &amp; Shop site: the Planning Board takes it up</H2>
           <From>Planning Board agenda, Tuesday, October 6</From>
@@ -773,7 +773,7 @@ export default function DigestIssue4() {
         </div>
 
         {/* ---- 05 ---- */}
-        <section id="datacenters" className={SECTION}>
+        <section id="datacenters" data-dek={"The Mayor proposed pausing data center applications until the city writes zoning rules for them. Tonight starts the process; adoption takes public hearings and a two-thirds Council vote."} className={SECTION}>
           <Eyebrow>05 &middot; Tonight &middot; New</Eyebrow>
           <H2>A proposed pause on data centers</H2>
           <From>
@@ -814,7 +814,7 @@ export default function DigestIssue4() {
         </section>
 
         {/* ---- 06 ---- */}
-        <section id="trees" className={SECTION}>
+        <section id="trees" data-dek={"The Council takes its final vote on fines for private trees and shrubs that block the sidewalk. Street trees between the curb and the sidewalk are the city's to maintain."} className={SECTION}>
           <Eyebrow>06 &middot; Tonight &middot; Final vote</Eyebrow>
           <H2>Overgrown trees and shrubs on private property: the final vote</H2>
           <From>
@@ -857,7 +857,7 @@ export default function DigestIssue4() {
         </section>
 
         {/* ---- 07 ---- */}
-        <section id="oversight" className={SECTION}>
+        <section id="oversight" data-dek={"Councilor St. Hilaire proposed requiring Council approval for out-of-state travel by the administration and for contracts longer than three years."} className={SECTION}>
           <Eyebrow>07 &middot; Tonight &middot; New</Eyebrow>
           <H2>Two proposals for more Council say over travel and long contracts</H2>
           <From>City Council, tonight &middot; Orders #259 and #260, filed by Councilor St. Hilaire</From>
@@ -933,7 +933,7 @@ export default function DigestIssue4() {
         </section>
 
         {/* ---- 08 ---- */}
-        <section id="agenda" className={SECTION}>
+        <section id="agenda" data-dek={"The rest of tonight's agenda, including a city program that helps low-income homeowners with repairs."} className={SECTION}>
           <Eyebrow>08 &middot; Tonight</Eyebrow>
           <H2>Also on the agenda</H2>
           <ul className="mt-4 max-w-[63ch] list-disc space-y-3 pl-5 text-[1.0625rem] leading-[1.7]">

@@ -12,7 +12,10 @@
  * feeds to the page structure, which every issue already follows:
  *   - each story is a <section id="..."> whose <h2> is its headline;
  *   - recording moments are links with data-placement "inline-moment" or "hear-button";
- *   - calendar controls are <details> elements.
+ *   - calendar controls are <details> elements;
+ *   - each story section may carry data-dek, a one-sentence summary written with the issue.
+ *     It becomes the entry's description. Issues before October 2026 fall back to the
+ *     story's first long paragraph.
  * Sections that are calendars rather than stories are listed in NOT_STORIES.
  *
  * Every entry carries the reuse terms: CC0, no permission needed, a link back appreciated.
@@ -188,6 +191,8 @@ export async function storiesFeed(origin: string) {
     for (const section of container.querySelectorAll("section[id]")) {
       const id = section.getAttribute("id") ?? "";
       if (NOT_STORIES.has(id)) continue;
+      // The one-sentence summary written with the issue; read before clean() strips data-*.
+      const dek = section.getAttribute("data-dek")?.trim();
       const s = clean(parse(section.outerHTML), canonical);
       const h2 = s.querySelector("h2");
       if (!h2) continue;
@@ -197,13 +202,25 @@ export async function storiesFeed(origin: string) {
       const eyebrow = s.querySelector("span");
       const kicker = eyebrow?.text.replace(/^\s*\d+\s*·\s*/, "").trim();
       if (kicker && kicker.length < 80) eyebrow?.remove();
-      const firstPara = s.querySelectorAll("p").map((p) => p.text.trim()).find((t) => t.length > 80);
+      // Fallback for issues without a dek: the first real paragraph of the story, skipping
+      // the dateline ("City Council · Monday ..."), the listen line and the source rows, with
+      // timestamp links like "(1:02:31)" dropped.
+      const firstPara = s
+        .querySelectorAll("p")
+        .map((p) => p.text.replace(/\s*\(\d{1,2}(?::\d{2}){1,2}\)/g, "").replace(/\s+/g, " ").trim())
+        .find(
+          (t) =>
+            t.length > 80 &&
+            !t.slice(0, 90).includes(" · ") &&
+            !t.startsWith("▶") &&
+            !/^(Go deeper|Read more):/.test(t)
+        );
       const link = `${canonical}#${id}`;
       items.push({
         title,
         link,
         date: issueDate(issue.slug),
-        summary: firstPara ?? title,
+        summary: dek || firstPara || title,
         categories: [`Issue ${issue.number}`, ...(kicker ? [kicker] : [])],
         html: s.innerHTML + reuseNote(link),
       });

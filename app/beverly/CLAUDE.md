@@ -178,6 +178,11 @@ and `/beverly/digest/stories.xml` (one entry per story, for people adapting sing
 read the rendered page, so new issues must keep the structure they rely on:
 
 - each story is a `<section id="...">` whose `<h2>` is its headline, with the eyebrow as the first `<span>`;
+- each story section carries `data-dek`: a one-sentence summary, written while building the issue
+  (from issue 4 on). It is not shown on the page. The story feed uses it as the entry's summary,
+  the email is built from headline plus dek plus link, and a future story page would use it as
+  its meta description. Same voice rules as the page: neutral, no sizing, nothing the story
+  itself does not support;
 - recording links use the `Hear` and `Moment` components (`data-placement` "hear-button" / "inline-moment");
 - calendar controls are `AddToCalendar` (`<details>`), which the feed strips;
 - calendar-style sections use the ids `ahead`, `horizon`, `dates` or `corrections`, which the
