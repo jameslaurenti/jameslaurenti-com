@@ -38,7 +38,9 @@ export type TrackEvent =
   /** A control inside an interactive piece was touched. Once per control per page load. */
   | "tool_used"
   /** An interactive piece reached a meaningful end state. */
-  | "tool_outcome";
+  | "tool_outcome"
+  /** The digest email form was accepted by Kit (confirmation email sent, not yet confirmed). */
+  | "signup_submitted";
 
 type Params = Record<string, string | number | boolean>;
 

@@ -18,9 +18,17 @@ const nextConfig: NextConfig = {
     ];
   },
 
-  // Review copies that have since been published: send the shared link to the real page.
+  // Short addresses, and review copies that have since been published (send the shared
+  // link to the real page).
   async redirects() {
     return [
+      {
+        // The short address for social bios, texts and printed QR codes. Temporary (307)
+        // so the destination can change without browsers having cached the old one.
+        source: "/digest",
+        destination: "/beverly/digest/subscribe",
+        permanent: false,
+      },
       {
         source: "/experiments/beverly-digest-2026-10-05",
         destination: "/beverly/digest/2026-10-05",

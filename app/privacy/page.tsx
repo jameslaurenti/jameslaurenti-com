@@ -31,7 +31,7 @@ export default function Privacy() {
           work out what to write next and how to make this more useful.
         </p>
         <p>
-          It is ordinary traffic measurement. I do not collect your name or your email,
+          It is ordinary traffic measurement. It does not collect your name or your email,
           and none of it tells me who you are. I am not selling anything, there are no ads
           here, and I do not share any of it with anyone.
         </p>
@@ -61,6 +61,15 @@ export default function Privacy() {
             opt-out add-on
           </a>{" "}
           if you would rather switch off just the analytics.
+        </p>
+        <p>
+          The digest email is separate from all of that. If you sign up for the{" "}
+          <Link href="/beverly/digest/subscribe" className="rlink">
+            Beverly Meeting Digest
+          </Link>{" "}
+          by email, your address is stored with Kit, the service that sends it. I use it to
+          send the digest and for nothing else, and every email has an unsubscribe link. Kit
+          reports which emails get opened and which links get clicked.
         </p>
         <p>
           Questions, or anything here you think I have got wrong,{" "}

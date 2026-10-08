@@ -190,3 +190,18 @@ read the rendered page, so new issues must keep the structure they rely on:
 
 The reuse note shows under every digest page from `app/beverly/digest/layout.tsx`.
 
+
+## Digest email signup
+
+Subscribers live in Kit (free plan, double opt-in), form 10019223. The site posts to the form
+directly from `components/beverly/DigestSignup.tsx`; Kit's embed script is not used.
+
+- `jameslaurenti.com/digest` redirects to `/beverly/digest/subscribe` (next.config.ts). It is the
+  address for social bios, texts and printed QR codes. Tag off-site links with `?from=<channel>`
+  (e.g. `?from=flyer-cafe`); the `signup_submitted` event records it next to the placement.
+- The digest layout adds the signup line (top) and box (bottom) to every issue and the archive,
+  via `DigestSignupSlots.tsx`, so issues themselves are never edited for it.
+- Kit's form setting "After confirming redirect to" points at `/beverly/digest/welcome`, so
+  confirmed subscribers land on the site, not on Kit's branded page.
+- The signup page samples the newest issue through `latestStories()` in digestFeed.ts, so it
+  needs `data-dek` on every story like the feeds do.

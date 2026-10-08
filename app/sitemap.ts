@@ -21,6 +21,7 @@ const pages: [path: string, priority: number][] = [
   ["/", 1.0],
   ["/beverly", 0.9],
   ["/beverly/digest", 0.9],
+  ["/beverly/digest/subscribe", 0.7],
   ["/writing", 0.7],
   ["/writing/the-crystal-and-the-salute", 0.6],
   ["/about", 0.6],

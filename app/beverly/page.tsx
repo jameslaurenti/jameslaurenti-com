@@ -169,10 +169,10 @@ export default function BeverlyCollection() {
         A weekly cadence is exactly the kind of thing a hand-edited link stops keeping up
         with, so publishing an issue should be the only step.
       */}
-      <Link
-        href={`/beverly/digest/${current.slug}`}
-        className="group block rounded-lg border border-accent/35 bg-accent-glow px-6 py-6 sm:px-7 mb-12 transition-colors hover:bg-bg-card"
-      >
+      {/* The whole card opens the issue (the headline link is stretched over it), with two
+          smaller links layered on top: the email signup and the archive. Nested anchors are
+          invalid HTML, hence the overlay rather than one big Link. */}
+      <div className="group relative mb-12 rounded-lg border border-accent/35 bg-accent-glow px-6 py-6 sm:px-7 transition-colors hover:bg-bg-card">
         <div className="flex items-baseline justify-between gap-3 flex-wrap">
           <span
             className="font-semibold uppercase text-accent"
@@ -180,23 +180,29 @@ export default function BeverlyCollection() {
           >
             The weekly digest
           </span>
-          <span className="text-ink-faint" style={{ fontSize: "0.75rem" }}>
-            New issue Mondays
+          <span className="relative z-10 text-ink-faint" style={{ fontSize: "0.8rem" }}>
+            New issue Mondays &middot;{" "}
+            <Link href="/beverly/digest/subscribe?from=hub" className="rlink font-semibold">
+              Get it by email
+            </Link>
           </span>
         </div>
         <h2 className="font-display text-2xl font-semibold tracking-tight mt-2 transition-colors group-hover:text-accent">
-          Issue No. {current.number} &middot; Covering {current.covering}
+          <Link
+            href={`/beverly/digest/${current.slug}`}
+            className="after:absolute after:inset-0 after:rounded-lg after:content-['']"
+          >
+            Issue No. {current.number} &middot; Covering {current.covering}
+          </Link>
         </h2>
         <p className="mt-2 text-ink-mid leading-relaxed">{current.teaser}</p>
-        <span className="mt-4 inline-block text-accent" style={{ fontSize: "0.85rem" }}>
-          Read this issue &rarr;
-        </span>
-      </Link>
-      <p className="-mt-8 mb-12">
-        <Link href="/beverly/digest" className="rlink" style={{ fontSize: "0.88rem" }}>
-          All issues
-        </Link>
-      </p>
+        <div className="mt-4 flex items-baseline justify-between gap-3" style={{ fontSize: "0.85rem" }}>
+          <span className="text-accent">Read this issue &rarr;</span>
+          <Link href="/beverly/digest" className="rlink relative z-10">
+            All issues
+          </Link>
+        </div>
+      </div>
 
       <div className="flex flex-col gap-12">
         {groups.map((group) => (

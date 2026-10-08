@@ -181,51 +181,55 @@ export async function issuesFeed(origin: string) {
   });
 }
 
+/** Each story in one issue as a feed item, calendars and corrections left out. */
+function storyItems({ issue, container }: Loaded): Item[] {
+  const items: Item[] = [];
+  const canonical = issueUrl(issue.slug);
+  for (const section of container.querySelectorAll("section[id]")) {
+    const id = section.getAttribute("id") ?? "";
+    if (NOT_STORIES.has(id)) continue;
+    // The one-sentence summary written with the issue; read before clean() strips data-*.
+    const dek = section.getAttribute("data-dek")?.trim();
+    const s = clean(parse(section.outerHTML), canonical);
+    const h2 = s.querySelector("h2");
+    if (!h2) continue;
+    const title = h2.text.trim();
+    h2.remove();
+    // The eyebrow ("05 · Tonight · New") becomes the category, without its number.
+    const eyebrow = s.querySelector("span");
+    const kicker = eyebrow?.text.replace(/^\s*\d+\s*·\s*/, "").trim();
+    if (kicker && kicker.length < 80) eyebrow?.remove();
+    // Fallback for issues without a dek: the first real paragraph of the story, skipping
+    // the dateline ("City Council · Monday ..."), the listen line and the source rows, with
+    // timestamp links like "(1:02:31)" dropped.
+    const firstPara = s
+      .querySelectorAll("p")
+      .map((p) => p.text.replace(/\s*\(\d{1,2}(?::\d{2}){1,2}\)/g, "").replace(/\s+/g, " ").trim())
+      .find(
+        (t) =>
+          t.length > 80 &&
+          !t.slice(0, 90).includes(" · ") &&
+          !t.startsWith("▶") &&
+          !/^(Go deeper|Read more):/.test(t)
+      );
+    const link = `${canonical}#${id}`;
+    items.push({
+      title,
+      link,
+      date: issueDate(issue.slug),
+      summary: dek || firstPara || title,
+      categories: [`Issue ${issue.number}`, ...(kicker ? [kicker] : [])],
+      html: s.innerHTML + reuseNote(link),
+    });
+  }
+  return items;
+}
+
 export async function storiesFeed(origin: string) {
   const loaded = (await Promise.all(recent().map((i) => load(origin, i)))).filter(
     (x): x is Loaded => x !== null
   );
-  const items: Item[] = [];
-  for (const { issue, container } of loaded) {
-    const canonical = issueUrl(issue.slug);
-    for (const section of container.querySelectorAll("section[id]")) {
-      const id = section.getAttribute("id") ?? "";
-      if (NOT_STORIES.has(id)) continue;
-      // The one-sentence summary written with the issue; read before clean() strips data-*.
-      const dek = section.getAttribute("data-dek")?.trim();
-      const s = clean(parse(section.outerHTML), canonical);
-      const h2 = s.querySelector("h2");
-      if (!h2) continue;
-      const title = h2.text.trim();
-      h2.remove();
-      // The eyebrow ("05 · Tonight · New") becomes the category, without its number.
-      const eyebrow = s.querySelector("span");
-      const kicker = eyebrow?.text.replace(/^\s*\d+\s*·\s*/, "").trim();
-      if (kicker && kicker.length < 80) eyebrow?.remove();
-      // Fallback for issues without a dek: the first real paragraph of the story, skipping
-      // the dateline ("City Council · Monday ..."), the listen line and the source rows, with
-      // timestamp links like "(1:02:31)" dropped.
-      const firstPara = s
-        .querySelectorAll("p")
-        .map((p) => p.text.replace(/\s*\(\d{1,2}(?::\d{2}){1,2}\)/g, "").replace(/\s+/g, " ").trim())
-        .find(
-          (t) =>
-            t.length > 80 &&
-            !t.slice(0, 90).includes(" · ") &&
-            !t.startsWith("▶") &&
-            !/^(Go deeper|Read more):/.test(t)
-        );
-      const link = `${canonical}#${id}`;
-      items.push({
-        title,
-        link,
-        date: issueDate(issue.slug),
-        summary: dek || firstPara || title,
-        categories: [`Issue ${issue.number}`, ...(kicker ? [kicker] : [])],
-        html: s.innerHTML + reuseNote(link),
-      });
-    }
-  }
+  const items = loaded.flatMap(storyItems);
   return rss({
     title: "Beverly Meeting Digest, story by story",
     self: `${SITE}/beverly/digest/stories.xml`,
@@ -233,6 +237,21 @@ export async function storiesFeed(origin: string) {
       "Every story from the Beverly Meeting Digest as its own entry, for carrying or adapting one item at a time. Free to reuse (CC0).",
     items,
   });
+}
+
+/**
+ * The newest issue's stories as headline, one-sentence summary and link: what the signup
+ * page shows as a sample, and what the weekly email is built from. Null if the page could
+ * not be read, so callers can fall back to the issue's teaser.
+ */
+export async function latestStories(origin: string) {
+  const issue = issues[0];
+  const loaded = await load(origin, issue);
+  if (!loaded) return null;
+  return {
+    issue,
+    stories: storyItems(loaded).map(({ title, summary, link }) => ({ title, summary, link })),
+  };
 }
 
 export const FEED_HEADERS = {
