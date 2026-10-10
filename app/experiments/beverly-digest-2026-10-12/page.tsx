@@ -226,6 +226,7 @@ const PB_1006 = `${AGENDA}/ViewFile/Agenda/_10062026-2935`;
 const CPC_1015 = `${AGENDA}/ViewFile/Agenda/_10152026-2949`;
 const MGL = "https://malegislature.gov/Laws/GeneralLaws";
 const CHARTER_FIN = "https://ecode360.com/44825953";
+const MALEG = "https://malegislature.gov";
 const EO658 =
   "https://www.mass.gov/executive-orders/no-658-establishing-requirements-for-responsible-data-center-development-and-operations-in-massachusetts-to-protect-and-support-ratepayers-communities-and-the-environment";
 
@@ -236,6 +237,7 @@ const contents: [string, string][] = [
   ["datacenters", "Data centers: Beverly's pause, the state's new rule and Salem's ban"],
   ["cabot", "Cabot Street electric work, planned for after New Year's"],
   ["decided", "Also decided: shrubs and trees, a quorum fix, and grants"],
+  ["statehouse", "From the State House: two Beverly laws signed"],
   ["how-it-works", "How it works: who controls the city budget"],
   ["ahead", "Coming up, through November 9"],
 ];
@@ -395,7 +397,7 @@ export default function DigestIssue5() {
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
             A quieter week, with no Council meeting until October 19. Lynch Park has the money to
-            finish its seawall permits. The data center pause has a hearing date, and here is how
+            finish its seawall permits, and two state laws Beverly asked for were signed. The data center pause has a hearing date, and here is how
             it fits with the governor&apos;s new order and Salem&apos;s ban. National Grid plans
             its Cabot Street electric work for after New Year&apos;s. And before the deficit
             committee presents on October 20, a short guide to who controls the city budget.
@@ -789,7 +791,65 @@ export default function DigestIssue5() {
           </p>
         </div>
 
-        {/* ---- 05: how it works. A section, not an aside, so read_depth counts it. ---- */}
+        {/* ---- 05 ---- */}
+        <section
+          id="statehouse"
+          data-dek={"Two state laws Beverly asked for were signed: one moves fire alarm operators hired by 2006 into a different retirement group, and one lets the police chief serve until 70."}
+          className={SECTION}
+        >
+          <Eyebrow>05 &middot; From the State House</Eyebrow>
+          <H2>Two Beverly laws signed</H2>
+          <From>
+            Massachusetts Legislature &middot; home rule petitions, filed with the approval of the
+            Mayor and City Council
+          </From>
+          <p className={BODY}>
+            Some changes the city wants need a state law. Beverly asks for one with a home rule
+            petition, approved by the Mayor and Council and filed by its legislators. Governor
+            Healey signed two in the past three weeks.
+          </p>
+          <ul className="mt-4 max-w-[63ch] list-disc space-y-3 pl-5 text-[1.0625rem] leading-[1.7]">
+            <li>
+              <b>Fire alarm operators&apos; retirement (Chapter 233, signed October 5).</b>{" "}
+              Fire alarm operators hired by the city on or before January 26, 2006, including
+              those who later moved to joint civilian dispatcher, are now classified in Group 2
+              for retirement. For employees hired before 2012, Group 2 reaches the maximum
+              pension rate at age 60 rather than 65. Filed by Senator Joan Lovely.
+            </li>
+            <li>
+              <b>The police chief (Chapter 218, signed September 22).</b>{" "}
+              Police Chief John LeLacheur may serve past 65, the usual mandatory retirement age,
+              until he turns 70, retires or is relieved by the Mayor, whichever comes first, as
+              long as he is physically and mentally able to do the job. The city may require an
+              exam, at its expense, by an impartial physician it designates. He stops paying into
+              the pension system at 65, and his pension will be what it would have been had he
+              retired then. Filed by Representative Hannah Bowen and Senator Lovely. The
+              digest missed this one when it was signed; it now checks the Legislature each week.
+            </li>
+          </ul>
+          <Refs
+            sources={
+              <>
+                <Src href={`${MALEG}/Bills/194/S1876/BillHistory`}>S.1876 history</Src>
+                <Src href={`${MALEG}/Laws/SessionLaws/Acts/2026/Chapter233`}>Chapter 233</Src>
+                <Src href={`${MALEG}/Bills/194/H5248/BillHistory`}>H.5248 history</Src>
+                <Src href={`${MALEG}/Laws/SessionLaws/Acts/2026/Chapter218`}>Chapter 218</Src>
+              </>
+            }
+            more={
+              <>
+                <Src href={`${MGL}/PartI/TitleIV/Chapter32/Section5`}>
+                  Retirement ages and rates, c. 32 &sect;5
+                </Src>
+                <Src href="https://www.mass.gov/service-details/group-classification-faqs-msrb">
+                  Group classification, explained
+                </Src>
+              </>
+            }
+          />
+        </section>
+
+        {/* ---- 06: how it works. A section, not an aside, so read_depth counts it. ---- */}
         <section
           id="how-it-works"
           aria-labelledby="budget-title"
@@ -797,7 +857,7 @@ export default function DigestIssue5() {
           className="mt-16 scroll-mt-24"
         >
           <div className="max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-6 sm:px-7">
-            <Eyebrow>05 &middot; How it works</Eyebrow>
+            <Eyebrow>06 &middot; How it works</Eyebrow>
             <h2
               id="budget-title"
               className="mt-1 font-display text-2xl font-bold leading-tight tracking-tight"
@@ -860,7 +920,7 @@ export default function DigestIssue5() {
           </div>
         </section>
 
-        {/* ---- 06 ---- */}
+        {/* ---- 07 ---- */}
         <section id="ahead" className={SECTION}>
           <h2 className="mt-4 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
             Coming up{" "}
