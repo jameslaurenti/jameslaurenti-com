@@ -888,12 +888,13 @@ export default function DigestIssue5() {
                 it, and it cannot cut debt service or spending the law requires.
               </li>
               <li>
-                <b>Schools are the exception.</b>{" "}
-                On the School Committee&apos;s recommendation, the Council can raise the school
-                total above the Mayor&apos;s figure by a two-thirds vote, within the Proposition
-                2½ limit. But the Council sets only the total. How the money is spent inside the
-                schools is the School Committee&apos;s decision, and the Council&apos;s views on
-                particular lines are advisory.
+                <b>Schools.</b>{" "}
+                The School Committee decides how school money is spent; the Council votes only
+                the total, and its views on particular lines are advisory. A 1987 state law lets
+                a city council raise the school total above the Mayor&apos;s figure by a
+                two-thirds vote, on the School Committee&apos;s recommendation and within
+                Proposition 2½, but only in cities that have adopted it. We have not found that
+                Beverly has.
               </li>
               <li>
                 <b>The clock.</b>{" "}
@@ -909,13 +910,16 @@ export default function DigestIssue5() {
             </ol>
             <p className="mt-3 text-[1.0625rem] leading-[1.75]">
               In short, the Mayor&apos;s budget is the ceiling. The Council can approve it or go
-              lower, line by line, but outside the school exception it cannot go higher or move
-              money on its own.
+              lower, line by line, but it cannot go higher or move money between departments on
+              its own.
             </p>
             <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[0.93rem]">
               <Src href={CHARTER_FIN}>City charter, Article 6</Src>
               <Src href={`${MGL}/PartI/TitleVII/Chapter44/Section32`}>State law, c. 44 &sect;32</Src>
               <Src href={`${MGL}/PartI/TitleXII/Chapter71/Section34`}>School budgets, c. 71 &sect;34</Src>
+              <Src href="https://www.amesburyma.gov/DocumentCenter/View/3700/2023-051-An-Order-for-the-Amesbury-City-Council-to-vote-to-accept-the-provisions-of-Chapter-329-of-the-Acts-of-1987pdf">
+                The 1987 law (Acts 1987, c. 329)
+              </Src>
             </p>
           </div>
         </section>
