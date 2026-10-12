@@ -396,8 +396,9 @@ export default function DigestIssue5() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            A quieter week, with no Council meeting until October 19. Lynch Park has the money to
-            finish its seawall permits, and two state laws Beverly asked for were signed. The data center pause has a hearing date, and here is how
+            A quieter week, with no Council meeting until October 19. Lynch Park won a state grant
+            for most of the cost of its seawall permits, and two state laws Beverly asked for
+            were signed. The data center pause has a hearing date, and here is how
             it fits with the governor&apos;s new order and Salem&apos;s new ban. National Grid plans
             its Cabot Street electric work for after New Year&apos;s. And before the deficit
             committee presents on October 20, a short guide to who controls the city budget.
