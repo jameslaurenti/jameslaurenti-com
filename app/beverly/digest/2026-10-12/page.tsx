@@ -259,6 +259,25 @@ const ahead: Ev[] = [
     },
   },
   {
+    date: "Oct 14",
+    what: "Council budget analyst screening committee",
+    detail:
+      "2:30pm in the Fogg Room at the library, 32 Essex St. Interviews in closed session, then announces its finalist and the dates for finalist interviews with the full Council.",
+    cal: {
+      id: "analyst-screening-2026-10-14",
+      title: "Beverly City Council budget analyst screening committee",
+      start: "2026-10-14T18:30:00Z",
+      end: "2026-10-14T20:30:00Z",
+      location: "Beverly Public Library, Fogg Room, 32 Essex St, Beverly, MA",
+    },
+  },
+  {
+    date: "Oct 15",
+    what: "Deficit Reduction Committee",
+    detail:
+      "6:00pm. Reviews its presentation for October 20. The agenda does not list a location.",
+  },
+  {
     date: "Oct 15",
     what: "Community Preservation Committee",
     detail:
@@ -300,7 +319,7 @@ const ahead: Ev[] = [
     date: "Oct 20",
     what: "Deficit Reduction Committee: first public presentation",
     detail:
-      "Planned for the evening; the committee spent its October 8 meeting preparing it. The time and place have not been posted yet.",
+      "Planned for the evening; the committee called it a community meeting on its October 15 agenda. The time and place have not been posted yet.",
     cal: {
       id: "drc-public-2026-10-20",
       title: "Deficit Reduction Committee: first public presentation",
@@ -376,13 +395,7 @@ const ahead: Ev[] = [
 export default function DigestIssue5() {
   return (
     <div className="bg-bg text-ink">
-      {/* DRAFT: review views are tagged apart so they never count toward issue 5. Set to
-          "2026-10-12" when publishing. */}
-      <PageTracking surface="digest" issue="2026-10-12-preview" depth />
-      {/* DRAFT: remove this banner before publishing. qa:issue fails while it is here. */}
-      <div className="bg-gold-strong/20 px-6 py-2 text-center text-[0.8rem] font-bold uppercase tracking-[0.14em] text-ink">
-        DRAFT, NOT PUBLISHED &middot; for review only
-      </div>
+      <PageTracking surface="digest" issue="2026-10-12" depth />
       <div className="mx-auto max-w-3xl px-6 pb-24">
         <header className="border-b border-rule pb-7 pt-14">
           <p className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-debt">

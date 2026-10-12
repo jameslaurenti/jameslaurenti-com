@@ -23,6 +23,14 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-10-12",
+    number: 5,
+    published: "October 12, 2026",
+    covering: "October 5 to 11",
+    teaser:
+      "Lynch Park won a state grant for most of the cost of its seawall permits, and two state laws Beverly asked for were signed. How the data center pause fits with the governor's order and Salem's ban, National Grid's Cabot Street work after New Year's, and who controls the city budget.",
+  },
+  {
     slug: "2026-10-05",
     number: 4,
     published: "October 5, 2026",
