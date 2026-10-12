@@ -178,7 +178,7 @@ function CabotMap() {
         <line x1="260" y1="245" x2="440" y2="262" {...street} />
         <line x1="260" y1="140" x2="430" y2="140" {...street} />
         <line x1="90" y1="70" x2="260" y2="80" {...street} />
-        <line x1="260" y1="80" x2="430" y2="70" {...street} />
+        <polyline points="260,80 345,74 405,30" fill="none" {...street} strokeLinejoin="round" />
         {/* the work: Cabot from Wallis to Ellis Square, with Bow and Abbott */}
         <g stroke={accent} strokeWidth="6" strokeLinecap="round" fill="none">
           <line x1="260" y1="322" x2="260" y2="78" />
@@ -194,7 +194,7 @@ function CabotMap() {
         <text x="372" y="280" style={label}>Abbott St</text>
         <text x="352" y="130" style={label}>Hale St</text>
         <text x="96" y="60" style={label}>Federal St</text>
-        <text x="352" y="62" style={label}>Church St</text>
+        <text x="288" y="62" style={label}>Church St</text>
         <text x="272" y="100" style={strong}>Ellis Square</text>
         {/* City Hall */}
         <rect x="276" y="282" width="12" height="12" fill={ink} />
@@ -233,7 +233,7 @@ const EO658 =
 const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
 
 const contents: [string, string][] = [
-  ["lynchpark", "Lynch Park gets the money to finish its seawall permits"],
+  ["lynchpark", "Lynch Park gets a state grant for most of its seawall permits"],
   ["datacenters", "Data centers: Beverly's pause, the state's new rule and Salem's ban"],
   ["cabot", "Cabot Street electric work, planned for after New Year's"],
   ["decided", "Also decided: shrubs and trees, a quorum fix, and grants"],
@@ -398,7 +398,7 @@ export default function DigestIssue5() {
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
             A quieter week, with no Council meeting until October 19. Lynch Park has the money to
             finish its seawall permits, and two state laws Beverly asked for were signed. The data center pause has a hearing date, and here is how
-            it fits with the governor&apos;s new order and Salem&apos;s ban. National Grid plans
+            it fits with the governor&apos;s new order and Salem&apos;s new ban. National Grid plans
             its Cabot Street electric work for after New Year&apos;s. And before the deficit
             committee presents on October 20, a short guide to who controls the city budget.
           </p>
@@ -443,11 +443,11 @@ export default function DigestIssue5() {
         {/* ---- 01 ---- */}
         <section
           id="lynchpark"
-          data-dek={"The Council accepted a $430,456 state grant to finish the design and permits for repairing Lynch Park's seawalls, after earlier state applications fell short."}
+          data-dek={"The Council accepted a $430,456 state grant toward the design and permits for repairing Lynch Park's seawalls, about 80% of the cost, after earlier state applications fell short."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Parks</Eyebrow>
-          <H2>Lynch Park gets the money to finish its seawall permits</H2>
+          <H2>Lynch Park gets a state grant for most of its seawall permits</H2>
           <From>
             City Council &middot; Monday, October 5 &middot; Order #252, submitted by the Mayor
           </From>
@@ -460,9 +460,9 @@ export default function DigestIssue5() {
           <p className={BODY}>
             The Council accepted a{" "}
             <Fig>$430,456</Fig>{" "}
-            grant from the state&apos;s Seaport Economic Council to finish the design and
-            permits for repairing Lynch Park&apos;s seawalls, so construction can be put out to
-            bid.{" "}
+            grant from the state&apos;s Seaport Economic Council toward the design and permits
+            for repairing Lynch Park&apos;s seawalls, the last steps before construction can be
+            put out to bid.{" "}
             <Moment src={CC05} s={4267} />
           </p>
           <p className={BODY}>
@@ -480,10 +480,8 @@ export default function DigestIssue5() {
             The project, the Lynch Park Resilient Seawall Restoration, has been in state
             environmental review since May. The December 2022 nor&apos;easter flooded the park,
             and the city says a January 2024 storm damaged park infrastructure. The Carriage
-            House basement floods in heavy rain, and its foundation is part of the seawall. The
-            only construction estimate on record is from 2024: about{" "}
-            <Fig>$5 million</Fig>{" "}
-            for the Rose Garden section alone. There is no total yet.
+            House basement floods in heavy rain, and its foundation is part of the seawall. No
+            construction cost has been published.
           </p>
           <p className={BODY}>
             <b>Why it took this long.</b>{" "}
@@ -540,7 +538,7 @@ export default function DigestIssue5() {
         {/* ---- 02 ---- */}
         <section
           id="datacenters"
-          data-dek={"Beverly's proposed pause on data centers has a November 9 hearing. The governor's new order covers only large projects and works through state permits, and Salem is weighing a permanent ban."}
+          data-dek={"Beverly's proposed pause on data centers has a November 9 hearing. The governor's new order covers only the largest projects and works through state permits; Beverly and Salem are using zoning, and Salem has adopted a permanent ban."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Follow-up</Eyebrow>
@@ -556,37 +554,37 @@ export default function DigestIssue5() {
             <Earlier issue={4} slug="2026-10-05" id="datacenters" />.
           </p>
           <p className={BODY}>
-            <b>Where the state comes in.</b>{" "}
-            In September, Governor Healey signed Executive Order 658. It covers only large data
-            centers, those that would draw more than{" "}
+            <b>What the state does.</b>{" "}
+            A large data center needs state permits, such as environmental review. In September, Governor Healey signed Executive Order 658,
+            which holds those permits until two things happen: the developer signs a community
+            benefits agreement, which the governor&apos;s office describes as an agreement with
+            the host city or town, and shows it will meet the state&apos;s expectations on
+            energy. A state office checks the agreement. The order covers only the biggest
+            projects, those drawing more than{" "}
             <Fig>25 megawatts</Fig>{" "}
-            at peak. State agencies cannot issue such a project permits until the developer shows
-            it meets the state&apos;s energy expectations and files a community benefits
-            agreement, which a state office, the Office of Environmental Justice and Equity,
-            reviews against state standards. The governor&apos;s announcement described it as an
-            agreement with the host community. The order itself does not change local zoning.
+            of power at peak, and it does not change local zoning. Cities and towns still decide
+            what is allowed where.
           </p>
           <p className={BODY}>
-            So the two work on different things. The state order applies to state permits for
-            big projects. Beverly&apos;s pause would apply to local permits for any data center.
-            A project could face both.
+            <b>What Beverly and Salem are doing.</b>{" "}
+            Both are using zoning, which reaches projects of any size. Beverly&apos;s proposal is
+            a pause: no data center applications while the city writes rules, at most until
+            November 30, 2027. Salem went straight to a permanent ban in every part of the city,
+            and its City Council gave it final approval on October 8. Beverly&apos;s pause is
+            meant to give the city time to decide what its rules should be.
           </p>
           <p className={BODY}>
-            <b>Salem went further.</b>{" "}
-            Mayor Dominick Pangallo proposed in July a permanent zoning ban on data centers in
-            every part of the city, with no end date. Salem&apos;s Planning Board recommended it
-            6 to 0 in September, and the final Council vote was on the October 8 agenda; the
-            result had not been posted when this issue went out. Salem had a real case: the city
-            revoked a permit for a 6-megawatt facility at the Shetland complex, and its Zoning
-            Board upheld that in September. The developer says it is not a data center. At
-            Salem&apos;s hearing, its special counsel said the governor&apos;s order
+            Salem has had an actual proposal. A developer planned a 6-megawatt facility at the
+            Shetland complex that the city treated as a data center; the city revoked its permit,
+            and its Zoning Board upheld that in September. The developer says it is not a data
+            center. Salem&apos;s special counsel said the governor&apos;s order
             &ldquo;doesn&apos;t have any impact&rdquo; on the ban, because the order is aimed at
-            much larger facilities.
+            much larger facilities. Beverly&apos;s proposal does not mention any pending project.
           </p>
           <p className={BODY}>
             Elsewhere, Lowell and Westfield adopted one-year pauses this year, and Peabody is
             discussing rules; its community development director said no projects are proposed
-            there. Beverly&apos;s proposal does not mention any pending project.
+            there.
           </p>
           <Refs
             sources={
@@ -602,6 +600,9 @@ export default function DigestIssue5() {
                 </Src>
                 <Src href="https://www.salemma.gov/AgendaCenter/ViewFile/Agenda/_10082026-8449">
                   Salem Council agenda, Oct 8
+                </Src>
+                <Src href="https://patch.com/massachusetts/salem/salem-city-council-passes-ban-data-centers-witch-city">
+                  Patch on Salem&apos;s final vote
                 </Src>
               </>
             }
@@ -819,12 +820,9 @@ export default function DigestIssue5() {
             <li>
               <b>The police chief (Chapter 218, signed September 22).</b>{" "}
               Police Chief John LeLacheur may serve past 65, the usual mandatory retirement age,
-              until he turns 70, retires or is relieved by the Mayor, whichever comes first, as
-              long as he is physically and mentally able to do the job. The city may require an
-              exam, at its expense, by an impartial physician it designates. He stops paying into
-              the pension system at 65, and his pension will be what it would have been had he
-              retired then. Filed by Representative Hannah Bowen and Senator Lovely. The
-              digest missed this one when it was signed; it now checks the Legislature each week.
+              until he turns 70, unless he retires or the Mayor relieves him first. Filed by
+              Representative Hannah Bowen and Senator Lovely. The digest missed this one when it
+              was signed; it now checks the Legislature each week.
             </li>
           </ul>
           <Refs
@@ -849,11 +847,26 @@ export default function DigestIssue5() {
           />
         </section>
 
+        {/* A short button before the explainer. An aside, not a section, so it stays out of the story feed. */}
+        <aside className="mt-14 max-w-[63ch] border-t border-rule pt-6">
+          <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
+            Senior of the Year
+          </p>
+          <p className="mt-2 text-[1rem] leading-[1.7] text-ink-mid">
+            The Council opened its meeting by honoring Beverly&apos;s 2026 Senior of the Year,
+            Gail Dionne: a Ward 3 resident for more than 50 years who worked in the Beverly
+            Public Schools, plays on the Senior Center&apos;s bocce team, leads an exercise class
+            and is, in the resolution&apos;s words, always the first to offer a ride to an
+            appointment or the grocery store.{" "}
+            <Moment src={CC05} s={273} />
+          </p>
+        </aside>
+
         {/* ---- 06: how it works. A section, not an aside, so read_depth counts it. ---- */}
         <section
           id="how-it-works"
           aria-labelledby="budget-title"
-          data-dek={"How the city charter and state law split budget power: the Mayor writes the budget, and the Council can cut it but not add to it, with an exception for schools."}
+          data-dek={"How the city charter and state law split budget power: the Mayor writes the budget, and the Council can cut it but not add to it. Plus the calendar, from fall ideas to the June vote."}
           className="mt-16 scroll-mt-24"
         >
           <div className="max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-6 sm:px-7">
@@ -866,15 +879,16 @@ export default function DigestIssue5() {
             </h2>
             <p className="mt-3 text-[1.0625rem] leading-[1.75]">
               The Deficit Reduction Committee presents its first ideas on October 20. The
-              committee advises; any idea that changes spending would reach the budget through
-              the Mayor and the Council. Here is how the city charter and state law split that
-              work.
+              committee advises; any idea that changes spending reaches the budget through the
+              Mayor and the Council. Here is how the city charter and state law split that work,
+              simplified.
             </p>
             <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-[1rem] leading-[1.7]">
               <li>
                 <b>The School Committee goes first.</b>{" "}
                 It holds a public hearing, votes its budget request and sends it to the Mayor at
-                least 21 days before the city budget is due.
+                least 21 days before the city budget is due. How school money is spent is the
+                School Committee&apos;s decision; the Council votes only the total.
               </li>
               <li>
                 <b>The Mayor writes the budget.</b>{" "}
@@ -886,15 +900,6 @@ export default function DigestIssue5() {
                 After its own public hearing, the Council can approve, reduce or reject any
                 amount. It cannot raise an amount or add a new item unless the Mayor recommends
                 it, and it cannot cut debt service or spending the law requires.
-              </li>
-              <li>
-                <b>Schools.</b>{" "}
-                The School Committee decides how school money is spent; the Council votes only
-                the total, and its views on particular lines are advisory. A 1987 state law lets
-                a city council raise the school total above the Mayor&apos;s figure by a
-                two-thirds vote, on the School Committee&apos;s recommendation and within
-                Proposition 2½, but only in cities that have adopted it. We have not found that
-                Beverly has.
               </li>
               <li>
                 <b>The clock.</b>{" "}
@@ -913,13 +918,25 @@ export default function DigestIssue5() {
               lower, line by line, but it cannot go higher or move money between departments on
               its own.
             </p>
+            <div className="mt-5 border-t border-rule pt-4">
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
+                The calendar, using this year&apos;s budget as the guide
+              </p>
+              <dl className="mt-2.5 grid grid-cols-[6.5rem_1fr] gap-x-3 gap-y-2 text-[0.97rem] leading-[1.6]">
+                <dt className="font-bold">Fall</dt>
+                <dd>Ideas and forecasts: the deficit committee on October 20, and the city&apos;s financial forecast, expected in November.</dd>
+                <dt className="font-bold">Spring</dt>
+                <dd>The School Committee holds its hearing and votes its request.</dd>
+                <dt className="font-bold">June</dt>
+                <dd>The Mayor submits the budget (June 1 this year), and the Council holds its hearing and votes (June 23 this year).</dd>
+                <dt className="font-bold">July 1</dt>
+                <dd>The fiscal year begins.</dd>
+              </dl>
+            </div>
             <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[0.93rem]">
               <Src href={CHARTER_FIN}>City charter, Article 6</Src>
               <Src href={`${MGL}/PartI/TitleVII/Chapter44/Section32`}>State law, c. 44 &sect;32</Src>
               <Src href={`${MGL}/PartI/TitleXII/Chapter71/Section34`}>School budgets, c. 71 &sect;34</Src>
-              <Src href="https://www.amesburyma.gov/DocumentCenter/View/3700/2023-051-An-Order-for-the-Amesbury-City-Council-to-vote-to-accept-the-provisions-of-Chapter-329-of-the-Acts-of-1987pdf">
-                The 1987 law (Acts 1987, c. 329)
-              </Src>
             </p>
           </div>
         </section>
@@ -957,20 +974,6 @@ export default function DigestIssue5() {
           </ul>
         </section>
 
-        {/* The closing note. An aside, not a section, so it stays out of the story feed. */}
-        <aside className="mt-14 max-w-[63ch] border-t border-rule pt-6">
-          <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
-            One more thing
-          </p>
-          <p className="mt-2 text-[1rem] leading-[1.7] text-ink-mid">
-            The Council opened its meeting by honoring Beverly&apos;s 2026 Senior of the Year,
-            Gail Dionne: a Ward 3 resident for more than 50 years who worked in the Beverly
-            Public Schools, plays on the Senior Center&apos;s bocce team, leads an exercise class
-            and is, in the resolution&apos;s words, always the first to offer a ride to an
-            appointment or the grocery store.{" "}
-            <Moment src={CC05} s={273} />
-          </p>
-        </aside>
       </div>
     </div>
   );
