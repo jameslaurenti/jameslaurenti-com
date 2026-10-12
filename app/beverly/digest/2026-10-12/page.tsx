@@ -436,17 +436,6 @@ export default function DigestIssue5() {
           </ol>
         </nav>
 
-        <div className="mt-8 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-4">
-          <p className="text-[0.95rem] leading-relaxed text-ink-mid">
-            <b className="text-ink">Holiday week.</b>{" "}
-            Monday is a holiday, so trash and recycling run a day late all week, through
-            Saturday. There is no leaf pickup this week; the next leaf week is October 19 to 23.{" "}
-            <Src href="https://www.beverlyma.gov/DocumentCenter/View/6972/2026-Calendar-July--December-PDF">
-              Collection calendar
-            </Src>
-          </p>
-        </div>
-
         <h2 className="mt-14 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
           What happened{" "}
           <span className="float-right pt-1.5 text-[0.8rem] font-normal text-ink-faint">
