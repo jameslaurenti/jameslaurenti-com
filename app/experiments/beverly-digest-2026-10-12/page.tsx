@@ -899,7 +899,8 @@ export default function DigestIssue5() {
                 <b>The Council can cut, not add.</b>{" "}
                 After its own public hearing, the Council can approve, reduce or reject any
                 amount. It cannot raise an amount or add a new item unless the Mayor recommends
-                it, and it cannot cut debt service or spending the law requires.
+                it, and it cannot cut debt service or spending the law requires, including the
+                state&apos;s minimum for schools.
               </li>
               <li>
                 <b>The clock.</b>{" "}
@@ -916,7 +917,9 @@ export default function DigestIssue5() {
             <p className="mt-3 text-[1.0625rem] leading-[1.75]">
               In short, the Mayor&apos;s budget is the ceiling. The Council can approve it or go
               lower, line by line, but it cannot go higher or move money between departments on
-              its own.
+              its own. Taxes and borrowing work differently: each year the Council, with the
+              Mayor&apos;s approval, decides how the tax is split between homes and businesses,
+              and borrowing takes a two-thirds Council vote.
             </p>
             <div className="mt-5 border-t border-rule pt-4">
               <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
@@ -937,6 +940,9 @@ export default function DigestIssue5() {
               <Src href={CHARTER_FIN}>City charter, Article 6</Src>
               <Src href={`${MGL}/PartI/TitleVII/Chapter44/Section32`}>State law, c. 44 &sect;32</Src>
               <Src href={`${MGL}/PartI/TitleXII/Chapter71/Section34`}>School budgets, c. 71 &sect;34</Src>
+              <Src href={`${MGL}/PartI/TitleXII/Chapter70/Section6`}>School minimum, c. 70 &sect;6</Src>
+              <Src href={`${MGL}/PartI/TitleVII/Chapter40/Section56`}>Tax split, c. 40 &sect;56</Src>
+              <Src href={`${MGL}/PartI/TitleVII/Chapter44/Section7`}>Borrowing, c. 44 &sect;7</Src>
             </p>
           </div>
         </section>
