@@ -553,8 +553,8 @@ export default function DigestIssue5() {
           </p>
           <p className={BODY}>
             <b>Two hearings, then a vote.</b>{" "}
-            Because the pause is a change to zoning, state law requires two public hearings,
-            and anyone can speak at either. The Planning Board holds one and then sends the
+            Because the pause is a change to zoning, state law requires two public hearings, and
+            at each, interested residents must be given a chance to be heard. The Planning Board holds one and then sends the
             Council its recommendation. The Council holds the other, set for its November 9
             meeting at 7:30pm.{" "}
             <Moment src={CC05} s={4089} />{" "}The Planning Board picked its hearing date on
