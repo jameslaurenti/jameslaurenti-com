@@ -546,18 +546,27 @@ export default function DigestIssue5() {
           <H2>Data centers: Beverly&apos;s pause, the state&apos;s new rule and Salem&apos;s ban</H2>
           <From>City Council &middot; Monday, October 5 &middot; Order #250</From>
           <p className={BODY}>
-            The Council sent the Mayor&apos;s proposed pause on data centers to the Planning
-            Board and set its own public hearing for its November 9 meeting, at 7:30pm.{" "}
-            <Moment src={CC05} s={4089} />{" "}The Planning Board set its hearing date on October
-            6; the date has not been posted. The pause would stop the city from accepting or
-            approving an application for any data center, of any size, until the Council writes
-            zoning rules for them or through November 30, 2027.{" "}
+            The pause would stop the city from accepting or approving an application for any
+            data center, of any size, until the Council writes zoning rules for them or through
+            November 30, 2027.{" "}
             <Earlier issue={4} slug="2026-10-05" id="datacenters" />.
           </p>
           <p className={BODY}>
-            <b>What the state does.</b>{" "}
-            A large data center needs state permits, such as environmental review. In September, Governor Healey signed Executive Order 658,
-            which holds those permits until two things happen: the developer signs a community
+            <b>Two hearings, then a vote.</b>{" "}
+            Because the pause is a change to zoning, state law requires two public hearings,
+            and anyone can speak at either. The Planning Board holds one and then sends the
+            Council its recommendation. The Council holds the other, set for its November 9
+            meeting at 7:30pm.{" "}
+            <Moment src={CC05} s={4089} />{" "}The Planning Board picked its hearing date on
+            October 6, but the date has not been posted yet; we will list it when it is. After
+            both hearings, adopting the pause takes a two-thirds vote of the Council, six of
+            nine.
+          </p>
+          <p className={BODY}>
+            <b>What the governor&apos;s order does.</b>{" "}
+            A large data center needs state permits, such as environmental review. On September
+            8, Governor Healey signed Executive Order 658, which holds those permits until two
+            things happen: the developer signs a community
             benefits agreement, which the governor&apos;s office describes as an agreement with
             the host city or town, and shows it will meet the state&apos;s expectations on
             energy. A state office checks the agreement. The order covers only the biggest
@@ -577,8 +586,10 @@ export default function DigestIssue5() {
           <p className={BODY}>
             Salem has had an actual proposal. A developer planned a 6-megawatt facility at the
             Shetland complex that the city treated as a data center; the city revoked its permit,
-            and its Zoning Board upheld that in September. The developer says it is not a data
-            center. Salem&apos;s special counsel said the governor&apos;s order
+            and its Zoning Board upheld that in September, finding the project was not the office
+            use the permit allowed. The developer calls it a &ldquo;low-latency inference
+            point,&rdquo; servers placed close to customers to cut delays, and says it is not a
+            data center. Salem&apos;s special counsel said the governor&apos;s order
             &ldquo;doesn&apos;t have any impact&rdquo; on the ban, because the order is aimed at
             much larger facilities. Beverly&apos;s proposal does not mention any pending project.
           </p>
@@ -611,6 +622,9 @@ export default function DigestIssue5() {
               <>
                 <Src href="https://www.wgbh.org/news/local/2026-09-16/its-not-the-right-fit-salem-mayor-urges-denial-of-permit-for-data-center">
                   GBH on the Salem project
+                </Src>
+                <Src href="https://www.boston.com/news/local-news/2026/09/18/salem-officials-say-data-center-developers-say-low-latency-inference-point-the-zba-weighed-in/">
+                  Boston.com on the zoning ruling
                 </Src>
                 <Src href="https://www.salemnews.com/news/local_news/peabody-to-discuss-data-center-regs-thursday-no-projects-currently-proposed/article_929eee70-5927-487f-a3bf-54931b10dca4.html">
                   Salem News on Peabody
