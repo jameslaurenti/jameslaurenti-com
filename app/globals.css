@@ -124,3 +124,132 @@ a {
   padding: 0.1em 0.35em;
   border-radius: 3px;
 }
+
+/* ---- .essay ---------------------------------------------------------------
+   Long-form pieces that carry charts, tables and footnotes. Sits on top of
+   .prose, which supplies the paragraph rhythm; everything here is the furniture
+   .prose does not have. Charts and tables break out of the 65ch measure because
+   a seven-column table inside it is unreadable.
+   -------------------------------------------------------------------------- */
+
+.essay > h2,
+.essay > h3 {
+  scroll-margin-top: 1.5rem;
+}
+
+.essay .caption {
+  max-width: 62ch;
+  margin-top: -0.35rem;
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: var(--color-ink-mid);
+}
+
+.essay .yr {
+  font-size: 0.8em;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-ink-faint);
+}
+
+/* charts -------------------------------------------------------------------- */
+
+.essay figure.chart {
+  max-width: none;
+  margin: 1.75rem 0;
+  padding: 0.85rem 0.9rem 0.6rem;
+  background: #ffffff;
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+}
+
+.essay figure.chart svg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* tables -------------------------------------------------------------------- */
+
+.essay .tablewrap {
+  max-width: none;
+  margin: 1.5rem 0;
+  overflow-x: auto;
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  background: #ffffff;
+}
+
+.essay table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  line-height: 1.45;
+}
+
+.essay th,
+.essay td {
+  padding: 0.5rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border-bottom: 1px solid var(--color-rule);
+  white-space: nowrap;
+}
+
+/* the first column is a label and is the one allowed to wrap */
+.essay th:first-child,
+.essay td:first-child {
+  white-space: normal;
+  min-width: 11rem;
+}
+
+.essay thead th {
+  font-weight: 600;
+  font-size: 0.85rem;
+  letter-spacing: 0.01em;
+  color: var(--color-ink-mid);
+  background: var(--color-bg-card);
+}
+
+.essay tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+/* footnotes ----------------------------------------------------------------- */
+
+.essay sup a {
+  text-decoration: none;
+  font-variant-numeric: tabular-nums;
+  padding: 0 0.15em;
+}
+
+.essay p.fn {
+  max-width: 68ch;
+  margin-bottom: 0.9rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-ink-mid);
+}
+
+.essay p.fn .fnum {
+  display: inline-block;
+  min-width: 1.4em;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.essay p.fn:target {
+  background: var(--color-accent-glow);
+  border-radius: 3px;
+}
+
+@media (max-width: 640px) {
+  .essay th,
+  .essay td {
+    padding: 0.45rem 0.55rem;
+    font-size: 0.88rem;
+  }
+  .essay th:first-child,
+  .essay td:first-child {
+    min-width: 8rem;
+  }
+}
