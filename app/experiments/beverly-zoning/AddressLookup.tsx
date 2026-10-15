@@ -84,9 +84,17 @@ export default function AddressLookup({ id = "lookup" }: { id?: string }) {
     const starts: Row[] = [];
     const contains: Row[] = [];
     const tokens = nq.split(" ");
+    // A leading house number has to match from its start: "12 Hale" finds 12 and 120, not 1012.
+    const num = /^\d+[A-Z]?$/.test(tokens[0]) ? tokens[0] : null;
+    const words = num ? tokens.slice(1) : tokens;
     for (const r of rows) {
       if (r[0].startsWith(nq)) starts.push(r);
-      else if (tokens.every((t) => r[0].includes(t))) contains.push(r);
+      else {
+        const space = r[0].indexOf(" ");
+        const rNum = r[0].slice(0, space);
+        const rStreet = r[0].slice(space + 1);
+        if ((!num || rNum.startsWith(num)) && words.every((t) => rStreet.includes(t))) contains.push(r);
+      }
       if (starts.length >= 8) break;
     }
     return [...starts, ...contains].slice(0, 8);
