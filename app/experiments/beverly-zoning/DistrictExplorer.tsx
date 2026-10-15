@@ -114,7 +114,7 @@ export default function DistrictExplorer({ viewBox }: { viewBox: string }) {
             {d.purpose.quote ? <>“{d.purpose.quote}”</> : d.purpose.paraphrase}
             <span className="mt-1 block text-[0.75rem] text-ink-faint">
               {d.purpose.quote ? "The ordinance’s purpose statement" : "The ordinance’s purpose, paraphrased"}
-              <Unchecked />
+              {needsCheck(d.purpose) && <Unchecked />}
             </span>
           </blockquote>
         )}

@@ -81,8 +81,8 @@ const NOTES: Note[] = [
     body: (
       <>
         City of Beverly Zoning Ordinance, City Code Chapter 300, on{" "}
-        <A href="https://ecode360.com/29283330">eCode360</A>. The code is reported as current through February 17, 2026, with one
-        later zoning amendment, Ord. No. 119-2026 (June 15, 2026), adopted but not yet codified. Article IV places the official
+        <A href="https://ecode360.com/29283330">eCode360</A>. The most recent zoning amendment found is Ord. No. 119-2026 (June 15,
+        2026), the accessory dwelling unit update. Article IV places the official
         zoning map with the City Clerk.
       </>
     ),
@@ -121,7 +121,7 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         § 300-6 (Article III) is reported to read “The City of Beverly, Massachusetts is hereby divided into 18 zoning
@@ -144,12 +144,12 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
-        Ordinance excerpts: R-90 “Minimum lot area: 90,000 square feet”; R-6 “minimum of 6,000 square
-        feet”; R-45 45,000 square feet. R-22, R-15 and R-10 follow the district names, which match their purpose statements
-        (“approximately 1/2 acre,” about a third of an acre, “approximately 1/4 acre”). A football field
+        Article VII of the ordinance, §§ 300-30 to 300-35, found in two separate checks: R-90 90,000, R-45 45,000, R-22
+        22,000 (“Minimum lot area: 22,000 square feet”), R-15 15,000, R-10 10,000 and R-6 6,000 square feet, matching the district
+        names and their purpose statements. A football field
         between the goal lines is 300 by 160 feet.
       </>
     ),
@@ -170,8 +170,9 @@ const NOTES: Note[] = [
       <>
         § 300-55, amended December 4, 2023; the City’s{" "}
         <A href="https://www.beverlyma.gov/1028/Accessory-Dwelling-Unit-ADU-Ordinance">ADU page</A> on the 1,000 square foot cap and
-        the May 4, 2026 joint hearing of the Council and Planning Board on changes to match state law. Whether those changes were
-        adopted, possibly as Ord. No. 119-2026, was not confirmed.
+        the May 4, 2026 joint hearing of the Council and Planning Board on changes to match state law. Ord. No. 119-2026
+        (June 15, 2026) amended §§ 300-30 to 300-35 to list a “Protected Use Accessory Dwelling Unit pursuant to § 300-55”; that it
+        is the same proposal heard in May is an inference.
       </>
     ),
   },
@@ -571,7 +572,7 @@ export default function BeverlyZoningGuide() {
               <div>
                 <div className="flex flex-wrap items-baseline justify-between gap-2">
                   <h3 className="font-display text-lg font-semibold">The minimum lot, drawn to scale</h3>
-                  <Confidence level="unverified" short />
+                  <Confidence level="confirmed" short />
                 </div>
                 <div className="mt-3">
                   <LotLadder />
@@ -613,7 +614,7 @@ export default function BeverlyZoningGuide() {
                   </span>
                   <span className="block text-ink-mid">
                     {o.what}
-                    {o.status !== "digest" && <Unchecked />}
+                    {o.status !== "digest" && o.status !== "confirmed" && <Unchecked />}
                   </span>
                 </li>
               ))}
@@ -660,8 +661,9 @@ export default function BeverlyZoningGuide() {
               Since February 2, 2025, state law has allowed one <Term id="adu">accessory dwelling unit</Term> on any lot in a
               single-family district in Massachusetts, without a special permit. It can be as large as 900 square feet or half the size
               of the main house, whichever is smaller, and the city cannot require the owner to live there.
-              <Fn n={8} /> Beverly adopted its own ADU rules in December 2023 with a 1,000 square foot cap, and its Council and
-              Planning Board held a hearing in May 2026 on changes to match the state law.
+              <Fn n={8} /> Beverly adopted its own ADU rules in December 2023 with a 1,000 square foot cap. After a joint hearing
+              in May 2026, it amended them in June to match the state law, and the one- and two-family districts now list a
+              protected accessory unit among their allowed uses.
               <Fn n={9} />
             </P>
 
