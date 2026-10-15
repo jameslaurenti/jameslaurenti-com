@@ -1,0 +1,459 @@
+{
+  "_meta": {
+    "title": "Beverly parcels by base zoning district",
+    "source": "MassGIS Level 3 standardized assessor parcels, Beverly (town 30), CY26_FY27",
+    "url": "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/l3parcels/L3_SHP_M030_BEVERLY.zip",
+    "fiscalYear": 2027,
+    "confidence": "modeled",
+    "retrieved": "2026-10",
+    "notes": "Computed by scripts/beverly-zoning/build_zoning_data.py. Zone is the assessor's ZONING field (base district, no overlays); a parcel with records in more than one zone takes the most common. Acres are mapped parcel area, so streets, railroad and water are excluded. Uses are DOR use codes folded into categories; a parcel takes the most common category among its records. Single-family lot sizes use the assessor's lot size, or the mapped parcel when the assessor lists none.",
+    "parcelsWithConflictingZones": 1
+  },
+  "totals": {
+    "parcels": 11577,
+    "assessorRecords": 13034,
+    "zonedAcres": 8627.6,
+    "streetAcres": 985.0,
+    "railAcres": 71.7,
+    "waterAcres": 214.8,
+    "addresses": 11036
+  },
+  "districts": {
+    "R10": {
+      "parcels": 6228,
+      "assessorRecords": 6390,
+      "acres": 2047.6,
+      "shareOfZonedLand": 23.7,
+      "uses": {
+        "single": 5492,
+        "two": 231,
+        "vacantRes": 148,
+        "exempt": 115,
+        "condo": 85,
+        "three": 49,
+        "apartments": 39,
+        "otherRes": 26,
+        "commercial": 24,
+        "mixed": 16,
+        "industrial": 3
+      },
+      "singleFamilyLots": 5492,
+      "singleFamilyLotSqftMedian": 9150,
+      "singleFamilyLotSqftDeciles": [
+        4790,
+        5660,
+        6530,
+        7840,
+        9150,
+        10020,
+        10890,
+        12630,
+        16550
+      ]
+    },
+    "R45": {
+      "parcels": 564,
+      "assessorRecords": 577,
+      "acres": 1818.6,
+      "shareOfZonedLand": 21.1,
+      "uses": {
+        "single": 397,
+        "exempt": 76,
+        "vacantRes": 52,
+        "otherRes": 15,
+        "two": 11,
+        "mixed": 7,
+        "condo": 3,
+        "three": 1,
+        "commercial": 1,
+        "chapter61": 1
+      },
+      "singleFamilyLots": 397,
+      "singleFamilyLotSqftMedian": 45300,
+      "singleFamilyLotSqftDeciles": [
+        11330,
+        16120,
+        24830,
+        32670,
+        45300,
+        52270,
+        65780,
+        90170,
+        143310
+      ]
+    },
+    "R90": {
+      "parcels": 227,
+      "assessorRecords": 230,
+      "acres": 1058.4,
+      "shareOfZonedLand": 12.3,
+      "uses": {
+        "single": 111,
+        "exempt": 60,
+        "vacantRes": 42,
+        "otherRes": 10,
+        "condo": 2,
+        "commercial": 1,
+        "two": 1
+      },
+      "singleFamilyLots": 111,
+      "singleFamilyLotSqftMedian": 117180,
+      "singleFamilyLotSqftDeciles": [
+        30490,
+        51400,
+        73620,
+        94530,
+        117180,
+        140700,
+        178600,
+        221280,
+        354140
+      ]
+    },
+    "R22": {
+      "parcels": 589,
+      "assessorRecords": 590,
+      "acres": 987.6,
+      "shareOfZonedLand": 11.4,
+      "uses": {
+        "single": 515,
+        "exempt": 37,
+        "vacantRes": 27,
+        "mixed": 3,
+        "industrial": 2,
+        "commercial": 2,
+        "condo": 1,
+        "otherRes": 1,
+        "two": 1
+      },
+      "singleFamilyLots": 515,
+      "singleFamilyLotSqftMedian": 24390,
+      "singleFamilyLotSqftDeciles": [
+        14810,
+        21780,
+        22220,
+        22650,
+        24390,
+        27010,
+        30490,
+        36590,
+        52270
+      ]
+    },
+    "R15": {
+      "parcels": 1362,
+      "assessorRecords": 1390,
+      "acres": 963.0,
+      "shareOfZonedLand": 11.2,
+      "uses": {
+        "single": 1220,
+        "exempt": 45,
+        "vacantRes": 45,
+        "two": 19,
+        "condo": 8,
+        "otherRes": 8,
+        "apartments": 6,
+        "commercial": 6,
+        "three": 3,
+        "mixed": 2
+      },
+      "singleFamilyLots": 1220,
+      "singleFamilyLotSqftMedian": 15680,
+      "singleFamilyLotSqftDeciles": [
+        8710,
+        11330,
+        14810,
+        15250,
+        15680,
+        17420,
+        20040,
+        23520,
+        32670
+      ]
+    },
+    "IR": {
+      "parcels": 103,
+      "assessorRecords": 123,
+      "acres": 884.6,
+      "shareOfZonedLand": 10.3,
+      "uses": {
+        "industrial": 39,
+        "commercial": 28,
+        "exempt": 15,
+        "single": 9,
+        "mixed": 4,
+        "apartments": 4,
+        "vacantRes": 3,
+        "otherRes": 1
+      },
+      "singleFamilyLots": 9,
+      "singleFamilyLotSqftMedian": 155070,
+      "singleFamilyLotSqftDeciles": null
+    },
+    "RMD": {
+      "parcels": 692,
+      "assessorRecords": 908,
+      "acres": 159.2,
+      "shareOfZonedLand": 1.8,
+      "uses": {
+        "single": 287,
+        "two": 138,
+        "three": 83,
+        "condo": 67,
+        "apartments": 65,
+        "exempt": 22,
+        "commercial": 15,
+        "vacantRes": 9,
+        "otherRes": 3,
+        "mixed": 3
+      },
+      "singleFamilyLots": 287,
+      "singleFamilyLotSqftMedian": 4360,
+      "singleFamilyLotSqftDeciles": [
+        2180,
+        3480,
+        3920,
+        3920,
+        4360,
+        4790,
+        5660,
+        6530,
+        9150
+      ]
+    },
+    "IG": {
+      "parcels": 84,
+      "assessorRecords": 332,
+      "acres": 133.0,
+      "shareOfZonedLand": 1.5,
+      "uses": {
+        "commercial": 33,
+        "industrial": 21,
+        "exempt": 8,
+        "single": 5,
+        "mixed": 4,
+        "three": 4,
+        "two": 3,
+        "apartments": 3,
+        "condo": 2,
+        "otherRes": 1
+      },
+      "singleFamilyLots": 5,
+      "singleFamilyLotSqftMedian": 3050,
+      "singleFamilyLotSqftDeciles": null
+    },
+    "R6": {
+      "parcels": 700,
+      "assessorRecords": 792,
+      "acres": 120.2,
+      "shareOfZonedLand": 1.4,
+      "uses": {
+        "single": 352,
+        "two": 141,
+        "three": 64,
+        "condo": 48,
+        "apartments": 48,
+        "exempt": 17,
+        "otherRes": 11,
+        "commercial": 6,
+        "vacantRes": 5,
+        "mixed": 5,
+        "industrial": 3
+      },
+      "singleFamilyLots": 352,
+      "singleFamilyLotSqftMedian": 5230,
+      "singleFamilyLotSqftDeciles": [
+        2610,
+        3480,
+        4360,
+        5230,
+        5230,
+        6100,
+        7410,
+        9150,
+        11760
+      ]
+    },
+    "MOSR": {
+      "parcels": 4,
+      "assessorRecords": 4,
+      "acres": 85.3,
+      "shareOfZonedLand": 1.0,
+      "uses": {
+        "exempt": 4
+      },
+      "singleFamilyLots": 0,
+      "singleFamilyLotSqftMedian": null,
+      "singleFamilyLotSqftDeciles": null
+    },
+    "CC": {
+      "parcels": 360,
+      "assessorRecords": 600,
+      "acres": 84.8,
+      "shareOfZonedLand": 1.0,
+      "uses": {
+        "mixed": 84,
+        "commercial": 80,
+        "apartments": 44,
+        "exempt": 35,
+        "three": 30,
+        "single": 28,
+        "two": 28,
+        "condo": 23,
+        "otherRes": 5,
+        "industrial": 2,
+        "vacantRes": 1
+      },
+      "singleFamilyLots": 28,
+      "singleFamilyLotSqftMedian": 2610,
+      "singleFamilyLotSqftDeciles": [
+        1740,
+        1740,
+        2180,
+        2180,
+        2610,
+        3050,
+        3050,
+        3480,
+        4790
+      ]
+    },
+    "CG": {
+      "parcels": 45,
+      "assessorRecords": 48,
+      "acres": 83.6,
+      "shareOfZonedLand": 1.0,
+      "uses": {
+        "commercial": 27,
+        "single": 7,
+        "exempt": 4,
+        "mixed": 3,
+        "industrial": 2,
+        "two": 1,
+        "condo": 1
+      },
+      "singleFamilyLots": 7,
+      "singleFamilyLotSqftMedian": 5230,
+      "singleFamilyLotSqftDeciles": null
+    },
+    "HD": {
+      "parcels": 10,
+      "assessorRecords": 57,
+      "acres": 53.4,
+      "shareOfZonedLand": 0.6,
+      "uses": {
+        "exempt": 4,
+        "commercial": 3,
+        "vacantRes": 1,
+        "otherRes": 1,
+        "apartments": 1
+      },
+      "singleFamilyLots": 0,
+      "singleFamilyLotSqftMedian": null,
+      "singleFamilyLotSqftDeciles": null
+    },
+    "RHD": {
+      "parcels": 412,
+      "assessorRecords": 563,
+      "acres": 52.4,
+      "shareOfZonedLand": 0.6,
+      "uses": {
+        "single": 130,
+        "two": 109,
+        "three": 71,
+        "apartments": 43,
+        "condo": 42,
+        "exempt": 5,
+        "commercial": 5,
+        "mixed": 5,
+        "vacantRes": 1,
+        "otherRes": 1
+      },
+      "singleFamilyLots": 130,
+      "singleFamilyLotSqftMedian": 3480,
+      "singleFamilyLotSqftDeciles": [
+        2180,
+        2180,
+        2610,
+        3050,
+        3480,
+        3480,
+        3920,
+        4360,
+        5660
+      ]
+    },
+    "CN": {
+      "parcels": 175,
+      "assessorRecords": 234,
+      "acres": 45.6,
+      "shareOfZonedLand": 0.5,
+      "uses": {
+        "commercial": 55,
+        "mixed": 43,
+        "two": 21,
+        "single": 18,
+        "condo": 11,
+        "three": 10,
+        "exempt": 8,
+        "apartments": 5,
+        "otherRes": 2,
+        "vacantRes": 2
+      },
+      "singleFamilyLots": 18,
+      "singleFamilyLotSqftMedian": 5660,
+      "singleFamilyLotSqftDeciles": [
+        1740,
+        4360,
+        4360,
+        5230,
+        6100,
+        6100,
+        11330,
+        12630,
+        21780
+      ]
+    },
+    "RSD": {
+      "parcels": 5,
+      "assessorRecords": 74,
+      "acres": 32.3,
+      "shareOfZonedLand": 0.4,
+      "uses": {
+        "vacantRes": 2,
+        "apartments": 1,
+        "condo": 1,
+        "mixed": 1
+      },
+      "singleFamilyLots": 0,
+      "singleFamilyLotSqftMedian": null,
+      "singleFamilyLotSqftDeciles": null
+    },
+    "BHD": {
+      "parcels": 15,
+      "assessorRecords": 120,
+      "acres": 14.1,
+      "shareOfZonedLand": 0.2,
+      "uses": {
+        "commercial": 9,
+        "exempt": 5,
+        "condo": 1
+      },
+      "singleFamilyLots": 0,
+      "singleFamilyLotSqftMedian": null,
+      "singleFamilyLotSqftDeciles": null
+    },
+    "WDR": {
+      "parcels": 2,
+      "assessorRecords": 2,
+      "acres": 3.8,
+      "shareOfZonedLand": 0.0,
+      "uses": {
+        "apartments": 2
+      },
+      "singleFamilyLots": 0,
+      "singleFamilyLotSqftMedian": null,
+      "singleFamilyLotSqftDeciles": null
+    }
+  }
+}
