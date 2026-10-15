@@ -1,0 +1,349 @@
+{
+  "_meta": {
+    "title": "Beverly’s base zoning districts, as summarized for the zoning guide",
+    "source": "City of Beverly Zoning Ordinance, City Code Chapter 300, on eCode360 (code BE3208): Art. III (districts, § 300-6), Art. VII (district regulations, §§ 300-30 to 300-47), Art. VIII (overlays), Art. X (parking).",
+    "retrieved": "2026-10",
+    "confidence": "unverified",
+    "notes": "Built while the ordinance's own pages were unreachable from the build environment, so every rule comes from search-engine excerpts of the eCode360 and beverlyma.gov pages. 'status' says how far each field was checked: 'confirmed' = the same value found in two separate checks of the ordinance's text (or quoted from it); 'excerpt' = found once, not yet re-checked; 'digest' = reported in the Beverly Meeting Digest from a primary document. Fields left null were not found. Read https://ecode360.com/29283605 directly before treating any of it as final.",
+    "articleUrl": "https://ecode360.com/29283605",
+    "districtsUrl": "https://ecode360.com/29283485",
+    "overlaysUrl": "https://ecode360.com/29284394",
+    "parkingUrl": "https://ecode360.com/29284746"
+  },
+
+  "families": [
+    {
+      "id": "one-family",
+      "label": "One-family homes",
+      "blurb": "One house per lot. The number in the name is the minimum lot size in thousands of square feet.",
+      "zones": ["R90", "R45", "R22", "R15", "R10"]
+    },
+    {
+      "id": "one-two",
+      "label": "One- and two-family homes",
+      "blurb": "Small lots where a two-family house is allowed too.",
+      "zones": ["R6"]
+    },
+    {
+      "id": "multifamily",
+      "label": "Apartments and condos",
+      "blurb": "Districts written for buildings with several homes in them.",
+      "zones": ["RMD", "RHD", "RSD"]
+    },
+    {
+      "id": "business",
+      "label": "Business",
+      "blurb": "Shops, offices and services, from corner stores to downtown.",
+      "zones": ["CN", "CC", "CG"]
+    },
+    {
+      "id": "industrial",
+      "label": "Industrial and office parks",
+      "blurb": "Research, offices, manufacturing and warehouses.",
+      "zones": ["IR", "IG"]
+    },
+    {
+      "id": "special",
+      "label": "Special districts",
+      "blurb": "Districts drawn for one kind of place: the hospital, the harbor, city open space.",
+      "zones": ["HD", "BHD", "WDR", "MOSR"]
+    }
+  ],
+
+  "districts": {
+    "R90": {
+      "code": "R-90",
+      "name": "One-Family District",
+      "section": "300-30",
+      "plain": "Houses on lots of about two acres or more.",
+      "purpose": {
+        "quote": "The R-90 One-Family District is established to principally provide for single-family detached residences on large lots (approximately two acres minimum).",
+        "status": "confirmed"
+      },
+      "housing": { "value": "One-family houses by right. Two-family houses are not in the by-right list. Since June 2026 the ordinance also lists one protected-use accessory dwelling unit (Ord. No. 119-2026).", "status": "confirmed" },
+      "minLotSqft": { "value": 90000, "status": "confirmed" },
+      "frontageFt": { "value": 225, "status": "confirmed" },
+      "heightFt": { "value": 35, "status": "confirmed" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": [
+        { "text": "A larger cluster-style project, a Planned Residential Development, can be allowed by special permit from the Zoning Board of Appeals.", "status": "excerpt" }
+      ]
+    },
+    "R45": {
+      "code": "R-45",
+      "name": "One-Family District",
+      "section": "300-31",
+      "plain": "Houses on lots of about an acre.",
+      "purpose": {
+        "quote": "The R-45 One-Family District is established to principally provide for single-family detached residences at suburban density on moderately large lots (approximately one acre minimum).",
+        "status": "confirmed"
+      },
+      "housing": { "value": "One-family houses by right. Since June 2026 the ordinance also lists one protected-use accessory dwelling unit (Ord. No. 119-2026).", "status": "confirmed" },
+      "minLotSqft": { "value": 45000, "status": "confirmed" },
+      "frontageFt": { "value": 175, "status": "confirmed" },
+      "heightFt": { "value": 35, "status": "confirmed" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": []
+    },
+    "R22": {
+      "code": "R-22",
+      "name": "One-Family District",
+      "section": "300-32",
+      "plain": "Houses on lots of about half an acre.",
+      "purpose": {
+        "quote": "[The R-22 One-Family District] is established to principally provide for single-family detached residences at suburban density on medium-sized lots (approximately 1/2 acre minimum).",
+        "status": "confirmed"
+      },
+      "housing": { "value": "One-family houses by right. Since June 2026 the ordinance also lists one protected-use accessory dwelling unit (Ord. No. 119-2026).", "status": "confirmed" },
+      "minLotSqft": { "value": 22000, "status": "confirmed" },
+      "frontageFt": { "value": 150, "status": "excerpt" },
+      "heightFt": { "value": 35, "status": "excerpt" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": []
+    },
+    "R15": {
+      "code": "R-15",
+      "name": "One-Family District",
+      "section": "300-33",
+      "plain": "Houses on lots of about a third of an acre.",
+      "purpose": {
+        "paraphrase": "Single-family homes at urban density on medium-sized lots, about a third of an acre at minimum.",
+        "status": "confirmed"
+      },
+      "housing": { "value": "One-family houses by right. State law also protects one accessory dwelling unit.", "status": "confirmed" },
+      "minLotSqft": { "value": 15000, "status": "confirmed" },
+      "frontageFt": { "value": 125, "status": "excerpt" },
+      "heightFt": { "value": 35, "status": "excerpt" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": []
+    },
+    "R10": {
+      "code": "R-10",
+      "name": "One-Family District",
+      "section": "300-34",
+      "plain": "Houses on lots of about a quarter acre. The most common district in Beverly by far.",
+      "purpose": {
+        "quote": "The R-10 One-Family District is established to principally provide for single-family detached residences at urban density on small-sized lots (approximately 1/4 acre minimum).",
+        "status": "confirmed"
+      },
+      "housing": { "value": "One-family houses by right. Since June 2026 the ordinance also lists one protected-use accessory dwelling unit (Ord. No. 119-2026).", "status": "confirmed" },
+      "minLotSqft": { "value": 10000, "status": "confirmed" },
+      "frontageFt": { "value": 100, "status": "excerpt" },
+      "heightFt": { "value": 35, "status": "excerpt" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": [
+        { "text": "Planned Residential Developments are not allowed here.", "status": "confirmed" }
+      ]
+    },
+    "R6": {
+      "code": "R-6",
+      "name": "One-Family and Two-Family District",
+      "section": "300-35",
+      "plain": "Small lots in older neighborhoods, where a two-family house is allowed too.",
+      "purpose": {
+        "quote": "The R-6 One-Family and Two-Family District is established to provide for single-family and two-family residences at urban density on small-sized lots (minimum of 6,000 square feet).",
+        "status": "confirmed"
+      },
+      "housing": { "value": "One-family houses, two-family houses and semidetached houses by right. Since June 2026 the ordinance also lists one protected-use accessory dwelling unit (Ord. No. 119-2026).", "status": "confirmed" },
+      "minLotSqft": { "value": 6000, "status": "confirmed" },
+      "frontageFt": { "value": 65, "status": "excerpt" },
+      "heightFt": { "value": 35, "status": "excerpt" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": [
+        { "text": "Planned Residential Developments are not allowed here.", "status": "confirmed" },
+        { "text": "Each home beyond the first needs another 1,000 square feet of lot.", "status": "excerpt" }
+      ]
+    },
+    "RMD": {
+      "code": "RMD",
+      "name": "Multifamily District (medium density)",
+      "section": "300-36",
+      "plain": "Mixed blocks of houses, two-families and small apartment buildings.",
+      "purpose": {
+        "paraphrase": "Multifamily homes at medium density, with related recreational, agricultural and educational uses under special conditions.",
+        "status": "confirmed"
+      },
+      "housing": { "value": "One-family, two-family and multifamily buildings by right, with conditions on multifamily.", "status": "confirmed" },
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": [
+        { "text": "An older table in a 2015 City copy listed 8,000 square feet plus 4,000 for each unit beyond two. Not confirmed as current.", "status": "excerpt" }
+      ]
+    },
+    "RHD": {
+      "code": "RHD",
+      "name": "Multifamily District (high density)",
+      "section": "300-37",
+      "plain": "The densest residential district, mostly between Cabot and Rantoul Streets downtown.",
+      "purpose": null,
+      "housing": { "value": "One-family, two-family, semidetached and multifamily buildings by right, with conditions on multifamily.", "status": "excerpt" },
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": { "value": 40, "status": "excerpt" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": [
+        { "text": "Height limits here were lowered to 40 feet on February 13, 2023.", "status": "excerpt" },
+        { "text": "RHD lots inside the MBTA Communities overlay follow that overlay’s building rules.", "status": "excerpt" }
+      ]
+    },
+    "RSD": {
+      "code": "RSD",
+      "name": "Special Residential District",
+      "section": "300-38",
+      "plain": "A handful of large condominium properties.",
+      "purpose": {
+        "quote": "The RSD Special Residential District is established to provide principally for special residential development at high density, as well as one-family, two-family, and multifamily residences at high density.",
+        "status": "confirmed"
+      },
+      "housing": { "value": "Special residential development, one-family, two-family and multifamily homes, at high density.", "status": "excerpt" },
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": []
+    },
+    "CN": {
+      "code": "CN",
+      "name": "Neighborhood Commercial District",
+      "section": "300-39",
+      "plain": "Small business strips that serve the neighborhoods around them.",
+      "purpose": {
+        "paraphrase": "Limited commercial uses serving the residential neighborhoods next to them.",
+        "status": "confirmed"
+      },
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": []
+    },
+    "CC": {
+      "code": "CC",
+      "name": "Central Business District (with the CC2 Cabot Street subdistrict)",
+      "section": "300-40",
+      "plain": "Downtown, along Cabot and Rantoul Streets.",
+      "purpose": null,
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": { "value": 55, "status": "confirmed" },
+      "parking": { "value": "1 space per home with one bedroom or fewer, 2 for larger homes", "status": "confirmed" },
+      "notes": [
+        { "text": "CC2, the Cabot Street subdistrict, is capped at 45 feet and four stories. It was created on February 13, 2023.", "status": "excerpt" },
+        { "text": "Next to an RMD or R-6 district, the limit drops to 35 feet.", "status": "excerpt" },
+        { "text": "Near Beverly Depot, the Depot Parking Overlay requires 1 space for each one- or two-bedroom home.", "status": "confirmed" }
+      ]
+    },
+    "CG": {
+      "code": "CG",
+      "name": "General Commercial District",
+      "section": "300-41",
+      "plain": "Larger, car-oriented commercial sites, such as the Stop & Shop site on Enon Street in North Beverly.",
+      "purpose": null,
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": { "value": 35, "status": "digest" },
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": []
+    },
+    "IR": {
+      "code": "IR",
+      "name": "Restricted Industrial, Research and Office District",
+      "section": "300-42",
+      "plain": "Research, office and light industry, including the land around the airport.",
+      "purpose": {
+        "paraphrase": "Restricted industry, research and offices.",
+        "status": "confirmed"
+      },
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": [
+        { "text": "Some IR land carries an IR Overlay that allows mixed-use commercial development.", "status": "excerpt" }
+      ]
+    },
+    "IG": {
+      "code": "IG",
+      "name": "General Industrial District",
+      "section": "300-43",
+      "plain": "Industrial land, much of it west of downtown along the railroad.",
+      "purpose": null,
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": []
+    },
+    "HD": {
+      "code": "HD",
+      "name": "Hospital District",
+      "section": "300-44",
+      "plain": "Beverly Hospital’s campus on Herrick Street.",
+      "purpose": null,
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": null,
+      "notes": []
+    },
+    "BHD": {
+      "code": "BHD",
+      "name": "Beverly Harbor District",
+      "section": "300-45",
+      "plain": "The harbor waterfront along Water Street: marinas, docks and condominiums.",
+      "purpose": null,
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": { "value": "2 spaces per home", "status": "confirmed" },
+      "notes": [
+        { "text": "A bed-and-breakfast needs a special permit from the Zoning Board of Appeals.", "status": "excerpt" }
+      ]
+    },
+    "WDR": {
+      "code": "WDR",
+      "name": "Waterfront Development Residential District",
+      "section": "300-46",
+      "plain": "A single waterfront apartment property on Congress Street.",
+      "purpose": null,
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": null,
+      "notes": []
+    },
+    "MOSR": {
+      "code": "MOSR",
+      "name": "Municipal Open Space and Recreation District",
+      "section": "300-47",
+      "plain": "City-owned open space and recreation land.",
+      "purpose": null,
+      "housing": null,
+      "minLotSqft": null,
+      "frontageFt": null,
+      "heightFt": null,
+      "parking": null,
+      "notes": []
+    }
+  },
+
+  "overlays": [
+    { "name": "Floodplain Overlay", "section": "300-48", "what": "Covers the federal flood hazard zones and adds construction limits there, including a ban on new building or fill in the floodway.", "status": "confirmed" },
+    { "name": "Local Historic District", "section": "300-49", "what": "Ties zoning to Beverly’s local historic districts.", "status": "confirmed" },
+    { "name": "Water Supply Protection Overlay", "section": "300-50", "what": "Protects land around the water supply.", "status": "confirmed" },
+    { "name": "IR Overlay", "section": "300-51", "what": "Allows mixed-use commercial development on some Restricted Industrial land.", "status": "confirmed" },
+    { "name": "Depot Parking Overlay", "section": "300-52", "what": "Downtown lots south of Federal Street on Rantoul Street need 1 parking space per one- or two-bedroom home instead of the usual minimum.", "status": "confirmed" },
+    { "name": "Smart Growth Overlay (Chapter 40R)", "section": "Article XIX", "what": "A state-program district where a developer can choose denser, as-of-right rules instead of the underlying district’s.", "status": "confirmed" },
+    { "name": "MBTA Communities and Mandatory Mixed Use overlays", "section": "Article XX", "what": "About 98 acres centered on Beverly Depot where multifamily housing is allowed by right, adopted November 12, 2024 to meet the state’s MBTA Communities law.", "status": "digest" }
+  ]
+}

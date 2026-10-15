@@ -24,7 +24,8 @@ export type Surface =
   | "budget-explainer"
   | "fy27-budget"
   | "development-map"
-  | "who-beverly-is";
+  | "who-beverly-is"
+  | "beverly-zoning";
 
 export type TrackEvent =
   /** A primary source was opened: a timestamped recording, a filed ordinance, minutes. */

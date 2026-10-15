@@ -41,6 +41,7 @@ export const config = {
   matcher: [
     "/beverly/who-beverly-is",
     "/beverly/who-beverly-is-v2",
+    "/admin/experiments",
     "/harborlight",
   ],
 };

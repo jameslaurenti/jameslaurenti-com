@@ -15,6 +15,12 @@ const nextConfig: NextConfig = {
         source: "/experiments/:path*",
         headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
       },
+      {
+        // Private dashboards for the site owner (e.g. /admin/experiments). Unlinked, and
+        // also disallowed in robots.ts.
+        source: "/admin/:path*",
+        headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }],
+      },
     ];
   },
 
