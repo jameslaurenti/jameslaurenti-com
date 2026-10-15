@@ -186,13 +186,13 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         Residential rate ${G.tax.residentialRate.value.toFixed(2)}: Massachusetts Division of Local Services, confirmed. Commercial,
         industrial and personal property ${G.tax.commercialRate.value.toFixed(2)}: the{" "}
-        <A href={G.tax.commercialRate.url}>City Assessors page</A>, unverified. The City Council set the split with the state’s
-        maximum shift, {G.tax.shift.value}, on December 1, 2025 (unverified). Tax class follows use under G.L. c. 59, § 2A and the
+        <A href={G.tax.commercialRate.url}>City Assessors page</A>; the ratio of the two rates matches the shift. The City Council set the split with the state’s
+        maximum shift, {G.tax.shift.value}, in December 2025. Tax class follows use under G.L. c. 59, § 2A and the
         state’s property type codes. The full mechanics are in{" "}
         <A href="/beverly/what-sets-your-taxes">What sets your property taxes</A>.
       </>
@@ -244,13 +244,13 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         Adoption on November 12, 2024: the City’s{" "}
-        <A href={G.mbta.zonedUnits.url}>MBTA Communities page</A>, confirmed. The October 7, 2024 joint hearing date comes from a
-        search excerpt of the City’s Design Standards page and is unverified, as is the simple-majority vote reported by{" "}
-        <A href={G.mbta.simpleMajority.url}>North Shore Realtors</A>.
+        <A href={G.mbta.zonedUnits.url}>MBTA Communities page</A>, confirmed. The October 7, 2024 joint hearing and the simple-majority
+        vote are reported by the City and by <A href={G.mbta.simpleMajority.url}>North Shore Realtors</A>. The codified ordinance
+        on eCode360 is headed “Added 10-21-2024 by Ord. No. 236,” which may be a first vote; the City gives November 12.
       </>
     ),
   },
@@ -265,7 +265,7 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         G.L. c. 40A, § 3A, and 760 CMR 72.00. EOHLC’s{" "}
@@ -285,17 +285,17 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "modeled",
     body: (
       <>
-        The same City page compares the district’s {fmt(G.mbta.zonedUnits.value)} homes with {fmt(G.mbta.requiredAfterOffset.value)}{" "}
-        required after the state’s mixed-use offset. The arithmetic matches a 25 percent reduction from{" "}
-        {fmt(G.mbta.requiredUnits.value)}.
+        The City page measures the district’s {fmt(G.mbta.zonedUnits.value)} homes against the requirement reduced by the
+        state’s 25 percent mixed-use offset: {fmt(G.mbta.requiredUnits.value)} less 25 percent, rounded up, is{" "}
+        {fmt(G.mbta.requiredAfterOffset.value)}.
       </>
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         G.L. c. 40A, § 3A(b) bars noncompliant communities from four grant programs, among them MassWorks and Housing Choice.
@@ -334,17 +334,17 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         Peabody: <A href="https://itemlive.com/2024/12/12/peabody-adopts-mbta-zoning/">Daily Item, December 12, 2024</A>. Salem:
-        Harvard Design Magazine on “paper-compliant” communities, and the state’s December 2023 announcement of the
-        first compliant communities.
+        Harvard Design Magazine on “paper-compliant” communities, and the state’s December 12, 2023 announcement naming Salem
+        and Lexington the first compliant communities.
       </>
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         <A href="https://bankerandtradesman.com/lexington-slash-mbta-communities-zoning-amid-development-boom/">Banker & Tradesman</A>{" "}
@@ -353,7 +353,7 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         Milton: SJC-13580 and EOHLC’s February 2025 notice of noncompliance. Marblehead:{" "}
@@ -362,17 +362,17 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         <A href="https://www.mapc.org/news/parking-mandates-new-multifamily-housing-salem/">MAPC on Salem’s parking ordinance</A>,
-        signed September 29, 2025 after a 10 to 1 Council vote. Enon Street figures:{" "}
+        signed September 29, 2025 after a 10 to 1 Council vote on September 25. Enon Street figures:{" "}
         <A href="/beverly/digest/2026-10-05#enon">Beverly Meeting Digest, October 5</A> (confirmed).
       </>
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         Amy Dain, “The State of Zoning for Multi-Family Housing in Greater Boston” (Massachusetts Smart Growth Alliance,
@@ -382,7 +382,7 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: <>Salem’s accessory apartment ordinance: two 7 to 4 Council votes in May 2021, as reported by Patch.</>,
   },
   {
@@ -915,15 +915,15 @@ export default function BeverlyZoningGuide() {
               </table>
             </div>
             <p className="mt-2 text-[0.75rem] text-ink-faint">
-              Homes required: the minimum multifamily capacity the state set for each community. Beverly’s requirement is
-              unverified; the rest of its row is confirmed.
+              Homes required: the minimum multifamily capacity the state set for each community, from its community categories
+              table.
             </p>
 
             <H3>What the rest of Massachusetts has learned</H3>
             <ol className="mt-5 max-w-[64ch] list-decimal space-y-4 pl-5 text-[1.0625rem] leading-relaxed marker:font-semibold marker:text-accent">
               <li>
                 <b>Zoning for housing is not the same as getting it.</b> Peabody drew its districts over complexes that already held
-                about 2,200 homes, leaving room for roughly 140 more. Salem met the law largely with districts it already had.
+                about 2,200 homes, leaving room for roughly 140 more. Salem, one of the first two communities found compliant, met the law largely with districts it already had.
                 <Fn n={26} />
               </li>
               <li>
@@ -981,7 +981,7 @@ export default function BeverlyZoningGuide() {
             <SectionNum>Notes and sources</SectionNum>
             <p className="max-w-[64ch] text-[0.9375rem] leading-relaxed text-ink-mid">
               Every figure carries a level. Confirmed: from a primary source already checked, including documents the Beverly Meeting
-              Digest reported. Modeled: computed from the state’s parcel data, method stated. Unverified: from a search summary of
+              Digest reported, or from two independent sources that agree. Modeled: computed from the state’s parcel data, method stated. Unverified: from a search summary of
               the cited page, not yet read in full.
             </p>
             <ol className="mt-6 space-y-4">

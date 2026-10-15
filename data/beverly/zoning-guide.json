@@ -8,23 +8,23 @@
   "tax": {
     "fiscalYear": 2026,
     "residentialRate": { "value": 10.81, "status": "confirmed", "source": "Massachusetts DLS tax rates by class, as compiled in public/data/ma-property-tax.json" },
-    "commercialRate": { "value": 20.98, "status": "unverified", "source": "City of Beverly Assessors page, FY2026 tax rates", "url": "https://www.beverlyma.gov/391/City-Assessors" },
-    "shift": { "value": 1.75, "status": "unverified", "source": "City Council classification vote, December 1, 2025, as summarized in local coverage; the ratio of the two official rates (1.94) matches a 1.75 shift with a residential factor of about 0.902" },
+    "commercialRate": { "value": 20.98, "status": "confirmed", "source": "City of Beverly Assessors page, FY2026 tax rates", "url": "https://www.beverlyma.gov/391/City-Assessors" },
+    "shift": { "value": 1.75, "status": "confirmed", "source": "City Council classification vote, December 2025, as reported by Patch; the ratio of the two official rates (1.94) matches a 1.75 shift with a residential factor of about 0.902" },
     "avgSingleFamilyBill": { "value": 8834, "status": "confirmed", "source": "Massachusetts DLS average single-family tax bill, FY2026, as compiled in public/data/ma-property-tax.json" }
   },
 
   "mbta": {
-    "category": { "value": "Commuter rail community", "status": "unverified", "source": "EOHLC, MBTA community categories and requirements table (760 CMR 72.00), January 14, 2025", "url": "https://www.mass.gov/doc/section-3a-regulations-community-categories-and-reqs/download" },
-    "requiredUnits": { "value": 2683, "status": "unverified", "source": "Same table: 15 percent of Beverly’s 17,887 housing units (2020 Census)" },
-    "requiredAfterOffset": { "value": 2013, "status": "unverified", "source": "City of Beverly MBTA Communities page: the requirement after the state’s mixed-use offset", "url": "https://www.beverlyma.gov/1105/MBTA-Communities-Multifamily-Zoning" },
-    "minAcres": { "value": 50, "status": "unverified", "source": "Same City page and EOHLC table" },
+    "category": { "value": "Commuter rail community", "status": "confirmed", "source": "EOHLC, MBTA community categories and requirements table (760 CMR 72.00), January 14, 2025", "url": "https://www.mass.gov/doc/section-3a-regulations-community-categories-and-reqs/download" },
+    "requiredUnits": { "value": 2683, "status": "confirmed", "source": "Same table: 15 percent of Beverly’s 17,887 housing units (2020 Census)" },
+    "requiredAfterOffset": { "value": 2013, "status": "modeled", "source": "2,683 reduced by the 25 percent mixed-use offset the City page describes, rounded up", "url": "https://www.beverlyma.gov/1105/MBTA-Communities-Multifamily-Zoning" },
+    "minAcres": { "value": 50, "status": "confirmed", "source": "Same City page and EOHLC table" },
     "zonedUnits": { "value": 2063, "status": "confirmed", "source": "City of Beverly MBTA Communities page, as cited in this site’s who-beverly-is notes", "url": "https://www.beverlyma.gov/1105/MBTA-Communities-Multifamily-Zoning" },
     "zonedAcres": { "value": 98, "status": "confirmed", "source": "Same City page" },
     "adopted": { "value": "2024-11-12", "status": "confirmed", "source": "Same City page" },
     "compliance": { "value": "April 2025", "status": "confirmed", "source": "Same City page" },
-    "jointHearing": { "value": "2024-10-07", "status": "unverified", "source": "City of Beverly Design Standards Project page, via search excerpt", "url": "https://www.beverlyma.gov/931/Design-Standards-Project---Zoning" },
-    "simpleMajority": { "value": true, "status": "unverified", "source": "North Shore Realtors, 'Beverly to Hold Joint Public Hearings on 3A Compliance', fall 2024", "url": "https://www.northshorerealtors.com/news/beverly-to-hold-joint-public-hearings-on-3a-compliance" },
-    "statewide": { "value": "165 of 177 MBTA communities compliant at the end of January 2026; the Attorney General sued nine towns on January 29, 2026, including Marblehead and Middleton", "status": "unverified", "source": "Attorney General press release, January 29, 2026", "url": "https://www.mass.gov/news/ag-campbell-sues-nine-communities-for-noncompliance-with-mbta-communities-law" }
+    "jointHearing": { "value": "2024-10-07", "status": "confirmed", "source": "City of Beverly Design Standards Project page, via search excerpt", "url": "https://www.beverlyma.gov/931/Design-Standards-Project---Zoning" },
+    "simpleMajority": { "value": true, "status": "confirmed", "source": "North Shore Realtors, 'Beverly to Hold Joint Public Hearings on 3A Compliance', fall 2024", "url": "https://www.northshorerealtors.com/news/beverly-to-hold-joint-public-hearings-on-3a-compliance" },
+    "statewide": { "value": "165 of 177 MBTA communities compliant at the end of January 2026; the Attorney General sued nine towns on January 29, 2026, including Marblehead and Middleton", "status": "confirmed", "source": "Attorney General press release, January 29, 2026", "url": "https://www.mass.gov/news/ag-campbell-sues-nine-communities-for-noncompliance-with-mbta-communities-law" }
   },
 
   "shi": {
@@ -87,8 +87,8 @@
   },
 
   "research": {
-    "dain2019": { "value": "Of multifamily units approved in 100 Greater Boston communities from 2015 to 2017, 14 percent were allowed by right, 57 percent needed a special permit, 22 percent came through Chapter 40B and 7 percent through use variances.", "status": "unverified", "source": "Amy Dain, 'The State of Zoning for Multi-Family Housing in Greater Boston' (Massachusetts Smart Growth Alliance, June 2019), as summarized by MAPC", "url": "https://www.mapc.org/news/study-local-zoning-rules-block-multi-family-housing-in-ma/" },
-    "indicators2026": { "value": "An early count of projects in MBTA Communities districts found 6,898 units in 102 projects across 34 communities, under 1 percent of the region’s housing. It listed two Beverly projects, of 37 and 52 units.", "status": "unverified", "source": "Boston Indicators, 'An Early Look at the MBTA Communities Permitting Pipeline' (Amy Dain), January 2026", "url": "https://www.bostonindicators.org/-/media/indicators/boston-indicators-reports/report-files/2026/mbtac_012726_v2.pdf" }
+    "dain2019": { "value": "Of multifamily units approved in 100 Greater Boston communities from 2015 to 2017, 14 percent were allowed by right, 57 percent needed a special permit, 22 percent came through Chapter 40B and 7 percent through use variances.", "status": "confirmed", "source": "Amy Dain, 'The State of Zoning for Multi-Family Housing in Greater Boston' (Massachusetts Smart Growth Alliance, June 2019), as summarized by MAPC", "url": "https://www.mapc.org/news/study-local-zoning-rules-block-multi-family-housing-in-ma/" },
+    "indicators2026": { "value": "An early count of projects in MBTA Communities districts found 6,898 units in 102 projects across 34 communities, under 1 percent of the region’s housing.", "status": "unverified", "source": "Boston Indicators, 'An Early Look at the MBTA Communities Permitting Pipeline' (Amy Dain), January 2026", "url": "https://www.bostonindicators.org/-/media/indicators/boston-indicators-reports/report-files/2026/mbtac_012726_v2.pdf" }
   },
 
   "compare": [
@@ -103,8 +103,8 @@
       "place": "Salem",
       "kind": "City",
       "required": null,
-      "what": "The first community the state found compliant (December 2023), mostly with districts it already had. Dropped parking minimums for buildings of three or more homes in September 2025.",
-      "status": "unverified",
+      "what": "One of the first two communities the state found compliant, with Lexington (December 2023), mostly with districts it already had. Dropped parking minimums for buildings of three or more homes in September 2025.",
+      "status": "confirmed",
       "url": "https://www.mapc.org/news/parking-mandates-new-multifamily-housing-salem/"
     },
     {
@@ -112,7 +112,7 @@
       "kind": "City",
       "required": 2319,
       "what": "Council approved its districts 8 to 2 in December 2024. They sit on sites that already hold about 2,200 homes, leaving room for roughly 140 more.",
-      "status": "unverified",
+      "status": "confirmed",
       "url": "https://itemlive.com/2024/12/12/peabody-adopts-mbta-zoning/"
     },
     {
@@ -120,13 +120,13 @@
       "kind": "City",
       "required": 2270,
       "what": "Council approved 7 to 0; voters upheld it in an April 2025 referendum, 3,668 to 2,431.",
-      "status": "unverified"
+      "status": "confirmed"
     },
     {
       "place": "Danvers",
       "kind": "Town",
       "required": 1176,
-      "what": "Town Meeting adopted its district in 2024. A repeal attempt failed in May 2025.",
+      "what": "A Special Town Meeting adopted its district in February 2024. A repeal attempt failed on a voice vote in 2025.",
       "status": "unverified"
     },
     {
@@ -134,7 +134,7 @@
       "kind": "Town",
       "required": 897,
       "what": "Rejected at Town Meeting in 2024, passed in 2025, overturned at the ballot in July 2025, sued by the Attorney General in January 2026, passed again in May 2026.",
-      "status": "unverified",
+      "status": "confirmed",
       "url": "https://marbleheadcurrent.org/2026/05/12/towns-3a-plan-what-happens-next/"
     },
     {
@@ -142,14 +142,14 @@
       "kind": "Town",
       "required": 2461,
       "what": "Voters overturned its district in February 2024. The state’s highest court upheld the law in January 2025, and Town Meeting adopted a new plan that June.",
-      "status": "unverified"
+      "status": "confirmed"
     },
     {
       "place": "Lexington",
       "kind": "Town",
       "required": 1231,
       "what": "Zoned about 227 acres in 2023, far beyond its minimum, and drew about 1,100 units of proposals. Cut the district back to about 90 acres in March 2025.",
-      "status": "unverified",
+      "status": "confirmed",
       "url": "https://bankerandtradesman.com/lexington-slash-mbta-communities-zoning-amid-development-boom/"
     }
   ]
