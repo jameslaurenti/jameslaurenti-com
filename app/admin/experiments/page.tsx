@@ -8,7 +8,8 @@ import CopyLink from "./CopyLink";
 /**
  * A private dashboard of everything under /experiments, for opening drafts on any device and
  * grabbing a link to share one. Not linked from anywhere, not in the sitemap, noindex (header
- * from next.config.ts plus the robots tag below) and disallowed in robots.ts.
+ * from next.config.ts plus the robots tag below), disallowed in robots.ts, and behind the draft
+ * password (proxy.ts). The experiments themselves stay open to anyone with a link.
  *
  * It lives at /admin/experiments rather than /experiments on purpose: someone given one
  * experiment's link can guess /experiments, but nothing in that link leads here.

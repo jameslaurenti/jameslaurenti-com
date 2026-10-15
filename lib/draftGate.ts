@@ -5,6 +5,7 @@
 export const GATED_PATHS = [
   "/beverly/who-beverly-is",
   "/beverly/who-beverly-is-v2",
+  "/admin/experiments",
 ];
 
 export const ACCESS_COOKIE = "jl_draft_access";
