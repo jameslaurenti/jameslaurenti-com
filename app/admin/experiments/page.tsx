@@ -14,8 +14,10 @@ import CopyLink from "./CopyLink";
  * It lives at /admin/experiments rather than /experiments on purpose: someone given one
  * experiment's link can guess /experiments, but nothing in that link leads here.
  *
- * Folders are scanned at build time, so an experiment shows up here as soon as it exists;
- * data/experiments.ts adds titles, descriptions and status.
+ * Every entry in data/experiments.ts always gets a link. Folders are also scanned at build
+ * time so a new experiment shows up before it has an entry, but the scan is best-effort: on
+ * Vercel it has come back empty, and a dashboard that hides its own links when the scan fails
+ * is worse than one that links to a folder that turns out to be gone.
  */
 
 export const metadata: Metadata = {
@@ -23,7 +25,7 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-type Row = Experiment & { source: "app" | "public" | "missing"; described: boolean };
+type Row = Experiment & { missing: boolean; described: boolean };
 
 function listDirs(dir: string): string[] {
   try {
@@ -36,19 +38,17 @@ function listDirs(dir: string): string[] {
   }
 }
 
-function rows(): Row[] {
+function rows(): { list: Row[]; scanned: boolean } {
   const app = new Set(listDirs("app/experiments"));
   const pub = new Set(
     listDirs("public/experiments").filter((d) => fs.existsSync(path.join(/*turbopackIgnore: true*/ process.cwd(), "public/experiments", d, "index.html"))),
   );
   const found = new Set([...app, ...pub]);
+  // An empty scan means the folders weren't readable here, not that every experiment is gone.
+  const scanned = found.size > 0;
   const known = new Map(EXPERIMENTS.map((e) => [e.slug, e]));
 
-  const out: Row[] = EXPERIMENTS.map((e) => ({
-    ...e,
-    source: app.has(e.slug) ? "app" : pub.has(e.slug) ? "public" : "missing",
-    described: true,
-  }));
+  const out: Row[] = EXPERIMENTS.map((e) => ({ ...e, missing: scanned && !found.has(e.slug), described: true }));
   for (const slug of found) {
     if (!known.has(slug)) {
       out.push({
@@ -56,12 +56,12 @@ function rows(): Row[] {
         title: slug.replace(/-/g, " "),
         blurb: "No description yet. Add an entry in data/experiments.ts.",
         status: "draft",
-        source: app.has(slug) ? "app" : "public",
+        missing: false,
         described: false,
       });
     }
   }
-  return out.sort((a, b) => (b.updated ?? "").localeCompare(a.updated ?? ""));
+  return { list: out.sort((a, b) => (b.updated ?? "").localeCompare(a.updated ?? "")), scanned };
 }
 
 const CHIP: Record<string, string> = {
@@ -73,7 +73,7 @@ const CHIP: Record<string, string> = {
 };
 
 export default function ExperimentsDashboard() {
-  const list = rows();
+  const { list, scanned } = rows();
   return (
     <div className="mx-auto max-w-3xl px-5 py-12 sm:px-6 sm:py-16">
       <p className="text-[0.75rem] font-bold uppercase tracking-[0.16em] text-ink-faint">Private · not linked anywhere</p>
@@ -82,6 +82,11 @@ export default function ExperimentsDashboard() {
         Everything under /experiments, newest first. Each opens in place; copy a link to share one on its own. {list.length}{" "}
         {list.length === 1 ? "item" : "items"}.
       </p>
+      {!scanned && (
+        <p className="mt-2 text-[0.8125rem] text-ink-faint">
+          Folder scan came back empty on this deploy, so this list is data/experiments.ts only.
+        </p>
+      )}
 
       <ul className="mt-8 space-y-4">
         {list.map((e) => {
@@ -90,13 +95,9 @@ export default function ExperimentsDashboard() {
             <li key={e.slug} className="rounded-lg border border-rule bg-white/60 px-5 py-4">
               <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                 <h2 className="font-display text-xl font-semibold">
-                  {e.source === "missing" ? (
-                    e.title
-                  ) : (
-                    <Link href={href} className="hover:text-accent">
-                      {e.title}
-                    </Link>
-                  )}
+                  <Link href={href} className="hover:text-accent">
+                    {e.title}
+                  </Link>
                 </h2>
                 <span
                   className={`rounded-full border px-2 py-0.5 text-[0.6875rem] font-semibold uppercase tracking-[0.08em] ${CHIP[e.status]}`}
@@ -109,21 +110,16 @@ export default function ExperimentsDashboard() {
                 {e.blurb}
               </p>
               <div className="mt-3 flex flex-wrap items-center gap-3">
-                {e.source === "missing" ? (
-                  <span className="text-[0.8125rem] text-debt">Listed in data/experiments.ts, but no folder exists.</span>
-                ) : (
-                  <>
-                    <Link
-                      href={href}
-                      className="rounded-md bg-accent px-3 py-1.5 text-[0.8125rem] font-semibold hover:bg-accent-lt"
-                    >
-                      {/* The site-wide `a` reset outranks text-white on the link itself. */}
-                      <span className="text-white">Open</span>
-                    </Link>
-                    <CopyLink path={href} />
-                    <code className="text-[0.75rem] text-ink-faint">{href}</code>
-                  </>
-                )}
+                <Link
+                  href={href}
+                  className="rounded-md bg-accent px-3 py-1.5 text-[0.8125rem] font-semibold hover:bg-accent-lt"
+                >
+                  {/* The site-wide `a` reset outranks text-white on the link itself. */}
+                  <span className="text-white">Open</span>
+                </Link>
+                <CopyLink path={href} />
+                <code className="text-[0.75rem] text-ink-faint">{href}</code>
+                {e.missing && <span className="text-[0.8125rem] text-debt">No folder found for this slug.</span>}
               </div>
             </li>
           );
