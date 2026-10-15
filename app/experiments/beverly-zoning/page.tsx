@@ -70,7 +70,7 @@ const GLOSSARY: [string, string, string][] = [
   ["site-plan", "Site plan review", "A Planning Board review of a larger project’s layout, traffic, drainage and design, even when its use is allowed."],
   ["special-permit", "Special permit", "Approval, after a public hearing, for a use or feature the ordinance allows only if a board finds it fits. The board can attach conditions."],
   ["shi", "Subsidized Housing Inventory", "The state’s count of each community’s affordable homes, used to decide where Chapter 40B can override local zoning."],
-  ["variance", "Variance", "Permission to depart from a rule, usually a dimensional one, because the lot’s shape, soil or slope makes the rule a hardship."],
+  ["variance", "Variance", "Permission to depart from a rule for one lot. Since July 2026 the test is “practical difficulty,” weighed against public benefits and harms; before, it took a hardship caused by the lot’s soil, shape or slope."],
 ];
 
 type Note = { level: Level; body: React.ReactNode };
@@ -100,13 +100,17 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
-        Variances: G.L. c. 40A, § 10, with the four-of-five vote in § 15. Older houses: § 6, which lets a nonconforming one- or
-        two-family house be altered when the change does not increase the nonconformity, and otherwise requires a finding that it is
-        not substantially more detrimental to the neighborhood. Whether Beverly’s ordinance allows use variances was not
-        determined. <A href="https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40A/Section10">c. 40A, § 10</A>.
+        Variances: G.L. c. 40A, § 10, as amended by St. 2026, c. 137 (the FY2027 state budget, signed July 9, 2026): a
+        “practical difficulty” standard replaces substantial hardship, boards weigh public benefits including housing, residential
+        use variances are allowed unless the ordinance bars them, and rights lapse after two years. Four of five votes: § 15. Older
+        houses: § 6, with the “not substantially more detrimental” finding and, since 2026, a simpler path for houses nonconforming
+        only in lot size, frontage, coverage or floor area ratio; the same act moved the zoning freeze from when a permit is issued
+        to when it is applied for. Sources: law firm summaries of the act (Nixon Peabody, RIW and others), which agree; the enacted
+        text was not opened, and summaries differ on whether it took effect July 1 or on signing.{" "}
+        <A href="https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40A/Section10">c. 40A, § 10</A>.
       </>
     ),
   },
@@ -155,7 +159,7 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         Affordable Homes Act, St. 2024, c. 150, amending G.L. c. 40A, §§ 1A and 3, with state regulations at 760 CMR 71.00,
@@ -220,7 +224,7 @@ const NOTES: Note[] = [
     ),
   },
   {
-    level: "unverified",
+    level: "confirmed",
     body: (
       <>
         G.L. c. 40A, § 11 (“parties in interest,” including abutters to abutters within 300 feet) and § 17 (appeal
@@ -522,8 +526,8 @@ export default function BeverlyZoningGuide() {
                   <Term id="variance">Variance</Term>
                 </dt>
                 <dd className="mt-1 text-[1.0625rem] leading-relaxed">
-                  Permission to break a rule for one lot, because something about that lot, such as its shape or slope, makes the rule
-                  a hardship. State law sets the bar high on purpose.
+                  Permission to depart from a rule for one lot when following it would be impractical. For decades the state set the
+                  bar very high, and a 2026 law lowered it.
                   <Fn n={3} />
                 </dd>
               </div>
@@ -680,7 +684,8 @@ export default function BeverlyZoningGuide() {
             <P>
               Being nonconforming does not make a house illegal. It changes what happens when you want to expand it. An addition that
               makes a house less conforming, such as one reaching into a required <Term id="setback">setback</Term>, needs a finding
-              from the Zoning Board of Appeals that it will not be substantially more detrimental to the neighborhood.
+              from the Zoning Board of Appeals that it will not be substantially more detrimental to the neighborhood. A 2026 state law
+              eased this for houses whose only nonconformity is lot size, frontage, coverage or floor area.
               <Fn n={3} noId />
             </P>
 
@@ -762,9 +767,9 @@ export default function BeverlyZoningGuide() {
                 Parking and Traffic Commission advises on parking requests.
               </Actor>
               <Actor name="You">
-                Speak at hearings, write to the boards and your councilor, and appeal decisions that harm you. Owners of a fifth of the
-                land affected by a change can file a protest that raises the vote it needs.
-                <Unchecked />
+                Speak at hearings, write to the boards and your councilor, and appeal decisions that harm you. Owners of half the land
+                in a proposed change, or within 300 feet of it, can file a protest. That lifts a housing change that would pass by
+                majority to two-thirds.
               </Actor>
             </div>
           </section>

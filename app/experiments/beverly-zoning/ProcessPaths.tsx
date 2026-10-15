@@ -18,7 +18,7 @@ const C = guide.council;
 const AMEND: Step[] = [
   {
     title: "Someone proposes a change",
-    who: "The Mayor, the City Council, the Planning Board, the Zoning Board of Appeals, an owner of the land affected, or ten registered voters",
+    who: "The City Council, the Planning Board, the Zoning Board of Appeals, an owner of the land affected, ten registered voters, the regional planning agency, or others the city charter allows",
     when: "Day 0",
     checked: false,
     body: (
@@ -32,7 +32,7 @@ const AMEND: Step[] = [
     title: "The Council sends it to the Planning Board",
     who: "City Council",
     when: "Within 14 days",
-    checked: false,
+    checked: true,
     body: <>The board reviews it and holds its own hearing. The Council cannot skip this step.</>,
   },
   {
@@ -44,7 +44,6 @@ const AMEND: Step[] = [
       <>
         Each body holds a hearing, together or separately, and anyone can speak. For Order #250 the Council set its hearing for
         November 9, 2026. Notice runs in a newspaper two weeks in a row, the first at least 14 days ahead.
-        <Unchecked />
       </>
     ),
   },
@@ -52,7 +51,7 @@ const AMEND: Step[] = [
     title: "The Planning Board recommends",
     who: "Planning Board",
     when: "Report, or 21 days after its hearing",
-    checked: false,
+    checked: true,
     body: <>The Council cannot vote until the board reports or 21 days pass without a report. The board can say yes, no, or yes with changes.</>,
   },
   {
@@ -84,8 +83,9 @@ const AMEND: Step[] = [
     checked: false,
     body: (
       <>
-        A building or special permit issued after the first hearing notice runs has to follow the new rule if it passes. If the
-        change fails, the same proposal cannot come back for two years unless the Planning Board recommends it.
+        A building or special permit applied for after the first hearing notice runs has to follow the new rule if it passes;
+        until a 2026 state law, the test was when the permit was issued. If the change fails, the same proposal cannot come back
+        for two years unless the Planning Board recommends it.
       </>
     ),
   },
@@ -108,11 +108,12 @@ const RELIEF: Step[] = [
     title: "A special permit, if the ordinance offers one",
     who: "Zoning Board of Appeals or Planning Board",
     when: "Hearing within 65 days of filing; decision within 90 days after",
-    checked: false,
+    checked: true,
     body: (
       <>
         Some uses and features are allowed only after a hearing, where the board decides whether the project fits. On a five-member
-        board it takes four votes, and the board can attach conditions. The apartments proposed at {guide.enon.address} need one
+        board it takes four votes, though a majority is enough for some housing, such as multifamily homes near transit with
+        affordable units. The board can attach conditions. The apartments proposed at {guide.enon.address} need one
         from the Planning Board to build {guide.enon.parkingProposed.value} parking spaces where zoning requires{" "}
         {guide.enon.parkingRequired.value}.
       </>
@@ -121,12 +122,14 @@ const RELIEF: Step[] = [
   {
     title: "A variance, if a rule cannot fit the lot",
     who: "Zoning Board of Appeals",
-    when: "Lapses if unused for a year",
-    checked: false,
+    when: "Lapses if unused for two years",
+    checked: true,
     body: (
       <>
-        Permission to break a dimensional rule, such as a setback or a height limit, because something about the lot itself (its
-        shape, soil or slope) makes the rule a hardship. It takes four of the five members, and the bar is meant to be high.
+        Permission to depart from a rule, such as a setback or a height limit, for one lot. Until July 2026 the owner had to show
+        a hardship caused by the lot’s soil, shape or slope, a bar few cases cleared. A 2026 state law replaced it with
+        “practical difficulty,” weighed against the public benefits, housing among them, and the harms. On a five-member board
+        it takes four votes.
       </>
     ),
   },
@@ -134,11 +137,12 @@ const RELIEF: Step[] = [
     title: "A finding, for an older house",
     who: "Zoning Board of Appeals",
     when: "Same hearing rules",
-    checked: false,
+    checked: true,
     body: (
       <>
         Many houses predate today’s rules. Changing one in a way that makes it less conforming, such as an addition into a
-        setback, needs a finding that the change is not substantially more detrimental to the neighborhood.
+        setback, needs a finding that the change is not substantially more detrimental to the neighborhood. Since 2026, a house
+        whose only problem is lot size, frontage, lot coverage or floor area has a simpler path.
       </>
     ),
   },
@@ -146,7 +150,7 @@ const RELIEF: Step[] = [
     title: "Neighbors are told, and can appeal",
     who: "Abutters, the board, the courts",
     when: "20 days after the decision is filed",
-    checked: false,
+    checked: true,
     body: (
       <>
         Owners within 300 feet get mailed notice of the hearing. After the decision is filed with the City Clerk, anyone aggrieved

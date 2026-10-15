@@ -27,6 +27,17 @@ figures in `data/beverly/zoning-districts.json`, `zoning-guide.json`, `zoning-pa
   `status: "excerpt"` / `"unverified"` in the data files and an Unverified badge on the page.
   Facts the Beverly Meeting Digest already reported from primary documents are marked confirmed.
 
+## Verification status (October 15, 2026)
+
+A second, search-only pass checked most claims; results are reflected in the data files and
+note levels. Two findings to keep in mind:
+
+- **G.L. c. 40A was amended by the FY2027 budget, St. 2026, c. 137 (signed July 9, 2026).**
+  Variances now use a "practical difficulty" test and lapse after two years; the zoning freeze
+  attaches when a permit is applied for; a simpler path exists for houses nonconforming only in
+  lot size, frontage, coverage or FAR. Sourced to law-firm summaries; read the enacted text.
+- **Ord. No. 119-2026 is the ADU update**, codified in §§ 300-30 to 300-35.
+
 ## Verification checklist, highest value first
 
 1. **Ballot Question 7 (November 3, 2026).** The page describes it from the campaign's wording as
