@@ -23,6 +23,7 @@ export default function robots(): MetadataRoute.Robots {
           "/harborlight",
           "/harborlight/",
           "/unlock",
+          "/admin",
           "/api/",
           "/_next/",
           // Unfinished work. Also noindex; this keeps crawlers out of it entirely.
