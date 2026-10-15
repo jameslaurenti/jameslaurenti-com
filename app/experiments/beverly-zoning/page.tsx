@@ -328,7 +328,8 @@ const NOTES: Note[] = [
     body: (
       <>
         <A href={G.ballot2026.question7.url}>Secretary of the Commonwealth, 2026 information for voters</A>. The description of
-        Question 7 is the campaign’s, as reported in local coverage, and was not checked against the official summary.
+        Question 7 follows consistent reporting by WBUR (October 7, 2026), Boston.com (September 22, 2026) and Boston 25 News; the
+        official text was not opened.
       </>
     ),
   },
@@ -844,10 +845,11 @@ export default function BeverlyZoningGuide() {
                   <Unchecked />
                 </p>
                 <p className="mt-1 text-[0.9375rem] leading-relaxed text-ink-mid">
-                  A statewide question on starter homes. As its campaign describes it, it would bar cities and towns from requiring
-                  single-family lots larger than 5,000 square feet or frontage longer than 50 feet. Every one of Beverly’s
-                  one-family districts requires more than 5,000 square feet today. Read the official summary in the state’s voter
-                  guide before relying on this description.
+                  A statewide question on starter homes. As news coverage describes it, a single-family house would be allowed
+                  without a special permit on any lot in a residential district that has at least 5,000 square feet, 50 feet of
+                  frontage, and public water and sewer. Cities would still set height, setbacks, size and parking. Every one of
+                  Beverly’s one-family districts requires more than 5,000 square feet today, so in neighborhoods with water and
+                  sewer, smaller lots could hold a new house. Read the official summary in the state’s voter guide.
                   <Fn n={25} />
                 </p>
               </div>

@@ -83,7 +83,7 @@
   },
 
   "ballot2026": {
-    "question7": { "value": "Question 7 on the November 3, 2026 statewide ballot concerns starter homes. As its campaign describes it, it would bar cities and towns from requiring single-family lots larger than 5,000 square feet or frontage longer than 50 feet.", "status": "unverified", "source": "Secretary of the Commonwealth, 2026 Information for Voters; campaign description as reported by the Marblehead Current", "url": "https://www.sec.state.ma.us/divisions/elections/research-and-statistics/2026-information-for-voters/guide.htm" }
+    "question7": { "value": "Question 7 on the November 3, 2026 statewide ballot would amend G.L. c. 40A so that a single-family house is allowed without a special permit on any lot in a residential district with at least 5,000 square feet, 50 feet of frontage, and public water and sewer. Height, setbacks, size and parking stay local.", "status": "unverified", "source": "News coverage (WBUR, October 7, 2026; Boston.com, September 22, 2026; Boston 25 News), consistent with each other; the Secretary of the Commonwealth’s Question 7 page was not opened", "url": "https://www.sec.state.ma.us/divisions/elections/research-and-statistics/2026-Information-for-voters/2026-ballot-question7.htm" }
   },
 
   "research": {
