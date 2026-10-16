@@ -203,7 +203,7 @@ export const meetings: Meeting[] = [
     local: "Tue 13 Oct 2026, 8:30am",
     start: "2026-10-13T12:30:00Z",
     end: "2026-10-13T14:00:00Z",
-    location: "Temporary City Hall, 195 Cabot St, Beverly, MA",
+    location: "Temporary City Hall, 175 Cabot St, Beverly, MA",
     detail:
       "Chase Street one-way proposal, safety reviews near Pickett St and Baker Ave and around Peabody, Larcom and Sargent Aves, and a recommendation to the Planning Board on the Stop & Shop site.",
     url: `${AGENDA}/ViewFile/Agenda/_10132026-2947`,

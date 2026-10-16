@@ -249,13 +249,13 @@ const ahead: Ev[] = [
     date: "Oct 13",
     what: "Parking and Traffic Commission",
     detail:
-      "8:30am at the temporary City Hall, 195 Cabot St, and online. A proposal to make Chase Street one-way, safety reviews near Pickett Street and Baker Avenue and around Peabody, Larcom and Sargent Avenues, and a recommendation to the Planning Board on the Stop & Shop site.",
+      "8:30am at the temporary City Hall, 175 Cabot St, and online. A proposal to make Chase Street one-way, safety reviews near Pickett Street and Baker Avenue and around Peabody, Larcom and Sargent Avenues, and a recommendation to the Planning Board on the Stop & Shop site.",
     cal: {
       id: "parking-2026-10-13",
       title: "Beverly Parking and Traffic Commission",
       start: "2026-10-13T12:30:00Z",
       end: "2026-10-13T14:00:00Z",
-      location: "Temporary City Hall, 195 Cabot St, Beverly, MA",
+      location: "Temporary City Hall, 175 Cabot St, Beverly, MA",
     },
   },
   {
