@@ -500,8 +500,8 @@ export default function DigestIssue6() {
               <b>Not ready to present.</b>{" "}
               One slide lists ideas members said they have only started to look at and are not
               ready to present: sharing services with other communities; audits of non-health
-              insurance and of school efficiency; the future of Hurd Stadium and Cooney Field; a
-              policy on personal use of city vehicles; and composting pet waste.{" "}
+              insurance and of school efficiency; the future of Hurd Stadium and Cooney Field; and a
+              policy on personal use of city vehicles.{" "}
               <Moment src={DRC15} s={2588} />
             </li>
           </ul>
