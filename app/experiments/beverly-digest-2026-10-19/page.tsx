@@ -156,6 +156,7 @@ const Earlier = ({ issue, slug, id, label }: { issue: number; slug: string; id: 
 const V = "https://www.youtube.com/watch?v=";
 const DRC15 = `${V}lYnHXAjyqxE`;
 const DRC14 = `${V}O8Kxggwls3A`;
+const FLOCK0421 = `${V}9O_ifUaTQJs`;
 const MGL = "https://malegislature.gov/Laws/GeneralLaws";
 const SC14 = `${V}x_MrkYQd68M`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
@@ -168,6 +169,12 @@ const SC_AGENDA_1014 =
   "https://4.files.edl.io/7a24/10/09/26/180350-bf4a8e99-1149-46ac-83b1-580eab12abc8.pdf";
 const SC_FEES = "https://www.beverlyschools.org/apps/pages/index.jsp?uREC_ID=2088421&type=d";
 const ELECTION = "https://www.beverlyma.gov/817/Upcoming-Election";
+const SOS = "https://www.sec.state.ma.us";
+const SOS_CHECK = `${SOS}/VoterRegistrationSearch/MyVoterRegStatus.aspx`;
+const SOS_REGISTER = `${SOS}/ovr/`;
+const SOS_MAIL = `${SOS}/divisions/elections/voting-information/vote-by-mail.htm`;
+const SOS_WHERE = `${SOS}/WhereDoIVoteMA/WhereDoIVote`;
+const TRASH_CAL = "https://www.beverlyma.gov/DocumentCenter/View/6972/2026-Calendar-July--December-PDF";
 
 const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
 
@@ -184,18 +191,6 @@ const contents: [string, string][] = [
 type Ev = { date: string; what: string; detail: string; cal?: CalendarEvent };
 
 const ahead: Ev[] = [
-  {
-    date: "To Oct 30",
-    what: "Early voting for the November 3 election",
-    detail:
-      "At the temporary City Hall, 175 Cabot St, first floor (the former TD Bank). Mondays to Wednesdays 8:30am to 4:30pm, Thursdays to 7:30pm, Fridays to 1:00pm; Saturdays 9:00am to 5:00pm, Sundays 9:00am to 1:00pm.",
-  },
-  {
-    date: "Oct 19",
-    what: "Leaf pickup week",
-    detail:
-      "On your regular trash day, through October 23. Again November 2 to 6 and November 16 to 20.",
-  },
   {
     date: "Oct 20",
     what: "Deficit Reduction Committee: first public presentation",
@@ -249,11 +244,6 @@ const ahead: Ev[] = [
     },
   },
   {
-    date: "Oct 24",
-    what: "Voter registration deadline",
-    detail: "Last day to register to vote in the November 3 election.",
-  },
-  {
     date: "Oct 26",
     what: "Camp Paradise public meeting",
     detail:
@@ -265,11 +255,6 @@ const ahead: Ev[] = [
       end: "2026-10-26T23:30:00Z",
       location: "Beverly Public Library, Barnet Gallery, 32 Essex St, Beverly, MA",
     },
-  },
-  {
-    date: "Oct 27",
-    what: "Mail ballot applications due",
-    detail: "Applications to vote by mail must reach the city clerk by 5:00pm.",
   },
   {
     date: "Oct 27",
@@ -460,7 +445,7 @@ export default function DigestIssue6() {
               <Moment src={DRC15} s={386} /> <Moment src={DRC15} s={420} />
             </li>
             <li>
-              <b>Health insurance.</b> Two ideas:
+              <b>Health insurance.</b>{" "}Two ideas:
               <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
                 <li>
                   <b>Who pays the premiums.</b>{" "}
@@ -493,7 +478,7 @@ export default function DigestIssue6() {
               <Moment src={DRC15} s={655} /> <Moment src={DRC15} s={790} />
             </li>
             <li>
-              <b>Fees.</b> Two ideas members saw as workable on September 28:
+              <b>Fees.</b>{" "}Two ideas members saw as workable on September 28:
               <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
                 <li>
                   Registration fees for the summer drop-off program and day camps.{" "}
@@ -631,15 +616,16 @@ export default function DigestIssue6() {
             A review by school leaders, security staff, the school resource officer and building
             staff found the cause: a backup alarm system that was easy to trigger by pressing the
             wrong button, for instance out of habit when meaning to page the building. The
-            district has limited that backup system and kept the others.{" "}
-            <Moment src={SC14} s={898} />
+            district has limited that backup system. He did not say how, to avoid giving out
+            details of the school&apos;s security, and offered to discuss them in a closed
+            session.{" "}
+            <Moment src={SC14} s={898} /> <Moment src={SC14} s={944} />
           </p>
           <p className={BODY}>
             He then met with the police chief, the Mayor, the head of the city&apos;s public
             services department and building staff, with a last meeting set for Friday to close
             out the review and line up procedures at the other schools. About four parents
-            contacted him, and he sent families a memo. Details of the security systems were left
-            for a closed session.{" "}
+            contacted him, and he sent families a memo.{" "}
             <Moment src={SC14} s={944} /> <Moment src={SC14} s={981} />
           </p>
           <Refs
@@ -655,12 +641,12 @@ export default function DigestIssue6() {
         {/* ---- 03 ---- */}
         <section
           id="finance"
-          data-dek={"After what the superintendent called an abrupt shift in the schools' finance office, the School Committee hired a former Beverly schools finance director as a part-time interim director and rewrote the job for a permanent hire. The schools' five-year forecast is still being worked on."}
+          data-dek={"The schools' director of finance job is open. The School Committee hired a former Beverly schools finance director as a part-time interim and set up the search for a permanent hire."}
           className={SECTION}
         >
           <Eyebrow>03 &middot; Schools</Eyebrow>
           <H2>The schools hire an interim finance director</H2>
-          <From>School Committee &middot; Wednesday, October 14 &middot; Four votes, each 8-0</From>
+          <From>School Committee &middot; Wednesday, October 14</From>
           <Hear
             src={SC14}
             s={4113}
@@ -668,35 +654,23 @@ export default function DigestIssue6() {
             meeting="School Committee, Oct 14"
           />
           <p className={BODY}>
-            The School Committee voted 8-0 to hire an interim director of finance, working two
-            and a half days a week, after what Superintendent Peter Cushing called an
-            &ldquo;abrupt shift&rdquo; in the office.{" "}
-            <Moment src={SC14} s={4272} /> <Moment src={SC14} s={4392} />{" "}He said she worked
-            in Beverly&apos;s schools for about 20 years, rising to finance director, then spent
-            about 16 years in Amesbury&apos;s schools, from which she has retired.{" "}
-            <Moment src={SC14} s={4113} /> <Moment src={SC14} s={4190} />{" "}Her contract took
-            effect October 15.
+            The schools&apos; director of finance job is open, and the School Committee voted
+            8-0 to fill it in the meantime.{" "}
+            <Moment src={SC14} s={4272} />{" "}The interim director worked in Beverly&apos;s
+            schools for about 20 years, rising to finance director, then spent about 16 years in
+            Amesbury&apos;s schools before retiring, Superintendent Peter Cushing said. She works
+            two and a half days a week under a contract that took effect October 15.{" "}
+            <Moment src={SC14} s={4113} /> <Moment src={SC14} s={4190} />
           </p>
           <p className={BODY}>
-            In three more votes, also 8-0, the committee approved a new job description for the
-            permanent post, a temporary split of the office&apos;s duties among other staff, and
-            the interim contract.{" "}
-            <Moment src={SC14} s={4113} /> <Moment src={SC14} s={4732} />{" "}
-            <Moment src={SC14} s={4773} />{" "}The new description is for finance only, with more
-            weight on internal controls and on forecasting three to five years ahead.{" "}
-            <Moment src={SC14} s={3564} /> <Moment src={SC14} s={3605} />{" "}Hiring may take
-            time: the superintendent said nearby districts are hiring for the same job, and the
+            <b>The permanent job.</b>{" "}
+            The committee also approved a new job description, focused on finance alone, with
+            more weight on internal controls and on forecasting three to five years ahead, and a
+            plan that splits the office&apos;s duties among other staff until the job is filled.{" "}
+            <Moment src={SC14} s={3564} /> <Moment src={SC14} s={4732} />{" "}The superintendent
+            said the district will actively recruit rather than only post the job, and the
             committee was told the pool of candidates is thin.{" "}
             <Moment src={SC14} s={3927} /> <Moment src={SC14} s={4090} />
-          </p>
-          <p className={BODY}>
-            <b>The forecast.</b>{" "}
-            The schools&apos; five-year forecast is still being worked on, and city councilors
-            are waiting for it, the committee heard.{" "}
-            <Moment src={SC14} s={4705} />{" "}The city&apos;s yearly financial forecasting
-            sessions are coming up. The School Committee usually sends two members, and the
-            superintendent will represent the schools.{" "}
-            <Moment src={SC14} s={3391} /> <Moment src={SC14} s={4605} />
           </p>
           <Refs
             sources={
@@ -705,42 +679,47 @@ export default function DigestIssue6() {
                 <Src href={SC14}>Full recording</Src>
               </>
             }
-            more={
-              <>
-                <Earlier issue={5} slug="2026-10-12" id="how-it-works" label="who controls the city budget" />
-              </>
-            }
           />
         </section>
 
         {/* ---- 04 ---- */}
         <section
           id="fees"
-          data-dek={"A committee that will review what the schools charge families, such as athletic and bus fees, is set to start in November, and the superintendent is looking for residents and a city councilor to serve."}
+          data-dek={"The schools are forming a committee to review the fees families pay, such as athletic and bus fees, starting in November. The superintendent is looking for residents and a city councilor to serve."}
           className={SECTION}
         >
           <Eyebrow>04 &middot; Schools</Eyebrow>
           <H2>The schools are looking for residents to help review fees</H2>
           <From>School Committee &middot; Wednesday, October 14 &middot; Superintendent&apos;s report</From>
+          <Hear
+            src={SC14}
+            s={3221}
+            title="The superintendent on the fee review committee"
+            meeting="School Committee, Oct 14"
+          />
           <p className={BODY}>
-            A committee to review the fees Beverly&apos;s schools charge families is set to start
-            in November, Superintendent Peter Cushing said. The finance office would normally
-            lead it, and it was paused during the change there. He is looking for residents and a
-            city councilor to serve; one parent has volunteered so far, and he said the call
-            would go out in the district&apos;s newsletter.{" "}
+            The schools are forming a committee to review the fees families pay, Superintendent
+            Peter Cushing said. The district&apos;s finance director would normally lead it; with
+            that job open, its start was pushed to November. He is looking for residents and a
+            city councilor to serve, and one parent has volunteered so far. He said the call for
+            members would go out in the district&apos;s newsletter.{" "}
             <Moment src={SC14} s={3221} /> <Moment src={SC14} s={3259} />{" "}
             <Moment src={SC14} s={3298} />
           </p>
           <p className={BODY}>
-            This year&apos;s posted fees include{" "}
+            <b>What it reviews.</b>{" "}
+            This school year&apos;s fees are already set. They include{" "}
             <Fig>$115 to $350</Fig>{" "}
             per sport for athletics and{" "}
             <Fig>$346.50</Fig>{" "}
             for bus transportation, with a family maximum of{" "}
-            <Fig>$693</Fig>. Need-based help is available for each. The athletic
-            department&apos;s report, moved off this agenda, goes to the committee&apos;s Finance
-            and Facilities subcommittee on October 28.{" "}
-            <Moment src={SC14} s={129} />
+            <Fig>$693</Fig>, and need-based help is available for each. The committee looks at
+            fees going forward, and the superintendent tied its work to the district&apos;s
+            coming budget discussions.{" "}
+            <Moment src={SC14} s={3259} />{" "}Athletic fees come up at the School
+            Committee&apos;s Finance and Facilities subcommittee on October 28, with the athletic
+            department&apos;s report, the chair said.{" "}
+            <Moment src={SC14} s={1537} />
           </p>
           <Refs
             sources={
@@ -810,23 +789,38 @@ export default function DigestIssue6() {
             Legal Affairs and Public Services committees, with the Committee of the Whole &middot;
             Order #120, filed by Councilors Rotondo and Spang
           </From>
+          <Hear
+            src={FLOCK0421}
+            s={853}
+            title="Police in April on where the cameras are, and why"
+            meeting="Joint committee meeting, Apr 21"
+          />
           <p className={BODY}>
             Two Council committees meet at 6:00pm to review the city&apos;s Flock cameras, the
             license plate readers the police department uses, and the city&apos;s contract with
-            Flock Safety. It is their second meeting on the cameras; the first was on April
-            21. The agenda lists no vote and does not mention public comment.
+            Flock Safety. It is their second meeting on the cameras; the first was on April 21.
+            The agenda lists no vote and does not mention public comment.
           </p>
           <p className={BODY}>
             <b>What Beverly has.</b>{" "}
-            Four cameras on city property, on streets including Cabot Street, Brimbal Avenue and
-            Elliott Street. They cost{" "}
+            Four cameras on city property: on Rantoul Street near School Street, Cabot Street at
+            Beckford Street, Brimbal Avenue near Otis Road, and Elliott Street at McKay Street.{" "}
+            <Moment src={FLOCK0421} s={853} />{" "}Police said the first two began as a trial;
+            the Elliott Street camera went up in September 2024 and the Brimbal Avenue one in May
+            2025.{" "}
+            <Moment src={FLOCK0421} s={1008} /> <Moment src={FLOCK0421} s={1056} />{" "}
+            <Moment src={FLOCK0421} s={1095} />{" "}They cost{" "}
             <Fig>$3,000</Fig>{" "}
             each a year,{" "}
             <Fig>$12,000</Fig>{" "}
             in all, paid from drug forfeiture money and the police department&apos;s technology
-            budget, police told the committees in April. The cameras take still pictures of
-            license plates and vehicles, not faces, and check plates against lists such as stolen
-            cars, warrants and Amber Alerts. Officers must confirm a match before acting on it.
+            budget.{" "}
+            <Moment src={FLOCK0421} s={3068} /> <Moment src={FLOCK0421} s={3109} />{" "}The
+            cameras take still pictures of the backs of vehicles, reading the plate and details
+            such as the type of vehicle, not faces, and check plates against lists such as stolen
+            cars, warrants and Amber Alerts. Officers must confirm a match before acting on it.{" "}
+            <Moment src={FLOCK0421} s={740} /> <Moment src={FLOCK0421} s={823} />{" "}
+            <Moment src={FLOCK0421} s={1421} />
           </p>
           <p className={BODY}>
             <b>The rules.</b>{" "}
@@ -836,25 +830,60 @@ export default function DigestIssue6() {
             violations or matters of reproductive health, and bars sharing the data for civil
             immigration enforcement, naming ICE and Customs and Border Protection. In April,
             police said the city owns the data under its contract, Flock stores it, and no federal
-            agency had access.
+            agency had access.{" "}
+            <Moment src={FLOCK0421} s={1732} /> <Moment src={FLOCK0421} s={1972} />
           </p>
           <p className={BODY}>
-            <b>What was said in April.</b>{" "}
-            The police chief called the cameras one investigative tool among many, and said
-            cameras in Salem and Lynn had helped solve cases before Beverly signed on. Most of
-            the residents who spoke raised concerns about privacy, data sharing or the company;
-            one argued that drivers can avoid the cameras by not driving past them. Councilor
-            Sonia asked about other vendors with stronger privacy protections and said he would
-            support looking at them. Council President Flowers said she has confidence in the
-            police department but concerns about Flock as a company. Councilor Feldman said she
-            would support paying more for a system that better protects privacy. Councilor St.
-            Hilaire asked how often use of the system is audited; at least monthly, police said,
-            and the audit records have been released through public records requests.
-            Representative Hannah Bowen described state legislation that would add privacy
-            protections without taking the tool away. The Mayor said the city was arranging a
-            meeting with Flock&apos;s leadership on the concerns raised and whether to continue
-            with the company.
+            <b>What was said in April.</b>
           </p>
+          <ul className={LIST}>
+            <li>
+              <b>Police</b>{" "}called the cameras one investigative tool among many and described
+              cases they helped solve, including a Cabot Street arson, using Salem&apos;s cameras,
+              and a home invasion in Prides Crossing.{" "}
+              <Moment src={FLOCK0421} s={122} /> <Moment src={FLOCK0421} s={190} />{" "}
+              <Moment src={FLOCK0421} s={445} />
+            </li>
+            <li>
+              <b>Residents.</b>{" "}
+              Most who spoke raised concerns about privacy, data sharing or the company; one
+              argued that drivers can avoid the cameras by not driving past them.{" "}
+              <Moment src={FLOCK0421} s={2104} /> <Moment src={FLOCK0421} s={2582} />
+            </li>
+            <li>
+              <b>Councilor Sonia</b>{" "}asked about other vendors with stronger privacy protections
+              and said he would support looking at them. The police chief replied that Flock is
+              the system most nearby departments use, which is what lets them share information.{" "}
+              <Moment src={FLOCK0421} s={2784} /> <Moment src={FLOCK0421} s={2849} />{" "}
+              <Moment src={FLOCK0421} s={2914} />
+            </li>
+            <li>
+              <b>Council President Flowers</b>{" "}said she has confidence in the police department
+              but concerns about Flock as a company.{" "}
+              <Moment src={FLOCK0421} s={2947} /> <Moment src={FLOCK0421} s={3014} />
+            </li>
+            <li>
+              <b>Councilor Feldman</b>{" "}asked why the price was so low and said she would support
+              paying more for a system that better protects privacy.{" "}
+              <Moment src={FLOCK0421} s={3131} /> <Moment src={FLOCK0421} s={3175} />
+            </li>
+            <li>
+              <b>Councilor St. Hilaire</b>{" "}asked how often use of the system is audited. At least
+              monthly, police said, and the audit records have been released through public
+              records requests.{" "}
+              <Moment src={FLOCK0421} s={2691} /> <Moment src={FLOCK0421} s={2744} />
+            </li>
+            <li>
+              <b>Representative Hannah Bowen</b>{" "}described state legislation that would add
+              privacy protections without taking the tool away.{" "}
+              <Moment src={FLOCK0421} s={3263} />
+            </li>
+            <li>
+              <b>The Mayor</b>{" "}said the city was arranging a meeting with Flock&apos;s leadership
+              on the concerns raised and whether to continue with the company.{" "}
+              <Moment src={FLOCK0421} s={3348} />
+            </li>
+          </ul>
           <p className={BODY}>
             <b>Since then.</b>{" "}
             The order has stayed in committee since April, and we found no public account of the
@@ -866,6 +895,7 @@ export default function DigestIssue6() {
             sources={
               <>
                 <Src href={FLOCK_AGENDA}>Tonight&apos;s committee agenda</Src>
+                <Src href={FLOCK0421}>April 21 recording</Src>
                 <Src href={`${FLOCK_MINUTES_0421}#page=1`}>April 21 minutes (p. 1)</Src>
                 <Src href={ALPR_POLICY}>Police policy, GO 2026-02</Src>
                 <Src href="https://malegislature.gov/Bills/194/H3755/BillHistory">H.3755 history</Src>
@@ -904,6 +934,48 @@ export default function DigestIssue6() {
               through November 16
             </span>
           </h2>
+          <div className="mt-5 grid max-w-[63ch] gap-3">
+            <div className="rounded-lg border border-rule bg-white/70 px-5 py-4">
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
+                Voting in the November 3 election
+              </p>
+              <ul className="mt-2.5 space-y-2 text-[0.97rem] leading-[1.6]">
+                <li>
+                  <b>Not sure you&apos;re registered?</b>{" "}
+                  <Src href={SOS_CHECK}>Check your registration</Src> or{" "}
+                  <Src href={SOS_REGISTER}>register online</Src>. The deadline is Saturday,
+                  October 24.
+                </li>
+                <li>
+                  <b>Early voting</b>{" "}runs through Friday, October 30, at the temporary City Hall,
+                  175 Cabot St, first floor (the former TD Bank). Mondays to Wednesdays 8:30am to
+                  4:30pm, Thursdays to 7:30pm, Fridays to 1:00pm; Saturdays 9:00am to 5:00pm,
+                  Sundays 9:00am to 1:00pm.
+                </li>
+                <li>
+                  <b>Voting by mail?</b>{" "}Applications must reach the city clerk by 5:00pm on
+                  Tuesday, October 27.{" "}
+                  <Src href={SOS_MAIL}>How to vote by mail</Src>
+                </li>
+                <li>
+                  <b>Election Day</b>{" "}is Tuesday, November 3, with polls open 7:00am to 8:00pm.{" "}
+                  <Src href={SOS_WHERE}>Find your polling place</Src>
+                </li>
+              </ul>
+            </div>
+            <div className="rounded-lg border border-rule bg-white/70 px-5 py-4">
+              <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
+                Leaf and yard waste pickup
+              </p>
+              <p className="mt-2.5 text-[0.97rem] leading-[1.6]">
+                On your regular trash day the weeks of October 19, November 2, November 16 and
+                November 30. Paper bags or open barrels, at the curb by 7:00am, no limit. The yard
+                waste site at 16 Standley St is open Mondays, Thursdays and Saturdays, 7:00am to
+                3:30pm, through December 19.{" "}
+                <Src href={TRASH_CAL}>The city&apos;s pickup calendar</Src>
+              </p>
+            </div>
+          </div>
           <ul className="mt-5 max-w-[63ch]">
             {ahead.map((e) => (
               <li
