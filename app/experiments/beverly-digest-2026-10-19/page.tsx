@@ -155,6 +155,8 @@ const Earlier = ({ issue, slug, id, label }: { issue: number; slug: string; id: 
 
 const V = "https://www.youtube.com/watch?v=";
 const DRC15 = `${V}lYnHXAjyqxE`;
+const DRC14 = `${V}O8Kxggwls3A`;
+const MGL = "https://malegislature.gov/Laws/GeneralLaws";
 const SC14 = `${V}x_MrkYQd68M`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
 const DRC_AGENDA_1015 = `${AGENDA}/ViewFile/Agenda/_10152026-2953`;
@@ -359,8 +361,8 @@ export default function DigestIssue6() {
             This issue is mostly a preview of the week ahead. Tonight two Council committees
             take a second look at the city&apos;s Flock cameras. Tomorrow night the Deficit
             Reduction Committee presents its ideas to the public for the first time; members
-            worked through that presentation together on Thursday, and the recording shows what
-            to expect. From the schools: an interim finance director, a fix after an accidental
+            worked through that presentation together last Thursday, and the recording shows
+            what to expect. From the schools: an interim finance director, a fix after an accidental
             lockdown at the Middle School, and a call for residents to serve on a committee that
             will review school fees.
           </p>
@@ -394,7 +396,7 @@ export default function DigestIssue6() {
         {/* ---- 01 ---- */}
         <section
           id="deficit"
-          data-dek={"The Deficit Reduction Committee presents to the public for the first time Tuesday at 7pm at the Senior Center. Its Thursday run-through shows what to expect: research on fees, health insurance, payments from tax-exempt institutions and longer-term ideas, with some ideas already set aside, then questions."}
+          data-dek={"The Deficit Reduction Committee presents to the public for the first time Tuesday at 7pm at the Senior Center. Its run-through last Thursday shows what to expect: research on fees, health insurance, payments from tax-exempt institutions and longer-term ideas, with some ideas already set aside, then questions."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Deficit Reduction Committee</Eyebrow>
@@ -407,7 +409,7 @@ export default function DigestIssue6() {
             meeting="Deficit Reduction Committee, Oct 15"
           />
           <p className={BODY}>
-            On Thursday the Deficit Reduction Committee worked through the slides for its first
+            Last Thursday the Deficit Reduction Committee worked through the slides for its first
             public presentation, on Tuesday, October 20, at 7:00pm at the Senior Center, 90 Colon
             St.{" "}
             <Moment src={DRC15} s={3069} />{" "}Members plan about half an hour of slides, each
@@ -426,82 +428,82 @@ export default function DigestIssue6() {
           </Note>
           <p className={BODY}>
             <b>What to expect.</b>{" "}
-            Below is what the draft slides cover, roughly in the order members went through
-            them; the slides could still change. A topic on this list is not a recommendation.
-            For most topics, members plan to show how things work now and the options they looked
-            at, and they said part of Tuesday&apos;s purpose is hearing which ideas residents
-            support.{" "}
-            <Moment src={DRC15} s={2731} />{" "}Some ideas the committee has already set aside,
-            and some slides are background on how part of the budget works. Where the committee
-            sorted an idea at its September 28 meeting, we say where it landed.
+            A topic on this list is not a recommendation. For most, members plan to show how
+            things work now and the options they looked at, and they said part of Tuesday&apos;s
+            purpose is hearing which ideas residents support.{" "}
+            <Moment src={DRC15} s={2731} />{" "}On September 28 the committee did a first sort of
+            its ideas; where that gives a sense of direction, we note it below. We have grouped the topics by type, and the slides could still change.
           </p>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Ideas for saving money or raising revenue
+          </h3>
           <ul className={LIST}>
             <li>
               <b>Pension payments.</b>{" "}
-              On September 28, members put changing the pension funding schedule in their
-              &ldquo;no&rdquo; group, saying there is no need: the city can already hold its
-              yearly payment flat.{" "}
+              The city&apos;s yearly payment into its pension fund had been rising 4.5% a year, a
+              step of roughly{" "}
+              <Fig>$700,000</Fig>{" "}
+              next year. In September the finance director, who chairs the retirement board, told the
+              committee the board had adopted a new schedule that holds the payment at its current
+              level and still reaches full funding by 2032.{" "}
+              <Moment src={DRC14} s={5889} /> <Moment src={DRC14} s={5974} />{" "}So on September
+              28, members set aside changing the pension schedule as unnecessary.{" "}
               <Moment src={DRC15} s={306} />
             </li>
             <li>
               <b>Regional dispatch.</b>{" "}
-              Joining Middleton&apos;s regional dispatch center, which members said on September
-              28 has no room for Beverly. A separate idea, Beverly&apos;s own center taking on a
-              smaller town for a fee, moves to the list of ideas still being studied.{" "}
+              Beverly runs its own emergency dispatch center. One idea was to save money by
+              joining Middleton&apos;s regional center instead, but members learned it has no room
+              for Beverly. That research led to a different idea, still being studied:
+              Beverly&apos;s center taking on a smaller town&apos;s calls for a fee.{" "}
               <Moment src={DRC15} s={386} /> <Moment src={DRC15} s={420} />
             </li>
             <li>
-              <b>Health insurance.</b>{" "}
-              The shares of premiums paid by employees and by retirees, and whether to move to a
-              larger shared pool, such as the state&apos;s Group Insurance Commission.
-              Employees&apos; share is negotiated with their unions. On September 28, members put
-              the shares in their &ldquo;maybe&rdquo; group and the state plan under
-              &ldquo;exploring.&rdquo;{" "}
-              <Moment src={DRC15} s={433} /> <Moment src={DRC15} s={478} />
+              <b>Health insurance.</b> Two ideas:
+              <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
+                <li>
+                  <b>Who pays the premiums.</b>{" "}
+                  Shifting more of the cost from the city to employees and retirees. For
+                  employees, that is negotiated with their unions.{" "}
+                  <Moment src={DRC15} s={433} />
+                </li>
+                <li>
+                  <b>A larger insurance pool.</b>{" "}
+                  Joining the state&apos;s Group Insurance Commission instead of running the
+                  city&apos;s own plan. In September the finance director told the committee a
+                  comparable state plan costs slightly less today, but that running its own plan,
+                  with its own trust fund, lets the city cushion premium increases, which the
+                  state plan has at times raised by double digits. He called it a policy
+                  decision.{" "}
+                  <Moment src={DRC14} s={4553} /> <Moment src={DRC14} s={4659} />{" "}
+                  <Moment src={DRC14} s={4741} />{" "}A member said last Thursday that another
+                  shared pool might save less but leave the city more control.{" "}
+                  <Moment src={DRC15} s={497} />
+                </li>
+              </ul>
             </li>
             <li>
               <b>Payments from tax-exempt institutions.</b>{" "}
-              PILOTs and SILOTs: payments, or services, that colleges, schools and other
-              tax-exempt owners give the city in place of property taxes. On September 28,
-              members backed forming a committee to seek more of them; the recommendation is the
-              committee, not a dollar figure.{" "}
+              PILOTs and SILOTs: money, or services, that colleges, schools and other tax-exempt
+              owners give the city in place of property taxes. Payments add revenue; services
+              cover something the city would otherwise pay for. On September 28, members backed
+              forming a committee to seek more of them; the recommendation is the committee, not
+              a dollar figure.{" "}
               <Moment src={DRC15} s={655} /> <Moment src={DRC15} s={790} />
             </li>
             <li>
-              <b>Fees.</b>{" "}
-              Summer program and day camp fees, such as a registration fee; parking rates, and
-              paid parking in more areas; and other city fees. On September 28, these were in
-              the &ldquo;yes for now&rdquo; group, along with reviewing every city fee every year
-              or two.{" "}
-              <Moment src={DRC15} s={1241} /> <Moment src={DRC15} s={1642} />
-            </li>
-            <li>
-              <b>City enterprise funds.</b>{" "}
-              Fees and revenue at the golf course, the harbor and the airport. Members said these
-              slides are about revenue, not selling anything.{" "}
-              <Moment src={DRC15} s={1851} />{" "}A new slide will explain enterprise funds: city
-              accounts for operations, such as the golf course and the airport, that are meant to
-              pay for themselves from their own fees.{" "}
-              <Moment src={DRC15} s={1913} />
-            </li>
-            <li>
-              <b>Background.</b>{" "}
-              Explainers on overrides, a local vote that lets the city raise more in property
-              taxes than Proposition 2&frac12;, the state&apos;s tax limit, otherwise allows, and
-              on Chapter 70, the state&apos;s main formula for school aid. A member said overrides
-              are one way nearby cities have covered deficits, that an override would not
-              necessarily be something the committee promotes, and that looking at it is part of
-              the committee&apos;s job.{" "}
-              <Moment src={DRC15} s={2156} />{" "}The Chapter 70 slide, its author said, is an
-              explanation rather than a proposal, with one suggested next step: the city making its
-              case to state leaders.{" "}
-              <Moment src={DRC15} s={1145} />
-            </li>
-            <li>
-              <b>Benchmarking.</b>{" "}
-              A first look at how Beverly compares with 26 communities chosen by city staff,
-              which members said are not all direct peers.{" "}
-              <Moment src={DRC15} s={2626} />
+              <b>Fees.</b> Two ideas members saw as workable on September 28:
+              <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
+                <li>
+                  Registration fees for the summer drop-off program and day camps.{" "}
+                  <Moment src={DRC15} s={1241} />
+                </li>
+                <li>
+                  Higher parking rates, or paid parking in more areas.{" "}
+                  <Moment src={DRC15} s={1642} />
+                </li>
+              </ul>
             </li>
             <li>
               <b>Longer-term ideas.</b>{" "}
@@ -518,6 +520,50 @@ export default function DigestIssue6() {
               <Moment src={DRC15} s={2588} />
             </li>
           </ul>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Background on how the budget works
+          </h3>
+          <p className={BODY}>
+            Slides meant to explain, not propose. Two cover things the city cannot do on its own:
+            an override needs voters, and Chapter 70 is set by the state.
+          </p>
+          <ul className={LIST}>
+            <li>
+              <b>Enterprise funds.</b>{" "}
+              City operations, such as the golf course and the airport, that are meant to pay for
+              themselves from their own fees rather than from the general budget. Slides on the
+              golf course, the harbor and the airport look at their fees.{" "}
+              <Moment src={DRC15} s={1913} /> <Moment src={DRC15} s={1813} />
+            </li>
+            <li>
+              <b>Overrides.</b>{" "}
+              A vote that lets the city raise more in property taxes than Proposition 2&frac12;,
+              the state&apos;s tax limit, otherwise allows. The City Council, with the
+              Mayor&apos;s approval, decides whether to put one on the ballot, and voters decide
+              whether it passes. A member said overrides are one way nearby cities have covered
+              deficits, that an override would not necessarily be something the committee
+              promotes, and that looking at it is part of the committee&apos;s job.{" "}
+              <Moment src={DRC15} s={2156} />
+            </li>
+            <li>
+              <b>Chapter 70.</b>{" "}
+              The state&apos;s main formula for school aid. The slide&apos;s author called it an
+              explanation rather than a proposal, with one suggested next step: the city making
+              its case for more school aid to state leaders.{" "}
+              <Moment src={DRC15} s={1145} />
+            </li>
+          </ul>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            How Beverly compares
+          </h3>
+          <p className={BODY}>
+            A first look at how Beverly compares with 26 communities chosen by city staff, which
+            members said are not all direct peers.{" "}
+            <Moment src={DRC15} s={2626} />
+          </p>
+
           <p className={BODY}>
             <b>What if none of it happens.</b>{" "}
             Members also talked about showing what is at stake. One noted that the list does not
@@ -543,12 +589,17 @@ export default function DigestIssue6() {
             sources={
               <>
                 <Src href={DRC_AGENDA_1015}>Committee agenda, Oct 15</Src>
-                <Src href={DRC15}>Full recording</Src>
+                <Src href={DRC15}>Full recording, Oct 15</Src>
+                <Src href={DRC14}>Full recording, Sep 14</Src>
               </>
             }
             more={
               <>
-                <Earlier issue={4} slug="2026-10-05" id="deficit" label="how the committee sorted its list on September 28" />
+                <Earlier issue={4} slug="2026-10-05" id="deficit" label="the September 28 sort" />
+                <Earlier issue={2} slug="2026-09-21" id="pension" label="the pension payment" />
+                <Src href={`${MGL}/PartI/TitleIX/Chapter59/Section21C`}>
+                  Override law, c. 59 &sect;21C
+                </Src>
               </>
             }
           />
