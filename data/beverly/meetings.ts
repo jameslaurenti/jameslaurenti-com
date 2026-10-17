@@ -274,14 +274,15 @@ export const meetings: Meeting[] = [
   {
     id: "drc-public-2026-10-20",
     title: "Deficit Reduction Committee: first public presentation",
-    local: "Tue 20 Oct 2026, 6:00 to 7:30pm",
+    local: "Tue 20 Oct 2026, 6:00pm",
     start: "2026-10-20T22:00:00Z",
     end: "2026-10-20T23:30:00Z",
-    location: "Location to be confirmed; the committee has asked the Senior Center, 90 Colon St",
+    location: "Beverly Council on Aging (Senior Center), 90 Colon St, Beverly, MA",
     detail:
-      "A first pass at the committee's ideas, with time for questions. Planned to be carried on BevCam. The committee's October 15 agenda calls it a community meeting; time and place not yet posted.",
-    status: "tentative",
-    updated: "2026-10-12T12:00:00Z",
+      "The committee's slide presentation, then questions from the public.",
+    url: `${AGENDA}/ViewFile/Agenda/_10202026-2961`,
+    status: "confirmed",
+    updated: "2026-10-17T12:00:00Z",
   },
   {
     id: "fy28-recs-due-2026-10-26",

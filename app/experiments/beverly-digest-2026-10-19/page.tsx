@@ -164,6 +164,7 @@ const CH70_FY27 = "https://www.doe.mass.edu/finance/chapter70/fy2027/chapter-202
 const SC14 = `${V}x_MrkYQd68M`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
 const DRC_AGENDA_1015 = `${AGENDA}/ViewFile/Agenda/_10152026-2953`;
+const DRC_AGENDA_1020 = `${AGENDA}/ViewFile/Agenda/_10202026-2961`;
 const FLOCK_AGENDA = `${AGENDA}/ViewFile/Agenda/_10192026-2927`;
 const PACKET_1019 = `${AGENDA}/ViewFile/Agenda/_10192026-2958`;
 const FLOCK_MINUTES_0421 = `${AGENDA}/ViewFile/Minutes/_04212026-2720`;
@@ -198,13 +199,13 @@ const ahead: Ev[] = [
     date: "Oct 20",
     what: "Deficit Reduction Committee: first public presentation",
     detail:
-      "7:00pm at the Senior Center, 90 Colon St. About half an hour of slides, then questions. The committee gave the time and place at its October 15 meeting; the city had not posted the notice as of Friday.",
+      "6:00pm at the Council on Aging (the Senior Center), 90 Colon St. About half an hour of slides, then questions from the public.",
     cal: {
       id: "drc-public-2026-10-20",
       title: "Deficit Reduction Committee: first public presentation",
-      start: "2026-10-20T23:00:00Z",
-      end: "2026-10-21T00:30:00Z",
-      location: "Beverly Senior Center, 90 Colon St, Beverly, MA",
+      start: "2026-10-20T22:00:00Z",
+      end: "2026-10-20T23:30:00Z",
+      location: "Beverly Council on Aging (Senior Center), 90 Colon St, Beverly, MA",
     },
   },
   {
@@ -384,7 +385,7 @@ export default function DigestIssue6() {
         {/* ---- 01 ---- */}
         <section
           id="deficit"
-          data-dek={"The Deficit Reduction Committee presents to the public for the first time Tuesday at 7pm at the Senior Center. Its run-through last Thursday shows what to expect: research on fees, health insurance, payments from tax-exempt institutions and longer-term ideas, with some ideas already set aside, then questions."}
+          data-dek={"The Deficit Reduction Committee presents to the public for the first time Tuesday at 6pm at the Senior Center. Its run-through last Thursday shows what to expect: research on fees, health insurance, payments from tax-exempt institutions and longer-term ideas, with some ideas already set aside, then questions."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Deficit Reduction Committee</Eyebrow>
@@ -398,11 +399,14 @@ export default function DigestIssue6() {
           />
           <p className={BODY}>
             Last Thursday the Deficit Reduction Committee worked through the slides for its first
-            public presentation, on Tuesday, October 20, at 7:00pm at the Senior Center, 90 Colon
-            St.{" "}
-            <Moment src={DRC15} s={3069} />{" "}Members plan about half an hour of slides, each
-            presented by the member who researched the topic, then questions from the room.{" "}
-            <Moment src={DRC15} s={944} /> <Moment src={DRC15} s={2731} />{" "}They plan to post
+            public presentation, on Tuesday, October 20, at 6:00pm at the Council on Aging (the
+            Senior Center), 90 Colon St. The posted agenda has two items: the slides, then
+            questions from the public. Members plan about half an hour of slides, each presented
+            by the member who researched the topic.{" "}
+            <Moment src={DRC15} s={944} /> <Moment src={DRC15} s={2731} />{" "}For questions,
+            members said people can raise a hand to be called on, and can send questions to the
+            chair, Councilor Kathleen Feldman, ahead of time.{" "}
+            <Moment src={DRC15} s={166} /> <Moment src={DRC15} s={3361} />{" "}They plan to post
             the slides afterward.{" "}
             <Moment src={DRC15} s={759} />
           </p>
@@ -592,6 +596,7 @@ export default function DigestIssue6() {
           <Refs
             sources={
               <>
+                <Src href={DRC_AGENDA_1020}>Tuesday&apos;s agenda</Src>
                 <Src href={DRC_AGENDA_1015}>Committee agenda, Oct 15</Src>
                 <Src href={DRC15}>Full recording, Oct 15</Src>
                 <Src href={DRC14}>Full recording, Sep 14</Src>
@@ -1046,11 +1051,6 @@ export default function DigestIssue6() {
             <li>
               Issue 5 gave the temporary City Hall&apos;s address as 195 Cabot St, from a meeting
               agenda. It is 175 Cabot St, the former TD Bank.
-            </li>
-            <li>
-              Issues 4 and 5 listed the deficit committee&apos;s October 20 presentation at
-              6:00pm. At its October 15 meeting the committee said it starts at 7:00pm.{" "}
-              <Moment src={DRC15} s={3069} />
             </li>
           </ul>
         </section>
