@@ -782,13 +782,6 @@ export default function DigestIssue6() {
           <Src href={FLOCK1019}>the 6:00pm meeting</Src>,{" "}
           <Src href={CC1019}>the 7:00pm meeting</Src>.
         </p>
-        <p className={BODY}>
-          <b>Speaking at the 7:00pm meeting.</b>{" "}
-          The Council&apos;s agenda allows public comment from five people who live or work in
-          Beverly, three minutes each. Speakers register with the city clerk by 9:30am the day
-          of the meeting; one had signed up when the agenda was posted.{" "}
-          <Src href={`${PACKET_1019}#page=1`}>Agenda (p. 1)</Src>
-        </p>
         <div className="mt-5 flex flex-wrap gap-2.5">
           <AddToCalendar
             event={{
