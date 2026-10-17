@@ -158,6 +158,7 @@ const DRC15 = `${V}lYnHXAjyqxE`;
 const DRC14 = `${V}O8Kxggwls3A`;
 const FLOCK0421 = `${V}9O_ifUaTQJs`;
 const MGL = "https://malegislature.gov/Laws/GeneralLaws";
+const CH70_FY27 = "https://www.doe.mass.edu/finance/chapter70/fy2027/chapter-2027.html";
 const SC14 = `${V}x_MrkYQd68M`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
 const DRC_AGENDA_1015 = `${AGENDA}/ViewFile/Agenda/_10152026-2953`;
@@ -425,26 +426,6 @@ export default function DigestIssue6() {
           </h3>
           <ul className={LIST}>
             <li>
-              <b>Pension payments.</b>{" "}
-              The city&apos;s yearly payment into its pension fund had been rising 4.5% a year, a
-              step of roughly{" "}
-              <Fig>$700,000</Fig>{" "}
-              next year. In September the finance director, who chairs the retirement board, told the
-              committee the board had adopted a new schedule that holds the payment at its current
-              level and still reaches full funding by 2032.{" "}
-              <Moment src={DRC14} s={5889} /> <Moment src={DRC14} s={5974} />{" "}So on September
-              28, members set aside changing the pension schedule as unnecessary.{" "}
-              <Moment src={DRC15} s={306} />
-            </li>
-            <li>
-              <b>Regional dispatch.</b>{" "}
-              Beverly runs its own emergency dispatch center. One idea was to save money by
-              joining Middleton&apos;s regional center instead, but members learned it has no room
-              for Beverly. That research led to a different idea, still being studied:
-              Beverly&apos;s center taking on a smaller town&apos;s calls for a fee.{" "}
-              <Moment src={DRC15} s={386} /> <Moment src={DRC15} s={420} />
-            </li>
-            <li>
               <b>Health insurance.</b>{" "}Two ideas:
               <ul className="mt-1.5 list-[circle] space-y-1.5 pl-5">
                 <li>
@@ -458,12 +439,12 @@ export default function DigestIssue6() {
                   Joining the state&apos;s Group Insurance Commission instead of running the
                   city&apos;s own plan. In September the finance director told the committee a
                   comparable state plan costs slightly less today, but that running its own plan,
-                  with its own trust fund, lets the city cushion premium increases, which the
-                  state plan has at times raised by double digits. He called it a policy
-                  decision.{" "}
-                  <Moment src={DRC14} s={4553} /> <Moment src={DRC14} s={4659} />{" "}
-                  <Moment src={DRC14} s={4741} />{" "}A member said last Thursday that another
-                  shared pool might save less but leave the city more control.{" "}
+                  with its own trust fund, lets the city cushion premium increases in rough years;
+                  the state plan has at times raised premiums by double digits.{" "}
+                  <Moment src={DRC14} s={4553} /> <Moment src={DRC14} s={4659} />{" "}A member
+                  said last Thursday that a middle option, the Massachusetts Municipal
+                  Association&apos;s pooled health plan for cities and towns, would save less than
+                  the state plan but leave the city more control.{" "}
                   <Moment src={DRC15} s={497} />
                 </li>
               </ul>
@@ -490,19 +471,53 @@ export default function DigestIssue6() {
                 </li>
               </ul>
             </li>
+          </ul>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Longer-term investments
+          </h3>
+          <p className={BODY}>
+            Two ideas that would cost money up front, with any savings coming over years: a
+            city-run electric utility, and a recycling center for hard-to-recycle items. Members
+            acknowledged the timing; one said it is hard to consider that kind of upfront cost
+            during a deficit.{" "}
+            <Moment src={DRC15} s={2043} /> <Moment src={DRC15} s={2480} />
+          </p>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Early ideas, not ready to present
+          </h3>
+          <p className={BODY}>
+            One slide lists ideas members said they have only started to look at: sharing
+            services with other communities; audits of non-health insurance and of school
+            efficiency; the future of Hurd Stadium and Cooney Field; and a policy on personal use
+            of city vehicles.{" "}
+            <Moment src={DRC15} s={2588} />
+          </p>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Looked at and set aside
+          </h3>
+          <ul className={LIST}>
             <li>
-              <b>Longer-term ideas.</b>{" "}
-              A city-run electric utility, and a recycling center for hard-to-recycle items.
-              Members noted that both would take money up front.{" "}
-              <Moment src={DRC15} s={2043} /> <Moment src={DRC15} s={2480} />
+              <b>Pension payments.</b>{" "}
+              The city&apos;s yearly payment into its pension fund had been rising 4.5% a year, a
+              step of roughly{" "}
+              <Fig>$700,000</Fig>{" "}
+              next year. In September the finance director, who chairs the retirement board, told
+              the committee the board had adopted a new schedule that holds the payment at its
+              current level and still reaches full funding by 2032.{" "}
+              <Moment src={DRC14} s={5889} /> <Moment src={DRC14} s={5974} />{" "}So on September
+              28, members set aside changing the pension schedule as unnecessary.{" "}
+              <Moment src={DRC15} s={306} />
             </li>
             <li>
-              <b>Not ready to present.</b>{" "}
-              One slide lists ideas members said they have only started to look at and are not
-              ready to present: sharing services with other communities; audits of non-health
-              insurance and of school efficiency; the future of Hurd Stadium and Cooney Field; and a
-              policy on personal use of city vehicles.{" "}
-              <Moment src={DRC15} s={2588} />
+              <b>Regional dispatch.</b>{" "}
+              Beverly runs its own emergency dispatch center. One idea was to save money by
+              joining Middleton&apos;s regional center instead, but members learned it has no room
+              for Beverly. That research led to a different idea, still being studied:
+              Beverly&apos;s center taking on a smaller town&apos;s calls for a fee.{" "}
+              <Moment src={DRC15} s={386} /> <Moment src={DRC15} s={420} />
             </li>
           </ul>
 
@@ -510,8 +525,8 @@ export default function DigestIssue6() {
             Background on how the budget works
           </h3>
           <p className={BODY}>
-            Slides meant to explain, not propose. Two cover things the city cannot do on its own:
-            an override needs voters, and Chapter 70 is set by the state.
+            Slides meant to explain rather than propose. None is presented as a fix for next
+            year&apos;s budget, but members want residents to understand them.
           </p>
           <ul className={LIST}>
             <li>
@@ -523,19 +538,21 @@ export default function DigestIssue6() {
             </li>
             <li>
               <b>Overrides.</b>{" "}
-              A vote that lets the city raise more in property taxes than Proposition 2&frac12;,
-              the state&apos;s tax limit, otherwise allows. The City Council, with the
+              A local vote that lets the city raise more in property taxes than Proposition
+              2&frac12;, the state&apos;s tax limit, otherwise allows. The City Council, with the
               Mayor&apos;s approval, decides whether to put one on the ballot, and voters decide
-              whether it passes. A member said overrides are one way nearby cities have covered
+              whether it passes. A member said nearby communities have used overrides to cover
               deficits, that an override would not necessarily be something the committee
               promotes, and that looking at it is part of the committee&apos;s job.{" "}
               <Moment src={DRC15} s={2156} />
             </li>
             <li>
               <b>Chapter 70.</b>{" "}
-              The state&apos;s main formula for school aid. The slide&apos;s author called it an
-              explanation rather than a proposal, with one suggested next step: the city making
-              its case for more school aid to state leaders.{" "}
+              The state&apos;s main formula for school aid. This year Beverly received the
+              smallest increase the formula guarantees, $160 per student, as most districts in
+              the state did. The slide&apos;s author called it an explanation rather than a
+              proposal, with one suggested next step: the city pressing state leaders for more
+              school aid.{" "}
               <Moment src={DRC15} s={1145} />
             </li>
           </ul>
@@ -585,6 +602,7 @@ export default function DigestIssue6() {
                 <Src href={`${MGL}/PartI/TitleIX/Chapter59/Section21C`}>
                   Override law, c. 59 &sect;21C
                 </Src>
+                <Src href={CH70_FY27}>State school aid, FY2027</Src>
               </>
             }
           />
