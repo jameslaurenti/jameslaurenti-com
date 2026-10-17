@@ -157,6 +157,8 @@ const V = "https://www.youtube.com/watch?v=";
 const DRC15 = `${V}lYnHXAjyqxE`;
 const DRC14 = `${V}O8Kxggwls3A`;
 const FLOCK0421 = `${V}9O_ifUaTQJs`;
+const FLOCK1019 = `${V}x_567bYRlvc`;
+const CC1019 = `${V}Oh_fs6QibXs`;
 const MGL = "https://malegislature.gov/Laws/GeneralLaws";
 const CH70_FY27 = "https://www.doe.mass.edu/finance/chapter70/fy2027/chapter-2027.html";
 const SC14 = `${V}x_MrkYQd68M`;
@@ -771,7 +773,16 @@ export default function DigestIssue6() {
         <p className={BODY}>
           Two meetings, back to back, in the Beverly Middle School library, 502 Cabot St: two
           Council committees on the Flock cameras at 6:00pm, then the City Council at
-          7:00pm. BevCam is set to carry both.
+          7:00pm. BevCam carries both live:{" "}
+          <Src href={FLOCK1019}>the 6:00pm meeting</Src>,{" "}
+          <Src href={CC1019}>the 7:00pm meeting</Src>.
+        </p>
+        <p className={BODY}>
+          <b>Speaking at the 7:00pm meeting.</b>{" "}
+          The Council&apos;s agenda allows public comment from five people who live or work in
+          Beverly, three minutes each. Speakers register with the city clerk by 9:30am the day
+          of the meeting; one had signed up when the agenda was posted.{" "}
+          <Src href={`${PACKET_1019}#page=1`}>Agenda (p. 1)</Src>
         </p>
         <div className="mt-5 flex flex-wrap gap-2.5">
           <AddToCalendar
@@ -817,7 +828,10 @@ export default function DigestIssue6() {
             Two Council committees meet at 6:00pm to review the city&apos;s Flock cameras, the
             license plate readers the police department uses, and the city&apos;s contract with
             Flock Safety. It is their second meeting on the cameras; the first was on April 21.
-            The agenda lists no vote and does not mention public comment.
+            The agenda lists no vote and does not mention public comment. At the April meeting
+            the chair took one-minute comments from anyone who came to the podium, with no
+            sign-up, and questions to the police came from councilors, some sent ahead of time.{" "}
+            <Moment src={FLOCK0421} s={2069} /> <Moment src={FLOCK0421} s={53} />
           </p>
           <p className={BODY}>
             <b>What Beverly has.</b>{" "}
