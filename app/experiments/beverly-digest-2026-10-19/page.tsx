@@ -398,34 +398,21 @@ export default function DigestIssue6() {
             meeting="Deficit Reduction Committee, Oct 15"
           />
           <p className={BODY}>
-            Last Thursday the Deficit Reduction Committee worked through the slides for its first
-            public presentation, on Tuesday, October 20, at 6:00pm at the Council on Aging (the
-            Senior Center), 90 Colon St. The posted agenda has two items: the slides, then
-            questions from the public. Members plan about half an hour of slides, each presented
-            by the member who researched the topic.{" "}
-            <Moment src={DRC15} s={944} /> <Moment src={DRC15} s={2731} />{" "}For questions,
-            members said people can raise a hand to be called on, and can send questions to the
-            chair, Councilor Kathleen Feldman, ahead of time.{" "}
-            <Moment src={DRC15} s={166} /> <Moment src={DRC15} s={3361} />{" "}They plan to post
-            the slides afterward.{" "}
-            <Moment src={DRC15} s={759} />
+            The Deficit Reduction Committee presents to the public for the first time Tuesday at
+            6:00pm at the Council on Aging (the Senior Center), 90 Colon St: about half an hour of
+            slides, then questions. Raise a hand to ask, or send questions ahead to the chair,
+            Councilor Kathleen Feldman. The committee plans to post the slides afterward.{" "}
+            <Moment src={DRC15} s={944} /> <Moment src={DRC15} s={166} />{" "}
+            <Moment src={DRC15} s={3361} /> <Moment src={DRC15} s={759} />
           </p>
           <Note>
-            <b>What the committee is.</b>{" "}
-            It researches and advises; it does not set policy. Members said they would tell the
-            audience so, and that their recommendations go to the City Council.{" "}
-            <Moment src={DRC15} s={2694} />{" "}Any change in spending reaches the budget through
-            the Mayor, who writes it, and the Council, which votes on it.{" "}
+            <b>Not a plan.</b>{" "}
+            The committee researches and advises; the Mayor and the Council decide the budget. A
+            topic below is not a recommendation, and the slides could still change. Where the
+            committee sorted an idea on September 28, we say where it landed.{" "}
+            <Moment src={DRC15} s={2694} />{" "}
             <Earlier issue={5} slug="2026-10-12" id="how-it-works" label="who controls the city budget" />
           </Note>
-          <p className={BODY}>
-            <b>What to expect.</b>{" "}
-            A topic on this list is not a recommendation. For most, members plan to show how
-            things work now and the options they looked at, and they said part of Tuesday&apos;s
-            purpose is hearing which ideas residents support.{" "}
-            <Moment src={DRC15} s={2731} />{" "}On September 28 the committee did a first sort of
-            its ideas; where that gives a sense of direction, we note it below. We have grouped the topics by type, and the slides could still change.
-          </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             Ideas for saving money or raising revenue
