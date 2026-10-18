@@ -43,6 +43,14 @@ export const EXPERIMENTS: Experiment[] = [
     updated: "2026-10",
   },
   {
+    slug: "takeout-deals",
+    title: "Takeout deals around Beverly",
+    blurb:
+      "Day-by-day restaurant specials in Beverly, Salem and nearby towns that work for pickup or delivery. First pass, built from search snippets; most prices still need a call.",
+    status: "draft",
+    updated: "2026-10",
+  },
+  {
     slug: "beverly-fy27-slides",
     title: "Beverly FY2027 budget, slides",
     blurb: "A slide version of the FY2027 budget piece.",

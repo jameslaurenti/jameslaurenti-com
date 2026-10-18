@@ -35,8 +35,14 @@ export default function TakeoutDealsPage() {
           </h1>
           <p className="mt-4 max-w-[60ch] text-[1.0625rem] leading-[1.7] text-ink-mid">
             Weekly specials you can pick up or get delivered, within about ten minutes of downtown
-            Beverly. {DEALS.length} deals across {towns} towns, checked {checkedLabel}. Specials change
-            without notice, so each one links to where it came from. Call before you drive.
+            Beverly. {DEALS.length} deals across {towns} towns, gathered {checkedLabel}. Specials change
+            without notice, so each one links to where it came from.
+          </p>
+          <p className="mt-4 max-w-[60ch] rounded-md border border-gold/60 bg-gold/10 px-4 py-3 text-[0.9375rem] leading-relaxed">
+            <strong className="font-semibold">First pass.</strong>{" "}
+            These came from search results for
+            each restaurant&rsquo;s ordering page and menu, not from opening the pages themselves, so
+            treat every price as a lead and call before you drive.
           </p>
         </header>
 

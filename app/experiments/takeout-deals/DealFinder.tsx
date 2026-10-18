@@ -41,6 +41,18 @@ function formatSourceDate(d: string) {
   return m ? `${MONTHS[Number(m[2]) - 1]} ${m[1]}` : "undated";
 }
 
+/** "Every day", "Tue–Fri", "Mon, Wed": the days a deal runs, as compactly as reads well. */
+function dayRange(days: Day[]) {
+  if (days.length === DAYS.length) return "Every day";
+  const idx = days.map((d) => DAYS.indexOf(d)).sort((a, b) => a - b);
+  const contiguous = idx.every((v, i) => i === 0 || v === idx[i - 1] + 1);
+  if (contiguous && idx.length > 2) return `${DAY_LABEL[DAYS[idx[0]]].short}–${DAY_LABEL[DAYS[idx.at(-1)!]].short}`;
+  return idx.map((i) => DAY_LABEL[DAYS[i]].short).join(", ");
+}
+
+/** Deals on three days a week or fewer are the night-specific ones; the rest are standing menus. */
+const isNightly = (d: Deal) => d.days.length <= 3;
+
 function directions(address: string) {
   return `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}`;
 }
@@ -83,6 +95,7 @@ function DealCard({ deal }: { deal: Deal }) {
       <div className="mt-3 flex flex-wrap gap-1.5">
         {deal.standout && <Tag tone="accent">Standout</Tag>}
         {deal.healthy && <Tag tone="accent">Healthier</Tag>}
+        {!isNightly(deal) && <Tag>{dayRange(deal.days)}</Tag>}
         {deal.time && <Tag>{deal.time}</Tag>}
         {pickup && <Tag>Pickup</Tag>}
         {delivery && <Tag>Delivery</Tag>}
@@ -90,13 +103,7 @@ function DealCard({ deal }: { deal: Deal }) {
         {deal.confidence === "low" && <Tag tone="warn">Unverified</Tag>}
       </div>
 
-      {(deal.how || deal.notes) && (
-        <p className="mt-3 text-[0.875rem] leading-relaxed text-ink-mid">
-          {deal.how}
-          {deal.how && deal.notes ? " " : ""}
-          {deal.notes}
-        </p>
-      )}
+      {deal.how && <p className="mt-3 text-[0.875rem] leading-relaxed text-ink-mid">{deal.how}</p>}
 
       <p className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-[0.8125rem]">
         <a href={deal.source} className={`rlink ${focus}`} target="_blank" rel="noopener noreferrer">
@@ -106,6 +113,13 @@ function DealCard({ deal }: { deal: Deal }) {
           Directions
         </a>
       </p>
+
+      {deal.notes && (
+        <details className="mt-2 text-[0.8125rem] text-ink-mid">
+          <summary className={`cursor-pointer select-none text-ink-faint ${focus}`}>Research notes</summary>
+          <p className="mt-1.5 leading-relaxed">{deal.notes}</p>
+        </details>
+      )}
     </li>
   );
 }
@@ -147,13 +161,13 @@ export default function DealFinder({ deals }: { deals: Deal[] }) {
       (!healthyOnly || d.healthy) &&
       (!localOnly || !d.chain),
   );
-  const weekly = shown.filter((d) => d.days.length < DAYS.length);
-  const everyDay = shown.filter((d) => d.days.length === DAYS.length).sort(byPriority);
-  const countFor = (d: Day) => weekly.filter((x) => x.days.includes(d)).length;
+  const nightly = shown.filter(isNightly);
+  const standing = shown.filter((d) => !isNightly(d));
+  const countFor = (d: Day) => nightly.filter((x) => x.days.includes(d)).length;
 
   return (
     <div>
-      <div className="sticky top-14 z-10 -mx-6 border-b border-rule bg-bg/95 px-6 pb-4 pt-4 backdrop-blur">
+      <div className="sticky top-14 z-10 -mx-6 border-b border-rule bg-bg px-6 pb-4 pt-4">
         <div role="group" aria-label="Day of the week" className="grid grid-cols-7 gap-1.5">
           {DAYS.map((d) => (
             <button
@@ -166,7 +180,7 @@ export default function DealFinder({ deals }: { deals: Deal[] }) {
               <span className="block text-[0.875rem] font-semibold">{DAY_LABEL[d].short}</span>
               <span className={`block text-[0.75rem] ${day === d ? "text-white/85" : "text-ink-faint"}`}>
                 {countFor(d)}
-                <span className="sr-only"> weekly deals</span>
+                <span className="sr-only"> day specials</span>
               </span>
               {today === d && <span className="sr-only"> (today)</span>}
             </button>
@@ -214,13 +228,13 @@ export default function DealFinder({ deals }: { deals: Deal[] }) {
         <>
           <Section
             title={`${today === day ? "Today, " : ""}${DAY_LABEL[day].long}`}
-            note={`Specials that run on ${DAY_LABEL[day].long}s but not every day.`}
-            deals={weekly.filter((d) => d.days.includes(day)).sort(byPriority)}
+            note={`Specials tied to ${DAY_LABEL[day].long}s.`}
+            deals={nightly.filter((d) => d.days.includes(day)).sort(byPriority)}
           />
           <Section
-            title="Any day"
-            note="Lunch specials, bundles and app deals that run all week."
-            deals={everyDay}
+            title={today === day ? "Also available today" : `Also available ${DAY_LABEL[day].long}`}
+            note="Lunch specials, bundles and app deals that run most or all of the week."
+            deals={standing.filter((d) => d.days.includes(day)).sort(byPriority)}
           />
         </>
       )}
