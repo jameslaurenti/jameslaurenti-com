@@ -424,7 +424,7 @@ export default function DigestIssue6() {
                 <li>
                   <b>Who pays the premiums.</b>{" "}
                   Shifting more of the cost from the city to employees and retirees. For
-                  employees, that is negotiated with their unions.{" "}
+                  employees, that must be negotiated with their unions.{" "}
                   <Moment src={DRC15} s={433} />
                 </li>
                 <li>
@@ -438,7 +438,9 @@ export default function DigestIssue6() {
                   said last Thursday that a middle option, the Massachusetts Municipal
                   Association&apos;s pooled health plan for cities and towns, would save less than
                   the state plan but leave the city more control.{" "}
-                  <Moment src={DRC15} s={497} />
+                  <Moment src={DRC15} s={497} />{" "}So the trade-off is a somewhat lower price
+                  against less room to soften bad years, with a possible middle ground; what the
+                  committee will suggest is not yet clear.
                 </li>
               </ul>
             </li>
@@ -560,25 +562,16 @@ export default function DigestIssue6() {
           </p>
 
           <p className={BODY}>
-            <b>What if none of it happens.</b>{" "}
-            Members also talked about showing what is at stake. One noted that the list does not
-            include reducing services, such as Senior Center hours, and said that was not a call
-            for any cut.{" "}
-            <Moment src={DRC15} s={2804} />{" "}A member then read out a message from the chair,
-            Councilor Kathleen Feldman, who was following remotely: service cuts should be part
-            of the presentation &ldquo;so people can understand pain as a real
-            possibility,&rdquo; and part of the surveys and focus groups that come later.{" "}
-            <Moment src={DRC15} s={2995} />
-          </p>
-          <p className={BODY}>
             <b>After Tuesday.</b>{" "}
-            Members read out the committee&apos;s schedule. In December: presentations to groups
-            inside and outside City Hall, the city&apos;s financial forecast, and outreach on
-            ideas for next year&apos;s budget. In January: a list of larger changes for the year
-            after, and ward-by-ward public meetings scheduled. February and March: outreach and
-            analysis. April 2027: a list of recommendations for the long-term budget, which
-            members said goes to the City Council.{" "}
-            <Moment src={DRC15} s={3520} /> <Moment src={DRC15} s={3560} />
+            The committee&apos;s draft schedule has two tracks. For next year&apos;s budget, which
+            starts in July: in December, alongside the city&apos;s financial forecast, more
+            presentations to people inside and outside city government and public input on
+            recommendations. For the longer term: in January, a list of bigger changes for the
+            year after; ward-by-ward meetings on it in February and March; and in April, the
+            committee&apos;s long-term recommendations to the City Council. Members also plan
+            smaller listening sessions; no dates are set.{" "}
+            <Moment src={DRC15} s={3520} /> <Moment src={DRC15} s={3560} />{" "}
+            <Moment src={DRC15} s={3069} />
           </p>
           <Refs
             sources={
@@ -680,9 +673,9 @@ export default function DigestIssue6() {
             more weight on internal controls and on forecasting three to five years ahead, and a
             plan that splits the office&apos;s duties among other staff until the job is filled.{" "}
             <Moment src={SC14} s={3564} /> <Moment src={SC14} s={4732} />{" "}The superintendent
-            said the district will actively recruit rather than only post the job, and the
-            committee was told the pool of candidates is thin.{" "}
-            <Moment src={SC14} s={3927} /> <Moment src={SC14} s={4090} />
+            said the district will actively recruit rather than only post the job, since
+            several nearby districts are hiring for the same role.{" "}
+            <Moment src={SC14} s={3927} /> <Moment src={SC14} s={3967} />
           </p>
           <Refs
             sources={
