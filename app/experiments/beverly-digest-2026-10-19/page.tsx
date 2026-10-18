@@ -563,13 +563,14 @@ export default function DigestIssue6() {
 
           <p className={BODY}>
             <b>After Tuesday.</b>{" "}
-            The committee&apos;s draft schedule has two tracks. For next year&apos;s budget, which
+            A schedule the committee plans to show on Tuesday has two tracks. For next
+            year&apos;s budget, which
             starts in July: in December, alongside the city&apos;s financial forecast, more
             presentations to people inside and outside city government and public input on
             recommendations. For the longer term: in January, a list of bigger changes for the
             year after; ward-by-ward meetings on it in February and March; and in April, the
-            committee&apos;s long-term recommendations to the City Council. Members also plan
-            smaller listening sessions; no dates are set.{" "}
+            committee&apos;s long-term recommendations to the City Council. Members also said they
+            will hold smaller listening sessions, with dates still to be set.{" "}
             <Moment src={DRC15} s={3520} /> <Moment src={DRC15} s={3560} />{" "}
             <Moment src={DRC15} s={3069} />
           </p>
@@ -856,15 +857,15 @@ export default function DigestIssue6() {
             </li>
             <li>
               <b>Residents.</b>{" "}
-              Most who spoke raised concerns about privacy, data sharing or the company; one
-              argued that drivers can avoid the cameras by not driving past them.{" "}
-              <Moment src={FLOCK0421} s={2104} /> <Moment src={FLOCK0421} s={2582} />
+              Most who spoke raised concerns about privacy, data sharing or the company.{" "}
+              <Moment src={FLOCK0421} s={2104} />
             </li>
             <li>
-              <b>Councilor Sonia</b>{" "}asked about other vendors with stronger privacy protections
-              and said he would support looking at them. The police chief replied that Flock is
-              the system most nearby departments use, which is what lets them share information.{" "}
-              <Moment src={FLOCK0421} s={2784} /> <Moment src={FLOCK0421} s={2849} />{" "}
+              <b>Councilor Sonia</b>{" "}asked whether other vendors offer similar tools with stronger
+              privacy protections. The police chief replied that other companies work much the
+              same way, and that Flock is the system most nearby departments use, which is what
+              lets them share information.{" "}
+              <Moment src={FLOCK0421} s={2784} />{" "}
               <Moment src={FLOCK0421} s={2914} />
             </li>
             <li>
@@ -873,9 +874,12 @@ export default function DigestIssue6() {
               <Moment src={FLOCK0421} s={2947} /> <Moment src={FLOCK0421} s={3014} />
             </li>
             <li>
-              <b>Councilor Feldman</b>{" "}asked why the price was so low and said she would support
-              paying more for a system that better protects privacy.{" "}
-              <Moment src={FLOCK0421} s={3131} /> <Moment src={FLOCK0421} s={3175} />
+              <b>Councilor Feldman</b>{" "}questioned why the price was so low, saying that with tools
+              like these the real product is often the data they collect. She said the community
+              would rather pay more for a system that protects privacy as well as safety, and asked
+              whether nearby communities might move to another system together.{" "}
+              <Moment src={FLOCK0421} s={3131} /> <Moment src={FLOCK0421} s={3220} />{" "}
+              <Moment src={FLOCK0421} s={3236} />
             </li>
             <li>
               <b>Councilor St. Hilaire</b>{" "}asked how often use of the system is audited. At least
@@ -898,8 +902,11 @@ export default function DigestIssue6() {
             <b>Since then.</b>{" "}
             The order has stayed in committee since April, and we found no public account of the
             meeting with Flock. In July, Salem decided not to renew its Flock contract and to
-            replace those cameras with other units. At the State House, a bill on driver privacy,
-            H.3755, has been with the House Ways and Means Committee since March.
+            replace those cameras with other units. At the State House,{" "}
+            <Src href="https://malegislature.gov/Bills/194/H3755">H.3755</Src>, a bill that
+            would limit how long license plate data can be kept to 14 days unless it is tied to a
+            crime, ban selling it, and require a warrant to get it from other agencies, has been
+            with the House Ways and Means Committee since March.
           </p>
           <Refs
             sources={
@@ -908,7 +915,6 @@ export default function DigestIssue6() {
                 <Src href={FLOCK0421}>April 21 recording</Src>
                 <Src href={`${FLOCK_MINUTES_0421}#page=1`}>April 21 minutes (p. 1)</Src>
                 <Src href={ALPR_POLICY}>Police policy, GO 2026-02</Src>
-                <Src href="https://malegislature.gov/Bills/194/H3755/BillHistory">H.3755 history</Src>
               </>
             }
             more={
