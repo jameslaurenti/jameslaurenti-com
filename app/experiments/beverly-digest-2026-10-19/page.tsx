@@ -497,13 +497,16 @@ export default function DigestIssue6() {
           <ul className={LIST}>
             <li>
               <b>Pension payments.</b>{" "}
-              The city&apos;s yearly payment into its pension fund had been rising 4.5% a year, a
-              step of roughly{" "}
+              The pension fund owes retirees more than it has set aside, and the city&apos;s yearly
+              payment is closing that gap. The payment had been rising 4.5% a year, a step of
+              roughly{" "}
               <Fig>$700,000</Fig>{" "}
               next year. In September the finance director, who chairs the retirement board, told
               the committee the board had adopted a new schedule that holds the payment at its
-              current level and still reaches full funding by 2032.{" "}
-              <Moment src={DRC14} s={5889} /> <Moment src={DRC14} s={5974} />{" "}So on September
+              current level and still closes the gap by 2032, ahead of the state&apos;s 2040
+              deadline.{" "}
+              <Moment src={DRC14} s={5889} /> <Moment src={DRC14} s={5938} />{" "}
+              <Moment src={DRC14} s={5974} />{" "}So on September
               28, members set aside changing the pension schedule as unnecessary.{" "}
               <Moment src={DRC15} s={306} />
             </li>
