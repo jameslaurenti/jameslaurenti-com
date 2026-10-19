@@ -499,21 +499,15 @@ export default function DigestIssue6() {
           <ul className={LIST}>
             <li>
               <b>Pension payments.</b>{" "}
-              Like nearly every Massachusetts city and town, Beverly owes its retirees more in
-              pensions than its fund has set aside. For most of the last century, state law kept
-              local systems from saving ahead; since 1987, it has required them to close the gap on
-              a schedule. Only 3 of 83 local systems were fully funded in 2023, by{" "}
-              <Src href={MASSINC_PENSIONS}>MassINC&apos;s count</Src>. Beverly&apos;s yearly
-              payment into its fund had been rising 4.5% a year, a step of roughly{" "}
+              <Src href={MASSINC_PENSIONS}>Like most Massachusetts cities and towns</Src>, Beverly
+              is still paying down a pension shortfall left from decades of underfunding, and its
+              yearly payment had been set to rise 4.5% a year, about{" "}
               <Fig>$700,000</Fig>{" "}
-              next year. In September the finance director, who chairs the retirement board, told
-              the committee the board had adopted a new schedule that holds the payment at its
-              current level and still closes the gap by 2032, ahead of the state&apos;s 2040
-              deadline.{" "}
-              <Moment src={DRC14} s={5889} /> <Moment src={DRC14} s={5938} />{" "}
-              <Moment src={DRC14} s={5974} />{" "}So on September
-              28, members set aside changing the pension schedule as unnecessary.{" "}
-              <Moment src={DRC15} s={306} />
+              more next year. Members looked at changing the payment schedule to ease that.{" "}
+              <Moment src={DRC15} s={306} />{" "}By September, the retirement board had adopted a
+              new schedule that holds the payment flat and still clears the shortfall by 2032, so on
+              September 28 members set the idea aside.{" "}
+              <Moment src={DRC14} s={5889} /> <Moment src={DRC14} s={5974} />
             </li>
             <li>
               <b>Regional dispatch.</b>{" "}
