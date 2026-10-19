@@ -160,6 +160,8 @@ const FLOCK0421 = `${V}9O_ifUaTQJs`;
 const FLOCK1019 = `${V}x_567bYRlvc`;
 const CC1019 = `${V}Oh_fs6QibXs`;
 const MGL = "https://malegislature.gov/Laws/GeneralLaws";
+const MASSINC_PENSIONS =
+  "https://massinc.org/research/reckoning-with-historic-unfunded-municipal-pension-obligations/";
 const CH70_FY27 = "https://www.doe.mass.edu/finance/chapter70/fy2027/chapter-2027.html";
 const SC14 = `${V}x_MrkYQd68M`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
@@ -497,9 +499,12 @@ export default function DigestIssue6() {
           <ul className={LIST}>
             <li>
               <b>Pension payments.</b>{" "}
-              The pension fund owes retirees more than it has set aside, and the city&apos;s yearly
-              payment is closing that gap. The payment had been rising 4.5% a year, a step of
-              roughly{" "}
+              Like nearly every Massachusetts city and town, Beverly owes its retirees more in
+              pensions than its fund has set aside. For most of the last century, state law kept
+              local systems from saving ahead; since 1987, it has required them to close the gap on
+              a schedule. Only 3 of 83 local systems were fully funded in 2023, by{" "}
+              <Src href={MASSINC_PENSIONS}>MassINC&apos;s count</Src>. Beverly&apos;s yearly
+              payment into its fund had been rising 4.5% a year, a step of roughly{" "}
               <Fig>$700,000</Fig>{" "}
               next year. In September the finance director, who chairs the retirement board, told
               the committee the board had adopted a new schedule that holds the payment at its
