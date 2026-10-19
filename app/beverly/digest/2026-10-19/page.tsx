@@ -199,12 +199,12 @@ type Ev = { date: string; what: string; detail: string; cal?: CalendarEvent };
 const ahead: Ev[] = [
   {
     date: "Oct 20",
-    what: "Deficit Reduction Committee: first public presentation",
+    what: "Deficit Reduction Committee: community meeting",
     detail:
       "6:00pm at the Council on Aging (the Senior Center), 90 Colon St. About half an hour of slides, then questions from the public.",
     cal: {
       id: "drc-public-2026-10-20",
-      title: "Deficit Reduction Committee: first public presentation",
+      title: "Deficit Reduction Committee: community meeting",
       start: "2026-10-20T22:00:00Z",
       end: "2026-10-20T23:30:00Z",
       location: "Beverly Council on Aging (Senior Center), 90 Colon St, Beverly, MA",
@@ -345,7 +345,7 @@ export default function DigestIssue6() {
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
             This issue is mostly a preview of the week ahead. Tonight two Council committees
             take a second look at the city&apos;s Flock cameras. Tomorrow night the Deficit
-            Reduction Committee presents its ideas to the public for the first time; members
+            Reduction Committee presents its research at its first community meeting; members
             worked through that presentation together last Thursday, and the recording shows
             what to expect. From the schools: an interim finance director, a fix after an accidental
             lockdown at the Middle School, and a call for residents to serve on a committee that
@@ -381,7 +381,7 @@ export default function DigestIssue6() {
         {/* ---- 01 ---- */}
         <section
           id="deficit"
-          data-dek={"The Deficit Reduction Committee presents to the public for the first time Tuesday at 6pm at the Senior Center. Its run-through last Thursday shows what to expect: research on fees, health insurance, payments from tax-exempt institutions and longer-term ideas, with some ideas already set aside, then questions."}
+          data-dek={"The Deficit Reduction Committee, whose regular meetings are public, holds its first community meeting Tuesday at 6pm at the Senior Center. Its run-through last Thursday shows what to expect: research on fees, health insurance, payments from tax-exempt institutions and longer-term ideas, with some ideas already set aside, then questions."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Deficit Reduction Committee</Eyebrow>
@@ -394,9 +394,10 @@ export default function DigestIssue6() {
             meeting="Deficit Reduction Committee, Oct 15"
           />
           <p className={BODY}>
-            The Deficit Reduction Committee presents to the public for the first time Tuesday at
-            6:00pm at the Council on Aging (the Senior Center), 90 Colon St: about half an hour of
-            slides, then questions from the room. Questions can also be sent ahead of time to the
+            The Deficit Reduction Committee, whose regular meetings are public and carried on
+            BevCam, holds its first community meeting Tuesday at 6:00pm at the Council on Aging
+            (the Senior Center), 90 Colon St: about half an hour of slides, then questions from
+            the room. Questions can also be sent ahead of time to the
             chair, Councilor Kathleen Feldman. The committee plans to post the slides
             afterward.{" "}
             <Moment src={DRC15} s={944} /> <Moment src={DRC15} s={166} />{" "}

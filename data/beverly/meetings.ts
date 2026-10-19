@@ -274,7 +274,7 @@ export const meetings: Meeting[] = [
   },
   {
     id: "drc-public-2026-10-20",
-    title: "Deficit Reduction Committee: first public presentation",
+    title: "Deficit Reduction Committee: community meeting",
     local: "Tue 20 Oct 2026, 6:00pm",
     start: "2026-10-20T22:00:00Z",
     end: "2026-10-20T23:30:00Z",

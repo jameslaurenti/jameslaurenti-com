@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 // the standfirst are baked into the image, so pointing a new issue at an old card ships a
 // share preview with the wrong week on it.
 export const alt =
-  "Beverly Meeting Digest, October 12 to 18, 2026: the deficit committee's first public presentation, the city's Flock cameras, and an interim finance director for the schools";
+  "Beverly Meeting Digest, October 12 to 18, 2026: a preview of the deficit committee's community meeting, the city's Flock cameras, and an interim finance director for the schools";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -63,7 +63,7 @@ export default async function Image() {
               maxWidth: 940,
             }}
           >
-            {"The deficit committee goes public, Flock cameras, and the schools' finance office."}
+            {"The deficit committee's community meeting, Flock cameras, and the schools' finance office."}
           </div>
         </div>
 

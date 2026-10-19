@@ -28,7 +28,7 @@ export const issues: DigestIssue[] = [
     published: "October 19, 2026",
     covering: "October 12 to 18",
     teaser:
-      "A preview of the deficit committee's first public presentation, and the city's Flock cameras back before the Council. From the schools: an interim finance director, a fix after an accidental lockdown at the Middle School, and a call for residents to help review fees.",
+      "A preview of the deficit committee's first community meeting, and the city's Flock cameras back before the Council. From the schools: an interim finance director, a fix after an accidental lockdown at the Middle School, and a call for residents to help review fees.",
   },
   {
     slug: "2026-10-12",
