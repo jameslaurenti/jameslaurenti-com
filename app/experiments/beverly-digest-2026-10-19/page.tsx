@@ -400,8 +400,9 @@ export default function DigestIssue6() {
           <p className={BODY}>
             The Deficit Reduction Committee presents to the public for the first time Tuesday at
             6:00pm at the Council on Aging (the Senior Center), 90 Colon St: about half an hour of
-            slides, then questions. Raise a hand to ask, or send questions ahead to the chair,
-            Councilor Kathleen Feldman. The committee plans to post the slides afterward.{" "}
+            slides, then questions from the room. Questions can also be sent ahead of time to the
+            chair, Councilor Kathleen Feldman. The committee plans to post the slides
+            afterward.{" "}
             <Moment src={DRC15} s={944} /> <Moment src={DRC15} s={166} />{" "}
             <Moment src={DRC15} s={3361} /> <Moment src={DRC15} s={759} />
           </p>
