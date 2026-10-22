@@ -1,0 +1,875 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<!-- Experiment: a small turn-based dungeon game. Unlisted. -->
+<title>Candle Crawl</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Alegreya+Sans:wght@400;500;700;800&family=IM+Fell+English+SC&display=swap">
+<style>
+/* Layout: one column for one thumb. Numbers on top, a candlelit 3x3 floor in the middle, the log under it.
+   Deliberately dark-only: it is played in a dark room next to a sleeping kid. */
+:root {
+  --soot: #100d0b;
+  --stone: #1a1511;
+  --card: #221b16;
+  --edge: #3a3029;
+  --bone: #d9c9ab;
+  --ash: #8f7f69;
+  --flame: #eda14b;
+  --ember: #d6654d;
+  --steel: #a3b4bb;
+  --gold: #d8b25a;
+  --wax: #e6d8ba;
+  --rust: #c07a45;
+  --moss: #98ad78;
+  --font-display: "IM Fell English SC", "IM Fell English", Georgia, "Times New Roman", serif;
+  --font-body: "Alegreya Sans", "Gill Sans", "Trebuchet MS", system-ui, sans-serif;
+  color-scheme: dark;
+  padding-top: env(safe-area-inset-top, 0px);
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+@property --gx { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
+@property --gy { syntax: "<percentage>"; inherits: false; initial-value: 50%; }
+
+html { box-sizing: border-box; height: 100%; background: var(--soot); }
+*, *::before, *::after { box-sizing: inherit; }
+body {
+  height: 100%; margin: 0; overflow-x: hidden;
+  background: var(--soot); color: var(--bone);
+  font: 16px/1.4 var(--font-body);
+  -webkit-tap-highlight-color: transparent;
+}
+[hidden] { display: none !important; }
+button { font: inherit; color: inherit; }
+button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
+
+.app {
+  min-height: 100%; max-width: 460px; margin: 0 auto;
+  padding-block: 12px 14px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+  display: flex; flex-direction: column; gap: 12px;
+}
+
+/* ---- numbers ---- */
+.hud { display: grid; gap: 10px; }
+.titlebar { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.brand { margin: 0; font: 400 1.55rem/1 var(--font-display); color: var(--flame); }
+.where { margin: 0; font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ash); }
+.stats { display: grid; grid-template-columns: 1.3fr 1fr 1fr; gap: 8px; }
+.stat { background: var(--stone); border-radius: 10px; padding: 8px 10px; display: grid; gap: 3px; align-content: start; min-width: 0; }
+.stat-label { font-size: .66rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ash); }
+.stat-value { font: 800 1.35rem/1 var(--font-body); font-variant-numeric: lining-nums tabular-nums; }
+.stat-value small { font-size: .8rem; font-weight: 500; color: var(--ash); }
+#hp { color: var(--flame); }
+#blade { color: var(--steel); }
+#coins { color: var(--gold); }
+.meter { display: block; height: 3px; border-radius: 2px; background: rgb(255 235 205 / .07); overflow: hidden; }
+.meter > i { display: block; height: 100%; width: calc(var(--p, 0) * 100%); background: var(--flame); transition: width .3s ease; }
+.omen { display: grid; gap: 5px; font-size: .84rem; color: var(--ash); }
+.omen.here { color: var(--ember); }
+.omen.here .meter > i { background: var(--ember); }
+.next { display: flex; align-items: center; gap: 6px; font-size: .84rem; color: var(--ash); }
+.next .ico { width: 16px; height: 16px; }
+
+/* ---- the floor ---- */
+.board {
+  --gap: 8px;
+  position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--gap);
+  width: min(100%, 420px, max(250px, calc((100svh - 300px) * .78)));
+  margin: 0 auto;
+  touch-action: none; user-select: none; -webkit-user-select: none;
+  border-radius: 14px;
+  background: radial-gradient(circle at var(--gx) var(--gy), rgb(237 161 75 / .14), transparent 60%);
+  transition: --gx .25s ease, --gy .25s ease;
+}
+.slot { aspect-ratio: 4 / 5; border-radius: 12px; border: 1px dashed rgb(255 235 205 / .06); }
+
+.card, .floater {
+  position: absolute; top: 0; left: 0;
+  width: calc((100% - 2 * var(--gap)) / 3);
+  height: calc((100% - 2 * var(--gap)) / 3);
+  translate: calc(var(--c, 0) * (100% + var(--gap))) calc(var(--r, 0) * (100% + var(--gap)));
+}
+.card {
+  --tint: var(--bone);
+  display: grid; grid-template-columns: 1fr auto; grid-template-rows: auto 1fr auto;
+  grid-template-areas: "val tag" "art art" "name name";
+  align-items: center; padding: 7px 7px 8px; margin: 0;
+  border: 1px solid var(--edge); border-radius: 12px;
+  background: linear-gradient(180deg, var(--card) 40%, color-mix(in srgb, var(--card) 84%, var(--tint)));
+  color: var(--tint); text-align: center;
+  transition: translate .22s cubic-bezier(.3, .7, .3, 1), filter .25s ease, border-color .25s ease;
+}
+.card.far { filter: brightness(.46) saturate(.7); }
+.card.reach { cursor: pointer; border-color: color-mix(in srgb, var(--tint) 34%, var(--edge)); box-shadow: 0 8px 20px rgb(0 0 0 / .35); }
+.card.reach:hover { border-color: color-mix(in srgb, var(--tint) 60%, var(--edge)); }
+.card.lethal { border-color: var(--ember); }
+.c-val { grid-area: val; justify-self: start; font: 800 1.5rem/1 var(--font-body); font-variant-numeric: lining-nums tabular-nums; }
+.c-tag { grid-area: tag; justify-self: end; font: 700 .72rem/1 var(--font-body); font-variant-numeric: lining-nums; padding: 3px 5px; border-radius: 6px; }
+.c-tag:empty { display: none; }
+.c-tag.hurt { background: rgb(214 101 77 / .18); color: #ec9a86; }
+.c-tag.lethal { background: var(--ember); color: var(--soot); }
+.c-tag.safe { background: rgb(163 180 187 / .14); color: var(--steel); }
+.c-art { grid-area: art; justify-self: center; width: 52%; max-width: 56px; height: auto; aspect-ratio: 1; }
+.c-name { grid-area: name; font: 400 .8rem/1.05 var(--font-display); color: var(--bone); text-wrap: balance; overflow-wrap: anywhere; }
+.ico { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+.t-monster { --tint: var(--ember); }
+.t-boss { --tint: var(--ember); border-width: 2px; }
+.t-boss .c-val { font-size: 1.7rem; }
+.t-wax { --tint: var(--wax); }
+.t-blade { --tint: var(--steel); }
+.t-coin, .t-chest { --tint: var(--gold); }
+.t-trap { --tint: var(--rust); }
+.t-shrine { --tint: var(--moss); }
+.t-hero { --tint: var(--flame); }
+
+.card.enter { animation: land .3s cubic-bezier(.2, .8, .3, 1) backwards; }
+.card.leave { animation: taken .24s ease forwards; pointer-events: none; z-index: 1; }
+@keyframes land { from { opacity: 0; scale: .72; } }
+@keyframes taken { to { opacity: 0; scale: .8; } }
+
+/* you */
+.hero {
+  --tint: var(--flame);
+  z-index: 2;
+  border-color: rgb(237 161 75 / .4);
+  background: radial-gradient(circle at 50% 38%, rgb(237 161 75 / .2), transparent 68%), var(--card);
+}
+.hero .c-tag { display: inline-flex; align-items: center; gap: 2px; color: var(--steel); background: rgb(163 180 187 / .12); }
+.hero .c-tag .ico { width: 12px; height: 12px; }
+.candle { grid-area: art; justify-self: center; align-self: stretch; width: 22%; max-width: 22px; display: flex; flex-direction: column; justify-content: flex-end; align-items: center; padding-bottom: 2px; }
+.flame {
+  width: 74%; aspect-ratio: 1 / 1.75; margin-bottom: 2px;
+  border-radius: 50% 50% 50% 50% / 62% 62% 38% 38%;
+  background: radial-gradient(ellipse at 50% 72%, #fff3d6 0 18%, #ffc56a 34%, #e8792f 70%, rgb(232 121 47 / 0) 72%);
+  box-shadow: 0 0 18px 6px rgb(237 161 75 / .28);
+  transform-origin: 50% 90%;
+  animation: flicker 2.6s ease-in-out infinite;
+  transition: opacity .5s ease;
+}
+.stick {
+  width: 100%; height: calc(10% + 62% * var(--life, 1));
+  border-radius: 3px 3px 2px 2px;
+  background: linear-gradient(90deg, #bba98a, #ece0c6 45%, #a8977a);
+  transition: height .35s ease;
+}
+.hero.out .flame { opacity: 0; }
+.hero.out { border-color: var(--edge); background: var(--card); }
+.hero.hurt { animation: hurt .34s ease; }
+@keyframes flicker {
+  0%, 100% { transform: scale(1, 1) rotate(0deg); }
+  30% { transform: scale(.94, 1.05) rotate(-2deg); }
+  55% { transform: scale(1.04, .96) rotate(1.5deg); }
+  80% { transform: scale(.97, 1.03) rotate(-1deg); }
+}
+@keyframes hurt {
+  0%, 100% { transform: translateX(0); border-color: rgb(237 161 75 / .4); }
+  20% { transform: translateX(-5px); border-color: var(--ember); }
+  45% { transform: translateX(4px); }
+  70% { transform: translateX(-2px); }
+}
+
+.floater {
+  z-index: 3; display: grid; place-items: center; pointer-events: none;
+  font: 800 1.6rem/1 var(--font-body); font-variant-numeric: lining-nums;
+  text-shadow: 0 2px 10px rgb(0 0 0 / .8);
+  animation: rise .95s ease-out forwards;
+}
+.floater.dmg { color: #f08f78; }
+.floater.heal { color: var(--wax); padding-bottom: 46%; }
+.floater.gold { color: var(--gold); font-size: 1.15rem; padding-top: 52%; }
+@keyframes rise {
+  from { opacity: 0; transform: translateY(8px); }
+  15% { opacity: 1; }
+  to { opacity: 0; transform: translateY(-30px); }
+}
+
+/* ---- under the floor ---- */
+.log { margin: 0; min-height: 2.8em; font-size: .95rem; text-align: center; text-wrap: balance; color: var(--bone); }
+.relics { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.relics:empty { display: none; }
+.chip { padding: 6px 10px; border-radius: 999px; border: 1px solid var(--edge); background: var(--stone); font-size: .78rem; line-height: 1; color: var(--bone); cursor: pointer; }
+.chip.spent { color: var(--ash); text-decoration: line-through; }
+.bar { margin-top: auto; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px; }
+.best { font-size: .8rem; color: var(--ash); font-variant-numeric: lining-nums tabular-nums; }
+.btns { display: flex; gap: 6px; flex-wrap: wrap; }
+.ghost { padding: 8px 11px; border-radius: 8px; border: 1px solid var(--edge); background: transparent; font-size: .84rem; color: var(--ash); cursor: pointer; }
+.ghost[aria-pressed="true"] { color: var(--flame); border-color: rgb(237 161 75 / .45); }
+
+/* ---- sheets ---- */
+.overlay {
+  position: fixed; inset: 0; z-index: 20; display: flex; overflow-y: auto;
+  padding: max(16px, env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) max(16px, env(safe-area-inset-bottom, 0px)) max(16px, env(safe-area-inset-left, 0px));
+  background: rgb(10 8 6 / .76);
+}
+.sheet {
+  margin: auto; width: min(100%, 400px);
+  display: grid; gap: 14px; padding: 20px;
+  background: var(--stone); border: 1px solid var(--edge); border-radius: 16px;
+  box-shadow: 0 24px 60px rgb(0 0 0 / .6);
+  animation: land .28s cubic-bezier(.2, .8, .3, 1);
+}
+.sheet h2 { margin: 0; font: 400 1.75rem/1.1 var(--font-display); color: var(--flame); text-wrap: balance; }
+.sheet p { margin: 0; color: var(--bone); }
+.sheet .muted { color: var(--ash); font-size: .9rem; }
+.legend { list-style: none; margin: 0; padding: 0; display: grid; gap: 9px; font-size: .92rem; }
+.legend li { display: grid; grid-template-columns: 24px 1fr; gap: 10px; align-items: start; }
+.legend .ico { width: 22px; height: 22px; color: var(--tint); margin-top: 1px; }
+.legend b { color: var(--tint); font-weight: 700; }
+.choices { display: grid; gap: 8px; }
+.choice { display: grid; gap: 3px; padding: 12px 14px; text-align: left; border-radius: 12px; border: 1px solid var(--edge); background: var(--card); cursor: pointer; }
+.choice:hover { border-color: rgb(237 161 75 / .5); }
+.choice b { font: 400 1.2rem/1.1 var(--font-display); color: var(--flame); }
+.choice span { font-size: .92rem; color: var(--bone); }
+.tally { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.tally div { display: grid; gap: 3px; padding: 9px 4px; text-align: center; border-radius: 10px; background: var(--card); }
+.tally span { font-size: .64rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ash); }
+.tally b { font: 800 1.3rem/1 var(--font-body); font-variant-numeric: lining-nums tabular-nums; color: var(--bone); }
+.row { display: flex; flex-wrap: wrap; gap: 8px; }
+.primary { padding: 12px 16px; border: 0; border-radius: 10px; background: var(--flame); color: #1c1207; font-weight: 700; font-size: 1rem; cursor: pointer; }
+
+.dimmer { position: fixed; inset: 0; z-index: 50; background: rgb(0 0 0 / .45); pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .board, .card, .stick, .meter > i { transition: none; }
+  .flame { animation: none; }
+  .card.enter, .sheet, .hero.hurt { animation: none; }
+  .card.leave { animation: taken .01s forwards; }
+  .floater { animation: fade 1.2s linear forwards; }
+  @keyframes fade { 0%, 70% { opacity: 1; } to { opacity: 0; } }
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="i-rat" viewBox="0 0 24 24"><path d="M4 17c0-4.5 3.5-8 8-8 3.5 0 6 2 9 5-3 1.6-6 3-10 3z"/><circle cx="12.6" cy="9.4" r="2"/><circle cx="17.2" cy="13" r=".5" fill="currentColor"/><path d="M4 17c-2.4 0-2.6 3.2 0 3.4 2 .2 3.5-.6 5-1.6M9 17v2.2M14.5 16.6v2.2"/></symbol>
+  <symbol id="i-bat" viewBox="0 0 24 24"><path d="M12 9.5c-1.4 0-2 1-2 2.3-1.6 0-2.6-1.2-3.2-2.8C4.6 9.3 3 10.6 2 12.4c1.6-.2 2.8.4 3.4 1.8.9-.7 2-.7 2.8.2.7-.6 1.6-.7 2.4-.2L12 17l1.4-2.8c.8-.5 1.7-.4 2.4.2.8-.9 1.9-.9 2.8-.2.6-1.4 1.8-2 3.4-1.8-1-1.8-2.6-3.1-4.8-3.4-.6 1.6-1.6 2.8-3.2 2.8 0-1.3-.6-2.3-2-2.3z"/><path d="M10.9 9.7 10.4 7.6M13.1 9.7l.5-2.1"/></symbol>
+  <symbol id="i-spider" viewBox="0 0 24 24"><circle cx="12" cy="13.4" r="3"/><circle cx="12" cy="8.9" r="1.5"/><path d="M12 7.4V3M9.3 12 6.5 9.6 4.5 10.6M9 13.4l-3.5-1-2 1.5M9.3 14.8 6 16l-1.5 2.4M10.2 16l-2 2.6-.6 2M14.7 12l2.8-2.4 2 1M15 13.4l3.5-1 2 1.5M14.7 14.8 18 16l1.5 2.4M13.8 16l2 2.6.6 2"/></symbol>
+  <symbol id="i-skull" viewBox="0 0 24 24"><path d="M12 3c-4.4 0-8 3.1-8 7.4 0 2.4 1.1 4.3 3 5.5V19a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-3.1c1.9-1.2 3-3.1 3-5.5C20 6.1 16.4 3 12 3z"/><circle cx="9" cy="11" r="1.7"/><circle cx="15" cy="11" r="1.7"/><path d="M12 13.6l-.9 1.8h1.8zM10 20v-2M12 20v-2M14 20v-2"/></symbol>
+  <symbol id="i-ghost" viewBox="0 0 24 24"><path d="M6 20.5V10a6 6 0 0 1 12 0v10.5l-2-1.6-2 1.6-2-1.6-2 1.6-2-1.6z"/><circle cx="10" cy="10.5" r="1" fill="currentColor"/><circle cx="14" cy="10.5" r="1" fill="currentColor"/><path d="M10.5 14.4c1 .6 2 .6 3 0"/></symbol>
+  <symbol id="i-horns" viewBox="0 0 24 24"><path d="M7.5 3.5c-.4 3 .5 5.2 2.4 6.3M16.5 3.5c.4 3-.5 5.2-2.4 6.3"/><path d="M7.5 10.6c0-1 2-1.6 4.5-1.6s4.5.6 4.5 1.6V14c0 3-2 5.6-4.5 6.6C9.5 19.6 7.5 17 7.5 14z"/><path d="M9.4 13l1.9.9M14.6 13l-1.9.9M10.8 17.2h2.4"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="3.2"/><path d="M12 10.2v3.6"/></symbol>
+  <symbol id="i-crown" viewBox="0 0 24 24"><path d="M4.5 17 3.5 7.5l5 4 3.5-6.5 3.5 6.5 5-4-1 9.5z"/><path d="M4.5 20h15"/></symbol>
+  <symbol id="i-wax" viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.4 6 10.5a6 6 0 0 1-12 0c0-3.1 3-6.5 6-10.5z"/><path d="M9.3 14.6a2.8 2.8 0 0 0 2.3 2.6"/></symbol>
+  <symbol id="i-blade" viewBox="0 0 24 24"><path d="M20.5 3.5 20 7.2l-9.6 9.6-3.2-3.2L16.8 4z"/><path d="M5.6 12.4l6 6M8.6 15.4l-4.1 4.1M3.4 18.4l2.2 2.2"/></symbol>
+  <symbol id="i-coin" viewBox="0 0 24 24"><ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/></symbol>
+  <symbol id="i-trap" viewBox="0 0 24 24"><path d="M3 20h18M4.5 20 7 11l2.5 9M9 20l3-13 3 13M14.5 20l2.5-9 2.5 9"/></symbol>
+  <symbol id="i-chest" viewBox="0 0 24 24"><path d="M4 11h16v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1z"/><path d="M4 11V9a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v2"/><path d="M10.5 12.5h3V16h-3z"/></symbol>
+  <symbol id="i-shrine" viewBox="0 0 24 24"><path d="M4.5 20h15M7 20v-5.5h10V20M5.5 14.5h13"/><path d="M12 11.5c-1.3-.9-1.6-2.6 0-5 1.6 2.4 1.3 4.1 0 5zM12 11.5v3"/></symbol>
+  <symbol id="i-flame" viewBox="0 0 24 24"><path d="M12 3c2.6 3 5 5.6 5 9.2a5 5 0 0 1-10 0c0-2 .9-3.6 2.1-4.7.1 1.6.8 2.6 1.8 3.1C10.2 8.4 10.6 5.6 12 3z"/></symbol>
+</svg>
+
+<div class="app" id="app">
+  <header class="hud">
+    <div class="titlebar">
+      <h1 class="brand">Candle Crawl</h1>
+      <p class="where" id="where">Floor 1 · Cellar</p>
+    </div>
+    <div class="stats">
+      <div class="stat"><span class="stat-label">Candle</span><span class="stat-value" id="hp">10<small>/10</small></span><span class="meter"><i id="hp-bar"></i></span></div>
+      <div class="stat"><span class="stat-label">Blade</span><span class="stat-value" id="blade">0</span></div>
+      <div class="stat"><span class="stat-label">Coins</span><span class="stat-value" id="coins">0</span></div>
+    </div>
+    <div class="omen" id="omen"><span id="omen-text">The Rat King arrives in 18 steps.</span><span class="meter"><i id="omen-bar"></i></span></div>
+    <div class="next" id="next" hidden></div>
+  </header>
+
+  <div class="board" id="board" role="group" aria-label="The dungeon floor, three cards by three">
+    <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+    <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+    <div class="slot"></div><div class="slot"></div><div class="slot"></div>
+  </div>
+
+  <p class="log" id="log" aria-live="polite"></p>
+  <div class="relics" id="relics"></div>
+
+  <footer class="bar">
+    <span class="best" id="best"></span>
+    <span class="btns">
+      <button class="ghost" id="btn-help" type="button">How to play</button>
+      <button class="ghost" id="btn-dim" type="button" aria-pressed="false">Dimmer</button>
+      <button class="ghost" id="btn-new" type="button">New run</button>
+    </span>
+  </footer>
+</div>
+
+<div class="overlay" id="overlay" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheet-title"></div></div>
+<div class="dimmer" id="dimmer" hidden></div>
+
+<script>
+(() => {
+"use strict";
+
+/* ---------- rules: plain state and functions, no DOM ---------- */
+const FLOOR_STEPS = 18;
+const START_CANDLE = 12;
+let rand = Math.random;
+const rint = (a, b) => a + Math.floor(rand() * (b - a + 1));
+
+const FLOORS = ["Cellar", "Crypt", "Ossuary", "Catacombs", "Undercroft", "Charnel House", "Sump", "Barrow", "Old Well", "Root of the Hill"];
+const WARDENS = ["Rat King", "Sexton", "Bone Abbot", "Pale Bishop", "Undercroft Wyrm", "Charnel Hound", "Sump Witch", "Barrow Lord", "Thing in the Well", "Hunger Below"];
+const BEASTS = ["", "Rat", "Bat", "Spider", "Skeleton", "Ghoul", "Wight", "Wraith", "Gargoyle", "Revenant", "Horror"];
+const BEAST_ICON = ["", "rat", "bat", "spider", "skull", "skull", "skull", "ghost", "horns", "ghost", "eye"];
+const floorName = (f) => FLOORS[f - 1] || "Deep";
+const wardenName = (f) => WARDENS[f - 1] || "Nameless Warden";
+
+const RELICS = {
+  whetstone: { name: "Whetstone", text: "Blades you pick up are 1 stronger." },
+  longwick: { name: "Long Wick", text: "Your candle grows 3 taller, lit." },
+  tinderbox: { name: "Tinderbox", text: "Every kill relights 1 candle." },
+  gloves: { name: "Thick Gloves", text: "Spikes hurt half as much." },
+  magpie: { name: "Magpie's Eye", text: "Coin piles are worth double." },
+  beeswax: { name: "Beeswax", text: "Wax relights 2 more." },
+  lockpick: { name: "Lockpick", text: "Chests never bite, and hold half again as much." },
+  notched: { name: "Notched Edge", text: "Once you hold a blade, it never wears below 1." },
+  salt: { name: "Grave Salt", text: "Rats and bats die without a fight." },
+  spare: { name: "Spare Candle", text: "The first time your flame goes out, it relights at 5." },
+  moth: { name: "Moth Lantern", text: "See the next card before it lands." },
+  tithe: { name: "Tithe Box", text: "Every kill pays 2 more coins." },
+};
+const has = (s, k) => s.relics.includes(k);
+
+function cardName(c) {
+  switch (c.t) {
+    case "monster": return BEASTS[Math.min(c.v, 10)];
+    case "boss": return c.name;
+    case "wax": return "Wax";
+    case "blade": return "Blade";
+    case "coin": return "Coins";
+    case "trap": return "Spikes";
+    case "chest": return "Chest";
+    case "shrine": return "Shrine";
+  }
+  return "";
+}
+
+function deal(s) {
+  const f = s.floor, r = rand() * 100;
+  let c;
+  if (r < 37) c = { t: "monster", v: rint(1 + ((f - 1) >> 1), 3 + f) };
+  else if (r < 51) c = { t: "coin", v: rint(1, 4 + f) };
+  else if (r < 68) c = { t: "wax", v: rint(1, 4 + ((f - 1) >> 1)) };
+  else if (r < 83) c = { t: "blade", v: rint(2, 4 + (f >> 1)) };
+  else if (r < 89) c = { t: "trap", v: rint(1, 2 + (f >> 1)) };
+  else if (r < 96) c = { t: "chest", v: rint(4 + f, 8 + 3 * f), mimic: rand() < 0.15, bite: 3 + f };
+  else c = { t: "shrine", v: 1 };
+  c.id = s.uid++;
+  return c;
+}
+
+function makeWarden(s) {
+  return { t: "boss", v: 5 + 2 * s.floor + rint(0, 2), name: wardenName(s.floor), age: 0, id: s.uid++ };
+}
+
+function newRun() {
+  const s = {
+    hp: START_CANDLE, max: START_CANDLE, blade: 0, coins: 0, floor: 1, steps: 0, floorSteps: 0, kills: 0,
+    relics: [], spareUsed: false, wardenOut: false, pending: null, next: null, hero: 4, grid: [],
+    phase: "play", offer: null, uid: 1, cause: "", log: "Your candle is lit. Step onto a card beside it.",
+  };
+  for (let i = 0; i < 9; i++) s.grid.push(i === 4 ? null : deal(s));
+  // A kind start: one blade within reach.
+  s.grid[[1, 3, 5, 7][rint(0, 3)]] = { t: "blade", v: 3, id: s.uid++ };
+  s.next = deal(s);
+  return s;
+}
+
+const DIRS = { up: [-1, 0], down: [1, 0], left: [0, -1], right: [0, 1] };
+function targetOf(s, d) {
+  const r = Math.floor(s.hero / 3) + d[0], c = (s.hero % 3) + d[1];
+  return r < 0 || r > 2 || c < 0 || c > 2 ? -1 : r * 3 + c;
+}
+function dirTo(s, i) {
+  for (const k in DIRS) if (targetOf(s, DIRS[k]) === i) return k;
+  return null;
+}
+
+function fightOutcome(s, v) {
+  if (v <= 2 && has(s, "salt")) return { dmg: 0, blade: s.blade };
+  const absorb = Math.min(s.blade, v);
+  let blade = s.blade - absorb;
+  if (s.blade > 0 && has(s, "notched")) blade = Math.max(1, blade);
+  return { dmg: v - absorb, blade };
+}
+const trapDmg = (s, v) => (has(s, "gloves") ? Math.floor(v / 2) : v);
+
+// Candle lost by stepping onto c, where it can be known in advance.
+function costOf(s, c) {
+  if (c.t === "monster" || c.t === "boss") return fightOutcome(s, c.v).dmg;
+  if (c.t === "trap") return trapDmg(s, c.v);
+  return 0;
+}
+
+function fight(s, v, name, ev, warden) {
+  const o = fightOutcome(s, v), had = s.blade;
+  s.blade = o.blade;
+  s.hp -= o.dmg;
+  ev.dmg += o.dmg;
+  s.kills++;
+  s.cause = (warden ? "the " : "a ") + name;
+  const pay = v + (has(s, "tithe") ? 2 : 0) + (warden ? 10 * s.floor : 0);
+  s.coins += pay;
+  let msg;
+  if (v <= 2 && has(s, "salt")) msg = `The ${name} dies in the salt.`;
+  else if (!had) msg = `The ${name} burns you for ${o.dmg}.`;
+  else if (o.dmg) msg = o.blade ? `Your blade dulls on the ${name}. Candle −${o.dmg}.` : `Your blade breaks on the ${name}. Candle −${o.dmg}.`;
+  else msg = `Your blade cuts down the ${name}.` + (o.blade ? ` Blade ${had} → ${o.blade}.` : " It breaks.");
+  if (s.hp > 0 && s.hp < s.max && has(s, "tinderbox")) { s.hp++; ev.heal++; }
+  if (warden) { ev.warden = true; return `The ${name} falls. +${pay} coins. The stair down is open.`; }
+  return `${msg} +${pay} coins.`;
+}
+
+function resolve(s, c, ev) {
+  switch (c.t) {
+    case "monster": return fight(s, c.v, cardName(c), ev, false);
+    case "boss": return fight(s, c.v, c.name, ev, true);
+    case "chest": {
+      if (c.mimic && !has(s, "lockpick")) return "The chest has teeth! " + fight(s, c.bite, "Mimic", ev, false);
+      const g = has(s, "lockpick") ? Math.round(c.v * 1.5) : c.v;
+      s.coins += g;
+      return `The chest holds ${g} coins.`;
+    }
+    case "wax": {
+      const g = Math.min(c.v + (has(s, "beeswax") ? 2 : 0), s.max - s.hp);
+      s.hp += g;
+      ev.heal += g;
+      return g ? `Wax. Candle +${g}.` : "Wax, but your candle is already full.";
+    }
+    case "blade": {
+      const v = c.v + (has(s, "whetstone") ? 1 : 0), old = s.blade;
+      s.blade = v;
+      return old ? `You trade your ${old} blade for a ${v}.` : `You pick up a ${v} blade.`;
+    }
+    case "coin": {
+      const g = c.v * (has(s, "magpie") ? 2 : 1);
+      s.coins += g;
+      return `${g} coins.`;
+    }
+    case "trap": {
+      const dmg = trapDmg(s, c.v);
+      s.hp -= dmg;
+      ev.dmg += dmg;
+      s.cause = "spikes";
+      return dmg ? `Spikes. Candle −${dmg}.` : "Spikes, but your gloves take it.";
+    }
+    case "shrine":
+      s.max += 1;
+      s.hp += 1;
+      ev.heal += 1;
+      return "A shrine. Your candle grows one taller.";
+  }
+  return "";
+}
+
+function draw(s) {
+  if (s.pending) { const w = s.pending; s.pending = null; s.wardenOut = true; return w; }
+  const c = s.next;
+  s.next = deal(s);
+  return c;
+}
+const upcoming = (s) => s.pending || s.next;
+
+function offerRelics(s) {
+  const pool = Object.keys(RELICS).filter((k) => !s.relics.includes(k));
+  for (let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool.slice(0, 3);
+}
+
+// One step in a direction. Returns what happened, or null if the step is not possible.
+function act(s, key) {
+  if (s.phase !== "play") return null;
+  const d = DIRS[key], t = targetOf(s, d);
+  if (t < 0) return null;
+  const c = s.grid[t], coins0 = s.coins;
+  const ev = { card: c, from: s.hero, dmg: 0, heal: 0, gold: 0, warden: false, dead: false, spare: false };
+  let log = resolve(s, c, ev);
+  if (s.hp <= 0) {
+    if (has(s, "spare") && !s.spareUsed) {
+      s.spareUsed = true;
+      s.hp = Math.min(5, s.max);
+      ev.spare = true;
+      log += " Your spare candle catches. Candle 5.";
+    } else {
+      s.hp = 0;
+      s.phase = "dead";
+      ev.dead = true;
+    }
+  }
+  ev.gold = s.coins - coins0;
+  if (!ev.dead) {
+    // Step in. The card behind you slides into your old spot, and a new card lands at the far edge.
+    const h = s.hero;
+    s.grid[t] = null;
+    s.hero = t;
+    let vr = Math.floor(h / 3), vc = h % 3, br = vr - d[0], bc = vc - d[1];
+    while (br >= 0 && br < 3 && bc >= 0 && bc < 3) {
+      s.grid[vr * 3 + vc] = s.grid[br * 3 + bc];
+      vr = br; vc = bc; br -= d[0]; bc -= d[1];
+    }
+    for (const k of s.grid) {
+      if (k && k.t === "boss" && ++k.age % 6 === 0) { k.v++; log += ` The ${k.name} grows to ${k.v}.`; }
+    }
+    s.grid[vr * 3 + vc] = draw(s);
+    s.steps++;
+    s.floorSteps++;
+    if (!s.wardenOut && !s.pending && s.floorSteps >= FLOOR_STEPS - 1) s.pending = makeWarden(s);
+    if (ev.warden) { s.phase = "relic"; s.offer = offerRelics(s); }
+  }
+  s.log = log;
+  return ev;
+}
+
+function descend(s, key) {
+  if (s.phase !== "relic") return;
+  if (key && RELICS[key]) {
+    s.relics.push(key);
+    if (key === "longwick") { s.max += 3; s.hp += 3; }
+  }
+  s.floor++;
+  s.floorSteps = 0;
+  s.wardenOut = false;
+  s.offer = null;
+  s.phase = "play";
+  s.next = deal(s);
+  const rest = Math.min(3, s.max - s.hp);
+  s.hp += rest;
+  s.log = `You go down to the ${floorName(s.floor)}.` + (rest ? ` You rest on the stair. Candle +${rest}.` : "");
+}
+/* ---------- end rules ---------- */
+
+/* ---------- view ---------- */
+const $ = (id) => document.getElementById(id);
+const boardEl = $("board"), overlayEl = $("overlay"), sheetEl = $("sheet");
+const KEY = "candle-crawl-v1";
+const ICON = { wax: "wax", blade: "blade", coin: "coin", trap: "trap", chest: "chest", shrine: "shrine", boss: "crown" };
+const iconOf = (c) => (c.t === "monster" ? BEAST_ICON[Math.min(c.v, 10)] : ICON[c.t]);
+const valueText = (c) => (c.t === "chest" ? "?" : c.t === "shrine" ? "+1" : String(c.v));
+const use = (id, cls = "ico") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${id}"></use></svg>`;
+const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
+
+let s = null;
+const meta = { best: 0, bestFloor: 0, runs: 0, seenIntro: false, dim: false };
+let busy = false, sheetKind = "", heroEl = null, swipe = null, ignoreClickUntil = 0;
+const nodes = new Map();
+
+function store() { try { localStorage.setItem(KEY, JSON.stringify({ s, meta })); } catch (e) { /* private window: play on unsaved */ } }
+function restore() { try { return JSON.parse(localStorage.getItem(KEY) || "null"); } catch (e) { return null; } }
+
+function place(el, i) {
+  el.style.setProperty("--r", Math.floor(i / 3));
+  el.style.setProperty("--c", i % 3);
+}
+
+function cardNode(c) {
+  const el = document.createElement("button");
+  el.type = "button";
+  el.className = "card t-" + c.t;
+  el.dataset.id = c.id;
+  el.innerHTML = `<span class="c-val"></span><span class="c-tag"></span>${use(iconOf(c), "ico c-art")}<span class="c-name"></span>`;
+  return el;
+}
+
+function paintCard(el, c, i) {
+  const dir = s.phase === "play" ? dirTo(s, i) : null, reach = dir !== null;
+  const name = cardName(c), val = valueText(c), tag = el.querySelector(".c-tag");
+  el.querySelector(".c-val").textContent = val;
+  el.querySelector(".c-name").textContent = name;
+  let label = `${name}, ${val}.`, cls = "", text = "";
+  if (reach) {
+    const cost = costOf(s, c);
+    if (cost > 0) {
+      text = "−" + cost;
+      cls = cost >= s.hp ? "lethal" : "hurt";
+      label += cost >= s.hp ? " This would put your candle out." : ` Costs ${cost} candle.`;
+    } else if (c.t === "monster" || c.t === "boss") {
+      text = "safe";
+      cls = "safe";
+      label += " Your blade takes it.";
+    }
+    label += ` Step ${dir}.`;
+  } else label += " Out of reach.";
+  tag.textContent = text;
+  tag.className = "c-tag " + cls;
+  el.classList.toggle("reach", reach);
+  el.classList.toggle("far", !reach);
+  el.classList.toggle("lethal", cls === "lethal");
+  el.tabIndex = reach ? 0 : -1;
+  el.setAttribute("aria-disabled", String(!reach));
+  el.setAttribute("aria-label", label);
+  place(el, i);
+}
+
+function clearBoard() {
+  for (const el of nodes.values()) el.remove();
+  nodes.clear();
+}
+
+function render() {
+  const live = new Set();
+  s.grid.forEach((c, i) => {
+    if (!c) return;
+    live.add(c.id);
+    let el = nodes.get(c.id);
+    if (!el) {
+      el = cardNode(c);
+      nodes.set(c.id, el);
+      boardEl.appendChild(el);
+      if (nodes.size > 1 && s.steps === 0) el.style.animationDelay = i * 35 + "ms";
+      el.classList.add("enter");
+      el.addEventListener("animationend", () => { el.classList.remove("enter"); el.style.animationDelay = ""; }, { once: true });
+    }
+    paintCard(el, c, i);
+  });
+  for (const [id, el] of nodes) {
+    if (live.has(id)) continue;
+    nodes.delete(id);
+    el.classList.add("leave");
+    el.tabIndex = -1;
+    setTimeout(() => el.remove(), 260);
+  }
+
+  place(heroEl, s.hero);
+  heroEl.style.setProperty("--life", s.hp / s.max);
+  heroEl.classList.toggle("out", s.phase === "dead");
+  heroEl.querySelector(".c-val").textContent = s.hp;
+  heroEl.querySelector(".c-tag").innerHTML = s.blade ? use("blade") + s.blade : "";
+  boardEl.style.setProperty("--gx", (((s.hero % 3) * 2 + 1) / 6) * 100 + "%");
+  boardEl.style.setProperty("--gy", ((Math.floor(s.hero / 3) * 2 + 1) / 6) * 100 + "%");
+
+  $("where").textContent = `Floor ${s.floor} · ${floorName(s.floor)}`;
+  $("hp").innerHTML = `${s.hp}<small>/${s.max}</small>`;
+  $("hp-bar").style.setProperty("--p", s.hp / s.max);
+  $("blade").textContent = s.blade;
+  $("coins").textContent = s.coins;
+
+  const warden = s.grid.find((c) => c && c.t === "boss");
+  const omen = $("omen");
+  let omenText, omenP;
+  if (warden) { omenText = `The ${warden.name} is here. It grows by 1 every 6 steps.`; omenP = 1; }
+  else if (s.phase === "relic") { omenText = "The stair down is open."; omenP = 1; }
+  else {
+    const left = FLOOR_STEPS - s.floorSteps;
+    omenText = left <= 1 ? `The ${wardenName(s.floor)} arrives next step.` : `The ${wardenName(s.floor)} arrives in ${left} steps.`;
+    omenP = s.floorSteps / FLOOR_STEPS;
+  }
+  $("omen-text").textContent = omenText;
+  $("omen-bar").style.setProperty("--p", omenP);
+  omen.classList.toggle("here", !!warden);
+
+  const nextEl = $("next");
+  nextEl.hidden = !has(s, "moth") || s.phase !== "play";
+  if (!nextEl.hidden) {
+    const n = upcoming(s);
+    nextEl.innerHTML = `Next card: ${use(iconOf(n))}<span>${cardName(n)} ${valueText(n)}</span>`;
+    nextEl.className = "next t-" + n.t;
+    nextEl.querySelector(".ico").style.color = "var(--tint)";
+  }
+
+  $("log").textContent = s.log;
+  $("relics").innerHTML = s.relics
+    .map((k) => `<button class="chip${k === "spare" && s.spareUsed ? " spent" : ""}" type="button" data-relic="${k}">${RELICS[k].name}</button>`)
+    .join("");
+  $("best").textContent = meta.runs || meta.best ? `Best ${meta.best} coins · floor ${meta.bestFloor}` : "First run";
+}
+
+function floater(text, kind, i) {
+  const f = document.createElement("span");
+  f.className = "floater " + kind;
+  f.textContent = text;
+  place(f, i);
+  boardEl.appendChild(f);
+  f.addEventListener("animationend", () => f.remove());
+}
+
+function finishRun() {
+  meta.runs++;
+  const newBest = s.coins > meta.best;
+  meta.best = Math.max(meta.best, s.coins);
+  meta.bestFloor = Math.max(meta.bestFloor, s.floor);
+  return newBest;
+}
+
+function step(key) {
+  if (busy || !s || s.phase !== "play" || !overlayEl.hidden) return;
+  const ev = act(s, key);
+  if (!ev) {
+    const d = DIRS[key];
+    heroEl.animate([{ transform: "none" }, { transform: `translate(${d[1] * 6}px, ${d[0] * 6}px)` }, { transform: "none" }], { duration: 170 });
+    return;
+  }
+  busy = true;
+  const newBest = ev.dead ? finishRun() : false;
+  render();
+  if (ev.dmg) {
+    floater("−" + ev.dmg, "dmg", s.hero);
+    heroEl.classList.remove("hurt");
+    void heroEl.offsetWidth;
+    heroEl.classList.add("hurt");
+  }
+  if (ev.heal) floater("+" + ev.heal, "heal", s.hero);
+  if (ev.gold) floater("+" + ev.gold, "gold", s.hero);
+  store();
+  setTimeout(() => {
+    busy = false;
+    if (s.phase === "dead") showDeath(newBest);
+    else if (s.phase === "relic") showRelics();
+  }, ev.dead ? 900 : ev.warden ? 650 : 180);
+}
+
+function newGame() {
+  s = newRun();
+  clearBoard();
+  closeSheet();
+  render();
+  store();
+}
+
+/* sheets */
+function openSheet(kind, html) {
+  sheetKind = kind;
+  sheetEl.innerHTML = html;
+  overlayEl.hidden = false;
+  const first = sheetEl.querySelector("button");
+  if (first) first.focus();
+}
+function closeSheet() {
+  overlayEl.hidden = true;
+  sheetKind = "";
+}
+
+function showIntro(first) {
+  openSheet("intro", `
+    <h2 id="sheet-title">Candle Crawl</h2>
+    <p>A quiet dungeon game. No sound and no timer, so you can stop mid-step. The run saves as you go.</p>
+    <ul class="legend">
+      <li class="t-hero">${use("flame")}<span><b>You.</b> Your candle is your life. Tap a lit card beside it, or swipe, to step onto it.</span></li>
+      <li class="t-monster">${use("skull")}<span><b>Monsters</b> burn your candle by their number. Your blade takes the hit first and wears down by the same amount. Kills pay their number in coins.</span></li>
+      <li class="t-blade">${use("blade")}<span><b>Blades</b> replace the one you hold, bigger or not.</span></li>
+      <li class="t-wax">${use("wax")}<span><b>Wax</b> relights your candle.</span></li>
+      <li class="t-coin">${use("coin")}<span><b>Coins</b> are your score.</span></li>
+      <li class="t-trap">${use("trap")}<span><b>Spikes</b> always hurt. Blades don't help.</span></li>
+      <li class="t-chest">${use("chest")}<span><b>Chests</b> hold coins. Some bite.</span></li>
+      <li class="t-shrine">${use("shrine")}<span><b>Shrines</b> make your candle one taller.</span></li>
+      <li class="t-boss">${use("crown")}<span><b>Wardens</b> arrive every ${FLOOR_STEPS} steps. Kill one to go down a floor and choose a relic.</span></li>
+    </ul>
+    <p>When you step, the card behind you slides into your old spot and a new card lands at the edge. Think two steps ahead.</p>
+    <button class="primary" type="button" data-act="close">${first ? "Light the candle" : "Back to it"}</button>`);
+}
+
+function showRelics() {
+  const choices = s.offer.length
+    ? `<div class="choices">${s.offer.map((k) => `<button class="choice" type="button" data-act="relic:${k}"><b>${RELICS[k].name}</b><span>${RELICS[k].text}</span></button>`).join("")}</div>`
+    : `<button class="primary" type="button" data-act="relic:">Go down</button>`;
+  openSheet("relic", `
+    <h2 id="sheet-title">The ${wardenName(s.floor)} falls</h2>
+    <p>The stair down to the ${floorName(s.floor + 1)} is open. ${s.offer.length ? "Take one thing with you." : "You carry everything there is."}</p>
+    ${choices}`);
+}
+
+function showDeath(newBest) {
+  const tally = [["Coins", s.coins], ["Floor", s.floor], ["Steps", s.steps], ["Kills", s.kills]]
+    .map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("");
+  openSheet("death", `
+    <h2 id="sheet-title">Your candle is out</h2>
+    <p>${cap(s.cause || "the dark")} put it out on floor ${s.floor}, the ${floorName(s.floor)}.</p>
+    <div class="tally">${tally}</div>
+    <p class="muted">${newBest ? "A new best." : `Best: ${meta.best} coins.`} Runs: ${meta.runs}.</p>
+    <button class="primary" type="button" data-act="again">Light another candle</button>`);
+}
+
+function showConfirmNew() {
+  openSheet("confirm", `
+    <h2 id="sheet-title">Start over?</h2>
+    <p>This run ends here, with ${s.coins} coins on floor ${s.floor}. It still counts toward your best.</p>
+    <div class="row"><button class="primary" type="button" data-act="abandon">Start a new run</button><button class="ghost" type="button" data-act="close">Keep playing</button></div>`);
+}
+
+sheetEl.addEventListener("click", (e) => {
+  const b = e.target.closest("button[data-act]");
+  if (!b) return;
+  const [a, arg] = b.dataset.act.split(":");
+  if (a === "close") {
+    if (sheetKind === "intro") { meta.seenIntro = true; store(); }
+    closeSheet();
+  } else if (a === "relic") {
+    descend(s, arg);
+    closeSheet();
+    render();
+    store();
+  } else if (a === "again") newGame();
+  else if (a === "abandon") { finishRun(); newGame(); }
+});
+
+/* input */
+boardEl.addEventListener("click", (e) => {
+  if (performance.now() < ignoreClickUntil) return;
+  const el = e.target.closest(".card[data-id]");
+  if (!el) return;
+  const i = s.grid.findIndex((c) => c && String(c.id) === el.dataset.id);
+  const d = i >= 0 ? dirTo(s, i) : null;
+  if (d) step(d);
+});
+boardEl.addEventListener("pointerdown", (e) => { swipe = { x: e.clientX, y: e.clientY, id: e.pointerId }; });
+boardEl.addEventListener("pointercancel", () => { swipe = null; });
+boardEl.addEventListener("pointerup", (e) => {
+  if (!swipe || swipe.id !== e.pointerId) return;
+  const dx = e.clientX - swipe.x, dy = e.clientY - swipe.y;
+  swipe = null;
+  if (Math.max(Math.abs(dx), Math.abs(dy)) < 28) return;
+  ignoreClickUntil = performance.now() + 350;
+  step(Math.abs(dx) > Math.abs(dy) ? (dx > 0 ? "right" : "left") : dy > 0 ? "down" : "up");
+});
+document.addEventListener("keydown", (e) => {
+  if (!overlayEl.hidden) {
+    if (e.key === "Escape" && (sheetKind === "intro" || sheetKind === "confirm")) sheetEl.querySelector('[data-act="close"]').click();
+    return;
+  }
+  const k = { ArrowUp: "up", ArrowDown: "down", ArrowLeft: "left", ArrowRight: "right", w: "up", s: "down", a: "left", d: "right" }[e.key];
+  if (k && !e.metaKey && !e.ctrlKey && !e.altKey) { e.preventDefault(); step(k); }
+});
+$("relics").addEventListener("click", (e) => {
+  const b = e.target.closest("[data-relic]");
+  if (!b) return;
+  const k = b.dataset.relic;
+  $("log").textContent = `${RELICS[k].name}: ${RELICS[k].text}` + (k === "spare" && s.spareUsed ? " (Already used.)" : "");
+});
+$("btn-help").addEventListener("click", () => showIntro(false));
+$("btn-new").addEventListener("click", () => (s.steps === 0 && s.floor === 1 ? newGame() : showConfirmNew()));
+$("btn-dim").addEventListener("click", () => { meta.dim = !meta.dim; applyDim(); store(); });
+function applyDim() {
+  $("dimmer").hidden = !meta.dim;
+  $("btn-dim").setAttribute("aria-pressed", String(meta.dim));
+}
+
+/* boot */
+function start(data) {
+  const saved = data && data.s ? data : restore();
+  if (saved && saved.meta) Object.assign(meta, saved.meta);
+  s = saved && saved.s && saved.s.grid && saved.s.phase !== "dead" ? saved.s : newRun();
+  heroEl = document.createElement("div");
+  heroEl.className = "card hero t-hero";
+  heroEl.setAttribute("aria-hidden", "true");
+  heroEl.innerHTML = `<span class="c-val"></span><span class="c-tag"></span><span class="candle"><span class="flame"></span><span class="stick"></span></span><span class="c-name">You</span>`;
+  boardEl.appendChild(heroEl);
+  render();
+  applyDim();
+  if (!meta.seenIntro) showIntro(true);
+  else if (s.phase === "relic") showRelics();
+}
+try { window.claude?.hot?.snapshot?.(() => ({ s, meta })); } catch (e) { /* not in a viewer */ }
+if (window.claude?.hot?.ready) window.claude.hot.ready((data) => start(data || {}));
+else start(window.claude?.hot?.data ?? {});
+})();
+</script>
+</body>
+</html>
