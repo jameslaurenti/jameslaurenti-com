@@ -43,6 +43,14 @@ export const EXPERIMENTS: Experiment[] = [
     updated: "2026-10",
   },
   {
+    slug: "digest-pipeline",
+    title: "How the digest gets made",
+    blurb:
+      "Interactive walkthrough of the digest pipeline (ten steps, who does each, lessons), plus the unattended parent digest and the old chatbot. For showing in person without the home PC.",
+    status: "draft",
+    updated: "2026-10",
+  },
+  {
     slug: "beverly-fy27-slides",
     title: "Beverly FY2027 budget, slides",
     blurb: "A slide version of the FY2027 budget piece.",

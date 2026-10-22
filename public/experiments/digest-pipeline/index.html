@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>How the Digest Gets Made</title>
+<meta name="description" content="A walkthrough of the Beverly Meeting Digest pipeline: what each step does, who does it, and what it taught me.">
+<!-- Experiment: an interactive walkthrough of the digest pipeline, for showing in person
+     without the machine that runs it. Self-contained on purpose: no scripts or data from
+     elsewhere, so a saved copy works on a laptop with no connection. Fonts fall back to
+     system faces when offline. Nothing here runs the pipeline. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=DM+Mono:wght@400;500&display=swap">
+<style>
+:root {
+  --bg: #f0ede8;
+  --bg-card: #e8e4de;
+  --paper: #faf8f5;
+  --ink: #1a1815;
+  --ink-mid: #4d4840;
+  --ink-faint: #6b6055;
+  --rule: rgba(0, 0, 0, 0.09);
+  --rule-strong: rgba(0, 0, 0, 0.16);
+  --accent: #2d6a4f;
+  --accent-deep: #1e4d38;
+  --accent-glow: rgba(45, 106, 79, 0.10);
+  --debt: #9c4a24;
+  --gold: #b8923a;
+  --gold-strong: #7e6120;
+  --cuts: #2e5070;
+  --term-bg: #1d1b18;
+  --term-ink: #e8e4de;
+  --term-dim: #9a9186;
+
+  /* Who does each step. */
+  --a-script: var(--cuts);
+  --a-claude: var(--accent);
+  --a-james: var(--debt);
+  --a-platform: var(--gold-strong);
+
+  --display: "Bricolage Grotesque", system-ui, sans-serif;
+  --sans: "DM Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono: "DM Mono", ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+a { color: var(--accent); text-underline-offset: 2px; }
+a:hover { color: var(--accent-deep); }
+h1, h2, h3 { font-family: var(--display); letter-spacing: -0.015em; line-height: 1.1; margin: 0; }
+code, kbd { font-family: var(--mono); font-size: 0.86em; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+.wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+@media (min-width: 640px) { .wrap { padding: 0 28px; } }
+.prose { max-width: 66ch; }
+
+.banner {
+  background: rgba(126, 97, 32, 0.16);
+  text-align: center;
+  font-size: 0.74rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  padding: 7px 16px;
+}
+
+/* ---------- header ---------- */
+header.top { padding: 56px 0 28px; border-bottom: 1px solid var(--rule); }
+.eyebrow {
+  display: block; font-size: 0.74rem; font-weight: 700; letter-spacing: 0.17em;
+  text-transform: uppercase; color: var(--debt);
+}
+h1 { font-size: clamp(2.3rem, 6vw, 3.8rem); font-weight: 800; margin-top: 10px; }
+.lede { font-size: clamp(1.1rem, 2.2vw, 1.3rem); line-height: 1.5; color: var(--ink-mid); margin: 18px 0 0; max-width: 60ch; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 26px; }
+.btn {
+  font: inherit; font-size: 0.95rem; font-weight: 700; cursor: pointer;
+  border-radius: 999px; padding: 10px 18px; border: 1.5px solid var(--accent);
+  background: var(--accent); color: #fff; display: inline-flex; align-items: center; gap: 8px;
+  text-decoration: none;
+}
+.btn:hover { background: var(--accent-deep); border-color: var(--accent-deep); color: #fff; }
+.btn.ghost { background: transparent; color: var(--accent); }
+.btn.ghost:hover { background: var(--accent-glow); color: var(--accent-deep); }
+.btn .ico { font-size: 0.7rem; }
+
+/* ---------- numbers band ---------- */
+.numbers {
+  display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px;
+  background: var(--rule); border: 1px solid var(--rule); border-radius: 10px; overflow: hidden;
+  margin: 34px 0 0;
+}
+@media (min-width: 820px) { .numbers { grid-template-columns: repeat(4, 1fr); } }
+.numbers div { background: var(--paper); padding: 16px 18px; }
+.numbers b { display: block; font-family: var(--display); font-size: 2rem; font-weight: 800; line-height: 1; color: var(--accent-deep); font-variant-numeric: tabular-nums; }
+.numbers span { display: block; margin-top: 6px; font-size: 0.88rem; line-height: 1.4; color: var(--ink-mid); }
+.numbers-note { font-size: 0.82rem; color: var(--ink-faint); margin: 8px 0 0; }
+
+/* ---------- sections ---------- */
+section.block { padding: 64px 0 0; scroll-margin-top: 16px; }
+h2 { font-size: clamp(1.7rem, 3.6vw, 2.3rem); font-weight: 800; }
+h2 + p, .sub { margin-top: 12px; color: var(--ink-mid); }
+h3 { font-size: 1.2rem; font-weight: 700; }
+
+/* ---------- legend ---------- */
+.legend { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 0; padding: 0; list-style: none; font-size: 0.9rem; color: var(--ink-mid); }
+.legend li { display: flex; align-items: center; gap: 7px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; flex: none; display: inline-block; }
+.dot.script { background: var(--a-script); }
+.dot.claude { background: var(--a-claude); }
+.dot.james { background: var(--a-james); }
+.dot.platform { background: var(--a-platform); }
+
+/* ---------- pipeline diagram ---------- */
+.pipe { display: grid; gap: 14px; margin-top: 22px; }
+@media (min-width: 900px) { .pipe { grid-template-columns: repeat(4, 1fr); gap: 26px; } }
+.phase { position: relative; background: var(--bg-card); border-radius: 12px; padding: 14px 12px 12px; }
+@media (min-width: 900px) {
+  .phase:not(:last-child)::after {
+    content: ""; position: absolute; top: 50%; right: -20px; width: 14px; height: 14px;
+    border-top: 2.5px solid var(--ink-faint); border-right: 2.5px solid var(--ink-faint);
+    transform: translateY(-50%) rotate(45deg); opacity: 0.55;
+  }
+}
+.phase-name {
+  display: flex; justify-content: space-between; align-items: baseline;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint);
+  padding: 0 4px 10px;
+}
+.phase-name em { font-style: normal; letter-spacing: 0.04em; text-transform: none; font-weight: 500; }
+.stages { display: grid; gap: 8px; }
+.stage {
+  font: inherit; text-align: left; cursor: pointer; width: 100%;
+  background: var(--paper); border: 1.5px solid transparent; border-radius: 9px;
+  padding: 10px 12px 10px 14px; position: relative; overflow: hidden;
+  display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; align-items: start;
+  transition: border-color 0.15s, box-shadow 0.15s, transform 0.15s;
+}
+.stage:hover { border-color: var(--rule-strong); }
+.stage[aria-current="step"] { border-color: var(--accent); box-shadow: 0 6px 18px -10px rgba(30, 77, 56, 0.55); }
+.stage .num {
+  grid-row: span 2; font-family: var(--display); font-weight: 800; font-size: 0.95rem;
+  width: 26px; height: 26px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  background: var(--bg); color: var(--ink-mid); margin-top: 1px;
+}
+.stage[aria-current="step"] .num { background: var(--accent); color: #fff; }
+.stage .t { font-weight: 700; font-size: 0.97rem; line-height: 1.3; }
+.stage .who { display: flex; flex-wrap: wrap; gap: 4px 5px; align-items: center; margin-top: 3px; }
+.stage .who .dot { width: 9px; height: 9px; }
+.stage .who small { font-size: 0.76rem; color: var(--ink-faint); margin-left: 3px; white-space: nowrap; }
+.stage .bar { position: absolute; left: 0; bottom: 0; height: 3px; width: 0; background: var(--accent); }
+.stage.done .num { background: var(--accent-glow); color: var(--accent); }
+.home { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--cuts); background: rgba(46, 80, 112, 0.1); border-radius: 4px; padding: 1px 5px; margin-left: 4px; }
+
+/* ---------- player ---------- */
+.player { display: grid; gap: 18px; margin-top: 18px; }
+@media (min-width: 900px) { .player { grid-template-columns: minmax(0, 1.55fr) minmax(0, 1fr); align-items: start; } }
+
+.detail { background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 22px 20px 20px; min-height: 420px; }
+@media (min-width: 640px) { .detail { padding: 26px 28px 24px; } }
+.detail-head { display: flex; justify-content: space-between; gap: 12px; align-items: flex-start; flex-wrap: wrap; }
+.detail .kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); }
+.detail h3 { font-size: clamp(1.45rem, 3vw, 1.9rem); font-weight: 800; margin-top: 4px; }
+.actors { display: flex; flex-wrap: wrap; gap: 6px; }
+.actor { display: inline-flex; align-items: center; gap: 6px; font-size: 0.8rem; font-weight: 700; border-radius: 999px; padding: 3px 10px 3px 8px; background: var(--bg); }
+.when { font-size: 0.86rem; color: var(--ink-faint); margin-top: 6px; }
+.detail p.what { margin: 14px 0 0; }
+.io { display: grid; gap: 10px; margin: 16px 0 0; }
+@media (min-width: 640px) { .io { grid-template-columns: 1fr 1fr; } }
+.io div { background: var(--bg); border-radius: 8px; padding: 10px 12px; font-size: 0.92rem; line-height: 1.5; }
+.io b { display: block; font-size: 0.68rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 3px; }
+.where { margin: 12px 0 0; font-size: 0.9rem; color: var(--ink-mid); }
+.where code { background: var(--bg); border-radius: 4px; padding: 1px 5px; }
+.sample { margin: 16px 0 0; }
+.sample-label { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.13em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 6px; display: flex; justify-content: space-between; gap: 10px; align-items: center; }
+.sample-label i { font-style: normal; font-weight: 500; letter-spacing: 0.02em; text-transform: none; }
+pre.code {
+  margin: 0; background: var(--term-bg); color: var(--term-ink); border-radius: 8px;
+  padding: 12px 14px; font-family: var(--mono); font-size: 0.8rem; line-height: 1.6;
+  overflow-x: auto; white-space: pre;
+}
+pre.code.wrap { white-space: pre-wrap; }
+pre.code .c { color: var(--term-dim); }
+pre.code .k { color: #9fd3b8; }
+pre.code .s { color: #e3c58a; }
+pre.code .ok { color: #9fd3b8; }
+pre.code .todo { color: #e3c58a; }
+.lesson {
+  margin: 18px 0 0; border-left: 3px solid var(--accent); background: var(--accent-glow);
+  border-radius: 0 8px 8px 0; padding: 11px 14px; font-size: 0.97rem; line-height: 1.6;
+}
+.lesson b { color: var(--accent-deep); }
+.nav-row { display: flex; justify-content: space-between; align-items: center; gap: 10px; margin-top: 20px; padding-top: 14px; border-top: 1px solid var(--rule); }
+.nav-row .btn { padding: 7px 14px; font-size: 0.88rem; }
+.btn[disabled] { opacity: 0.35; cursor: default; pointer-events: none; }
+.kbd-hint { font-size: 0.8rem; color: var(--ink-faint); }
+.kbd-hint kbd { border: 1px solid var(--rule-strong); border-bottom-width: 2px; border-radius: 4px; padding: 0 5px; background: var(--paper); }
+@media (max-width: 640px) { .kbd-hint { display: none; } }
+
+/* transcript before/after */
+.toggle { display: inline-flex; background: var(--bg); border-radius: 999px; padding: 3px; }
+.toggle button { font: inherit; font-size: 0.78rem; font-weight: 700; border: 0; background: transparent; color: var(--ink-mid); padding: 3px 11px; border-radius: 999px; cursor: pointer; text-transform: none; letter-spacing: 0; }
+.toggle button[aria-pressed="true"] { background: var(--paper); color: var(--accent-deep); box-shadow: 0 1px 3px rgba(0,0,0,0.12); }
+.tx { background: var(--term-bg); color: var(--term-ink); border-radius: 8px; padding: 12px 14px; font-family: var(--mono); font-size: 0.82rem; line-height: 1.75; }
+.tx div { display: grid; grid-template-columns: 3.4em 1fr; gap: 10px; }
+.tx .ts { color: var(--term-dim); }
+.tx mark { background: rgba(159, 211, 184, 0.2); color: #c9ecd9; border-radius: 3px; padding: 0 2px; }
+.tx mark.flag { background: rgba(227, 197, 138, 0.22); color: #f1d9a6; }
+.tx s { color: #d99a83; text-decoration-color: rgba(217, 154, 131, 0.7); }
+
+/* commit list */
+.commits { list-style: none; margin: 0; padding: 0; font-size: 0.86rem; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; }
+.commits li { display: grid; grid-template-columns: 4.6em 1fr; gap: 10px; padding: 6px 12px; border-top: 1px solid var(--rule); background: var(--paper); }
+.commits li:first-child { border-top: 0; }
+.commits .h { font-family: var(--mono); color: var(--ink-faint); font-size: 0.8rem; }
+.commits .d { color: var(--ink-faint); font-variant-numeric: tabular-nums; }
+
+/* mock story */
+.story { background: var(--bg); border-radius: 8px; padding: 14px 16px; font-size: 0.93rem; }
+.story .eb { display: block; font-size: 0.66rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--debt); }
+.story .hl { font-family: var(--display); font-weight: 800; font-size: 1.15rem; line-height: 1.2; margin-top: 2px; }
+.hear { display: flex; align-items: center; gap: 10px; margin: 10px 0 8px; background: var(--accent-glow); border: 1px solid rgba(45, 106, 79, 0.3); border-radius: 6px; padding: 8px 11px; }
+.hear .play { width: 26px; height: 26px; border-radius: 50%; background: var(--accent); color: #fff; display: flex; align-items: center; justify-content: center; font-size: 0.6rem; padding-left: 2px; flex: none; }
+.hear b { display: block; color: var(--accent-deep); font-size: 0.88rem; line-height: 1.25; }
+.hear span { font-size: 0.78rem; color: var(--ink-mid); }
+.mom { display: inline-flex; align-items: center; gap: 3px; background: var(--accent-glow); color: var(--accent); font-size: 0.72rem; font-weight: 700; border-radius: 999px; padding: 0 7px; vertical-align: 1px; font-variant-numeric: tabular-nums; }
+.mom::before { content: "\25B6"; font-size: 0.5rem; }
+.deeper { margin-top: 10px; padding-top: 8px; border-top: 1px solid var(--rule); font-size: 0.82rem; color: var(--ink-mid); }
+.deeper b { font-size: 0.6rem; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink-faint); margin-right: 8px; }
+
+/* console */
+.console { background: var(--term-bg); color: var(--term-ink); border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; min-height: 300px; }
+@media (min-width: 900px) { .console { position: sticky; top: 16px; height: 520px; } }
+.console-top { display: flex; align-items: center; gap: 10px; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); font-size: 0.78rem; color: var(--term-dim); }
+.console-top .lights { display: flex; gap: 6px; }
+.console-top .lights i { width: 10px; height: 10px; border-radius: 50%; background: #4a453f; display: block; }
+.console-top .ttl { flex: 1; font-family: var(--mono); }
+.console-top .rec { font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; border: 1px solid rgba(255,255,255,0.2); border-radius: 4px; padding: 1px 6px; }
+.console-body { flex: 1; overflow-y: auto; padding: 12px 14px 16px; font-family: var(--mono); font-size: 0.78rem; line-height: 1.7; max-height: 460px; }
+@media (min-width: 900px) { .console-body { max-height: none; } }
+.console-body .ln { white-space: pre-wrap; word-break: break-word; }
+.console-body .ln.hd { color: #fff; font-weight: 500; margin-top: 10px; }
+.console-body .ln.hd:first-child { margin-top: 0; }
+.console-body .ln .who-tag { font-weight: 500; }
+.console-body .ln.dim { color: var(--term-dim); }
+.console-body .ok { color: #9fd3b8; }
+.console-body .todo { color: #e3c58a; }
+.console-body .script { color: #9cc0e3; }
+.console-body .claude { color: #9fd3b8; }
+.console-body .james { color: #e6a989; }
+.console-body .platform { color: #e3c58a; }
+.cursor { display: inline-block; width: 7px; height: 13px; background: var(--term-dim); vertical-align: -2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+@media (prefers-reduced-motion: reduce) { .cursor { animation: none; } }
+.console-foot { padding: 8px 14px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.74rem; color: var(--term-dim); }
+
+/* ---------- flow strip (unattended + chatbot) ---------- */
+.two { display: grid; gap: 18px; margin-top: 22px; }
+@media (min-width: 900px) { .two { grid-template-columns: 1fr 1fr; } }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 12px; padding: 22px 20px; }
+@media (min-width: 640px) { .card { padding: 24px 26px; } }
+.card .kicker { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink-faint); }
+.card h3 { font-size: 1.4rem; font-weight: 800; margin-top: 4px; }
+.card p { margin: 10px 0 0; }
+.flow { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 0; counter-reset: f; }
+.flow li { position: relative; padding: 0 0 12px 34px; font-size: 0.93rem; line-height: 1.45; counter-increment: f; }
+.flow li::before {
+  content: counter(f); position: absolute; left: 0; top: 0; width: 22px; height: 22px; border-radius: 50%;
+  background: var(--bg); color: var(--ink-mid); font-size: 0.74rem; font-weight: 700; display: flex; align-items: center; justify-content: center;
+  border: 2px solid var(--c, var(--ink-faint));
+}
+.flow li:not(:last-child)::after { content: ""; position: absolute; left: 10px; top: 24px; bottom: 2px; width: 2px; background: var(--rule-strong); }
+.flow li code { background: var(--bg); border-radius: 4px; padding: 0 4px; }
+.flow li.s { --c: var(--a-script); }
+.flow li.c { --c: var(--a-claude); }
+.flow li.p { --c: var(--a-platform); }
+.rules { list-style: none; margin: 14px 0 0; padding: 0; display: grid; gap: 8px; }
+.rules li { background: var(--bg); border-radius: 8px; padding: 9px 12px; font-size: 0.9rem; line-height: 1.5; }
+.rules b { color: var(--ink); }
+.stat { display: flex; align-items: baseline; gap: 10px; margin-top: 14px; }
+.stat b { font-family: var(--display); font-size: 2.2rem; font-weight: 800; color: var(--accent-deep); line-height: 1; }
+.stat span { font-size: 0.9rem; color: var(--ink-mid); line-height: 1.4; }
+
+/* ---------- mapping table ---------- */
+.map { margin-top: 22px; display: grid; gap: 10px; }
+.map-row { display: grid; gap: 6px 22px; background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px; }
+@media (min-width: 820px) { .map-row { grid-template-columns: 0.85fr 1.2fr 1.35fr; padding: 16px 22px; } }
+.map-row .need { font-family: var(--display); font-weight: 700; font-size: 1.05rem; line-height: 1.25; }
+.map-row .lbl { display: block; font-size: 0.64rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--ink-faint); margin-bottom: 2px; }
+.map-row div { font-size: 0.93rem; line-height: 1.55; }
+.map-row code { background: var(--bg); border-radius: 4px; padding: 0 4px; }
+.reuse { display: inline-block; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; border-radius: 4px; padding: 1px 6px; margin-left: 6px; vertical-align: 2px; }
+.reuse.have { background: var(--accent-glow); color: var(--accent-deep); }
+.reuse.adapt { background: rgba(126, 97, 32, 0.14); color: var(--gold-strong); }
+.reuse.new { background: rgba(46, 80, 112, 0.12); color: var(--cuts); }
+
+/* ---------- lessons ---------- */
+.lessons { list-style: none; padding: 0; margin: 22px 0 0; display: grid; gap: 12px; counter-reset: l; }
+@media (min-width: 720px) { .lessons { grid-template-columns: 1fr 1fr; } }
+@media (min-width: 1040px) { .lessons { grid-template-columns: 1fr 1fr 1fr; } }
+.lessons li { background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 16px 18px 16px; counter-increment: l; position: relative; }
+.lessons li::before { content: counter(l, decimal-leading-zero); font-family: var(--display); font-weight: 800; font-size: 0.9rem; color: var(--debt); }
+.lessons h3 { font-size: 1.08rem; margin-top: 4px; }
+.lessons p { margin: 6px 0 0; font-size: 0.93rem; line-height: 1.55; color: var(--ink-mid); }
+
+/* ---------- kit ---------- */
+.kit { display: grid; gap: 18px; margin-top: 22px; }
+@media (min-width: 900px) { .kit { grid-template-columns: 0.9fr 1.1fr; align-items: start; } }
+.kit-list { list-style: none; padding: 0; margin: 0; display: grid; gap: 8px; }
+.kit-list li { background: var(--paper); border: 1px solid var(--rule); border-radius: 10px; padding: 12px 16px; font-size: 0.93rem; line-height: 1.5; }
+.kit-list b { display: block; font-size: 1rem; }
+.prompt-box { background: var(--term-bg); border-radius: 12px; overflow: hidden; }
+.prompt-top { display: flex; justify-content: space-between; align-items: center; padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.08); color: var(--term-dim); font-size: 0.78rem; }
+.prompt-top button { font: inherit; font-size: 0.78rem; font-weight: 700; background: rgba(255,255,255,0.1); color: #fff; border: 0; border-radius: 6px; padding: 4px 10px; cursor: pointer; }
+.prompt-top button:hover { background: rgba(255,255,255,0.18); }
+.prompt-box pre { margin: 0; padding: 14px 16px 16px; color: var(--term-ink); font-family: var(--mono); font-size: 0.8rem; line-height: 1.65; white-space: pre-wrap; max-height: 460px; overflow-y: auto; }
+
+/* ---------- questions ---------- */
+.qs { list-style: none; padding: 0; margin: 20px 0 0; display: grid; gap: 0; border-top: 1px solid var(--rule); }
+.qs li { padding: 14px 0; border-bottom: 1px solid var(--rule); font-family: var(--display); font-size: 1.15rem; font-weight: 700; line-height: 1.3; }
+.qs li span { display: block; font-family: var(--sans); font-weight: 400; font-size: 0.93rem; color: var(--ink-mid); margin-top: 3px; }
+
+footer.end { margin-top: 72px; padding: 26px 0 60px; border-top: 1px solid var(--rule); font-size: 0.9rem; color: var(--ink-faint); }
+footer.end p { margin: 0 0 8px; max-width: 70ch; }
+.links { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-top: 12px; }
+</style>
+</head>
+<body>
+
+<div class="banner">Unlisted walkthrough &middot; a replay, nothing here runs live</div>
+
+<div class="wrap">
+
+<header class="top">
+  <span class="eyebrow">Beverly Meeting Digest &middot; behind the scenes</span>
+  <h1>How the digest gets made</h1>
+  <p class="lede">Hours of BevCam video and a stack of city PDFs go in. A ten-minute read comes out on Monday, with a link into the recording behind almost every sentence. This is each step in between, and who does it: a script, Claude, or me.</p>
+  <div class="actions">
+    <button class="btn" id="play-top" type="button"><span class="ico" aria-hidden="true">&#9654;</span> Replay a week</button>
+    <a class="btn ghost" href="#pipeline">Step through it</a>
+    <a class="btn ghost" href="#lessons">Skip to lessons</a>
+  </div>
+
+  <div class="numbers" aria-label="Issue 6 by the numbers">
+    <div><b>6</b><span>issues since September 11, one a week</span></div>
+    <div><b>55</b><span>links into the exact second of a recording, in issue 6 alone</span></div>
+    <div><b>31</b><span>source links in the same issue: agendas, filings, laws, other records</span></div>
+    <div><b>14</b><span>rounds of my edits over three days before it went out</span></div>
+  </div>
+  <p class="numbers-note">Counts from the published issue of October 19 and the repo history behind it.</p>
+</header>
+
+<!-- ================= PIPELINE ================= -->
+<section class="block" id="pipeline">
+  <h2>The pipeline, one step at a time</h2>
+  <p class="prose">Ten steps in four phases. Click any step, or press replay and let it walk through a normal week. The colors say who does the work.</p>
+  <ul class="legend">
+    <li><span class="dot script"></span>Script</li>
+    <li><span class="dot claude"></span>Claude Code</li>
+    <li><span class="dot james"></span>Me</li>
+    <li><span class="dot platform"></span>Platform (GitHub, Vercel, Kit)</li>
+  </ul>
+
+  <div class="pipe" id="pipe" role="list"></div>
+
+  <div class="player">
+    <article class="detail" id="detail" aria-live="polite"></article>
+    <aside class="console" aria-label="Replay log">
+      <div class="console-top">
+        <span class="lights" aria-hidden="true"><i></i><i></i><i></i></span>
+        <span class="ttl">week-of-oct-12.log</span>
+        <span class="rec">Replay</span>
+      </div>
+      <div class="console-body" id="log"><div class="ln dim">Press replay to walk through a week. Or pick a step on the left and its part of the log shows up here.</div></div>
+      <div class="console-foot">An illustrative log of a normal week, not output from a live run.</div>
+    </aside>
+  </div>
+</section>
+
+<!-- ================= OTHER PATTERNS ================= -->
+<section class="block" id="patterns">
+  <h2>Two other shapes I&rsquo;ve built</h2>
+  <p class="prose">The digest keeps a person in the middle on purpose. These two show the ends of the range: one with nobody watching, and the project that came before the digest.</p>
+
+  <div class="two">
+    <div class="card">
+      <span class="kicker">Fully unattended</span>
+      <h3>A private parent digest</h3>
+      <p>My kids&rsquo; school sends a lot of email in a lot of formats. Every morning, Claude reads what&rsquo;s new, keeps what parents need, and publishes it to a password-gated page with an RSS feed. No one reviews it before it goes up.</p>
+      <ol class="flow">
+        <li class="p">A Windows scheduled task fires at 7:30am</li>
+        <li class="s"><code>run.ps1</code> pipes <code>PROMPT.md</code> into <code>claude -p</code>, Claude Code with no human at the keyboard</li>
+        <li class="c">Claude searches Gmail for school mail since the last run, and opens the &ldquo;click here to view&rdquo; links to get the full text</li>
+        <li class="c">Classifies each email, drops billing and one-family notes, keeps children to first names</li>
+        <li class="c">Writes three JSON files: the items, the upcoming dates, and its own state</li>
+        <li class="p"><code>git push</code>, and Vercel redeploys the page</li>
+      </ol>
+      <ul class="rules">
+        <li><b>A watermark.</b> The state file records the newest email it has handled and every thread it has seen, so a run never counts anything twice.</li>
+        <li><b>A kill switch.</b> An empty file named <code>PAUSED</code> stops every run until it&rsquo;s deleted.</li>
+        <li><b>&ldquo;Prefer leaving an item out over guessing.&rdquo;</b> The prompt&rsquo;s first paragraph, because there is no one to ask.</li>
+        <li><b>A log.</b> Each run ends by printing what it saw, kept and dropped, with a reason for every drop.</li>
+        <li><b>Why it runs at home.</b> The Gmail connection is signed in on my desktop. A cloud runner would need a stored token instead.</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <span class="kicker">Before the digest</span>
+      <h3>Beverly Civic Assistant, a chatbot</h3>
+      <p>Ask a question about Beverly, get an answer with source links. Scrapers pulled the city calendar, news, Council, Planning Board and ZBA minutes, and budget PDFs. Everything went into a vector database (Pinecone, a search index that matches by meaning), and Claude Haiku wrote answers from the top matches. A GitHub Action re-scraped daily.</p>
+      <div class="stat"><b>39/42</b><span>questions where it found the right source, on a test set written with known answers</span></div>
+      <ul class="rules">
+        <li><b>Write the test set early.</b> Forty-two questions with known answers is a cheap way to know whether retrieval works, and to notice when a change breaks it.</li>
+        <li><b>Free tiers run out.</b> Indexing paused when the monthly embedding quota ran out. The scrapers kept running, so the data stayed fresh.</li>
+        <li><b>A chatbot waits for a question.</b> Most residents don&rsquo;t know which question to ask. That gap is what a weekly digest fills.</li>
+        <li><b>The scrapers outlived it.</b> The minutes scraper, OCR fallback included, is the piece most worth reusing. <a href="https://github.com/jameslaurenti/beverly-civic">Code on GitHub</a>.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= MAPPING ================= -->
+<section class="block" id="housing">
+  <h2>Pointing this at housing across the North Shore</h2>
+  <p class="prose">A public database of what councils, planning boards and zoning boards decide about affordable housing, town by town, on a map. Here is what already exists for each piece, and what would be new.</p>
+
+  <div class="map">
+    <div class="map-row">
+      <div class="need">Council, Planning Board and ZBA minutes</div>
+      <div><span class="lbl">Starting point <span class="reuse have">Have it</span></span><code>scrape_minutes.py</code> already pulls Planning Board and ZBA minutes from Beverly&rsquo;s Agenda Center, with OCR for scanned PDFs.</div>
+      <div><span class="lbl">Note</span>Agenda Center is a CivicPlus product that many Massachusetts towns use. Same platform means the same scraper with a new web address and board IDs. Towns on anything else need their own adapter.</div>
+    </div>
+    <div class="map-row">
+      <div class="need">Only what touches housing</div>
+      <div><span class="lbl">Starting point <span class="reuse adapt">Adapt</span></span>A classify step with written keep and exclude rules, the same shape as the parent digest&rsquo;s.</div>
+      <div><span class="lbl">Note</span>Name the signals: Chapter 40B comprehensive permits, inclusionary zoning, MBTA Communities (Section 3A) zoning, ADUs, CPA and housing trust votes. Log every exclusion with a reason, so you can audit what it threw away.</div>
+    </div>
+    <div class="map-row">
+      <div class="need">A map you can click into</div>
+      <div><span class="lbl">Starting point <span class="reuse adapt">Adapt</span></span>One data file per town, each with a block that says where it came from, when, and how sure we are.</div>
+      <div><span class="lbl">Note</span>The map reads the files. Claude only ever edits the data, never the map. That split is what keeps the Beverly pages honest.</div>
+    </div>
+    <div class="map-row">
+      <div class="need">Board members and term dates</div>
+      <div><span class="lbl">Starting point <span class="reuse new">New</span></span>A hand-checked data file, not a scrape.</div>
+      <div><span class="lbl">Note</span>Terms turn over and town pages lag. Put an &ldquo;as of&rdquo; date on every row and show it.</div>
+    </div>
+    <div class="map-row">
+      <div class="need">CPA, housing trusts, housing production plans</div>
+      <div><span class="lbl">Starting point <span class="reuse new">New</span></span>Statewide lists before town websites: the Community Preservation Coalition tracks CPA adoption, and the state housing office keeps approved production plans.</div>
+      <div><span class="lbl">Note</span>One trusted list beats thirty scrapers. Check these first.</div>
+    </div>
+    <div class="map-row">
+      <div class="need">Towns with patchy video</div>
+      <div><span class="lbl">Starting point <span class="reuse adapt">Adapt</span></span>Minutes first, video where it exists.</div>
+      <div><span class="lbl">Note</span>Minutes are slow, since a board approves them at its next meeting, but they are the official record. Video is fast and messy. The digest leans on video for speed and documents for accuracy.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= LESSONS ================= -->
+<section class="block" id="lessons">
+  <h2>What I&rsquo;d pass on</h2>
+  <ol class="lessons">
+    <li>
+      <h3>Spend your own time on judgment</h3>
+      <p>Claude does the listening, the scraping and the first draft. I keep the choosing and the editing. That split is the whole design.</p>
+    </li>
+    <li>
+      <h3>Write the rules down</h3>
+      <p>Voice, fidelity and attribution live in a CLAUDE.md file Claude reads every session. When I catch a mistake, the fix is a new line there, so the next draft doesn&rsquo;t repeat it.</p>
+    </li>
+    <li>
+      <h3>If you can&rsquo;t link it, cut it</h3>
+      <p>Every claim points to a moment in a recording or a page in a document. Readers can check me, and so can I.</p>
+    </li>
+    <li>
+      <h3>Transcripts are leads, not sources</h3>
+      <p>Automatic captions mangle names and numbers. Anything that matters gets checked against a posted document.</p>
+    </li>
+    <li>
+      <h3>Label how sure you are</h3>
+      <p>Confirmed from a primary source, modeled on stated assumptions, or illustrative. In the unattended pipeline, &ldquo;partial&rdquo; when a source wouldn&rsquo;t open.</p>
+    </li>
+    <li>
+      <h3>Review where readers will read</h3>
+      <p>The draft goes up at an unlisted address as the real page, same layout, same links. I edit what readers will see, not a document that becomes it later.</p>
+    </li>
+    <li>
+      <h3>Let a script check the mechanics</h3>
+      <p>A timestamp that lands on the wrong second still looks perfect. Checking every link by hand on a Monday morning is not a plan.</p>
+    </li>
+    <li>
+      <h3>Unattended runs need brakes</h3>
+      <p>A watermark, a kill switch, a log of what it dropped and why, and an instruction to leave things out rather than guess.</p>
+    </li>
+    <li>
+      <h3>Ask Claude how to use Claude</h3>
+      <p>When you&rsquo;re stuck on how to set something up, the first question goes to Claude. You&rsquo;re already doing it. It&rsquo;s the most useful habit there is with these tools.</p>
+    </li>
+  </ol>
+</section>
+
+<!-- ================= KIT ================= -->
+<section class="block" id="kit">
+  <h2>A starter kit</h2>
+  <p class="prose">What I could put together so your own Claude Code starts with the decisions I&rsquo;ve already made, instead of rediscovering them.</p>
+  <div class="kit">
+    <ul class="kit-list">
+      <li><b>A CLAUDE.md to start from</b>Voice, fidelity and attribution rules, rewritten for housing decisions across several towns.</li>
+      <li><b>The Agenda Center scraper</b>Minutes and agendas by board and year, with the OCR fallback for scanned PDFs.</li>
+      <li><b>The prompts</b>Classify (keep or drop, with reasons), summarize (neutral, sourced, no guessing), and the reuse prompt the digest already publishes.</li>
+      <li><b>A checker</b>A script that opens every source link and confirms it lands where the sentence says.</li>
+      <li><b>An orientation prompt</b>The first thing to paste into Claude Code, so it interviews you before it writes any code. A draft is on the right.</li>
+    </ul>
+    <div class="prompt-box">
+      <div class="prompt-top"><span>orientation prompt &middot; draft</span><button type="button" id="copy-prompt">Copy</button></div>
+<pre id="prompt-text">I'm building a public database of decisions by North Shore city councils, planning boards and zoning boards of appeals that affect affordable housing. Before writing any code, read this whole message, then interview me.
+
+How I want to work:
+- Split the pipeline into steps that each write a file: find meetings, fetch documents, extract text, classify, summarize, publish. Each step can be re-run on its own.
+- Every fact stays traceable. Each record stores its source URL, the page or recording timestamp, the date retrieved, and a confidence level (confirmed or partial).
+- Prefer leaving a record out over guessing. Never invent dates, votes, names or numbers.
+- Keep the rules in a CLAUDE.md at the repo root. When I correct you, propose a new line for that file.
+- Explain what you're doing in plain language. I'm not a developer.
+
+Start by:
+1. Asking me which towns, which boards, and who the readers are.
+2. Checking which of those towns post agendas and minutes on CivicPlus Agenda Center, which post meeting video, and which do neither.
+3. Proposing a folder layout and a data format for one town, before scraping anything.
+4. Building the whole pipeline for one town and one board, then stopping to show me the output.</pre>
+    </div>
+  </div>
+</section>
+
+<!-- ================= QUESTIONS ================= -->
+<section class="block" id="questions">
+  <h2>What I&rsquo;d like to hear about</h2>
+  <ul class="qs">
+    <li>What does your scraper produce today?<span>And where does it run: your laptop, a server, a scheduled job?</span></li>
+    <li>Who is the reader?<span>Advocates, residents, town staff, councilors. Each wants a different level of detail.</span></li>
+    <li>How fresh does it need to be?<span>Weekly is forgiving. As-it-happens means fully unattended.</span></li>
+    <li>How will you check a summary before it&rsquo;s public?<span>The answer decides how much of the pipeline needs a person in it.</span></li>
+    <li>Which towns first?<span>One town, one board, end to end, beats ten towns halfway.</span></li>
+  </ul>
+</section>
+
+<footer class="end">
+  <p>The digest itself is public domain (CC0), and the site&rsquo;s code is MIT licensed. Fork either.</p>
+  <div class="links">
+    <a href="/beverly/digest">All issues</a>
+    <a href="/beverly/digest/2026-10-19">Issue 6, the one counted above</a>
+    <a href="/experiments/digest-reuse">Reusing the digest</a>
+    <a href="https://github.com/jameslaurenti/jameslaurenti-com">Site code</a>
+    <a href="https://github.com/jameslaurenti/beverly-civic">Scrapers and chatbot</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var ACTOR = {
+    script: { label: "Script" },
+    claude: { label: "Claude Code" },
+    james: { label: "Me" },
+    platform: { label: "Platform" }
+  };
+
+  var PHASES = [
+    { name: "Gather", when: "as meetings happen" },
+    { name: "Make", when: "usually Fri" },
+    { name: "Check", when: "Fri to Sun" },
+    { name: "Ship", when: "Sun night or Mon" }
+  ];
+
+  function esc(s) { return s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
+
+  var TX_RAW = [
+    ["41:12", "okay so the <s>counselor</s> from <s>ward to</s> asked about"],
+    ["41:19", "traffic on <s>so here road</s> and <s>cabbit street</s>"],
+    ["41:25", "and whether a <s>40 b</s> project goes to the <s>zba</s> first"],
+    ["41:31", "the grants total <s>246 million</s>"]
+  ];
+  var TX_CLEAN = [
+    ["41:12", "Okay, so the <mark>councilor</mark> from <mark>Ward 2</mark> asked about"],
+    ["41:19", "traffic on <mark>Sohier Road</mark> and <mark>Cabot Street</mark>,"],
+    ["41:25", "and whether a <mark>40B</mark> project goes to the <mark>ZBA</mark> first."],
+    ["41:31", "The grants total <mark class=\"flag\">[$2.46 million? check the packet]</mark>"]
+  ];
+  function txHTML(rows) {
+    return rows.map(function (r) { return '<div><span class="ts">' + r[0] + '</span><span>' + r[1] + '</span></div>'; }).join("");
+  }
+
+  var STAGES = [
+    {
+      phase: 0, title: "Find the week’s meetings", actors: ["script", "james"], when: "As agendas post, usually days ahead",
+      what: "Start from what the city has posted, not from what I remember is happening. The city’s Agenda Center lists every board’s agendas, BevCam posts recordings to YouTube, and the school district publishes its own.",
+      input: "City Agenda Center and calendar, BevCam’s YouTube channel, the school district site",
+      output: "The list of meetings to cover, plus a forward calendar readers can subscribe to",
+      where: "<code>data/beverly/meetings.ts</code> feeds <code>/beverly/meetings.ics</code>",
+      sample: { label: "One calendar entry", note: "real, trimmed", code:
+        '<span class="k">{</span>\n  id: <span class="s">"drc-2026-09-14"</span>,\n  title: <span class="s">"Deficit Reduction Committee"</span>,\n  local: <span class="s">"Mon 14 Sep 2026, 6:00pm"</span>,   <span class="c">// what the posted agenda says</span>\n  start: <span class="s">"2026-09-14T22:00:00Z"</span>,      <span class="c">// what the calendar uses</span>\n  url: <span class="s">"https://www.youtube.com/watch?v=O8Kxggwls3A"</span>,\n  status: <span class="s">"confirmed"</span>,\n<span class="k">}</span>' },
+      lesson: "Store times in UTC and write the local time next to each one. Daylight time ends November 1, and an hour off is the obvious way this goes wrong.",
+      log: [
+        ["script", "agenda-center: City Council, Planning Board, ZBA, School Committee, Deficit Reduction Committee"],
+        ["script", "bevcam: new uploads matched to this week’s agendas"],
+        ["james", "skim the list, flag what readers will care about"]
+      ]
+    },
+    {
+      phase: 0, title: "Pull the transcripts", actors: ["script"], home: true, when: "After each recording posts",
+      what: "YouTube makes an automatic transcript of every BevCam upload. A script on my desktop pulls each one down with its timestamps intact.",
+      input: "BevCam meeting videos on YouTube",
+      output: "A timestamped text file per meeting",
+      where: "Local scripts on my home machine, outside the site repo",
+      lesson: "Keep the timestamps through every later step. They become the green “hear it” buttons, and they are how a reader checks me.",
+      log: [
+        ["script", "fetch captions: city council, school committee, deficit committee"],
+        ["script", "keep [mm:ss] on every line"]
+      ]
+    },
+    {
+      phase: 0, title: "Pull the documents", actors: ["script"], when: "Alongside the transcripts",
+      what: "Agendas, agenda packets, signed filing letters and minutes, mostly PDFs. Text comes out with a PDF library, and scanned pages fall back to OCR (Tesseract, which reads text off an image). This scraper came from the earlier chatbot, so it already knows the Planning Board and ZBA.",
+      input: "PDFs from the city Agenda Center and the school district",
+      output: "Plain text of every document, with its URL and page numbers",
+      where: "<code>scraper/scrape_minutes.py</code> in the beverly-civic repo",
+      sample: { label: "The OCR fallback", note: "real, condensed", code:
+        '<span class="k">def</span> extract_pdf_text(session, pdf_url):\n    pdf_bytes = session.get(pdf_url).content\n    <span class="k">with</span> pdfplumber.open(io.BytesIO(pdf_bytes)) <span class="k">as</span> pdf:\n        text = <span class="s">"\\n\\n"</span>.join(p.extract_text() <span class="k">or</span> <span class="s">""</span> <span class="k">for</span> p <span class="k">in</span> pdf.pages)\n    <span class="k">if</span> text.strip():\n        <span class="k">return</span> text\n    <span class="c"># No embedded text: a scan. Render each page and OCR it.</span>\n    <span class="k">return</span> _ocr_pdf(pdf_bytes)\n\n<span class="c"># Board IDs: 49 City Council, 16 Planning Board,</span>\n<span class="c"># 17 Zoning Board of Appeals, 15 Community Preservation</span>' },
+      lesson: "The agenda says what is scheduled. The packet says who filed it. Agenda headings undercount co-signers, so credit for an order comes from the signed filing letter.",
+      log: [
+        ["script", "agenda packets: text layer found"],
+        ["script", "minutes PDF: no text layer, falling back to OCR"]
+      ]
+    },
+    {
+      phase: 1, title: "Clean the transcript", actors: ["script", "claude"], home: true, when: "Before drafting",
+      what: "Automatic captions get names and numbers wrong in predictable ways. A local glossary of officials, staff, boards and street names fixes the repeat offenders. Numbers get flagged to check against the documents, never trusted.",
+      input: "Raw captions plus the glossary",
+      output: "A readable transcript, with every number that matters marked for checking",
+      where: "Local glossary and cleanup scripts on my home machine",
+      tx: true,
+      lesson: "The transcript is a lead, not a source. Each item in the digest says whether it came from the recording or a posted document.",
+      log: [
+        ["script", "glossary pass: names, boards, streets"],
+        ["claude", "flag figures to check against the packet"]
+      ]
+    },
+    {
+      phase: 1, title: "Draft the issue", actors: ["claude"], when: "Usually Friday",
+      what: "Claude Code reads the cleaned transcripts and the documents and drafts the issue as a page in the site’s code: which stories lead, a “hear it” button at the moment each discussion starts, a recording link after each claim, the sources underneath, and a one-line summary for the feeds. It follows the project’s CLAUDE.md, a plain text file of rules it reads every session.",
+      input: "Clean transcripts, document text, CLAUDE.md, last week’s issue",
+      output: "A full draft page, live at an unlisted review address",
+      where: "<code>app/beverly/digest/&lt;date&gt;/page.tsx</code>, rules in <code>app/beverly/CLAUDE.md</code>",
+      story: true,
+      sample: { label: "From CLAUDE.md", note: "real, condensed", code:
+        '<span class="c">## Attribution in the digest</span>\nWho filed an order and whose idea it was are different facts.\n\n- <span class="k">Filer.</span> Name the formal filer of every order. Take it from\n  the signed filing letter, not the agenda’s section heading.\n- <span class="k">Origin.</span> Say whose idea it was only when someone states it\n  on the record, and credit the claim to them.\n- <span class="k">Symmetry.</span> Would the same sentence be written if the\n  measure were unpopular?' },
+      lesson: "Put the rules in a file, not in your head. Every mistake I catch in editing becomes a line in CLAUDE.md, so the next draft doesn’t make it.",
+      log: [
+        ["claude", "read CLAUDE.md: voice, fidelity, attribution"],
+        ["claude", "pick lead stories, write each with a hear-it moment"],
+        ["claude", "add a one-line summary per story for the feeds"],
+        ["platform", "push review copy to /experiments/ (unlisted, noindex)"]
+      ]
+    },
+    {
+      phase: 2, title: "Edit the review copy", actors: ["james", "claude"], when: "Friday to Sunday",
+      what: "The draft goes up at an unlisted address as the real page, so I edit what readers will see. I check the key moments against the recording and the posted notices, cut what doesn’t earn its place, and tell Claude what to change. Each change is its own commit, so every edit is on the record.",
+      input: "The review copy, the recordings",
+      output: "An issue I’d put my name on",
+      where: "<code>/experiments/beverly-digest-&lt;date&gt;</code>, hidden from search",
+      commits: [
+        ["4843fe2", "Oct 16", "tighten the school items, timestamp the Flock section"],
+        ["0cb8633", "Oct 16", "cut pet waste composting from the deficit preview"],
+        ["54549ec", "Oct 17", "reorder the deficit preview by how live each idea is"],
+        ["9feda6a", "Oct 17", "the deficit committee meets at 6pm, per its posted notice"],
+        ["b24bb27", "Oct 18", "halve the deficit section’s preface"],
+        ["a016c12", "Oct 18", "say what the 2032 pension date means"],
+        ["1d27bc5", "Oct 18", "simpler pension bullet"]
+      ],
+      lesson: "This is where my time goes. Claude does the hours of listening and drafting, I do judgment. Issue 6 went through 14 rounds of edits in three days.",
+      log: [
+        ["james", "read the review copy, check each hear-it moment"],
+        ["james", "cut, reorder, check a time against the posted notice"],
+        ["claude", "apply edits, one commit each"]
+      ]
+    },
+    {
+      phase: 2, title: "Run the checks", actors: ["script", "james"], when: "Right before publishing",
+      what: "One command loads the page and checks the mechanics: every recording link lands on the second its label promises, PDF links carry page numbers that match their labels, nothing lost a space next to a link, and the publish switches are set. Then a sensitivity pass by me: no residents named from public comment, filers named on everything, popular or not.",
+      input: "The review copy",
+      output: "A pass, or a short list of fixes",
+      where: "<code>npm run qa:issue</code>, which runs <code>scripts/qa-issue.mjs</code>",
+      sample: { label: "What it prints", note: "real format, sample values", code:
+        '<span class="k">RECORDING DEEP LINKS</span>\n  <span class="ok">ok</span>    55 links, each lands on its printed time\n<span class="k">PDF PAGE LABELS</span>\n  <span class="ok">ok</span>    #page=58 matches “Mayor’s letter (p. 58)”\n<span class="k">TEXT SPACING</span>\n  <span class="ok">ok</span>    no lost spaces after links, bold text or figures\n<span class="k">PUBLICATION GATES</span>\n  <span class="ok">ok</span>    draft banner removed\n  <span class="todo">TODO</span>  noindex removed\n  <span class="ok">ok</span>    og:image declared' },
+      lesson: "“The only mistakes that do lasting damage are a claim that is wrong and a source link that does not go where the sentence says it goes. The first needs a human and the recording.” That’s the comment at the top of the check script.",
+      log: [
+        ["script", "qa:issue  RECORDING DEEP LINKS ... <span class=\"ok\">ok</span>"],
+        ["script", "qa:issue  PDF PAGE LABELS ... <span class=\"ok\">ok</span>"],
+        ["script", "qa:issue  PUBLICATION GATES ... <span class=\"todo\">TODO</span> noindex removed"],
+        ["james", "sensitivity pass: public commenters unnamed, filers named"]
+      ]
+    },
+    {
+      phase: 3, title: "Publish", actors: ["platform", "claude"], when: "Sunday night or Monday morning",
+      what: "The page moves from the review address to its permanent one. One entry added to a list updates the archive, the card on the Beverly page and the sitemap together. A redirect sends the old review link to the real page. Push to GitHub and Vercel, the host, deploys it.",
+      input: "The checked review copy",
+      output: "jameslaurenti.com/beverly/digest/&lt;date&gt;",
+      where: "<code>data/beverly/digestIssues.ts</code>, <code>next.config.ts</code> for the redirect",
+      sample: { label: "The entry that publishes it", note: "real", code:
+        '<span class="k">{</span>\n  slug: <span class="s">"2026-10-19"</span>,\n  number: 6,\n  published: <span class="s">"October 19, 2026"</span>,\n  covering: <span class="s">"October 12 to 18"</span>,\n  teaser: <span class="s">"A preview of the deficit committee’s first\n    community meeting, and the city’s Flock cameras back\n    before the Council. ..."</span>,\n<span class="k">}</span>' },
+      lesson: "Published issues keep their own copy of every fact. Nothing reads from a live data file, so fixing next week’s calendar can’t quietly rewrite what last week said.",
+      log: [
+        ["claude", "move page to /beverly/digest/2026-10-19, add to digestIssues.ts"],
+        ["platform", "git push, Vercel deploys"],
+        ["platform", "/experiments/beverly-digest-2026-10-19 now redirects"]
+      ]
+    },
+    {
+      phase: 3, title: "Send it out", actors: ["platform"], when: "On publish",
+      what: "Two RSS feeds are built from the published page itself: one entry per issue, and one per story for anyone adapting single items. Subscribers get it by email through Kit. The digest is public domain (CC0), so a newsletter or a local station can reuse it without asking.",
+      input: "The published page",
+      output: "feed.xml, stories.xml, the email, a calendar of upcoming meetings",
+      where: "<code>lib/beverly/digestFeed.ts</code>",
+      lesson: "Build the feeds from the page, not a second copy, so the two can’t drift apart. That’s why every story carries a little structure the feed reads: an id, a headline, a one-line summary.",
+      log: [
+        ["platform", "feed.xml: +1 issue"],
+        ["platform", "stories.xml: +5 stories"],
+        ["platform", "kit: email to subscribers"]
+      ]
+    },
+    {
+      phase: 3, title: "Correct", actors: ["james"], when: "All week, and in the next issue",
+      what: "Every issue ends with a Corrections section. Errors caught in the next week’s reporting, or sent in by readers, get fixed in the original and noted. Then the cause becomes a rule.",
+      input: "Reader notes, the next week’s meetings",
+      output: "A fixed original, a note in the next issue, a new line in CLAUDE.md",
+      where: "The <code>#corrections</code> section of each issue",
+      sample: { label: "Corrections so far", note: "real commit messages", code:
+        'Correct issue 2: remove unsourced claim that the budget\n  analyst is leaving\nCorrect issue 2: three union agreements, and the $20,000\n  was a committee item\nCorrect issue 3: committee meetings are public and\n  minuted, not off the record' },
+      lesson: "Corrections are cheap when they’re visible. Fix the original, say so in public, and turn the cause into a rule.",
+      log: [
+        ["james", "reader note in: check it against the recording"],
+        ["claude", "fix the original, add to next issue’s corrections"],
+        ["claude", "propose a new line for CLAUDE.md"]
+      ]
+    }
+  ];
+
+  var pipe = document.getElementById("pipe");
+  var detail = document.getElementById("detail");
+  var logEl = document.getElementById("log");
+  var current = 0;
+  var playing = false;
+  var timer = null;
+  var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var STEP_MS = 6500;
+
+  // ---- diagram ----
+  var buttons = [];
+  PHASES.forEach(function (ph, pi) {
+    var col = document.createElement("div");
+    col.className = "phase";
+    col.setAttribute("role", "listitem");
+    col.innerHTML = '<div class="phase-name">' + ph.name + ' <em>' + ph.when + '</em></div><div class="stages"></div>';
+    var list = col.querySelector(".stages");
+    STAGES.forEach(function (st, si) {
+      if (st.phase !== pi) return;
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "stage";
+      b.innerHTML =
+        '<span class="num">' + (si + 1) + '</span>' +
+        '<span class="t">' + esc(st.title) + '</span>' +
+        '<span class="who">' + st.actors.map(function (a) { return '<span class="dot ' + a + '" title="' + ACTOR[a].label + '"></span>'; }).join("") +
+        '<small>' + st.actors.map(function (a) { return ACTOR[a].label; }).join(" + ") + '</small>' +
+        (st.home ? '<span class="home">home PC</span>' : "") + '</span>' +
+        '<span class="bar"></span>';
+      b.addEventListener("click", function () {
+        stop();
+        select(si, true);
+        // On a phone the panel sits below all ten steps, so bring it into view.
+        if (window.innerWidth < 900) detail.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "start" });
+      });
+      list.appendChild(b);
+      buttons[si] = b;
+    });
+    pipe.appendChild(col);
+  });
+
+  // ---- detail panel ----
+  function render(i) {
+    var st = STAGES[i];
+    var h = '';
+    h += '<div class="detail-head"><div><span class="kicker">Step ' + (i + 1) + ' of ' + STAGES.length + ' &middot; ' + PHASES[st.phase].name + '</span>';
+    h += '<h3>' + esc(st.title) + '</h3><div class="when">' + esc(st.when) + '</div></div>';
+    h += '<div class="actors">' + st.actors.map(function (a) { return '<span class="actor"><span class="dot ' + a + '"></span>' + ACTOR[a].label + '</span>'; }).join("") + '</div></div>';
+    h += '<p class="what">' + esc(st.what) + '</p>';
+    h += '<div class="io"><div><b>In</b>' + esc(st.input) + '</div><div><b>Out</b>' + st.output + '</div></div>';
+    h += '<p class="where">' + (st.home ? '<span class="home">home PC</span> ' : '') + st.where + '</p>';
+
+    if (st.tx) {
+      h += '<div class="sample"><div class="sample-label"><span>Before and after <i>&middot; illustrative, written to show the kinds of errors</i></span>' +
+        '<span class="toggle" role="group" aria-label="Transcript version"><button type="button" data-tx="raw" aria-pressed="true">Raw</button><button type="button" data-tx="clean" aria-pressed="false">Cleaned</button></span></div>' +
+        '<div class="tx" id="tx">' + txHTML(TX_RAW) + '</div></div>';
+    }
+    if (st.story) {
+      h += '<div class="sample"><div class="sample-label"><span>The shape of a story <i>&middot; mock-up, not a real story</i></span></div>' +
+        '<div class="story"><span class="eb">Zoning Board of Appeals</span><div class="hl">A 40B hearing on Example Road is continued</div>' +
+        '<div class="hear"><span class="play" aria-hidden="true">&#9654;</span><span><b>Hear the board explain the delay</b><span>Zoning Board of Appeals &middot; from 41:12</span></span></div>' +
+        'The board asked for a revised traffic study before voting <span class="mom">43:05</span> and continued the hearing to next month <span class="mom">48:30</span>.' +
+        '<div class="deeper"><b>Go deeper</b>Agenda &middot; Application (p. 4) &middot; Recording</div></div></div>';
+    }
+    if (st.sample) {
+      h += '<div class="sample"><div class="sample-label"><span>' + esc(st.sample.label) + ' <i>&middot; ' + esc(st.sample.note) + '</i></span></div><pre class="code">' + st.sample.code + '</pre></div>';
+    }
+    if (st.commits) {
+      h += '<div class="sample"><div class="sample-label"><span>Issue 6 edits <i>&middot; real commits, 7 of 14</i></span></div><ul class="commits">' +
+        st.commits.map(function (c) { return '<li><span class="h">' + c[0] + '</span><span><span class="d">' + c[1] + '</span> &nbsp;' + esc(c[2]) + '</span></li>'; }).join("") + '</ul></div>';
+    }
+    h += '<div class="lesson"><b>Lesson.</b> ' + esc(st.lesson) + '</div>';
+    h += '<div class="nav-row"><button class="btn ghost" type="button" data-nav="-1"' + (i === 0 ? ' disabled' : '') + '>&larr; Back</button>' +
+      '<span class="kbd-hint"><kbd>&larr;</kbd> <kbd>&rarr;</kbd> to step, <kbd>space</kbd> to play</span>' +
+      '<button class="btn" type="button" data-nav="1">' + (i === STAGES.length - 1 ? 'Start over' : 'Next &rarr;') + '</button></div>';
+    detail.innerHTML = h;
+
+    var tx = detail.querySelectorAll("[data-tx]");
+    tx.forEach(function (b) {
+      b.addEventListener("click", function () {
+        tx.forEach(function (o) { o.setAttribute("aria-pressed", String(o === b)); });
+        document.getElementById("tx").innerHTML = txHTML(b.getAttribute("data-tx") === "raw" ? TX_RAW : TX_CLEAN);
+      });
+    });
+    detail.querySelectorAll("[data-nav]").forEach(function (b) {
+      b.addEventListener("click", function () { stop(); step(Number(b.getAttribute("data-nav"))); });
+    });
+  }
+
+  function select(i, fromUser) {
+    current = i;
+    buttons.forEach(function (b, bi) {
+      if (bi === i) b.setAttribute("aria-current", "step"); else b.removeAttribute("aria-current");
+      b.classList.toggle("done", playing && bi < i);
+      var bar = b.querySelector(".bar");
+      bar.style.transition = "none";
+      bar.style.width = "0";
+    });
+    render(i);
+    if (fromUser) { logStage(i, true); }
+  }
+
+  function step(d) {
+    var n = current + d;
+    if (n >= STAGES.length) n = 0;
+    if (n < 0) n = 0;
+    select(n, true);
+  }
+
+  // ---- log ----
+  var typing = null;
+  function logStage(i, replace) {
+    if (typing) { clearTimeout(typing); typing = null; }
+    var st = STAGES[i];
+    if (replace) logEl.innerHTML = "";
+    var old = logEl.querySelector(".cursor");
+    if (old) old.remove();
+    var hd = document.createElement("div");
+    hd.className = "ln hd";
+    hd.textContent = "▸ " + (i + 1) + ". " + st.title;
+    logEl.appendChild(hd);
+    var lines = st.log.slice();
+    var k = 0;
+    function next() {
+      if (k >= lines.length) {
+        var c = document.createElement("span");
+        c.className = "cursor";
+        logEl.appendChild(c);
+        logEl.scrollTop = logEl.scrollHeight;
+        return;
+      }
+      var L = lines[k++];
+      var d = document.createElement("div");
+      d.className = "ln";
+      d.innerHTML = '<span class="who-tag ' + L[0] + '">' + ACTOR[L[0]].label.toLowerCase().replace(" code", "") + '</span>  ' + L[1];
+      logEl.appendChild(d);
+      logEl.scrollTop = logEl.scrollHeight;
+      typing = setTimeout(next, reduce ? 0 : 520);
+    }
+    next();
+  }
+
+  // ---- replay ----
+  var playTop = document.getElementById("play-top");
+  function setPlayLabel() {
+    playTop.innerHTML = playing
+      ? '<span class="ico" aria-hidden="true">&#10074;&#10074;</span> Pause replay'
+      : '<span class="ico" aria-hidden="true">&#9654;</span> Replay a week';
+  }
+  function tick() {
+    var b = buttons[current].querySelector(".bar");
+    if (!reduce) {
+      b.style.transition = "none";
+      b.style.width = "0";
+      void b.offsetWidth;
+      b.style.transition = "width " + STEP_MS + "ms linear";
+      b.style.width = "100%";
+    }
+    timer = setTimeout(function () {
+      if (current >= STAGES.length - 1) {
+        stop();
+        var done = document.createElement("div");
+        done.className = "ln dim";
+        done.textContent = "Week done. Next week it starts again.";
+        logEl.appendChild(done);
+        logEl.scrollTop = logEl.scrollHeight;
+        return;
+      }
+      select(current + 1, false);
+      logStage(current, false);
+      tick();
+    }, STEP_MS);
+  }
+  function play() {
+    playing = true;
+    setPlayLabel();
+    logEl.innerHTML = '<div class="ln dim">$ replay --week 2026-10-12</div>';
+    select(0, false);
+    logStage(0, false);
+    tick();
+  }
+  function stop() {
+    playing = false;
+    if (timer) clearTimeout(timer);
+    timer = null;
+    buttons.forEach(function (b) { var bar = b.querySelector(".bar"); bar.style.transition = "none"; bar.style.width = "0"; });
+    setPlayLabel();
+  }
+  playTop.addEventListener("click", function () {
+    if (playing) { stop(); return; }
+    document.getElementById("pipeline").scrollIntoView({ behavior: reduce ? "auto" : "smooth" });
+    play();
+  });
+
+  document.addEventListener("keydown", function (e) {
+    if (e.target.closest && e.target.closest("input, textarea")) return;
+    if (e.key === "ArrowRight") { stop(); step(1); e.preventDefault(); }
+    else if (e.key === "ArrowLeft") { stop(); step(-1); e.preventDefault(); }
+    else if (e.key === " " && !(e.target.closest && e.target.closest("button, a"))) {
+      e.preventDefault();
+      if (playing) stop(); else play();
+    }
+  });
+
+  // ---- copy prompt ----
+  var copyBtn = document.getElementById("copy-prompt");
+  copyBtn.addEventListener("click", function () {
+    var text = document.getElementById("prompt-text").textContent;
+    function ok() { copyBtn.textContent = "Copied"; setTimeout(function () { copyBtn.textContent = "Copy"; }, 1600); }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(ok, function () { fallback(); });
+    } else { fallback(); }
+    function fallback() {
+      var r = document.createRange();
+      r.selectNodeContents(document.getElementById("prompt-text"));
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+      copyBtn.textContent = "Selected";
+    }
+  });
+
+  select(0, false);
+})();
+</script>
+</body>
+</html>
