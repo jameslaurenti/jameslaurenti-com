@@ -171,6 +171,8 @@ const BEAT_JAN = `${BEAT}/the-coast-is-clear`;
 const BEAT_AUG = `${BEAT}/city-submits-expression-of-interest`;
 const ARMY_RECORD =
   "https://www.denix.osd.mil/armybrac/massachusetts-reserve-component/family-housing-beverly-15/";
+const CITY_MAP =
+  "https://beverlyma.mapgeo.io/datasets/properties?latlng=42.579983%2C-70.88197&previewId=68-56&zoom=18";
 const ZONING_R10 = "https://ecode360.com/29283734";
 const IFV_2026 =
   "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
@@ -485,9 +487,10 @@ export default function DigestIssue7() {
             What is for sale
           </h3>
           <p className={BODY}>
-            Sixteen detached one-story ranch houses, each with three bedrooms and one bath, on a
-            single lot of 5.36 acres, half a mile from the North Beverly train station, according
-            to GSA&apos;s listing. They are sold together as one lot, not house by house.
+            Sixteen detached one-story ranch houses, each with three bedrooms and one bath, half a
+            mile from the North Beverly train station. GSA&apos;s listing describes them as one
+            5.36-acre lot, sold together, not house by house. The city&apos;s assessing records show
+            the houses on two parcels, one on each side of Laurel Street, of 4 acres and 2.4 acres.
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -522,8 +525,8 @@ export default function DigestIssue7() {
           </h3>
           <p className={BODY}>
             GSA markets the property as a &ldquo;turnkey&rdquo; compound, 16 houses ready to use.
-            A buyer who wanted to clear the land and build would work under the city&apos;s zoning,
-            which allows only single-family houses here. Today each new house would need its own
+            A buyer who wanted to clear the land and build would work under the city&apos;s zoning.
+            Both parcels are in the R-10 district, which allows only single-family houses. Today each new house would need its own
             lot of at least 10,000 square feet, with 100 feet of frontage on a street. Anything
             denser would need a special permit or other approval from the city.
           </p>
@@ -543,6 +546,7 @@ export default function DigestIssue7() {
                 <Src href={GSA_LISTING}>GSA sale listing</Src>
                 <Src href={ARMY_RECORD}>Army record of the site</Src>
                 <Src href={ZONING_R10}>Beverly zoning, R-10 rules (§ 300-34)</Src>
+                <Src href={CITY_MAP}>City property map</Src>
                 <Src href={IFV_2026}>State voter guide</Src>
               </>
             }
