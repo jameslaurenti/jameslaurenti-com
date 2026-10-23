@@ -46,7 +46,7 @@ export const EXPERIMENTS: Experiment[] = [
     slug: "candle-crawl",
     title: "Candle Crawl",
     blurb:
-      "A quiet turn-based dungeon game on a 3×3 grid of cards, for killing time in a dark room. Silent, dark-only, saves every step.",
+      "A quiet turn-based dungeon game on a 4×4 grid of cards, with a trader between floors, pocket tools and altar deals. Silent, dark-only, saves every step.",
     status: "internal",
     updated: "2026-10",
   },
