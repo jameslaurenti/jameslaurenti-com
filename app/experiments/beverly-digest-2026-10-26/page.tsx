@@ -603,7 +603,7 @@ export default function DigestIssue7() {
           <p className={BODY}>
             GSA markets the property as a &ldquo;turnkey&rdquo; compound, 16 houses ready to use as
             they are. A buyer with bigger plans would work under the city&apos;s zoning. The land is
-            in the R-10 district, which allows only single-family houses, and each new house would
+            in the <Src href={CITY_MAP}>R-10 district</Src>, which allows only single-family houses, and each new house would
             need its own lot of{" "}
             <Src href={ZONING_R10}>at least 10,000 square feet with 100 feet of frontage</Src> on a
             street. Anything denser would need a special permit or other approval from the city.
@@ -623,15 +623,6 @@ export default function DigestIssue7() {
             <Src href={IFV_2026}>voter guide</Src> has the full text and the arguments for and
             against; <Src href={WBUR_Q7}>WBUR explains it here</Src>.
           </p>
-          <Refs
-            sources={
-              <>
-                <Src href={GSA_LISTING}>GSA sale listing</Src>
-                <Src href={CITY_MAP}>City property map</Src>
-                <Src href={IFV_2026}>State voter guide</Src>
-              </>
-            }
-          />
         </section>
 
         {/* ---- 02 ---- */}
@@ -867,7 +858,7 @@ export default function DigestIssue7() {
           </p>
           <p className={BODY}>
             <b>Privacy and the data.</b>{" "}
-            Plate data is kept 30 days, and the department is discussing cutting that to seven. It
+            <Src href={ALPR_POLICY}>Plate data is kept 30 days</Src>, and the department is discussing cutting that to seven. It
             is shared only with Massachusetts law enforcement; federal or out-of-state agencies have
             to ask Beverly police, who decide case by case. Officers and dispatchers certified to run
             plates can search, each search is logged with a reason, and only three people, the chief,
@@ -897,7 +888,6 @@ export default function DigestIssue7() {
               <>
                 <Src href={FLOCK_AGENDA}>Committee agenda</Src>
                 <Src href={FLOCK1019}>Full recording</Src>
-                <Src href={ALPR_POLICY}>Police policy, GO 2026-02</Src>
               </>
             }
           />
