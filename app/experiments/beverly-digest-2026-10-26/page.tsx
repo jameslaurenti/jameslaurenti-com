@@ -852,7 +852,7 @@ export default function DigestIssue7() {
             restaurants, police used the cameras to find a second vehicle acting as a lookout and
             alerted other departments. Police also described a home invasion on Payne Avenue solved
             quickly, a man who had threatened to drive off the Salem-Beverly bridge found and
-            helped, a hit-and-run driver located, and a runaway child brought home.{" "}
+            helped, a hit-and-run driver located, and a child who had taken off in a vehicle without permission found and brought home.{" "}
             <Moment src={FLOCK1019} s={1420} /> <Moment src={FLOCK1019} s={1073} />{" "}
             <Moment src={FLOCK1019} s={1110} /> <Moment src={FLOCK1019} s={1378} />
           </p>
