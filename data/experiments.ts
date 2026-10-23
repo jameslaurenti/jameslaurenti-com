@@ -43,6 +43,14 @@ export const EXPERIMENTS: Experiment[] = [
     updated: "2026-10",
   },
   {
+    slug: "candle-crawl",
+    title: "Candle Crawl",
+    blurb:
+      "A quiet turn-based dungeon game on a 4×4 grid of cards, with a trader between floors, pocket tools and altar deals. Silent, dark-only, saves every step.",
+    status: "internal",
+    updated: "2026-10",
+  },
+  {
     slug: "beverly-fy27-slides",
     title: "Beverly FY2027 budget, slides",
     blurb: "A slide version of the FY2027 budget piece.",
