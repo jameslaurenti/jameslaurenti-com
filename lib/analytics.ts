@@ -41,7 +41,9 @@ export type TrackEvent =
   /** An interactive piece reached a meaningful end state. */
   | "tool_outcome"
   /** The digest email form was accepted by Kit (confirmation email sent, not yet confirmed). */
-  | "signup_submitted";
+  | "signup_submitted"
+  /** A mailto link to an official was opened, e.g. a councilor named in a story. */
+  | "email_clicked";
 
 type Params = Record<string, string | number | boolean>;
 

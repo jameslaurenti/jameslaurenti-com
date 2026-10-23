@@ -178,6 +178,7 @@ const IFV_2026 =
   "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
 const WBUR_Q7 =
   "https://www.wbur.org/news/2026/10/07/massachusetts-election-ballot-question-7-starter-homes-small-lots";
+const ALPR_POLICY = "https://beverlypolice.org/wp-content/uploads/2026/04/ALPR-2026-GO-02.pdf";
 const OIL_THEFT = "https://www.bostonglobe.com/2026/10/10/metro/beverly-cooking-oil-theft/";
 const FLOCK_PORTAL = "https://transparency.flocksafety.com/beverly-ma-pd";
 const ELECTION = "https://www.beverlyma.gov/817/Upcoming-Election";
@@ -190,7 +191,7 @@ const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
 
 const contents: [string, string][] = [
   ["coastguard", "The Coast Guard houses on Laurel Street are headed to auction"],
-  ["deficit", "What was new at the deficit committee's community meeting"],
+  ["deficit", "The deficit committee's ideas, sorted by how soon and how much"],
   ["flock", "A month before the Flock contract expires, the decision is the Mayor's"],
   ["ahead", "Coming up, through November 23"],
   ["corrections", "Corrections"],
@@ -404,6 +405,80 @@ function LaurelMap() {
   );
 }
 
+/* Main roads in and around Beverly, projected from OpenStreetMap (ODbL). Camera points are
+   the four intersections police named on October 19. Generated once for this issue. */
+const CAM_ROADS = ["-38,378 -41,383 -42,386 -44,389","-45,192 -36,196 -25,203 -20,205 -13,209 -9,211 -6,213 -3,215 2,220 6,224 9,227 12,229 15,231 18,234 21,236 28,240 31,242 33,245 35,248 38,252 41,254 44,256","-37,359 -37,356 -38,353 -38,350 -39,346 -40,342 -42,339 -43,336 -44,331 -46,328","-25,146 -22,145 -19,145 -16,144 -12,143 -7,143 -4,142 -1,142 3,140 6,139 12,136 20,132 23,130 26,128 29,124 32,121 36,118 40,115 45,112","-39,155 -40,151 -44,143 -49,132 -53,124 -54,121 -55,118 -56,115 -56,113","42,263 38,255 39,253","238,108 238,104 239,102","152,111 153,107 153,105","205,404 207,401 209,399","317,326 321,326 324,326 327,327 330,327 334,326 338,323 341,321 346,318 349,316 353,314 357,312 360,309 363,305 366,302 369,300 372,299 375,297 379,295 382,295 387,293 391,292 394,291 397,289 400,287 403,286 407,285 413,284 417,283","227,245 230,248 233,250 236,252 237,253","482,49 482,45","417,283 420,282 424,280 428,278 431,275 434,273","247,167 243,166 240,162 239,159 234,152 229,146 227,143 225,139 223,136 220,132 218,128 216,124 214,118 212,113 210,109 209,106 208,102 207,99 206,96 206,91 207,88 207,84 208,81 209,78 209,75 209,72 207,69 206,66 203,60 202,57 200,52 198,48 196,44 196,43","209,9 208,5 208,0 207,-4 206,-7 206,-10 204,-14 203,-17 202,-21","254,104 252,101","346,185 351,181 355,178 358,177 362,175 365,174 368,171 375,161 377,157 381,152 383,148 385,145 386,141 388,138 391,134 391,133","216,391 223,394 227,396 233,398 242,400 248,402 250,404","325,196 322,191 315,183 312,180 311,177 306,171","238,78 235,74 230,67 227,62 220,51 217,48 216,44","240,249 243,247 247,244 252,241 255,239","249,153 250,150 251,147 251,143 250,139 249,136 246,129 245,126","412,101 416,98 420,96 424,94 427,92 432,90 436,89 440,87 443,86 446,84 449,81 451,78 453,75","172,265 176,264 179,264","145,115 142,111 141,108 139,105 137,102 135,99 134,96 133,92 133,89 131,84 129,80 128,77 126,71 125,68 124,65 122,62 120,59 117,57 115,54 111,50 108,46 105,43 102,39 100,36 98,33 96,29 95,26 93,23 92,20 89,14 88,11 86,7 84,2 82,-3 79,-10 78,-13 76,-16 75,-19 73,-23 72,-27 72,-30 73,-35 74,-40 74,-45 73,-48 72,-51 71,-56","210,18 213,18","215,17 213,17","217,228 218,231 219,234 220,237 222,240 225,243 227,245","478,49 482,49 485,49 489,48 492,47 497,46 501,45 504,44 507,43 512,42 515,42 519,41 524,40 527,39 530,38 534,37 538,35 541,34 544,32 547,31 549,28 552,25 553,22 555,18 558,14 561,10 564,7 567,5 572,3 576,1 579,-1 582,-2 584,-3","179,264 181,261 181,258 182,254 182,251 180,247 179,243 178,240 178,237 176,233 173,230 170,228 166,226 163,225 160,224 157,221 153,216 151,212 149,208 148,204 147,198 146,195 145,190 145,188","119,375 121,370 122,367 125,364 130,359 134,354 138,350 141,348 149,338 155,331 158,326 159,325","194,175 189,169 185,164 182,161 179,157 175,153 172,150 169,147","445,20 445,23 448,26 453,29 456,32 459,35 463,39 466,41 469,44 472,47 474,50","240,249 241,241 242,234 242,229 243,226 243,221 244,218 245,208 245,204 246,201","218,22 216,19 215,17","249,293 249,296 249,299 249,303 249,306 249,308","205,404 206,401","253,334 256,334 257,333","213,18 215,17","445,20 443,16 439,12 436,10 433,9 430,8 427,7 425,3 422,0 418,-4 414,-6 411,-8 407,-13 405,-16 402,-18 399,-21 396,-24 392,-29 390,-34 387,-37 386,-40 385,-41","286,329 290,327 293,326 302,326 317,326","411,96 414,99","45,112 48,111 54,108 58,106 61,105 68,103 71,102","42,263 44,269 49,274 52,277 56,280 59,283 63,286 69,291 74,296 78,299 81,301 84,304 87,306 92,308 99,310 103,312 106,312 109,314 115,315 122,318 127,319 132,321 135,322 138,322 143,323 146,324 154,325 157,325 161,326 165,326 169,327 173,327 178,328 184,329","249,309 250,313 252,318 254,321 255,324 255,327 254,331 253,334","249,293 250,287 251,282 252,276 252,273 252,269 252,267","142,135 145,131 146,130","290,-26 293,-27 297,-28 301,-29 306,-30 312,-30 316,-30 320,-29 324,-30 331,-33 335,-34 339,-37 342,-39 345,-41 348,-43 351,-44 354,-46 357,-48 360,-51 363,-54","44,256 47,258 50,259 58,263 64,265 69,268 72,269 75,269 78,270","249,309 252,309","216,44 216,40 218,27 218,24 218,22","226,6 229,4 233,0 236,-2 240,-6 243,-8 247,-11 251,-12 254,-14 256,-15","206,401 204,404 201,407 197,410 194,412 193,414","217,228 216,223 215,218 214,214 212,210 211,205 210,202 208,199 207,195 206,193","391,126 392,128","257,333 260,330 262,327 264,324 267,317","453,75 456,70 458,67 460,63 463,58 465,55 468,53 471,51 474,50 478,49 481,47 483,43 484,40 486,37 488,33 489,30 491,27 493,24 494,21 496,16 497,13 499,9 501,5 502,1 503,-2 504,-5 504,-8 505,-13 503,-17 501,-21 497,-26 494,-29 492,-33 490,-37 489,-40 488,-45 488,-48 488,-52 488,-53","229,284 228,287 226,290 226,293 224,297 223,300 223,303 222,306 219,315 218,318 218,321 217,324 216,327 215,330 214,337 213,342 212,346 212,350 211,355 209,362 209,365 207,372 207,375 206,380 206,387 206,394 206,398 206,401","179,63 175,66 171,69 168,72 165,74 163,77 161,81 160,86","395,128 396,126","179,63 183,59 186,57 188,54 192,48 195,44 198,40 201,36 204,32 205,29","169,147 167,144 163,140 161,137 157,133 155,130","434,273 438,276 443,281 446,283 450,285 453,287 456,289 462,292 462,293","250,404 252,401 256,399 259,395 265,385 268,382 270,379 276,372 280,367 284,363 288,359 292,354 300,345 304,340 315,329 317,326","252,267 251,263 250,260 247,257 245,256","242,101 245,100 248,100 249,100","250,100 253,103 254,104","206,193 206,192","249,99 246,99 241,100 239,100","326,204 331,197 334,194","12,488 9,486 7,483 5,480 -1,474 -5,469 -9,465 -12,461 -15,458 -18,454","-21,450 -21,446 -23,439 -23,435 -24,431 -25,426 -25,422 -26,419 -27,415 -27,410 -28,406 -29,400 -29,397 -30,394 -30,393","-21,450 -31,453 -38,456 -43,457 -47,458 -50,459","59,514 61,510 62,507 63,504 65,500 66,497 66,490 66,487 67,480 67,476 67,468 67,464 67,459 68,456 69,453 72,451 77,447","12,488 15,490 21,493 25,495 29,497 32,499 37,502 43,505","170,529 171,525 173,517 174,514 175,511 178,504 179,501 180,496 182,492 183,489 184,484 185,481 187,477 188,473 189,470 190,467 192,462 192,459 192,456 189,453","77,447 82,443","245,89 244,88","247,93 245,89","405,110 407,107 407,106","408,105 411,101 412,101","179,463 183,452 183,449","183,449 187,452 189,453","186,450 185,447 185,444","194,414 197,411 201,408 204,406 204,405","189,426 184,443 184,446 182,449","173,478 174,474 179,463","178,462 176,466 174,473 173,478","149,529 161,505 165,497 166,494 167,491 169,487 172,480 173,478","237,253 240,250","240,250 237,251 236,252","160,86 162,81 163,78 166,75 169,73 172,70 176,66 179,63","411,96 407,97 404,98 401,99 398,101 397,101","414,99 412,96 411,96","182,449 181,453 178,462","185,444 189,426","179,264 182,264 186,265 191,267 192,267","-40,161 -39,157 -38,154 -37,151 -35,149","209,399 206,401","209,399 212,396 216,392 216,391","202,331 202,326 202,322 202,321","184,329 191,330","191,330 195,330 198,331 201,331 202,331","206,321 209,322 212,323 216,324 217,324","267,317 263,314 257,312 253,309 252,309","252,309 249,308","267,317 268,314 271,311 274,307 277,304 279,301 281,296 283,293 284,289 286,286 288,283 292,278 295,275 296,272 296,269 296,266 296,258 297,254 297,249 299,244 300,239 301,238","267,317 274,321 277,323 286,329","216,391 219,389 222,386 225,383 228,381 231,379 233,376 235,373 237,369 239,366 240,362 242,359 243,356 245,353 246,349 248,346 249,343 250,340 251,337 253,334","211,276 214,277 218,279 220,280","156,96 157,94","213,17 211,17","211,17 210,17","218,13 221,11 224,8 226,6","205,29 207,26 209,23 210,21","240,82 239,80","154,104 154,102","154,102 155,98","155,98 156,96","157,94 158,91","159,88 160,86","158,91 159,88","-31,389 -30,392 -30,393","-32,379 -33,376 -33,375","-33,373 -34,370 -35,366 -35,365","-33,375 -33,373","-34,374 -34,375","-34,373 -34,374","-35,368 -34,372 -34,373","-35,365 -35,368","-35,368 -35,372 -36,374","-34,375 -32,382 -31,388 -31,389","-31,389 -31,386 -32,381 -32,379","239,80 238,78","244,88 242,85","242,85 240,82","-84,157 -81,157 -78,157 -75,157 -68,156 -64,155 -60,154 -57,154 -45,152 -42,151 -38,150 -35,149 -25,147 -25,146","78,270 80,270","80,270 84,271 87,272 92,274 96,275 100,277 104,278 108,279 112,280 122,280 125,280 128,280 132,278 138,276 142,275 146,274 152,272 157,270 160,268 161,268","234,286 237,288 241,289 244,291 249,293","334,194 337,191","337,191 334,193 333,193","337,191 339,189","339,189 346,185","237,102 238,106 238,108","240,102 242,101","249,96 247,93","249,96 249,98","250,98 249,96","239,100 238,103 239,100","223,281 226,283 229,284","202,-21 201,-24 200,-27 200,-30 200,-33 199,-39 199,-43 199,-51 199,-55","246,197 246,193 247,188 248,181 248,177 248,172 247,168","192,267 199,271 202,272 203,272","239,259 238,262 236,265 235,268 233,273 232,276 229,282 229,284","249,308 249,309","215,17 217,14 218,13","71,102 77,100 83,98 87,97 94,95 97,94 101,93 105,92 108,90 109,89","109,89 112,87 117,82 120,80 124,78 127,76 128,76","150,122 148,120","392,128 394,129","391,126 387,121 384,117 382,113 381,109","392,128 393,131","396,126 397,123 399,120 403,113 405,110","163,267 166,266 170,265 172,265","161,268 163,267","-50,459 -47,459 -43,458 -40,457 -30,454 -25,453 -21,452 -20,451","283,224 288,221 291,219 295,216 300,212 303,210 307,207 311,205 318,200 324,196 327,195 332,193 333,193","-20,451 -21,450","109,406 113,393","113,393 115,388 117,383 119,375","-35,365 -36,361 -37,359","239,112 238,108","240,115 239,112","239,255 237,253","237,253 239,255","240,256 243,256 245,256","245,256 242,255 239,255","240,258 240,256","239,255 239,256","240,250 240,249","239,259 240,258","266,120 263,117 260,113 259,110 256,107","326,204 326,201 325,197 325,196","229,284 234,286","222,281 223,281","220,280 222,281","310,224 315,218 319,213 321,210 326,204","301,238 304,232 308,227 310,224","391,133 393,131","393,131 394,129","396,126 394,126","393,126 391,126","407,106 408,105","393,126 392,128","394,129 395,128","395,128 394,126","394,126 393,126","-18,454 -20,451","153,105 154,104","463,293 466,295 469,296 473,299 476,300 479,301 483,303 486,304 490,305 493,306 496,309 499,311 501,314 505,316 510,318 513,318 516,318 519,317 523,316 526,315 529,314 533,312 537,310 539,309","462,293 463,293","202,321 204,321","204,321 206,321","183,449 184,446 185,444","182,449 183,449","82,443 85,440 88,437 91,434 96,429 99,425 102,422 105,418 106,414 108,411 109,408 109,406","204,405 205,404","239,256 240,256","240,256 239,255","189,453 186,451 186,450","239,256 239,259","206,192 204,190","204,190 204,189","256,107 255,106","255,106 255,105","255,105 254,104","144,183 144,178 143,171 143,164 143,161 143,156 142,151 142,148 141,138 142,135","145,188 144,184 144,183","146,130 148,127 148,126","202,186 201,186","200,184 198,181 195,177 194,175","204,189 202,186","201,186 200,184","280,138 276,134","273,130 270,126","269,124 266,120","270,126 269,124","306,171 303,167 294,156 291,152 287,148 280,138","247,167 247,163 247,160 248,156 249,153","245,126 243,122 241,118 240,115","276,134 273,130","-36,374 -38,377 -38,378","256,-15 260,-17 264,-19 269,-20 272,-21 276,-22 279,-23 283,-24 286,-25 289,-26 290,-26","255,239 259,236 264,234 268,231 272,229 275,228 278,226 281,224 283,224","203,272 206,274 210,275 211,276","247,168 247,167","252,101 251,99","150,122 150,119 150,117","150,117 148,120","150,117 151,113 152,111","155,130 153,127 151,124 150,122","150,122 148,126","148,126 150,123 150,122","148,120 145,115","246,201 246,198 246,197","210,18 210,14 209,11 209,9","210,21 210,18","193,414 191,417 190,420 189,423 189,426","189,426 191,421 192,417 194,414"];
+const CAM_HWY = ["16,139 8,142 -11,149 -14,150 -18,152 -22,153 -26,155 -29,157 -33,160 -36,162","623,41 621,44 618,47 614,49 611,52 608,54 603,56 599,58 592,61 586,63 580,65 571,69 566,71 563,73 560,74 557,76 553,78 549,80 543,84 540,86 535,88 528,92 520,96 511,100 505,103 499,105 494,107 490,108 486,109 482,110 476,111 467,112 460,113 454,113 451,113 446,112 440,112 433,111 426,110 415,109 409,108","45,127 49,124 52,122 56,120 59,118 65,116 68,115 71,114 74,113 77,112 81,111 84,111 101,108 117,104 122,103 125,103 128,102 131,101 134,101","-53,182 -51,178 -47,174 -44,171 -41,168 -38,165 -35,162 -31,160 -28,158 -24,156 -20,154 -15,152 -9,149 6,144 12,142 14,141","154,97 158,96","158,96 166,95 177,93 181,92 185,92 189,91 193,91 204,91","150,97 138,99","159,95 154,96","138,99 134,100","134,101 138,100","138,100 148,98 154,97","134,100 121,103 99,107 84,110 81,110 78,111 75,112 71,113 67,114 63,115 60,117 56,118 52,121 48,123 45,126","204,91 207,91","377,106 383,107 389,107 405,109 415,110 421,111 425,111 429,112 434,112 440,113 444,113 447,114 451,114 455,114 458,114 467,113 475,112 478,112 482,111 485,110 492,108 496,107 499,106 502,105 505,104 508,102 513,100 517,98 523,95 526,94 529,93 532,91 535,90 538,89 543,87 546,86 549,84 554,83 559,82 564,80 567,79 573,76 579,74 583,71 588,69 592,66 596,64 600,61 604,58 609,55 612,52 615,50 618,48 621,45 624,43 625,42","208,89 205,90 204,90","204,90 193,90 189,90 185,91 183,91","-36,162 -39,165 -43,168 -47,173 -50,176 -54,181","32,133 28,134 25,135 16,139","39,129 36,131 32,133","45,126 41,128 39,129","154,96 150,97","172,93 160,95 159,95","183,91 180,91 176,92 172,93","258,92 249,91 245,91 236,90 228,89 218,89 208,89","263,93 258,92","27,136 31,134 34,133 38,131 41,129 45,127","14,141 17,139 22,138 27,136","207,91 211,90 220,90 226,90","400,107 394,107 387,106 383,106 372,104 361,103 339,101 310,98 282,95 263,93","409,108 406,108 400,107","226,90 232,91 246,92","246,92 252,93","252,93 268,94 298,98 309,99 325,100 360,104","360,104 373,106 377,106"];
+const CAM_RAIL = ["187,418 186,421 185,424 185,425","187,418 186,421 186,425","182,441 180,449 179,451","148,527 151,521 156,511 159,506 162,501 164,495 167,491 168,486 170,483 171,479 172,475 173,472 174,469 176,463 177,456 179,451","323,209 320,211 316,212 313,213 309,215 299,219 294,221 291,223 287,224 283,226 279,228 275,230 269,233 266,234 262,237 258,239 255,241 250,244 246,247 242,250 239,253","323,209 320,210 317,211 314,213 311,214 308,215 304,217 301,218 298,219 295,221 289,223 286,224 283,226 279,228 276,229 273,230 269,232 265,234 261,237 258,238 255,240 252,243 249,245 246,247 243,249 240,251 239,252","205,326 205,330 204,333 204,337 204,340 204,343 203,347 203,351 202,354 202,359 201,359","205,322 205,327 205,330 205,336","201,361 200,367 195,384 192,399 189,409","201,361 201,365 199,369 195,387 192,399 190,409 187,418","202,360 201,361","201,359 201,361","205,336 205,332 205,326","205,320 205,322","205,320 205,322","205,306 205,310 205,317","423,185 426,185 427,185","834,188 828,189 823,190 817,192 812,193 807,194 801,195 796,197 789,198 783,200 776,202 771,203 765,204 762,205 757,206 750,208 740,210 734,212 723,214 718,216 713,217 705,219 697,221 692,222 686,223 681,225 676,226 671,227 666,228 663,229 619,237 604,240 600,240 593,242 590,242 587,243 583,243 580,244 577,244 574,244 570,244 567,244 563,244 560,243 556,242 553,242 550,240 545,238 541,237 537,234 531,230 528,228 520,223 509,215 499,209 493,205 488,202 476,195 473,193 470,191 467,190 462,188 458,187 454,186 450,185 447,184 442,184 438,184 434,184 431,184 428,184 425,184 423,185","834,188 828,189 822,191 812,193 807,195 796,197 789,199 783,200 776,202 771,203 765,205 762,205 757,207 750,208 740,211 735,212 726,214 718,216 713,217 706,219 695,222 692,222 686,224 680,225 667,229 663,229 619,237 615,238 606,240 603,240 600,241 596,241 593,242 590,242 587,243 583,244 580,244 575,245 572,245 569,245 564,244 560,244 556,243 553,242 550,241 547,240 544,238 541,237 538,235 531,230 520,223 509,215 498,208 494,206 487,201 482,199 473,193 468,191 465,189 462,188 459,187 456,186 452,185 447,185 442,184 438,184 434,184 431,184 427,185","229,-63 226,-51 223,-36 221,-28 220,-22 219,-15 218,-12 217,-4 214,15 213,18 212,26 211,33 210,41 209,48 208,56 207,68 206,78 205,84 205,92 204,101 204,108 204,115 203,121 203,127 203,140 203,150 203,157 203,175 203,183 203,188 203,199 204,207 204,214 204,223 204,230 204,237 204,245 204,255 204,262 204,272 204,278 205,283 205,288 205,293 205,302 205,304","205,306 205,318 205,320","185,425 185,427","186,425 185,428","185,428 182,441","185,427 181,441","179,451 177,458 177,461 175,469 173,475 172,479 170,482 169,486 166,493 162,500 148,527","179,451 181,441","239,253 235,256 232,259 229,261 226,264 222,268 218,273 215,276 212,280 210,283 208,287 207,290 206,294 205,300 205,304","239,252 234,256 229,261 226,264 223,267 219,271 214,276 213,279 210,282 209,285 207,288 206,291 206,294 205,297 205,300 205,304","229,-63 227,-52 223,-37 220,-23 217,-4 213,17 211,32 210,42 207,69 206,80 205,92 204,120 203,139 203,158 204,189 204,207 205,272 205,278 205,283 205,288 205,293 205,298 205,304","189,409 187,418","205,336 204,339 204,343 204,346 203,351 203,355 202,358 202,360","205,304 205,312 205,317","423,185 420,185 414,186 407,186 394,187 390,188 387,188 384,188 381,189 377,190 374,190 371,191 368,191 363,193 360,194 356,195 353,196 350,198 342,201 334,204 330,206 326,208 323,209","427,185 422,185 407,186 394,188 387,188 383,189 377,190 372,191 369,192 365,193 362,194 358,195 355,196 351,197 336,204 323,209","205,304 205,306","205,317 205,320","205,322 205,326"];
+const CAMS = [{"n":1,"name":"Rantoul St at School St","x":206,"y":388},{"n":2,"name":"Cabot St at Beckford St","x":228,"y":246},{"n":3,"name":"Elliott St at McKay St","x":179,"y":264},{"n":4,"name":"Brimbal Ave near Otis Rd","x":269,"y":124}];
+
+function CameraMap() {
+  const ink = "var(--color-ink)";
+  const faint = "var(--color-ink-faint)";
+  const accent = "var(--color-accent)";
+  const label = { fontSize: 13, fill: faint, fontFamily: "var(--font-sans), system-ui, sans-serif" };
+  const strong = { ...label, fill: ink, fontWeight: 700 };
+  return (
+    <figure className="mt-6 max-w-[63ch]">
+      <svg
+        viewBox="0 0 446 484"
+        role="img"
+        aria-labelledby="camera-map-title"
+        className="w-full rounded-lg border border-rule bg-white/70"
+      >
+        <title id="camera-map-title">
+          Map of Beverly with the four Flock camera locations: Rantoul Street near School Street,
+          Cabot Street at Beckford Street, Elliott Street at McKay Street, and Brimbal Avenue near
+          Otis Road. Beverly Depot station and Route 128 are shown for reference.
+        </title>
+        <defs>
+          <clipPath id="camera-clip">
+            <rect width="446" height="484" rx="8" />
+          </clipPath>
+        </defs>
+        <g clipPath="url(#camera-clip)" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {CAM_ROADS.map((p, i) => (
+            <polyline key={`r${i}`} points={p} stroke="var(--color-rule)" strokeWidth="4" />
+          ))}
+          {CAM_HWY.map((p, i) => (
+            <polyline key={`h${i}`} points={p} stroke={faint} strokeOpacity="0.5" strokeWidth="6" />
+          ))}
+          {CAM_RAIL.map((p, i) => (
+            <polyline key={`t${i}`} points={p} stroke={faint} strokeWidth="1.5" strokeDasharray="5 4" />
+          ))}
+        </g>
+        <rect x="197" y="345" width="12" height="12" fill={ink} />
+        <text x="214" y="356" style={strong}>Beverly Depot</text>
+        <text x="252" y="330" style={label}>Downtown</text>
+        <text x="236" y="30" style={label}>North Beverly</text>
+        <text x="236" y="474" style={label}>To Salem &darr;</text>
+        <text x="333" y="90" style={label}>Route 128</text>
+        {CAMS.map((c) => (
+          <g key={c.n}>
+            <circle cx={c.x} cy={c.y} r="11" fill={accent} />
+            <text x={c.x} y={c.y + 4.5} textAnchor="middle" style={{ ...strong, fill: "white", fontSize: 13 }}>
+              {c.n}
+            </text>
+          </g>
+        ))}
+      </svg>
+      <figcaption className="mt-2 text-[0.88rem] leading-relaxed text-ink-mid">
+        <ol className="grid gap-x-4 gap-y-0.5 sm:grid-cols-2">
+          {CAMS.map((c) => (
+            <li key={c.n}>
+              <b className="text-accent">{c.n}</b> {c.name}
+              {c.n === 4 ? ", down since the windstorms" : ""}
+            </li>
+          ))}
+        </ol>
+        <span className="mt-1 block text-[0.82rem] text-ink-faint">
+          Street data &copy; OpenStreetMap contributors.
+        </span>
+      </figcaption>
+    </figure>
+  );
+}
+
 /* ---------------- page ---------------- */
 
 export default function DigestIssue7() {
@@ -429,12 +504,12 @@ export default function DigestIssue7() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            The Coast Guard&apos;s 16 empty houses on Laurel Street are headed to auction; a
-            city councilor says the city looked into buying them and is not moving forward. The
-            deficit committee presented its research to the public for the first time. And with the
-            city&apos;s Flock contract about a month from expiring, two Council committees took a
-            second look at the cameras. Next week the Council picks its new budget analyst, and the Planning Board holds its
-            hearing on the data center pause.
+            This week: the Coast Guard&apos;s empty houses on Laurel Street head to auction, and
+            what Question 7 on the November 3 ballot could mean for them. The deficit committee
+            presents its ideas to the public for the first time. And with the city&apos;s Flock
+            contract a month from expiring, councilors take a second look at the cameras. Coming
+            up: the Council picks a new budget analyst, and the Planning Board holds its hearing on
+            the data center pause.
           </p>
         </header>
 
@@ -466,7 +541,7 @@ export default function DigestIssue7() {
         {/* ---- 01 ---- */}
         <section
           id="coastguard"
-          data-dek={"The 16 empty Coast Guard houses on Laurel Street are listed for online auction, with no dates set, after the state and the city passed on buying them. What a buyer could do with the land under today's zoning, and under Question 7 on the November 3 ballot."}
+          data-dek={"The 16 empty Coast Guard houses on Laurel Street are listed for online auction, with no dates set, after the state and the city passed on buying them. What a buyer could do with the land under today's zoning, and how Question 7 on the November 3 ballot could change that."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Housing</Eyebrow>
@@ -476,10 +551,10 @@ export default function DigestIssue7() {
             Sixteen houses on Laurel Street in North Beverly, owned by the Coast Guard and empty
             since about 2023, are headed to auction. Ward 5 Councilor Kathleen Feldman wrote on her
             public Facebook page this week that the city looked further into buying them and is
-            &ldquo;not moving forward,&rdquo; so the General Services Administration (GSA), the
-            agency that sells surplus federal property, is preparing the sale. GSA lists the
-            property for online auction, marked &ldquo;Coming Soon.&rdquo; No auction dates or
-            bidding documents are posted yet.
+            &ldquo;not moving forward.&rdquo; The General Services Administration (GSA), the agency
+            that sells surplus federal property, <Src href={GSA_LISTING}>lists the property</Src>{" "}
+            for online auction, marked &ldquo;Coming Soon.&rdquo; No auction dates or bidding
+            documents are posted yet.
           </p>
           <LaurelMap />
 
@@ -487,10 +562,9 @@ export default function DigestIssue7() {
             What is for sale
           </h3>
           <p className={BODY}>
-            Sixteen detached one-story ranch houses, each with three bedrooms and one bath, half a
-            mile from the North Beverly train station. GSA&apos;s listing describes them as one
-            5.36-acre lot, sold together, not house by house. The city&apos;s assessing records show
-            the houses on two parcels, one on each side of Laurel Street, of 4 acres and 2.4 acres.
+            Sixteen detached one-story ranch houses, each with three bedrooms and one bath, on one
+            5.36-acre lot half a mile from the North Beverly train station. GSA is selling them
+            together, not house by house.
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -501,22 +575,25 @@ export default function DigestIssue7() {
               <b>Built for a missile battery.</b>{" "}
               The Army built the houses in 1958 for soldiers at Beverly&apos;s Nike missile sites,
               part of a national air-defense system. The missile site closed in 1963, but the
-              housing stayed in use, and in 1990 it passed to the Coast Guard, which housed members
+              housing stayed in use, and in 1990 it{" "}
+              <Src href={ARMY_RECORD}>passed to the Coast Guard</Src>, which housed members
               stationed in Boston, Gloucester and Newburyport.
             </li>
             <li>
               <b>Empty since about 2023.</b>{" "}
-              The Coast Guard moved its families out around then. It had an environmental review
-              done before the sale, and in January it told The Beverly Beat the review found
+              The Coast Guard moved its families out around then. To prepare the site for sale, it
+              had an environmental review done, and in January it{" "}
+              <Src href={BEAT_JAN}>told The Beverly Beat</Src>{" "}the review was complete and found
               &ldquo;no concerns.&rdquo;
             </li>
             <li>
               <b>The state and the city passed.</b>{" "}
               Federal law gives state and local governments the first chance to buy surplus federal
               property. The state did not apply. The city filed an expression of interest in August,
-              which gave it 60 days to look into a purchase; the Mayor said then that he did not
-              expect the city to buy. Councilor Feldman&apos;s post this week says it is not moving
-              forward. With no government buyer, the property goes to auction.
+              which gave it 60 days to look into a purchase, and the Mayor{" "}
+              <Src href={BEAT_AUG}>said then</Src>{" "}that he did not expect the city to buy.
+              Councilor Feldman&apos;s post this week says it is not moving forward. With no
+              government buyer, the property goes to auction.
             </li>
           </ul>
 
@@ -524,37 +601,34 @@ export default function DigestIssue7() {
             What a buyer could do
           </h3>
           <p className={BODY}>
-            GSA markets the property as a &ldquo;turnkey&rdquo; compound, 16 houses ready to use.
-            A buyer who wanted to clear the land and build would work under the city&apos;s zoning.
-            Both parcels are in the R-10 district, which allows only single-family houses. Today each new house would need its own
-            lot of at least 10,000 square feet, with 100 feet of frontage on a street. Anything
-            denser would need a special permit or other approval from the city.
+            GSA markets the property as a &ldquo;turnkey&rdquo; compound, 16 houses ready to use as
+            they are. A buyer with bigger plans would work under the city&apos;s zoning. The land is
+            in the R-10 district, which allows only single-family houses, and each new house would
+            need its own lot of{" "}
+            <Src href={ZONING_R10}>at least 10,000 square feet with 100 feet of frontage</Src> on a
+            street. Anything denser would need a special permit or other approval from the city.
           </p>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            How the November 3 election could matter here
+          </h3>
           <p className={BODY}>
-            <b>Question 7.</b>{" "}
-            A statewide question on the November 3 ballot would change those numbers. If it
-            passes, a single-family house could be built on any residential lot of at least 5,000
-            square feet with 50 feet of frontage and public water and sewer, without a special
-            permit, even where local rules require more. Cities and towns would still set rules
-            such as height, setbacks and parking. It would take effect about a month after the
-            election, with state regulations to follow. GSA has not set an auction date, so it is
-            not yet known which rules bidders would be weighing.
+            This is one place where a statewide vote could change the local rules. Question 7 would
+            let a single-family house be built on any residential lot of at least 5,000 square feet
+            with 50 feet of frontage and public water and sewer, without a special permit, even
+            where local rules require more. Cities and towns would still set rules such as height,
+            setbacks and parking. If it passes, it takes effect about a month after the election,
+            with state regulations to follow. GSA has not set an auction date, so it is not yet
+            known which rules bidders would be weighing. The state&apos;s{" "}
+            <Src href={IFV_2026}>voter guide</Src> has the full text and the arguments for and
+            against; <Src href={WBUR_Q7}>WBUR explains it here</Src>.
           </p>
           <Refs
             sources={
               <>
                 <Src href={GSA_LISTING}>GSA sale listing</Src>
-                <Src href={ARMY_RECORD}>Army record of the site</Src>
-                <Src href={ZONING_R10}>Beverly zoning, R-10 rules (§ 300-34)</Src>
                 <Src href={CITY_MAP}>City property map</Src>
                 <Src href={IFV_2026}>State voter guide</Src>
-              </>
-            }
-            more={
-              <>
-                <Src href={WBUR_Q7}>WBUR on Question 7</Src>
-                <Src href={BEAT_AUG}>The Beverly Beat, Aug 20</Src>
-                <Src href={BEAT_JAN}>The Beverly Beat, Jan 14</Src>
               </>
             }
           />
@@ -563,11 +637,11 @@ export default function DigestIssue7() {
         {/* ---- 02 ---- */}
         <section
           id="deficit"
-          data-dek={"The Deficit Reduction Committee's first presentation to the public added ideas on retirees' health insurance, parking and moorings. Members' early estimates run from tens of thousands of dollars a year for some fees to $1 million to $2 million a year for each change to who pays health premiums. Four residents spoke."}
+          data-dek={"The Deficit Reduction Committee presented its ideas to the public for the first time. Which could come within about a year and which would take longer, with members' early estimates of how much each could save or raise, and what residents said."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Deficit Reduction Committee</Eyebrow>
-          <H2>What was new at the deficit committee&apos;s community meeting</H2>
+          <H2>The deficit committee&apos;s ideas, sorted by how soon and how much</H2>
           <From>Deficit Reduction Committee &middot; Tuesday, October 20 &middot; Council on Aging</From>
           <Hear
             src={DRC20}
@@ -577,69 +651,111 @@ export default function DigestIssue7() {
           />
           <p className={BODY}>
             The Deficit Reduction Committee, whose regular meetings have been public all along,
-            presented its research to the public for the first time at a community meeting, then
-            took questions. Most of the slides followed the run-through we described
-            last week. Below is what was new.{" "}
-            <Moment src={DRC20} s={314} />{" "}
-            <Earlier issue={6} slug="2026-10-19" id="deficit" label="what the committee planned to present" />
+            presented its research to the public for the first time on Tuesday, then took
+            questions. It was the first of several community meetings planned for this fall and
+            winter. Most of the slides followed the run-through we described last week.{" "}
+            <Earlier issue={6} slug="2026-10-19" id="deficit" label="the run-through" />{" "}
+            Below, the ideas are grouped by how soon they could take effect, with members&apos;
+            early estimates of size, which they called preliminary.{" "}
+            <Moment src={DRC20} s={314} /> <Moment src={DRC20} s={393} />
           </p>
           <Note>
             <b>Not a plan.</b>{" "}
-            Members said policy decisions belong to the city&apos;s elected officials. The chair, Councilor
-            Kathleen Feldman, said no idea belongs to the member who presented it, and that some
-            came from residents.{" "}
-            <Moment src={DRC20} s={314} /> <Moment src={DRC20} s={3968} />
+            Members said policy decisions belong to the city&apos;s elected officials. The chair,
+            Councilor Kathleen Feldman, said no idea belongs to the member who presented it, and that
+            some came from residents.{" "}
+            <Moment src={DRC20} s={3968} />
           </Note>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            New on Tuesday
+            Could take effect within about a year
           </h3>
           <ul className={LIST}>
             <li>
-              <b>Retirees&apos; health insurance.</b>{" "}
-              The city pays 80% of health premiums for retirees, as it does for employees. A
-              member&apos;s research looked at moving retirees to the state minimum, 50%, alongside
-              moving employees&apos; share from 20% to 30%. The employee change would have to be
-              negotiated with the unions, most of whose contracts, the member said, are up in July 2027.{" "}
-              <Moment src={DRC20} s={825} /> <Moment src={DRC20} s={892} />
+              <b>Who pays health premiums.</b>{" "}
+              The city pays 80% of premiums for employees and retirees. Members looked at the city
+              paying 70% for employees, and the state minimum, 50%, for retirees: each $1 million
+              to $2 million a year. The
+              employee change has to be negotiated with the unions, most of whose contracts, a
+              member said, are up in July 2027.{" "}
+              <Moment src={DRC20} s={825} /> <Moment src={DRC20} s={871} />{" "}
+              <Moment src={DRC20} s={892} />
+            </li>
+            <li>
+              <b>A different health plan.</b>{" "}
+              Joining the state&apos;s Group Insurance Commission, or a pooled plan for cities and
+              towns that leaves the city more control: hundreds of thousands a year for the state
+              plan.{" "}
+              <Moment src={DRC20} s={934} /> <Moment src={DRC20} s={1022} />
             </li>
             <li>
               <b>Parking.</b>{" "}
-              Doubling the meter rate from $1 to $2 an hour; meters on the roughly 180 free spaces
-              along Lothrop Street from Independence Park to Dane Street Beach; and a &ldquo;parking
-              benefit district,&rdquo; which returns part of an area&apos;s meter money to that
-              area.{" "}
+              Doubling the meter rate from $1 to $2 an hour, which a member said could be done
+              quickly, and meters on the roughly 180 free spaces along Lothrop Street from
+              Independence Park to Dane Street Beach: hundreds of thousands a year, depending on
+              the rate.{" "}
               <Moment src={DRC20} s={1595} /> <Moment src={DRC20} s={1669} />{" "}
               <Moment src={DRC20} s={1733} />
             </li>
             <li>
-              <b>Moorings.</b>{" "}
-              The fee is $7 a foot, raised from $5.50 last year after at least ten years unchanged.
-              Salem charges $7, Danvers $5 and Marblehead $13. About 100 people are on the waiting
-              list, and the wait is three to five years. Mooring fees go to the city&apos;s general
-              budget.{" "}
+              <b>Fees.</b>{" "}
+              Registration fees for the free summer park program, or more paid day camp spots,
+              starting summer 2027; and mooring fees, now $7 a foot, raised from $5.50 last year.
+              Tens of thousands a year.{" "}
+              <Moment src={DRC20} s={1399} /> <Moment src={DRC20} s={1504} />{" "}
               <Moment src={DRC20} s={2065} />
-            </li>
-            <li>
-              <b>Not pursuing.</b>{" "}
-              The golf course, whose fees stay with the course because it runs as a self-supporting
-              fund; the Beverly Harbor Management Authority, which the state created and which sits
-              outside city government; and airport fees.{" "}
-              <Moment src={DRC20} s={1925} /> <Moment src={DRC20} s={2149} />{" "}
-              <Moment src={DRC20} s={2202} />
             </li>
           </ul>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            How the ideas compare in size
+            Would take longer
+          </h3>
+          <ul className={LIST}>
+            <li>
+              <b>Payments and services from tax-exempt owners.</b>{" "}
+              A committee to seek more PILOTs and SILOTs, payments or services that colleges and
+              other tax-exempt owners give in place of property taxes. Research would start this
+              fall; there is no estimate yet.{" "}
+              <Moment src={DRC20} s={1083} /> <Moment src={DRC20} s={1181} />
+            </li>
+            <li>
+              <b>A city-run electric utility.</b>{" "}
+              Would start with a feasibility study taking several years, and buying out National
+              Grid up front.{" "}
+              <Moment src={DRC20} s={2234} />
+            </li>
+            <li>
+              <b>A recycling center for hard-to-recycle items.</b>{" "}
+              The city is applying for grants to start one; members&apos; question is paying to run
+              it after that.{" "}
+              <Moment src={DRC20} s={2552} />
+            </li>
+            <li>
+              <b>Still early.</b>{" "}
+              Sharing services with other communities; audits of non-health insurance and of school
+              efficiency; the future of Hurd Stadium and Cooney Field; a policy on personal use of
+              city vehicles.{" "}
+              <Moment src={DRC20} s={2660} />
+            </li>
+          </ul>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Little or nothing to gain
           </h3>
           <p className={BODY}>
-            Members&apos; early estimates, which they called preliminary, put each of the two
-            changes to who pays health premiums at $1 million to $2 million a year, the parking ideas in the hundreds of
-            thousands, and fees for the summer park program and moorings in the tens of
-            thousands.{" "}
-            <Moment src={DRC20} s={871} /> <Moment src={DRC20} s={1629} />{" "}
-            <Moment src={DRC20} s={1399} />
+            The pension payment, which is already holding flat while markets hold up; regional
+            dispatch, since Middleton&apos;s center has no room, though Beverly&apos;s could take a
+            smaller town&apos;s calls for a fee; and the golf course, the Beverly Harbor Management
+            Authority and the airport, whose fees stay with those operations rather than the
+            city&apos;s general budget.{" "}
+            <Moment src={DRC20} s={708} /> <Moment src={DRC20} s={772} />{" "}
+            <Moment src={DRC20} s={1925} /> <Moment src={DRC20} s={2149} />
+          </p>
+          <p className={BODY}>
+            Two slides were background, not proposals: overrides, and Chapter 70, the state&apos;s
+            school aid formula.{" "}
+            <Moment src={DRC20} s={2315} /> <Moment src={DRC20} s={2386} />{" "}
+            <Earlier issue={6} slug="2026-10-19" id="deficit" label="what each one is" />
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -680,7 +796,15 @@ export default function DigestIssue7() {
             <b>Next.</b>{" "}
             More meetings this fall and winter, possibly focus groups or listening sessions, with
             dates to be posted, and recommendations to city leaders by spring 2027. Questions can
-            go to any committee member or to Councilors Feldman and Mullady.{" "}
+            go to any committee member, or to the two councilors on it: Kathleen Feldman,{" "}
+            <a href="mailto:kfeldman@beverlyma.gov" className="rlink" data-track="email_clicked">
+              kfeldman@beverlyma.gov
+            </a>
+            , and John Mullady,{" "}
+            <a href="mailto:jmullady@beverlyma.gov" className="rlink" data-track="email_clicked">
+              jmullady@beverlyma.gov
+            </a>
+            .{" "}
             <Moment src={DRC20} s={2866} /> <Moment src={DRC20} s={2988} />
           </p>
           <Refs
@@ -688,11 +812,6 @@ export default function DigestIssue7() {
               <>
                 <Src href={DRC_AGENDA_1020}>Meeting notice</Src>
                 <Src href={DRC20}>Full recording</Src>
-              </>
-            }
-            more={
-              <>
-                <Earlier issue={6} slug="2026-10-19" id="deficit" label="the committee's research" />
               </>
             }
           />
@@ -717,72 +836,72 @@ export default function DigestIssue7() {
             meeting="Joint committee meeting, Oct 19"
           />
           <p className={BODY}>
-            Two Council committees took their second look at the city&apos;s Flock license plate
-            cameras with about a month left on the contract with Flock Safety: it expires in the
-            middle of November, the Mayor said. Whether to renew it has not been decided, the
-            police chief said. Councilor Rotondo, who chaired the meeting, said the contract is the
-            Mayor&apos;s decision as the city&apos;s chief procurement officer; the Council&apos;s
-            role is to hear residents and press their concerns. The committees took no vote.{" "}
+            The city&apos;s contract with Flock Safety, the company behind Beverly&apos;s license
+            plate cameras, expires in mid-November, the Mayor said. With that a month away, two
+            Council committees held their second meeting on the cameras. No decision on renewing has
+            been made, the police chief said. Councilor Rotondo, who chaired the meeting, said the
+            decision is the Mayor&apos;s, as the city&apos;s chief procurement officer, and the
+            Council&apos;s role is to hear residents and press their concerns. The committees took
+            no vote.{" "}
             <Moment src={FLOCK1019} s={1591} /> <Moment src={FLOCK1019} s={2865} />{" "}
-            <Moment src={FLOCK1019} s={3237} />{" "}
-            <Earlier issue={6} slug="2026-10-19" id="flock" label="the cameras and the rules" />
+            <Moment src={FLOCK1019} s={3237} />
           </p>
           <p className={BODY}>
-            <b>What police said.</b>
+            <b>A quick recap.</b>{" "}
+            Beverly has four cameras, unchanged since April. The one on Brimbal Avenue has been down
+            since the windstorms, and Flock would replace it. They cost about $3,000 each a year.{" "}
+            <Earlier issue={6} slug="2026-10-19" id="flock" label="the cameras and the rules" />{" "}
+            <Moment src={FLOCK1019} s={1912} /> <Moment src={FLOCK1019} s={2024} />
           </p>
-          <ul className={LIST}>
-            <li>
-              In this month&apos;s <Src href={OIL_THEFT}>thefts of used cooking oil</Src> from two
-              Cabot Street restaurants, police used the cameras to find a second vehicle acting as a
-              lookout and alerted other departments, a lieutenant said.{" "}
-              <Moment src={FLOCK1019} s={1420} />
-            </li>
-            <li>
-              Still four cameras. The one on Brimbal Avenue has been down since the windstorms;
-              Flock would replace it.{" "}
-              <Moment src={FLOCK1019} s={1912} /> <Moment src={FLOCK1019} s={2024} />
-            </li>
-            <li>
-              Data is shared only with Massachusetts law enforcement agencies. Federal or out-of-state
-              agencies have to ask Beverly police directly.{" "}
-              <Moment src={FLOCK1019} s={1461} />
-            </li>
-            <li>
-              Data is kept 30 days, and the department is discussing cutting that to seven.{" "}
-              <Moment src={FLOCK1019} s={2786} /> <Moment src={FLOCK1019} s={2881} />
-            </li>
-            <li>
-              Flock&apos;s automated audit has flagged three or four searches, all within the
-              department&apos;s policy, said a lieutenant who administers the system.{" "}
-              <Moment src={FLOCK1019} s={2255} />
-            </li>
-            <li>
-              The city has not priced running a similar system itself.{" "}
-              <Moment src={FLOCK1019} s={2146} />
-            </li>
-          </ul>
+          <CameraMap />
+          <p className={BODY}>
+            <b>How police say they use it.</b>{" "}
+            In this month&apos;s{" "}
+            <Src href={OIL_THEFT}>thefts of used cooking oil</Src> from two Cabot Street
+            restaurants, police used the cameras to find a second vehicle acting as a lookout and
+            alerted other departments. Police also described a home invasion on Payne Avenue solved
+            quickly, a man who had threatened to drive off the Salem-Beverly bridge found and
+            helped, a hit-and-run driver located, and a runaway child brought home.{" "}
+            <Moment src={FLOCK1019} s={1420} /> <Moment src={FLOCK1019} s={1073} />{" "}
+            <Moment src={FLOCK1019} s={1110} /> <Moment src={FLOCK1019} s={1378} />
+          </p>
+          <p className={BODY}>
+            <b>Privacy and the data.</b>{" "}
+            Plate data is kept 30 days, and the department is discussing cutting that to seven. It
+            is shared only with Massachusetts law enforcement; federal or out-of-state agencies have
+            to ask Beverly police, who decide case by case. Officers and dispatchers certified to run
+            plates can search, each search is logged with a reason, and only three people, the chief,
+            a lieutenant and a detective sergeant, administer the system. The lieutenant reviews the
+            search logs at least monthly, separately from Flock&apos;s automated audit, which has
+            flagged three or four searches, all within policy. Misusing the system would cost an
+            officer the job, the chief said. Flock&apos;s{" "}
+            <Src href={FLOCK_PORTAL}>public portal for Beverly</Src> lists who the data is shared
+            with.{" "}
+            <Moment src={FLOCK1019} s={2786} /> <Moment src={FLOCK1019} s={1461} />{" "}
+            <Moment src={FLOCK1019} s={2370} /> <Moment src={FLOCK1019} s={2480} />{" "}
+            <Moment src={FLOCK1019} s={1344} /> <Moment src={FLOCK1019} s={2255} />{" "}
+            <Moment src={FLOCK1019} s={1175} />
+          </p>
           <p className={BODY}>
             <b>Public comment.</b>{" "}
-            About 14 residents spoke, all asking the city to end the contract or let it lapse,
-            citing privacy, constitutional concerns, data security and misuse elsewhere. One more
-            spoke at the Council meeting that followed. Police described cases the cameras helped
-            with, including a home invasion, a man who had threatened suicide, and a hit-and-run.
-            Councilors&apos; questions came from a list residents submitted, put together by
-            Councilor Spang.{" "}
-            <Moment src={FLOCK1019} s={119} /> <Moment src={FLOCK1019} s={1110} />{" "}
-            <Moment src={FLOCK1019} s={1874} /> <Moment src={CC1019} s={932} />
+            About 14 residents spoke, all asking the city to end the contract or let it lapse. They
+            cited privacy and constitutional rights, data security, misuse in other places, and a
+            wish for more public discussion before any renewal. One more spoke at the Council meeting
+            that followed. Councilors&apos; questions came from a list residents submitted, put
+            together by Councilor Spang.{" "}
+            <Moment src={FLOCK1019} s={119} /> <Moment src={FLOCK1019} s={1624} />{" "}
+            <Moment src={CC1019} s={932} /> <Moment src={FLOCK1019} s={1874} />
           </p>
           <Refs
             sources={
               <>
                 <Src href={FLOCK_AGENDA}>Committee agenda</Src>
                 <Src href={FLOCK1019}>Full recording</Src>
-                <Src href={FLOCK_PORTAL}>Police transparency portal</Src>
+                <Src href={ALPR_POLICY}>Police policy, GO 2026-02</Src>
               </>
             }
           />
         </section>
-
 
         <div className="mt-12 max-w-[63ch] border-y border-rule py-3.5">
           <p className="text-[0.93rem] leading-relaxed text-ink-mid">
