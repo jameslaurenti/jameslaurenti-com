@@ -158,22 +158,25 @@ const V = "https://www.youtube.com/watch?v=";
 const DRC20 = `${V}SB09OZ8Nitk`;
 const FLOCK1019 = `${V}x_567bYRlvc`;
 const CC1019 = `${V}Ior7anl4lY0`;
-const COD22 = `${V}O4klnrQIlG4`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
 const DRC_AGENDA_1020 = `${AGENDA}/ViewFile/Agenda/_10202026-2961`;
 const FLOCK_AGENDA = `${AGENDA}/ViewFile/Agenda/_10192026-2927`;
 const PACKET_1019 = `${AGENDA}/ViewFile/Agenda/_10192026-2958`;
-const COD_AGENDA_1022 = `${AGENDA}/ViewFile/Agenda/_10222026-2962`;
 const SPECIAL_1026 = `${AGENDA}/ViewFile/Agenda/_10262026-2970`;
 const SPECIAL_1027 = `${AGENDA}/ViewFile/Agenda/_10272026-2971`;
 const PB_1027 = `${AGENDA}/ViewFile/Agenda/_10272026-2973`;
 const GSA_LISTING = "https://realestatesales.gov/asset-details/?property_id=79";
 const BEAT = "https://thebeverlybeat.substack.com/p";
-const BEAT_EMPTY = `${BEAT}/why-are-the-coast-guard-houses-in`;
 const BEAT_JAN = `${BEAT}/the-coast-is-clear`;
 const BEAT_AUG = `${BEAT}/city-submits-expression-of-interest`;
 const ARMY_RECORD =
   "https://www.denix.osd.mil/armybrac/massachusetts-reserve-component/family-housing-beverly-15/";
+const ZONING_R10 = "https://ecode360.com/29283734";
+const IFV_2026 =
+  "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
+const WBUR_Q7 =
+  "https://www.wbur.org/news/2026/10/07/massachusetts-election-ballot-question-7-starter-homes-small-lots";
+const OIL_THEFT = "https://www.bostonglobe.com/2026/10/10/metro/beverly-cooking-oil-theft/";
 const FLOCK_PORTAL = "https://transparency.flocksafety.com/beverly-ma-pd";
 const ELECTION = "https://www.beverlyma.gov/817/Upcoming-Election";
 const SOS = "https://www.sec.state.ma.us";
@@ -186,8 +189,7 @@ const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
 const contents: [string, string][] = [
   ["coastguard", "The Coast Guard houses on Laurel Street are headed to auction"],
   ["deficit", "What was new at the deficit committee's community meeting"],
-  ["flock", "Flock: the contract ends in mid-November, and the decision is the Mayor's"],
-  ["disabilities", "Commission on Disabilities members can't ask businesses for money"],
+  ["flock", "A month before the Flock contract expires, the decision is the Mayor's"],
   ["ahead", "Coming up, through November 23"],
   ["corrections", "Corrections"],
 ];
@@ -333,6 +335,73 @@ const ahead: Ev[] = [
   },
 ];
 
+/* Street lines projected from OpenStreetMap (ODbL), North Beverly around Laurel Street.
+   Generated once for this issue; the property outline is approximate. */
+const LAUREL_MINOR = ["335,-52 338,-52 342,-52 346,-53 354,-57 362,-64 381,-81","441,177 431,161","39,185 40,185 40,183 41,182 41,181 43,179 43,179 49,176 55,173 58,172 62,171 67,171 72,171 76,171 80,170 84,170 88,168","155,214 154,211 125,149","-181,402 -178,400 -163,392 -157,389 -152,389 -148,388 -141,387 -135,387 -132,387 -120,386 -117,386 -108,386 -103,386 -85,390 -71,393 -70,394 -66,395 -62,395 -50,398 -49,398 -41,400 -33,402 -25,403 -24,403 -20,404 -17,406","90,407 92,400 93,395 94,385 95,376 97,362 101,350 105,343 109,339 113,335 120,331 129,327 151,317","271,146 270,146 269,144 244,108 242,107","168,193 167,191 159,177 149,161 143,149 137,140 134,135 125,120 120,111 111,94 111,93","438,474 435,468 432,463 415,439 402,418","240,37 242,33 244,30 245,28 245,21 245,8 247,-18 248,-23 250,-26 253,-28 256,-30 263,-32","125,256 123,252 109,219","368,440 381,431 402,418 403,418 412,413 416,411 420,410 431,410","323,431 331,427 336,426 339,426 344,428 353,431 362,436 368,440 374,445 380,452 383,460 386,463 390,467 396,468 438,474 464,477 491,480 504,481 514,481 521,479 535,478 549,480 559,481 577,483 598,483 639,489 677,495 685,496 690,496 703,497 710,497","40,248 61,279 84,310 85,313","289,133 261,93 260,91","360,159 359,156 355,151 344,132 331,112 324,101 317,89 314,84 309,75 298,61 296,59","290,65 289,62 281,34 280,31 272,4 268,-11 263,-32","265,343 269,341 281,333 292,327 296,324 320,308","263,-32 259,-43 258,-50 259,-56 259,-61 260,-66 260,-70 268,-106 280,-159 281,-162 283,-163 286,-188","40,248 40,245 46,239 53,229 58,222","344,428 350,415 352,412 355,409 364,402 386,388 396,383","444,69 443,67 417,28 396,-6","166,351 164,353 162,356 160,360 158,363 155,366 150,370 143,373 137,375 129,379 126,381 124,384 124,385 124,387 124,390 126,394 128,397 130,400 131,402 133,403 136,405 138,407 140,410 140,414 139,418 139,419 137,423 135,427 134,429 133,430 130,432 128,432 125,430 123,427 122,425 124,421 128,412 129,409 130,405 131,402","215,260 267,227 288,214","292,327 294,330 312,359 314,360 316,360 318,359 334,349 340,344 342,342 354,335","305,404 309,400 312,396 315,393","97,297 95,293 73,252 58,222 49,204 39,185","464,8 462,0 460,-8 459,-11 459,-15 458,-23 458,-29","109,219 108,217 94,183 88,168 88,167 85,160","274,418 263,400 237,357","69,329 67,327 9,256","-133,451 -133,446 -133,445 -130,444 -121,441 -102,434 -89,430 -84,428 -79,423 -75,419 -77,434 -81,447 -83,451 -85,454 -87,457 -91,459 -100,463 -120,469 -123,469 -125,468 -127,466 -130,460 -133,451","-75,419 -72,415 -70,395 -70,394","87,225 109,219","136,241 135,238 103,165 102,162 103,160 125,149","228,361 206,328 198,317 198,317 197,312 196,310 194,309 193,309 191,309 190,310 189,311 189,313 189,315 190,317 191,317 192,317 198,317","109,279 108,276 95,244 87,225 75,197 75,194 75,191 78,189 82,187 94,183","420,-18 417,-31 414,-40 409,-48 403,-56 383,-80 381,-81 361,-106","429,102 420,84 418,83 399,54 372,9 371,7","178,217 166,201 164,199","111,93 127,90 140,88 143,88 160,85 178,82 181,82","302,121 308,128 322,151 338,176 339,177 341,177 345,175 351,173 357,168 359,166 360,164 360,162 360,159","420,84 421,85 423,85 425,83 441,73 443,72 444,71 444,69","268,-11 282,-23 297,-36","140,88 136,60 136,54","136,54 173,47 175,47","477,-35 470,-57 463,-79","407,175 431,161 425,151 399,110 380,78 365,52 363,49 360,48 357,47 355,48 352,49 348,52 346,53 341,54 340,53 336,46 327,34 326,33","281,34 306,12 307,10 307,9 306,7 295,-7 287,-16 282,-23","271,146 273,146 275,145 289,133 294,128 302,121 308,116 324,101","190,379 198,376 228,361 237,357 248,352 261,345 262,344 265,343","413,186 407,175 392,151 372,119 351,87 346,79 343,73 342,68 342,63 341,59 341,56 341,54","87,377 59,340 58,338","47,347 45,345 12,305 -1,289","315,393 322,389 357,365 390,343","315,393 312,393 309,393 306,394 300,396","34,242 37,245 40,248"];
+const LAUREL_MAJOR = ["353,812 350,811 345,809 338,807 333,803 330,799 328,797 324,789 321,783 320,782 317,776 294,744 274,717 269,711 265,705 254,689 245,675 239,665 234,655 229,646 225,638 225,637 220,627 216,617 207,594 206,592 205,591 198,572 189,551 185,539 178,522 178,520 174,512 173,506 171,499 171,492 170,485 171,473 172,465 172,461 172,456 174,447 175,439 177,433 179,426 180,425 182,419 183,417 184,413 184,408 184,401 184,395 182,389 182,387 180,383 179,382 177,377 175,372 174,369 170,360 166,351 157,331 155,326 151,317 149,313 141,294 135,280 134,276 127,260 125,256","184,103 184,102 181,83 181,82 180,80 178,64 175,47 175,44 174,41 173,37 172,35 172,33 171,30 169,24 168,20 167,18 167,17 164,7 162,-2 159,-9 158,-12 158,-14 157,-16 152,-31","312,414 311,414 305,404 300,396 280,365 265,343 231,291 221,276 218,270 215,260","342,342 341,340 330,322 320,308 310,293 309,290 310,289 314,285 321,280 324,276 324,274 324,272 317,260 288,214","188,144 192,145 192,146 195,146 197,146 200,145","209,138 203,140 202,140 200,141","200,145 201,144 203,142 209,138","215,260 214,253 215,241 222,184 223,169 224,168 224,164 224,162","260,91 262,89 273,79 290,65 296,59 304,52 322,36 326,33 329,30 335,26 344,21 355,15 358,14 371,7 379,3 382,1 386,-1 394,-5 396,-6","47,347 33,358 25,364 14,373 -0,385 -1,386 -5,388 -5,389 -6,390 -7,390 -10,392 -14,396 -17,400 -18,401 -20,404 -22,407 -23,409 -30,425 -38,448","47,347 58,338 69,329 75,324 81,318 85,313 86,312 90,307 97,297 109,279 109,279 121,262 125,256 130,250 136,241 148,225 155,214 160,206 164,199 168,193","343,463 339,456","-38,448 -36,445 -27,425 -22,415 -21,413 -20,411 -19,411 -17,406 -14,403 -11,400 -6,397 -5,395 -3,393 -2,393 2,389 3,388 8,384 17,376 23,370 36,357 47,347","200,141 194,141","194,141 193,141 189,139","226,122 228,120 231,117 238,111 241,108 242,107 249,101 252,98 260,91","168,193 168,192 176,179 179,174 179,173 182,168 183,166 185,160 185,159 186,158","323,431 317,422","-41,458 -41,457 -38,448","-46,471 -41,458","317,422 312,414","339,456 331,444","331,444 323,431","152,-31 151,-37 147,-47 145,-55 144,-57 143,-60 142,-64 142,-65 142,-68 142,-71 142,-72 141,-83 141,-84 141,-111 140,-129 140,-139 140,-140 140,-167 140,-177 140,-184","209,138 220,127 226,122","288,214 280,202 279,201 279,200 245,150 227,123 226,122","396,-6 401,-9 412,-14 413,-15 419,-18 420,-18 430,-21 438,-24 440,-24 453,-28 458,-29 464,-31 477,-35 482,-36 494,-39 497,-40 502,-42 513,-45 517,-46 527,-48 539,-52 540,-52 545,-53 545,-54","188,144 188,142 189,139 188,136 188,135 188,133 187,126 187,123 185,111 185,108 184,103","186,158 187,150 188,148 188,146 188,144"];
+const LAUREL_ST = ["224,162 222,158 220,155 217,150 211,141 210,139 209,138","267,227 232,172 228,167 224,162","292,327 269,292 267,287 266,283 268,279 272,272 278,263 280,260 281,257 281,253 281,249 279,245 267,227"];
+const LAUREL_RAIL = ["273,-218 260,-167 245,-98 237,-61 232,-35 227,-7 224,7 218,45 204,128 202,139 202,140 201,144 201,146 196,181 191,213 187,246 183,278 179,314 174,369 170,411 167,440 165,475 162,514 160,549 159,579 158,605 157,631 156,689 155,737 156,767 157,850 157,883 158,908 158,954 159,990 159,1025 160,1064 160,1096 161,1125 161,1161 162,1208 162,1240 163,1285 163,1288 163,1291 163,1311 164,1332 164,1355 164,1377 164,1416 164,1429","273,-218 262,-169 248,-104 235,-39 219,46 219,47 204,139 203,140 203,142 203,145 193,208 188,250 175,372 170,424 166,474 160,603 157,686 157,774 159,910 161,990 164,1285 164,1289 165,1292 165,1310 166,1332 166,1355 166,1377 166,1399 166,1403 166,1408 166,1427"];
+
+function LaurelMap() {
+  const ink = "var(--color-ink)";
+  const faint = "var(--color-ink-faint)";
+  const accent = "var(--color-accent)";
+  const label = { fontSize: 13, fill: faint, fontFamily: "var(--font-sans), system-ui, sans-serif" };
+  const strong = { ...label, fill: ink, fontWeight: 700 };
+  return (
+    <figure className="mt-6 max-w-[63ch]">
+      <svg
+        viewBox="0 0 446 460"
+        role="img"
+        aria-labelledby="laurel-map-title"
+        className="w-full rounded-lg border border-rule bg-white/70"
+      >
+        <title id="laurel-map-title">
+          Map of North Beverly. The Coast Guard houses are at the south end of Laurel Street,
+          near Brimbal Avenue, about half a mile south of the North Beverly train station at
+          Enon and Dodge streets.
+        </title>
+        <defs>
+          <clipPath id="laurel-clip">
+            <rect width="446" height="460" rx="8" />
+          </clipPath>
+        </defs>
+        <g clipPath="url(#laurel-clip)" fill="none" strokeLinecap="round" strokeLinejoin="round">
+          {LAUREL_MINOR.map((p, i) => (
+            <polyline key={`m${i}`} points={p} stroke="var(--color-rule)" strokeWidth="3" />
+          ))}
+          {LAUREL_MAJOR.map((p, i) => (
+            <polyline key={`M${i}`} points={p} stroke="var(--color-rule)" strokeWidth="8" />
+          ))}
+          {LAUREL_ST.map((p, i) => (
+            <polyline key={`L${i}`} points={p} stroke={faint} strokeWidth="5" />
+          ))}
+          {LAUREL_RAIL.map((p, i) => (
+            <polyline key={`r${i}`} points={p} stroke={faint} strokeWidth="2" strokeDasharray="6 4" />
+          ))}
+        </g>
+        {/* the property, approximate */}
+        <rect x="250" y="230" width="50" height="100" rx="10" fill={accent} fillOpacity="0.22" stroke={accent} strokeWidth="3" />
+        {/* North Beverly station */}
+        <circle cx="204" cy="106" r="8" fill={ink} />
+        <text x="216" y="100" style={strong}>North Beverly</text>
+        <text x="216" y="116" style={strong}>station</text>
+        <text x="308" y="270" style={strong}>Coast Guard</text>
+        <text x="308" y="286" style={strong}>houses</text>
+        <text x="226" y="200" style={{ ...label, fill: ink }} textAnchor="end">Laurel St</text>
+        <text x="110" y="60" style={label}>Enon St</text>
+        <text x="40" y="290" style={label}>Dodge St</text>
+        <text x="330" y="410" style={label}>Brimbal Ave</text>
+        <text x="150" y="215" style={label} textAnchor="end">Commuter rail</text>
+      </svg>
+      <figcaption className="mt-2 text-[0.82rem] leading-relaxed text-ink-faint">
+        Outline approximate, from the listed addresses, 40 to 55 Laurel St. Street data
+        &copy; OpenStreetMap contributors.
+      </figcaption>
+    </figure>
+  );
+}
+
 /* ---------------- page ---------------- */
 
 export default function DigestIssue7() {
@@ -358,11 +427,11 @@ export default function DigestIssue7() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            The Coast Guard&apos;s 16 empty houses on Laurel Street are headed to a federal
-            auction; a city councilor says the city looked into buying them and is not moving
-            forward. The deficit committee met the public for the first time, and two Council
-            committees took a second look at the Flock cameras; here is what was new at each.
-            Next week the Council picks its new budget analyst, and the Planning Board holds its
+            The Coast Guard&apos;s 16 empty houses on Laurel Street are headed to auction; a
+            city councilor says the city looked into buying them and is not moving forward. The
+            deficit committee presented its research to the public for the first time. And with the
+            city&apos;s Flock contract about a month from expiring, two Council committees took a
+            second look at the cameras. Next week the Council picks its new budget analyst, and the Planning Board holds its
             hearing on the data center pause.
           </p>
         </header>
@@ -395,22 +464,22 @@ export default function DigestIssue7() {
         {/* ---- 01 ---- */}
         <section
           id="coastguard"
-          data-dek={"The 16 empty Coast Guard houses on Laurel Street are listed for a federal online auction, with no dates set. Councilor Kathleen Feldman wrote that the city looked further into buying them and is not moving forward."}
+          data-dek={"The 16 empty Coast Guard houses on Laurel Street are listed for online auction, with no dates set, after the state and the city passed on buying them. What a buyer could do with the land under today's zoning, and under Question 7 on the November 3 ballot."}
           className={SECTION}
         >
-          <Eyebrow>01 &middot; Federal property</Eyebrow>
+          <Eyebrow>01 &middot; Housing</Eyebrow>
           <H2>The Coast Guard houses on Laurel Street are headed to auction</H2>
           <From>Not from a meeting: a councilor&apos;s public post and the federal sale listing</From>
           <p className={BODY}>
             Sixteen houses on Laurel Street in North Beverly, owned by the Coast Guard and empty
-            for about three years, are headed to a public auction run by the federal government.
-            Ward 5 Councilor Kathleen Feldman wrote on her public Facebook page this week that the
-            city did some additional exploration but is &ldquo;not moving forward,&rdquo; so the
-            General Services Administration (GSA), the agency that sells surplus federal property,
-            is preparing the sale. GSA&apos;s sale site lists the property for online auction,
-            marked &ldquo;Coming Soon.&rdquo; No auction dates or bidding documents are posted
-            yet.
+            since about 2023, are headed to auction. Ward 5 Councilor Kathleen Feldman wrote on her
+            public Facebook page this week that the city looked further into buying them and is
+            &ldquo;not moving forward,&rdquo; so the General Services Administration (GSA), the
+            agency that sells surplus federal property, is preparing the sale. GSA lists the
+            property for online auction, marked &ldquo;Coming Soon.&rdquo; No auction dates or
+            bidding documents are posted yet.
           </p>
+          <LaurelMap />
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             What is for sale
@@ -418,9 +487,7 @@ export default function DigestIssue7() {
           <p className={BODY}>
             Sixteen detached one-story ranch houses, each with three bedrooms and one bath, on a
             single lot of 5.36 acres, half a mile from the North Beverly train station, according
-            to GSA&apos;s listing. They are sold together as one lot, not house by house. The
-            neighborhood is zoned for single-family homes; any other use would need a special
-            permit from the city.
+            to GSA&apos;s listing. They are sold together as one lot, not house by house.
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -431,45 +498,59 @@ export default function DigestIssue7() {
               <b>Built for a missile battery.</b>{" "}
               The Army built the houses in 1958 for soldiers at Beverly&apos;s Nike missile sites,
               part of a national air-defense system. The missile site closed in 1963, but the
-              housing stayed in use, and in 1990 it passed to the Coast Guard, which housed members stationed in Boston, Gloucester and Newburyport.
+              housing stayed in use, and in 1990 it passed to the Coast Guard, which housed members
+              stationed in Boston, Gloucester and Newburyport.
             </li>
             <li>
               <b>Empty since about 2023.</b>{" "}
-              The Coast Guard moved its families out without saying why. An environmental
-              assessment it commissioned that year listed things to check, such as old heating oil
-              tanks, septic systems, pesticides, lead paint, asbestos, and the capped former landfill
-              on Brimbal Avenue nearby. In January the Coast Guard told The Beverly Beat its review
-              was complete with &ldquo;no concerns.&rdquo; We did not find the review published.
+              The Coast Guard moved its families out around then. It had an environmental review
+              done before the sale, and in January it told The Beverly Beat the review found
+              &ldquo;no concerns.&rdquo;
             </li>
             <li>
-              <b>The city&apos;s first option.</b>{" "}
+              <b>The state and the city passed.</b>{" "}
               Federal law gives state and local governments the first chance to buy surplus federal
-              property. The state did not apply. In August the Mayor sent GSA an expression of
-              interest, which, with the state out, gave the city 60 days to look into a purchase, while saying he did
-              not expect the city to buy and that the likeliest outcome was a buyer who would
-              redevelop the houses for homes. If no government buys, the property goes to auction.
-            </li>
-            <li>
-              <b>This week.</b>{" "}
-              Councilor Feldman&apos;s post says the city is not moving forward. It gives no
-              reason. She wrote that the neighborhood and the city would like the houses to become
-              starter homes for essential workers, homes for local seniors or homes for local
-              veterans. GSA has not yet posted the bidding terms, which would show any conditions
-              on the sale.
+              property. The state did not apply. The city filed an expression of interest in August,
+              which gave it 60 days to look into a purchase; the Mayor said then that he did not
+              expect the city to buy. Councilor Feldman&apos;s post this week says it is not moving
+              forward. With no government buyer, the property goes to auction.
             </li>
           </ul>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            What a buyer could do
+          </h3>
+          <p className={BODY}>
+            GSA markets the property as a &ldquo;turnkey&rdquo; compound, 16 houses ready to use.
+            A buyer who wanted to clear the land and build would work under the city&apos;s zoning,
+            which allows only single-family houses here. Today each new house would need its own
+            lot of at least 10,000 square feet, with 100 feet of frontage on a street. Anything
+            denser would need a special permit or other approval from the city.
+          </p>
+          <p className={BODY}>
+            <b>Question 7.</b>{" "}
+            A statewide question on the November 3 ballot would change those numbers. If it
+            passes, a single-family house could be built on any residential lot of at least 5,000
+            square feet with 50 feet of frontage and public water and sewer, without a special
+            permit, even where local rules require more. Cities and towns would still set rules
+            such as height, setbacks and parking. It would take effect about a month after the
+            election, with state regulations to follow. GSA has not set an auction date, so it is
+            not yet known which rules bidders would be weighing.
+          </p>
           <Refs
             sources={
               <>
                 <Src href={GSA_LISTING}>GSA sale listing</Src>
                 <Src href={ARMY_RECORD}>Army record of the site</Src>
+                <Src href={ZONING_R10}>Beverly zoning, R-10 rules (§ 300-34)</Src>
+                <Src href={IFV_2026}>State voter guide</Src>
               </>
             }
             more={
               <>
+                <Src href={WBUR_Q7}>WBUR on Question 7</Src>
                 <Src href={BEAT_AUG}>The Beverly Beat, Aug 20</Src>
                 <Src href={BEAT_JAN}>The Beverly Beat, Jan 14</Src>
-                <Src href={BEAT_EMPTY}>The Beverly Beat, Feb 2025</Src>
               </>
             }
           />
@@ -478,7 +559,7 @@ export default function DigestIssue7() {
         {/* ---- 02 ---- */}
         <section
           id="deficit"
-          data-dek={"The Deficit Reduction Committee's first community meeting added ideas on retirees' health insurance, parking, moorings and a regular review of city fees. Members' early estimates run from tens of thousands of dollars a year for some fees to $1 million to $2 million a year for each change to who pays health premiums. Four residents spoke."}
+          data-dek={"The Deficit Reduction Committee's first presentation to the public added ideas on retirees' health insurance, parking and moorings. Members' early estimates run from tens of thousands of dollars a year for some fees to $1 million to $2 million a year for each change to who pays health premiums. Four residents spoke."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Deficit Reduction Committee</Eyebrow>
@@ -491,8 +572,9 @@ export default function DigestIssue7() {
             meeting="Deficit Reduction Committee, Oct 20"
           />
           <p className={BODY}>
-            The Deficit Reduction Committee presented its research so far at its first community
-            meeting, then took questions. Most of the slides followed the run-through we described
+            The Deficit Reduction Committee, whose regular meetings have been public all along,
+            presented its research to the public for the first time at a community meeting, then
+            took questions. Most of the slides followed the run-through we described
             last week. Below is what was new.{" "}
             <Moment src={DRC20} s={314} />{" "}
             <Earlier issue={6} slug="2026-10-19" id="deficit" label="what the committee planned to present" />
@@ -525,12 +607,6 @@ export default function DigestIssue7() {
               area.{" "}
               <Moment src={DRC20} s={1595} /> <Moment src={DRC20} s={1669} />{" "}
               <Moment src={DRC20} s={1733} />
-            </li>
-            <li>
-              <b>Fees on a schedule.</b>{" "}
-              Reviewing all city fees every year or two as a set process, instead of when one
-              happens to come up.{" "}
-              <Moment src={DRC20} s={1855} />
             </li>
             <li>
               <b>Moorings.</b>{" "}
@@ -621,11 +697,11 @@ export default function DigestIssue7() {
         {/* ---- 03 ---- */}
         <section
           id="flock"
-          data-dek={"At their second meeting on the city's Flock cameras, councilors heard that the contract expires in mid-November, that no decision on renewing it has been made, and that the decision is the Mayor's. About 14 residents spoke, all asking the city to end it."}
+          data-dek={"The city's Flock contract expires in mid-November, and whether to renew it is the Mayor's decision, councilors heard at their second meeting on the cameras. No decision has been made. About 14 residents spoke, all asking the city to end it."}
           className={SECTION}
         >
           <Eyebrow>03 &middot; Flock cameras</Eyebrow>
-          <H2>Flock: the contract ends in mid-November, and the decision is the Mayor&apos;s</H2>
+          <H2>A month before the Flock contract expires, the decision is the Mayor&apos;s</H2>
           <From>
             Legal Affairs and Public Services committees, with the Committee of the Whole &middot;
             Monday, October 19 &middot; Order #120, filed by Councilors Rotondo and Spang
@@ -637,7 +713,8 @@ export default function DigestIssue7() {
             meeting="Joint committee meeting, Oct 19"
           />
           <p className={BODY}>
-            The city&apos;s contract with Flock Safety for its license plate cameras expires in the
+            Two Council committees took their second look at the city&apos;s Flock license plate
+            cameras with about a month left on the contract with Flock Safety: it expires in the
             middle of November, the Mayor said. Whether to renew it has not been decided, the
             police chief said. Councilor Rotondo, who chaired the meeting, said the contract is the
             Mayor&apos;s decision as the city&apos;s chief procurement officer; the Council&apos;s
@@ -650,6 +727,12 @@ export default function DigestIssue7() {
             <b>What police said.</b>
           </p>
           <ul className={LIST}>
+            <li>
+              In this month&apos;s <Src href={OIL_THEFT}>thefts of used cooking oil</Src> from two
+              Cabot Street restaurants, police used the cameras to find a second vehicle acting as a
+              lookout and alerted other departments, a lieutenant said.{" "}
+              <Moment src={FLOCK1019} s={1420} />
+            </li>
             <li>
               Still four cameras. The one on Brimbal Avenue has been down since the windstorms;
               Flock would replace it.{" "}
@@ -675,12 +758,6 @@ export default function DigestIssue7() {
             </li>
           </ul>
           <p className={BODY}>
-            <b>An open question.</b>{" "}
-            Whether Flock keeps Beverly&apos;s data after the city&apos;s 30 days. The chief did not
-            know; the Mayor said the city will find out.{" "}
-            <Moment src={FLOCK1019} s={2910} /> <Moment src={FLOCK1019} s={2971} />
-          </p>
-          <p className={BODY}>
             <b>Public comment.</b>{" "}
             About 14 residents spoke, all asking the city to end the contract or let it lapse,
             citing privacy, constitutional concerns, data security and misuse elsewhere. One more
@@ -702,53 +779,6 @@ export default function DigestIssue7() {
           />
         </section>
 
-        {/* ---- 04 ---- */}
-        <section
-          id="disabilities"
-          data-dek={"Members of the Commission on Disabilities relayed advice from the city solicitor's office that, as city officials, they should not ask businesses for donations, which ends a plan to raise money for sign language interpreters at theater shows. A separate volunteer group could."}
-          className={SECTION}
-        >
-          <Eyebrow>04 &middot; Commission on Disabilities</Eyebrow>
-          <H2>Commission on Disabilities members can&apos;t ask businesses for money</H2>
-          <From>Commission on Disabilities &middot; Thursday, October 22</From>
-          <Hear
-            src={COD22}
-            s={2670}
-            title="A member reports the advice"
-            meeting="Commission on Disabilities, Oct 22"
-          />
-          <p className={BODY}>
-            Members had been working on a way to pay for sign language interpreters so that deaf
-            residents could attend shows at North Shore Music Theatre. A member reported that the
-            city solicitor&apos;s office advised that, as city officials, commission members should
-            not ask private businesses for donations, because of conflict-of-interest rules and the
-            risk that a donor expects something in return.{" "}
-            <Moment src={COD22} s={2670} /> <Moment src={COD22} s={2746} />
-          </p>
-          <p className={BODY}>
-            A volunteer group that is not part of the commission could raise the money, a recreation department official who
-            sits on the commission said, as Friends of Beverly Recreation does for parks. Setting one up takes a lawyer and state approval as a nonprofit.
-            Members are still asking whether the theater would provide an interpreter for a group
-            booking.{" "}
-            <Moment src={COD22} s={3304} /> <Moment src={COD22} s={2974} />
-          </p>
-          <p className={BODY}>
-            For city meetings, the city books interpreters through the state&apos;s Commission for
-            the Deaf and Hard of Hearing; one hour cost $273 last fiscal year, and interpreters are hard to
-            book. Beach wheelchairs are at Dane Street Beach when lifeguards are on duty, Memorial
-            Day to Labor Day. The commission voted to keep meeting in January and February.{" "}
-            <Moment src={COD22} s={2572} /> <Moment src={COD22} s={2192} />{" "}
-            <Moment src={COD22} s={3712} />
-          </p>
-          <Refs
-            sources={
-              <>
-                <Src href={COD_AGENDA_1022}>Meeting agenda</Src>
-                <Src href={COD22}>Full recording</Src>
-              </>
-            }
-          />
-        </section>
 
         <div className="mt-12 max-w-[63ch] border-y border-rule py-3.5">
           <p className="text-[0.93rem] leading-relaxed text-ink-mid">
@@ -778,7 +808,7 @@ export default function DigestIssue7() {
           </p>
         </div>
 
-        {/* ---- 05 ---- */}
+        {/* ---- 04 ---- */}
         <section id="ahead" className={SECTION}>
           <h2 className="mt-4 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
             Coming up{" "}
@@ -853,7 +883,7 @@ export default function DigestIssue7() {
           </p>
         </section>
 
-        {/* ---- 06 ---- */}
+        {/* ---- 05 ---- */}
         <section id="corrections" className={SECTION}>
           <h2 className="mt-4 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
             Corrections
