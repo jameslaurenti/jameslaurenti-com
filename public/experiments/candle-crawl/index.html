@@ -125,8 +125,10 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
   padding: 1px 6px; border-radius: 4px; white-space: nowrap;
   font: 800 clamp(.5rem, 9.5cqw, .62rem)/1.3 var(--font-body); letter-spacing: .1em; text-transform: uppercase;
 }
-.elite .c-rank { background: var(--gold); color: var(--soot); }
-.t-boss .c-rank { background: var(--ember); color: #1c0d09; }
+.c-rank:empty { display: none; }
+.c-rank.r-dread { background: var(--gold); color: var(--soot); }
+.c-rank.r-warden { background: var(--ember); color: #1c0d09; }
+.c-rank.r-trait { background: var(--card); color: #f0a08c; box-shadow: inset 0 0 0 1px rgb(214 101 77 / .65); }
 .card.aim { border-color: var(--flame); box-shadow: 0 0 0 1px var(--flame), 0 6px 16px rgb(0 0 0 / .35); }
 .card.lethal { border-color: var(--ember); }
 .c-val { grid-area: val; justify-self: start; font: 800 clamp(1rem, 25cqw, 1.45rem)/1 var(--font-body); font-variant-numeric: lining-nums tabular-nums; }
@@ -267,6 +269,12 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
 .choice b { font-weight: 700; }
 .choice.relic b { font: 400 1.15rem/1.1 var(--font-display); color: var(--flame); }
 .choice.relic span { font-size: .92rem; color: var(--bone); }
+.choice.night small { font-size: .8rem; color: var(--ash); }
+.choice.night.picked { border-color: rgb(237 161 75 / .6); }
+.choice.night:disabled { cursor: default; opacity: .55; }
+.traits { list-style: none; margin: 0; padding: 0; display: grid; gap: 6px; font-size: .88rem; }
+.traits b { font-size: .74rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: #f0a08c; }
+.traits .who { color: var(--ash); }
 .switches { display: grid; gap: 8px; }
 .switch {
   display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 12px 14px;
@@ -365,7 +373,7 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
       <p class="where" id="where">Floor 1 · Cellar</p>
     </div>
     <div class="stats">
-      <div class="stat"><span class="stat-label">Candle</span><span class="stat-value" id="hp">14<small>/14</small></span><span class="meter"><i id="hp-bar"></i></span></div>
+      <div class="stat"><span class="stat-label" id="hp-label">Candle</span><span class="stat-value" id="hp">14<small>/14</small></span><span class="meter"><i id="hp-bar"></i></span></div>
       <div class="stat"><span class="stat-label">Blade</span><span class="stat-value" id="blade">0</span></div>
       <div class="stat"><span class="stat-label">Coins</span><span class="stat-value" id="coins">0</span></div>
     </div>
@@ -405,6 +413,8 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
 const N = 4;
 const FLOOR_STEPS = 18;
 const START_CANDLE = 14;
+const FINAL_FLOOR = 10;
+const LAST_NIGHT = 9;
 let rand = Math.random;
 const rint = (a, b) => a + Math.floor(rand() * (b - a + 1));
 const pickOne = (a) => a[Math.floor(rand() * a.length)];
@@ -429,6 +439,50 @@ const BEASTS = ["", "Rat", "Bat", "Spider", "Skeleton", "Ghoul", "Wight", "Wrait
 const BEAST_ICON = { Rat: "rat", Bat: "bat", Spider: "spider", Skeleton: "skull", Ghoul: "ghoul", Wight: "hood", Wraith: "ghost", Gargoyle: "horns", Revenant: "helm", Horror: "eye" };
 const floorName = (f) => FLOORS[f - 1] || "Deep";
 const wardenName = (f) => WARDENS[f - 1] || "Nameless Warden";
+
+const TRAITS = {
+  venom: { name: "Venom", text: "If it burns you, you lose 1 more candle on each of your next 2 steps." },
+  hungry: { name: "Hungry", text: "Grows by 1 each step you end beside it." },
+  rust: { name: "Rust", text: "Your blade blocks at half strength against it, and wears twice as fast." },
+  ghost: { name: "Ghost", text: "Passes straight through your blade." },
+  crush: { name: "Crush", text: "Breaks your whole blade, however much is left." },
+  rise: { name: "Rises", text: "Gets back up once at half strength, and you stay where you are." },
+  gaze: { name: "Gaze", text: "Each step you end beside it burns 1 candle." },
+};
+const BEAST_TRAIT = { Spider: "venom", Ghoul: "hungry", Wight: "rust", Wraith: "ghost", Gargoyle: "crush", Revenant: "rise", Horror: "gaze" };
+// One per floor, in the same order as WARDENS. "fight" is the trait it fights with.
+const WARDEN_TRICKS = [
+  { key: "rats", text: "It calls a rat every 3 steps." },
+  { key: "raise", text: "Every 4 steps it raises a skeleton from the nearest wax, blade or coins." },
+  { key: "rust", fight: "rust", text: "Rust: your blade blocks at half strength against it." },
+  { key: "bless", text: "Every 3 steps, monsters beside it grow by 1." },
+  { key: "coil", text: "It grows by 1 every 3 steps." },
+  { key: "hunt", text: "It hunts you, one card closer every step." },
+  { key: "curse", text: "While she lives, wax relights half as much." },
+  { key: "rise", fight: "rise", text: "Rises: it gets back up once at half strength." },
+  { key: "gaze", fight: "gaze", text: "Gaze: each step you end beside it burns 1 candle." },
+  { key: "devour", fight: "crush", text: "Crush: it breaks your whole blade. It grows by 1 every 3 steps." },
+];
+// Each night keeps every twist before it.
+const NIGHTS = [
+  "",
+  "The first night. No twists.",
+  "Wardens start 3 stronger.",
+  "Traders charge a third more.",
+  "Your candle starts 2 shorter.",
+  "Dread monsters are twice as common.",
+  "Wax relights 1 less.",
+  "Wardens arrive 4 steps sooner.",
+  "After a warden falls, the dark grows every 2 steps.",
+  "Wardens leave one relic, not a choice of two.",
+];
+const wardenAt = (s) => FLOOR_STEPS - (s.night >= 7 ? 4 : 0);
+const trickOf = (w) => WARDEN_TRICKS[w.trick] || null;
+function traitOf(c) {
+  if (c.t === "boss") { const k = trickOf(c); return k && k.fight && !(c.risen && k.fight === "rise") ? k.fight : null; }
+  if (c.t !== "monster" || c.risen) return null;
+  return BEAST_TRAIT[c.name.replace("Dread ", "")] || null;
+}
 
 const RELICS = {
   whetstone: { name: "Whetstone", text: "Blades you pick up are 1 stronger.", price: 18 },
@@ -482,7 +536,7 @@ function beast(v, elite) {
 function deal(s) {
   const f = s.floor, r = rand() * 100;
   let c;
-  if (r < 39) c = rand() < 0.08 ? beast(5 + f + rint(0, 2), true) : beast(rint(1 + ((f - 1) >> 1), 3 + f + Math.max(0, f - 5)));
+  if (r < 39) c = rand() < (s.night >= 5 ? 0.16 : 0.08) ? beast(5 + f + rint(0, 2), true) : beast(rint(1 + ((f - 1) >> 1), 3 + f + Math.max(0, f - 5)));
   else if (r < 53) c = { t: "coin", v: rint(1, 4 + f) };
   else if (r < 69) c = { t: "wax", v: rint(1, 4 + ((f - 1) >> 1)) };
   else if (r < 82) c = { t: "blade", v: rint(1, 2 + (f >> 1)) };
@@ -495,7 +549,7 @@ function deal(s) {
 }
 
 function makeWarden(s) {
-  return { t: "boss", v: 5 + 2 * s.floor + rint(0, 2), name: wardenName(s.floor), age: 0, id: s.uid++ };
+  return { t: "boss", v: 5 + 2 * s.floor + rint(0, 2) + (s.night >= 2 ? 3 : 0), name: wardenName(s.floor), trick: s.floor - 1, age: 0, id: s.uid++ };
 }
 
 function fillQueue(s) {
@@ -517,9 +571,11 @@ function enterFloor(s) {
   fillQueue(s);
 }
 
-function newRun() {
+function newRun(night) {
+  night = night || 1;
+  const candle = START_CANDLE - (night >= 4 ? 2 : 0);
   const s = {
-    hp: START_CANDLE, max: START_CANDLE, blade: 0, coins: 0, earned: 0, floor: 1, steps: 0, kills: 0,
+    night, hp: candle, max: candle, blade: 0, coins: 0, earned: 0, floor: 1, steps: 0, kills: 0, venom: 0,
     relics: [], tools: [], spareUsed: false, torch: 0, debt: false, phase: "play", shop: null, deal: null, spoils: null,
     uid: 1, cause: "", log: "",
   };
@@ -540,10 +596,11 @@ function gain(s, n) {
   s.earned += n;
 }
 
-function fightOutcome(s, v) {
+function fightOutcome(s, v, trait) {
   if (v <= 2 && has(s, "ratbane")) return { dmg: 0, blade: s.blade };
-  const absorb = Math.min(s.blade, v);
-  let blade = s.blade - absorb;
+  if (trait === "ghost") return { dmg: v, blade: s.blade };
+  const absorb = trait === "rust" ? Math.min(v, Math.floor(s.blade / 2)) : Math.min(s.blade, v);
+  let blade = trait === "crush" ? 0 : s.blade - absorb * (trait === "rust" ? 2 : 1);
   if (s.blade > 0 && has(s, "notched")) blade = Math.max(1, blade);
   return { dmg: v - absorb, blade };
 }
@@ -556,7 +613,7 @@ function trapOutcome(s, v) {
 
 // Candle lost by stepping onto c, where it can be known in advance.
 function costOf(s, c) {
-  if (isFoe(c)) return fightOutcome(s, c.v).dmg;
+  if (isFoe(c)) return fightOutcome(s, c.v, traitOf(c)).dmg;
   if (c.t === "trap") return trapOutcome(s, c.v).dmg;
   return 0;
 }
@@ -586,28 +643,41 @@ function reward(s, c, v, ev) {
   let msg = ` +${pay} coins.`;
   if (s.hp > 0 && s.hp < s.max && has(s, "tinderbox")) { s.hp++; ev.heal++; }
   if (c.elite) msg += " " + spoils(s);
-  if (boss) {
+  if (boss && s.floor >= FINAL_FLOOR) {
+    s.won = true;
+    msg += " It was the last warden.";
+  } else if (boss) {
     s.stairOpen = true;
     s.stairDue = true;
-    s.spoils = shuffled(relicsLeft(s)).slice(0, 2);
+    s.spoils = shuffled(relicsLeft(s)).slice(0, s.night >= 9 ? 1 : 2);
     msg += " The stair down opens beside you.";
   }
   return msg;
 }
 
 function fight(s, c, ev) {
-  const o = fightOutcome(s, c.v), had = s.blade, name = c.name;
+  const trait = traitOf(c), o = fightOutcome(s, c.v, trait), had = s.blade, name = c.name;
   s.blade = o.blade;
   s.hp -= o.dmg;
   ev.dmg += o.dmg;
   s.cause = (c.t === "boss" ? "the " : "a ") + name;
   let msg;
-  if (c.t === "boss") msg = `The ${name} falls.` + (o.dmg ? ` Candle −${o.dmg}.` : "");
+  if (trait === "ghost") msg = `The ${name} passes through your blade. Candle −${o.dmg}.`;
+  else if (trait === "crush" && had) msg = `The ${name} crushes your blade.` + (o.dmg ? ` Candle −${o.dmg}.` : "");
   else if (c.v <= 2 && has(s, "ratbane")) msg = `The ${name} dies in the ratbane.`;
   else if (!had) msg = `The ${name} burns you for ${o.dmg}.`;
-  else if (o.dmg) msg = o.blade ? `Your blade dulls on the ${name}. Candle −${o.dmg}.` : `Your blade breaks on the ${name}. Candle −${o.dmg}.`;
+  else if (o.dmg) msg = (trait === "rust" ? `Rust eats your blade on the ${name}.` : o.blade ? `Your blade dulls on the ${name}.` : `Your blade breaks on the ${name}.`) + ` Candle −${o.dmg}.`;
   else msg = `Your blade cuts down the ${name}.` + (o.blade ? ` Blade ${had} → ${o.blade}.` : " It breaks.");
-  return msg + reward(s, c, c.v, ev);
+  if (trait === "venom" && o.dmg > 0) { s.venom = 2; msg += " Venom!"; }
+  if (trait === "rise" && s.hp > 0) {
+    c.base = c.v;
+    c.v = Math.ceil(c.v / 2);
+    c.risen = true;
+    ev.stay = true;
+    return `${msg} It gets back up at ${c.v}.`;
+  }
+  if (c.t === "boss") msg = `The ${name} falls.` + (o.dmg ? ` Candle −${o.dmg}.` : "");
+  return msg + reward(s, c, c.base || c.v, ev);
 }
 
 function resolve(s, c, ev) {
@@ -620,7 +690,9 @@ function resolve(s, c, ev) {
       return `The chest holds ${g} coins.`;
     }
     case "wax": {
-      const g = Math.min(c.v + (has(s, "beeswax") ? 2 : 0), s.max - s.hp);
+      let w = Math.max(1, c.v - (s.night >= 6 ? 1 : 0)) + (has(s, "beeswax") ? 2 : 0);
+      if (s.grid.some((k) => k && k.t === "boss" && (trickOf(k) || {}).key === "curse")) w = Math.floor(w / 2);
+      const g = Math.min(w, s.max - s.hp);
       s.hp += g;
       ev.heal += g;
       return g ? `Wax. Candle +${g}.` : "Wax, but your candle is already full.";
@@ -673,7 +745,7 @@ function checkDeath(s, ev) {
 
 function draw(s) {
   if (s.stairDue) { s.stairDue = false; return { t: "stair", v: 0, id: s.uid++ }; }
-  if (!s.wardenOut && s.floorSteps >= FLOOR_STEPS - 1) { s.wardenOut = true; return s.warden; }
+  if (!s.wardenOut && s.floorSteps >= wardenAt(s) - 1) { s.wardenOut = true; return s.warden; }
   const c = s.queue.shift();
   fillQueue(s);
   return c;
@@ -684,27 +756,69 @@ function upcoming(s, n) {
   const out = [];
   let q = 0, fs = s.floorSteps, out_ = s.wardenOut;
   for (let k = 0; k < n; k++, fs++) {
-    if (!out_ && fs >= FLOOR_STEPS - 1) { out.push(s.warden); out_ = true; }
+    if (!out_ && fs >= wardenAt(s) - 1) { out.push(s.warden); out_ = true; }
     else out.push(s.queue[q++]);
   }
   return out.filter(Boolean);
 }
 
-// Once per step: torches burn down, wardens grow, and after the warden falls, the dark grows.
-function tick(s) {
+// Once per step, after the new card lands (fresh is where it landed, and it sits this one out):
+// torches burn down, venom and gazes burn, hungry monsters grow, the warden grows and plays its trick,
+// and after the warden falls the dark grows.
+function tick(s, ev, fresh) {
   let log = "";
   if (s.torch > 0) s.torch--;
-  for (const k of s.grid) {
-    if (k && k.t === "boss" && ++k.age % 6 === 0) { k.v++; log += ` The ${k.name} grows to ${k.v}.`; }
-  }
+  if (s.venom > 0) { s.venom--; s.hp--; ev.dmg++; s.cause = "spider venom"; log += " Venom burns 1."; }
+  const near = new Set(ORTH.map(([dr, dc]) => cell(row(s.hero) + dr, col(s.hero) + dc)));
+  s.grid.forEach((k, j) => {
+    if (!k || j === fresh || !near.has(j)) return;
+    const tr = traitOf(k);
+    if (tr === "hungry") k.v++;
+    if (tr === "gaze") { s.hp--; ev.dmg++; s.cause = `the gaze of ${k.t === "boss" ? "the" : "a"} ${k.name}`; log += ` The ${k.name}'s gaze burns 1.`; }
+  });
+  const w = s.grid.findIndex((k, j) => k && k.t === "boss" && j !== fresh);
+  if (w >= 0) log += wardenTurn(s, w);
   if (s.stairOpen) {
     s.dark++;
-    if (s.dark % 3 === 0) {
+    if (s.dark % (s.night >= 8 ? 2 : 3) === 0) {
       for (const k of s.grid) if (k && (k.t === "monster" || k.t === "coin")) k.v++;
       log += " The dark grows. Monsters and coins grow by 1.";
     }
   }
   return log;
+}
+
+function wardenTurn(s, j) {
+  const w = s.grid[j], key = (trickOf(w) || {}).key;
+  let log = "";
+  w.age++;
+  if (w.age % (key === "coil" || key === "devour" ? 3 : 6) === 0) { w.v++; log += ` The ${w.name} grows to ${w.v}.`; }
+  if (key === "rats" && w.age % 3 === 0) {
+    s.queue[0] = Object.assign(beast(1), { id: s.uid++ });
+    log += ` The ${w.name} calls a rat.`;
+  } else if (key === "raise" && w.age % 4 === 0) {
+    const dist = (i) => Math.abs(row(i) - row(j)) + Math.abs(col(i) - col(j));
+    const goods = s.grid.map((k, i) => (k && (k.t === "wax" || k.t === "blade" || k.t === "coin") ? i : -1)).filter((i) => i >= 0);
+    if (goods.length) {
+      const i = goods.reduce((a, b) => (dist(b) < dist(a) ? b : a));
+      log += ` The ${w.name} raises a skeleton from the ${cardName(s.grid[i]).toLowerCase()}.`;
+      s.grid[i] = Object.assign(beast(4), { id: s.uid++ });
+    }
+  } else if (key === "bless" && w.age % 3 === 0) {
+    for (const [dr, dc] of ORTH) { const k = s.grid[cell(row(j) + dr, col(j) + dc)]; if (k && k.t === "monster") k.v++; }
+    log += ` The ${w.name} blesses the monsters beside it.`;
+  } else if (key === "hunt") hunt(s, j);
+  return log;
+}
+
+// The hound swaps one card closer to you, along the longer way first.
+function hunt(s, j) {
+  const r = row(j), c = col(j), dr = row(s.hero) - r, dc = col(s.hero) - c;
+  if (Math.abs(dr) + Math.abs(dc) <= 1) return;
+  const vert = cell(r + Math.sign(dr), c), horiz = cell(r, c + Math.sign(dc));
+  for (const t of Math.abs(dr) >= Math.abs(dc) ? [vert, horiz] : [horiz, vert]) {
+    if (t >= 0 && t !== j && t !== s.hero && s.grid[t]) { [s.grid[j], s.grid[t]] = [s.grid[t], s.grid[j]]; return; }
+  }
 }
 
 // Step onto cell i. A diagonal step needs rope. Returns what happened, or null if the step is not possible.
@@ -715,37 +829,50 @@ function act(s, i, rope) {
   if (!orth && !(diag && rope && s.tools.includes("rope"))) return null;
   if (diag) s.tools.splice(s.tools.indexOf("rope"), 1);
   const c = s.grid[i], coins0 = s.coins;
-  const ev = { card: c, dmg: 0, heal: 0, gold: 0, dead: false, spare: false, marks: [] };
+  const ev = { card: c, dmg: 0, heal: 0, gold: 0, dead: false, spare: false, stay: false, marks: [] };
   let log = resolve(s, c, ev);
   log += checkDeath(s, ev);
-  ev.gold = s.coins - coins0;
   if (!ev.dead) {
-    const h = s.hero;
-    s.grid[i] = null;
-    s.hero = i;
     s.steps++;
-    if (c.t === "stair") {
+    if (s.won) {
+      s.grid[i] = null;
+      s.hero = i;
+      s.phase = "won";
+    } else if (c.t === "stair") {
+      s.grid[i] = null;
+      s.hero = i;
       s.phase = "shop";
       s.shop = openShop(s);
     } else {
-      // The line of cards behind you slides after you, and a new card lands at the far end.
-      // When a warden falls nothing slides: the stair lands right behind you instead.
-      let vr = row(h), vc = col(h), br = vr - dr, bc = vc - dc;
-      while (c.t !== "boss" && cell(br, bc) >= 0) {
-        s.grid[vr * N + vc] = s.grid[br * N + bc];
-        vr = br; vc = bc; br -= dr; bc -= dc;
+      let fresh = -1;
+      if (!ev.stay) {
+        // Step in. The line of cards behind you slides after you, and a new card lands at the far end.
+        // When a warden falls nothing slides: the stair lands right behind you instead.
+        const h = s.hero;
+        s.grid[i] = null;
+        s.hero = i;
+        let vr = row(h), vc = col(h), br = vr - dr, bc = vc - dc;
+        while (c.t !== "boss" && cell(br, bc) >= 0) {
+          s.grid[vr * N + vc] = s.grid[br * N + bc];
+          vr = br; vc = bc; br -= dr; bc -= dc;
+        }
+        fresh = vr * N + vc;
+        s.grid[fresh] = draw(s);
       }
-      log += tick(s);
-      s.grid[vr * N + vc] = draw(s);
+      log += tick(s, ev, fresh);
+      log += checkDeath(s, ev);
       s.floorSteps++;
-      if (c.t === "altar") {
-        s.deal = offerDeals(s);
-        if (s.deal.length) s.phase = "deal";
-        else log += " It has nothing to offer you.";
+      if (!ev.dead) {
+        if (c.t === "altar") {
+          s.deal = offerDeals(s);
+          if (s.deal.length) s.phase = "deal";
+          else log += " It has nothing to offer you.";
+        }
+        if (s.spoils && s.spoils.length) s.phase = "spoils";
       }
-      if (s.spoils && s.spoils.length) s.phase = "spoils";
     }
   }
+  ev.gold = s.coins - coins0;
   s.log = log.trim();
   return ev;
 }
@@ -800,7 +927,8 @@ function useTool(s, k, i) {
   } else return null;
   s.tools.splice(slot, 1);
   ev.gold = s.coins - coins0;
-  if (s.spoils && s.spoils.length) s.phase = "spoils";
+  if (s.won) s.phase = "won";
+  else if (s.spoils && s.spoils.length) s.phase = "spoils";
   s.log = log;
   return ev;
 }
@@ -817,7 +945,7 @@ function takeSpoils(s, k) {
 }
 
 /* the trader on the landing */
-const priceScale = (s) => (1 + 0.35 * (s.floor - 1)) * (has(s, "haggler") ? 0.75 : 1) * (s.debt ? 2 : 1);
+const priceScale = (s) => (1 + 0.35 * (s.floor - 1)) * (has(s, "haggler") ? 0.75 : 1) * (s.debt ? 2 : 1) * (s.night >= 3 ? 4 / 3 : 1);
 function openShop(s) {
   const k = priceScale(s), p = (n) => Math.max(1, Math.round(n * k));
   s.debt = false;
@@ -911,7 +1039,7 @@ function takeDeal(s, k) {
 /* ---------- view ---------- */
 const $ = (id) => document.getElementById(id);
 const boardEl = $("board"), overlayEl = $("overlay"), sheetEl = $("sheet"), logEl = $("log");
-const KEY = "candle-crawl-v3", OLD_KEY = "candle-crawl-v2", RULES = 3;
+const KEY = "candle-crawl-v3", OLD_KEY = "candle-crawl-v2", RULES = 4;
 const ICON = { wax: "wax", blade: "blade", coin: "coin", trap: "trap", chest: "chest", shrine: "shrine", boss: "crown", altar: "altar", stair: "stair" };
 const iconOf = (c) => (c.t === "monster" ? BEAST_ICON[c.name.replace("Dread ", "")] || "skull" : c.t === "boss" ? "warden" : ICON[c.t]);
 const GOOD = new Set(["wax", "blade", "coin", "shrine"]);
@@ -921,7 +1049,7 @@ const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 const AIMED = { smoke: "Tap a card beside you to swap places with it.", holy: "Tap a monster beside you to halve it.", rope: "Tap any card touching you, corners too." };
 
 let s = null;
-const meta = { bestFloor: 0, runs: 0, seenIntro: false, seenRules: 0, dim: false, big: false, contrast: null };
+const meta = { bestFloor: 0, runs: 0, seenIntro: false, seenRules: 0, dim: false, big: false, contrast: null, nights: {}, unlocked: 1, night: 1 };
 let busy = false, sheetKind = "", heroEl = null, swipe = null, ignoreClickUntil = 0;
 let armed = null, hint = "", fresh = true;
 const nodes = new Map();
@@ -960,9 +1088,7 @@ function cardNode(c) {
   el.type = "button";
   el.className = "card t-" + c.t + (c.elite ? " elite" : "");
   el.dataset.id = c.id;
-  const rank = c.t === "boss" ? "Warden" : c.elite ? "Dread" : "";
-  el.innerHTML = (rank ? `<span class="c-rank" aria-hidden="true">${rank}</span>` : "") +
-    `<span class="c-val"></span><span class="c-tag"></span>${use(iconOf(c), "ico c-art")}<span class="c-name"></span>`;
+  el.innerHTML = `<span class="c-rank" aria-hidden="true"></span><span class="c-val"></span><span class="c-tag"></span>${use(iconOf(c), "ico c-art")}<span class="c-name"></span>`;
   return el;
 }
 
@@ -972,6 +1098,9 @@ function paintCard(el, c, i, tg) {
   const dist = Math.abs(row(i) - row(s.hero)) + Math.abs(col(i) - col(s.hero));
   el.querySelector(".c-val").textContent = val;
   el.querySelector(".c-name").textContent = c.elite ? name.replace("Dread ", "") : name;
+  const tr = traitOf(c), rk = el.querySelector(".c-rank");
+  rk.textContent = c.t === "boss" ? "Warden" : c.risen ? "Risen" : c.elite ? "Dread" + (tr ? " · " + TRAITS[tr].name : "") : tr ? TRAITS[tr].name : "";
+  rk.className = "c-rank " + (c.t === "boss" ? "r-warden" : c.elite ? "r-dread" : "r-trait");
   let label = val ? `${name}, ${val}.` : `${name}.`, cls = "", text = "";
   if (mode === "step" || mode === "rope") {
     const cost = costOf(s, c);
@@ -1043,7 +1172,8 @@ function render() {
   boardEl.style.setProperty("--gx", ((col(s.hero) * 2 + 1) / (2 * N)) * 100 + "%");
   boardEl.style.setProperty("--gy", ((row(s.hero) * 2 + 1) / (2 * N)) * 100 + "%");
 
-  $("where").textContent = `Floor ${s.floor} · ${floorName(s.floor)}`;
+  $("where").textContent = `Floor ${s.floor} of ${FINAL_FLOOR} · ${floorName(s.floor)}`;
+  $("hp-label").textContent = s.venom ? `Candle · venom ${s.venom}` : "Candle";
   $("hp").innerHTML = `${s.hp}<small>/${s.max}</small>`;
   $("hp-bar").style.setProperty("--p", Math.min(1, s.hp / s.max));
   $("blade").textContent = s.blade;
@@ -1051,20 +1181,24 @@ function render() {
 
   const warden = s.grid.find((c) => c && c.t === "boss");
   const omen = $("omen");
+  const trickText = (w) => (trickOf(w) ? " " + trickOf(w).text : "");
   let omenText, omenP, omenCls = "";
-  if (s.stairOpen) {
-    const left = 3 - (s.dark % 3);
+  if (s.phase === "won") {
+    omenText = "The last warden is dead.";
+    omenP = 1;
+  } else if (s.stairOpen) {
+    const every = s.night >= 8 ? 2 : 3, left = every - (s.dark % every);
     omenText = `The stair is open. The dark grows ${left === 1 ? "next step" : `in ${left} steps`}.`;
-    omenP = (s.dark % 3) / 3;
+    omenP = (s.dark % every) / every;
     omenCls = "dark";
   } else if (warden) {
-    omenText = `The ${warden.name} is here. It grows by 1 every 6 steps.`;
+    omenText = `The ${warden.name} is here.` + trickText(warden);
     omenP = 1;
     omenCls = "here";
   } else {
-    const left = FLOOR_STEPS - s.floorSteps;
-    omenText = left <= 1 ? `The ${s.warden.name} arrives next step.` : `The ${s.warden.name} arrives in ${left} steps.`;
-    omenP = s.floorSteps / FLOOR_STEPS;
+    const left = wardenAt(s) - s.floorSteps;
+    omenText = (left <= 1 ? `The ${s.warden.name} arrives next step.` : `The ${s.warden.name} arrives in ${left} steps.`) + trickText(s.warden);
+    omenP = s.floorSteps / wardenAt(s);
   }
   $("omen-text").textContent = omenText;
   $("omen-bar").style.setProperty("--p", omenP);
@@ -1087,7 +1221,8 @@ function render() {
   $("relics").innerHTML = s.relics
     .map((k) => `<button class="chip${k === "spare" && s.spareUsed ? " spent" : ""}" type="button" data-relic="${k}">${RELICS[k].name}</button>`)
     .join("");
-  $("best").textContent = meta.bestFloor ? `Deepest: floor ${meta.bestFloor}` : "First run";
+  const rec = meta.nights[s.night] || { deepest: 0, wins: 0 };
+  $("best").textContent = `Night ${s.night}` + (rec.wins ? ` · won ${rec.wins === 1 ? "once" : rec.wins + " times"}` : rec.deepest ? ` · deepest: floor ${rec.deepest}` : "");
 }
 
 function floater(text, kind, i) {
@@ -1099,11 +1234,18 @@ function floater(text, kind, i) {
   f.addEventListener("animationend", () => f.remove());
 }
 
-function finishRun() {
+function finishRun(won) {
   meta.runs++;
-  const newBest = s.floor > meta.bestFloor;
+  const rec = (meta.nights[s.night] = meta.nights[s.night] || { deepest: 0, wins: 0 });
+  const newBest = s.floor > rec.deepest;
+  rec.deepest = Math.max(rec.deepest, s.floor);
   meta.bestFloor = Math.max(meta.bestFloor, s.floor);
-  return newBest;
+  let unlocked = 0;
+  if (won) {
+    rec.wins++;
+    if (s.night === meta.unlocked && s.night < LAST_NIGHT) unlocked = ++meta.unlocked;
+  }
+  return { newBest, unlocked };
 }
 
 // Everything after a step or a tool: redraw, show the numbers, save, then open whatever sheet comes next.
@@ -1111,7 +1253,7 @@ function after(ev) {
   busy = true;
   armed = null;
   hint = "";
-  const newBest = ev.dead ? finishRun() : false;
+  const result = s.phase === "dead" || s.phase === "won" ? finishRun(s.phase === "won") : null;
   render();
   for (const [j, t] of ev.marks) floater(t, "mark", j);
   if (ev.dmg) {
@@ -1125,7 +1267,8 @@ function after(ev) {
   store();
   setTimeout(() => {
     busy = false;
-    if (s.phase === "dead") showDeath(newBest);
+    if (s.phase === "dead") showDeath(result.newBest);
+    else if (s.phase === "won") showWon(result.unlocked);
     else if (s.phase === "shop") showShop();
     else if (s.phase === "deal") showDeal();
     else if (s.phase === "spoils") showSpoils();
@@ -1167,8 +1310,8 @@ function pressTool(k) {
   render();
 }
 
-function newGame() {
-  s = newRun();
+function newGame(night) {
+  s = newRun(night || 1);
   armed = null;
   hint = "";
   clearBoard();
@@ -1191,9 +1334,10 @@ function closeSheet() {
 }
 
 function showIntro(first) {
+  const trait = (k, who) => `<li><b>${TRAITS[k].name}</b> <span class="who">${who}.</span> ${TRAITS[k].text}</li>`;
   openSheet("intro", `
     <h2 id="sheet-title">Candle Crawl</h2>
-    <p>A quiet dungeon game. No sound and no timer, so you can stop mid-step. The run saves as you go. Your score is how deep you get.</p>
+    <p>A quiet dungeon game. No sound and no timer, so you can stop mid-step. The run saves as you go. Reach floor ${FINAL_FLOOR} and kill the last warden to win. Each win unlocks a harder night.</p>
     <ul class="legend">
       <li class="t-hero">${use("flame")}<span><b>You.</b> Your candle is your life. Tap a lit card beside it, or swipe, to step onto it. The cards behind you slide after you, and a new one lands at the far edge.</span></li>
       <li class="t-monster">${use("ghoul")}<span><b>Monsters</b> burn your candle by their number. Your blade takes the hit first and wears down by the same amount. Kills pay coins.</span></li>
@@ -1203,11 +1347,16 @@ function showIntro(first) {
       <li class="t-coin">${use("coin")}<span><b>Coins</b> buy things between floors.</span></li>
       <li class="t-trap">${use("trap")}<span><b>Spikes</b> always hurt. <b class="t-chest">Chests</b> hold coins, but some bite.</span></li>
       <li class="t-shrine">${use("shrine")}<span><b>Shrines</b> make your candle one taller.</span></li>
-      <li class="t-altar">${use("altar")}<span><b>Altars</b> offer two trades. You can walk away.</span></li>
-      <li class="t-boss">${use("warden")}<span><b>Wardens</b> arrive after ${FLOOR_STEPS} steps. Kill one to choose a free relic, and the stair down opens beside you. Every 3 steps you stay after that, monsters and coins grow by 1.</span></li>
-      <li class="t-stair">${use("stair")}<span><b>The stair</b> leads to a trader who sells candle, blade work, relics and tools, then to a fresh floor.</span></li>
+      <li class="t-altar">${use("altar")}<span><b>Altars</b> offer trades. You can walk away.</span></li>
+      <li class="t-boss">${use("warden")}<span><b>Wardens</b> arrive after ${wardenAt(s)} steps, each with its own trick. Kill one to choose a free relic, and the stair down opens beside you. Every 3 steps you stay after that, monsters and coins grow by 1.</span></li>
+      <li class="t-stair">${use("stair")}<span><b>The stair</b> leads to a trader who sells candle, blade, relics and tools, then to a fresh floor.</span></li>
       <li class="t-tool">${use("smoke")}<span><b>Tools</b> wait in your pocket. Using one never costs a step. Tap once to pick it up, again to use or put it away.</span></li>
     </ul>
+    <h3>Monster traits</h3>
+    <ul class="traits">
+      ${trait("venom", "Spider")}${trait("hungry", "Ghoul")}${trait("rust", "Wight")}${trait("ghost", "Wraith")}${trait("crush", "Gargoyle")}${trait("rise", "Revenant")}${trait("gaze", "Horror")}
+    </ul>
+    <p class="muted">Rats, bats and skeletons have no tricks. Tap any card out of reach to read what it does.</p>
     <button class="primary" type="button" data-act="close">${first ? "Light the candle" : "Back to it"}</button>`);
 }
 
@@ -1265,8 +1414,40 @@ function showDeath(newBest) {
     <h2 id="sheet-title">Your candle is out</h2>
     <p>${cap(s.cause || "the dark")} put it out on floor ${s.floor}, the ${floorName(s.floor)}.</p>
     <div class="tally">${tally}</div>
-    <p class="muted">${newBest ? "Your deepest run yet." : `Deepest: floor ${meta.bestFloor}.`} Runs: ${meta.runs}.</p>
+    <p class="muted">${newBest ? `Your deepest run on Night ${s.night} yet.` : `Deepest on Night ${s.night}: floor ${meta.nights[s.night].deepest}.`} Runs: ${meta.runs}.</p>
     <button class="primary" type="button" data-act="again">Light another candle</button>`);
+}
+
+function showWon(unlocked) {
+  const tally = [["Night", s.night], ["Steps", s.steps], ["Kills", s.kills], ["Coins", s.earned]]
+    .map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("");
+  openSheet("won", `
+    <h2 id="sheet-title">The ${s.warden.name} goes dark</h2>
+    <p>You killed the last warden on floor ${FINAL_FLOOR} with ${s.hp} candle left. Night ${s.night} is yours.</p>
+    <div class="tally">${tally}</div>
+    <p class="muted">${unlocked ? `Night ${unlocked} is open: ${NIGHTS[unlocked]}` : s.night >= LAST_NIGHT ? "There is no harder night than this one." : `Wins on Night ${s.night}: ${meta.nights[s.night].wins}.`}</p>
+    <button class="primary" type="button" data-act="again">Light another candle</button>`);
+}
+
+// Where a new run starts. Characters will be chosen here too.
+function showNights() {
+  const pick = Math.min(meta.night || 1, meta.unlocked), live = ["play", "shop", "deal", "spoils"].includes(s.phase);
+  let rows = "";
+  for (let n = 1; n <= Math.min(meta.unlocked + 1, LAST_NIGHT); n++) {
+    const rec = meta.nights[n] || { deepest: 0, wins: 0 }, open = n <= meta.unlocked;
+    const note = !open ? `Win Night ${n - 1} to open` : rec.wins ? `Won ${rec.wins === 1 ? "once" : rec.wins + " times"}` : rec.deepest ? `Deepest: floor ${rec.deepest}` : "Not tried yet";
+    rows += `<button class="choice night relic${n === pick ? " picked" : ""}" type="button" data-act="night:${n}"${open ? "" : " disabled"}><b>Night ${n}</b><span>${NIGHTS[n]}${n > 2 ? " Plus every twist before it." : ""}</span><small>${note}</small></button>`;
+  }
+  openSheet("nights", `
+    <h2 id="sheet-title">Choose a night</h2>
+    <p>Each night adds one twist to the ones before it. Win a night to open the next.</p>
+    <div class="choices">${rows}</div>
+    ${live ? `<button class="ghost" type="button" data-act="close">Keep playing this run</button>` : ""}`);
+}
+
+function startNext() {
+  if (meta.unlocked > 1) showNights();
+  else newGame(1);
 }
 
 function showConfirmNew() {
@@ -1310,8 +1491,11 @@ sheetEl.addEventListener("click", (e) => {
     b.setAttribute("aria-checked", String(meta[arg]));
     applySettings();
     store();
-  } else if (a === "again") newGame();
-  else if (a === "abandon") { finishRun(); newGame(); }
+  } else if (a === "night") {
+    meta.night = +arg;
+    newGame(+arg);
+  } else if (a === "again") startNext();
+  else if (a === "abandon") { finishRun(false); s.phase = "over"; store(); startNext(); }
 });
 
 /* input */
@@ -1324,7 +1508,19 @@ boardEl.addEventListener("click", (e) => {
   if (mode === "step") stepTo(i, false);
   else if (mode === "rope") stepTo(i, true);
   else if (mode === "smoke" || mode === "holy") aimAt(i);
+  else if (i >= 0 && s.grid[i]) { hint = describe(s.grid[i]); render(); }
 });
+
+// What a card does, for a tap on one out of reach.
+function describe(c) {
+  const v = valueText(c), head = `${cardName(c)}${v ? " " + v : ""}.`;
+  if (c.t === "boss") return `${head} The warden of this floor. ${trickOf(c) ? trickOf(c).text : "It grows by 1 every 6 steps."}`;
+  if (c.t === "monster") {
+    const tr = traitOf(c);
+    return `${head} ${c.risen ? "It has risen once already. This time it stays down." : tr ? `${TRAITS[tr].name}: ${TRAITS[tr].text}` : "No tricks."}${c.elite ? " Drops a relic or a tool." : ""}`;
+  }
+  return `${head} ${{ wax: "Relights your candle.", blade: "Adds to your blade.", coin: "Coins for the trader.", trap: "Spikes always hurt.", chest: "Coins, or teeth.", shrine: "Your candle grows one taller.", altar: "Offers a trade.", stair: "Leads down to the trader." }[c.t] || ""}`;
+}
 boardEl.addEventListener("pointerdown", (e) => { swipe = { x: e.clientX, y: e.clientY, id: e.pointerId }; });
 boardEl.addEventListener("pointercancel", () => { swipe = null; });
 boardEl.addEventListener("pointerup", (e) => {
@@ -1337,7 +1533,8 @@ boardEl.addEventListener("pointerup", (e) => {
 });
 document.addEventListener("keydown", (e) => {
   if (!overlayEl.hidden) {
-    if (e.key === "Escape" && (sheetKind === "intro" || sheetKind === "confirm")) sheetEl.querySelector('[data-act="close"]').click();
+    const closer = sheetEl.querySelector('[data-act="close"]');
+    if (e.key === "Escape" && closer) closer.click();
     return;
   }
   if (e.key === "Escape" && armed) { armed = null; hint = ""; render(); return; }
@@ -1356,7 +1553,7 @@ $("relics").addEventListener("click", (e) => {
   render();
 });
 $("btn-help").addEventListener("click", () => showIntro(false));
-$("btn-new").addEventListener("click", () => (s.steps === 0 && s.floor === 1 ? newGame() : showConfirmNew()));
+$("btn-new").addEventListener("click", () => (s.steps === 0 && s.floor === 1 ? startNext() : showConfirmNew()));
 $("btn-settings").addEventListener("click", showSettings);
 function applySettings() {
   const root = document.documentElement;
@@ -1376,6 +1573,8 @@ function upgrade(saved) {
     if (r.deal) r.deal = r.deal.map((k) => (k === "low" ? "wick" : k)).filter((k) => DEALS[k]);
     if (r.phase === "deal" && !(r.deal && r.deal.length)) r.phase = "play";
     if (!r.spoils) r.spoils = null;
+    if (!r.night) r.night = 1;
+    if (!r.venom) r.venom = 0;
   }
   return saved;
 }
@@ -1385,8 +1584,9 @@ function start(data) {
   if (!saved) { try { saved = JSON.parse(localStorage.getItem(OLD_KEY) || "null"); } catch (e) { saved = null; } }
   if (saved) upgrade(saved);
   if (saved && saved.meta) Object.assign(meta, saved.meta);
+  if (!meta.nights[1] && meta.bestFloor) meta.nights[1] = { deepest: meta.bestFloor, wins: 0 };
   if (meta.contrast === null || meta.contrast === undefined) meta.contrast = matchMedia("(prefers-contrast: more)").matches;
-  s = saved && saved.s && saved.s.grid && saved.s.phase !== "dead" ? saved.s : newRun();
+  s = saved && saved.s && saved.s.grid && !["dead", "won", "over"].includes(saved.s.phase) ? saved.s : newRun(meta.night);
   heroEl = document.createElement("div");
   heroEl.className = "card hero t-hero";
   heroEl.setAttribute("aria-hidden", "true");
