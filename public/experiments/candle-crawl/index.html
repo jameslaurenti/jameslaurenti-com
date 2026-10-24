@@ -41,7 +41,7 @@ html { box-sizing: border-box; height: 100%; background: var(--soot); }
 body {
   height: 100%; margin: 0; overflow-x: hidden;
   background: var(--soot); color: var(--bone);
-  font: 16px/1.4 var(--font-body);
+  font: 1rem/1.4 var(--font-body);
   -webkit-tap-highlight-color: transparent;
 }
 [hidden] { display: none !important; }
@@ -116,9 +116,19 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
 .card.l4 { filter: brightness(.42) saturate(.6); }
 .card.reach { cursor: pointer; border-color: color-mix(in srgb, var(--tint) 34%, var(--edge)); box-shadow: 0 6px 16px rgb(0 0 0 / .35); }
 .card.reach:hover { border-color: color-mix(in srgb, var(--tint) 60%, var(--edge)); }
+/* Dread monsters wear a gold frame and wardens a red card; both carry a tag on the top edge. */
+.card.elite { z-index: 1; border: 2px solid color-mix(in srgb, var(--gold) 75%, var(--edge)); background: radial-gradient(circle at 50% 48%, rgb(216 178 90 / .22), transparent 72%), var(--card); }
+.card.t-boss { z-index: 1; border: 2px solid var(--ember); background: radial-gradient(circle at 50% 45%, rgb(214 101 77 / .42), rgb(96 26 18 / .6) 72%), var(--card); }
+.card.t-boss .c-name { color: #f6d9cb; }
+.c-rank {
+  position: absolute; top: -7px; left: 50%; translate: -50% 0;
+  padding: 1px 6px; border-radius: 4px; white-space: nowrap;
+  font: 800 clamp(.5rem, 9.5cqw, .62rem)/1.3 var(--font-body); letter-spacing: .1em; text-transform: uppercase;
+}
+.elite .c-rank { background: var(--gold); color: var(--soot); }
+.t-boss .c-rank { background: var(--ember); color: #1c0d09; }
 .card.aim { border-color: var(--flame); box-shadow: 0 0 0 1px var(--flame), 0 6px 16px rgb(0 0 0 / .35); }
 .card.lethal { border-color: var(--ember); }
-.card.elite { border-color: color-mix(in srgb, var(--gold) 60%, var(--edge)); background: radial-gradient(circle at 50% 50%, rgb(216 178 90 / .16), transparent 70%), var(--card); }
 .c-val { grid-area: val; justify-self: start; font: 800 clamp(1rem, 25cqw, 1.45rem)/1 var(--font-body); font-variant-numeric: lining-nums tabular-nums; }
 .c-tag { grid-area: tag; justify-self: end; font: 700 clamp(.58rem, 11cqw, .72rem)/1 var(--font-body); font-variant-numeric: lining-nums; padding: 2px 4px; border-radius: 5px; }
 .c-tag:empty { display: none; }
@@ -131,7 +141,8 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
 .ico { fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
 
 .t-monster { --tint: var(--ember); }
-.t-boss { --tint: var(--ember); border-width: 2px; }
+.t-boss { --tint: #f0876c; }
+.t-dread { --tint: var(--gold); }
 .t-wax { --tint: var(--wax); }
 .t-blade { --tint: var(--steel); }
 .t-coin, .t-chest { --tint: var(--gold); }
@@ -254,6 +265,19 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
 .choice .give { color: #ef9d89; font-size: .92rem; }
 .choice .get { color: var(--moss); font-size: .92rem; }
 .choice b { font-weight: 700; }
+.choice.relic b { font: 400 1.15rem/1.1 var(--font-display); color: var(--flame); }
+.choice.relic span { font-size: .92rem; color: var(--bone); }
+.switches { display: grid; gap: 8px; }
+.switch {
+  display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; padding: 12px 14px;
+  text-align: left; border-radius: 12px; border: 1px solid var(--edge); background: var(--card); cursor: pointer;
+}
+.switch b { display: block; color: var(--bone); }
+.switch span span { display: block; margin-top: 2px; font-size: .88rem; line-height: 1.3; color: var(--ash); }
+.switch i { position: relative; width: 42px; height: 24px; border-radius: 12px; background: var(--edge); transition: background .2s ease; }
+.switch i::after { content: ""; position: absolute; top: 3px; left: 3px; width: 18px; height: 18px; border-radius: 50%; background: var(--ash); transition: translate .2s ease, background .2s ease; }
+.switch[aria-checked="true"] i { background: rgb(237 161 75 / .45); }
+.switch[aria-checked="true"] i::after { translate: 18px 0; background: var(--flame); }
 .purse { display: inline-flex; align-items: center; gap: 5px; color: var(--gold); font-weight: 700; font-variant-numeric: lining-nums tabular-nums; }
 .purse .ico { width: 18px; height: 18px; }
 .shop-sec { display: grid; gap: 6px; }
@@ -277,6 +301,21 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
 
 .dimmer { position: fixed; inset: 0; z-index: 50; background: rgb(0 0 0 / .45); pointer-events: none; }
 
+/* Settings: larger text swaps the old-style lettering on cards for plain type; stronger contrast brightens text and far cards. */
+:root.big { font-size: 118.75%; }
+:root.big .c-val { font-size: clamp(1.1rem, 31cqw, 1.9rem); }
+:root.big .c-name { font: 700 clamp(.62rem, 13.5cqw, .95rem)/1.05 var(--font-body); }
+:root.big .c-tag { font-size: clamp(.66rem, 13cqw, .85rem); }
+:root.big .c-art { width: 44%; }
+:root.big .ico { stroke-width: 1.9; }
+:root.big .w-name, :root.big .choice.relic b { font-family: var(--font-body); font-weight: 700; }
+:root.contrast { --bone: #f3e8d2; --ash: #bcae96; --edge: #5c4c3e; }
+:root.contrast .card.l2 { filter: brightness(.92); }
+:root.contrast .card.l3 { filter: brightness(.84); }
+:root.contrast .card.l4 { filter: brightness(.76); }
+:root.contrast .card.reach:not(.elite):not(.t-boss) { border-color: color-mix(in srgb, var(--tint) 65%, var(--edge)); }
+:root.contrast .c-tag.hurt { background: rgb(214 101 77 / .32); color: #ffb6a4; }
+
 @media (prefers-reduced-motion: reduce) {
   .board, .card, .stick, .meter > i { transition: none; }
   .flame { animation: none; }
@@ -296,7 +335,11 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
   <symbol id="i-skull" viewBox="0 0 24 24"><path d="M12 3c-4.4 0-8 3.1-8 7.4 0 2.4 1.1 4.3 3 5.5V19a1 1 0 0 0 1 1h8a1 1 0 0 0 1-1v-3.1c1.9-1.2 3-3.1 3-5.5C20 6.1 16.4 3 12 3z"/><circle cx="9" cy="11" r="1.7"/><circle cx="15" cy="11" r="1.7"/><path d="M12 13.6l-.9 1.8h1.8zM10 20v-2M12 20v-2M14 20v-2"/></symbol>
   <symbol id="i-ghost" viewBox="0 0 24 24"><path d="M6 20.5V10a6 6 0 0 1 12 0v10.5l-2-1.6-2 1.6-2-1.6-2 1.6-2-1.6z"/><circle cx="10" cy="10.5" r="1" fill="currentColor"/><circle cx="14" cy="10.5" r="1" fill="currentColor"/><path d="M10.5 14.4c1 .6 2 .6 3 0"/></symbol>
   <symbol id="i-horns" viewBox="0 0 24 24"><path d="M7.5 3.5c-.4 3 .5 5.2 2.4 6.3M16.5 3.5c.4 3-.5 5.2-2.4 6.3"/><path d="M7.5 10.6c0-1 2-1.6 4.5-1.6s4.5.6 4.5 1.6V14c0 3-2 5.6-4.5 6.6C9.5 19.6 7.5 17 7.5 14z"/><path d="M9.4 13l1.9.9M14.6 13l-1.9.9M10.8 17.2h2.4"/></symbol>
-  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M2.5 12S6 6 12 6s9.5 6 9.5 6-3.5 6-9.5 6-9.5-6-9.5-6z"/><circle cx="12" cy="12" r="3.2"/><path d="M12 10.2v3.6"/></symbol>
+  <symbol id="i-eye" viewBox="0 0 24 24"><path d="M3 10.5S6.3 5 12 5s9 5.5 9 5.5-3.3 5.5-9 5.5-9-5.5-9-5.5z"/><circle cx="12" cy="10.5" r="2.8"/><path d="M12 9v3M8 15.4c-.3 2.4-1.6 3.8-3.5 4.6M12 16v5M16 15.4c.3 2.4 1.6 3.8 3.5 4.6"/></symbol>
+  <symbol id="i-ghoul" viewBox="0 0 24 24"><path d="M5 10a7 6.5 0 0 1 14 0v2.5c0 4.6-3.1 8.5-7 8.5s-7-3.9-7-8.5z"/><path d="M8 9.5l2.6 1.2M16 9.5l-2.6 1.2M8 15h8M9.5 15l1 2 1-2 1 2 1-2"/></symbol>
+  <symbol id="i-hood" viewBox="0 0 24 24"><path d="M12 2.5c-4.2 0-6.8 3.6-6.8 8.4v9.6h13.6v-9.6c0-4.8-2.6-8.4-6.8-8.4z"/><path d="M8.6 13.5c0-2.4 1.5-4.3 3.4-4.3s3.4 1.9 3.4 4.3v2.6H8.6z"/><circle cx="10.7" cy="13" r=".6" fill="currentColor"/><circle cx="13.3" cy="13" r=".6" fill="currentColor"/></symbol>
+  <symbol id="i-helm" viewBox="0 0 24 24"><path d="M5.5 20.5v-8.3a6.5 6.5 0 0 1 13 0v8.3z"/><path d="M5.5 13.5h13M12 13.5v7M12 5.7V2.5M8.5 16.5h1.5M14 16.5h1.5"/></symbol>
+  <symbol id="i-warden" viewBox="0 0 24 24"><path d="M7.2 7.6 6.6 3.4l2.9 1.9L12 2.4l2.5 2.9 2.9-1.9-.6 4.2z"/><path d="M12 8.8c-3.6 0-6 2.4-6 5.5 0 1.8.8 3.2 2.2 4.1v1.8a.8.8 0 0 0 .8.8h6a.8.8 0 0 0 .8-.8v-1.8c1.4-.9 2.2-2.3 2.2-4.1 0-3.1-2.4-5.5-6-5.5z"/><circle cx="9.8" cy="14.2" r="1.3"/><circle cx="14.2" cy="14.2" r="1.3"/><path d="M10.6 21v-1.6M12 21v-1.6M13.4 21v-1.6"/></symbol>
   <symbol id="i-crown" viewBox="0 0 24 24"><path d="M4.5 17 3.5 7.5l5 4 3.5-6.5 3.5 6.5 5-4-1 9.5z"/><path d="M4.5 20h15"/></symbol>
   <symbol id="i-wax" viewBox="0 0 24 24"><path d="M12 3.5c3 4 6 7.4 6 10.5a6 6 0 0 1-12 0c0-3.1 3-6.5 6-10.5z"/><path d="M9.3 14.6a2.8 2.8 0 0 0 2.3 2.6"/></symbol>
   <symbol id="i-blade" viewBox="0 0 24 24"><path d="M20.5 3.5 20 7.2l-9.6 9.6-3.2-3.2L16.8 4z"/><path d="M5.6 12.4l6 6M8.6 15.4l-4.1 4.1M3.4 18.4l2.2 2.2"/></symbol>
@@ -313,7 +356,6 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
   <symbol id="i-flask" viewBox="0 0 24 24"><path d="M9.5 3h5M10.5 3v4.5L5.6 16.8A2.6 2.6 0 0 0 7.9 20.5h8.2a2.6 2.6 0 0 0 2.3-3.7L13.5 7.5V3"/><path d="M12 18c-1.3-.8-1.5-2.3 0-4.2 1.5 1.9 1.3 3.4 0 4.2z"/></symbol>
   <symbol id="i-torch" viewBox="0 0 24 24"><path d="M10.5 12.5h3l-.8 8.5h-1.4z"/><path d="M8 10h8l-1.5 2.5h-5z"/><path d="M12 8.5c-2-1.2-2.4-3.4 0-6 2.4 2.6 2 4.8 0 6z"/></symbol>
   <symbol id="i-stub" viewBox="0 0 24 24"><path d="M9.5 20.5V14h5v6.5M5.5 20.5h13"/><path d="M12 11.5c-1.3-.9-1.6-2.6 0-5 1.6 2.4 1.3 4.1 0 5z"/></symbol>
-  <symbol id="i-swap" viewBox="0 0 24 24"><path d="M5 8h13l-3.5-3.5M19 16H6l3.5 3.5"/></symbol>
 </svg>
 
 <div class="app" id="app">
@@ -346,7 +388,7 @@ button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
     <span class="best" id="best"></span>
     <span class="btns">
       <button class="ghost" id="btn-help" type="button">How to play</button>
-      <button class="ghost" id="btn-dim" type="button" aria-pressed="false">Dimmer</button>
+      <button class="ghost" id="btn-settings" type="button">Settings</button>
       <button class="ghost" id="btn-new" type="button">New run</button>
     </span>
   </footer>
@@ -384,7 +426,7 @@ const isFoe = (c) => !!c && (c.t === "monster" || c.t === "boss");
 const FLOORS = ["Cellar", "Crypt", "Ossuary", "Catacombs", "Undercroft", "Charnel House", "Sump", "Barrow", "Old Well", "Root of the Hill"];
 const WARDENS = ["Rat King", "Sexton", "Bone Abbot", "Pale Bishop", "Undercroft Wyrm", "Charnel Hound", "Sump Witch", "Barrow Lord", "Thing in the Well", "Hunger Below"];
 const BEASTS = ["", "Rat", "Bat", "Spider", "Skeleton", "Ghoul", "Wight", "Wraith", "Gargoyle", "Revenant", "Horror"];
-const BEAST_ICON = ["", "rat", "bat", "spider", "skull", "skull", "skull", "ghost", "horns", "ghost", "eye"];
+const BEAST_ICON = { Rat: "rat", Bat: "bat", Spider: "spider", Skeleton: "skull", Ghoul: "ghoul", Wight: "hood", Wraith: "ghost", Gargoyle: "horns", Revenant: "helm", Horror: "eye" };
 const floorName = (f) => FLOORS[f - 1] || "Deep";
 const wardenName = (f) => WARDENS[f - 1] || "Nameless Warden";
 
@@ -403,6 +445,8 @@ const RELICS = {
   tithe: { name: "Tithe Box", text: "Every kill pays 2 more coins.", price: 16 },
   pockets: { name: "Deep Pockets", text: "Carry 4 tools instead of 3.", price: 12 },
   haggler: { name: "Haggler's Tongue", text: "Traders charge a quarter less.", price: 16 },
+  mail: { name: "Mail Shirt", text: "Your blade takes spikes for you too.", price: 14 },
+  lucky: { name: "Lucky Coin", text: "Altars offer three deals instead of two.", price: 10 },
 };
 const TOOLS = {
   smoke: { name: "Smoke", icon: "smoke", text: "Swap places with a card beside you without touching it.", price: 9 },
@@ -432,17 +476,16 @@ function cardName(c) {
 }
 
 function beast(v, elite) {
-  const k = Math.min(v, 10);
-  return { t: "monster", v, name: (elite ? "Dread " : "") + BEASTS[k], icon: BEAST_ICON[k], elite: !!elite };
+  return { t: "monster", v, name: (elite ? "Dread " : "") + BEASTS[Math.min(v, 10)], elite: !!elite };
 }
 
 function deal(s) {
   const f = s.floor, r = rand() * 100;
   let c;
-  if (r < 36) c = rand() < 0.08 ? beast(5 + f + rint(0, 2), true) : beast(rint(1 + ((f - 1) >> 1), 3 + f + Math.max(0, f - 5)));
-  else if (r < 52) c = { t: "coin", v: rint(1, 4 + f) };
-  else if (r < 68) c = { t: "wax", v: rint(1, 4 + ((f - 1) >> 1)) };
-  else if (r < 82) c = { t: "blade", v: rint(2, 4 + (f >> 1)) };
+  if (r < 39) c = rand() < 0.08 ? beast(5 + f + rint(0, 2), true) : beast(rint(1 + ((f - 1) >> 1), 3 + f + Math.max(0, f - 5)));
+  else if (r < 53) c = { t: "coin", v: rint(1, 4 + f) };
+  else if (r < 69) c = { t: "wax", v: rint(1, 4 + ((f - 1) >> 1)) };
+  else if (r < 82) c = { t: "blade", v: rint(1, 2 + (f >> 1)) };
   else if (r < 88) c = { t: "trap", v: rint(1, 2 + (f >> 1)) };
   else if (r < 94) c = { t: "chest", v: rint(4 + f, 8 + 3 * f), mimic: rand() < 0.15, bite: 3 + f };
   else if (r < 97) c = { t: "shrine", v: 1 };
@@ -476,8 +519,8 @@ function enterFloor(s) {
 
 function newRun() {
   const s = {
-    hp: START_CANDLE, max: START_CANDLE, blade: 0, sheath: -1, coins: 0, earned: 0, floor: 1, steps: 0, kills: 0,
-    relics: [], tools: [], spareUsed: false, torch: 0, debt: false, phase: "play", shop: null, deal: null,
+    hp: START_CANDLE, max: START_CANDLE, blade: 0, coins: 0, earned: 0, floor: 1, steps: 0, kills: 0,
+    relics: [], tools: [], spareUsed: false, torch: 0, debt: false, phase: "play", shop: null, deal: null, spoils: null,
     uid: 1, cause: "", log: "",
   };
   enterFloor(s);
@@ -504,12 +547,17 @@ function fightOutcome(s, v) {
   if (s.blade > 0 && has(s, "notched")) blade = Math.max(1, blade);
   return { dmg: v - absorb, blade };
 }
-const trapDmg = (s, v) => (has(s, "gloves") ? Math.floor(v / 2) : v);
+// Spikes ignore your blade, unless you wear mail.
+function trapOutcome(s, v) {
+  const hit = has(s, "gloves") ? Math.floor(v / 2) : v;
+  const absorb = has(s, "mail") ? Math.min(s.blade, hit) : 0;
+  return { dmg: hit - absorb, blade: s.blade - absorb };
+}
 
 // Candle lost by stepping onto c, where it can be known in advance.
 function costOf(s, c) {
   if (isFoe(c)) return fightOutcome(s, c.v).dmg;
-  if (c.t === "trap") return trapDmg(s, c.v);
+  if (c.t === "trap") return trapOutcome(s, c.v).dmg;
   return 0;
 }
 
@@ -541,7 +589,8 @@ function reward(s, c, v, ev) {
   if (boss) {
     s.stairOpen = true;
     s.stairDue = true;
-    msg += " The stair down is open.";
+    s.spoils = shuffled(relicsLeft(s)).slice(0, 2);
+    msg += " The stair down opens beside you.";
   }
   return msg;
 }
@@ -577,13 +626,9 @@ function resolve(s, c, ev) {
       return g ? `Wax. Candle +${g}.` : "Wax, but your candle is already full.";
     }
     case "blade": {
-      const v = c.v + (has(s, "whetstone") ? 1 : 0), old = s.blade, sheathed = s.sheath;
-      s.blade = v;
-      if (s.sheath >= 0 && old > 0) {
-        s.sheath = old;
-        return `You take the ${v} blade and sheathe your ${old}.` + (sheathed > 0 ? ` The ${sheathed} is left behind.` : "");
-      }
-      return old ? `You trade your ${old} blade for a ${v}.` : `You pick up a ${v} blade.`;
+      const v = c.v + (has(s, "whetstone") ? 1 : 0), old = s.blade;
+      s.blade += v;
+      return old ? `A blade. Blade ${old} → ${s.blade}.` : `You pick up a ${v} blade.`;
     }
     case "coin": {
       const g = c.v * (has(s, "magpie") ? 2 : 1);
@@ -591,11 +636,13 @@ function resolve(s, c, ev) {
       return `${g} coins.`;
     }
     case "trap": {
-      const dmg = trapDmg(s, c.v);
-      s.hp -= dmg;
-      ev.dmg += dmg;
+      const o = trapOutcome(s, c.v), had = s.blade;
+      s.hp -= o.dmg;
+      s.blade = o.blade;
+      ev.dmg += o.dmg;
       s.cause = "spikes";
-      return dmg ? `Spikes. Candle −${dmg}.` : "Spikes, but your gloves take it.";
+      if (o.blade < had) return `Spikes. Your mail takes ${had - o.blade}.` + (o.dmg ? ` Candle −${o.dmg}.` : "");
+      return o.dmg ? `Spikes. Candle −${o.dmg}.` : "Spikes, but your gloves take it.";
     }
     case "shrine":
       s.max += 1;
@@ -682,8 +729,9 @@ function act(s, i, rope) {
       s.shop = openShop(s);
     } else {
       // The line of cards behind you slides after you, and a new card lands at the far end.
+      // When a warden falls nothing slides: the stair lands right behind you instead.
       let vr = row(h), vc = col(h), br = vr - dr, bc = vc - dc;
-      while (cell(br, bc) >= 0) {
+      while (c.t !== "boss" && cell(br, bc) >= 0) {
         s.grid[vr * N + vc] = s.grid[br * N + bc];
         vr = br; vc = bc; br -= dr; bc -= dc;
       }
@@ -695,6 +743,7 @@ function act(s, i, rope) {
         if (s.deal.length) s.phase = "deal";
         else log += " It has nothing to offer you.";
       }
+      if (s.spoils && s.spoils.length) s.phase = "spoils";
     }
   }
   s.log = log.trim();
@@ -751,15 +800,20 @@ function useTool(s, k, i) {
   } else return null;
   s.tools.splice(slot, 1);
   ev.gold = s.coins - coins0;
+  if (s.spoils && s.spoils.length) s.phase = "spoils";
   s.log = log;
   return ev;
 }
 
-function swapBlades(s) {
-  if (s.sheath < 0 || s.phase !== "play") return false;
-  [s.blade, s.sheath] = [s.sheath, s.blade];
-  s.log = s.blade ? `You draw your ${s.blade} blade.` + (s.sheath ? ` The ${s.sheath} goes in the sheath.` : "") : "You sheathe your blade and go empty-handed.";
-  return true;
+// A fallen warden leaves two relics; you keep one.
+function takeSpoils(s, k) {
+  if (s.phase !== "spoils") return;
+  if (k && s.spoils.includes(k)) {
+    addRelic(s, k);
+    s.log = `You take the ${RELICS[k].name}. The stair down is beside you.`;
+  }
+  s.spoils = null;
+  s.phase = "play";
 }
 
 /* the trader on the landing */
@@ -770,9 +824,8 @@ function openShop(s) {
   const items = [
     { id: "relight", kind: "candle", name: "Relight", text: "Candle +5. Costs more each time.", price: p(10), again: true },
     { id: "taller", kind: "candle", name: "Taller Candle", text: "Max candle +2, lit. Costs more each time.", price: p(16), again: true },
-    { id: "whet", kind: "blade", name: "Whetting", text: "The blade in your hand +2. Costs more each time.", price: p(8), again: true },
+    { id: "whet", kind: "blade", name: "Whetting", text: "Blade +3. Costs more each time.", price: p(8), again: true },
   ];
-  if (s.sheath < 0) items.push({ id: "sheath", kind: "blade", name: "Sheath", text: "Carry a second blade. New blades go to your hand and the old one is sheathed. Swapping is free.", price: p(14) });
   for (const r of shuffled(relicsLeft(s)).slice(0, 3)) items.push({ id: "relic:" + r, kind: "relic", name: RELICS[r].name, text: RELICS[r].text, price: p(RELICS[r].price) });
   for (const t of shuffled(Object.keys(TOOLS)).slice(0, 3)) items.push({ id: "tool:" + t, kind: "tool", name: TOOLS[t].name, text: TOOLS[t].text, price: p(TOOLS[t].price) });
   return { items, sold: [] };
@@ -780,7 +833,6 @@ function openShop(s) {
 function whyNot(s, it) {
   if (s.shop.sold.includes(it.id)) return "Sold";
   if (it.id === "relight" && s.hp >= s.max) return "Full";
-  if (it.id === "whet" && s.blade <= 0) return "No blade";
   if (it.kind === "tool" && s.tools.length >= pocketSize(s)) return "Full";
   if (s.coins < it.price) return "poor";
   return "";
@@ -793,8 +845,7 @@ function buy(s, id) {
   else s.shop.sold.push(id);
   if (id === "relight") s.hp = Math.min(s.max, s.hp + 5);
   else if (id === "taller") { s.max += 2; s.hp += 2; }
-  else if (id === "whet") s.blade += 2;
-  else if (id === "sheath") s.sheath = 0;
+  else if (id === "whet") s.blade += 3;
   else if (it.kind === "relic") addRelic(s, id.slice(6));
   else if (it.kind === "tool") s.tools.push(id.slice(5));
   return true;
@@ -816,9 +867,9 @@ const DEALS = {
     take(s) { s.max -= 3; s.hp = Math.min(s.hp, s.max); const k = pickOne(relicsLeft(s)); addRelic(s, k); return `You bleed into the bowl. ${RELICS[k].name}: ${RELICS[k].text}`; },
   },
   edge: {
-    give: () => "4 candle, right now", get: (s) => `a ${6 + s.floor} blade in your hand`,
+    give: () => "4 candle, right now", get: (s) => `blade +${4 + s.floor}`,
     ok: (s) => s.hp > 4,
-    take(s) { s.hp -= 4; s.blade = 6 + s.floor; return `The altar drinks 4 candle. You hold a ${s.blade} blade.`; },
+    take(s) { s.hp -= 4; s.blade += 4 + s.floor; return `The altar drinks 4 candle. Blade ${s.blade}.`; },
   },
   gold: {
     give: () => "this floor's warden grows by 4", get: (s) => `${15 + 5 * s.floor} coins`,
@@ -826,11 +877,10 @@ const DEALS = {
     take(s) { const w = s.grid.find((c) => c && c.t === "boss") || s.warden; w.v += 4; gain(s, 15 + 5 * s.floor); return `Coins spill from the bowl. Somewhere, the ${w.name} grows to ${w.v}.`; },
   },
   hands: {
-    give: () => "every blade you carry", get: () => "2 random tools",
-    ok: (s) => (s.blade > 0 || s.sheath > 0) && s.tools.length < pocketSize(s),
+    give: () => "all of your blade", get: () => "2 random tools",
+    ok: (s) => s.blade >= 3 && s.tools.length < pocketSize(s),
     take(s) {
       s.blade = 0;
-      if (s.sheath > 0) s.sheath = 0;
       const got = [];
       for (let n = 0; n < 2 && s.tools.length < pocketSize(s); n++) { const k = pickOne(Object.keys(TOOLS)); s.tools.push(k); got.push(TOOLS[k].name); }
       return `You lay your blades down. In the bowl: ${got.join(" and ")}.`;
@@ -841,14 +891,14 @@ const DEALS = {
     ok: (s) => !s.debt && relicsLeft(s).length > 0,
     take(s) { s.debt = true; const k = pickOne(relicsLeft(s)); addRelic(s, k); return `A debt is written down. ${RELICS[k].name}: ${RELICS[k].text}`; },
   },
-  low: {
-    give: () => "your candle burns down to 1", get: () => "max candle +4",
-    ok: (s) => s.hp > 1,
-    take(s) { s.hp = 1; s.max += 4; return "Your flame gutters to almost nothing. The candle grows 4 taller."; },
+  wick: {
+    give: () => "3 candle, right now", get: () => "max candle +4, unlit",
+    ok: (s) => s.hp > 3,
+    take(s) { s.hp -= 3; s.max += 4; return "Your flame gutters. The candle grows 4 taller."; },
   },
 };
 function offerDeals(s) {
-  return shuffled(Object.keys(DEALS).filter((k) => DEALS[k].ok(s))).slice(0, 2);
+  return shuffled(Object.keys(DEALS).filter((k) => DEALS[k].ok(s))).slice(0, has(s, "lucky") ? 3 : 2);
 }
 function takeDeal(s, k) {
   if (s.phase !== "deal") return;
@@ -861,16 +911,17 @@ function takeDeal(s, k) {
 /* ---------- view ---------- */
 const $ = (id) => document.getElementById(id);
 const boardEl = $("board"), overlayEl = $("overlay"), sheetEl = $("sheet"), logEl = $("log");
-const KEY = "candle-crawl-v2";
+const KEY = "candle-crawl-v3", OLD_KEY = "candle-crawl-v2", RULES = 3;
 const ICON = { wax: "wax", blade: "blade", coin: "coin", trap: "trap", chest: "chest", shrine: "shrine", boss: "crown", altar: "altar", stair: "stair" };
-const iconOf = (c) => (c.t === "monster" ? c.icon : ICON[c.t]);
-const valueText = (c) => (c.t === "chest" ? "?" : c.t === "shrine" ? "+1" : c.t === "altar" || c.t === "stair" ? "" : String(c.v));
+const iconOf = (c) => (c.t === "monster" ? BEAST_ICON[c.name.replace("Dread ", "")] || "skull" : c.t === "boss" ? "warden" : ICON[c.t]);
+const GOOD = new Set(["wax", "blade", "coin", "shrine"]);
+const valueText = (c) => (c.t === "chest" ? "?" : c.t === "altar" || c.t === "stair" ? "" : GOOD.has(c.t) ? "+" + c.v : String(c.v));
 const use = (id, cls = "ico") => `<svg class="${cls}" viewBox="0 0 24 24" aria-hidden="true"><use href="#i-${id}"></use></svg>`;
 const cap = (t) => t.charAt(0).toUpperCase() + t.slice(1);
 const AIMED = { smoke: "Tap a card beside you to swap places with it.", holy: "Tap a monster beside you to halve it.", rope: "Tap any card touching you, corners too." };
 
 let s = null;
-const meta = { bestFloor: 0, runs: 0, seenIntro: false, dim: false };
+const meta = { bestFloor: 0, runs: 0, seenIntro: false, seenRules: 0, dim: false, big: false, contrast: null };
 let busy = false, sheetKind = "", heroEl = null, swipe = null, ignoreClickUntil = 0;
 let armed = null, hint = "", fresh = true;
 const nodes = new Map();
@@ -909,7 +960,9 @@ function cardNode(c) {
   el.type = "button";
   el.className = "card t-" + c.t + (c.elite ? " elite" : "");
   el.dataset.id = c.id;
-  el.innerHTML = `<span class="c-val"></span><span class="c-tag"></span>${use(iconOf(c), "ico c-art")}<span class="c-name"></span>`;
+  const rank = c.t === "boss" ? "Warden" : c.elite ? "Dread" : "";
+  el.innerHTML = (rank ? `<span class="c-rank" aria-hidden="true">${rank}</span>` : "") +
+    `<span class="c-val"></span><span class="c-tag"></span>${use(iconOf(c), "ico c-art")}<span class="c-name"></span>`;
   return el;
 }
 
@@ -918,7 +971,7 @@ function paintCard(el, c, i, tg) {
   const name = cardName(c), val = valueText(c), tag = el.querySelector(".c-tag");
   const dist = Math.abs(row(i) - row(s.hero)) + Math.abs(col(i) - col(s.hero));
   el.querySelector(".c-val").textContent = val;
-  el.querySelector(".c-name").textContent = name;
+  el.querySelector(".c-name").textContent = c.elite ? name.replace("Dread ", "") : name;
   let label = val ? `${name}, ${val}.` : `${name}.`, cls = "", text = "";
   if (mode === "step" || mode === "rope") {
     const cost = costOf(s, c);
@@ -993,7 +1046,7 @@ function render() {
   $("where").textContent = `Floor ${s.floor} · ${floorName(s.floor)}`;
   $("hp").innerHTML = `${s.hp}<small>/${s.max}</small>`;
   $("hp-bar").style.setProperty("--p", Math.min(1, s.hp / s.max));
-  $("blade").innerHTML = s.sheath >= 0 ? `${s.blade}<small> · ${s.sheath} sheathed</small>` : String(s.blade);
+  $("blade").textContent = s.blade;
   $("coins").textContent = s.coins;
 
   const warden = s.grid.find((c) => c && c.t === "boss");
@@ -1027,7 +1080,6 @@ function render() {
 
   let pocket = s.tools.map((k) => `<button class="tool${armed === k ? " armed" : ""}" type="button" data-tool="${k}" aria-pressed="${armed === k}">${use(TOOLS[k].icon)}<span>${TOOLS[k].name}</span></button>`).join("");
   for (let j = s.tools.length; j < pocketSize(s); j++) pocket += `<span class="tool empty">${s.tools.length === 0 && j === 0 ? "Tools go here" : ""}</span>`;
-  if (s.sheath >= 0) pocket += `<button class="tool swap" type="button" data-swap>${use("swap")}<span>${s.sheath ? `Draw the ${s.sheath}` : "Swap blades"}</span></button>`;
   $("pocket").innerHTML = pocket;
 
   logEl.textContent = hint || s.log;
@@ -1076,6 +1128,7 @@ function after(ev) {
     if (s.phase === "dead") showDeath(newBest);
     else if (s.phase === "shop") showShop();
     else if (s.phase === "deal") showDeal();
+    else if (s.phase === "spoils") showSpoils();
   }, ev.dead ? 900 : s.phase !== "play" ? 500 : 170);
 }
 
@@ -1143,14 +1196,15 @@ function showIntro(first) {
     <p>A quiet dungeon game. No sound and no timer, so you can stop mid-step. The run saves as you go. Your score is how deep you get.</p>
     <ul class="legend">
       <li class="t-hero">${use("flame")}<span><b>You.</b> Your candle is your life. Tap a lit card beside it, or swipe, to step onto it. The cards behind you slide after you, and a new one lands at the far edge.</span></li>
-      <li class="t-monster">${use("skull")}<span><b>Monsters</b> burn your candle by their number. Your blade takes the hit first and wears down by the same amount. Kills pay coins. Dread monsters are far stronger and drop a relic or a tool.</span></li>
-      <li class="t-blade">${use("blade")}<span><b>Blades</b> replace the one in your hand, bigger or not.</span></li>
+      <li class="t-monster">${use("ghoul")}<span><b>Monsters</b> burn your candle by their number. Your blade takes the hit first and wears down by the same amount. Kills pay coins.</span></li>
+      <li class="t-dread">${use("horns")}<span><b>Dread monsters</b> wear a gold frame. They are far stronger, and drop a relic or a tool.</span></li>
+      <li class="t-blade">${use("blade")}<span><b>Blades</b> add to your blade, like armor.</span></li>
       <li class="t-wax">${use("wax")}<span><b>Wax</b> relights your candle.</span></li>
       <li class="t-coin">${use("coin")}<span><b>Coins</b> buy things between floors.</span></li>
       <li class="t-trap">${use("trap")}<span><b>Spikes</b> always hurt. <b class="t-chest">Chests</b> hold coins, but some bite.</span></li>
       <li class="t-shrine">${use("shrine")}<span><b>Shrines</b> make your candle one taller.</span></li>
       <li class="t-altar">${use("altar")}<span><b>Altars</b> offer two trades. You can walk away.</span></li>
-      <li class="t-boss">${use("crown")}<span><b>Wardens</b> arrive after ${FLOOR_STEPS} steps. Kill one and a stair appears. Every 3 steps you stay after that, monsters and coins grow by 1.</span></li>
+      <li class="t-boss">${use("warden")}<span><b>Wardens</b> arrive after ${FLOOR_STEPS} steps. Kill one to choose a free relic, and the stair down opens beside you. Every 3 steps you stay after that, monsters and coins grow by 1.</span></li>
       <li class="t-stair">${use("stair")}<span><b>The stair</b> leads to a trader who sells candle, blade work, relics and tools, then to a fresh floor.</span></li>
       <li class="t-tool">${use("smoke")}<span><b>Tools</b> wait in your pocket. Using one never costs a step. Tap once to pick it up, again to use or put it away.</span></li>
     </ul>
@@ -1185,6 +1239,25 @@ function showDeal() {
     <button class="ghost" type="button" data-act="deal:">Walk away</button>`);
 }
 
+function showSpoils() {
+  openSheet("spoils", `
+    <h2 id="sheet-title">The ${s.warden.name} falls</h2>
+    <p>It was guarding two things. Take one with you. The stair down is right beside you.</p>
+    <div class="choices">${s.spoils.map((k) => `<button class="choice relic" type="button" data-act="spoils:${k}"><b>${RELICS[k].name}</b><span>${RELICS[k].text}</span></button>`).join("")}</div>`);
+}
+
+function showSettings() {
+  const sw = (key, name, text) => `<button class="switch" type="button" role="switch" aria-checked="${!!meta[key]}" data-act="set:${key}"><span><b>${name}</b><span>${text}</span></span><i aria-hidden="true"></i></button>`;
+  openSheet("settings", `
+    <h2 id="sheet-title">Settings</h2>
+    <div class="switches">
+      ${sw("big", "Larger text", "Bigger numbers and plain lettering on the cards, and larger text everywhere.")}
+      ${sw("contrast", "Stronger contrast", "Brighter text and edges. Cards out of reach stay easy to read.")}
+      ${sw("dim", "Dim the screen", "A dark veil over everything, for a dark room.")}
+    </div>
+    <button class="primary" type="button" data-act="close">Done</button>`);
+}
+
 function showDeath(newBest) {
   const tally = [["Floor", s.floor], ["Steps", s.steps], ["Kills", s.kills], ["Coins", s.earned]]
     .map(([k, v]) => `<div><span>${k}</span><b>${v}</b></div>`).join("");
@@ -1209,10 +1282,11 @@ sheetEl.addEventListener("click", (e) => {
   const act_ = b.dataset.act, cut = act_.indexOf(":");
   const a = cut < 0 ? act_ : act_.slice(0, cut), arg = cut < 0 ? "" : act_.slice(cut + 1);
   if (a === "close") {
-    if (sheetKind === "intro") { meta.seenIntro = true; store(); }
+    if (sheetKind === "intro") { meta.seenIntro = true; meta.seenRules = RULES; store(); }
     closeSheet();
     if (s.phase === "shop") showShop();
     else if (s.phase === "deal") showDeal();
+    else if (s.phase === "spoils") showSpoils();
   } else if (a === "buy") {
     if (buy(s, arg)) { render(); store(); showShop(); }
   } else if (a === "descend") {
@@ -1225,6 +1299,16 @@ sheetEl.addEventListener("click", (e) => {
     takeDeal(s, arg);
     closeSheet();
     render();
+    store();
+  } else if (a === "spoils") {
+    takeSpoils(s, arg);
+    closeSheet();
+    render();
+    store();
+  } else if (a === "set") {
+    meta[arg] = !meta[arg];
+    b.setAttribute("aria-checked", String(meta[arg]));
+    applySettings();
     store();
   } else if (a === "again") newGame();
   else if (a === "abandon") { finishRun(); newGame(); }
@@ -1262,8 +1346,7 @@ document.addEventListener("keydown", (e) => {
 });
 $("pocket").addEventListener("click", (e) => {
   const t = e.target.closest("[data-tool]");
-  if (t) return pressTool(t.dataset.tool);
-  if (e.target.closest("[data-swap]") && !busy && swapBlades(s)) { armed = null; hint = ""; render(); store(); }
+  if (t) pressTool(t.dataset.tool);
 });
 $("relics").addEventListener("click", (e) => {
   const b = e.target.closest("[data-relic]");
@@ -1274,16 +1357,35 @@ $("relics").addEventListener("click", (e) => {
 });
 $("btn-help").addEventListener("click", () => showIntro(false));
 $("btn-new").addEventListener("click", () => (s.steps === 0 && s.floor === 1 ? newGame() : showConfirmNew()));
-$("btn-dim").addEventListener("click", () => { meta.dim = !meta.dim; applyDim(); store(); });
-function applyDim() {
+$("btn-settings").addEventListener("click", showSettings);
+function applySettings() {
+  const root = document.documentElement;
+  root.classList.toggle("big", !!meta.big);
+  root.classList.toggle("contrast", !!meta.contrast);
   $("dimmer").hidden = !meta.dim;
-  $("btn-dim").setAttribute("aria-pressed", String(meta.dim));
 }
 
 /* boot */
+// Runs saved before blades stacked: fold any sheathed blade in, and drop what no longer exists.
+function upgrade(saved) {
+  const r = saved.s;
+  if (r && r.grid) {
+    if (r.sheath > 0) r.blade += r.sheath;
+    delete r.sheath;
+    if (r.shop) r.shop.items = r.shop.items.filter((x) => x.id !== "sheath");
+    if (r.deal) r.deal = r.deal.map((k) => (k === "low" ? "wick" : k)).filter((k) => DEALS[k]);
+    if (r.phase === "deal" && !(r.deal && r.deal.length)) r.phase = "play";
+    if (!r.spoils) r.spoils = null;
+  }
+  return saved;
+}
+
 function start(data) {
-  const saved = data && data.s ? data : restore();
+  let saved = data && data.s ? data : restore();
+  if (!saved) { try { saved = JSON.parse(localStorage.getItem(OLD_KEY) || "null"); } catch (e) { saved = null; } }
+  if (saved) upgrade(saved);
   if (saved && saved.meta) Object.assign(meta, saved.meta);
+  if (meta.contrast === null || meta.contrast === undefined) meta.contrast = matchMedia("(prefers-contrast: more)").matches;
   s = saved && saved.s && saved.s.grid && saved.s.phase !== "dead" ? saved.s : newRun();
   heroEl = document.createElement("div");
   heroEl.className = "card hero t-hero";
@@ -1291,10 +1393,11 @@ function start(data) {
   heroEl.innerHTML = `<span class="c-val"></span><span class="c-tag"></span><span class="candle"><span class="flame"></span><span class="stick"></span></span><span class="c-name">You</span>`;
   boardEl.appendChild(heroEl);
   render();
-  applyDim();
-  if (!meta.seenIntro) showIntro(true);
+  applySettings();
+  if (meta.seenRules !== RULES) showIntro(!meta.seenIntro);
   else if (s.phase === "shop") showShop();
   else if (s.phase === "deal") showDeal();
+  else if (s.phase === "spoils") showSpoils();
 }
 try { window.claude?.hot?.snapshot?.(() => ({ s, meta })); } catch (e) { /* not in a viewer */ }
 if (window.claude?.hot?.ready) window.claude.hot.ready((data) => start(data || {}));
