@@ -6,8 +6,9 @@ style roguelite layer on top. Runs of 10 to 20 minutes, unlocks between runs, on
 The plan: interview, long list, thumb filter, the 30-second test, a shortlist of 3 to 5, then bare
 prototypes of 3.
 
-**Where we are:** long list and thumb filter done. The 30-second test is a first draft. The
-shortlist waits on your reactions to the list.
+**Where we are:** the shortlist is done, built from your ballot answers. Three bare prototypes
+are up to play: Harpoon (Pang), Flak (Missile Command) and Cluster (Puzzle Bobble). Next, you play
+them and we pick one.
 
 ## What you told me
 
@@ -209,21 +210,151 @@ no upgrades, and does something multiply on screen for upgrades to stack on?
 - Gradius's power bar: you choose what to buy, mid-level.
 - Time Crisis's pedal: lift to take cover.
 
-## Early read
+## What the ballot said
 
-Front-runners: Pang, Missile Command, Galaga, Puzzle Bobble, Scorched Earth. Wildcards: JezzBall,
-Rampart. Pang and Missile Command look like two of the three prototypes either way. The third
-depends on where you play: a real-time shooter (Galaga) if you can give it your full attention,
-something paced by your own shots (Puzzle Bobble, Scorched Earth) if you get interrupted.
+From the [ballot page](https://claude.ai/artifact/MUhFfyNX5wr587ANQDjJrY), filled in on October 25.
+
+**Your three Consider picks:** Space Invaders, Missile Command, Pang.
+
+**Loved, and they port:** Pang and Super Pang, Puzzle Bobble, JezzBall, Point Blank, Marble Madness,
+Arkanoid (taken by Ball x Pit).
+
+**Loved, and they don't port:** Contra, Mega Man 2, Sonic, Streets of Rage 2, Duke Nukem, Star Fox,
+1942, Gradius, Smash TV, Rampage, Poy Poy. You agreed with all six pushbacks, and your note on the
+first one sharpened it: Life Force and its kind are about precise movement and holding a button,
+and neither translates to a thumb. So the love for precise action games is real, and it stays out
+of this game.
+
+**Meh:** Pac-Man, Centipede, Qix, Tempest, Defender, Dig Dug, Joust, Robotron (though Smash TV is a
+love), Q\*bert, Tapper, Gauntlet, Rampart, Columns, Duck Hunt, Puyo Puyo, Yoshi's Cookie. Rampart and
+Centipede drop off the shortlist here.
+
+**Notes:** Space Invaders' crumbling barriers never felt fun. Operation Wolf was mostly the cabinet
+and the gun.
+
+**How and where you play:** left thumb, Pixel 6. In a dark room with a kid asleep, commuting, waiting
+around. Interrupted sometimes. Sound sometimes on. A run surviving being closed halfway is nice to
+have, not required.
+
+**The look:** 16-bit pixels, early-PC colors, near Candle Crawl's mood.
+
+What that changes:
+
+- **Left thumb on a 6.4-inch screen.** The top-right corner is the hard reach. Any game that asks
+  you to touch anywhere on the screen (Missile Command, JezzBall) needs a mode where the thumb
+  stays low: relative drag, like a trackpad.
+- **Interrupted sometimes.** Every prototype freezes the moment the tab hides. A game paced by your
+  own shots (Puzzle Bobble) handles interruption best of all.
+- **Pixel 6 means Chrome on Android,** which supports vibration when the game is opened from the
+  site. Inside the Claude app's viewer it may be blocked.
+- **Silly is a thread.** Paperboy, Point Blank, Rampage, Punch-Out, Poy Poy. Whatever wins should
+  carry some gags and surprise animations.
 
 ## Shortlist
 
-Pending your reactions to the list.
+### 1. Pang
 
-## Open questions
+- **A run:** climb a tower of about 12 rooms, each a Pang stage of a minute or so, with a boss every
+  fourth room. Between rooms, pick one of three upgrades. No shop to manage, no town.
+- **Upgrades:** Double Wire (two harpoons at once). Power Wire (the harpoon sticks to the ceiling
+  for two seconds as a wall). Dynamite: a charge you trigger when you choose, which drops every
+  ball a size and fills the room with small, fast ones. Help that turns into an uh-oh, on purpose.
+- **A combination:** Power Wire plus Double Wire becomes a Gate. With two wires stuck to the
+  ceiling, a crackling line joins their tips and splits anything that crosses it.
+- **Between runs:** new climbers with different harpoons (a vulcan gunner, which tempts you toward
+  Life Force and makes you pay for it), new towers with rules (ice floors, wind), difficulty tiers
+  like Candle Crawl's.
+- **Biggest risk:** portrait squeezes a landscape game. A big ball eats a sixth of the width, and
+  the screen full of splits can turn unreadable at phone size.
 
-- Your reactions to the list, by number: loved, liked, never played, no.
-- When and where you'll play, and whether a run should survive being closed halfway.
-- Which thumb, which phone.
-- The look: vector, NES pixels, Game Boy green, early-PC colors, arcade neon. Near Candle
-  Crawl's candlelit mood or its own thing.
+### 2. Missile Command
+
+- **A run:** defend a city through about ten nights, a minute or two each. Your six cities are your
+  health for the whole run, and a lost city stays lost. Between nights, rebuild a city or take an
+  upgrade. The last night is a barrage.
+- **Upgrades:** Lingering Blast (the explosion hangs as a burning cloud). Chain Fuse (destroyed
+  warheads explode with their own blast). Overcharge: blasts twice as big, but they can now hit
+  your own cities. The dynamite template again.
+- **A combination:** Lingering Blast plus Chain Fuse becomes a Firestorm. The cloud ignites
+  whatever enters it, each ignition leaves another cloud, and the fire spreads across the sky,
+  including downward toward your cities.
+- **Between runs:** new batteries (a railgun that fires a line, a flak cannon that fires a cone),
+  new city types (one that makes ammo, one that's a decoy), new kinds of threats.
+- **Biggest risk:** your thumb. Reaching the top-right of a Pixel 6 with your left thumb, and
+  covering the warhead you're aiming at. The trackball mode in the prototype is the fix to test.
+
+### 3. Puzzle Bobble
+
+- **A run:** a descent through about 15 boards of under a minute each. The ceiling drops every few
+  shots, not on a clock, so it waits for you. Between boards, add a special bubble to the bag your
+  launcher draws from.
+- **Upgrades:** Bomb Bubble (pops everything around it). Ricochet (a shot bounces off one bubble
+  before it sticks). Heavy Shot: punches straight through a column, but the ceiling drops a row.
+- **A combination:** Ricochet plus Bomb becomes a Pinball Bomb that bounces around the back rows,
+  going off on everything it touches. That's the Ball x Pit moment of a shot tearing through the
+  back line.
+- **Between runs:** new launchers (a twin that fires two in a V, a lob that arcs), new bubble
+  types, board themes with rules (ice, chains, monsters inside bubbles that escape if you don't drop
+  them, a nod to Bubble Bobble).
+- **Biggest risk:** phones are full of free-to-play bubble shooters, and this could feel like one.
+  The screen also never fills with chaos the way Pang's does. The payoff is in the drops.
+
+### 4. Invaders (Space Invaders and Galaxian)
+
+- **A run:** waves of formations that march and dive, with traits per wave and a boss formation
+  every few. Upgrades between waves.
+- **Upgrades:** Piercing Shot. Twin Cannon. Capture, from Galaga: let a diver take your cannon, then
+  shoot it free to fight as two.
+- **A combination:** Piercing plus Twin Cannon becomes Crossfire: shots from the two cannons angle
+  inward and cross, and wherever they meet they detonate.
+- **Between runs:** cannons, formation sets. Barriers you build yourself, instead of the crumbling
+  ones you didn't like.
+- **Biggest risk:** it's the closest thing on this list to Ball x Pit itself, which already borrowed
+  the creeping rows. Pushed by upgrades, it also drifts toward a shoot-'em-up.
+
+### 5. JezzBall
+
+- **A run:** a series of boxes, one more ball each time, claim 75% to clear. Upgrades between boxes.
+- **Upgrades:** Fast Walls. Armored Wall (survives one hit while growing). Splitter Wall: balls
+  that hit a finished wall split in two, so you get more balls but bigger bonuses for trapping
+  them small.
+- **A combination:** Splitter Wall plus Armored Wall becomes a Mincer: you build walls straight
+  through crowds on purpose.
+- **Between runs:** wall types, ball types, box shapes.
+- **Biggest risk:** placing walls means touching anywhere on the screen, which is the left-thumb
+  reach problem at its worst. Less happens on screen than in the others.
+
+## Recommendation: prototype Pang, Missile Command, Puzzle Bobble
+
+Pang and Missile Command are your picks and my front-runners. They test two different ways of
+playing with a thumb: drag-and-lift, and tap or trackball.
+
+The third slot goes to Puzzle Bobble over Space Invaders, against your Consider pick, for two
+reasons. Invaders plays the same way as Pang: a cannon on the bottom row moving on one axis and
+firing up. Pang's prototype already answers whether that feels good under your thumb, so an Invaders
+prototype would mostly test the same thing twice. Puzzle Bobble tests the third way, aim and
+release, which needs no reach at all. It's also the one that best survives interruptions, and you
+loved it. If Pang's controls win, Invaders is a fast follow.
+
+JezzBall stays on the shortlist as the wildcard. Its reach problem is the biggest of the five.
+
+## The prototypes
+
+Bare cores, no upgrades. Each has two or three control schemes behind the button at the top, because
+the scheme is the main thing to test. Each pauses when you switch away, and has sound off until you
+turn it on.
+
+- **[Harpoon](https://claude.ai/artifact/HoH9FQa8zym6tQDXF9x9JT)** (Pang). Controls: Drag (drag anywhere to move, lift to fire), Tap (tap a spot, you
+  run there and fire), Auto (drag to move, it fires itself). Auto is the Galaga versus Life Force
+  question in miniature.
+- **[Flak](https://claude.ai/artifact/EXWbeZSHcxFAGoH9atbDCM)** (Missile Command). Controls: Tap (fire where you tap), Offset (touch and slide, it fires
+  just above your thumb), Trackball (drag anywhere to move a crosshair, lift to fire).
+- **[Cluster](https://claude.ai/artifact/9D8cgoC9J8xp3kp2gW8RVo)** (Puzzle Bobble). Controls: Sling (pull back anywhere, let go to fire), Point (touch
+  where to aim), Nudge (slide to turn the launcher, tap to fire).
+
+What to notice while you play: which control scheme you stop thinking about, whether the first 30
+seconds pull you into a second run, and where your thumb gets in the way.
+
+The links are private claude.ai pages. Source copies live in `docs/retro-roguelite/prototypes/`, in the
+artifact format: page content without a doctype or head. The one we pick becomes a real experiment
+at `public/experiments/<name>/`, like Candle Crawl.

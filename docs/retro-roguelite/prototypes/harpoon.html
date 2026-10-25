@@ -1,0 +1,538 @@
+<title>Harpoon Prototype</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="robots" content="noindex, nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Pixelify+Sans:wght@400;600;700&display=swap">
+<style>
+/* Layout: one-thumb portrait game. A thin HUD on top, the arena under it, and a thumb band along the bottom of the canvas. Dark only, like Candle Crawl. */
+:root {
+  --soot: #0f0c0b;
+  --stone: #1b1612;
+  --edge: #3a3029;
+  --bone: #e3d3b4;
+  --ash: #9a8a72;
+  --flame: #eda14b;
+  --font-pixel: "Pixelify Sans", "Courier New", monospace;
+  color-scheme: dark;
+}
+html, body { height: 100%; }
+body {
+  margin: 0; background: var(--soot); color: var(--bone);
+  font: 16px/1.35 var(--font-pixel); overflow: hidden;
+  -webkit-tap-highlight-color: transparent; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none;
+  font-variant-ligatures: none;
+}
+[hidden] { display: none !important; }
+.app {
+  box-sizing: border-box; height: 100%; max-width: 520px; margin: 0 auto;
+  display: flex; flex-direction: column; gap: 6px; padding-block: 8px;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.hud { flex: none; display: flex; align-items: center; gap: 12px; }
+.stat { display: grid; gap: 2px; line-height: 1; }
+.stat span { font-size: 10px; letter-spacing: .08em; text-transform: uppercase; color: var(--ash); }
+.stat b { font-size: 19px; font-weight: 600; font-variant-numeric: tabular-nums; }
+.spacer { flex: 1; }
+.hud button {
+  appearance: none; min-width: 44px; min-height: 44px; padding: 0 10px; border-radius: 6px;
+  border: 1px solid var(--edge); background: var(--stone); color: var(--bone);
+  font: 600 13px/1 var(--font-pixel); cursor: pointer;
+}
+.hud button[aria-pressed="false"] { color: var(--ash); text-decoration: line-through; }
+.hud button:focus-visible { outline: 2px solid var(--flame); outline-offset: 2px; }
+.stage { position: relative; flex: 1; min-height: 0; touch-action: none; border-radius: 4px; overflow: hidden; background: #000; }
+canvas { position: absolute; inset: 0; width: 100%; height: 100%; image-rendering: pixelated; touch-action: none; }
+.hint {
+  position: absolute; left: 0; right: 0; bottom: 0; display: grid; place-items: center;
+  padding: 0 12px; text-align: center; color: var(--ash); font-size: 13px; letter-spacing: .03em; pointer-events: none;
+}
+.toast {
+  position: absolute; left: 0; right: 0; top: 38%; text-align: center; pointer-events: none;
+  font: 700 24px/1 var(--font-pixel); color: var(--flame); text-shadow: 0 2px 0 #000;
+}
+.overlay {
+  position: absolute; inset: 0; display: grid; place-items: center; padding: 24px;
+  text-align: center; background: rgba(15, 12, 11, .84); cursor: pointer;
+}
+.card { display: grid; gap: 12px; max-width: 30ch; }
+.card h1 { margin: 0; font: 700 36px/1 var(--font-pixel); color: var(--flame); }
+.card p { margin: 0; }
+.card .sub { font-size: 12px; letter-spacing: .08em; text-transform: uppercase; color: var(--ash); }
+.card .go { margin-top: 6px; font-size: 18px; font-weight: 600; }
+</style>
+
+<div class="app">
+  <div class="hud">
+    <div class="stat"><span>Stage</span><b id="h-stage">1</b></div>
+    <div class="stat"><span>Score</span><b id="h-score">0</b></div>
+    <div class="stat"><span>Lives</span><b id="h-lives">3</b></div>
+    <div class="spacer"></div>
+    <button id="b-controls" type="button" aria-label="Change controls">Drag</button>
+    <button id="b-sound" type="button" aria-pressed="false">Sound</button>
+    <button id="b-pause" type="button" aria-label="Pause">II</button>
+  </div>
+  <div class="stage" id="stage">
+    <canvas id="cv" width="180" height="300"></canvas>
+    <div class="hint" id="hint"></div>
+    <div class="toast" id="toast" aria-live="polite"></div>
+    <div class="overlay" id="ov" role="button" tabindex="0">
+      <div class="card"><p class="sub" id="ov-s"></p><h1 id="ov-t"></h1><div class="card" id="ov-b"></div><p class="go" id="ov-go"></p></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const KEY = "harpoon-proto:";
+  const $ = (s) => document.querySelector(s);
+  const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(KEY + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } },
+    set(k, v) { try { localStorage.setItem(KEY + k, JSON.stringify(v)); } catch (e) { /* storage blocked */ } },
+  };
+
+  // ---------- sound, vibration, screen ----------
+  let soundOn = store.get("sound", false), actx = null;
+  function ensureAudio() {
+    if (!soundOn) return;
+    try {
+      actx = actx || new (window.AudioContext || window.webkitAudioContext)();
+      if (actx.state === "suspended") actx.resume();
+    } catch (e) { actx = null; }
+  }
+  function beep(f, d, type, vol, f2) {
+    if (!soundOn || !actx) return;
+    try {
+      const t = actx.currentTime, o = actx.createOscillator(), g = actx.createGain();
+      o.type = type || "square";
+      o.frequency.setValueAtTime(f, t);
+      if (f2) o.frequency.exponentialRampToValueAtTime(f2, t + d);
+      g.gain.setValueAtTime(vol || 0.04, t);
+      g.gain.exponentialRampToValueAtTime(0.0001, t + d);
+      o.connect(g); g.connect(actx.destination);
+      o.start(t); o.stop(t + d + 0.02);
+    } catch (e) { /* no audio */ }
+  }
+  function buzz(p) { try { if (navigator.vibrate) navigator.vibrate(p); } catch (e) { /* not allowed here */ } }
+  let wake = null;
+  async function keepAwake() {
+    try {
+      if (navigator.wakeLock && !wake) {
+        wake = await navigator.wakeLock.request("screen");
+        wake.addEventListener("release", () => { wake = null; });
+      }
+    } catch (e) { wake = null; }
+  }
+
+  // ---------- palette ----------
+  const C = {
+    edge: "#3a3029", ledge: "#5a4636", bone: "#e3d3b4", wire: "#cfc2a6", flame: "#eda14b",
+    gold: "#d8b25a", ember: "#d6654d", steel: "#8fb3c4", hot: "#fff1c4",
+  };
+  const LINEAGE = ["#d6654d", "#7fb0c8", "#98ad78", "#b884c0"];
+  const BAYER = [0, 8, 2, 10, 12, 4, 14, 6, 3, 11, 1, 9, 15, 7, 13, 5];
+  const rgb = (h) => { const n = parseInt(h.slice(1), 16); return [n >> 16 & 255, n >> 8 & 255, n & 255]; };
+
+  // ---------- canvas and layout ----------
+  const stage = $("#stage"), cv = $("#cv"), ctx = cv.getContext("2d"), hint = $("#hint"), toast = $("#toast");
+  const IW = 180;
+  let IH = 300, TOP = 10, LEFT = 4, RIGHT = IW - 4, BAND = 50, FLOOR = 250, AH = 240, GRAV = 240, WIRE_SPEED = 200;
+  const bg = document.createElement("canvas");
+
+  // ---------- balls ----------
+  // apex: bounce height as a share of the arena. Bigger balls bounce higher, as in Pang.
+  const SIZES = [
+    { r: 14, apex: 0.66, pts: 50 },
+    { r: 9, apex: 0.5, pts: 100 },
+    { r: 6, apex: 0.36, pts: 150 },
+    { r: 3, apex: 0.24, pts: 200 },
+  ];
+  const sprites = new Map();
+  function ballSprite(s, color) {
+    const key = s + color;
+    if (sprites.has(key)) return sprites.get(key);
+    const r = SIZES[s].r, n = r * 2 + 1, c = document.createElement("canvas");
+    c.width = n; c.height = n;
+    const g = c.getContext("2d"), [R, G, B] = rgb(color);
+    for (let y = 0; y < n; y++) for (let x = 0; x < n; x++) {
+      const dx = x - r, dy = y - r, dd = dx * dx + dy * dy;
+      if (dd > r * r + r * 0.6) continue;
+      let f = 1;
+      if (dx + dy > r * 0.6) f = 0.66;
+      const hx = dx + r * 0.42, hy = dy + r * 0.42;
+      if (hx * hx + hy * hy <= Math.max(0.6, (r * 0.26) ** 2)) f = 1.5;
+      if (dd > (r - 1) * (r - 1) + r * 0.6) f = Math.min(f, 0.42);
+      g.fillStyle = `rgb(${Math.min(255, R * f) | 0},${Math.min(255, G * f) | 0},${Math.min(255, B * f) | 0})`;
+      g.fillRect(x, y, 1, 1);
+    }
+    sprites.set(key, c);
+    return c;
+  }
+
+  // ---------- state ----------
+  const SCHEMES = {
+    drag: { label: "Drag", hint: "Drag anywhere to move · lift to fire" },
+    tap: { label: "Tap", hint: "Tap a spot · you run there and fire" },
+    auto: { label: "Auto", hint: "Drag anywhere to move · it fires by itself" },
+  };
+  const ORDER = ["drag", "tap", "auto"];
+  let scheme = store.get("scheme", "drag");
+  if (!SCHEMES[scheme]) scheme = "drag";
+
+  let state = "title"; // title | play | paused | dead | over | clear
+  let balls = [], wire = null, parts = [];
+  let stageN = 1, score = 0, lives = 3, best = store.get("best", 0);
+  let readyT = 0, clearT = 0, shake = 0, pendingFire = false, vx = 30;
+  const player = { x: IW / 2, tx: IW / 2, face: 1, walk: 0 };
+  let ptr = null;
+
+  function resize() {
+    const r = stage.getBoundingClientRect();
+    if (!r.width || !r.height) return;
+    IH = clamp(Math.round(IW * r.height / r.width), 220, 480);
+    cv.width = IW; cv.height = IH;
+    ctx.imageSmoothingEnabled = false;
+    BAND = Math.round(IH * 0.17);
+    FLOOR = IH - BAND;
+    AH = FLOOR - TOP;
+    GRAV = 240 * AH / 230;
+    WIRE_SPEED = AH / 1.15;
+    hint.style.height = (BAND / IH * 100) + "%";
+    player.x = clamp(player.x, minX(), maxX());
+    player.tx = clamp(player.tx, minX(), maxX());
+    for (const b of balls) b.y = Math.min(b.y, FLOOR - SIZES[b.s].r);
+    paintBackground();
+  }
+  const minX = () => LEFT + 5, maxX = () => RIGHT - 5;
+  const lightY = () => TOP + AH * 0.35;
+
+  function paintBackground() {
+    bg.width = IW; bg.height = IH;
+    const b = bg.getContext("2d"), img = b.createImageData(IW, IH), d = img.data;
+    const brick = rgb("#1d1714"), mortar = rgb("#0c0908"), glow = rgb("#3a2414"), bandA = rgb("#16120f"), bandB = rgb("#231c17");
+    const lights = [[LEFT + 2, lightY()], [RIGHT - 2, lightY()]];
+    for (let y = 0; y < IH; y++) for (let x = 0; x < IW; x++) {
+      let c;
+      if (y >= FLOOR) c = ((x + y) % 4 === 0) ? bandB : bandA;
+      else {
+        const row = Math.floor((y - TOP) / 6), off = (row & 1) * 6;
+        const isMortar = ((y - TOP) % 6 === 0) || ((x + off) % 12 === 0);
+        c = isMortar ? mortar : brick;
+        let L = 0;
+        for (const [lx, ly] of lights) L = Math.max(L, 1 - Math.hypot(x - lx, (y - ly) * 1.1) / 100);
+        const th = (BAYER[(y & 3) * 4 + (x & 3)] + 0.5) / 16;
+        if (L * 0.95 > th) c = isMortar ? brick : glow;
+      }
+      const i = (y * IW + x) * 4;
+      d[i] = c[0]; d[i + 1] = c[1]; d[i + 2] = c[2]; d[i + 3] = 255;
+    }
+    b.putImageData(img, 0, 0);
+    b.fillStyle = C.edge;
+    b.fillRect(0, 0, IW, TOP);
+    b.fillRect(0, 0, LEFT, FLOOR);
+    b.fillRect(RIGHT, 0, IW - RIGHT, FLOOR);
+    b.fillStyle = C.ledge;
+    b.fillRect(0, FLOOR, IW, 2);
+    b.fillRect(0, TOP - 1, IW, 1);
+  }
+
+  // ---------- stages ----------
+  function spawnStage(n) {
+    balls = []; wire = null; parts = []; pendingFire = false;
+    vx = 30 * (1 + 0.05 * (n - 1));
+    const list = [];
+    for (let k = 0; k < 1 + Math.floor((n - 1) / 2); k++) list.push(0);
+    if (n % 2 === 0) list.push(1);
+    list.forEach((s, i) => {
+      const side = i % 2 === 0 ? -1 : 1, slot = Math.min(2, Math.floor(i / 2));
+      const frac = 0.18 + 0.12 * slot;
+      const x = side < 0 ? LEFT + (RIGHT - LEFT) * frac : RIGHT - (RIGHT - LEFT) * frac;
+      balls.push({ x, y: TOP + AH * 0.28, vx: -side * vx, vy: 0, s, c: LINEAGE[(i + n - 1) % LINEAGE.length] });
+    });
+    player.x = player.tx = (LEFT + RIGHT) / 2;
+    readyT = 1.1;
+  }
+  const bounceV = (s) => Math.sqrt(2 * GRAV * Math.max(4, SIZES[s].apex * AH - SIZES[s].r));
+
+  function fire() {
+    if (wire || state !== "play") return false;
+    wire = { x: Math.round(player.x), tip: FLOOR - 14 };
+    beep(900, 0.07, "square", 0.025, 1500);
+    return true;
+  }
+
+  function split(i) {
+    const b = balls[i];
+    balls.splice(i, 1);
+    score += SIZES[b.s].pts;
+    burst(b.x, b.y, b.c, 6 + (3 - b.s) * 3);
+    beep(520 + b.s * 170, 0.09, "square", 0.04, 260 + b.s * 90);
+    buzz(12);
+    if (b.s < 3) {
+      const ns = b.s + 1, nr = SIZES[ns].r, pop = -Math.sqrt(2 * GRAV * AH * 0.12);
+      for (const d of [-1, 1]) {
+        balls.push({ x: clamp(b.x + d * 3, LEFT + nr, RIGHT - nr), y: b.y, vx: d * vx, vy: pop, s: ns, c: b.c });
+      }
+    }
+    hud();
+  }
+
+  function hitsPlayer(b) {
+    const r = SIZES[b.s].r - 1;
+    const cx = clamp(b.x, player.x - 3.5, player.x + 3.5), cy = clamp(b.y, FLOOR - 13, FLOOR);
+    const dx = b.x - cx, dy = b.y - cy;
+    return dx * dx + dy * dy < r * r;
+  }
+
+  function burst(x, y, c, n) {
+    for (let i = 0; i < n; i++) {
+      const a = rand(0, Math.PI * 2), sp = rand(30, 95);
+      parts.push({ x, y, vx: Math.cos(a) * sp, vy: Math.sin(a) * sp - 30, life: rand(0.25, 0.55), c, sz: Math.random() < 0.3 ? 2 : 1 });
+    }
+  }
+
+  function die() {
+    lives--;
+    shake = 0.35; wire = null; ptr = null; pendingFire = false;
+    buzz([40, 30, 90]);
+    beep(180, 0.35, "sawtooth", 0.05, 60);
+    burst(player.x, FLOOR - 8, C.bone, 16);
+    if (lives <= 0) {
+      state = "over";
+      if (score > best) { best = score; store.set("best", best); }
+      overlay("Game over", "Harpoon", [`You reached stage ${stageN} with ${score} points.`, `Best: ${best}.`], "Tap to play again");
+    } else {
+      state = "dead";
+      overlay("Hit", "Harpoon", [`${lives} ${lives === 1 ? "life" : "lives"} left.`], `Tap to retry stage ${stageN}`);
+    }
+    hud();
+  }
+
+  function stageClear() {
+    state = "clear"; clearT = 1.4; wire = null; ptr = null;
+    score += 500;
+    beep(660, 0.12, "square", 0.04, 990);
+    setTimeout(() => beep(990, 0.18, "square", 0.04, 1320), 130);
+    hud();
+  }
+
+  // ---------- update ----------
+  function tickParts(dt) {
+    for (const p of parts) { p.life -= dt; p.vy += 200 * dt; p.x += p.vx * dt; p.y += p.vy * dt; }
+    parts = parts.filter((p) => p.life > 0);
+    if (shake > 0) shake = Math.max(0, shake - dt);
+  }
+
+  function update(dt) {
+    const speed = scheme === "tap" ? 120 : 150;
+    const dx = player.tx - player.x;
+    if (Math.abs(dx) > 0.3) {
+      player.x += Math.sign(dx) * Math.min(Math.abs(dx), speed * dt);
+      player.face = Math.sign(dx);
+      player.walk += dt;
+    } else player.walk = 0;
+    if (pendingFire && Math.abs(player.tx - player.x) < 0.5 && !wire) { fire(); pendingFire = false; }
+    if (scheme === "auto" && !wire) fire();
+
+    if (wire) { wire.tip -= WIRE_SPEED * dt; if (wire.tip <= TOP) wire = null; }
+
+    if (readyT > 0) readyT -= dt;
+    else for (const b of balls) {
+      const r = SIZES[b.s].r;
+      b.vy += GRAV * dt; b.x += b.vx * dt; b.y += b.vy * dt;
+      if (b.x - r < LEFT) { b.x = LEFT + r; b.vx = Math.abs(b.vx); }
+      if (b.x + r > RIGHT) { b.x = RIGHT - r; b.vx = -Math.abs(b.vx); }
+      if (b.y + r > FLOOR) { b.y = FLOOR - r; b.vy = -bounceV(b.s); }
+      if (b.y - r < TOP) { b.y = TOP + r; b.vy = Math.abs(b.vy); }
+    }
+
+    if (wire) {
+      for (let i = 0; i < balls.length; i++) {
+        const b = balls[i], r = SIZES[b.s].r;
+        if (Math.abs(b.x - wire.x) <= r + 0.5 && b.y + r >= wire.tip) { wire = null; split(i); break; }
+      }
+    }
+    tickParts(dt);
+    if (readyT <= 0) for (const b of balls) if (hitsPlayer(b)) { die(); return; }
+    if (!balls.length) stageClear();
+  }
+
+  // ---------- draw ----------
+  function drawTorches(time) {
+    const ly = Math.round(lightY());
+    for (const lx of [LEFT - 3, RIGHT]) {
+      ctx.fillStyle = C.ledge; ctx.fillRect(lx, ly, 3, 4);
+      const f = Math.floor(time * 12 + lx) % 3;
+      ctx.fillStyle = f === 0 ? C.flame : C.gold;
+      ctx.fillRect(lx, ly - 3 - (f === 2 ? 1 : 0), 3, 3);
+      ctx.fillStyle = C.hot; ctx.fillRect(lx + 1, ly - 2, 1, 1);
+    }
+  }
+  function drawWire() {
+    const x = wire.x, top = Math.round(wire.tip);
+    ctx.fillStyle = C.wire;
+    for (let y = FLOOR - 12; y > top + 3; y -= 2) ctx.fillRect(x + (((y >> 1) & 1) ? 0 : -1), y - 2, 1, 2);
+    ctx.fillStyle = C.bone;
+    ctx.fillRect(x, top, 1, 1);
+    ctx.fillRect(x - 1, top + 1, 3, 1);
+    ctx.fillRect(x - 2, top + 2, 5, 1);
+  }
+  function drawPlayer(time) {
+    const x = Math.round(player.x), y = FLOOR;
+    const step = player.walk > 0 ? Math.floor(time * 10) % 2 : 0;
+    if (state === "dead" && Math.floor(time * 8) % 2) return;
+    ctx.fillStyle = C.ledge;
+    ctx.fillRect(x - 3, y - 4 + step, 2, 4 - step);
+    ctx.fillRect(x + 1, y - 4 + (1 - step), 2, 3 + step);
+    ctx.fillStyle = C.flame; ctx.fillRect(x - 3, y - 10, 6, 6);
+    ctx.fillStyle = C.bone; ctx.fillRect(x - 2, y - 14, 4, 4);
+    ctx.fillStyle = C.ember; ctx.fillRect(x - 3, y - 15, 6, 2);
+    ctx.fillStyle = C.steel; ctx.fillRect(x + (player.face > 0 ? 2 : -3), y - 13, 1, 5);
+  }
+  function draw(time) {
+    ctx.save();
+    if (shake > 0) ctx.translate(Math.round(rand(-2, 2)), Math.round(rand(-2, 2)));
+    ctx.drawImage(bg, 0, 0);
+    drawTorches(time);
+    for (const b of balls) {
+      const r = SIZES[b.s].r;
+      ctx.drawImage(ballSprite(b.s, b.c), Math.round(b.x) - r, Math.round(b.y) - r);
+    }
+    if (wire) drawWire();
+    if (state !== "over") drawPlayer(time);
+    for (const p of parts) {
+      ctx.globalAlpha = Math.min(1, p.life * 3);
+      ctx.fillStyle = p.c;
+      ctx.fillRect(Math.round(p.x), Math.round(p.y), p.sz, p.sz);
+    }
+    ctx.globalAlpha = 1;
+    ctx.restore();
+  }
+
+  // ---------- loop ----------
+  let last = performance.now(), toastText = "";
+  function frame(now) {
+    const dt = Math.min(0.033, Math.max(0, (now - last) / 1000));
+    last = now;
+    if (state === "play") update(dt);
+    else if (state === "clear") {
+      tickParts(dt);
+      clearT -= dt;
+      if (clearT <= 0) { stageN++; spawnStage(stageN); state = "play"; hud(); }
+    } else tickParts(dt);
+    draw(now / 1000);
+    const tt = state === "clear" ? `Stage ${stageN} clear` : (state === "play" && readyT > 0) ? `Stage ${stageN}` : "";
+    if (tt !== toastText) { toastText = tt; toast.textContent = tt; }
+    requestAnimationFrame(frame);
+  }
+
+  // ---------- HUD and overlay ----------
+  function hud() {
+    $("#h-stage").textContent = stageN;
+    $("#h-score").textContent = score;
+    $("#h-lives").textContent = Math.max(0, lives);
+  }
+  const ov = $("#ov");
+  function overlay(title, sub, lines, go) {
+    $("#ov-t").textContent = title;
+    $("#ov-s").textContent = sub;
+    $("#ov-b").replaceChildren(...lines.map((l) => { const p = document.createElement("p"); p.textContent = l; return p; }));
+    $("#ov-go").textContent = go;
+    ov.hidden = false;
+  }
+  function titleScreen() {
+    overlay("Harpoon", "Bare prototype · no upgrades", [
+      "Pop every ball. Each hit splits a ball in two, down to the smallest.",
+      "Don't let one touch you.",
+      `Controls: ${SCHEMES[scheme].label}. ${SCHEMES[scheme].hint}. Switch with the button up top.`,
+      best ? `Best: ${best}.` : "",
+    ].filter(Boolean), "Tap to start");
+  }
+  function startFromOverlay() {
+    ensureAudio(); keepAwake();
+    if (state === "title" || state === "over") { stageN = 1; score = 0; lives = 3; spawnStage(1); }
+    else if (state === "dead") spawnStage(stageN);
+    ov.hidden = true;
+    state = "play";
+    last = performance.now();
+    hud();
+  }
+  ov.addEventListener("click", startFromOverlay);
+  ov.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); startFromOverlay(); } });
+
+  function pause() {
+    if (state !== "play") return;
+    state = "paused"; ptr = null;
+    overlay("Paused", "Harpoon", ["Your stage is waiting."], "Tap to continue");
+  }
+  $("#b-pause").addEventListener("click", pause);
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) pause();
+    else if (state === "play") keepAwake();
+  });
+
+  const bControls = $("#b-controls"), bSound = $("#b-sound");
+  function setScheme(s) {
+    scheme = s; store.set("scheme", s);
+    bControls.textContent = SCHEMES[s].label;
+    hint.textContent = SCHEMES[s].hint;
+    pendingFire = false; ptr = null;
+    if (state === "title") titleScreen();
+  }
+  bControls.addEventListener("click", () => setScheme(ORDER[(ORDER.indexOf(scheme) + 1) % ORDER.length]));
+  function paintSound() { bSound.setAttribute("aria-pressed", String(soundOn)); bSound.setAttribute("aria-label", soundOn ? "Sound on" : "Sound off"); }
+  bSound.addEventListener("click", () => {
+    soundOn = !soundOn; store.set("sound", soundOn);
+    ensureAudio(); paintSound();
+    beep(660, 0.08, "square", 0.04);
+  });
+
+  // ---------- input ----------
+  const GAIN = 1.15;
+  function toGame(e) {
+    const r = cv.getBoundingClientRect();
+    return { x: (e.clientX - r.left) * IW / r.width, y: (e.clientY - r.top) * IH / r.height };
+  }
+  cv.addEventListener("pointerdown", (e) => {
+    if (state !== "play") return;
+    e.preventDefault();
+    ensureAudio();
+    try { cv.setPointerCapture(e.pointerId); } catch (err) { /* fine */ }
+    const p = toGame(e);
+    ptr = { id: e.pointerId, ax: p.x, apx: player.tx };
+    if (scheme === "tap") { player.tx = clamp(p.x, minX(), maxX()); pendingFire = false; }
+  });
+  cv.addEventListener("pointermove", (e) => {
+    if (!ptr || e.pointerId !== ptr.id || state !== "play") return;
+    const p = toGame(e);
+    if (scheme === "tap") { player.tx = clamp(p.x, minX(), maxX()); return; }
+    // Relative, like a trackpad. Re-anchor at the walls so reversing responds at once.
+    const raw = ptr.apx + (p.x - ptr.ax) * GAIN, c = clamp(raw, minX(), maxX());
+    if (c !== raw) { ptr.apx = c; ptr.ax = p.x; }
+    player.tx = c;
+  });
+  cv.addEventListener("pointerup", (e) => {
+    if (!ptr || e.pointerId !== ptr.id) return;
+    ptr = null;
+    if (state !== "play") return;
+    if (scheme === "drag") fire();
+    else if (scheme === "tap") pendingFire = true;
+  });
+  cv.addEventListener("pointercancel", (e) => { if (ptr && e.pointerId === ptr.id) ptr = null; });
+  cv.addEventListener("contextmenu", (e) => e.preventDefault());
+
+  // ---------- boot ----------
+  setScheme(scheme);
+  paintSound();
+  resize();
+  new ResizeObserver(resize).observe(stage);
+  spawnStage(1);
+  readyT = 0;
+  titleScreen();
+  hud();
+  requestAnimationFrame((n) => { last = n; frame(n); });
+})();
+</script>
