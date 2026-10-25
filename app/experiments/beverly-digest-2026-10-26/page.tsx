@@ -730,24 +730,6 @@ export default function DigestIssue7() {
             </li>
           </ul>
 
-          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            Little or nothing to gain
-          </h3>
-          <p className={BODY}>
-            The pension payment, which is already holding flat while markets hold up; regional
-            dispatch, since Middleton&apos;s center has no room, though Beverly&apos;s could take a
-            smaller town&apos;s calls for a fee; and the golf course, the Beverly Harbor Management
-            Authority and the airport, whose fees stay with those operations rather than the
-            city&apos;s general budget.{" "}
-            <Moment src={DRC20} s={708} /> <Moment src={DRC20} s={772} />{" "}
-            <Moment src={DRC20} s={1925} /> <Moment src={DRC20} s={2149} />
-          </p>
-          <p className={BODY}>
-            Two slides were background, not proposals: overrides, and Chapter 70, the state&apos;s
-            school aid formula.{" "}
-            <Moment src={DRC20} s={2315} /> <Moment src={DRC20} s={2386} />{" "}
-            <Earlier issue={6} slug="2026-10-19" id="deficit" label="what each one is" />
-          </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             What residents said
@@ -766,12 +748,6 @@ export default function DigestIssue7() {
               <Moment src={DRC20} s={3240} />
             </li>
             <li>
-              One asked whether these ideas fix a long-term gap or whether the city needs more
-              tax revenue. A member answered that health insurance costs, up by double digits each
-              of the last four years, are the largest driver.{" "}
-              <Moment src={DRC20} s={3465} /> <Moment src={DRC20} s={3538} />
-            </li>
-            <li>
               A Lothrop Street resident asked that any rate increase be phased in, that beach
               parking fees fall on non-residents rather than residents, and that side streets be
               protected from overflow, and said the core of the deficit is salaries and benefits.{" "}
@@ -779,8 +755,10 @@ export default function DigestIssue7() {
             </li>
           </ul>
           <p className={BODY}>
-            Four other councilors attended; with the two on the committee, that made a quorum of
-            the Council, so they did not take part.{" "}
+            Four other councilors attended. With the two on the committee, six of the nine were in
+            the room, a quorum of the Council. Under the state&apos;s Open Meeting Law, a quorum
+            discussing city business counts as a Council meeting that needs its own posted notice,
+            so the four only listened.{" "}
             <Moment src={DRC20} s={4122} />
           </p>
           <p className={BODY}>
@@ -878,8 +856,9 @@ export default function DigestIssue7() {
             About 14 residents spoke, all asking the city to end the contract or let it lapse. They
             cited privacy and constitutional rights, data security, misuse in other places, and a
             wish for more public discussion before any renewal. One more spoke at the Council meeting
-            that followed. Councilors&apos; questions came from a list residents submitted, put
-            together by Councilor Spang.{" "}
+            that followed. Councilors read from a list of questions sent ahead of time, as the city
+            charter requires, to the police and the Mayor. Councilor Rotondo said residents
+            submitted them to Councilor Spang, who wrote the list with him.{" "}
             <Moment src={FLOCK1019} s={119} /> <Moment src={FLOCK1019} s={1624} />{" "}
             <Moment src={CC1019} s={932} /> <Moment src={FLOCK1019} s={1874} />
           </p>
