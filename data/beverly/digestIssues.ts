@@ -23,6 +23,14 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-10-26",
+    number: 7,
+    published: "October 26, 2026",
+    covering: "October 19 to 25",
+    teaser:
+      "The Coast Guard's empty houses on Laurel Street head to auction, and what Question 7 on the ballot could mean for them. The deficit committee's ideas by how soon and how much, the Flock contract a month from expiring, and tonight's public meeting on Camp Paradise.",
+  },
+  {
     slug: "2026-10-19",
     number: 6,
     published: "October 19, 2026",

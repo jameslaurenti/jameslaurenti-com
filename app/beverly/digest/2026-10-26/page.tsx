@@ -478,13 +478,7 @@ function CameraMap() {
 export default function DigestIssue7() {
   return (
     <div className="bg-bg text-ink">
-      {/* DRAFT: review views are tagged apart so they never count toward issue 7. Set to
-          "2026-10-26" when publishing. */}
-      <PageTracking surface="digest" issue="2026-10-26-preview" depth />
-      {/* DRAFT: remove this banner before publishing. qa:issue fails while it is here. */}
-      <div className="bg-gold-strong/20 px-6 py-2 text-center text-[0.8rem] font-bold uppercase tracking-[0.14em] text-ink">
-        DRAFT, NOT PUBLISHED &middot; for review only
-      </div>
+      <PageTracking surface="digest" issue="2026-10-26" depth />
       <div className="mx-auto max-w-3xl px-6 pb-24">
         <header className="border-b border-rule pb-7 pt-14">
           <p className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-debt">
