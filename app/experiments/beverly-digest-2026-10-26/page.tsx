@@ -641,7 +641,8 @@ export default function DigestIssue7() {
             winter. Most of the slides followed the run-through we described last week.{" "}
             <Earlier issue={6} slug="2026-10-19" id="deficit" label="the run-through" />{" "}
             Below, the ideas are grouped by how soon they could take effect, with members&apos;
-            early estimates of size, which they called preliminary.{" "}
+            early estimates of how much each would save the city or bring in, which they called
+            preliminary.{" "}
             <Moment src={DRC20} s={314} /> <Moment src={DRC20} s={393} />
           </p>
           <Note>
@@ -661,7 +662,7 @@ export default function DigestIssue7() {
               This is the city&apos;s own health plan for people who work or worked for the city;
               it does not touch anyone else&apos;s insurance. The city pays 80% of premiums for its
               employees and retirees. Members looked at the city paying 70% for employees, and the
-              state minimum, 50%, for retirees: each $1 million to $2 million a year. The employee
+              state minimum, 50%, for retirees. By members&apos; estimates, each would save the city $1 million to $2 million a year. The employee
               change has to be negotiated with the unions, most of whose contracts, a
               member said, are up in July 2027.{" "}
               <Moment src={DRC20} s={825} /> <Moment src={DRC20} s={871} />{" "}
@@ -670,24 +671,24 @@ export default function DigestIssue7() {
             <li>
               <b>A different health plan.</b>{" "}
               Joining the state&apos;s Group Insurance Commission, or a pooled plan for cities and
-              towns that leaves the city more control: hundreds of thousands a year for the state
-              plan.{" "}
+              towns that leaves the city more control. The state plan would save hundreds of
+              thousands of dollars a year.{" "}
               <Moment src={DRC20} s={934} /> <Moment src={DRC20} s={1022} />
             </li>
             <li>
               <b>Parking.</b>{" "}
               Two ideas. First, doubling the rate at today&apos;s meters from $1 to $2 an hour,
               which a member said could be done quickly. Second, new meters on the roughly 180 free
-              spaces along Lothrop Street, from Independence Park to Dane Street Beach. Each is in
-              the hundreds of thousands a year, depending on the rate.{" "}
+              spaces along Lothrop Street, from Independence Park to Dane Street Beach. Each would
+              bring in hundreds of thousands of dollars a year in new revenue, depending on the rate.{" "}
               <Moment src={DRC20} s={1595} /> <Moment src={DRC20} s={1669} />{" "}
               <Moment src={DRC20} s={1733} />
             </li>
             <li>
               <b>Fees.</b>{" "}
               Registration fees for the free summer park program, or more paid day camp spots,
-              starting summer 2027; and mooring fees, now $7 a foot, raised from $5.50 last year.
-              Tens of thousands a year.{" "}
+              starting summer 2027; and raising mooring fees, now $7 a foot after going up from
+              $5.50 last year. Each would bring in tens of thousands of dollars a year.{" "}
               <Moment src={DRC20} s={1399} /> <Moment src={DRC20} s={1504} />{" "}
               <Moment src={DRC20} s={2065} />
             </li>
@@ -697,8 +698,9 @@ export default function DigestIssue7() {
             <b>Would take longer.</b>{" "}
             The longer-term ideas match last week&apos;s preview: a committee to seek payments and
             services from tax-exempt owners, a city-run electric utility, a recycling center for
-            hard-to-recycle items, and several ideas still at an early stage. None has a size
-            estimate yet.{" "}
+            hard-to-recycle items, and several ideas still at an early stage. None has an
+            estimate yet of what it would save or bring in, and the utility and the recycling center
+            would cost money up front.{" "}
             <Moment src={DRC20} s={1083} /> <Moment src={DRC20} s={2234} />{" "}
             <Moment src={DRC20} s={2552} />{" "}
             <Earlier issue={6} slug="2026-10-19" id="deficit" label="the longer-term ideas" />
