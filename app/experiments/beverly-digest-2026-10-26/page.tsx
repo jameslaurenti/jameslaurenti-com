@@ -545,7 +545,7 @@ export default function DigestIssue7() {
           <p className={BODY}>
             Sixteen houses on Laurel Street in North Beverly, owned by the Coast Guard and empty
             since about 2023, are headed to auction. Ward 5 Councilor Kathleen Feldman wrote on her
-            public Facebook page this week that the city looked further into buying them and is
+            public Facebook page last week that the city looked further into buying them and is
             &ldquo;not moving forward.&rdquo; The General Services Administration (GSA), the agency
             that sells surplus federal property, <Src href={GSA_LISTING}>lists the property</Src>{" "}
             for online auction, marked &ldquo;Coming Soon.&rdquo; No auction dates or bidding
@@ -587,7 +587,7 @@ export default function DigestIssue7() {
               property. The state did not apply. The city filed an expression of interest in August,
               which gave it 60 days to look into a purchase, and the Mayor{" "}
               <Src href={BEAT_AUG}>said then</Src>{" "}that he did not expect the city to buy.
-              Councilor Feldman&apos;s post this week says it is not moving forward. With no
+              Councilor Feldman&apos;s post last week says it is not moving forward. With no
               government buyer, the property goes to auction.
             </li>
           </ul>
@@ -658,10 +658,11 @@ export default function DigestIssue7() {
           <ul className={LIST}>
             <li>
               <b>Who pays health premiums.</b>{" "}
-              The city pays 80% of premiums for employees and retirees. Members looked at the city
-              paying 70% for employees, and the state minimum, 50%, for retirees: each $1 million
-              to $2 million a year. The
-              employee change has to be negotiated with the unions, most of whose contracts, a
+              This is the city&apos;s own health plan for people who work or worked for the city;
+              it does not touch anyone else&apos;s insurance. The city pays 80% of premiums for its
+              employees and retirees. Members looked at the city paying 70% for employees, and the
+              state minimum, 50%, for retirees: each $1 million to $2 million a year. The employee
+              change has to be negotiated with the unions, most of whose contracts, a
               member said, are up in July 2027.{" "}
               <Moment src={DRC20} s={825} /> <Moment src={DRC20} s={871} />{" "}
               <Moment src={DRC20} s={892} />
@@ -675,10 +676,10 @@ export default function DigestIssue7() {
             </li>
             <li>
               <b>Parking.</b>{" "}
-              Doubling the meter rate from $1 to $2 an hour, which a member said could be done
-              quickly, and meters on the roughly 180 free spaces along Lothrop Street from
-              Independence Park to Dane Street Beach: hundreds of thousands a year, depending on
-              the rate.{" "}
+              Two ideas. First, doubling the rate at today&apos;s meters from $1 to $2 an hour,
+              which a member said could be done quickly. Second, new meters on the roughly 180 free
+              spaces along Lothrop Street, from Independence Park to Dane Street Beach. Each is in
+              the hundreds of thousands a year, depending on the rate.{" "}
               <Moment src={DRC20} s={1595} /> <Moment src={DRC20} s={1669} />{" "}
               <Moment src={DRC20} s={1733} />
             </li>
@@ -949,16 +950,14 @@ export default function DigestIssue7() {
             kept a set amount of use under the sale.
           </p>
           <p className={BODY}>
-            <b>The question behind the meeting.</b>{" "}
+            <b>Background.</b>{" "}
             Kestrel Educational Adventures, a Beverly nonprofit that already runs school and club
             programs at the camp, has{" "}
-            <Src href={KESTREL_PROPOSAL}>proposed a free public nature center</Src> in the building,
-            without a lease. In January the Mayor{" "}
+            <Src href={KESTREL_PROPOSAL}>proposed a free public nature center</Src> in the building.
+            In January the Mayor{" "}
             <Src href={SALEM_NEWS_PARADISE}>told The Salem News</Src> the city is satisfied with the
-            current programming and not interested in changing the use of the space. The land is
-            protected by Article 97 of the state constitution, he said, and a use that could be read
-            as a lease of the land could count as giving it up. Under Article 97, which shields
-            public conservation land, giving it up takes a two-thirds vote of the Legislature.
+            current programming and not interested in changing the use of the space. Tonight is the
+            first public discussion of what the city plans for the site.
           </p>
           <Refs
             sources={
