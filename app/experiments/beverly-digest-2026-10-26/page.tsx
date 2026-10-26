@@ -637,7 +637,7 @@ export default function DigestIssue7() {
           />
           <p className={BODY}>
             After months of working through ideas in its regular meetings, the Deficit Reduction
-            Committee presented them to residents on Tuesday, then took questions. It was the first of several community meetings planned for this fall and
+            Committee presented them to residents last Tuesday, then took questions. It was the first of several community meetings planned for this fall and
             winter. Most of the slides followed the run-through we described last week.{" "}
             <Earlier issue={6} slug="2026-10-19" id="deficit" label="the run-through" />{" "}
             Below, the ideas are grouped by how soon they could take effect, with members&apos;
