@@ -636,9 +636,8 @@ export default function DigestIssue7() {
             meeting="Deficit Reduction Committee, Oct 20"
           />
           <p className={BODY}>
-            The Deficit Reduction Committee, whose regular meetings have been public all along,
-            presented its research to the public for the first time on Tuesday, then took
-            questions. It was the first of several community meetings planned for this fall and
+            After months of working through ideas in its regular meetings, the Deficit Reduction
+            Committee presented them to residents on Tuesday, then took questions. It was the first of several community meetings planned for this fall and
             winter. Most of the slides followed the run-through we described last week.{" "}
             <Earlier issue={6} slug="2026-10-19" id="deficit" label="the run-through" />{" "}
             Below, the ideas are grouped by how soon they could take effect, with members&apos;
@@ -856,7 +855,7 @@ export default function DigestIssue7() {
             meeting="City Council, Oct 19"
           />
           <p className={BODY}>
-            The Council voted 8-0, with Councilor Spang absent, to accept the private stretch of
+            The Council voted 8-0 to accept the private stretch of
             Millbrook Road, past Hickory Lane, as a public street. The Mayor submitted the change,
             and the owners along it donated the easements, according to{" "}
             <Src href={`${PACKET_1019}#page=38`}>his letter (p. 38)</Src>. The easements let the
