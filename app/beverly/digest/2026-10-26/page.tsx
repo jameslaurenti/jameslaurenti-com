@@ -916,7 +916,7 @@ export default function DigestIssue7() {
         {/* ---- 05 ---- */}
         <section
           id="paradise"
-          data-dek={"A Council committee holds a public meeting tonight at 6pm on how the city uses Camp Paradise, the 12-acre former Girl Scout camp on Cole Street, and its plans for it. Background: a nonprofit's proposal for a nature center there, and the Mayor's view that the land's protections rule it out."}
+          data-dek={"A Council committee holds a public meeting tonight at 6pm on how the city uses Camp Paradise, the 12-acre former Girl Scout camp on Cole Street, and its plans for it. Background: a nonprofit's proposal for a nature center there, and the Mayor's response in January."}
           className={SECTION}
         >
           <Eyebrow>05 &middot; Tonight, 6:00pm</Eyebrow>
