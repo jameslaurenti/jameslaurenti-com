@@ -178,9 +178,14 @@ const IFV_2026 =
   "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
 const WBUR_Q7 =
   "https://www.wbur.org/news/2026/10/07/massachusetts-election-ballot-question-7-starter-homes-small-lots";
+const CC1005 = `${V}pW5B7LiTPtM`;
+const PACKET_0518 = `${AGENDA}/ViewFile/Agenda/_05182026-2754`;
+const PARADISE_AGENDA = `${AGENDA}/ViewFile/Agenda/_10262026-2941`;
+const KESTREL_PROPOSAL = "https://kestreleducation.org/camp-paradise-nature-center-proposal";
+const SALEM_NEWS_PARADISE =
+  "https://www.salemnews.com/news/local_news/kestrel-mayor-at-odds-on-creating-nature-learning-center-at-camp-paradise/article_6b03eced-59bb-4489-9c94-10dcaa38c31a.html";
 const ALPR_POLICY = "https://beverlypolice.org/wp-content/uploads/2026/04/ALPR-2026-GO-02.pdf";
 const OIL_THEFT = "https://www.bostonglobe.com/2026/10/10/metro/beverly-cooking-oil-theft/";
-const FLOCK_PORTAL = "https://transparency.flocksafety.com/beverly-ma-pd";
 const ELECTION = "https://www.beverlyma.gov/817/Upcoming-Election";
 const SOS = "https://www.sec.state.ma.us";
 const SOS_MAIL = `${SOS}/divisions/elections/voting-information/vote-by-mail.htm`;
@@ -193,6 +198,8 @@ const contents: [string, string][] = [
   ["coastguard", "The Coast Guard houses on Laurel Street are headed to auction"],
   ["deficit", "The deficit committee's ideas, sorted by how soon and how much"],
   ["flock", "A month before the Flock contract expires, the decision is the Mayor's"],
+  ["council", "Millbrook Road becomes a public street, and the Council next meets November 9"],
+  ["paradise", "Tonight: what the city plans for Camp Paradise"],
   ["ahead", "Coming up, through November 23"],
   ["corrections", "Corrections"],
 ];
@@ -200,19 +207,6 @@ const contents: [string, string][] = [
 type Ev = { date: string; what: string; detail: string; cal?: CalendarEvent };
 
 const ahead: Ev[] = [
-  {
-    date: "Oct 26",
-    what: "Camp Paradise public meeting",
-    detail:
-      "6:00pm in the Barnet Gallery at the library, 32 Essex St. A Council committee meeting on the city's use of and plans for Camp Paradise, 44 Cole St, requested by Councilors Mullady and St. Hilaire.",
-    cal: {
-      id: "camp-paradise-2026-10-26",
-      title: "Beverly: Camp Paradise public meeting",
-      start: "2026-10-26T22:00:00Z",
-      end: "2026-10-26T23:30:00Z",
-      location: "Beverly Public Library, Barnet Gallery, 32 Essex St, Beverly, MA",
-    },
-  },
   {
     date: "Oct 26",
     what: "City Council: budget analyst search",
@@ -507,9 +501,10 @@ export default function DigestIssue7() {
             This week: the Coast Guard&apos;s empty houses on Laurel Street head to auction, and
             what Question 7 on the November 3 ballot could mean for them. The deficit committee
             presents its ideas to the public for the first time. And with the city&apos;s Flock
-            contract a month from expiring, councilors take a second look at the cameras. Coming
-            up: the Council picks a new budget analyst, and the Planning Board holds its hearing on
-            the data center pause.
+            contract a month from expiring, councilors take a second look at the cameras. Tonight, a
+            Council committee takes up the city&apos;s plans for Camp Paradise. Coming up: the Council
+            picks a new budget analyst, and the Planning Board holds its hearing on the data center
+            pause.
           </p>
         </header>
 
@@ -698,37 +693,16 @@ export default function DigestIssue7() {
             </li>
           </ul>
 
-          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            Would take longer
-          </h3>
-          <ul className={LIST}>
-            <li>
-              <b>Payments and services from tax-exempt owners.</b>{" "}
-              A committee to seek more PILOTs and SILOTs, payments or services that colleges and
-              other tax-exempt owners give in place of property taxes. Research would start this
-              fall; there is no estimate yet.{" "}
-              <Moment src={DRC20} s={1083} /> <Moment src={DRC20} s={1181} />
-            </li>
-            <li>
-              <b>A city-run electric utility.</b>{" "}
-              Would start with a feasibility study taking several years, and buying out National
-              Grid up front.{" "}
-              <Moment src={DRC20} s={2234} />
-            </li>
-            <li>
-              <b>A recycling center for hard-to-recycle items.</b>{" "}
-              The city is applying for grants to start one; members&apos; question is paying to run
-              it after that.{" "}
-              <Moment src={DRC20} s={2552} />
-            </li>
-            <li>
-              <b>Still early.</b>{" "}
-              Sharing services with other communities; audits of non-health insurance and of school
-              efficiency; the future of Hurd Stadium and Cooney Field; a policy on personal use of
-              city vehicles.{" "}
-              <Moment src={DRC20} s={2660} />
-            </li>
-          </ul>
+          <p className={BODY}>
+            <b>Would take longer.</b>{" "}
+            The longer-term ideas match last week&apos;s preview: a committee to seek payments and
+            services from tax-exempt owners, a city-run electric utility, a recycling center for
+            hard-to-recycle items, and several ideas still at an early stage. None has a size
+            estimate yet.{" "}
+            <Moment src={DRC20} s={1083} /> <Moment src={DRC20} s={2234} />{" "}
+            <Moment src={DRC20} s={2552} />{" "}
+            <Earlier issue={6} slug="2026-10-19" id="deficit" label="the longer-term ideas" />
+          </p>
 
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -817,8 +791,8 @@ export default function DigestIssue7() {
           </p>
           <p className={BODY}>
             <b>A quick recap.</b>{" "}
-            Beverly has four cameras, unchanged since April. The one on Brimbal Avenue has been down
-            since the windstorms, and Flock would replace it. They cost about $3,000 each a year.{" "}
+            Beverly still has four cameras. The one on Brimbal Avenue has been down since
+            the windstorms, and Flock would replace it.{" "}
             <Earlier issue={6} slug="2026-10-19" id="flock" label="the cameras and the rules" />{" "}
             <Moment src={FLOCK1019} s={1912} /> <Moment src={FLOCK1019} s={2024} />
           </p>
@@ -835,21 +809,15 @@ export default function DigestIssue7() {
             <Moment src={FLOCK1019} s={1110} /> <Moment src={FLOCK1019} s={1378} />
           </p>
           <p className={BODY}>
-            <b>Privacy and the data.</b>{" "}
-            <Src href={ALPR_POLICY}>Plate data is kept 30 days</Src>, and the department is discussing cutting that to seven. It
-            is shared only with Massachusetts law enforcement; federal or out-of-state agencies have
-            to ask Beverly police, who decide case by case. Officers and dispatchers certified to run
-            plates can search, each search is logged with a reason, and only three people, the chief,
-            a lieutenant and a detective sergeant, administer the system. The lieutenant reviews the
-            search logs at least monthly, separately from Flock&apos;s automated audit, which has
-            flagged three or four searches, all within policy. Misusing the system would cost an
-            officer the job, the chief said. Flock&apos;s{" "}
-            <Src href={FLOCK_PORTAL}>public portal for Beverly</Src> lists who the data is shared
-            with.{" "}
+            <b>What&apos;s new on the data.</b>{" "}
+            The department is discussing cutting how long it keeps plate data from{" "}
+            <Src href={ALPR_POLICY}>30 days</Src>{" "}to seven. It shares data only with Massachusetts
+            law enforcement; federal or out-of-state agencies have to ask Beverly police directly.
+            Besides Flock&apos;s automated audit, which has flagged three or four searches, all within
+            policy, the lieutenant who administers the system reviews the search logs at least
+            monthly.{" "}
             <Moment src={FLOCK1019} s={2786} /> <Moment src={FLOCK1019} s={1461} />{" "}
-            <Moment src={FLOCK1019} s={2370} /> <Moment src={FLOCK1019} s={2480} />{" "}
-            <Moment src={FLOCK1019} s={1344} /> <Moment src={FLOCK1019} s={2255} />{" "}
-            <Moment src={FLOCK1019} s={1175} />
+            <Moment src={FLOCK1019} s={1344} /> <Moment src={FLOCK1019} s={2255} />
           </p>
           <p className={BODY}>
             <b>Public comment.</b>{" "}
@@ -872,24 +840,55 @@ export default function DigestIssue7() {
           />
         </section>
 
+        {/* ---- 04 ---- */}
+        <section
+          id="council"
+          data-dek={"The Council voted 8-0 to make the private stretch of Millbrook Road a public street, put off a $20,000 funding request for the Human Rights Committee, and set its next regular meeting for November 9, a week later than usual because of the election."}
+          className={SECTION}
+        >
+          <Eyebrow>04 &middot; City Council</Eyebrow>
+          <H2>Millbrook Road becomes a public street, and the Council next meets November 9</H2>
+          <From>City Council &middot; Monday, October 19</From>
+          <Hear
+            src={CC1019}
+            s={3182}
+            title="The Council votes on Millbrook Road"
+            meeting="City Council, Oct 19"
+          />
+          <p className={BODY}>
+            The Council voted 8-0, with Councilor Spang absent, to accept the private stretch of
+            Millbrook Road, past Hickory Lane, as a public street. The Mayor submitted the change,
+            and the owners along it donated the easements, according to{" "}
+            <Src href={`${PACKET_1019}#page=38`}>his letter (p. 38)</Src>. The easements let the
+            city maintain the road and the utilities under it.{" "}
+            <Moment src={CC1019} s={3182} /> <Moment src={CC1019} s={3388} />
+          </p>
+          <p className={BODY}>
+            Councilor Houseman&apos;s request that the Mayor fund the Human Rights Committee with
+            $20,000 was put off so the Mayor and the committee&apos;s chair can meet first, with the
+            aim of taking it up before the November 9 meeting.{" "}
+            <Moment src={CC1019} s={1550} />
+          </p>
+          <p className={BODY}>
+            The next regular meeting is November 9, a week later than usual because of the election.
+            The Council set November 23 hearings on National Grid&apos;s petitions for underground
+            lines on Woodbury and Dane streets, and received the formal retirement letter of its
+            budget analyst, whose successor it interviews tonight and tomorrow.{" "}
+            <Moment src={CC1019} s={1668} /> <Moment src={CC1019} s={3478} />{" "}
+            <Moment src={CC1019} s={1319} />
+          </p>
+          <Refs
+            sources={
+              <>
+                <Src href={`${PACKET_1019}#page=1`}>Agenda and packet (p. 1)</Src>
+                <Src href={CC1019}>Full recording</Src>
+              </>
+            }
+          />
+        </section>
+
         <div className="mt-12 max-w-[63ch] border-y border-rule py-3.5">
           <p className="text-[0.93rem] leading-relaxed text-ink-mid">
-            <b className="text-ink">Also at the Council, October 19.</b>{" "}
-            The Council voted 8-0, with Councilor Spang absent, to accept the private stretch of
-            Millbrook Road, past Hickory Lane, as a public street, submitted by the Mayor; its
-            owners donated the easements.{" "}
-            <Moment src={CC1019} s={3182} />{" "}
-            Councilor Houseman&apos;s request that the Mayor fund the Human Rights Committee with
-            $20,000 was put off until before November 9, so the Mayor and the committee&apos;s
-            chair can meet first.{" "}
-            <Moment src={CC1019} s={1550} />{" "}
-            The Council&apos;s next regular meeting is November 9, and it set November 23 hearings on
-            National Grid&apos;s petitions for underground lines on Woodbury and Dane streets.{" "}
-            <Moment src={CC1019} s={1668} /> <Moment src={CC1019} s={3478} />{" "}
-            <Src href={`${PACKET_1019}#page=38`}>Millbrook letter (p. 38)</Src>{" "}
-            <Src href={CC1019}>Full recording</Src>
-          </p>
-          <p className="mt-3 text-[0.93rem] leading-relaxed text-ink-mid">
             <b className="text-ink">Also met, no video posted:</b>{" "}
             the Water Supply Board, the Board of Health, the Clean Energy Advisory Committee, the
             Harbor Management Authority, the Economic and Community Development Council and the
@@ -900,7 +899,78 @@ export default function DigestIssue7() {
           </p>
         </div>
 
-        {/* ---- 04 ---- */}
+        <h2 className="mt-16 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
+          Tonight{" "}
+          <span className="float-right pt-1.5 text-[0.8rem] font-normal text-ink-faint">
+            Monday, October 26
+          </span>
+        </h2>
+        <div className="mt-5 flex flex-wrap gap-2.5">
+          <AddToCalendar
+            event={{
+              id: "camp-paradise-2026-10-26",
+              title: "Beverly: Camp Paradise public meeting",
+              start: "2026-10-26T22:00:00Z",
+              end: "2026-10-26T23:30:00Z",
+              location: "Beverly Public Library, Barnet Gallery, 32 Essex St, Beverly, MA",
+            }}
+          />
+        </div>
+
+        {/* ---- 05 ---- */}
+        <section
+          id="paradise"
+          data-dek={"A Council committee holds a public meeting tonight at 6pm on how the city uses Camp Paradise, the 12-acre former Girl Scout camp on Cole Street, and its plans for it. Background: a nonprofit's proposal for a nature center there, and the Mayor's view that the land's protections rule it out."}
+          className={SECTION}
+        >
+          <Eyebrow>05 &middot; Tonight, 6:00pm</Eyebrow>
+          <H2>Camp Paradise: what the city plans for its 12 acres on Cole Street</H2>
+          <From>
+            Public Services committee, with the Committee of the Whole &middot; Order #061, filed by
+            Councilors St. Hilaire and Mullady
+          </From>
+          <p className={BODY}>
+            A Council committee holds a public meeting at 6:00pm in the Barnet Gallery at the
+            library, 32 Essex St, on how the city uses Camp Paradise, the former Girl Scout camp at
+            44 Cole St, and what it plans for the site. Councilors St. Hilaire and Mullady{" "}
+            <Src href={`${PACKET_0518}#page=60`}>asked for the meeting (p. 60)</Src>{" "}in a January letter,
+            writing that residents see the camp as underused, and asked the Mayor, the recreation
+            director and the city solicitor to explain what uses are allowed there. It was put off
+            while members of the Mayor&apos;s staff were on medical leave. The agenda lists no
+            vote.{" "}
+            <Moment src={CC1005} s={1784} />
+          </p>
+          <p className={BODY}>
+            <b>What it is.</b>{" "}
+            The city bought the 12 acres from the Girl Scouts in 2015 for $950,000, with Community
+            Preservation money, state grants and recreation department funds. The purchase limits the
+            land to &ldquo;conservation, scientific study, and nature recreation.&rdquo; A
+            1,000-square-foot building sits among a red maple swamp, woods, a pond and vernal pools.
+            The recreation department runs classes and rents the building, and the Girl Scouts reportedly
+            kept a set amount of use under the sale.
+          </p>
+          <p className={BODY}>
+            <b>The question behind the meeting.</b>{" "}
+            Kestrel Educational Adventures, a Beverly nonprofit that already runs school and club
+            programs at the camp, has{" "}
+            <Src href={KESTREL_PROPOSAL}>proposed a free public nature center</Src> in the building,
+            without a lease. In January the Mayor{" "}
+            <Src href={SALEM_NEWS_PARADISE}>told The Salem News</Src> the city is satisfied with the
+            current programming and not interested in changing the use of the space. The land is
+            protected by Article 97 of the state constitution, he said, and a use that could be read
+            as a lease of the land could count as giving it up. Under Article 97, which shields
+            public conservation land, giving it up takes a two-thirds vote of the Legislature.
+          </p>
+          <Refs
+            sources={
+              <>
+                <Src href={`${PARADISE_AGENDA}#page=1`}>Meeting notice (p. 1)</Src>
+              </>
+            }
+          />
+        </section>
+
+        {/* ---- 06 ---- */}
         <section id="ahead" className={SECTION}>
           <h2 className="mt-4 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
             Coming up{" "}
@@ -975,7 +1045,7 @@ export default function DigestIssue7() {
           </p>
         </section>
 
-        {/* ---- 05 ---- */}
+        {/* ---- 07 ---- */}
         <section id="corrections" className={SECTION}>
           <h2 className="mt-4 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
             Corrections
