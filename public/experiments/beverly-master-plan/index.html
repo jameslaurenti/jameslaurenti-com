@@ -1,0 +1,243 @@
+<!doctype html>
+<html lang="en">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>Checking Beverly's Master Plan</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,500;6..72,650&family=Public+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a short guided story in chapters, one idea and one visual each; detail lives behind "More" toggles. */
+:root{
+  --paper:#f5f6f2; --surface:#ffffff; --ink:#1c2420; --muted:#58625c; --line:#d6dbd5;
+  --accent:#1f5fa8;
+  --fit:#1d7a5a; --partly:#b8740c; --notdone:#b0393b; --open:#5a6878;
+  --parcel:#e9ebe5; --parcel-edge:#ffffff; --road:#9aa19c; --water:#dde8ee; --dt:#f3dcc9;
+  --z-cc:#ecc8c1; --z-mf:#f2dcb8; --z-sf:#f3eedb; --z-ind:#d8d2e8; --z-cn:#edcbd9; --z-wf:#c6dcea; --z-other:#e4e4e1;
+  --f-display:"Newsreader", Georgia, "Times New Roman", serif;
+  --f-body:"Public Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+  --f-data:"IBM Plex Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
+  --paper:#131816; --surface:#1a201d; --ink:#e6ebe7; --muted:#9ba69f; --line:#2e3732;
+  --accent:#6ea8ea; --fit:#45c193; --partly:#e7a63c; --notdone:#e57373; --open:#a3b3c4;
+  --parcel:#232a26; --parcel-edge:#131816; --road:#6f7a74; --water:#16222a; --dt:#3b2f27;
+  --z-cc:#553633; --z-mf:#544630; --z-sf:#262923; --z-ind:#38344a; --z-cn:#523441; --z-wf:#213646; --z-other:#272a28;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --paper:#131816; --surface:#1a201d; --ink:#e6ebe7; --muted:#9ba69f; --line:#2e3732;
+  --accent:#6ea8ea; --fit:#45c193; --partly:#e7a63c; --notdone:#e57373; --open:#a3b3c4;
+  --parcel:#232a26; --parcel-edge:#131816; --road:#6f7a74; --water:#16222a; --dt:#3b2f27;
+  --z-cc:#553633; --z-mf:#544630; --z-sf:#262923; --z-ind:#38344a; --z-cn:#523441; --z-wf:#213646; --z-other:#272a28;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--f-body);
+  padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+.wrap{max-width:1100px;margin:0 auto;padding-block:44px 64px;display:grid;gap:72px}
+h1,h2,h3{font-family:var(--f-display);font-weight:650;text-wrap:balance;margin:0;letter-spacing:-0.01em}
+h1{font-size:clamp(2.1rem,5vw,3.3rem);line-height:1.06}
+h2{font-size:clamp(1.55rem,3vw,2.1rem);line-height:1.12}
+h3{font-family:var(--f-body);font-size:1.05rem;font-weight:650;line-height:1.3}
+p{margin:0}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.eyebrow{font:500 .74rem/1.2 var(--f-data);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.big{font-size:1.2rem;max-width:56ch}
+.muted{color:var(--muted)}
+.num{font-family:var(--f-data);font-variant-numeric:tabular-nums}
+.chapter{display:grid;gap:18px}
+.chapter > p{max-width:62ch}
+.small{font-size:.86rem}
+
+/* expandable detail */
+details.more{border-top:1px solid var(--line);padding-top:10px;max-width:68ch}
+details.more summary{cursor:pointer;color:var(--accent);font-weight:600;font-size:.92rem;list-style:none;display:inline-flex;gap:6px;align-items:center}
+details.more summary::-webkit-details-marker{display:none}
+details.more summary::before{content:"+";font:600 1rem var(--f-data);width:1em}
+details.more[open] summary::before{content:"\2212"}
+details.more .body{display:grid;gap:10px;padding-top:10px;font-size:.94rem}
+details.more ul{margin:0;padding-left:1.1em;display:grid;gap:6px}
+
+/* hero */
+header{display:grid;gap:20px}
+.headline-stat{display:flex;flex-wrap:wrap;gap:14px 40px;margin-top:4px}
+.hs{display:grid;gap:4px;max-width:30ch}
+.hs b{font:600 2.2rem/1 var(--f-data);font-variant-numeric:tabular-nums}
+.hs span{color:var(--muted);font-size:.95rem}
+
+/* big idea */
+.idea{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.idea div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:6px;align-content:start}
+.idea .ico{font:600 1.3rem var(--f-data);color:var(--accent)}
+@media (max-width:720px){.idea{grid-template-columns:1fr}}
+
+/* goals */
+.goals{display:grid;gap:12px}
+.goal{display:grid;grid-template-columns:auto minmax(0,1fr);gap:4px 16px;background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px 18px}
+.status{grid-row:span 3;display:grid;justify-items:center;gap:4px;width:84px;text-align:center}
+.status i{width:34px;height:34px;border-radius:50%;display:grid;place-items:center;font:700 1rem var(--f-data);color:var(--surface);background:var(--k)}
+.status span{font:600 .72rem/1.2 var(--f-data);text-transform:uppercase;letter-spacing:.05em;color:var(--k)}
+.goal p{max-width:60ch}
+.goal details.more{border-top:none;padding-top:2px}
+.k-fit{--k:var(--fit)} .k-partly{--k:var(--partly)} .k-notdone{--k:var(--notdone)} .k-open{--k:var(--open)}
+@media (max-width:520px){.goal{grid-template-columns:1fr}.status{grid-row:auto;grid-template-columns:auto auto;justify-content:start;width:auto;gap:8px;align-items:center}}
+
+/* explorer */
+.explorer{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+.mapcol{position:sticky;top:calc(env(safe-area-inset-top, 0px) + 12px);display:grid;gap:10px}
+.mapbox{background:var(--water);border:1px solid var(--line);border-radius:8px;overflow:hidden}
+#map{display:block;width:100%;height:auto;max-height:calc(100vh - 110px)}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.84rem;color:var(--muted)}
+.legend i{display:inline-block;width:12px;height:12px;border-radius:50%;margin-right:6px;vertical-align:-1px}
+.toggle{display:inline-flex;gap:8px;align-items:center;font-size:.86rem;color:var(--muted);cursor:pointer}
+@media (max-width:860px){.explorer{grid-template-columns:1fr}.mapcol{position:static}#map{max-height:70vh}}
+
+.steps{display:flex;gap:6px;flex-wrap:wrap;position:sticky;top:env(safe-area-inset-top, 0px);background:var(--paper);padding-block:8px;z-index:2}
+.steps button{font:500 .95rem var(--f-data);color:var(--ink);background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:7px 14px;cursor:pointer}
+.steps button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.panel{display:grid;gap:16px;min-width:0}
+.yearhead h2{font-size:clamp(1.4rem,2.6vw,1.8rem)}
+.points{list-style:none;margin:0;padding:0;display:grid;gap:12px}
+.points li{display:grid;grid-template-columns:28px minmax(0,1fr);gap:10px;align-items:start}
+.points .dot{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:600 .8rem var(--f-data);color:var(--surface);background:var(--k,var(--open))}
+.points .dot.plain{background:transparent;border:2px solid var(--k,var(--open))}
+.counter{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap;color:var(--muted);font-size:.92rem}
+.counter b{font:600 1.5rem/1 var(--f-data);color:var(--ink)}
+.stepnav{display:flex;justify-content:space-between;gap:10px}
+.stepnav button{font:600 .9rem var(--f-body);color:var(--accent);background:none;border:1px solid var(--line);border-radius:6px;padding:8px 14px;cursor:pointer}
+.stepnav button:disabled{opacity:.35;cursor:default}
+
+/* map marks */
+.zone{fill:var(--parcel);stroke:var(--parcel-edge);stroke-width:1.2;transition:fill .3s}
+.zone.dt{fill:var(--dt)}
+svg.zoning .zone{fill:var(--zc)}
+.road{fill:none;stroke:var(--road);stroke-width:3.4;stroke-linecap:round;stroke-linejoin:round}
+.ring{fill:none;stroke:var(--accent);stroke-width:4;stroke-dasharray:18 12;opacity:.75}
+.depot{fill:var(--accent)}
+.maplabel{font:600 32px var(--f-body);fill:var(--ink);paint-order:stroke;stroke:var(--paper);stroke-width:8px;stroke-linejoin:round}
+.maplabel.sm{font-size:26px;font-weight:500;fill:var(--muted)}
+.maplabel.water{font-style:italic;font-weight:500;fill:var(--muted)}
+.bass{fill:url(#hatch);stroke:var(--notdone);stroke-width:3}
+.proj{cursor:pointer;transition:opacity .35s}
+.proj.hidden{opacity:0;pointer-events:none}
+.proj .pin{stroke:var(--surface);stroke-width:5}
+.proj.new .pin{stroke:var(--ink);stroke-width:6}
+.proj text{font:600 24px var(--f-data);fill:var(--surface);text-anchor:middle;dominant-baseline:central;pointer-events:none}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+
+/* homes picture */
+.homes{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:28px;align-items:center}
+.waffle{display:grid;grid-template-columns:repeat(10,1fr);gap:4px;max-width:320px}
+.waffle span{aspect-ratio:1;border-radius:3px;background:var(--line)}
+.waffle span.d{background:var(--fit)}
+.homes .key{display:grid;gap:10px}
+.homes .key div{display:flex;gap:10px;align-items:baseline}
+.homes .key i{width:14px;height:14px;border-radius:3px;flex:none;transform:translateY(2px)}
+@media (max-width:640px){.homes{grid-template-columns:1fr}}
+.bars{display:grid;gap:8px;max-width:560px}
+.brow{display:grid;grid-template-columns:130px minmax(0,1fr) 48px;gap:10px;align-items:center;font-size:.88rem}
+.brow .b{height:12px;border-radius:3px;background:var(--k)}
+
+.takeaways{display:grid;gap:14px;counter-reset:t;list-style:none;margin:0;padding:0;max-width:66ch}
+.takeaways li{display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;counter-increment:t}
+.takeaways li::before{content:counter(t);font:600 1.3rem/1.2 var(--f-display);color:var(--accent)}
+
+.tablewrap{overflow-x:auto;border:1px solid var(--line);border-radius:6px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:.88rem}
+th,td{text-align:left;padding:9px 11px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font:500 .7rem var(--f-data);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+td.n{text-align:right;font-family:var(--f-data)}
+tr:last-child td{border-bottom:none}
+footer{border-top:1px solid var(--line);padding-top:20px;display:grid;gap:12px;font-size:.86rem;color:var(--muted)}
+footer ul{margin:0;padding-left:1.1em;display:grid;gap:4px}
+
+/* shared additions for area pages */
+.hwy{fill:none;stroke:var(--road);stroke-width:9;stroke-linecap:round;stroke-linejoin:round;opacity:.9}
+.hi{fill:var(--hic);stroke:var(--parcel-edge);stroke-width:1.2}
+.maplabel.place{font-weight:650;fill:var(--ink)}
+.waffle span.k1{background:var(--notdone)} .waffle span.k2{background:var(--partly)} .waffle span.k3{background:var(--fit)}
+.seq{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;max-width:860px}
+.seq div{background:var(--surface);border:1px solid var(--line);border-radius:8px;padding:16px;display:grid;gap:8px;align-content:start;position:relative}
+.seq .n{font:600 .75rem var(--f-data);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.seq .st{display:inline-flex;gap:8px;align-items:center;font:600 .78rem var(--f-data);text-transform:uppercase;letter-spacing:.05em;color:var(--k)}
+.seq .st i{width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:var(--k);color:var(--surface);font-style:normal;font-size:.8rem}
+@media (max-width:720px){.seq{grid-template-columns:1fr}}
+.related{display:flex;flex-wrap:wrap;gap:10px 18px;font-size:.92rem}
+
+/* Landing: a short note, then one card per area. Narrower than the area pages; it is a letter. */
+.wrap.note{max-width:760px;gap:56px}
+.letter{display:grid;gap:16px;max-width:62ch}
+.letter .sign{font-family:var(--f-display);font-size:1.2rem}
+.areas{display:grid;gap:14px}
+.area{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:6px 20px;align-items:center;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 20px;
+  color:inherit;text-decoration:none}
+.area:hover{border-color:var(--accent)}
+.area h3{font-family:var(--f-display);font-size:1.3rem;font-weight:650;line-height:1.2;grid-column:1}
+.area p{grid-column:1;color:var(--muted);font-size:.95rem}
+.area .stat{grid-column:2;grid-row:1 / span 3;text-align:right;display:grid;gap:2px}
+.area .stat b{font:600 1.7rem/1 var(--f-data);font-variant-numeric:tabular-nums}
+.area .stat span{font-size:.78rem;color:var(--muted);max-width:12ch}
+.area .go{grid-column:1;color:var(--accent);font-weight:600;font-size:.92rem}
+.asks{margin:0;padding-left:1.2em;display:grid;gap:10px;max-width:62ch}
+@media (max-width:520px){
+  .area{grid-template-columns:minmax(0,1fr)}
+  .area .stat{grid-column:1;grid-row:auto;text-align:left;display:flex;gap:8px;align-items:baseline}
+  .area .stat span{max-width:none}
+}
+</style>
+
+<div class="wrap note">
+
+<header>
+  <p class="eyebrow">A draft to share · October 30, 2026</p>
+  <h1>Checking Beverly's master plan, one area at a time</h1>
+</header>
+
+<section class="letter">
+  <p>We've spent a lot of time on 37 Enon St, and there's plenty to weigh at the project level. But the letter read at the October 27 Planning Board hearing, from a member of the master plan committee, pointed at something bigger. The plan imagined North Beverly as a walkable village someday, and the zoning and street changes to get there never happened before a project arrived. That's less about this one project than about a chance the neighborhood may be missing.</p>
+  <p>I hadn't spent much time with the plan until now, so I read it. Then, as an experiment, I got curious about the city's scorecard against it since 2021. Is North Beverly the exception or the pattern? This prototype tries three areas, lining up what the plan asked for against the projects and zoning changes since.</p>
+  <p class="sign">James</p>
+</section>
+
+<section class="chapter">
+  <h2>Three areas</h2>
+  <div class="areas">
+    <a class="area" href="/experiments/beverly-master-plan/downtown.html">
+      <h3>Downtown and the Depot</h3>
+      <p>Where the plan wanted growth to start. Some of it happened. The biggest step, new rules for the Bass River area, hasn't.</p>
+      <div class="stat"><b>160</b><span>new homes approved</span></div>
+      <span class="go">Read →</span>
+    </a>
+    <a class="area" href="/experiments/beverly-master-plan/north-beverly.html">
+      <h3>North Beverly</h3>
+      <p>The plan said to study the area first. A project got there first.</p>
+      <div class="stat"><b>179</b><span>apartments proposed</span></div>
+      <span class="go">Read →</span>
+    </a>
+    <a class="area" href="/experiments/beverly-master-plan/route-128.html">
+      <h3>Route 128</h3>
+      <p>Most new homes are being approved here. The plan pictured jobs and woods.</p>
+      <div class="stat"><b>659</b><span>new homes approved</span></div>
+      <span class="go">Read →</span>
+    </a>
+  </div>
+</section>
+
+<section class="chapter">
+  <h2>What I'd like to hear from you</h2>
+  <ol class="asks">
+    <li>Does the story make sense? Where did you get lost?</li>
+    <li>What did I get wrong or leave out? Each page lists its sources and marks what I still need to confirm.</li>
+    <li>Could something like this help neighbors who have never heard of the master plan, or is it a one-off?</li>
+  </ol>
+</section>
+
+<footer>
+  <p>These pages are my own reading, not a position of A Better Beverly. Facts come from the plan, city records and meeting recordings, with sources on each page. Counts cover projects approved or proposed since January 2021.</p>
+  <p>I built these pages with help from Claude, an AI tool. If a fact doesn't hold up against its source, tell me and I'll fix it.</p>
+</footer>
+
+</div>
