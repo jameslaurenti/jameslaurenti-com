@@ -181,6 +181,8 @@ const MAPS = "/beverly/digest/2026-11-02";
 const LANDING_APP = `${DOC}/7718`;
 const AFFORDABLE_PAGE = "https://www.beverlyma.gov/723";
 const LYNCH_APP = `${DOC}/7742`;
+const CPA_R14 = "https://www.beverlyma.gov/1307/Current-CPA-Funding-Round-Round-14";
+const CPA_SCHEDULE = `${DOC}/7624`;
 const BEAT_BOULDER = "https://thebeverlybeat.substack.com/p/going-big-on-boulder-lane";
 const CITY_MAP_BOULDER = "https://beverlyma.mapgeo.io/datasets/properties?previewId=73-8";
 const H5708 = "https://malegislature.gov/Bills/194/H5708";
@@ -831,7 +833,7 @@ export default function DigestIssue8() {
         {/* ---- 07 ---- */}
         <section
           id="lynch"
-          data-dek={"The city has applied to its Community Preservation Committee for $107,614, the city's 20% share of the cost to finish designing and permitting the Lynch Park seawall; a state grant covers the rest."}
+          data-dek={"The city has applied to its Community Preservation Committee for $107,614, the city's 20% share of the cost to finish designing and permitting the Lynch Park seawall; a state grant covers the rest. Seven other projects have asked for about $1.45 million in the regular round."}
           className={SECTION}
         >
           <Eyebrow>07 &middot; Follow-up</Eyebrow>
@@ -845,10 +847,55 @@ export default function DigestIssue8() {
             90% complete and secures the local, state and federal permits, through June 2028.{" "}
             <Earlier issue={5} slug="2026-10-12" id="lynchpark" label="the state grant" />
           </p>
+          <p className={BODY}>
+            <b>Who else is asking.</b>{" "}
+            The city filed Lynch Park outside the committee&apos;s regular cycle. The regular round,
+            Round 14, drew seven pre-applications by its October 8 deadline, asking for about $1.45
+            million in all, according to the <Src href={CPA_R14}>committee&apos;s page</Src>:
+          </p>
+          <ul className={LIST}>
+            <li>
+              <b>First Parish Church bell tower,</b>{" "}225 Cabot St: up to $500,000 to stabilize and
+              restore it. <Src href={`${DOC}/7713`}>(pre-application)</Src>
+            </li>
+            <li>
+              <b>Beverly Golf &amp; Tennis clubhouse windows,</b>{" "}first floor: $278,000, with a
+              second phase planned for next year. <Src href={`${DOC}/7711`}>(pre-application)</Src>
+            </li>
+            <li>
+              <b>Cooney Field,</b>{" "}from the Recreation Department: $200,000 toward new lights and
+              stands. <Src href={`${DOC}/7705`}>(pre-application)</Src>
+            </li>
+            <li>
+              <b>O&apos;Bear Park playground,</b>{" "}Recreation Department: $175,000 to replace the
+              city&apos;s oldest play structure. <Src href={`${DOC}/7707`}>(pre-application)</Src>
+            </li>
+            <li>
+              <b>McPherson Youth Center,</b>{" "}Recreation Department: $150,000 to power and replace
+              the lights on the basketball courts and skate park.{" "}
+              <Src href={`${DOC}/7706`}>(pre-application)</Src>
+            </li>
+            <li>
+              <b>39 Bow St,</b>{" "}from Albanian Boston Community: $120,000 for a fire sprinkler
+              system in a building the Historic District Commission found historically significant.{" "}
+              <Src href={`${DOC}/7708`}>(pre-application)</Src>
+            </li>
+            <li>
+              <b>YMCA fitness trails,</b>{" "}254 Essex St: $25,000 toward about three-quarters of a
+              mile of free public trails. <Src href={`${DOC}/7712`}>(pre-application)</Src>
+            </li>
+          </ul>
+          <p className={BODY}>
+            A pre-application only asks the committee to rule a project eligible. It announces
+            eligibility November 30, full applications are due January 13, and its recommendations
+            go to the City Council in mid-April, according to the{" "}
+            <Src href={CPA_SCHEDULE}>schedule</Src>.
+          </p>
           <Refs
             sources={
               <>
                 <Src href={LYNCH_APP}>The city&apos;s application (zip file)</Src>
+                <Src href={CPA_R14}>Round 14 applications</Src>
               </>
             }
           />
