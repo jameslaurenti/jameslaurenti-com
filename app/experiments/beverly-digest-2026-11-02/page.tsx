@@ -192,7 +192,9 @@ const AIRPORT_COMMISSION = "https://www.beverlyma.gov/393/Airport-Commission";
 const DANVERS_AIRPORT = "https://www.danversma.gov/159/Beverly-Airport-Commission";
 const PATCH_AIRPORT_2022 = "https://patch.com/massachusetts/danvers/beverly-airport-noise-pollution-danvers-officials-radar";
 const HEARING_2025 = "https://citizenportal.ai/articles/6138331/massachusetts/legislative/joint/joint-committee-on-transportation/neighborhoods-press-for-airport-noise-reporting-aopa-warns-of-preemption-limits";
+const PACKET_1005 = `${AGENDA}/ViewFile/Agenda/_10052026-2938`;
 const DESE_ELA = "https://www.doe.mass.edu/mcas/tdd/ela-g3-8-faq.html";
+const DESE_WEBINARS = "https://mcas.onlinehelp.cognia.org/training-webinars/";
 const ELECTION = "https://www.beverlyma.gov/817/Upcoming-Election";
 const SOS = "https://www.sec.state.ma.us";
 const SOS_WHERE = `${SOS}/WhereDoIVoteMA/WhereDoIVote`;
@@ -640,12 +642,26 @@ export default function DigestIssue8() {
           <p className={BODY}>
             The Planning Board voted 7-0 to recommend that the Council adopt the proposed pause on
             data center applications. The pause would run through November 30, 2027, or end sooner
-            if the city adopts zoning rules for data centers, and it gives the city its first
-            definition of one. Planning Director Darlene Wynne said she knows of no data center
+            if the city adopts zoning rules for data centers. Planning Director Darlene Wynne said she knows of no data center
             project proposed in Beverly.{" "}
             <Moment src={PB1027} s={7243} /> <Moment src={PB1027} s={547} />{" "}
             <Moment src={PB1027} s={413} /> <Moment src={PB1027} s={689} />{" "}
             <Earlier issue={5} slug="2026-10-12" id="datacenters" label="the pause and the state's order" />
+          </p>
+          <p className={BODY}>
+            <b>What counts as a data center.</b>{" "}
+            Beverly&apos;s zoning does not list data centers as a use today, so someone could try
+            to build one under a use the code already allows, Wynne told the board. The order
+            defines a data center as &ldquo;a building or group of buildings, the primary use of
+            which is to house computer systems, servers, data storage equipment, networking
+            equipment, and associated infrastructure necessary for the processing, storage, and
+            distribution of data and digital applications.&rdquo; It sets no minimum size, unlike
+            the state&apos;s order, which covers projects over 25 megawatts. While the pause runs,
+            the city could not accept or approve building permits, special permits, site plan
+            approval or any other zoning approval for one, in any part of the city. The board
+            recommended the order as written.{" "}
+            <Src href={`${PACKET_1005}#page=40`}>The order&apos;s text</Src>{" "}
+            <Moment src={PB1027} s={429} /> <Moment src={PB1027} s={7229} />
           </p>
           <p className={BODY}>
             The Council holds its own hearing November 9 at 7:30pm in the Middle School library.
@@ -657,6 +673,7 @@ export default function DigestIssue8() {
             sources={
               <>
                 <Src href={`${PB_1027}#page=1`}>Meeting notice (p. 1)</Src>
+                <Src href={`${PACKET_1005}#page=39`}>Order #250 (Council packet, pp. 39-41)</Src>
                 <Src href={PB1027}>Full recording</Src>
               </>
             }
@@ -764,10 +781,27 @@ export default function DigestIssue8() {
             this spring. They will write shorter and longer responses instead, and no grade will be
             tested on narrative writing, district staff told the committee. The state&apos;s{" "}
             <Src href={DESE_ELA}>education department confirms the change</Src>{" "}for the tests
-            given in spring 2027. Principals also presented last spring&apos;s results school by school,
-            and Cove Elementary&apos;s principal said the state named it a &ldquo;school of
+            given in spring 2027.{" "}
+            <Moment src={SC1028} s={2870} />
+          </p>
+          <p className={BODY}>
+            <b>Why the state changed it.</b>{" "}
+            The state&apos;s reason is testing time. The changes come from educator feedback over
+            several years, and shorter testing was &ldquo;one of the main concerns we continue to
+            hear,&rdquo; especially for English, its director of test development said in a{" "}
+            <Src href={DESE_WEBINARS}>May 11 webinar</Src>. Reading passages get shorter, and the
+            new extended responses ask for one to two paragraphs instead of an essay. The state
+            gives no separate reason for dropping narrative writing, saying only that schools
+            should keep assessing it themselves. The test also adds questions on grammar, which
+            district staff said has not been a focus on the MCAS in a very long time, and the
+            district is adjusting its curriculum for both changes.{" "}
+            <Moment src={SC1028} s={2816} />
+          </p>
+          <p className={BODY}>
+            Principals also presented last spring&apos;s results school by school, and Cove
+            Elementary&apos;s principal said the state named it a &ldquo;school of
             recognition.&rdquo;{" "}
-            <Moment src={SC1028} s={2870} /> <Moment src={SC1028} s={1635} />
+            <Moment src={SC1028} s={1635} />
           </p>
           <p className={BODY}>
             <b>E-bikes and scooters.</b>{" "}
@@ -786,6 +820,7 @@ export default function DigestIssue8() {
             sources={
               <>
                 <Src href={DESE_ELA}>The state&apos;s notes on the new test</Src>
+                <Src href={DESE_WEBINARS}>State webinar on the changes (May 11)</Src>
                 <Src href={SC1028}>Full recording</Src>
               </>
             }
