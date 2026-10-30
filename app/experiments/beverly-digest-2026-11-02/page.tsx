@@ -143,6 +143,25 @@ const Earlier = ({ issue, slug, id, label }: { issue: number; slug: string; id: 
   </a>
 );
 
+/**
+ * A static site map. The SVG is drawn ahead of time (research/maps/render.py in the digest
+ * repo) from OpenStreetMap and the city's parcel layer, so it needs no map library and holds
+ * up in email.
+ */
+const SiteMap = ({ src, alt, w, h, children }: { src: string; alt: string; w: number; h: number; children: ReactNode }) => (
+  <figure className="mt-6 max-w-[63ch]">
+    {/* eslint-disable-next-line @next/next/no-img-element */}
+    <img src={src} alt={alt} width={w} height={h} loading="lazy" className="h-auto w-full rounded border border-rule" />
+    <figcaption className="mt-2 text-[0.85rem] leading-snug text-ink-faint">
+      {children} Map data &copy;{" "}
+      <a href="https://www.openstreetmap.org/copyright" className="underline">
+        OpenStreetMap contributors
+      </a>
+      ; parcel outline from the City of Beverly&apos;s map.
+    </figcaption>
+  </figure>
+);
+
 /* ---------------- sources ---------------- */
 
 const V = "https://www.youtube.com/watch?v=";
@@ -156,6 +175,9 @@ const PARKS_1105 = `${AGENDA}/ViewFile/Agenda/_11052026-2979`;
 const ZBA_0625_2025 = `${AGENDA}/ViewFile/Minutes/_06252025-2350`;
 const ENON_PAGE = "https://www.beverlyma.gov/1311";
 const ENON_ZBA = `${DOC}/7743`;
+const ENON_TIA = `${DOC}/7693`;
+const PLAN_BEVERLY = `${DOC}/5450`;
+const MAPS = "/beverly/digest/2026-11-02";
 const LANDING_APP = `${DOC}/7718`;
 const AFFORDABLE_PAGE = "https://www.beverlyma.gov/723";
 const LYNCH_APP = `${DOC}/7742`;
@@ -163,6 +185,11 @@ const BEAT_BOULDER = "https://thebeverlybeat.substack.com/p/going-big-on-boulder
 const CITY_MAP_BOULDER = "https://beverlyma.mapgeo.io/datasets/properties?previewId=73-8";
 const H5708 = "https://malegislature.gov/Bills/194/H5708";
 const H3713 = "https://malegislature.gov/Bills/194/H3713";
+const H3358 = "https://malegislature.gov/Bills/193/H3358";
+const AIRPORT_COMMISSION = "https://www.beverlyma.gov/393/Airport-Commission";
+const DANVERS_AIRPORT = "https://www.danversma.gov/159/Beverly-Airport-Commission";
+const PATCH_AIRPORT_2022 = "https://patch.com/massachusetts/danvers/beverly-airport-noise-pollution-danvers-officials-radar";
+const HEARING_2025 = "https://citizenportal.ai/articles/6138331/massachusetts/legislative/joint/joint-committee-on-transportation/neighborhoods-press-for-airport-noise-reporting-aopa-warns-of-preemption-limits";
 const DESE_ELA = "https://www.doe.mass.edu/mcas/tdd/ela-g3-8-faq.html";
 const ELECTION = "https://www.beverlyma.gov/817/Upcoming-Election";
 const SOS = "https://www.sec.state.ma.us";
@@ -173,9 +200,9 @@ const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
 
 const contents: [string, string][] = [
   ["enon", "Apartments at the Stop & Shop site: a first hearing, and a return November 17"],
-  ["boulder", "Senior housing proposed off Boulder Lane, and a community meeting Thursday"],
+  ["boulder", "Senior housing proposed off Boulder Lane, and a community meeting November 5"],
   ["datacenters", "The Planning Board backs the data center pause, 7-0"],
-  ["airport", "A Beverly Airport noise bill passes the House"],
+  ["airport", "A bill to track and publish Beverly Airport noise passes the House"],
   ["schools", "No essay on the elementary MCAS, and a rule for e-bikes on school grounds"],
   ["landing", "Nine affordable condos for buyers 55 and older on Balch Street"],
   ["lynch", "Lynch Park: the city asks for its share of the seawall design"],
@@ -317,12 +344,11 @@ export default function DigestIssue8() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            This week: the plan for 179 apartments at the Stop &amp; Shop site on Enon Street gets
-            its first Planning Board hearing, and comes back November 17 for traffic. The
-            Mayor&apos;s office calls a community meeting Thursday on a 55-and-older proposal off
-            Boulder Lane. The Planning Board backs the data center pause, a Beverly Airport noise
-            bill passes the House, and the elementary MCAS drops the essay. Tomorrow is Election
-            Day.
+            The plan for 179 apartments at the Stop &amp; Shop site on Enon Street had its first
+            Planning Board hearing. A 55-and-older proposal off Boulder Lane in Centerville has a
+            community meeting set for November 5. The Planning Board backed the data center
+            pause, a Beverly Airport noise bill passed the House, and the elementary MCAS drops
+            the essay. Tomorrow is Election Day.
           </p>
         </header>
 
@@ -354,7 +380,7 @@ export default function DigestIssue8() {
         {/* ---- 01 ---- */}
         <section
           id="enon"
-          data-dek={"The plan to replace the Stop & Shop on Enon Street with 179 apartments had its first Planning Board hearing. About a dozen residents spoke, most about traffic. The board continued the hearing to November 17, when the applicant's traffic consultant presents."}
+          data-dek={"The plan to replace the Stop & Shop on Enon Street with 179 apartments, next to the North Beverly train station, had its first Planning Board hearing. About a dozen residents spoke, most about traffic. The board continued the hearing to November 17, when the applicant's traffic consultant presents."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Housing</Eyebrow>
@@ -367,14 +393,23 @@ export default function DigestIssue8() {
             meeting="Planning Board, Oct 27"
           />
           <p className={BODY}>
-            The owner of the Stop &amp; Shop property at 37 Enon St wants to replace the store with
-            one building of 179 apartments and about 2,600 square feet of shops. On Tuesday the
-            Planning Board opened its hearing on the plan, heard from about a dozen residents, and
-            voted 7-0 to continue it to November 17, when the applicant&apos;s traffic consultant is
-            due to present.{" "}
+            The owner of the Stop &amp; Shop property at 37 Enon St, on Route 1A in North Beverly
+            next to the North Beverly train station, wants to replace the store with one building
+            of 179 apartments and about 2,600 square feet of shops. On October 27 the Planning
+            Board opened its hearing on the plan, heard from about a dozen residents, and voted
+            7-0 to continue it to November 17, when the applicant&apos;s traffic consultant is due
+            to present.{" "}
             <Moment src={PB1027} s={1115} /> <Moment src={PB1027} s={2148} />{" "}
             <Moment src={PB1027} s={6728} />
           </p>
+          <SiteMap
+            src={`${MAPS}/enon-map.svg`}
+            alt="Map of North Beverly. The Stop and Shop site at 37 Enon Street sits between Enon Street (Route 1A) and the commuter rail line, just north of North Beverly station and the Dodge Street intersection. Wenham Lake is to the west, the Wenham line to the north, North Beverly Elementary to the southeast, and Shaw's and Route 128 to the south."
+            w={640}
+            h={621}
+          >
+            The site, shaded, between Enon Street and the commuter rail line.
+          </SiteMap>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             What is proposed
@@ -393,8 +428,9 @@ export default function DigestIssue8() {
             </li>
             <li>
               <b>Fewer parking spaces than zoning requires:</b>{" "}281, where 367 are required.
-              That takes a special permit from the board.{" "}
-              <Moment src={PB1027} s={2309} />
+              That works out to about 1.5 spaces per apartment, where zoning asks for 2. Building
+              fewer takes a special permit from the board.{" "}
+              <Moment src={PB1027} s={2309} /> <Moment src={PB1027} s={2357} />
             </li>
             <li>
               <b>Height already allowed.</b>{" "}In September the Zoning Board of Appeals voted 5-0 to
@@ -413,13 +449,22 @@ export default function DigestIssue8() {
             Traffic, the main question
           </h3>
           <p className={BODY}>
-            The applicant&apos;s engineer gave the traffic study&apos;s figures, based on driveway
-            counts taken at the store this summer. In the weekday evening peak hour, the study
-            counts 190 cars at the store today and estimates 68 for the new building. The
-            study&apos;s author was not at the meeting, and the board held its traffic questions for
-            November 17.{" "}
+            The applicant&apos;s case on traffic rests on two things: fewer parking spaces than
+            zoning requires, and a{" "}
+            <Src href={`${ENON_TIA}#page=7`}>traffic study (summary, p. 1)</Src> that finds the
+            apartments would send fewer cars in and out of the site than the store does today. Its
+            counters recorded the store&apos;s driveways July 23 to 25. In the weekday evening peak
+            hour, the study counts 190 cars at the store today and estimates 68 for the new
+            building; over a full weekday, about 2,000 today and about 730 after, the
+            applicant&apos;s engineer said.{" "}
             <Moment src={PB1027} s={2148} /> <Moment src={PB1027} s={2586} />{" "}
-            <Moment src={PB1027} s={4327} />
+            <Moment src={PB1027} s={2629} />
+          </p>
+          <p className={BODY}>
+            The same study finds that some turns out of driveways on this stretch of Enon Street
+            are at or over capacity today, and will stay that way with or without the project{" "}
+            <Src href={`${ENON_TIA}#page=8`}>(p. 2)</Src>. Its author was not at the meeting, and
+            the board held its traffic questions for November 17.
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -427,26 +472,37 @@ export default function DigestIssue8() {
           </h3>
           <ul className={LIST}>
             <li>
-              Residents who opposed the plan or raised concerns named traffic on Enon Street and
-              Route 1A and left turns out of the site, school buses and class sizes, unsafe crossings
-              near the tracks, lights and noise behind the building, and where guests would park.{" "}
-              <Moment src={PB1027} s={3949} /> <Moment src={PB1027} s={4222} />{" "}
-              <Moment src={PB1027} s={4461} /> <Moment src={PB1027} s={4720} />{" "}
-              <Moment src={PB1027} s={4765} /> <Moment src={PB1027} s={5549} />
+              Residents who opposed the plan or raised concerns said they did not believe the
+              study&apos;s finding, and expected the apartments to bring more traffic than the store.
+              Several said the store is quiet most of the day and asked when the counts were taken;
+              the applicant&apos;s team said this past summer. They described Enon Street traffic as
+              already heavy, with left turns hard to make at busy times. Others raised school buses
+              and class sizes, unsafe crossings near the tracks, and where guests would park.{" "}
+              <Moment src={PB1027} s={4222} /> <Moment src={PB1027} s={4327} />{" "}
+              <Moment src={PB1027} s={4341} /> <Moment src={PB1027} s={4495} />{" "}
+              <Moment src={PB1027} s={3949} /> <Moment src={PB1027} s={4765} />{" "}
+              <Moment src={PB1027} s={5549} />
             </li>
             <li>
               Supporters said a site next to the North Beverly train station suits housing for
-              people who drive less, and backed the lower parking count. One supporter who lives
-              across the street asked for lights shielded from the neighbors and good walking
-              routes.{" "}
+              people who drive less, and backed the lower parking count. Two pointed to the
+              city&apos;s master plan, which recommends reducing parking requirements near transit
+              stations beyond Beverly Depot{" "}
+              <Src href={`${PLAN_BEVERLY}#page=108`}>(PlanBeverly, p. 108)</Src>.{" "}
               <Moment src={PB1027} s={3714} /> <Moment src={PB1027} s={5071} />{" "}
               <Moment src={PB1027} s={5256} />
             </li>
             <li>
-              A letter read into the record said redevelopment along this stretch should aim for a
-              denser, walkable, village-like neighborhood, and that it was short-sighted not to
-              consider the ideas the city&apos;s planning consultant put forward for it.{" "}
-              <Moment src={PB1027} s={5606} />
+              A letter from a Ward 5 resident who served on the committee that wrote the current
+              master plan said the planning consultant&apos;s original draft imagined this stretch
+              becoming a denser, walkable, village-like neighborhood around the station, with a new
+              street grid and broader zoning changes, and that much of that detail was dropped from
+              the final plan. The
+              letter said this project arrives without those changes, trading a large
+              suburban-style store for a large suburban-style apartment building. The adopted plan
+              recommends a neighborhood planning study of the station area{" "}
+              <Src href={`${PLAN_BEVERLY}#page=40`}>(p. 40)</Src>.{" "}
+              <Moment src={PB1027} s={5575} /> <Moment src={PB1027} s={5606} />
             </li>
           </ul>
 
@@ -454,20 +510,34 @@ export default function DigestIssue8() {
             What the board decides
           </h3>
           <p className={BODY}>
-            The chair laid out the three decisions in front of the board. Site plan review
-            &ldquo;cannot be denied except under extraordinary circumstances,&rdquo; though the
-            board can set conditions. The parking special permit is the board&apos;s judgment call.
-            The affordable units are required by the city&apos;s housing ordinance, and the board
-            checks that the plan complies.{" "}
+            The chair laid out three separate decisions.{" "}
             <Moment src={PB1027} s={1228} /> <Moment src={PB1027} s={1263} />
           </p>
+          <ul className={LIST}>
+            <li>
+              <b>Site plan review.</b>{" "}The board&apos;s look at how the project sits on its lot:
+              the building&apos;s placement, driveways, parking layout, drainage, landscaping and
+              lighting. The chair said it &ldquo;cannot be denied except under extraordinary
+              circumstances,&rdquo; but the board can attach reasonable conditions.
+            </li>
+            <li>
+              <b>The parking special permit.</b>{" "}Whether to allow 281 spaces where zoning
+              requires 367. This is the decision where the board has latitude, the chair said: it
+              weighs set factors and puts its reasons on the record.
+            </li>
+            <li>
+              <b>The affordable units.</b>{" "}The city&apos;s inclusionary housing ordinance requires
+              them. The board checks that the plan complies and cannot deny this part.
+            </li>
+          </ul>
           <p className={BODY}>
             <b>Next.</b>{" "}
-            Before November 17, the plan goes back to the Parking and Traffic Commission and to the
-            Design Review Board, which has it on Thursday&apos;s agenda. The board also voted 6-1 to
-            ask the city&apos;s Clean Energy Advisory Committee to review the plan against the
-            city&apos;s climate plan. That committee next meets November 18, the day after the
-            hearing; the chair said its review would not stop the board from acting.{" "}
+            Of the approvals named at the hearing, the Zoning Board has already allowed the height,
+            and the Planning Board&apos;s three decisions remain; they pick up November 17. Before then, the Parking and
+            Traffic Commission and the Design Review Board review the plan and report back; the
+            Design Review Board has it on its November 5 agenda. The board also voted 6-1 to ask the
+            Clean Energy Advisory Committee for comments, and the chair said that review would not
+            hold up a vote.{" "}
             <Moment src={PB1027} s={1492} /> <Moment src={PB1027} s={6403} />{" "}
             <Moment src={PB1027} s={6627} />
           </p>
@@ -475,6 +545,8 @@ export default function DigestIssue8() {
             sources={
               <>
                 <Src href={ENON_PAGE}>The city&apos;s project page, with the plans and studies</Src>
+                <Src href={ENON_TIA}>Traffic study</Src>
+                <Src href={`${PLAN_BEVERLY}#page=108`}>PlanBeverly, the master plan (p. 108)</Src>
                 <Src href={`${PB_1027}#page=1`}>Meeting notice (p. 1)</Src>
                 <Src href={PB1027}>Full recording</Src>
               </>
@@ -485,11 +557,11 @@ export default function DigestIssue8() {
         {/* ---- 02 ---- */}
         <section
           id="boulder"
-          data-dek={"A developer has proposed 250 to 300 units of 55-and-older housing, including assisted living, off Boulder Lane in Centerville, according to the Mayor's office. Nothing has been filed. The Mayor's office has called a community meeting for Thursday at Centerville Elementary."}
+          data-dek={"A developer has proposed 250 to 300 units of 55-and-older housing, including assisted living, off Boulder Lane in Centerville, according to the Mayor's office. Nothing has been filed. The Mayor's office has called a community meeting for November 5 at Centerville Elementary."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Housing</Eyebrow>
-          <H2>Senior housing proposed off Boulder Lane, and a community meeting Thursday</H2>
+          <H2>Senior housing proposed off Boulder Lane, and a community meeting November 5</H2>
           <From>
             Not from a meeting: the Mayor&apos;s office, as reported by The Beverly Beat, and city
             records
@@ -500,14 +572,24 @@ export default function DigestIssue8() {
             buildings, 250 to 300 units in all, according to the Mayor&apos;s office, as{" "}
             <Src href={BEAT_BOULDER}>The Beverly Beat reported</Src>. The Mayor&apos;s office has
             called a community meeting at Centerville Elementary School for Thursday, November 5,
-            moved from October 27. No time has been posted. The developer has not been named, and
+            moved from October 27, the Beat reported. No time has been posted. The developer has not been named, and
             no plans or applications have been filed with a city board.
           </p>
+          <SiteMap
+            src={`${MAPS}/boulder-map.svg`}
+            alt="Map of Centerville. The 128 Boulder Lane parcel sits on the north side of Route 128 at the Wenham line. Boulder Lane runs along the highway from Grapevine Road at the Route 128 interchange. Hull Street and Centerville Elementary School are to the west, and Beverly Commons conservation land is south of the highway."
+            w={640}
+            h={503}
+          >
+            The Beverly parcel, shaded. Boulder Lane, outlined, runs along Route 128 from Grapevine
+            Road.
+          </SiteMap>
           <p className={BODY}>
             <b>The land.</b>{" "}
-            The property, 128 Boulder Lane, is 26 acres on the Beverly side,{" "}
-            <Src href={CITY_MAP_BOULDER}>city records show</Src>; the sale listing says it continues
-            into Wenham and shows it under agreement at $5.9 million. The Beat describes it as woods
+            Boulder Lane is a short road in Centerville that runs along the north side of Route 128
+            from Grapevine Road, at the Wenham line. The property, 128 Boulder Lane, is 26 acres on
+            the Beverly side, <Src href={CITY_MAP_BOULDER}>city records show</Src>; the sale
+            listing says it continues into Wenham and shows it under agreement at $5.9 million. The Beat describes it as woods
             and wetlands. Other parcels on Boulder Lane include city land, conservation land and
             land held by the Essex County Greenbelt Association.
           </p>
@@ -566,7 +648,7 @@ export default function DigestIssue8() {
           <p className={BODY}>
             The Council holds its own hearing November 9 at 7:30pm in the Middle School library.
             Adopting the pause takes a two-thirds vote of the Council, six of nine. A resident at
-            Tuesday&apos;s hearing asked the city to publicize that date widely.{" "}
+            the October 27 hearing asked the city to publicize that date widely.{" "}
             <Moment src={PB1027} s={916} />
           </p>
           <Refs
@@ -582,50 +664,81 @@ export default function DigestIssue8() {
         {/* ---- 04 ---- */}
         <section
           id="airport"
-          data-dek={"The state House passed a bill that would have the state post every noise complaint made to Beverly Regional Airport from April to October, and monthly counts of practice landings. It is now in the Senate."}
+          data-dek={"The state House passed a bill that would have the state publish noise complaints and counts of practice landings at Beverly Regional Airport every spring and summer, require a public meeting on noise when two airport commissioners ask, and give the airport yearly guidance for pilots. It is now in the Senate."}
           className={SECTION}
         >
           <Eyebrow>04 &middot; State House</Eyebrow>
-          <H2>A Beverly Airport noise bill passes the House</H2>
+          <H2>A bill to track and publish Beverly Airport noise passes the House</H2>
           <From>Not from a city meeting: the Legislature&apos;s record &middot; House bill 5708</From>
           <p className={BODY}>
-            The state House <Src href={H5708}>passed a bill</Src> on October 26 that would have the
-            state publish noise complaints about Beverly Regional Airport and counts of training
-            flights. The Senate sent it to its Rules Committee on October 29. If it becomes law, it
-            takes effect January 1, 2027. What it would do:
+            <b>The problem it answers.</b>{" "}
+            For several years, neighbors of Beverly Regional Airport, many of them in Danvers and
+            Wenham, have complained about noise from &ldquo;touch and go&rdquo; flights: practice
+            landings in which a plane touches down and takes off again without stopping, often
+            several times in a row during pilot training. In 2022 Senator Joan Lovely said interest
+            in flight schools rose during the pandemic, that most of the noise came from these
+            flights, and that the airport&apos;s operations are overseen largely by the Federal
+            Aviation Administration rather than by the city or town governments, as{" "}
+            <Src href={PATCH_AIRPORT_2022}>Patch reported</Src>.
+          </p>
+          <p className={BODY}>
+            <b>What the bill does.</b>{" "}
+            It does not limit flights. It sets up a yearly cycle of data, public questions and
+            guidance, for this airport only, starting January 1, 2027 if it becomes law{" "}
+            <Src href={H5708}>(bill text)</Src>:
           </p>
           <ul className={LIST}>
             <li>
-              The state&apos;s aeronautics division would collect every noise complaint made to the
-              airport from April 1 to October 1, whether by website, phone, email, letter or in
-              person, and post them monthly with the day and hour of each.
+              <b>Collect and publish.</b>{" "}Every year from April 1 to October 1, the state&apos;s
+              aeronautics division would collect every noise complaint made to the airport, by
+              website, phone, email, letter or in person, and post them monthly with the day and hour
+              of each. It would also post monthly counts and times of touch-and-go flights from the
+              control tower. The data stays online permanently, and each December the state sends it
+              to the Legislature&apos;s transportation committee leaders and the state transportation
+              secretary. The bill does not say why it covers only April to October.
             </li>
             <li>
-              It would also post monthly counts and times of &ldquo;touch and go&rdquo; flights, the
-              practice landings in which a plane touches down and takes off again without stopping.
+              <b>A public meeting.</b>{" "}When at least two airport commissioners ask, the Airport
+              Commission must hold a public meeting on the noise reports, where anyone can question
+              the commissioners and the airport manager. The commission is a{" "}
+              <Src href={AIRPORT_COMMISSION}>City of Beverly board</Src>: nine members appointed by
+              Beverly&apos;s mayor with City Council approval, two of them Danvers residents,{" "}
+              <Src href={DANVERS_AIRPORT}>Danvers says</Src>.
             </li>
             <li>
-              At the request of two airport commissioners, the commission would hold a public
-              meeting on noise reports, where the commissioners and the airport manager would take
-              questions.
-            </li>
-            <li>
-              The state would give the airport yearly guidance on a &ldquo;Good Neighbor&rdquo;
-              policy for pilots and flight schools. The airport would post the policy and give a copy
-              to every pilot, student pilot and badge applicant.
+              <b>Better practice.</b>{" "}Every year the state would give the airport guidance on a
+              &ldquo;Good Neighbor&rdquo; policy, to help flight schools and pilots understand the
+              noise touch-and-go flights make for neighbors within three miles of the runways. The
+              airport would post the policy and give a copy to every pilot, student pilot and badge
+              applicant.
             </li>
           </ul>
           <p className={BODY}>
-            Representative Sally Kerans and Senator Joan Lovely{" "}
-            <Src href={H3713}>filed the original bill</Src> in 2025. The Transportation Committee
-            rewrote it in March, and the House passed a further version offered by Representative
-            Thomas Walsh of Peabody.
+            <b>For and against.</b>{" "}
+            At a July 2025 hearing, residents and officials from Danvers and Wenham asked the state
+            to collect and publish the noise data. The Aircraft Owners and Pilots Association, a
+            national pilots&apos; group, said it supports voluntary &ldquo;fly neighborly&rdquo;
+            programs but opposed the bill as then written, warning that federal law limits what
+            states can require of pilots, according to a{" "}
+            <Src href={HEARING_2025}>summary of the hearing</Src>. The version filed in 2025 had
+            badge applicants sign a promise to follow the policy{" "}
+            <Src href={H3713}>(H.3713)</Src>; the version that passed has the airport hand them a
+            copy.
+          </p>
+          <p className={BODY}>
+            <b>Where it stands.</b>{" "}
+            The House passed it October 26, and the Senate sent it to its Rules Committee October 29.
+            Representative Sally Kerans of Danvers first filed it in 2023 with Senator Lovely{" "}
+            <Src href={H3358}>(H.3358)</Src> and again in 2025 with Representative Hannah Bowen. The
+            House passed a version offered by Representative Thomas Walsh of Peabody, with Kerans,
+            Lovely and Bowen as cosponsors.
           </p>
           <Refs
             sources={
               <>
                 <Src href={`${H5708}/BillHistory`}>The bill&apos;s history</Src>
                 <Src href={H5708}>Bill text</Src>
+                <Src href={AIRPORT_COMMISSION}>Airport Commission</Src>
               </>
             }
           />
@@ -697,6 +810,14 @@ export default function DigestIssue8() {
             applications, according to the{" "}
             <Src href={`${LANDING_APP}#page=1`}>application (p. 1)</Src>.
           </p>
+          <SiteMap
+            src={`${MAPS}/balch-map.svg`}
+            alt="Map of Beverly Landing at 50 Balch Street. The building's lot is on the south side of Balch Street, between Shoe Pond and Cabot Street, across from Beverly Middle School. Beverly High School and Beverly Hospital are to the east, past the commuter rail line."
+            w={640}
+            h={504}
+          >
+            The lot, shaded, on Balch Street across from Beverly Middle School.
+          </SiteMap>
           <Refs
             sources={
               <>

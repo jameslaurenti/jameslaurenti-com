@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Beverly Meeting Digest: Oct 26 to Nov 1, 2026 — James Laurenti",
   description:
-    "The Stop & Shop site's apartment plan gets its first Planning Board hearing, continued to November 17. A 55-and-older proposal off Boulder Lane and a community meeting Thursday. The Planning Board backs the data center pause, and a Beverly Airport noise bill passes the House.",
+    "The Stop & Shop site's apartment plan gets its first Planning Board hearing, continued to November 17. A 55-and-older proposal off Boulder Lane and a community meeting November 5. The Planning Board backs the data center pause, and a Beverly Airport noise bill passes the House.",
   // DRAFT: remove before publishing. qa:issue fails while this is here. (Under /experiments
   // the next.config header also sends noindex; this tag is the belt to its braces.)
   robots: { index: false, follow: false },
