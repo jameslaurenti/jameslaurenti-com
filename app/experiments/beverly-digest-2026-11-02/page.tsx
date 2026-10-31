@@ -430,9 +430,11 @@ export default function DigestIssue8() {
               <Moment src={PB1027} s={1115} />
             </li>
             <li>
-              <b>Set back from the neighbors.</b>{" "}The building would sit more than 100 feet from
-              the rear property line, where the store is now 20 feet away, and paving and roofs
-              would cover just under 75% of the site, down from about 90%, the applicant said.{" "}
+              <b>Set back, with more green space.</b>{" "}The building would sit more than 100 feet
+              from the rear property line, where the store is now 20 feet away. Today about 90% of
+              the lot is building or pavement. Under the plan that drops to just under 75%, so about
+              a quarter of the site would be green space instead of a tenth, mostly around the
+              edges, the applicant&apos;s engineer said.{" "}
               <Moment src={PB1027} s={1539} /> <Moment src={PB1027} s={2482} />
             </li>
             <li>
@@ -455,25 +457,19 @@ export default function DigestIssue8() {
           </ul>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            Traffic, the main question
+            Traffic
           </h3>
           <p className={BODY}>
-            The applicant&apos;s case on traffic rests on two things: fewer parking spaces than
-            zoning requires, and a{" "}
-            <Src href={`${ENON_TIA}#page=7`}>traffic study (summary, p. 1)</Src> that finds the
-            apartments would send fewer cars in and out of the site than the store does today. Its
-            counters recorded the store&apos;s driveways July 23 to 25. In the weekday evening peak
-            hour, the study counts 190 cars at the store today and estimates 68 for the new
-            building; over a full weekday, about 2,000 today and about 730 after, the
-            applicant&apos;s engineer said.{" "}
-            <Moment src={PB1027} s={2148} /> <Moment src={PB1027} s={2586} />{" "}
-            <Moment src={PB1027} s={2629} />
-          </p>
-          <p className={BODY}>
-            The same study finds that some turns out of driveways on this stretch of Enon Street
-            are at or over capacity today, and will stay that way with or without the project{" "}
-            <Src href={`${ENON_TIA}#page=8`}>(p. 2)</Src>. Its author was not at the meeting, and
-            the board held its traffic questions for November 17.
+            The applicant filed a{" "}
+            <Src href={`${ENON_TIA}#page=7`}>traffic study</Src>{" "}
+            estimating that the apartments would bring fewer cars in and out than the store: about 730 trips on a weekday, compared
+            with about 2,000 counted at the store in July, the applicant&apos;s engineer said. The
+            study also finds that pulling out onto Enon Street at busy times means long waits, at
+            these driveways and others nearby, because of the traffic already on the road. That is
+            true with the store today and would stay true with the apartments{" "}
+            <Src href={`${ENON_TIA}#page=48`}>(pp. 26-27)</Src>. The study&apos;s author presents
+            it November 17.{" "}
+            <Moment src={PB1027} s={2586} /> <Moment src={PB1027} s={2629} />
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -481,12 +477,12 @@ export default function DigestIssue8() {
           </h3>
           <ul className={LIST}>
             <li>
-              Residents who opposed the plan or raised concerns said they did not believe the
-              study&apos;s finding, and expected the apartments to bring more traffic than the store.
-              Several said the store is quiet most of the day and asked when the counts were taken;
-              the applicant&apos;s team said this past summer. They described Enon Street traffic as
-              already heavy, with left turns hard to make at busy times. Others raised school buses
-              and class sizes, unsafe crossings near the tracks, and where guests would park.{" "}
+              Residents who opposed the plan or raised concerns described Enon Street traffic as
+              already heavy, with left turns hard to make at busy times, and several expected the
+              apartments to bring more traffic than the store, which they said is quiet most of the
+              day. Some asked when the counts were taken; this past summer, the applicant&apos;s team
+              said. Others raised school buses and class sizes, unsafe crossings near the tracks,
+              and where guests would park.{" "}
               <Moment src={PB1027} s={4222} /> <Moment src={PB1027} s={4327} />{" "}
               <Moment src={PB1027} s={4341} /> <Moment src={PB1027} s={4495} />{" "}
               <Moment src={PB1027} s={3949} /> <Moment src={PB1027} s={4765} />{" "}
