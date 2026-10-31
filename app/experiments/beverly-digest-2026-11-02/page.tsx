@@ -172,7 +172,6 @@ const DOC = "https://www.beverlyma.gov/DocumentCenter/View";
 const PB_1027 = `${AGENDA}/ViewFile/Agenda/_10272026-2973`;
 const DRB_1105 = `${AGENDA}/ViewFile/Agenda/_11052026-2980`;
 const PARKS_1105 = `${AGENDA}/ViewFile/Agenda/_11052026-2979`;
-const ZBA_0625_2025 = `${AGENDA}/ViewFile/Minutes/_06252025-2350`;
 const ENON_PAGE = "https://www.beverlyma.gov/1311";
 const ENON_ZBA = `${DOC}/7743`;
 const ENON_TIA = `${DOC}/7693`;
@@ -185,6 +184,9 @@ const CPA_R14 = "https://www.beverlyma.gov/1307/Current-CPA-Funding-Round-Round-
 const CPA_SCHEDULE = `${DOC}/7624`;
 const BEAT_BOULDER = "https://thebeverlybeat.substack.com/p/going-big-on-boulder-lane";
 const CITY_MAP_BOULDER = "https://beverlyma.mapgeo.io/datasets/properties?previewId=73-8";
+const IR_ZONING = "https://ecode360.com/29284109";
+const WSPOD = "https://ecode360.com/29284444";
+const ZONING_DEFS = "https://ecode360.com/29283349";
 const H5708 = "https://malegislature.gov/Bills/194/H5708";
 const H3713 = "https://malegislature.gov/Bills/194/H3713";
 const H3358 = "https://malegislature.gov/Bills/193/H3358";
@@ -561,7 +563,7 @@ export default function DigestIssue8() {
         {/* ---- 02 ---- */}
         <section
           id="boulder"
-          data-dek={"A developer has proposed 250 to 300 units of 55-and-older housing, including assisted living, off Boulder Lane in Centerville, according to the Mayor's office. Nothing has been filed. The Mayor's office has called a community meeting for November 5 at Centerville Elementary."}
+          data-dek={"A developer has proposed 250 to 300 units of 55-and-older housing, including assisted living, on private land off Boulder Lane in Centerville, the Mayor's office told residents. Nothing has been filed, and no city board has acted. The Mayor's office has called a community meeting for November 5 at Centerville Elementary."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Housing</Eyebrow>
@@ -574,10 +576,17 @@ export default function DigestIssue8() {
             A developer has proposed a 55-and-older development off Boulder Lane in Centerville: a
             multi-story assisted-living building and a series of smaller two-story apartment
             buildings, 250 to 300 units in all, according to the Mayor&apos;s office, as{" "}
-            <Src href={BEAT_BOULDER}>The Beverly Beat reported</Src>. The Mayor&apos;s office has
-            called a community meeting at Centerville Elementary School for Thursday, November 5,
-            moved from October 27, the Beat reported. No time has been posted. The developer has not been named, and
-            no plans or applications have been filed with a city board.
+            <Src href={BEAT_BOULDER}>The Beverly Beat reported</Src>. The land is privately owned,
+            and its sale listing shows it under agreement. The developer has not been named. No
+            plans or applications have been filed with any city board, and no board has acted.
+          </p>
+          <p className={BODY}>
+            <b>The November 5 meeting.</b>{" "}
+            The Mayor&apos;s office invited residents to a community meeting &ldquo;to discuss the
+            proposal&rdquo; on Thursday, November 5, at Centerville Elementary School, moved from
+            October 27. No time has been posted. It is not a board hearing. The zoning permits a
+            project like this needs are granted by city boards after a public hearing, so
+            nothing is decided at a community meeting.
           </p>
           <SiteMap
             src={`${MAPS}/boulder-map.svg`}
@@ -590,30 +599,48 @@ export default function DigestIssue8() {
           </SiteMap>
           <p className={BODY}>
             <b>The land.</b>{" "}
-            Boulder Lane is a short road in Centerville that runs along the north side of Route 128
-            from Grapevine Road, at the Wenham line. The property, 128 Boulder Lane, is 26 acres on
-            the Beverly side, <Src href={CITY_MAP_BOULDER}>city records show</Src>; the sale
-            listing says it continues into Wenham and shows it under agreement at $5.9 million. The Beat describes it as woods
-            and wetlands. Other parcels on Boulder Lane include city land, conservation land and
-            land held by the Essex County Greenbelt Association.
+            The property, 128 Boulder Lane, runs along the north side of Route 128 from Grapevine
+            Road, at the Wenham line. It is 26 acres on the Beverly side,{" "}
+            <Src href={CITY_MAP_BOULDER}>city records show</Src>, and the listing says it continues
+            into Wenham. The Beat describes it as woods and wetlands; city maps show wetlands on
+            about 3&frac12; of the Beverly acres. The parcel is not conservation land. Its closest
+            neighbors are house lots on Fieldstone Lane and Kennel Hill Drive, and conservation land
+            held by the city&apos;s Conservation Commission and by the Essex County Greenbelt
+            Association lies a few hundred feet away along Boulder Lane.
           </p>
           <p className={BODY}>
             <b>The zoning.</b>{" "}
-            City records place it in the IR district, for offices, research and light industry.
-            There, the only housing-type uses the zoning ordinance lists are subsidized elderly
-            housing and a state-licensed skilled nursing facility, each by special permit from the
-            Zoning Board of Appeals. With no plan filed, it is not yet known what approvals the
-            developer would seek.
+            The land is in the <Src href={IR_ZONING}>IR district</Src>, meant mainly for offices,
+            research and light industry, where housing is not allowed without a special permit.
+            The one housing use the district lists that fits a 55-and-older plan is what the zoning
+            calls{" "}
+            <Src href={ZONING_DEFS}>&ldquo;subsidized elderly housing&rdquo;</Src>: a development
+            where at least 80% of the units have a resident 55 or older, at least 15% are
+            deed-restricted as affordable, and at least 10% are built for people with
+            disabilities. A state-licensed skilled nursing facility is also allowed by special
+            permit.
           </p>
           <p className={BODY}>
-            <b>An earlier plan.</b>{" "}
-            In 2025 the owner, Oak Forest Farm LLC, asked the Zoning Board of Appeals for a variance
-            to build an outdoor golf driving range on the site. The applicant asked to delay the
-            hearing to talk with neighbors who had raised concerns, and the board instead let it
-            withdraw the application, with the right to refile. Thirty-six people signed a sheet
-            opposing it, the board&apos;s <Src href={`${ZBA_0625_2025}#page=5`}>minutes (p. 5)</Src>{" "}
-            show.
+            <b>Where the city decides.</b>{" "}
+            If the developer files plans for housing under the zoning as it stands, these city
+            boards would decide, each after a public hearing:
           </p>
+          <ul className={LIST}>
+            <li>
+              The <b>Zoning Board of Appeals</b>, on a special permit for the use.
+            </li>
+            <li>
+              The <b>Planning Board</b>, on a second special permit. The whole parcel lies inside
+              the city&apos;s <Src href={WSPOD}>Water Supply Protection Overlay District</Src>,
+              which protects the drinking water supply for Beverly and Salem. Any multifamily
+              housing there needs this permit, and the board may grant it only if the project does
+              not harm water quality. The Conservation Commission, the Board of Health and the
+              Salem and Beverly Water Supply Board review the application first.
+            </li>
+            <li>
+              The <b>Conservation Commission</b>, on any work in or near the wetlands.
+            </li>
+          </ul>
           <p className={BODY}>
             Ward 6 Councilor Matt St. Hilaire told The Beverly Beat he had not seen plans, and named
             traffic, schools, and police and fire services as his concerns. The Beat said it had
@@ -623,8 +650,10 @@ export default function DigestIssue8() {
             sources={
               <>
                 <Src href={BEAT_BOULDER}>The Beverly Beat, Oct 27</Src>
-                <Src href={`${ZBA_0625_2025}#page=5`}>Zoning Board minutes, June 2025 (p. 5)</Src>
                 <Src href={CITY_MAP_BOULDER}>City property map</Src>
+                <Src href={IR_ZONING}>IR district rules (zoning &sect; 300-42)</Src>
+                <Src href={WSPOD}>Water supply district rules (&sect; 300-50)</Src>
+                <Src href={ZONING_DEFS}>Zoning definitions (&sect; 300-5)</Src>
               </>
             }
           />
@@ -660,7 +689,7 @@ export default function DigestIssue8() {
             the city could not accept or approve building permits, special permits, site plan
             approval or any other zoning approval for one, in any part of the city. The board
             recommended the order as written.{" "}
-            <Src href={`${PACKET_1005}#page=40`}>The order&apos;s text</Src>{" "}
+            <Src href={`${PACKET_1005}#page=40`}>The order&apos;s text (p. 40)</Src>{" "}
             <Moment src={PB1027} s={429} /> <Moment src={PB1027} s={7229} />
           </p>
           <p className={BODY}>
