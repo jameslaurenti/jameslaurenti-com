@@ -176,6 +176,8 @@ const ENON_PAGE = "https://www.beverlyma.gov/1311";
 const ENON_ZBA = `${DOC}/7743`;
 const ENON_TIA = `${DOC}/7693`;
 const PLAN_BEVERLY = `${DOC}/5450`;
+const PLAN_PAGE = "https://www.beverlyma.gov/606/PlanBeverly-Comprehensive-Master-Plan";
+const MGL_81D = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter41/Section81D";
 const MAPS = "/beverly/digest/2026-11-02";
 const LANDING_APP = `${DOC}/7718`;
 const AFFORDABLE_PAGE = "https://www.beverlyma.gov/723";
@@ -212,6 +214,7 @@ const contents: [string, string][] = [
   ["schools", "No essay on the elementary MCAS, and a rule for e-bikes on school grounds"],
   ["landing", "Nine affordable condos for buyers 55 and older on Balch Street"],
   ["lynch", "Lynch Park: the city asks for its share of the seawall design"],
+  ["plan", "How it works: PlanBeverly, the city's long-range plan"],
   ["ahead", "Coming up, through November 23"],
 ];
 
@@ -400,7 +403,7 @@ export default function DigestIssue8() {
           />
           <p className={BODY}>
             The owner of the Stop &amp; Shop property at 37 Enon St, on Route 1A in North Beverly
-            next to the North Beverly train station, wants to replace the store with one building
+            (Ward 5) next to the North Beverly train station, wants to replace the store with one building
             of 179 apartments and about 2,600 square feet of shops. On October 27 the Planning
             Board opened its hearing on the plan, heard from about a dozen residents, and voted
             7-0 to continue it to November 17, when the applicant&apos;s traffic consultant is due
@@ -491,16 +494,17 @@ export default function DigestIssue8() {
             </li>
             <li>
               Supporters said a site next to the North Beverly train station suits housing for
-              people who drive less, and backed the lower parking count. Two pointed to the
-              city&apos;s master plan, which recommends reducing parking requirements near transit
-              stations beyond Beverly Depot{" "}
+              people who drive less, and backed the lower parking count. Two pointed to
+              PlanBeverly, the city&apos;s <a href="#plan" className="underline">long-range plan</a>,
+              which recommends reducing parking requirements near transit stations beyond Beverly
+              Depot{" "}
               <Src href={`${PLAN_BEVERLY}#page=108`}>(PlanBeverly, p. 108)</Src>.{" "}
               <Moment src={PB1027} s={3714} /> <Moment src={PB1027} s={5071} />{" "}
               <Moment src={PB1027} s={5256} />
             </li>
             <li>
-              A letter from a Ward 5 resident who served on the committee that wrote the current
-              master plan said the planning consultant&apos;s original draft imagined this stretch
+              A letter from a Ward 5 resident who served on PlanBeverly&apos;s resident steering
+              committee said the planning consultant&apos;s original draft imagined this stretch
               becoming a denser, walkable, village-like neighborhood around the station, with a new
               street grid and broader zoning changes, and that much of that detail was dropped from
               the final plan. The
@@ -552,7 +556,7 @@ export default function DigestIssue8() {
               <>
                 <Src href={ENON_PAGE}>The city&apos;s project page, with the plans and studies</Src>
                 <Src href={ENON_TIA}>Traffic study</Src>
-                <Src href={`${PLAN_BEVERLY}#page=108`}>PlanBeverly, the master plan (p. 108)</Src>
+                <Src href={`${PLAN_BEVERLY}#page=108`}>PlanBeverly, the city&apos;s long-range plan (p. 108)</Src>
                 <Src href={`${PB_1027}#page=1`}>Meeting notice (p. 1)</Src>
                 <Src href={PB1027}>Full recording</Src>
               </>
@@ -573,7 +577,8 @@ export default function DigestIssue8() {
             records
           </From>
           <p className={BODY}>
-            A developer has proposed a 55-and-older development off Boulder Lane in Centerville: a
+            A developer has proposed a 55-and-older development off Boulder Lane in Centerville, in
+            Ward 6: a
             multi-story assisted-living building and a series of smaller two-story apartment
             buildings, 250 to 300 units in all, according to the Mayor&apos;s office, as{" "}
             <Src href={BEAT_BOULDER}>The Beverly Beat reported</Src>. The land is privately owned,
@@ -867,7 +872,7 @@ export default function DigestIssue8() {
           <From>Not from a meeting: the city&apos;s affordable housing page</From>
           <p className={BODY}>
             Beverly Landing, a new 60-unit condominium building for buyers 55 and older at 50 Balch
-            St, is taking applications for its nine affordable units: one one-bedroom at $333,400
+            St in Ward 3, is taking applications for its nine affordable units: one one-bedroom at $333,400
             and eight two-bedrooms at $375,900. They go to the first eligible households to apply
             with a mortgage pre-approval. Household income can be at most 80% of the Boston-area
             median, assets at most $275,000, and at least one member must be 55 or older. Limits on
@@ -977,7 +982,65 @@ export default function DigestIssue8() {
           </p>
         </div>
 
-        {/* ---- 08 ---- */}
+        {/* ---- 08: how it works. A section, not an aside, so read_depth counts it. ---- */}
+        <section
+          id="plan"
+          aria-labelledby="plan-title"
+          data-dek={"PlanBeverly is the city's long-range plan for where to add homes and jobs and what to protect. State law calls it a master plan. It guides city boards, but it is not law: it changes what can be built only when the city rewrites its zoning to match."}
+          className="mt-16 scroll-mt-24"
+        >
+          <div className="max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-6 sm:px-7">
+            <Eyebrow>08 &middot; How it works</Eyebrow>
+            <h2
+              id="plan-title"
+              className="mt-1 font-display text-2xl font-bold leading-tight tracking-tight"
+            >
+              PlanBeverly, the city&apos;s long-range plan
+            </h2>
+            <p className="mt-3 text-[1.0625rem] leading-[1.75]">
+              Residents on both sides of the Enon Street hearing cited it. Here is what it is.
+            </p>
+            <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-[1rem] leading-[1.7]">
+              <li>
+                <b>What it is.</b>{" "}
+                A guide to where Beverly should add homes and jobs, what it should protect, and
+                how people get around. State law requires every city&apos;s planning board to
+                make one and calls it a master plan. Beverly&apos;s current plan is dated January
+                2021 and is meant to guide the city for 10 to 15 years{" "}
+                <Src href={`${PLAN_BEVERLY}#page=3`}>(p. 3)</Src>.
+              </li>
+              <li>
+                <b>Who shaped it.</b>{" "}
+                City staff and a consultant, advised by an 18-member resident steering committee,
+                with more than 600 residents giving early input and at least one public meeting in
+                every ward <Src href={`${PLAN_BEVERLY}#page=14`}>(pp. 14, 17)</Src>.
+              </li>
+              <li>
+                <b>Its main idea.</b>{" "}
+                Steer new homes and businesses to places that already have transit and
+                infrastructure, such as downtown, the train stations and the Route 128 office
+                parks, and conserve open land, including land that matters for the water supply{" "}
+                <Src href={`${PLAN_BEVERLY}#page=31`}>(pp. 31-34)</Src>.
+              </li>
+              <li>
+                <b>What it can&apos;t do.</b>{" "}
+                It is not law. Zoning decides what can be built, and the city is &ldquo;not
+                required to align our zoning with our master plan,&rdquo; Planning Director
+                Darlene Wynne told the Planning Board on October 27. She called the plan
+                aspirational guidance that the board uses in its work. The plan changes what can
+                be built only when the City Council rewrites the zoning to match it.{" "}
+                <Moment src={PB1027} s={6046} />
+              </li>
+            </ol>
+            <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-[0.93rem]">
+              <Src href={PLAN_BEVERLY}>PlanBeverly (PDF)</Src>
+              <Src href={PLAN_PAGE}>The city&apos;s PlanBeverly page</Src>
+              <Src href={MGL_81D}>State law, c. 41 &sect;81D</Src>
+            </p>
+          </div>
+        </section>
+
+        {/* ---- 09 ---- */}
         <section id="ahead" className={SECTION}>
           <h2 className="mt-4 border-b-2 border-ink pb-1.5 font-display text-xl font-bold tracking-tight">
             Coming up{" "}
