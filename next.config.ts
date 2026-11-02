@@ -36,6 +36,11 @@ const nextConfig: NextConfig = {
         permanent: false,
       },
       {
+        source: "/experiments/beverly-digest-2026-11-02",
+        destination: "/beverly/digest/2026-11-02",
+        permanent: false,
+      },
+      {
         source: "/experiments/beverly-digest-2026-10-26",
         destination: "/beverly/digest/2026-10-26",
         permanent: false,

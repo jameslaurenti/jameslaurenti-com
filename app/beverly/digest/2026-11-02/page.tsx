@@ -236,6 +236,19 @@ const ahead: Ev[] = [
   },
   {
     date: "Nov 4",
+    what: "Parking and Traffic Commission: 37 Enon St",
+    detail:
+      "8:30am at the temporary City Hall, first floor conference room, and online. Its recommendation to the Planning Board on the plan and the parking special permit, continued from an earlier meeting.",
+    cal: {
+      id: "ptc-2026-11-04",
+      title: "Beverly Parking and Traffic Commission: 37 Enon St",
+      start: "2026-11-04T13:30:00Z",
+      end: "2026-11-04T15:00:00Z",
+      location: "Temporary City Hall, Cabot St, Beverly, MA",
+    },
+  },
+  {
+    date: "Nov 4",
     what: "School Committee",
     detail: "6:00pm in the Middle School library, 502 Cabot St, and online.",
   },
@@ -333,13 +346,7 @@ const ahead: Ev[] = [
 export default function DigestIssue8() {
   return (
     <div className="bg-bg text-ink">
-      {/* DRAFT: review views are tagged apart so they never count toward issue 8. Set to
-          "2026-11-02" when publishing. */}
-      <PageTracking surface="digest" issue="2026-11-02-preview" depth />
-      {/* DRAFT: remove this banner before publishing. qa:issue fails while it is here. */}
-      <div className="bg-gold-strong/20 px-6 py-2 text-center text-[0.8rem] font-bold uppercase tracking-[0.14em] text-ink">
-        DRAFT, NOT PUBLISHED &middot; for review only
-      </div>
+      <PageTracking surface="digest" issue="2026-11-02" depth />
       <div className="mx-auto max-w-3xl px-6 pb-24">
         <header className="border-b border-rule pb-7 pt-14">
           <p className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-debt">
@@ -540,8 +547,8 @@ export default function DigestIssue8() {
             <b>Next.</b>{" "}
             Of the approvals named at the hearing, the Zoning Board has already allowed the height,
             and the Planning Board&apos;s three decisions remain; they pick up November 17. Before then, the Parking and
-            Traffic Commission and the Design Review Board review the plan and report back; the
-            Design Review Board has it on its November 5 agenda. The board also voted 6-1 to ask the
+            Traffic Commission and the Design Review Board review the plan and report back. They
+            have it on their November 4 and November 5 agendas. The board also voted 6-1 to ask the
             Clean Energy Advisory Committee for comments, and the chair said that review would not
             hold up a vote.{" "}
             <Moment src={PB1027} s={1492} /> <Moment src={PB1027} s={6403} />{" "}
@@ -631,7 +638,8 @@ export default function DigestIssue8() {
               The <b>Zoning Board of Appeals</b>, on a special permit for the use.
             </li>
             <li>
-              The <b>Planning Board</b>, on a second special permit. The whole parcel lies inside
+              The <b>Planning Board</b>, on a second special permit, in addition to its standard
+              site plan review. The whole parcel lies inside
               the city&apos;s <Src href={WSPOD}>Water Supply Protection Overlay District</Src>,
               which protects the drinking water supply for Beverly and Salem. Any multifamily
               housing there needs this permit, and the board may grant it only if the project does

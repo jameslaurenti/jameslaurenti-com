@@ -23,6 +23,14 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-11-02",
+    number: 8,
+    published: "November 2, 2026",
+    covering: "October 26 to November 1",
+    teaser:
+      "The Stop & Shop site's apartment plan gets its first Planning Board hearing, back November 17. A 55-and-older proposal off Boulder Lane and a community meeting November 5. The Planning Board backs the data center pause, an airport noise bill passes the House, and how PlanBeverly, the city's long-range plan, works.",
+  },
+  {
     slug: "2026-10-26",
     number: 7,
     published: "October 26, 2026",
