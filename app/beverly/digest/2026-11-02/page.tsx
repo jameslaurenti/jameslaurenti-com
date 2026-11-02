@@ -236,15 +236,15 @@ const ahead: Ev[] = [
   },
   {
     date: "Nov 4",
-    what: "Parking and Traffic Commission: 37 Enon St",
+    what: "Parking and Traffic Commission: 37 Enon St, Essex and Cole Streets",
     detail:
-      "8:30am at the temporary City Hall, first floor conference room, and online. Its recommendation to the Planning Board on the plan and the parking special permit, continued from an earlier meeting.",
+      "8:30am at the temporary City Hall, 195 Cabot St, first floor conference room, and online. Its recommendation to the Planning Board on the 37 Enon St plan and parking special permit, continued from an earlier meeting. It also starts a review, asked for by the City Council, of eight spots along Essex Street and Cole Street in Centerville, beginning with which to take up first.",
     cal: {
       id: "ptc-2026-11-04",
       title: "Beverly Parking and Traffic Commission: 37 Enon St",
       start: "2026-11-04T13:30:00Z",
       end: "2026-11-04T15:00:00Z",
-      location: "Temporary City Hall, Cabot St, Beverly, MA",
+      location: "Temporary City Hall, 195 Cabot St, Beverly, MA",
     },
   },
   {
@@ -269,7 +269,14 @@ const ahead: Ev[] = [
     date: "Nov 5",
     what: "Boulder Lane community meeting",
     detail:
-      "At Centerville Elementary School, called by the Mayor's office on the 55-and-older proposal. No time has been posted yet.",
+      "6:45pm at Centerville Elementary School, called by the Mayor's office on the 55-and-older proposal. Time from Ward 6 Councilor Matt St. Hilaire.",
+    cal: {
+      id: "boulder-community-2026-11-05",
+      title: "Boulder Lane community meeting (Mayor's office)",
+      start: "2026-11-05T23:45:00Z",
+      end: "2026-11-06T01:15:00Z",
+      location: "Centerville Elementary School, Beverly, MA",
+    },
   },
   {
     date: "Nov 5",
@@ -570,7 +577,7 @@ export default function DigestIssue8() {
         {/* ---- 02 ---- */}
         <section
           id="boulder"
-          data-dek={"A developer has proposed 250 to 300 units of 55-and-older housing, including assisted living, on private land off Boulder Lane in Centerville, the Mayor's office told residents. Nothing has been filed, and no city board has acted. The Mayor's office has called a community meeting for November 5 at Centerville Elementary."}
+          data-dek={"A developer has proposed 250 to 300 units of 55-and-older housing, including assisted living, on private land off Boulder Lane in Centerville, the Mayor's office told residents. Nothing has been filed, and no city board has acted. The Mayor's office has called a community meeting for November 5 at 6:45pm at Centerville Elementary."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Housing</Eyebrow>
@@ -591,8 +598,9 @@ export default function DigestIssue8() {
           <p className={BODY}>
             <b>The November 5 meeting.</b>{" "}
             The Mayor&apos;s office invited residents to a community meeting &ldquo;to discuss the
-            proposal&rdquo; on Thursday, November 5, at Centerville Elementary School, moved from
-            October 27. No time has been posted. It is not a board hearing. The zoning permits a
+            proposal&rdquo; on Thursday, November 5, at 6:45pm at Centerville Elementary School, moved
+            from October 27. The start time is from a post by Ward 6 Councilor Matt St. Hilaire.
+            It is not a board hearing. The zoning permits a
             project like this needs are granted by city boards after a public hearing, so
             nothing is decided at a community meeting.
           </p>
