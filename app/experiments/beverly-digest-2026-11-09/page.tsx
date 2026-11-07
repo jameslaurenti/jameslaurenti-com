@@ -128,6 +128,8 @@ const MGL_40A_17 = `${MGL_40A}/Section17`;
 const RESULTS = `${DOC}/7770/November-3-2026-State-Election-Unofficial-Result-PDF`;
 const NBC_RESULTS =
   "https://www.nbcboston.com/news/local/massachusetts-election-results-ballot-questions-2026/4043419/";
+const CBS_Q7 =
+  "https://www.cbsnews.com/boston/news/masschusetts-ballot-question-7-results/";
 const VOTER_GUIDE =
   "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
 const ELECTIONSTATS = "https://electionstats.state.ma.us/";
@@ -276,7 +278,7 @@ const questions: Q[] = [
   { n: 4, what: "Election Day voter registration", bev: 59.1, state: 56.4, result: "Passed" },
   { n: 5, what: "State revenue limit and rebate", bev: 44.8, state: 47.9, result: "Failed" },
   { n: 6, what: "Nature for All conservation fund", bev: 65.0, state: 60.9, result: "Passed" },
-  { n: 7, what: "Single-family homes on smaller lots", bev: 52.5, state: 49.3, result: "Not called" },
+  { n: 7, what: "Single-family homes on smaller lots", bev: 52.5, state: 49.4, result: "Failed" },
   { n: 8, what: "Repeal retail marijuana sales", bev: 21.5, state: 24.4, result: "Failed" },
   { n: 9, what: "Keep the 2024 gun law", bev: 75.0, state: 67.0, result: "Passed" },
 ];
@@ -312,8 +314,8 @@ export default function DigestIssue9() {
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
             The developer behind the Boulder Lane proposal showed residents a 200-unit plan, and
             its slides list the approvals it would need, starting with a zoning variance. Beverly
-            voted with the state on eight of nine ballot questions, with starter homes still
-            uncalled. The finance director leaves for Ipswich, and the Council holds its data
+            voted with the state on eight of nine ballot questions; the exception, single-family
+            homes on smaller lots, passed here and failed statewide. The finance director leaves for Ipswich, and the Council holds its data
             center hearing tonight.
           </p>
         </header>
@@ -461,7 +463,7 @@ export default function DigestIssue9() {
         {/* ---- 02 ---- */}
         <section
           id="election"
-          data-dek={"Beverly voted on the same side as the state on eight of the nine ballot questions, mostly within about 3 points. Question 7, on smaller lots for single-family homes, passed in Beverly and was trailing statewide, uncalled, with 99% counted. About 19,200 residents voted, 62% of those registered."}
+          data-dek={"Beverly voted on the same side as the state on eight of the nine ballot questions, mostly within about 3 points. Question 7, on smaller lots for single-family homes, passed in Beverly and failed statewide. About 19,200 residents voted, 62% of those registered."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Election</Eyebrow>
@@ -486,15 +488,15 @@ export default function DigestIssue9() {
           </h3>
           <ul className={LIST}>
             <li>
-              <b>Question 7, single-family homes on smaller lots: not called.</b>{" "}Beverly voted
-              yes, 52.5%. Statewide, No led 50.7% to 49.3% with 99% of the expected vote counted
-              Thursday evening, and the Associated Press had not called it,{" "}
-              <Src href={NBC_RESULTS}>NBC Boston reported</Src>. If passed, it would bar local
+              <b>Question 7, single-family homes on smaller lots: failed statewide.</b>{" "}Beverly
+              voted yes, 52.5%. Statewide, No won 50.6% to 49.4%, and the Associated Press called
+              it on Friday afternoon with 99% of the vote counted,{" "}
+              <Src href={CBS_Q7}>CBS Boston reported</Src>. It would have barred local
               zoning from prohibiting a single-family home on a lot of at least 5,000 square feet
               with 50 feet of frontage and public water and sewer, while letting cities keep
               reasonable rules on setbacks, height and size{" "}
-              <Src href={VOTER_GUIDE}>(state voter guide)</Src>. If No holds, it is the one
-              question this year where Beverly and the state landed on opposite sides.
+              <Src href={VOTER_GUIDE}>(state voter guide)</Src>. It is the one question this
+              year where Beverly and the state landed on opposite sides.
             </li>
             <li>
               <b>Question 8, marijuana: retail sales continue.</b>{" "}Beverly voted no on the
@@ -555,8 +557,8 @@ export default function DigestIssue9() {
             <p className="mt-3 text-[0.83rem] leading-snug text-ink-faint">
               Yes as a share of yes and no votes, with blank ballots left out. Gap is Beverly minus
               the state, in percentage points. State figures are the Associated Press count on
-              November 4, at about 91% of the expected vote, except Question 7, at 99% on November
-              5. All figures are unofficial.
+              November 4, at about 91% of the expected vote, except Question 7, at 99% when it was
+              called on November 6. All figures are unofficial.
             </p>
           </details>
           <p className={BODY}>
