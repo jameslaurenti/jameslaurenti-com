@@ -146,17 +146,15 @@ const CBS_Q7 =
   "https://www.cbsnews.com/boston/news/masschusetts-ballot-question-7-results/";
 const VOTER_GUIDE =
   "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
-const ELECTIONSTATS = "https://electionstats.state.ma.us/";
 const LOCAL_NEWS_AYLES = "https://thelocalnews.news/2026/10/22/ipswich-hires-first-deputy-town-manager/";
 const FINANCE_JOB = `${DOC}/7752`;
-const VARIAN_SITE = "https://beverlysitecleanup.com";
 const TRASH_CAL = "https://www.beverlyma.gov/DocumentCenter/View/6972/2026-Calendar-July--December-PDF";
 
 const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
 
 const contents: [string, string][] = [
   ["boulder", "Boulder Lane: the developer's plan is 200 units, and it would need a use variance"],
-  ["election", "How Beverly voted on the nine ballot questions, next to the state"],
+  ["election", "How Beverly voted on the three ballot questions closest to home"],
   ["ayles", "The city's finance director leaves for Ipswich"],
   ["council", "Tonight at the Council: the data center hearing, a recycling drop-off, Lynch Park"],
   ["zba", "How it works: special permits and variances"],
@@ -294,10 +292,51 @@ const questions: Q[] = [
   { n: 8, what: "Repeal retail marijuana sales", bev: 21.5, state: 24.4, result: "Failed" },
   { n: 9, what: "Keep the 2024 gun law", bev: 75.0, state: 67.0, result: "Passed" },
 ];
-const gap = (q: Q) => {
-  const g = Math.round((q.bev - q.state) * 10) / 10;
-  return `${g > 0 ? "+" : g < 0 ? "−" : ""}${Math.abs(g).toFixed(1)}`;
-};
+const qn = (n: number) => questions.find((q) => q.n === n)!;
+
+/** Beverly's yes share next to the state's, on a 0 to 100 track with a tick at 50%. */
+const BEV = "#2d6a4f";
+const STATE = "#8a8174";
+const Bars = ({ q, compact }: { q: Q; compact?: boolean }) => (
+  <div className={compact ? "mt-1.5 grid gap-1" : "mt-3 grid gap-1.5"}>
+    {(
+      [
+        ["Beverly", q.bev, BEV],
+        ["State", q.state, STATE],
+      ] as const
+    ).map(([who, v, c]) => (
+      <div
+        key={who}
+        title={`${who}: ${v.toFixed(1)}% yes`}
+        className="grid grid-cols-[4rem_1fr_3.3rem] items-center gap-2 text-[0.85rem] tabular-nums"
+      >
+        <span className="text-ink-mid">{who}</span>
+        <span className={`relative rounded-sm bg-bg-card ${compact ? "h-2.5" : "h-3.5"}`}>
+          <span
+            className="absolute inset-y-0 left-0 rounded-r-[4px]"
+            style={{ width: `${v}%`, background: c }}
+          />
+          <span aria-hidden className="absolute -inset-y-1 left-1/2 w-px bg-ink/45" />
+        </span>
+        <span className="text-right font-semibold">{v.toFixed(1)}%</span>
+      </div>
+    ))}
+  </div>
+);
+
+/** One ballot question: what it was, how it went, the bars, and what it means here. */
+const QCard = ({ q, outcome, children }: { q: Q; outcome: string; children: ReactNode }) => (
+  <div className="mt-5 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-4">
+    <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
+      Question {q.n}
+    </p>
+    <h3 className="mt-0.5 font-display text-lg font-bold leading-snug">{q.what}</h3>
+    <p className="mt-1 text-[0.95rem] font-semibold text-ink-mid">{outcome}</p>
+    <Bars q={q} />
+    <p className="mt-1.5 text-[0.78rem] text-ink-faint">Share voting yes. The line marks 50%.</p>
+    <p className="mt-3 text-[1rem] leading-[1.65]">{children}</p>
+  </div>
+);
 
 /* ---------------- page ---------------- */
 
@@ -324,11 +363,10 @@ export default function DigestIssue9() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            The developer behind the Boulder Lane proposal showed residents a 200-unit plan, and
-            its slides list the approvals it would need, starting with a zoning variance. Beverly
-            voted with the state on eight of nine ballot questions; the exception, single-family
-            homes on smaller lots, passed here and failed statewide. The finance director leaves for Ipswich, and the Council holds its data
-            center hearing tonight.
+            The developer behind the Boulder Lane proposal showed a 200-unit plan, built in a
+            band between wetlands, and it would need a zoning variance. Beverly voted with the
+            state on eight of nine ballot questions. The finance director leaves for Ipswich, and
+            the Council holds its data center hearing tonight.
           </p>
         </header>
 
@@ -360,7 +398,7 @@ export default function DigestIssue9() {
         {/* ---- 01 ---- */}
         <section
           id="boulder"
-          data-dek={"Waverly Development's slides for the November 5 community meeting show 200 units off Boulder Lane: 40 townhomes for buyers 55 and older and a 160-unit assisted living and memory care building. They list four approvals it would need, starting with a Zoning Board use variance. Nothing has been filed."}
+          data-dek={"Waverly Development's slides for the November 5 community meeting show 200 units off Boulder Lane: 40 townhomes for buyers 55 and older and a 160-unit assisted living and memory care building, in a band between wetlands. The slides list four approvals it would need, starting with a Zoning Board use variance. Nothing has been filed."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Housing</Eyebrow>
@@ -370,147 +408,115 @@ export default function DigestIssue9() {
             Elementary. Not recorded; from the developer&apos;s slides and reports.
           </From>
           <p className={BODY}>
-            The developer behind the 55-and-older proposal off Boulder Lane in Centerville, in Ward
-            6, is Waverly Development. Its{" "}
-            <Src href={SLIDES}>slides for the Mayor&apos;s November 5 community meeting</Src>{" "}
-            show 200 units on the 26-acre Beverly parcel at 128 Boulder Lane. Issue 8 reported 250
-            to 300, the figure the Mayor&apos;s office gave before the meeting.{" "}
+            Waverly Development, the developer behind the 55-and-older proposal off Boulder Lane in
+            Centerville, in Ward 6, showed residents a plan for 200 units on the 26-acre parcel at
+            128 Boulder Lane, in its{" "}
+            <Src href={SLIDES}>slides for the Mayor&apos;s November 5 community meeting</Src>.
+            Issue 8 reported 250 to 300, the figure the Mayor&apos;s office gave before the
+            meeting. Nothing has been filed with the city.{" "}
             <Earlier issue={8} slug="2026-11-02" id="boulder" label="the proposal and the land" />
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            What the slides show
+            What the plan shows
           </h3>
           <ul className={LIST}>
             <li>
-              <b>40 townhomes</b>{" "}for buyers 55 and older, 2&frac12; stories and up to 32 feet
-              tall, on the side of the site nearest the Kennel Hill Drive neighborhood.
+              <b>40 townhomes</b>{" "}for buyers 55 and older, 2&frac12; stories, on the side
+              nearest Kennel Hill Drive.
             </li>
             <li>
               <b>A 160-unit assisted living and memory care building,</b>{" "}four stories, at the
-              Route 128 end of the site.
+              Route 128 end.
             </li>
             <li>
-              <b>268 parking spaces,</b>{" "}and a driveway from Boulder Lane at the Route 128 end.
-              The site plan in the slides shows no road to Kennel Hill Drive.
-            </li>
-            <li>
-              <b>The wetlands and woods.</b>{" "}The plan keeps the wetlands and 75% of the wooded
-              area, the slides say. A map in the slides puts the closest buildable point 300 feet
-              or more from the nearest houses.
-            </li>
-            <li>
-              <b>An earlier version.</b>{" "}A January plan had two five-story buildings with 205
-              units for residents 55 and older, sited closer to the neighborhood. The slides say
-              that plan fit the uses and building dimensions the zoning allows, and that the
-              October plan was redesigned &ldquo;based on feedback from the City&rdquo; and needs
-              zoning relief.
+              <b>268 parking spaces and one driveway,</b>{" "}out to Boulder Lane by Route 128. No
+              road to Kennel Hill Drive.
             </li>
           </ul>
-
-          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            Where on the land building could go
-          </h3>
           <Figure
-            src={`${FIGS}/boulder-site-map.svg`}
-            alt="Map of the 128 Boulder Lane parcel, turned so Route 128 runs along the bottom. Mapped wetlands cover its western part and a strip along its eastern edge, by the Wenham line. The state lists two certified vernal pools in the middle of the parcel and a third just across its northern line, on a residential lot the same owner holds next to Kennel Hill Drive."
-            w={640}
-            h={484}
-          >
-            The parcel, outlined, with the wetlands the city and the state have mapped and the
-            vernal pools the state has certified. Turned to match the developer&apos;s plan below,
-            so north is to the upper left. Maps like these are approximate; the edges that count
-            are the ones surveyors flag on the ground. Sources: the city&apos;s map, MassDEP and{" "}
-            <a href={VERNAL_POOLS} className="underline">
-              the state&apos;s vernal pool list
-            </a>
-            .
-          </Figure>
-          <p className={BODY}>
-            Beverly&apos;s <Src href={WETLAND_RULES}>wetland rules</Src>{" "}bar most buildings
-            within 50 feet of a wetland, and any disturbance at all, including clearing and
-            grading, within 100 feet of a vernal pool. A vernal pool is a small pond that holds
-            water in spring and dries out by late summer; salamanders and wood frogs breed in it.
-            The Conservation Commission can waive
-            either rule only if there is no practical alternative and the harm is kept small and
-            offset.
-          </p>
-          <p className={BODY}>
-            The state lists two certified vernal pools on the parcel and a third just across its
-            line, on a residential lot the same owner holds next to Kennel Hill Drive. The
-            developer&apos;s plan puts its buildings in a band on the east side, between wetlands,
-            and draws a 100-foot &ldquo;no disturb&rdquo; line around two ponds in the middle of
-            the site. Those ponds sit where the state&apos;s map puts the two pools on the parcel,
-            by our comparison of the two maps. Before any permit, the Conservation Commission
-            would review where the wetland edges are.
-          </p>
-          <Figure
-            src={`${FIGS}/boulder-site-plan.jpg`}
-            alt="The developer's October 2026 site plan. Rows of townhomes run down the east side of the site from near Kennel Hill Drive, with the assisted living building at the lower right by Route 128 and the driveway at the Route 128 end. A green line marked as the 100-foot wetland buffer and no disturb zone runs west of the buildings, around two small ponds."
-            w={1131}
-            h={700}
+            src={`${FIGS}/boulder-plan-labeled.svg`}
+            alt="The developer's October site plan for 128 Boulder Lane, with our labels. A pink line encloses everything the plan builds, in a band on the east side of the site: 40 townhomes at the north end, nearest Kennel Hill Drive, then the assisted living and memory care building and its parking toward Route 128, and a driveway out to Boulder Lane at the southeast corner. West of the line are woods and wetlands, including two ponds that match the state-certified vernal pools."
+            w={915}
+            h={558}
           >
             The developer&apos;s October site plan, from{" "}
             <a href={SLIDES} className="underline">
               its slides
             </a>
-            . Townhomes are the rows of small blocks; the assisted living building is at lower
-            right, by Route 128. The green line is the plan&apos;s 100-foot wetland buffer. Tap
-            to enlarge.
+            , with our labels. We traced the pink line from the plan&apos;s engineering drawing,
+            which labels it the 100-foot wetland buffer and no-disturb line. The two ponds sit
+            where{" "}
+            <a href={VERNAL_POOLS} className="underline">
+              the state lists
+            </a>{" "}
+            two certified vernal pools, by our comparison of the maps. Tap to enlarge.
           </Figure>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Why the buildings sit where they do
+          </h3>
+          <p className={BODY}>
+            Wetlands run through the west and middle of the parcel and along its east edge, by
+            the Wenham line. Beverly&apos;s{" "}
+            <Src href={WETLAND_RULES}>wetland rules</Src>{" "}bar most buildings within 50 feet of a
+            wetland, and any disturbance, even clearing, within 100 feet of a vernal pool: a small
+            pond that dries out in summer, where salamanders and wood frogs breed. The rules protect
+            a pool whether or not the state has certified it, and the Conservation Commission can
+            require spring surveys to check. It can waive the limits only if there is no practical
+            alternative.
+          </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             What it would need
           </h3>
           <p className={BODY}>
-            The slides list four approvals, each from a city board after a public hearing:
+            The slides list four approvals, each from a city board after a public hearing. None is
+            a City Council vote.
           </p>
           <ol className="mt-4 max-w-[63ch] list-decimal space-y-3 pl-5 text-[1.0625rem] leading-[1.7]">
             <li>
               <b>A use variance from the Zoning Board of Appeals</b>{" "}for the assisted living
-              building. The land is in the IR district, meant mainly for offices, research and
-              light industry, and assisted living is not a use it allows.
+              building. The land is zoned for offices, research and light industry, and that zoning
+              does not allow assisted living.
             </li>
             <li>
               <b>A special permit from the Zoning Board</b>{" "}for the townhomes, as what the
-              zoning calls &ldquo;subsidized elderly housing,&rdquo; the one 55-and-older housing
-              use the district allows. The zoning&apos;s{" "}
-              <Src href={ZONING_DEFS}>definition</Src>{" "}requires at least 15% of those units to be
+              zoning calls &ldquo;subsidized elderly housing.&rdquo; Its{" "}
+              <Src href={ZONING_DEFS}>definition</Src>{" "}requires at least 15% of the units to be
               permanently affordable. The slides say &ldquo;a share of homes&rdquo; would be.
             </li>
             <li>
-              <b>An order of conditions from the Conservation Commission,</b>{" "}setting the terms
-              for any work near the wetlands.
+              <b>An order of conditions from the Conservation Commission</b>{" "}for work near the
+              wetlands.
             </li>
             <li>
-              <b>Site plan review by the Planning Board,</b>{" "}with the Design Review Board,
-              including the permit the water supply protection district requires.
+              <b>Site plan review by the Planning Board.</b>
             </li>
           </ol>
           <p className={BODY}>
-            None of the four is a City Council vote. Beverly&apos;s zoning lets the Zoning Board
-            grant a use variance outside residential districts, but only if it finds conditions
-            peculiar to the land, such as its shape or topography, that would otherwise deprive the
-            owner of a reasonable use, and that the variance is the minimum needed and will not
-            harm the neighborhood <Src href={ZBA_RULES}>(zoning &sect; 300-92)</Src>. Four of the
-            board&apos;s five members must agree. More in{" "}
+            For a use variance, the Zoning Board must find that something about the land itself,
+            such as its shape or slopes, would otherwise deny the owner a reasonable use, and four
+            of its five members must agree <Src href={ZBA_RULES}>(zoning &sect; 300-92)</Src>. More
+            in{" "}
             <a href="#zba" className="underline">
               How it works
             </a>
-            , below.
+            , below. The slides say a January plan, two five-story buildings closer to the
+            neighborhood, fit the zoning, and that this one was redesigned &ldquo;based on feedback
+            from the City.&rdquo;
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             Where it stands
           </h3>
           <p className={BODY}>
-            Nothing has been filed with the city. Residents at the meeting opposed the project,{" "}
+            Residents at the meeting opposed the project,{" "}
             <Src href={SALEM_NEWS_BOULDER}>The Salem News reported</Src>. Ward 6 Councilor Matt
-            St. Hilaire, who posted the slides, wrote on Facebook the next day that &ldquo;no
-            project has been officially filed, and serious challenges exist with building on this
-            site,&rdquo; and that a filing would bring a public process before the Planning Board
-            and the Conservation Commission. The Mayor&apos;s office called the meeting; it was not
-            a board meeting, so there is no recording or official record of it.
+            St. Hilaire, who posted the slides, wrote on Facebook the next day that &ldquo;serious
+            challenges exist with building on this site,&rdquo; and that a filing would bring a
+            public process before the Planning Board and the Conservation Commission. The meeting
+            was not a board meeting, so there is no recording.
           </p>
           <Refs
             sources={
@@ -527,102 +533,57 @@ export default function DigestIssue9() {
         {/* ---- 02 ---- */}
         <section
           id="election"
-          data-dek={"Beverly voted on the same side as the state on eight of the nine ballot questions, mostly within about 3 points. Question 7, on smaller lots for single-family homes, passed in Beverly and failed statewide. About 19,200 residents voted, 62% of those registered."}
+          data-dek={"Beverly voted with the state on eight of the nine ballot questions. Of the three that touch the city most directly, Question 7, on smaller lots for single-family homes, passed here and failed statewide; the marijuana repeal failed, keeping the city's local tax; and the Nature for All fund passed. About 19,200 residents voted, 62% of those registered."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Election</Eyebrow>
-          <H2>How Beverly voted on the nine ballot questions, next to the state</H2>
+          <H2>How Beverly voted on the three ballot questions closest to home</H2>
           <From>Not from a meeting: the city&apos;s unofficial results and the Associated Press count</From>
           <p className={BODY}>
-            About 19,200 Beverly residents voted on November 3, 62% of those registered, according
-            to the city&apos;s <Src href={RESULTS}>unofficial results</Src>. That is the most
-            ballots in a midterm election here since at least 2010: about 1,300 more than in 2022
-            and about 200 more than in 2018.
-          </p>
-          <p className={BODY}>
-            The ballot carried nine statewide questions, the most since 1994. Beverly landed on the
-            same side as the state on eight, in most cases within about 3 points. From 2018 to 2024
-            it was on the same side on all 13 statewide questions, by an average of under 3
-            points, according to the state&apos;s{" "}
-            <Src href={ELECTIONSTATS}>certified results</Src>.
+            About 19,200 residents voted on November 3, 62% of those registered, the most in a
+            midterm here since at least 2010 <Src href={RESULTS}>(unofficial results)</Src>.
+            Beverly voted with the state on eight of the nine questions. These three touch the city
+            most directly. All nine are below.
           </p>
 
-          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
-            The questions that change things here
-          </h3>
-          <ul className={LIST}>
-            <li>
-              <b>Question 7, single-family homes on smaller lots: failed statewide.</b>{" "}Beverly
-              voted yes, 52.5%. Statewide, No won 50.6% to 49.4%, and the Associated Press called
-              it on Friday afternoon with 99% of the vote counted,{" "}
-              <Src href={CBS_Q7}>CBS Boston reported</Src>. It would have barred local
-              zoning from prohibiting a single-family home on a lot of at least 5,000 square feet
-              with 50 feet of frontage and public water and sewer, while letting cities keep
-              reasonable rules on setbacks, height and size{" "}
-              <Src href={VOTER_GUIDE}>(state voter guide)</Src>. It is the one question this
-              year where Beverly and the state landed on opposite sides.
-            </li>
-            <li>
-              <b>Question 8, marijuana: retail sales continue.</b>{" "}Beverly voted no on the
-              repeal, 78.5%, compared with about 75.6% statewide. Retail sales stay legal, and so
-              does the city&apos;s local tax on them, which Finance Director Bryant Ayles told the
-              Deficit Reduction Committee in September is 3%.{" "}
-              <Moment src={DRC0914} s={3261} />
-            </li>
-            <li>
-              <b>Question 4, Election Day registration: passed.</b>{" "}Beverly 59.1% yes, the
-              state 56.4%. Starting in 2028, voters can register at their polling place on
-              Election Day, with proof of residency.
-            </li>
-            <li>
-              <b>Question 6, Nature for All Fund: passed.</b>{" "}Beverly 65.0% yes, the state
-              60.9%. From July 2027, part of the state sales tax on sporting goods, recreational
-              vehicles and golf courses goes to a fund for conservation and parks, subject to the
-              Legislature&apos;s yearly budget. Cities and towns can apply for the money.
-            </li>
-            <li>
-              <b>Question 5, state revenue limit: failed.</b>{" "}Beverly 44.8% yes, the state
-              47.9%. Nothing changes, including local aid to cities and towns.
-            </li>
-          </ul>
-          <p className={BODY}>
-            On the other four, Beverly voted with the state. The widest gap of the nine was on
-            Question 9, keeping the 2024 gun law: 75% yes in Beverly, 67% statewide. Wenham and
-            Salem were similarly above the state.
-          </p>
+          <QCard q={qn(7)} outcome="Failed statewide. Passed in Beverly, the one question where the two split.">
+            Beverly&apos;s zoning stays as it is. The question would have barred cities from
+            prohibiting a single-family home on a lot of at least 5,000 square feet with public
+            water and sewer <Src href={VOTER_GUIDE}>(voter guide)</Src>. The Associated Press
+            called it Friday with 99% counted, <Src href={CBS_Q7}>CBS Boston reported</Src>.
+          </QCard>
+          <QCard q={qn(8)} outcome="Failed, in Beverly and statewide. A yes vote meant repeal.">
+            Marijuana shops stay open, and so does the city&apos;s 3% local tax on their sales,
+            which Finance Director Bryant Ayles described to the Deficit Reduction Committee in
+            September. <Moment src={DRC0914} s={3261} />
+          </QCard>
+          <QCard q={qn(6)} outcome="Passed, in Beverly and statewide.">
+            From July 2027, part of the state sales tax on sporting goods, recreational vehicles
+            and golf goes to a fund for conservation and parks, set each year in the state budget.
+            Cities and towns can apply for the money.
+          </QCard>
+
           <details className="mt-5 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-3">
             <summary className="cursor-pointer text-[0.95rem] font-semibold text-accent">
               More: all nine questions, Beverly next to the state
             </summary>
-            <table className="mt-3 w-full text-left text-[0.9rem] tabular-nums">
-              <thead>
-                <tr className="border-b border-rule text-[0.72rem] uppercase tracking-[0.1em] text-ink-faint">
-                  <th className="py-1.5 pr-2 font-bold">Question</th>
-                  <th className="py-1.5 pr-2 text-right font-bold">Beverly yes</th>
-                  <th className="py-1.5 pr-2 text-right font-bold">State yes</th>
-                  <th className="py-1.5 pr-2 text-right font-bold">Gap</th>
-                  <th className="py-1.5 font-bold">Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                {questions.map((q) => (
-                  <tr key={q.n} className="border-b border-rule last:border-b-0">
-                    <td className="py-1.5 pr-2">
+            <div className="mt-2 divide-y divide-rule">
+              {questions.map((q) => (
+                <div key={q.n} className="py-3">
+                  <p className="flex items-baseline justify-between gap-3 text-[0.93rem]">
+                    <span className="font-semibold">
                       {q.n}. {q.what}
-                    </td>
-                    <td className="py-1.5 pr-2 text-right">{q.bev.toFixed(1)}%</td>
-                    <td className="py-1.5 pr-2 text-right">{q.state.toFixed(1)}%</td>
-                    <td className="py-1.5 pr-2 text-right">{gap(q)}</td>
-                    <td className="py-1.5">{q.result}</td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-            <p className="mt-3 text-[0.83rem] leading-snug text-ink-faint">
-              Yes as a share of yes and no votes, with blank ballots left out. Gap is Beverly minus
-              the state, in percentage points. State figures are the Associated Press count on
-              November 4, at about 91% of the expected vote, except Question 7, at 99% when it was
-              called on November 6. All figures are unofficial.
+                    </span>
+                    <span className="shrink-0 text-[0.82rem] text-ink-faint">{q.result}</span>
+                  </p>
+                  <Bars q={q} compact />
+                </div>
+              ))}
+            </div>
+            <p className="mt-2 text-[0.83rem] leading-snug text-ink-faint">
+              Share voting yes, with blank ballots left out. The line marks 50%. State figures are
+              the Associated Press count on November 4, at about 91% of the expected vote, except
+              Question 7, at 99% when it was called on November 6.
             </p>
           </details>
           <p className={BODY}>
@@ -655,34 +616,29 @@ export default function DigestIssue9() {
           <p className={BODY}>
             Bryant Ayles, Beverly&apos;s Finance Director and Treasurer since January 2014, starts
             November 16 as Ipswich&apos;s first deputy town manager and finance director,{" "}
-            <Src href={LOCAL_NEWS_AYLES}>The Local News reported</Src>, citing a release from
-            Ipswich Town Manager Brendan Sweeney, a former Beverly city councilor.
+            <Src href={LOCAL_NEWS_AYLES}>The Local News reported</Src>.
           </p>
           <p className={BODY}>
-            The Council takes up a resolution honoring him tonight, filed by Councilors Houseman,
-            Rotondo and Spang. It credits him with the borrowing plan that paid for the Middle
-            School, the police station, City Hall and the McPherson Youth Center, and with two
-            increases in the city&apos;s bond rating. Before Beverly he was a budget supervisor at
-            the state Department of Revenue{" "}
+            The Council takes up a resolution honoring him tonight. It credits him with the
+            borrowing plan that paid for the Middle School, the police station, City Hall and the
+            McPherson Youth Center, and with two increases in the city&apos;s bond rating{" "}
             <Src href={COUNCIL_1109}>(Council agenda)</Src>.
           </p>
           <p className={BODY}>
-            This year he walked the Deficit Reduction Committee through the city&apos;s pension
-            payments and health insurance costs.{" "}
-            <Earlier issue={2} slug="2026-09-21" id="pension" label="the pension payment" />{" "}
-            <Earlier issue={2} slug="2026-09-21" id="insurance" label="the health insurance split" />
-          </p>
-          <p className={BODY}>
-            <b>Next.</b>{" "}
-            The city has posted the job, as Director of Municipal Finance, at $160,000 to $180,000
-            a year, reporting to the Mayor <Src href={FINANCE_JOB}>(job posting)</Src>. The
-            Deficit Reduction Committee&apos;s November 12 agenda includes a city finance and
-            forecast update.
+            <b>Next.</b>{" "}The city has posted the job, as Director of Municipal Finance, at
+            $160,000 to $180,000 a year <Src href={FINANCE_JOB}>(job posting)</Src>. The Deficit
+            Reduction Committee gets a city finance update on November 12.
           </p>
           <Refs
             sources={
               <>
                 <Src href={COUNCIL_1109}>Council agenda and packet, Nov 9</Src>
+              </>
+            }
+            more={
+              <>
+                <Earlier issue={2} slug="2026-09-21" id="pension" label="the pension payment" />
+                <Earlier issue={2} slug="2026-09-21" id="insurance" label="the health insurance split" />
               </>
             }
           />
@@ -706,11 +662,9 @@ export default function DigestIssue9() {
             </li>
             <li>
               <b>A drop-off for hard-to-recycle items.</b>{" "}The Mayor asks the Council to accept
-              a $100,000 state grant (Order #286) to turn the city&apos;s yard waste site at 16
-              Standley St into a staffed drop-off open to all residents at least three days a week.
-              The plan lists materials such as textiles, scrap metal, bulky plastics, Styrofoam,
-              books, small electronics and mercury-containing items, plus a yearly shredding day.
-              The Mayor&apos;s letter gives no opening date{" "}
+              a $100,000 state grant (Order #286) to turn the yard waste site at 16 Standley St into
+              a staffed drop-off for things like textiles, scrap metal, bulky plastics, Styrofoam and
+              small electronics, open at least three days a week. No opening date yet{" "}
               <Src href={`${COUNCIL_1109}#page=21`}>(p. 21)</Src>.
             </li>
             <li>
@@ -720,12 +674,10 @@ export default function DigestIssue9() {
               <Earlier issue={8} slug="2026-11-02" id="lynch" label="the request" />
             </li>
             <li>
-              <b>The Varian site cleanup.</b>{" "}The cleanup contractor&apos;s November update
-              (Order #300) says heating the ground under Building 3 had removed more than 12,000
-              pounds of volatile compounds by the end of October, with the next round of treatment
-              in the bedrock expected early in 2027{" "}
+              <b>The Varian site cleanup.</b>{" "}The contractor&apos;s November update (Order
+              #300) says heating the ground under Building 3 has removed more than 12,000 pounds of
+              chemicals, with treatment of the bedrock next, early in 2027{" "}
               <Src href={`${COUNCIL_1109}#page=84`}>(p. 84)</Src>.{" "}
-              <Src href={VARIAN_SITE}>The cleanup&apos;s site</Src>{" "}
               <Earlier issue={4} slug="2026-10-05" id="varian" label="the last public update" />
             </li>
             <li>
