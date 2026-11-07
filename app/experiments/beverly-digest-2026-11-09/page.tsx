@@ -34,37 +34,6 @@ const From = ({ children }: { children: ReactNode }) => (
 
 
 
-/** Recording time as people read it: 4:39, 46:49, 1:33:54. */
-function clock(s: number) {
-  const h = Math.floor(s / 3600);
-  const m = Math.floor((s % 3600) / 60);
-  const pad = (n: number) => String(n).padStart(2, "0");
-  return h ? `${h}:${pad(m)}:${pad(s % 60)}` : `${m}:${pad(s % 60)}`;
-}
-
-/**
- * Every other moment, set inline right after the sentence it backs up. Keeping these next
- * to their claims, rather than in the footer, is what lets the footer be for documents.
- */
-const Moment = ({ src, s }: { src: string; s: number }) => (
-  <a
-    href={at(src, s)}
-    target="_blank"
-    rel="noopener"
-    aria-label={`Hear this in the recording, from ${clock(s)}`}
-    className="inline-flex translate-y-[-1px] items-center gap-1 whitespace-nowrap rounded-full bg-accent-glow px-2 py-px align-middle text-[0.74rem] font-semibold leading-snug tabular-nums text-accent no-underline transition-colors hover:bg-accent hover:text-white"
-    data-track="source_opened"
-    data-placement="inline-moment"
-    data-seconds={s}
-    data-moment={clock(s)}
-  >
-    <span aria-hidden className="text-[0.55rem]">
-      &#9654;
-    </span>
-    {clock(s)}
-  </a>
-);
-
 const Refs = ({ sources, more }: { sources: ReactNode; more?: ReactNode }) => (
   <div className="mt-5 grid max-w-[63ch] gap-1.5 border-t border-rule pt-3">
     <p className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[0.93rem]">
@@ -117,8 +86,6 @@ const Figure = ({ src, alt, w, h, children }: { src: string; alt: string; w: num
 );
 const FIGS = "/beverly/digest/2026-11-09";
 
-const V = "https://www.youtube.com/watch?v=";
-const DRC0914 = `${V}O8Kxggwls3A`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
 const DOC = "https://www.beverlyma.gov/DocumentCenter/View";
 const COUNCIL_1109 = `${AGENDA}/ViewFile/Agenda/_11092026-2991`;
@@ -144,13 +111,13 @@ const NBC_RESULTS =
   "https://www.nbcboston.com/news/local/massachusetts-election-results-ballot-questions-2026/4043419/";
 const CBS_Q7 =
   "https://www.cbsnews.com/boston/news/masschusetts-ballot-question-7-results/";
+const DOR_LOCAL_TAX =
+  "https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=LocalOptions.Local_Options_Tax";
 const VOTER_GUIDE =
   "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
 const LOCAL_NEWS_AYLES = "https://thelocalnews.news/2026/10/22/ipswich-hires-first-deputy-town-manager/";
 const FINANCE_JOB = `${DOC}/7752`;
 const TRASH_CAL = "https://www.beverlyma.gov/DocumentCenter/View/6972/2026-Calendar-July--December-PDF";
-
-const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
 
 const contents: [string, string][] = [
   ["boulder", "Boulder Lane: the developer's plan is 200 units, and it would need a use variance"],
@@ -533,7 +500,7 @@ export default function DigestIssue9() {
         {/* ---- 02 ---- */}
         <section
           id="election"
-          data-dek={"Beverly voted with the state on eight of the nine ballot questions. Of the three that touch the city most directly, Question 7, on smaller lots for single-family homes, passed here and failed statewide; the marijuana repeal failed, keeping the city's local tax; and the Nature for All fund passed. About 19,200 residents voted, 62% of those registered."}
+          data-dek={"Beverly voted with the state on eight of the nine ballot questions. Of the three that touch the city most directly, Question 7, on smaller lots for single-family homes, failed statewide, though most Beverly voters supported it; the marijuana repeal failed, keeping the city's local tax; and the Nature for All fund passed. About 19,200 residents voted, 62% of those registered."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Election</Eyebrow>
@@ -546,18 +513,21 @@ export default function DigestIssue9() {
             most directly. All nine are below.
           </p>
 
-          <QCard q={qn(7)} outcome="Failed statewide. Passed in Beverly, the one question where the two split.">
-            Beverly&apos;s zoning stays as it is. The question would have barred cities from
-            prohibiting a single-family home on a lot of at least 5,000 square feet with public
-            water and sewer <Src href={VOTER_GUIDE}>(voter guide)</Src>. The Associated Press
-            called it Friday with 99% counted, <Src href={CBS_Q7}>CBS Boston reported</Src>.
+          <QCard q={qn(7)} outcome="Failed statewide. Most Beverly voters supported it, the one question where Beverly and the state split.">
+            Nothing changes in Beverly: its zoning stays as it is. The question would have let
+            someone build a single-family home on any lot of at least 5,000 square feet with 50 feet
+            along the street, as long as the lot connects to public water and sewer lines rather
+            than a well and septic system. City zoning could not have required a bigger lot{" "}
+            <Src href={VOTER_GUIDE}>(voter guide)</Src>. The Associated Press called it Friday
+            with 99% counted, <Src href={CBS_Q7}>CBS Boston reported</Src>.
           </QCard>
-          <QCard q={qn(8)} outcome="Failed, in Beverly and statewide. A yes vote meant repeal.">
-            Marijuana shops stay open, and so does the city&apos;s 3% local tax on their sales,
-            which Finance Director Bryant Ayles described to the Deficit Reduction Committee in
-            September. <Moment src={DRC0914} s={3261} />
+          <QCard q={qn(8)} outcome="Failed statewide, and most Beverly voters opposed it too.">
+            Nothing changes in Beverly. Marijuana shops stay open, and so does the city&apos;s 3%
+            local tax on their sales, in effect since July 2023{" "}
+            <Src href={DOR_LOCAL_TAX}>(state tax records)</Src>. A yes vote would have ended retail
+            sales, and the taxes on them, from 2028 <Src href={VOTER_GUIDE}>(voter guide)</Src>.
           </QCard>
-          <QCard q={qn(6)} outcome="Passed, in Beverly and statewide.">
+          <QCard q={qn(6)} outcome="Passed statewide, and most Beverly voters supported it.">
             From July 2027, part of the state sales tax on sporting goods, recreational vehicles
             and golf goes to a fund for conservation and parks, set each year in the state budget.
             Cities and towns can apply for the money.
@@ -574,7 +544,7 @@ export default function DigestIssue9() {
                     <span className="font-semibold">
                       {q.n}. {q.what}
                     </span>
-                    <span className="shrink-0 text-[0.82rem] text-ink-faint">{q.result}</span>
+                    <span className="shrink-0 text-[0.82rem] text-ink-faint">{q.result} statewide</span>
                   </p>
                   <Bars q={q} compact />
                 </div>
@@ -595,6 +565,7 @@ export default function DigestIssue9() {
               <>
                 <Src href={RESULTS}>Beverly&apos;s unofficial results</Src>
                 <Src href={VOTER_GUIDE}>The state voter guide</Src>
+                <Src href={DOR_LOCAL_TAX}>Local tax rates (state Revenue Department)</Src>
                 <Src href={NBC_RESULTS}>Statewide results (NBC Boston)</Src>
               </>
             }
