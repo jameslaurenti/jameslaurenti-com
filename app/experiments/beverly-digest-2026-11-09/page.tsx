@@ -105,6 +105,18 @@ const Earlier = ({ issue, slug, id, label }: { issue: number; slug: string; id: 
 
 /* ---------------- sources ---------------- */
 
+/** A picture with a caption. Tapping it opens the full-size file. */
+const Figure = ({ src, alt, w, h, children }: { src: string; alt: string; w: number; h: number; children: ReactNode }) => (
+  <figure className="mt-6 max-w-[63ch]">
+    <a href={src} target="_blank" rel="noopener" data-track="figure_opened">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img src={src} alt={alt} width={w} height={h} loading="lazy" className="h-auto w-full rounded border border-rule" />
+    </a>
+    <figcaption className="mt-2 text-[0.85rem] leading-snug text-ink-faint">{children}</figcaption>
+  </figure>
+);
+const FIGS = "/beverly/digest/2026-11-09";
+
 const V = "https://www.youtube.com/watch?v=";
 const DRC0914 = `${V}O8Kxggwls3A`;
 const AGENDA = "https://www.beverlyma.gov/AgendaCenter";
@@ -120,6 +132,8 @@ const SLIDES =
 const SALEM_NEWS_BOULDER =
   "https://www.salemnews.com/news/centerville-residents-speak-out-against-200-unit-development/article_cb13dccb-82d1-4c54-a412-7fe620f099d7.html";
 const ZBA_RULES = "https://ecode360.com/29285066";
+const WETLAND_RULES = `${DOC}/856/Chapter-565-Wetlands-Protection-Regulations-PDF`;
+const VERNAL_POOLS = "https://www.mass.gov/info-details/massgis-data-nhesp-certified-vernal-pools";
 const ZONING_DEFS = "https://ecode360.com/29283349";
 const MGL_40A = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40A";
 const MGL_40A_10 = `${MGL_40A}/Section10`;
@@ -136,7 +150,6 @@ const ELECTIONSTATS = "https://electionstats.state.ma.us/";
 const LOCAL_NEWS_AYLES = "https://thelocalnews.news/2026/10/22/ipswich-hires-first-deputy-town-manager/";
 const FINANCE_JOB = `${DOC}/7752`;
 const VARIAN_SITE = "https://beverlysitecleanup.com";
-const BEAT_TRAPS = "https://thebeverlybeat.substack.com/p/searching-for-ghosts-not-those-kind";
 const TRASH_CAL = "https://www.beverlyma.gov/DocumentCenter/View/6972/2026-Calendar-July--December-PDF";
 
 const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
@@ -146,7 +159,6 @@ const contents: [string, string][] = [
   ["election", "How Beverly voted on the nine ballot questions, next to the state"],
   ["ayles", "The city's finance director leaves for Ipswich"],
   ["council", "Tonight at the Council: the data center hearing, a recycling drop-off, Lynch Park"],
-  ["traps", "Divers start clearing lost lobster traps from the harbor"],
   ["zba", "How it works: special permits and variances"],
   ["ahead", "Coming up, through November 23"],
   ["corrections", "Correction"],
@@ -397,6 +409,57 @@ export default function DigestIssue9() {
           </ul>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
+            Where on the land building could go
+          </h3>
+          <Figure
+            src={`${FIGS}/boulder-site-map.svg`}
+            alt="Map of the 128 Boulder Lane parcel, turned so Route 128 runs along the bottom. Mapped wetlands cover its western part and a strip along its eastern edge, by the Wenham line. The state lists two certified vernal pools in the middle of the parcel and a third just across its northern line, on a residential lot the same owner holds next to Kennel Hill Drive."
+            w={640}
+            h={484}
+          >
+            The parcel, outlined, with the wetlands the city and the state have mapped and the
+            vernal pools the state has certified. Turned to match the developer&apos;s plan below,
+            so north is to the upper left. Maps like these are approximate; the edges that count
+            are the ones surveyors flag on the ground. Sources: the city&apos;s map, MassDEP and{" "}
+            <a href={VERNAL_POOLS} className="underline">
+              the state&apos;s vernal pool list
+            </a>
+            .
+          </Figure>
+          <p className={BODY}>
+            Beverly&apos;s <Src href={WETLAND_RULES}>wetland rules</Src>{" "}bar most buildings
+            within 50 feet of a wetland, and any disturbance at all, including clearing and
+            grading, within 100 feet of a vernal pool. A vernal pool is a small pond that holds
+            water in spring and dries out by late summer; salamanders and wood frogs breed in it.
+            The Conservation Commission can waive
+            either rule only if there is no practical alternative and the harm is kept small and
+            offset.
+          </p>
+          <p className={BODY}>
+            The state lists two certified vernal pools on the parcel and a third just across its
+            line, on a residential lot the same owner holds next to Kennel Hill Drive. The
+            developer&apos;s plan puts its buildings in a band on the east side, between wetlands,
+            and draws a 100-foot &ldquo;no disturb&rdquo; line around two ponds in the middle of
+            the site. Those ponds sit where the state&apos;s map puts the two pools on the parcel,
+            by our comparison of the two maps. Before any permit, the Conservation Commission
+            would review where the wetland edges are.
+          </p>
+          <Figure
+            src={`${FIGS}/boulder-site-plan.jpg`}
+            alt="The developer's October 2026 site plan. Rows of townhomes run down the east side of the site from near Kennel Hill Drive, with the assisted living building at the lower right by Route 128 and the driveway at the Route 128 end. A green line marked as the 100-foot wetland buffer and no disturb zone runs west of the buildings, around two small ponds."
+            w={1131}
+            h={700}
+          >
+            The developer&apos;s October site plan, from{" "}
+            <a href={SLIDES} className="underline">
+              its slides
+            </a>
+            . Townhomes are the rows of small blocks; the assisted living building is at lower
+            right, by Route 128. The green line is the plan&apos;s 100-foot wetland buffer. Tap
+            to enlarge.
+          </Figure>
+
+          <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             What it would need
           </h3>
           <p className={BODY}>
@@ -453,6 +516,7 @@ export default function DigestIssue9() {
             sources={
               <>
                 <Src href={SLIDES}>The developer&apos;s slides</Src>
+                <Src href={WETLAND_RULES}>Wetland rules (Chapter 565)</Src>
                 <Src href={ZBA_RULES}>Zoning Board rules (&sect;&sect; 300-89 to 300-95)</Src>
                 <Src href={SALEM_NEWS_BOULDER}>The Salem News, Nov 6</Src>
               </>
@@ -678,24 +742,6 @@ export default function DigestIssue9() {
           />
         </section>
 
-        {/* ---- 05 ---- */}
-        <section
-          id="traps"
-          data-dek={"The Harbormaster's office began a grant-funded effort on Halloween to find and remove lost lobster traps from Beverly Harbor, with volunteer divers pulling 15 the first morning and monthly dives planned through April, The Beverly Beat reported."}
-          className={SECTION}
-        >
-          <Eyebrow>05 &middot; Harbor</Eyebrow>
-          <H2>Divers start clearing lost lobster traps from the harbor</H2>
-          <From>Not from a meeting: The Beverly Beat</From>
-          <p className={BODY}>
-            The Harbormaster&apos;s office started a project on Halloween morning to find and
-            remove lost lobster traps from the harbor, paid for with a $124,700 grant. Eight
-            volunteer divers pulled 15 traps off Glover Wharf the first morning. State Police, Fire
-            Department and Environmental Police divers were set to join, with monthly dives
-            planned through April, <Src href={BEAT_TRAPS}>The Beverly Beat reported</Src>.
-          </p>
-        </section>
-
         <div className="mt-12 max-w-[63ch] border-y border-rule py-3.5">
           <p className="text-[0.93rem] leading-relaxed text-ink-mid">
             <b className="text-ink">Also met, no video posted:</b>{" "}
@@ -709,7 +755,7 @@ export default function DigestIssue9() {
           </p>
         </div>
 
-        {/* ---- 06: how it works. A section, not an aside, so read_depth counts it. ---- */}
+        {/* ---- 05: how it works. A section, not an aside, so read_depth counts it. ---- */}
         <section
           id="zba"
           aria-labelledby="zba-title"
@@ -717,7 +763,7 @@ export default function DigestIssue9() {
           className="mt-16 scroll-mt-24"
         >
           <div className="max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-6 sm:px-7">
-            <Eyebrow>06 &middot; How it works</Eyebrow>
+            <Eyebrow>05 &middot; How it works</Eyebrow>
             <h2
               id="zba-title"
               className="mt-1 font-display text-2xl font-bold leading-tight tracking-tight"
