@@ -117,13 +117,12 @@ const VOTER_GUIDE =
   "https://www.sec.state.ma.us/divisions/elections/download/information-for-voters/archive/IFV_2026%20English.pdf";
 const LOCAL_NEWS_AYLES = "https://thelocalnews.news/2026/10/22/ipswich-hires-first-deputy-town-manager/";
 const FINANCE_JOB = `${DOC}/7752`;
-const TRASH_CAL = "https://www.beverlyma.gov/DocumentCenter/View/6972/2026-Calendar-July--December-PDF";
 
 const contents: [string, string][] = [
   ["boulder", "Boulder Lane: the developer's plan is 200 units, and it would need a use variance"],
   ["election", "How Beverly voted on the three ballot questions closest to home"],
   ["ayles", "The city's finance director leaves for Ipswich"],
-  ["council", "Tonight at the Council: the data center hearing, a recycling drop-off, Lynch Park"],
+  ["council", "Tonight at the Council: the data center hearing and a recycling drop-off"],
   ["zba", "How it works: special permits and variances"],
   ["ahead", "Coming up, through November 23"],
   ["corrections", "Correction"],
@@ -149,7 +148,7 @@ const ahead: Ev[] = [
     date: "Nov 9",
     what: "City Council: data center hearing",
     detail:
-      "Tonight, 7:00pm in the Middle School library, 502 Cabot St. The data center hearing is set for 7:30pm. To speak in public comment, register with the City Clerk by 9:30am.",
+      "Tonight, 7:00pm in the Middle School library, 502 Cabot St. The data center hearing is set for 7:30pm.",
     cal: {
       id: "council-2026-11-09",
       title: "Beverly City Council: data center pause hearing",
@@ -371,8 +370,8 @@ export default function DigestIssue9() {
           <Eyebrow>01 &middot; Housing</Eyebrow>
           <H2>Boulder Lane: the developer&apos;s plan is 200 units, and it would need a use variance</H2>
           <From>
-            Mayor&apos;s community meeting &middot; Thursday, November 5 &middot; Centerville
-            Elementary. Not recorded; from the developer&apos;s slides and reports.
+            The developer&apos;s slides for the Mayor&apos;s community meeting &middot; Thursday,
+            November 5 &middot; Centerville Elementary
           </From>
           <p className={BODY}>
             Waverly Development, the developer behind the 55-and-older proposal off Boulder Lane in
@@ -483,11 +482,9 @@ export default function DigestIssue9() {
           </h3>
           <p className={BODY}>
             Residents at the meeting opposed the project,{" "}
-            <Src href={SALEM_NEWS_BOULDER}>The Salem News reported</Src>. Ward 6 Councilor Matt
-            St. Hilaire, who posted the slides, wrote on Facebook the next day that &ldquo;serious
-            challenges exist with building on this site,&rdquo; and that a filing would bring a
-            public process before the Planning Board and the Conservation Commission. The meeting
-            was not a board meeting, so there is no recording.
+            <Src href={SALEM_NEWS_BOULDER}>The Salem News reported</Src>. Nothing has been filed
+            yet. If plans are filed, each approval above comes with a public hearing, where
+            residents can speak.
           </p>
           <Refs
             sources={
@@ -509,7 +506,7 @@ export default function DigestIssue9() {
         >
           <Eyebrow>02 &middot; Election</Eyebrow>
           <H2>How Beverly voted on the three ballot questions closest to home</H2>
-          <From>Not from a meeting: the city&apos;s unofficial results and the Associated Press count</From>
+          <From>The city&apos;s unofficial results and the Associated Press count</From>
           <p className={BODY}>
             About 19,200 residents voted on November 3, 62% of those registered, the most in a
             midterm here since at least 2010 <Src href={RESULTS}>(unofficial results)</Src>.
@@ -555,9 +552,8 @@ export default function DigestIssue9() {
               ))}
             </div>
             <p className="mt-2 text-[0.83rem] leading-snug text-ink-faint">
-              Share voting yes, with blank ballots left out. The line marks 50%. State figures are
-              the Associated Press count on November 4, at about 91% of the expected vote, except
-              Question 7, at 99% when it was called on November 6.
+              Share voting yes. The line marks 50%. State figures are from the Associated Press
+              count.
             </p>
           </details>
           <p className={BODY}>
@@ -585,8 +581,7 @@ export default function DigestIssue9() {
           <Eyebrow>03 &middot; City Hall</Eyebrow>
           <H2>The city&apos;s finance director leaves for Ipswich</H2>
           <From>
-            Not from a meeting: The Local News, and tonight&apos;s Council agenda &middot; Order
-            #283
+            The Local News, and tonight&apos;s Council agenda &middot; Order #283
           </From>
           <p className={BODY}>
             Bryant Ayles, Beverly&apos;s Finance Director and Treasurer since January 2014, starts
@@ -622,11 +617,11 @@ export default function DigestIssue9() {
         {/* ---- 04 ---- */}
         <section
           id="council"
-          data-dek={"The Council holds its hearing on the data center pause tonight at 7:30pm. Also on the agenda: a $100,000 state grant to turn the city's yard waste site into a drop-off for hard-to-recycle items, the Community Preservation Committee's Lynch Park recommendation, and an update on the Varian site cleanup."}
+          data-dek={"The Council holds its hearing on the data center pause tonight at 7:30pm. Also on the agenda: a $100,000 state grant to turn the city's yard waste site into a drop-off for hard-to-recycle items, and an update on the Varian site cleanup."}
           className={SECTION}
         >
           <Eyebrow>04 &middot; City Council</Eyebrow>
-          <H2>Tonight at the Council: the data center hearing, a recycling drop-off, Lynch Park</H2>
+          <H2>Tonight at the Council: the data center hearing and a recycling drop-off</H2>
           <From>City Council &middot; Monday, November 9 &middot; 7:00pm &middot; Middle School library</From>
           <ul className={LIST}>
             <li>
@@ -643,21 +638,11 @@ export default function DigestIssue9() {
               <Src href={`${COUNCIL_1109}#page=21`}>(p. 21)</Src>.
             </li>
             <li>
-              <b>Lynch Park.</b>{" "}The Community Preservation Committee recommends $107,614, the
-              city&apos;s share of the seawall design and permits (Order #290). The Council sets a
-              date for a public hearing.{" "}
-              <Earlier issue={8} slug="2026-11-02" id="lynch" label="the request" />
-            </li>
-            <li>
               <b>The Varian site cleanup.</b>{" "}The contractor&apos;s November update (Order
               #300) says heating the ground under Building 3 has removed more than 12,000 pounds of
               chemicals, with treatment of the bedrock next, early in 2027{" "}
               <Src href={`${COUNCIL_1109}#page=84`}>(p. 84)</Src>.{" "}
               <Earlier issue={4} slug="2026-10-05" id="varian" label="the last public update" />
-            </li>
-            <li>
-              <b>To speak.</b>{" "}Register with the City Clerk by 9:30am. Up to five speakers,
-              three minutes each.
             </li>
           </ul>
           <Refs
@@ -698,8 +683,8 @@ export default function DigestIssue9() {
               Special permits and variances
             </h2>
             <p className="mt-3 text-[1.0625rem] leading-[1.75]">
-              The Boulder Lane slides ask the Zoning Board of Appeals for one of each. They are
-              different tests.
+              The Boulder Lane plan would need two kinds of approval from the Zoning Board of
+              Appeals. Here is how each works.
             </p>
             <ol className="mt-3 list-decimal space-y-2.5 pl-5 text-[1rem] leading-[1.7]">
               <li>
@@ -739,19 +724,6 @@ export default function DigestIssue9() {
               through November 23
             </span>
           </h2>
-          <div className="mt-5 grid max-w-[63ch] gap-3">
-            <div className="rounded-lg border border-rule bg-white/70 px-5 py-4">
-              <p className="text-[0.7rem] font-bold uppercase tracking-[0.14em] text-ink-faint">
-                Leaf and yard waste pickup
-              </p>
-              <p className="mt-2.5 text-[0.97rem] leading-[1.6]">
-                On your regular trash day the weeks of November 16 and November 30. Paper bags or
-                open barrels, at the curb by 7:00am. The yard waste site at 16 Standley St is open
-                Mondays, Thursdays and Saturdays, 7:00am to 3:30pm, through December 19.{" "}
-                <Src href={TRASH_CAL}>The city&apos;s pickup calendar</Src>
-              </p>
-            </div>
-          </div>
           <ul className="mt-5 max-w-[63ch]">
             {ahead.map((e) => (
               <li
