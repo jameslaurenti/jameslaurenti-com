@@ -379,9 +379,12 @@ export default function DigestIssue9() {
             Centerville, in Ward 6, showed residents a plan for 200 units on the 26-acre parcel at
             128 Boulder Lane, in its{" "}
             <Src href={SLIDES}>slides for the Mayor&apos;s November 5 community meeting</Src>.
-            Issue 8 reported 250 to 300, the figure the Mayor&apos;s office gave before the
-            meeting. Nothing has been filed with the city.{" "}
-            <Earlier issue={8} slug="2026-11-02" id="boulder" label="the proposal and the land" />
+            That is fewer than the 250 to 300 units first reported. Nothing has been filed with the
+            city.
+          </p>
+          <p className={BODY}>
+            For a map of where the parcel sits and what its zoning allows, see{" "}
+            <Earlier issue={8} slug="2026-11-02" id="boulder" label="the land and its zoning" />.
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -407,17 +410,16 @@ export default function DigestIssue9() {
             w={915}
             h={558}
           >
-            The developer&apos;s October site plan, from{" "}
+            The developer&apos;s site plan, from{" "}
             <a href={SLIDES} className="underline">
               its slides
             </a>
-            , with our labels. We traced the pink line from the plan&apos;s engineering drawing,
-            which labels it the 100-foot wetland buffer and no-disturb line. The two ponds sit
-            where{" "}
+            , with our labels. The plan marks the pink line as its 100-foot wetland limit. The two
+            ponds sit where{" "}
             <a href={VERNAL_POOLS} className="underline">
               the state lists
             </a>{" "}
-            two certified vernal pools, by our comparison of the maps. Tap to enlarge.
+            two vernal pools. Tap to enlarge.
           </Figure>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -425,21 +427,20 @@ export default function DigestIssue9() {
           </h3>
           <p className={BODY}>
             Wetlands run through the west and middle of the parcel and along its east edge, by
-            the Wenham line. Beverly&apos;s{" "}
-            <Src href={WETLAND_RULES}>wetland rules</Src>{" "}bar most buildings within 50 feet of a
-            wetland, and any disturbance, even clearing, within 100 feet of a vernal pool: a small
-            pond that dries out in summer, where salamanders and wood frogs breed. The rules protect
-            a pool whether or not the state has certified it, and the Conservation Commission can
-            require spring surveys to check. It can waive the limits only if there is no practical
-            alternative.
+            the Wenham line. Beverly&apos;s <Src href={WETLAND_RULES}>wetland rules</Src>{" "}keep
+            most buildings at least 50 feet from a wetland. Near a vernal pool the limit is 100
+            feet, and even clearing land is not allowed.
+          </p>
+          <p className={BODY}>
+            A vernal pool is a small pond that dries out in summer, where salamanders and wood
+            frogs breed.
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
             What it would need
           </h3>
           <p className={BODY}>
-            The slides list four approvals, each from a city board after a public hearing. None is
-            a City Council vote.
+            The slides list four approvals, each from a city board after a public hearing.
           </p>
           <ol className="mt-4 max-w-[63ch] list-decimal space-y-3 pl-5 text-[1.0625rem] leading-[1.7]">
             <li>
@@ -462,15 +463,18 @@ export default function DigestIssue9() {
             </li>
           </ol>
           <p className={BODY}>
-            For a use variance, the Zoning Board must find that something about the land itself,
-            such as its shape or slopes, would otherwise deny the owner a reasonable use, and four
-            of its five members must agree <Src href={ZBA_RULES}>(zoning &sect; 300-92)</Src>. More
-            in{" "}
+            A use variance lets an owner use land in a way its zoning does not allow. To grant one,
+            the Zoning Board has to find that something about this particular piece of land, such
+            as its shape or slopes, makes it a hardship to use as zoned. Four of the board&apos;s
+            five members must agree <Src href={ZBA_RULES}>(zoning &sect; 300-92)</Src>. More in{" "}
             <a href="#zba" className="underline">
               How it works
             </a>
-            , below. The slides say a January plan, two five-story buildings closer to the
-            neighborhood, fit the zoning, and that this one was redesigned &ldquo;based on feedback
+            , below.
+          </p>
+          <p className={BODY}>
+            The slides say an earlier plan, from January, fit the zoning: two five-story buildings
+            closer to the neighborhood. They say this one was redesigned &ldquo;based on feedback
             from the City.&rdquo;
           </p>
 
