@@ -410,12 +410,12 @@ export default function DigestIssue9() {
             h={558}
           >
             The developer&apos;s site plan, from{" "}
-            <a href={SLIDES} className="underline">
+            <a href={SLIDES} className="rlink">
               its slides
             </a>
             , with our labels. The plan marks the pink line as its 100-foot wetland limit. The two
             ponds sit where{" "}
-            <a href={VERNAL_POOLS} className="underline">
+            <a href={VERNAL_POOLS} className="rlink">
               the state lists
             </a>{" "}
             two vernal pools. Tap to enlarge.
@@ -465,11 +465,12 @@ export default function DigestIssue9() {
             A use variance lets an owner use land in a way its zoning does not allow. To grant one,
             the Zoning Board has to find that something about this particular piece of land, such
             as its shape or slopes, makes it a hardship to use as zoned. Four of the board&apos;s
-            five members must agree <Src href={ZBA_RULES}>(zoning &sect; 300-92)</Src>. More in{" "}
-            <a href="#zba" className="underline">
-              How it works
+            five members must agree <Src href={ZBA_RULES}>(zoning &sect; 300-92)</Src>. More below,
+            in{" "}
+            <a href="#zba" className="rlink">
+              How it works: special permits and variances
             </a>
-            , below.
+            .
           </p>
           <p className={BODY}>
             The slides say an earlier plan, from January, fit the zoning: two five-story buildings
