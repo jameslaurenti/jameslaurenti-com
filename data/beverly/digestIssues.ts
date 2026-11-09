@@ -23,6 +23,14 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-11-09",
+    number: 9,
+    published: "November 9, 2026",
+    covering: "November 2 to November 8",
+    teaser:
+      "The Boulder Lane developer's 200-unit plan and the approvals it would need from three city boards. How Beverly voted on the three ballot questions closest to home, the finance director leaves for Ipswich, and the Council holds the last required hearing on the data center pause.",
+  },
+  {
     slug: "2026-11-02",
     number: 8,
     published: "November 2, 2026",
