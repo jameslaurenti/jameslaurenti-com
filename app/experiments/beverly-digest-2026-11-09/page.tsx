@@ -102,6 +102,8 @@ const ZBA_RULES = "https://ecode360.com/29285066";
 const WETLAND_RULES = `${DOC}/856/Chapter-565-Wetlands-Protection-Regulations-PDF`;
 const VERNAL_POOLS = "https://www.mass.gov/info-details/massgis-data-nhesp-certified-vernal-pools";
 const ZONING_DEFS = "https://ecode360.com/29283349";
+const DISTRICT_RULES = "https://ecode360.com/29284109";
+const WSPOD = "https://ecode360.com/29284444";
 const MGL_40A = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40A";
 const MGL_40A_10 = `${MGL_40A}/Section10`;
 const MGL_40A_15 = `${MGL_40A}/Section15`;
@@ -146,12 +148,12 @@ const ahead: Ev[] = [
   },
   {
     date: "Nov 9",
-    what: "City Council: data center hearing",
+    what: "City Council",
     detail:
-      "Tonight, 7:00pm in the Middle School library, 502 Cabot St. The data center hearing is set for 7:30pm.",
+      "Tonight, 7:00pm in the Middle School library, 502 Cabot St. On the agenda: the data center hearing at 7:30pm, the recycling drop-off grant, the Varian cleanup update and more.",
     cal: {
       id: "council-2026-11-09",
-      title: "Beverly City Council: data center pause hearing",
+      title: "Beverly City Council",
       start: "2026-11-10T00:00:00Z",
       end: "2026-11-10T02:30:00Z",
       location: "Beverly Middle School library, 502 Cabot St, Beverly, MA",
@@ -332,7 +334,7 @@ export default function DigestIssue9() {
             The developer behind the Boulder Lane proposal showed a 200-unit plan, built in a
             band between wetlands, and it would need approvals from three city boards. Beverly
             voted with the state on eight of nine ballot questions. The finance director leaves for Ipswich, and
-            the Council holds its data center hearing tonight.
+            the Council holds the last required hearing on its data center pause tonight.
           </p>
         </header>
 
@@ -382,8 +384,8 @@ export default function DigestIssue9() {
             city.
           </p>
           <p className={BODY}>
-            For a map of where the parcel sits and what its zoning allows, see{" "}
-            <Earlier issue={8} slug="2026-11-02" id="boulder" label="the land and its zoning" />.
+            First reported in{" "}
+            <Earlier issue={8} slug="2026-11-02" id="boulder" label="the proposal and the land" />.
           </p>
 
           <h3 className="mt-7 max-w-[63ch] font-display text-lg font-bold leading-snug">
@@ -444,21 +446,27 @@ export default function DigestIssue9() {
           <ol className="mt-4 max-w-[63ch] list-decimal space-y-3 pl-5 text-[1.0625rem] leading-[1.7]">
             <li>
               <b>A use variance from the Zoning Board of Appeals</b>{" "}for the assisted living
-              building. The land is zoned for offices, research and light industry, and that zoning
-              does not allow assisted living.
+              and memory care building. The land&apos;s{" "}
+              <Src href={DISTRICT_RULES}>zoning</Src>{" "}is mainly for offices, research and light
+              industry. With a special permit it also allows two related uses, 55-and-older
+              housing and a state-licensed nursing home, but it does not list assisted living.
             </li>
             <li>
-              <b>A special permit from the Zoning Board</b>{" "}for the townhomes, as what the
-              zoning calls &ldquo;subsidized elderly housing.&rdquo; Its{" "}
-              <Src href={ZONING_DEFS}>definition</Src>{" "}requires at least 15% of the units to be
-              permanently affordable. The slides say &ldquo;a share of homes&rdquo; would be.
+              <b>A special permit from the Zoning Board</b>{" "}for the townhomes, under the
+              55-and-older use the zoning does list, which it calls &ldquo;subsidized elderly
+              housing.&rdquo; Its <Src href={ZONING_DEFS}>definition</Src>{" "}requires at least 15%
+              of the units to be permanently affordable. The slides say &ldquo;a share of
+              homes&rdquo; would be.
             </li>
             <li>
               <b>An order of conditions from the Conservation Commission</b>{" "}for work near the
               wetlands.
             </li>
             <li>
-              <b>Site plan review by the Planning Board.</b>
+              <b>Site plan review by the Planning Board,</b>{" "}plus a special permit, because
+              the whole parcel sits in a{" "}
+              <Src href={WSPOD}>district that protects the drinking water supply</Src>{" "}for
+              Beverly and Salem.
             </li>
           </ol>
           <p className={BODY}>
@@ -516,17 +524,18 @@ export default function DigestIssue9() {
           </p>
 
           <QCard q={qn(7)} outcome="Failed statewide. Most Beverly voters supported it, the one question where Beverly and the state split.">
-            Nothing changes in Beverly: its zoning stays as it is. The question would have let
-            someone build a single-family home on any lot of at least 5,000 square feet with 50 feet
-            along the street, as long as the lot connects to public water and sewer lines rather
-            than a well and septic system. City zoning could not have required a bigger lot{" "}
+            Nothing changes in Beverly: its zoning stays as it is. Today the smallest lot allowed
+            for a new single-family home is 6,000 to 90,000 square feet (about two acres),
+            depending on the district <Src href={DISTRICT_RULES}>(zoning)</Src>. The question would
+            have allowed one on any lot of at least 5,000 square feet with 50 feet along the
+            street, as long as it connects to public water and sewer lines rather than a well and
+            septic system. City zoning could not have required a bigger lot{" "}
             <Src href={VOTER_GUIDE}>(voter guide)</Src>. The Associated Press called it Friday
             with 99% counted, <Src href={CBS_Q7}>CBS Boston reported</Src>.
           </QCard>
           <QCard q={qn(8)} outcome="Failed statewide, and most Beverly voters opposed it too.">
             Nothing changes in Beverly. Marijuana shops stay open, and so does the city&apos;s 3%
-            local tax on their sales, in effect since July 2023{" "}
-            <Src href={DOR_LOCAL_TAX}>(state tax records)</Src>. A yes vote would have ended retail
+            local tax on their sales <Src href={DOR_LOCAL_TAX}>(state tax records)</Src>. A yes vote would have ended retail
             sales, and the taxes on them, from 2028 <Src href={VOTER_GUIDE}>(voter guide)</Src>.
           </QCard>
           <QCard q={qn(6)} outcome="Passed statewide, and most Beverly voters supported it.">
@@ -618,7 +627,7 @@ export default function DigestIssue9() {
         {/* ---- 04 ---- */}
         <section
           id="council"
-          data-dek={"The Council holds its hearing on the data center pause tonight at 7:30pm. Also on the agenda: a $100,000 state grant to turn the city's yard waste site into a drop-off for hard-to-recycle items, and an update on the Varian site cleanup."}
+          data-dek={"The Council holds the second and last required hearing on the data center pause tonight at 7:30pm, after which it can take its final vote. Also on the agenda: a $100,000 state grant to turn the city's yard waste site into a drop-off for hard-to-recycle items, and an update on the Varian site cleanup."}
           className={SECTION}
         >
           <Eyebrow>04 &middot; City Council</Eyebrow>
@@ -626,16 +635,19 @@ export default function DigestIssue9() {
           <From>City Council &middot; Monday, November 9 &middot; 7:00pm &middot; Middle School library</From>
           <ul className={LIST}>
             <li>
-              <b>The data center pause, 7:30pm.</b>{" "}The public hearing on the Mayor&apos;s
-              proposed pause on data center applications (Order #250), which the Planning Board
-              recommended 7-0. Adopting it takes six of the nine councilors.{" "}
+              <b>The data center pause, 7:30pm.</b>{" "}The Council&apos;s public hearing on the
+              Mayor&apos;s proposed pause on data center applications (Order #250). State law
+              requires two hearings on a zoning change. The Planning Board held the first and
+              recommended the pause 7-0. Tonight&apos;s is the second, and after it the Council can
+              take its final vote. Adopting the pause takes six of the nine councilors.{" "}
               <Earlier issue={8} slug="2026-11-02" id="datacenters" label="the Planning Board's vote" />
             </li>
             <li>
               <b>A drop-off for hard-to-recycle items.</b>{" "}The Mayor asks the Council to accept
               a $100,000 state grant (Order #286) to turn the yard waste site at 16 Standley St into
               a staffed drop-off for things like textiles, scrap metal, bulky plastics, Styrofoam and
-              small electronics, open at least three days a week. No opening date yet{" "}
+              small electronics, open at least three days a week. The Mayor&apos;s letter does not
+              say whether the site would keep taking yard waste, and gives no opening date{" "}
               <Src href={`${COUNCIL_1109}#page=21`}>(p. 21)</Src>.
             </li>
             <li>
@@ -702,10 +714,10 @@ export default function DigestIssue9() {
                 the neighborhood <Src href={ZBA_RULES}>(&sect; 300-92)</Src>.
               </li>
               <li>
-                <b>A use variance</b>{" "}allows a use the district does not list at all. State law
-                allows these only where a city&apos;s zoning says so{" "}
-                <Src href={MGL_40A_10}>(c. 40A &sect; 10)</Src>. Beverly&apos;s has since 1992,
-                in every district except residential ones.
+                <b>A use variance</b>{" "}allows a use the zoning does not list for that
+                district at all. State law lets each city decide whether to allow these{" "}
+                <Src href={MGL_40A_10}>(c. 40A &sect; 10)</Src>. Beverly&apos;s zoning has allowed
+                them since 1992 in every district except residential ones.
               </li>
               <li>
                 <b>Votes and appeals.</b>{" "}On a five-member board, a special permit or a
