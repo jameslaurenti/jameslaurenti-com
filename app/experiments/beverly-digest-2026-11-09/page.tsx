@@ -119,7 +119,7 @@ const LOCAL_NEWS_AYLES = "https://thelocalnews.news/2026/10/22/ipswich-hires-fir
 const FINANCE_JOB = `${DOC}/7752`;
 
 const contents: [string, string][] = [
-  ["boulder", "Boulder Lane: the developer's plan is 200 units, and it would need a use variance"],
+  ["boulder", "Boulder Lane: the developer's plan is 200 units, and it would need approvals from three city boards"],
   ["election", "How Beverly voted on the three ballot questions closest to home"],
   ["ayles", "The city's finance director leaves for Ipswich"],
   ["council", "Tonight at the Council: the data center hearing and a recycling drop-off"],
@@ -330,8 +330,8 @@ export default function DigestIssue9() {
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
             The developer behind the Boulder Lane proposal showed a 200-unit plan, built in a
-            band between wetlands, and it would need a zoning variance. Beverly voted with the
-            state on eight of nine ballot questions. The finance director leaves for Ipswich, and
+            band between wetlands, and it would need approvals from three city boards. Beverly
+            voted with the state on eight of nine ballot questions. The finance director leaves for Ipswich, and
             the Council holds its data center hearing tonight.
           </p>
         </header>
@@ -364,11 +364,11 @@ export default function DigestIssue9() {
         {/* ---- 01 ---- */}
         <section
           id="boulder"
-          data-dek={"Waverly Development's slides for the November 5 community meeting show 200 units off Boulder Lane: 40 townhomes for buyers 55 and older and a 160-unit assisted living and memory care building, in a band between wetlands. The slides list four approvals it would need, starting with a Zoning Board use variance. Nothing has been filed."}
+          data-dek={"Waverly Development's slides for the November 5 community meeting show 200 units off Boulder Lane: 40 townhomes for buyers 55 and older and a 160-unit assisted living and memory care building, in a band between wetlands. The slides list four approvals it would need, from the Zoning Board of Appeals, the Conservation Commission and the Planning Board, each after a public hearing. Nothing has been filed."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Housing</Eyebrow>
-          <H2>Boulder Lane: the developer&apos;s plan is 200 units, and it would need a use variance</H2>
+          <H2>Boulder Lane: the developer&apos;s plan is 200 units, and it would need approvals from three city boards</H2>
           <From>
             The developer&apos;s slides for the Mayor&apos;s community meeting &middot; Thursday,
             November 5 &middot; Centerville Elementary
