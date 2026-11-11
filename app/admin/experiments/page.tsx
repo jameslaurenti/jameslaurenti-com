@@ -37,7 +37,12 @@ function listDirs(dir: string): string[] {
 }
 
 function rows(): Row[] {
-  const app = new Set(listDirs("app/experiments"));
+  // app/experiments/preview holds password-gated previews (lib/previewGate.ts); list each one as preview/<name>.
+  const app = new Set(
+    listDirs("app/experiments").flatMap((d) =>
+      d === "preview" ? listDirs("app/experiments/preview").map((p) => `preview/${p}`) : [d],
+    ),
+  );
   const pub = new Set(
     listDirs("public/experiments").filter((d) => fs.existsSync(path.join(/*turbopackIgnore: true*/ process.cwd(), "public/experiments", d, "index.html"))),
   );

@@ -5,12 +5,13 @@ import {
   HL_ACCESS_VALUE,
   HL_ENTER_PATH,
 } from "@/lib/harborlightGate";
+import { PREVIEW_COOKIE, PREVIEW_ROOT, PREVIEW_VALUE } from "@/lib/previewGate";
 
 // Friction gates for pages shared by direct link but not meant to be stumbled onto.
 // This is friction, not security: fallback passwords live in a public repo, so treat
 // them as "please don't read this yet" signs rather than locks. Setting WBI_PASSWORD
-// (drafts) or HARBORLIGHT_PASSWORD (parent digest) in the Vercel project overrides the
-// fallback and keeps the real value out of git.
+// (drafts), HARBORLIGHT_PASSWORD (parent digest) or PREVIEW_PASSWORD (shared previews) in
+// the Vercel project overrides the fallback and keeps the real value out of git.
 export function proxy(req: NextRequest) {
   const path = req.nextUrl.pathname;
 
@@ -25,6 +26,18 @@ export function proxy(req: NextRequest) {
     return NextResponse.redirect(url);
   }
 
+  // Shared previews: every page under /experiments/preview/<name>, with their own cookie and
+  // their own enter page (the folder's index, which the matcher leaves ungated).
+  if (path.startsWith(`${PREVIEW_ROOT}/`)) {
+    if (req.cookies.get(PREVIEW_COOKIE)?.value === PREVIEW_VALUE) {
+      return NextResponse.next();
+    }
+    const url = req.nextUrl.clone();
+    url.pathname = PREVIEW_ROOT;
+    url.search = `?next=${encodeURIComponent(path)}`;
+    return NextResponse.redirect(url);
+  }
+
   // Draft gate.
   if (req.cookies.get(ACCESS_COOKIE)?.value === ACCESS_VALUE) {
     return NextResponse.next();
@@ -36,12 +49,14 @@ export function proxy(req: NextRequest) {
 }
 
 // Must be a static literal; Next reads this at build time. "/harborlight" matches the
-// digest page only, so /harborlight/enter and /harborlight/feed/* stay ungated.
+// digest page only, so /harborlight/enter and /harborlight/feed/* stay ungated. The preview
+// pattern needs one segment or more, so /experiments/preview itself (the enter page) stays open.
 export const config = {
   matcher: [
     "/beverly/who-beverly-is",
     "/beverly/who-beverly-is-v2",
     "/admin/experiments",
     "/harborlight",
+    "/experiments/preview/:path+",
   ],
 };

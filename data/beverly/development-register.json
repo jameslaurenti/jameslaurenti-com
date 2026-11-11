@@ -1,0 +1,1875 @@
+{
+  "schema": "beverly-development-register/0.1",
+  "updated": "2026-11-09",
+  "spec": "docs/beverly/development-map.md",
+  "rules": { "quiet_after_days": 365, "active_window_days": 90, "built_since": "2021-01-01" },
+  "sites": [
+    {
+      "id": "boulder-lane",
+      "name": "128 Boulder Lane",
+      "address": "128 Boulder Ln",
+      "neighborhood": "Centerville",
+      "ward": 6,
+      "parcels": ["73-8"],
+      "acres": 26,
+      "zoning": ["IR"],
+      "location": { "lat": 42.58021, "lng": -70.82761, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "deep",
+      "city_page": "https://www.beverlyma.gov/338/Projects-Development",
+      "notes": "Assessor acres are the Beverly side of the town line only. The whole parcel sits inside the Water Supply Protection Overlay District. The Nov 5 slides add three neighboring Beverly parcels zoned R15 (86-114, 86-40, 86-39B) and Wenham parcel 47-1 to the project property.",
+      "facts": [
+        { "label": "This parcel", "value": "26 acres on the Beverly side, zoned IR", "source": "city-map-73-8" },
+        { "label": "Project property", "value": "About 44 acres in all, with three neighboring Beverly parcels zoned R15 and one in Wenham, per the developer's survey", "source": "boulder-deck p. 12" },
+        { "label": "Wetlands", "value": "About 3½ acres of the Beverly parcel, on city maps", "source": "digest:2026-11-02#boulder" },
+        { "label": "Vernal pools", "value": "Two, where the state lists certified pools, in the middle of the site", "source": "digest:2026-11-09#boulder" },
+        { "label": "Access", "value": "Boulder Lane, which starts in Wenham off Grapevine Road", "source": "pb-2023-01-18 p. 2" }
+      ],
+      "history": [
+        {
+          "date": "2015-07-28",
+          "what": "A feasibility study for Wenham and Beverly, with funding help from MassDevelopment, looked at 71 acres on both sides of the town line, including this parcel, for offices, shops and apartments",
+          "detail": "It listed wetlands, ledge, the drinking water supply, highway access and the lack of public sewer as constraints, and suggested marketing the parcels as one package.",
+          "source": "bsc-2015 pp. 2-16",
+          "title": "A study for both towns"
+        }
+      ],
+      "page_sources": ["zoning-300-42", "zoning-300-5", "zoning-300-50", "zoning-300-92", "wetland-rules", "planbeverly"],
+      "chapters": [
+        {
+          "id": "2022-contractor-storage",
+          "title": "Contractor storage buildings",
+          "what": "A 15,000 sq ft contractor storage building with 15 units, later drawn as three 5,000 sq ft buildings, needing a Planning Board special permit and site plan review (cases #183-22 and #159-22)",
+          "homes": 0,
+          "stage": "under-review",
+          "decided": null,
+          "events": [
+            { "date": "2023-01-10", "what": "The Parking and Traffic Commission reviewed it", "source": "pb-2023-01-18 p. 2" },
+            { "date": "2023-01-18", "what": "The Planning Board opened its hearing on a 15,000 sq ft contractor storage building with 15 units", "source": "pb-2023-01-18 p. 2" },
+            {
+              "date": "2023-03-07",
+              "what": "Continued at the applicant's request, for changes to the building; the board's chair noted comments from the water supply board and the Wenham and Beverly fire departments",
+              "source": "pb-2023-03-07 p. 2"
+            },
+            { "date": "2023-03-29", "what": "Continued again at the applicant's request, for a redesign; the board asked for a site visit", "source": "pb-2023-03-29 p. 1" },
+            { "date": "2023-04-24", "what": "Now three 5,000 sq ft buildings; continued to May 23, 2023, because the special permit needs six of the board's nine votes and five members were present", "source": "pb-2023-04-24 p. 2" }
+          ]
+        },
+        {
+          "id": "2025-driving-range",
+          "title": "Outdoor golf driving range",
+          "what": "An outdoor golf driving range, which needed a variance from the Zoning Board of Appeals",
+          "homes": 0,
+          "stage": "under-review",
+          "decided": null,
+          "ending": {
+            "type": "withdrawn",
+            "date": "2025-06-25",
+            "what": "The ZBA voted 5-0 to let the applicant withdraw without prejudice, meaning it can be filed again. The applicant had asked for more time to talk with neighbors",
+            "source": "zba-2025-06-25 pp. 5-6"
+          },
+          "events": [
+            { "date": "2025-06-09", "what": "Notice published of a Zoning Board hearing on a variance from the IR district's use rules for an outdoor golf driving range", "source": "zba-2025-06-25-agenda p. 2" }
+          ]
+        },
+        {
+          "id": "2026-55-plus",
+          "title": "55+ townhomes and assisted living",
+          "who": "Waverly Development",
+          "what": "200 units: 40 townhomes for people 55 and older and a 160-unit assisted living and memory care building",
+          "homes": 200,
+          "stage": "talked-about",
+          "decided": null,
+          "facts": [
+            { "label": "Townhomes for buyers 55 and older", "value": "40, up to 32 ft (2½ stories), on the side nearest the neighborhood", "source": "boulder-deck p. 6" },
+            { "label": "Assisted living and memory care", "value": "160 units in a four-story building at the Route 128 end", "source": "boulder-deck p. 6" },
+            { "label": "Parking", "value": "268 spaces: 80 in garages, 80 tandem, 108 surface", "source": "boulder-deck p. 6" },
+            { "label": "Affordable", "value": "15% of the townhomes, deed-restricted", "source": "boulder-deck p. 16" },
+            { "label": "Building area", "value": "About 10 acres; the developer says the other 34, about 77%, stay wetlands, buffers and woods", "source": "boulder-deck p. 12" },
+            { "label": "Traffic (developer's estimate)", "value": "About 38 car trips in the morning rush hour and 48 in the evening, from national averages; a traffic study would confirm", "source": "boulder-deck p. 13" },
+            { "label": "Schools (developer's estimate)", "value": "No added school-age children, since the homes are age-restricted", "source": "boulder-deck p. 14" }
+          ],
+          "approvals": [
+            { "board": "Zoning Board of Appeals", "what": "a use variance for the assisted living building", "status": "needed", "source": "boulder-deck p. 9" },
+            { "board": "Zoning Board of Appeals", "what": "a special permit for the townhomes", "status": "needed", "source": "boulder-deck p. 9" },
+            { "board": "Conservation Commission", "what": "an order of conditions for work near wetlands", "status": "needed", "source": "boulder-deck p. 9" },
+            { "board": "Planning Board", "what": "site plan review, with the Design Review Board", "status": "needed", "source": "boulder-deck p. 9" },
+            { "board": "Planning Board", "what": "a special permit for building in the district that protects the drinking water supply", "status": "needed", "source": "boulder-deck p. 9" }
+          ],
+          "events": [
+            { "date": "2026-01", "what": "An earlier plan of two five-story 55+ buildings with 205 units, which the developer's October slides say met the zoning", "source": "boulder-deck-oct" },
+            { "date": "2026-10-27", "what": "The Mayor's office described a 55+ project of 250 to 300 units; nothing filed", "source": "beat-boulder", "digest": "2026-11-02#boulder" },
+            { "date": "2026-10-27", "what": "Ward 6 Councilor Matt St. Hilaire told The Beverly Beat he had not seen plans, and named traffic, schools, and police and fire services as his concerns", "source": "beat-boulder" },
+            { "date": "2026-11-05", "what": "Waverly Development presented a 200-unit plan at the Mayor's community meeting at Centerville Elementary", "source": "boulder-deck", "digest": "2026-11-09#boulder" },
+            { "date": "2026-11-05", "what": "Residents at the meeting opposed the project, The Salem News reported", "source": "salem-news-boulder", "digest": "2026-11-09#boulder" },
+            { "date": "2026-11-06", "what": "The city posted the presentation and listed the site as pre-filing: no formal applications filed or under review for the plan", "source": "city-projects" }
+          ],
+          "section_sources": ["boulder-deck"]
+        }
+      ],
+      "check": ["What happened to the contractor storage hearing at or after the May 23, 2023 Planning Board meeting: not in the Agenda Center (searched through 2024); ask Planning or the city clerk", "Whether the driving range came back after June 2025 (the ZBA's July 23, 2025 agenda wasn't checked)", "Wenham approvals for any work on the Wenham side", "The plan sheet's own summary table (130 assisted living units) doesn't match the slides' 160; ask the developer or Planning"],
+      "figures": [
+        {
+          "section": "proposal",
+          "src": "/beverly/digest/2026-11-09/boulder-plan-labeled.svg",
+          "w": 915,
+          "h": 558,
+          "alt": "The developer's site plan for 128 Boulder Lane, with labels added by the digest. A pink line encloses everything the plan builds, in a band on the east side of the site: 40 townhomes at the north end, nearest Kennel Hill Drive, then the assisted living and memory care building and its parking toward Route 128, and a driveway out to Boulder Lane at the southeast corner. West of the line are woods and wetlands, including two ponds that match the state-certified vernal pools.",
+          "caption": "The developer's site plan, with labels added by the digest. The pink line is the plan's 100-foot wetland limit."
+        },
+        {
+          "section": "land",
+          "src": "/beverly/digest/2026-11-02/boulder-map.svg",
+          "w": 640,
+          "h": 503,
+          "alt": "Map of Centerville. The 128 Boulder Lane parcel sits on the north side of Route 128 at the Wenham line. Boulder Lane runs along the highway from Grapevine Road at the Route 128 interchange. Hull Street and Centerville Elementary School are to the west, and Beverly Commons conservation land is south of the highway.",
+          "caption": "The Beverly parcel, shaded. Boulder Lane, outlined, runs along Route 128 from Grapevine Road."
+        }
+      ],
+      "land_notes": [
+        {
+          "text": "The parcel is wooded and is not conservation land. Its closest neighbors are house lots on Fieldstone Lane and Kennel Hill Drive. Conservation land held by the city and by the Essex County Greenbelt Association lies a few hundred feet away along Boulder Lane.",
+          "source": "digest:2026-11-02#boulder"
+        }
+      ],
+      "zoning_notes": [
+        {
+          "text": "The parcel is in the IR district, meant mainly for offices, research labs and light industry, which are allowed there without special approval. Two uses for older residents need a special permit from the Zoning Board: what the zoning calls subsidized elderly housing, and a state-licensed nursing home. Assisted living is not listed.",
+          "source": "zoning-300-42"
+        },
+        {
+          "text": "Subsidized elderly housing means at least 80% of the units have a resident 55 or older, at least 15% are permanently affordable, and at least 10% are built for people with disabilities. It doesn't mean the whole building is subsidized.",
+          "source": "zoning-300-5",
+          "more": "What subsidized elderly housing means"
+        },
+        {
+          "text": "The whole parcel is in the Water Supply Protection Overlay District. Multifamily housing there needs a Planning Board special permit, which the board may grant only if the project does not harm water quality.",
+          "source": "zoning-300-50"
+        },
+        { "text": "The three neighboring Beverly parcels in the project property are zoned R15, for single-family houses.", "source": "city-gis" },
+        {
+          "text": "Beverly's wetland rules keep most buildings at least 50 feet from a wetland and 100 feet from a vernal pool, a small pond that dries out in summer, where salamanders and wood frogs breed.",
+          "source": "wetland-rules"
+        }
+      ],
+      "plan": {
+        "map": {
+          "text": "The city's long-range plan does not name this land. Its map of growth and preservation areas leaves this part of the city, north of Route 128 at the Wenham line, unmarked",
+          "source": "planbeverly p. 30",
+          "placed": true
+        },
+        "passages": [
+          { "topic": "On housing for older residents", "quote": "“the need for housing alternatives that can accommodate a growing senior population”", "source": "planbeverly p. 54" },
+          { "topic": "On where new housing goes", "quote": "“Locate new housing development in areas already developed and adequately served by utilities and infrastructure”", "source": "planbeverly p. 61" },
+          { "topic": "On land never built on", "quote": "the city can “discourage ‘greenfield’ development in parts of Beverly that are currently unprotected open space”", "source": "planbeverly p. 36" },
+          { "topic": "On industrial land by Route 128", "quote": "“Strengthen the industrial areas along Rt. 128, including Cherry Hill, Dunham Road, and the Sohier/Tozer Road area”", "source": "planbeverly p. 41" }
+        ]
+      },
+      "digest_extra": ["2026-11-09#zba", "2026-11-02#plan"]
+    },
+    {
+      "id": "218-226-cabot-st",
+      "name": "218-226 Cabot Street (former Family Dollar)",
+      "address": "218-226 Cabot St and 8 Chapman St",
+      "neighborhood": "Downtown",
+      "ward": 2,
+      "parcels": ["11-247", "11-252"],
+      "acres": 1.46,
+      "zoning": ["CC", "RHD"],
+      "location": { "lat": 42.54891, "lng": -70.87942, "basis": "centroid of both parcels", "source": "city-gis" },
+      "depth": "deep",
+      "city_page": "https://www.beverlyma.gov/1268/218-226-Cabot-Street-Redevelopment",
+      "chapters": [
+        {
+          "id": "2022-apartments",
+          "title": "113 apartments behind the stores",
+          "who": "Leggat McCall Properties",
+          "what": "A five-story building with 113 apartments on the parking lot behind 222-224 Cabot Street, where the city leased about 100 public spaces",
+          "homes": 113,
+          "stage": "under-review",
+          "decided": null,
+          "events": [
+            { "date": "2022-07-19", "what": "The Planning Board held a public hearing. Residents raised the loss of public parking, artist studios in the building and the dollar store as a low-cost food option; the board's chair said the building was too large but that zoning allowed it, the Salem News reported. The hearing was continued to August 16", "source": "salem-2022-07-21" },
+            { "date": "2022-08-16", "what": "The Planning Board's continued hearing", "source": "bevcam-pb-2022-08-16" },
+            { "date": "2022-12-13", "what": "The Planning Board approved, 8-0, a preliminary subdivision plan for 218-224 Cabot Street that Leggat McCall Properties had filed on November 16, 2022", "source": "pb-2022-12-13 p. 6" }
+          ],
+          "ending": { "type": "dropped", "date": "2023-05-01", "what": "The plan ended when the city took the property. The Mayor told the Council the city had spent about two years trying to work with the developer before deciding, the summer before, that it could not", "source": "cc-m-2023-05-01 p. 5" }
+        },
+        {
+          "id": "temporary-city-hall",
+          "title": "A temporary City Hall",
+          "who": "City of Beverly",
+          "what": "City offices would move into the building while City Hall, across the street, was renovated",
+          "homes": null,
+          "stage": "talked-about",
+          "decided": null,
+          "events": [
+            { "date": "2023-04-13", "what": "The Mayor's letter listed temporary offices during the City Hall renovation as one of the purchase's three purposes", "source": "cc-a-2023-04-18 p. 71" },
+            { "date": "2024-02-26", "what": "At a City Hall project presentation, the Mayor said the state had confirmed that using the building temporarily would not trigger the new building code, and that the Rent-A-Center space was being looked at for a satellite library", "source": "cc-m-2024-02-26 pp. 1-2" },
+            { "date": "2024-04-01", "what": "The city's planning director said an artist would install work in the empty storefronts", "source": "cc-m-2024-04-01 p. 9" },
+            { "date": "2025-06-16", "what": "The Mayor told the Council that moving staff there would cost nearly $2 million for a stay of about 18 months to two years, \"making the option impractical,\" and that a request for proposals would sell the building and keep the parking", "source": "cc-m-2025-06-16 p. 3" },
+            { "date": "2026-07-11", "what": "The city chose the former TD Bank at 175 Cabot Street for its temporary offices, The Beverly Beat reported", "source": "beat-2026-07-11" }
+          ],
+          "ending": { "type": "dropped", "date": "2025-06-16", "what": "Dropped by the city in June 2025", "source": "cc-m-2025-06-16 p. 3" }
+        },
+        {
+          "id": "first-rfp",
+          "title": "First request for proposals",
+          "who": "City of Beverly",
+          "what": "A request for proposals to sell the Rogers Building on about half an acre for redevelopment, with the city keeping most of the public parking",
+          "homes": null,
+          "stage": "talked-about",
+          "decided": null,
+          "events": [
+            { "date": "2024-10-23", "what": "The Mayor told the Affordable Housing Trust that a housing project at the building was possible, and that its financing might lead to a request to the Trust for funding", "source": "aht-m-2024-10-23 p. 2" },
+            { "date": "2025-09-09", "what": "The first public meeting on reuse covered the zoning, the parking and how the sale would work. Ideas raised included housing and artist studios, a grocery, a co-op and a boutique hotel, Patch reported", "source": "patch-2025-09-09" },
+            { "date": "2025-12-04", "what": "The Mayor told the Economic and Community Development Council the goal was to issue the request by the end of January, and that an advisory group of residents, business owners and councilors had formed", "source": "ecdc-m-2025-12-04 p. 2" },
+            { "date": "2025-12-11", "what": "The second public meeting covered the advisory group's suggestions, the building and the zoning, followed by breakout groups, which were not recorded", "source": "bevcam-forum-2025-12-11 at 9:05" },
+            { "date": "2026-03-25", "what": "The city issued RFP #26-007. It drew on the meetings and a survey with more than 1,000 responses, in which a grocery got the most votes", "source": "rfp-26-007 p. 4" },
+            { "date": "2026-04-09", "what": "Pre-proposal meeting at the site", "source": "rfp-26-007 p. 13" },
+            { "date": "2026-06-08", "what": "Proposals were due", "source": "rfp-26-007 p. 14" }
+          ],
+          "ending": { "type": "rejected", "date": "2026-09-08", "what": "The Mayor told the Council the city had rejected the one response, a two-part proposal, because neither part met the community's needs. The city had expected interest from a boutique hotel and several kinds of affordable housing", "source": "bevcam-cc-2026-09-08 at 34:15", "digest": "2026-09-11#dollar" }
+        },
+        {
+          "id": "second-rfp",
+          "title": "A second request for proposals",
+          "who": "City of Beverly",
+          "what": "The city plans a second request for proposals to sell the Rogers Building, working with the state's economic development office, MassDevelopment and the state housing office",
+          "homes": null,
+          "stage": "talked-about",
+          "decided": null,
+          "section_sources": ["rfp-26-007"],
+          "facts": [
+            { "label": "For sale", "value": "The Rogers Building on about 0.55 acres, with about 17 private parking spaces, once the city divides the lot", "source": "rfp-26-007 p. 5" },
+            { "label": "Public parking", "value": "The city keeps a public lot of about 71 spaces, including the smaller lot across Chapman Street. A proposal may cost no more than 15 of them", "source": "rfp-26-007 pp. 8-9" },
+            { "label": "Height", "value": "At most 45 feet and four stories", "source": "rfp-26-007 p. 9" },
+            { "label": "Preferred", "value": "Keeping the facade; a grocery of at least 5,000 sq ft; active ground-floor businesses; housing, with ownership and deeper affordability preferred; a hotel", "source": "rfp-26-007 p. 10" },
+            { "label": "How it's chosen", "value": "An evaluation committee named by the Mayor recommends the most advantageous proposal; the Mayor decides and may reject all", "source": "rfp-26-007" }
+          ],
+          "events": [
+            { "date": "2026-09-08", "what": "The Mayor said the city was working with the state's economic development office, which brought in MassDevelopment and the state housing office, and that those agencies would visit the site. He said he hoped this would take two rounds, not three", "source": "bevcam-cc-2026-09-08 at 34:15", "digest": "2026-09-11#dollar" },
+            { "date": "2026-09-24", "what": "The Economic and Community Development Council's agenda listed a debrief on the dollar store site", "source": "ecdc-a-2026-09-24" },
+            { "date": "2026-10-22", "what": "The council's agenda listed a status update on the Rogers Building, along with a presentation from the state housing office", "source": "ecdc-a-2026-10-22" }
+          ]
+        }
+      ],
+      "check": ["How far the 2022 Leggat McCall plan got at the Planning Board (approved, withdrawn, or still open in May 2023). A speaker at the May 1, 2023 hearing said 113 apartments were permitted", "The final price: city records say $7,350,000; Patch (Sep 9, 2025) reported $7.399 million", "Parking counts differ: 108 (2023 letter), 107 (city page), about 100 (the RFP's history), about 71 after the split", "The city GIS layer lists CC and RHD zoning; the city's 2025 presentation says CC2. Confirm against the zoning map", "Sep 8, 2026 rejection is from the recording; check the minutes once posted, and the Sep 24 and Oct 22 ECDC minutes", "The Oct 22 ECDC item reads \"219-226 Cabot Street\"; treated as this site because the RFP names the building the Rogers Building", "Whether a second RFP has been issued (bid listings)"],
+      "page_sources": ["city-page-1268", "rfp-26-007", "bid-258", "deck-2025-12", "cc-m-2025-06-02", "salem-2022-07-21", "patch-2025-09-09", "patch-2023-04-19", "patch-2023-05-01", "patch-2024-04-02", "patch-2025-06-17", "patch-2025-09-05"],
+      "facts": [
+        { "label": "Parcels", "value": "11-247 (the Rogers Building and the public lot behind it) and 11-252 (8 Chapman Street, a smaller lot across Chapman Street), about 1.46 acres together", "source": "city-gis" },
+        { "label": "The building", "value": "The Rogers Building, built in 1899 with four stories; a 1933 fire took the top two. About 33 feet tall today, with about 17,500 sq ft on the first floor and 6,000 on the second", "source": "rfp-26-007 pp. 6-7" },
+        { "label": "Last uses", "value": "Storefronts for a restaurant, a dollar store and Rent-A-Center on the first floor; offices, studios and meeting space upstairs", "source": "rfp-26-007 p. 7" },
+        { "label": "Historic district", "value": "Inside the Beverly Center Historic District, a National Register district", "source": "rfp-26-007 p. 6" },
+        { "label": "Owner", "value": "The City of Beverly, since 2023", "source": "cc-m-2023-05-01 p. 9" }
+      ],
+      "zoning_notes": [
+        { "text": "The city's September 2025 presentation puts the building in the CC2 Central Business Cabot district: at most 45 feet and four stories, down from a 55-foot limit before February 2023", "source": "deck-2025-09 p. 3" },
+        { "text": "New homes in a project of six or more must include 12% affordable homes, at 60% of the area median income", "source": "deck-2025-09" }
+      ],
+      "history": [
+        { "date": "1899", "title": "The Rogers Building", "what": "The Rogers Building went up on Cabot Street as a four-story building. A fire in 1933 took the top two floors", "source": "rfp-26-007 pp. 6-7" },
+        { "date": "2023-04-13", "title": "The city takes the property", "what": "Mayor Cahill asked the City Council to take the property by eminent domain (Order #119) and to approve $8 million for it (Order #120): $2 million from free cash and $6 million borrowed. The letter listed three purposes: keep the 108 public parking spaces behind the building that the city had long leased, house city offices during a City Hall renovation of about 24 months, and possibly build affordable housing. It said the city would likely sell the building later", "source": "cc-a-2023-04-18 pp. 71-80" },
+        { "date": "2023-05-01", "title": "The Council approves the purchase", "what": "After a public hearing, the Council approved both orders 8-0, with one councilor absent. The agreed payment was $7,350,000, against a December 2022 appraisal of $7,100,000, in exchange for the owners waiving all claims", "source": "cc-m-2023-05-01 pp. 8-9" },
+        { "date": "2024-04-01", "title": "Paying down the purchase", "what": "The Council approved moving $2.5 million of free cash toward the purchase (Order #093), 7-0. The finance director said about $2 million would stay as a short-term note until the building was sold", "source": "cc-m-2024-04-01 pp. 8-9" }
+      ],
+      "recordings": [
+        { "date": "2022-07-19", "title": "Planning Board, Jul 19, 2022", "what": "The board's public hearing on the 113-apartment plan, as the Salem News reported it; continued to August 16", "source": "bevcam-pb-2022-07-19" },
+        { "date": "2022-08-16", "title": "Planning Board, Aug 16, 2022", "what": "The continued hearing on the 113-apartment plan", "source": "bevcam-pb-2022-08-16" },
+        { "date": "2023-04-18", "title": "City Council, Apr 18, 2023", "what": "The Mayor's orders to take the property and pay for it reach the Council, which sets a public hearing for May 1", "source": "bevcam-cc-2023-04-18" },
+        { "date": "2023-05-01", "title": "City Council, May 1, 2023", "what": "The public hearing on the $8 million order, where seven residents and local leaders spoke, and the Council's 8-0 votes", "source": "bevcam-cc-2023-05-01" },
+        { "date": "2024-02-26", "title": "City Council special meeting, Feb 26, 2024", "what": "The City Hall project presentation, with the building as temporary offices and the plan for paying off the purchase", "source": "bevcam-cc-2024-02-26" },
+        { "date": "2024-04-01", "title": "City Council, Apr 1, 2024", "what": "The hearing and vote on moving $2.5 million of free cash toward the purchase", "source": "bevcam-cc-2024-04-01" },
+        {
+          "date": "2025-06-16",
+          "title": "City Council, Jun 16, 2025",
+          "what": "The Mayor drops the temporary City Hall plan and describes selling the building and keeping the parking",
+          "source": "bevcam-cc-2025-06-16",
+          "moments": [
+            { "at": "20:25", "label": "City Hall renovation presentation" },
+            { "at": "37:01", "label": "The building and staff relocation plans" }
+          ]
+        },
+        { "date": "2025-09-09", "title": "Public meeting on future uses, Sep 9, 2025", "what": "The city's first public meeting on reuse: zoning, parking, how a sale works, and residents' ideas", "source": "bevcam-forum-2025-09-09" },
+        {
+          "date": "2025-12-11",
+          "title": "Second public meeting on future uses, Dec 11, 2025",
+          "what": "The advisory group's suggestions for the request for proposals, the building and the zoning. The breakout groups were not recorded; their reports back were",
+          "source": "bevcam-forum-2025-12-11",
+          "moments": [
+            { "at": "9:05", "label": "Advisory group and the RFP" },
+            { "at": "12:18", "label": "The building and the site" },
+            { "at": "14:33", "label": "Zoning, height and uses" },
+            { "at": "1:18:18", "label": "Breakout groups report back" }
+          ]
+        },
+        {
+          "date": "2026-09-08",
+          "title": "City Council, Sep 8, 2026",
+          "what": "The Mayor reports that the first round's proposal was rejected and that a second request is coming, with state agencies involved",
+          "source": "bevcam-cc-2026-09-08",
+          "moments": [
+            { "at": "34:15", "label": "The Mayor's report on the site, about 3 minutes" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "laurel-st-coast-guard",
+      "name": "Coast Guard houses, Laurel Street",
+      "address": "40-55 Laurel St",
+      "neighborhood": "North Beverly",
+      "ward": 5,
+      "parcels": ["68-56", "68-57"],
+      "zoning": ["R10"],
+      "location": { "lat": 42.57987, "lng": -70.8816, "basis": "between the two federal parcels", "source": "city-gis" },
+      "depth": "page",
+      "notes": "GSA describes one contiguous 5.36-acre lot with 16 ranch houses; the city parcel layer shows two federal parcels, 40 and 41 Laurel St.",
+      "chapters": [
+        {
+          "id": "federal-sale",
+          "title": "Federal sale by auction",
+          "who": "U.S. General Services Administration",
+          "what": "16 vacant ranch houses on about 5.4 acres, listed for an online auction",
+          "homes": null,
+          "stage": "talked-about",
+          "decided": null,
+          "events": [
+            { "date": "2026-08", "what": "The city filed an expression of interest", "source": "digest:2026-10-26#coastguard" },
+            { "date": "2026-10-23", "what": "The GSA listing showed the auction as Coming Soon, with no dates", "source": "gsa-laurel", "digest": "2026-10-26#coastguard" },
+            { "date": "2026-10", "what": "Councilor Feldman posted that the city is not moving forward on buying the houses", "source": "digest:2026-10-26#coastguard" }
+          ]
+        }
+      ],
+      "check": ["Auction dates and result"]
+    },
+    {
+      "id": "37-enon-st",
+      "name": "37 Enon Street (Stop & Shop site)",
+      "address": "37 Enon St",
+      "neighborhood": "North Beverly",
+      "ward": 5,
+      "parcels": ["92-59"],
+      "acres": 4.9,
+      "zoning": ["CG"],
+      "location": { "lat": 42.5863, "lng": -70.88405, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "page",
+      "city_page": "https://www.beverlyma.gov/1311/37-Enon-Street",
+      "facts": [
+        { "label": "This parcel", "value": "About 5 acres, zoned CG (general commercial)", "source": "city-gis" },
+        { "label": "Today", "value": "A supermarket of about 65,000 sq ft, built in 1988", "source": "massgis-l3" },
+        { "label": "Location", "value": "Between Enon Street (Route 1A) and the commuter rail line, next to the North Beverly station", "source": "digest:2026-11-02#enon" },
+        { "label": "Wetlands", "value": "None on the site, the Conservation Commission found in July 2026, according to the application", "source": "enon-transmittal p. 4" }
+      ],
+      "page_sources": ["enon-page", "planbeverly"],
+      "chapters": [
+        {
+          "id": "2026-apartments",
+          "title": "179 apartments and shops",
+          "who": "Beverly TRE LLC",
+          "what": "179 apartments, 22 of them affordable, and about 2,600 sq ft of shops in place of the supermarket",
+          "homes": 179,
+          "stage": "under-review",
+          "decided": null,
+          "facts": [
+            { "label": "Apartments", "value": "179 rentals: 107 one-bedroom and 72 two-bedroom", "source": "enon-zba-decision p. 1" },
+            { "label": "Affordable", "value": "22, for households at or below 60% of the area median income: 13 one-bedroom, 9 two-bedroom", "source": "enon-reg-agreement p. 2" },
+            { "label": "Shops", "value": "About 2,600 sq ft", "source": "enon-plans p. 8" },
+            { "label": "Height", "value": "Up to 46.5 ft, with a sloped roof", "source": "enon-zba-decision p. 4" },
+            { "label": "Parking", "value": "281 spaces, where zoning requires 367: about 1.5 per apartment", "source": "enon-plans p. 8" },
+            { "label": "Green space", "value": "Building and pavement on just under 75% of the lot, down from about 90% today", "source": "digest:2026-11-02#enon" },
+            { "label": "Traffic (applicant's estimate)", "value": "About 730 trips in and out on a weekday, against about 2,000 counted at the store in July", "source": "enon-traffic-study p. 7" },
+            { "label": "The store's lease", "value": "Stop & Shop has an option to extend it; the owner is seeking permits in case it does not", "source": "enon-zba-decision p. 1" }
+          ],
+          "approvals": [
+            { "board": "Conservation Commission", "what": "a finding that the site has no wetland resource area", "status": "done", "date": "2026-07-29", "source": "enon-transmittal p. 4" },
+            { "board": "Zoning Board of Appeals", "what": "a height variance, 46.5 ft where 35 ft is allowed", "status": "granted", "vote": "5-0", "date": "2026-09-23", "source": "enon-zba-decision p. 4" },
+            { "board": "Planning Board", "what": "site plan review (#171-26)", "status": "open", "source": "enon-pb-agenda p. 1" },
+            { "board": "Planning Board", "what": "a special permit for 281 parking spaces where 367 are required (#207-26)", "status": "open", "source": "enon-pb-agenda p. 1" },
+            { "board": "Planning Board", "what": "approval of the 22 affordable homes under the inclusionary housing ordinance (#31-26)", "status": "open", "source": "enon-pb-agenda p. 1" }
+          ],
+          "events": [
+            { "date": "2026-07-29", "what": "The Conservation Commission found no wetland resource area on the site, according to the application", "source": "enon-transmittal p. 4" },
+            { "date": "2026-09-04", "what": "The Salem News reported on a presentation of the plan to residents", "source": "salem-news-enon", "digest": "2026-09-28#enon" },
+            { "date": "2026-09-23", "what": "The Zoning Board of Appeals granted a height variance, 5-0: 46.5 ft where 35 ft is allowed", "source": "enon-zba-decision p. 4", "digest": "2026-09-28#enon" },
+            { "date": "2026-09-28", "what": "Applications filed with the Planning Board: site plan review, a parking special permit and inclusionary housing", "source": "enon-spr-application", "digest": "2026-10-05#enon" },
+            {
+              "date": "2026-10-27",
+              "what": "The Planning Board opened its hearing, heard from about a dozen residents, most about traffic, and continued it 7-0. It also voted 6-1 to ask the Clean Energy Advisory Committee for comments",
+              "source": "enon-hearing",
+              "digest": "2026-11-02#enon"
+            },
+            { "date": "2026-11-04", "what": "On the Parking and Traffic Commission's agenda, for a recommendation to the Planning Board", "source": "digest:2026-11-09" },
+            { "date": "2026-11-05", "what": "On the Design Review Board's agenda, for site plan review", "source": "digest:2026-11-09" }
+          ],
+          "next": { "date": "2026-11-17", "what": "Planning Board hearing continues", "source": "city-projects" },
+          "section_sources": ["enon-zba-decision", "enon-reg-agreement", "enon-plans", "enon-traffic-study", "enon-transmittal", "enon-pb-agenda"]
+        }
+      ],
+      "figures": [
+        {
+          "section": "land",
+          "src": "/beverly/digest/2026-11-02/enon-map.svg",
+          "w": 640,
+          "h": 621,
+          "alt": "Map of North Beverly. The Stop and Shop site at 37 Enon Street sits between Enon Street (Route 1A) and the commuter rail line, just north of North Beverly station and the Dodge Street intersection. Wenham Lake is to the west, the Wenham line to the north, North Beverly Elementary to the southeast, and Shaw's and Route 128 to the south.",
+          "caption": "The site, shaded, between Enon Street and the commuter rail line."
+        }
+      ],
+      "zoning_notes": [
+        { "text": "The parcel is in the CG district, general commercial. Buildings there may be up to 35 feet tall.", "source": "enon-zba-decision p. 4" },
+        { "text": "Parking is required at about 2 spaces per apartment, with fewer allowed by a Planning Board special permit.", "source": "digest:2026-11-02#enon" },
+        { "text": "The city's inclusionary housing ordinance requires a share of new apartments to be affordable; the plan's 22 are 12% of the total.", "source": "enon-pb-agenda p. 1" }
+      ],
+      "plan": {
+        "map": { "text": "The plan's map marks the area around the North Beverly station as a priority growth area", "source": "planbeverly p. 30", "placed": true },
+        "definition": { "text": "which it describes as places “suitable for new medium to high density development, with proximity to transit and transportation options”", "source": "planbeverly p. 31" },
+        "passages": [
+          {
+            "topic": "On the station area",
+            "quote": "it “could be a focus for future transit-oriented development, in order to address housing and economic development needs in an environmentally sustainable manner”",
+            "source": "planbeverly p. 40"
+          },
+          {
+            "topic": "On how to get there",
+            "quote": "“Initiate a neighborhood planning study” covering, among other things, the “infrastructure improvements necessary to support new development, address existing traffic bottlenecks, and make the area more walk- and bike-friendly”",
+            "source": "planbeverly p. 40"
+          },
+          { "topic": "On parking near transit", "quote": "“Reduce parking requirements in areas accessible to transit beyond the Beverly Depot area to encourage car-light households”", "source": "planbeverly p. 108" },
+          { "topic": "On larger sites", "quote": "“In larger redevelopment sites, require the creation of a finer-grained street grid and public open space”", "source": "planbeverly p. 64" }
+        ]
+      },
+      "digest_extra": ["2026-11-02#plan"]
+    },
+    {
+      "id": "38-standley-st",
+      "name": "38 Standley Street (Waring School)",
+      "address": "38 Standley St",
+      "neighborhood": null,
+      "ward": 6,
+      "parcels": ["58-1"],
+      "acres": 4.37,
+      "zoning": ["R22"],
+      "location": { "lat": 42.56976, "lng": -70.84792, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1198/38-Standley-Street-OSRD",
+      "chapters": [
+        {
+          "id": "osrd",
+          "title": "Open space residential design",
+          "who": "Waring School",
+          "what": "An open space residential design (OSRD) plan; the yield plan shows four lots",
+          "homes": 4,
+          "stage": "under-review",
+          "decided": null,
+          "events": [
+            { "date": "2025-03-12", "what": "Yield plan approved", "source": "city-projects" },
+            { "date": "2025-04-30", "what": "Preferred plan selected", "source": "city-projects" },
+            { "date": "2026-10-29", "what": "The city posted the OSRD site plan application (the file is dated Oct 19)", "source": "doc-7751" }
+          ],
+          "next": { "date": "2026-11-17", "what": "Planning Board public hearing on the OSRD site plan", "source": "city-projects" }
+        }
+      ]
+    },
+    {
+      "id": "115-cross-ln",
+      "name": "115 Cross Lane",
+      "address": "115 Cross Ln",
+      "neighborhood": null,
+      "ward": 4,
+      "parcels": ["33-21"],
+      "acres": 1.83,
+      "zoning": ["R22"],
+      "location": { "lat": 42.56129, "lng": -70.85284, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1274/115-Cross-Lane-Subdivision",
+      "chapters": [
+        {
+          "id": "subdivision",
+          "title": "Two new house lots",
+          "what": "A minor subdivision: a 173-foot private road and two new building lots, three lots in all",
+          "homes": 2,
+          "stage": "under-review",
+          "decided": null,
+          "events": [
+            { "date": "2026-02-10", "what": "Preliminary plan approved; the definitive plan is the next step", "source": "city-projects" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "folly-hill",
+      "name": "Folly Hill (0 Trask Lane)",
+      "address": "0 Trask Ln",
+      "neighborhood": null,
+      "ward": 1,
+      "parcels": ["28-126A"],
+      "acres": 79,
+      "zoning": ["R10", "RSD"],
+      "location": { "lat": 42.56345, "lng": -70.90502, "basis": "parcel centroid (the city layer lists it as 20 Trask Ln)", "source": "city-gis" },
+      "depth": "deep",
+      "city_page": "https://www.beverlyma.gov/403/Trask-Lane-Folly-Hill",
+      "notes": "The city's parcel layer lists two districts on the parcel (R10 and RSD) and the state assessor file lists R10; the Planning Board's decisions place the project in the RSD district.",
+      "facts": [
+        { "label": "This parcel", "value": "About 79 acres, listed as 20 Trask Lane in the city's parcel layer", "source": "city-gis" },
+        { "label": "Today", "value": "Undeveloped; the state's assessor file lists it as developable residential land", "source": "massgis-l3" },
+        { "label": "Zoning", "value": "RSD, the Special Residential District, according to the Planning Board's decisions", "source": "folly-sp-decision p. 1" },
+        { "label": "Access", "value": "Trask Lane and Manor Road; a second entrance across the neighboring Apple Village property only if the developer gets an easement", "source": "folly-spr-decision p. 6" }
+      ],
+      "page_sources": ["folly-page", "zoning-300-38", "mgl-40a-6", "planbeverly"],
+      "history": [
+        { "date": "1982", "what": "An earlier subdivision plan for the land was approved, which the 2017 decision calls the 1982 definitive plan", "source": "folly-sub-2017 p. 3", "title": "An earlier subdivision plan" },
+        {
+          "date": "2016",
+          "what": "The City Council changed the zoning to require more land per home, which the Mayor later said cut the site's potential to about 100 to 200 units",
+          "source": "folly-mepa-enf pp. 20-25",
+          "title": "A zoning change"
+        }
+      ],
+      "chapters": [
+        {
+          "id": "2017-subdivision",
+          "title": "Subdivision plan: lots and a road",
+          "who": "Folly Hill Associates Trust",
+          "what": "A plan of lots and an extension of Trask Lane, with no buildings, redrawing a 1980s subdivision plan. The city's project page says it was filed to lock in the zoning in place at the time",
+          "homes": 0,
+          "stage": "approved",
+          "decided": "2024-03-19",
+          "events": [
+            { "date": "2016", "what": "A preliminary subdivision plan was filed, which under state law holds the land to the zoning in place at the time", "source": "appeals-2019" },
+            { "date": "2016-12-08", "what": "At a city information session, officials said the land was being marketed for 650 units, Patch reported", "source": "patch-2016-12" },
+            { "date": "2017-03-23", "what": "The definitive plan was filed with the Planning Board", "source": "folly-sub-2017 p. 1" },
+            { "date": "2017-07-18", "what": "The Planning Board approved it 5-3, with conditions that put off questions of access, utilities and traffic until a building was proposed", "source": "folly-sub-2017 pp. 1-2" },
+            {
+              "date": "2019-07-24",
+              "what": "In a separate case, the Appeals Court upheld dismissal of the owners' suit over a 1982 water and sewer agreement with the city; the city did not dispute that the 2016 plan froze the zoning",
+              "source": "appeals-2019"
+            },
+            {
+              "date": "2021-05",
+              "what": "On the owner's appeal, the Land Court found most of those conditions improperly put off decisions, vacated the 2017 approval and sent the plan back to the board, according to the board's 2024 decision",
+              "source": "folly-sub-2024 p. 1"
+            },
+            { "date": "2023-11-28", "what": "A modified plan was filed", "source": "folly-sub-2024 p. 1" },
+            { "date": "2024-03-19", "what": "The Planning Board approved the modified plan 7-0", "source": "folly-sub-2024 p. 2" },
+            { "date": "2025-02-12", "what": "The plan was endorsed; the board's minutes say the zoning freeze \"was thus perfected\"", "source": "pb-2025-02-12" }
+          ]
+        },
+        {
+          "id": "2024-apartments",
+          "title": "440 apartments",
+          "who": "Corcoran Trask Lane LLC",
+          "what": "Six buildings with 440 apartments, a small convenience store, and about 61 acres kept as open space under a conservation restriction",
+          "homes": 440,
+          "stage": "approved",
+          "decided": "2025-12-16",
+          "facts": [
+            { "label": "Apartments", "value": "440, in six buildings", "source": "folly-spr-decision p. 1" },
+            { "label": "Affordable", "value": "53 (12%), for households at or below 80% of the area median income, all on site", "source": "folly-page" },
+            { "label": "Parking", "value": "748 spaces in garages and lots: 1.7 per apartment, where zoning asks for 2", "source": "folly-sp-decision p. 2" },
+            { "label": "Store", "value": "A convenience store of about 1,050 sq ft, sharing 4 parking spaces", "source": "folly-sp-decision p. 2" },
+            { "label": "Open space", "value": "A conservation restriction on about 61.25 acres of the project site, a condition of approval", "source": "folly-spr-decision p. 7" },
+            { "label": "Public comment", "value": "About 57 written and 56 spoken comments over a hearing that ran 12 meetings", "source": "folly-spr-decision pp. 1-3" }
+          ],
+          "approvals": [
+            {
+              "board": "State environmental review (MEPA)",
+              "what": "certificates on the environmental notification form, the draft and the final environmental impact reports",
+              "status": "done",
+              "date": "2025-06-13",
+              "source": "folly-mepa-feir"
+            },
+            {
+              "board": "Planning Board",
+              "what": "a special permit for 1.7 parking spaces per apartment instead of 2, and shared parking for the store (#201-25)",
+              "status": "granted",
+              "vote": "7-1",
+              "date": "2025-04-09",
+              "source": "folly-sp-decision p. 2"
+            },
+            { "board": "Planning Board", "what": "site plan review (#168-24) and the affordable housing plan (#30-24)", "status": "granted", "vote": "6-0", "date": "2025-12-16", "source": "folly-spr-decision p. 8" }
+          ],
+          "events": [
+            { "date": "2024-07-31", "what": "John M. Corcoran and Company filed for state environmental review: 466 apartments and 932 parking spaces at that stage", "source": "folly-mepa-enf" },
+            { "date": "2024-09-30", "what": "Site plan and affordable housing applications filed with the Planning Board", "source": "folly-spr-decision p. 1" },
+            {
+              "date": "2024-10-01",
+              "what": "Mayor Cahill wrote to the state that the site is reached by a single Route 128 exit and is not walkable to any public school, and estimated 100 to 130 added school children",
+              "source": "folly-mepa-enf pp. 20-25"
+            },
+            { "date": "2024-10-11", "what": "The state's environmental review (MEPA) required a full environmental impact report; it had received more than 100 comment letters", "source": "folly-mepa-enf" },
+            { "date": "2024-11-19", "what": "The Planning Board opened its hearing", "source": "folly-spr-decision p. 1" },
+            { "date": "2025-02-14", "what": "The state accepted the draft environmental impact report and required a final one", "source": "folly-mepa-deir" },
+            { "date": "2025-04-09", "what": "The Planning Board granted the parking special permit, 7-1", "source": "folly-sp-decision p. 2" },
+            { "date": "2025-06-13", "what": "The state issued its certificate on the final environmental impact report", "source": "folly-mepa-feir" },
+            { "date": "2025-07-15", "what": "The Parking and Traffic Commission called the project \"oversized for this project site\" but recommended conditions, since the use is allowed by right", "source": "folly-ptc-2025-07" },
+            { "date": "2025-08-11", "what": "The developer filed a conservation restriction plan and access plans that don't depend on an easement from Apple Village", "source": "folly-page" },
+            { "date": "2025-12-16", "what": "The Planning Board closed the hearing and approved the site plan and the affordable housing plan, 6-0", "source": "folly-spr-decision p. 8" },
+            { "date": "2026-01-22", "what": "The board's decision letter was revised", "source": "folly-page" },
+            { "date": "2026-03-01", "what": "The developer was targeting a groundbreaking by the end of 2026, Banker & Tradesman reported", "source": "bt-2026-03" },
+            {
+              "date": "2026-10-06",
+              "what": "The Conservation Commission cleared a sewer upgrade and electric conduit, 6-0; the developer's attorney said Essex County Greenbelt has agreed to co-hold the conservation restriction with the city",
+              "source": "concom-2026-10-06"
+            }
+          ],
+          "section_sources": ["folly-spr-decision", "folly-sp-decision", "folly-page"]
+        }
+      ],
+      "check": ["Whether construction has started (no sign as of Oct 6, 2026; the city's building permit portal not checked)", "Whether either 2025 approval was appealed (none found in news, minutes or the city page; court dockets not searched)", "The 2016 preliminary plan itself and the 2016 rezoning ordinance (2016-17 Planning Board minutes aren't online)", "Total acreage of the project site, to set beside the 61.25-acre conservation restriction"],
+      "zoning_notes": [
+        {
+          "text": "The Planning Board's decisions place the project in the RSD district, which the zoning sets up “to provide principally for special residential development at high density, as well as one-family, two-family, and multifamily residences at high density.”",
+          "source": "zoning-300-38"
+        },
+        { "text": "The city's parcel records also list R10, a district for single-family houses, on the parcel.", "source": "city-gis" },
+        { "text": "The city's inclusionary housing ordinance requires 12% of the apartments to be affordable, which here is 53 of 440.", "source": "folly-page" }
+      ],
+      "plan": {
+        "map": { "text": "The plan's map of growth and preservation areas shades most of this land as a priority preservation area", "source": "planbeverly p. 30", "placed": true },
+        "definition": { "text": "which it describes as areas “with limited protection status, targeted for long-term conservation due to significant environmental and natural features”", "source": "planbeverly p. 31" },
+        "passages": [
+          { "topic": "On the need for housing", "quote": "“the significant regional need for more housing at all levels of affordability”", "source": "planbeverly p. 58" },
+          { "topic": "On where new housing goes", "quote": "“Locate new housing development in areas already developed and adequately served by utilities and infrastructure”", "source": "planbeverly p. 61" },
+          { "topic": "On land never built on", "quote": "the city can “discourage ‘greenfield’ development in parts of Beverly that are currently unprotected open space”", "source": "planbeverly p. 36" }
+        ]
+      },
+      "digest_extra": ["2026-11-02#plan"]
+    },
+    {
+      "id": "40-dunham-rd",
+      "name": "40 Dunham Ridge (Building 40)",
+      "address": "40 Dunham Rd",
+      "neighborhood": null,
+      "ward": 5,
+      "parcels": ["69-2"],
+      "zoning": ["IR"],
+      "location": { "lat": 42.57772, "lng": -70.87169, "basis": "centroid of the whole 54-acre Dunham Ridge parcel, not the building site", "source": "city-gis" },
+      "depth": "page",
+      "city_page": "https://www.beverlyma.gov/338/Projects-Development",
+      "notes": "The city's Projects page lists this project as approved and links /908, which returned \"not found\" on Nov 9, 2026.",
+      "facts": [
+        { "label": "Where", "value": "A vacant part of the Dunham Ridge office campus, which the city's parcel layer shows as one parcel of about 54 acres", "source": "city-gis" },
+        { "label": "Zoning", "value": "IR (restricted industrial, research and office)", "source": "pb-2022-10-04 p. 11" },
+        { "label": "Transit", "value": "About a mile from the North Beverly train station, the applicant said in 2022", "source": "pb-2022-10-04 p. 4" }
+      ],
+      "page_sources": ["zoning-300-42", "zoning-300-5", "planbeverly"],
+      "chapters": [
+        {
+          "id": "2022-senior-apartments",
+          "title": "160 senior apartments",
+          "who": "40 Dunham OC LLC, with OneCircle as developer",
+          "what": "160 apartments in one five-story building, mostly for households with someone over 55, approved as \"subsidized elderly housing\" under the zoning",
+          "homes": 160,
+          "stage": "approved",
+          "decided": "2022-10-04",
+          "permit_until": { "date": "2026-11-04", "source": "pb-2024-10-29 p. 2" },
+          "facts": [
+            { "label": "Apartments", "value": "160, in one five-story building up to 60 ft", "source": "pb-2022-10-04 p. 11" },
+            { "label": "Over 55", "value": "At least 128 (80%) for households with someone over 55", "source": "dunham-application p. 4" },
+            { "label": "Affordable", "value": "At least 24 (15%), permanently, for households at or below 80% of the area median income", "source": "dunham-application p. 4" },
+            { "label": "Accessible", "value": "At least 16 (10%) designed for people with disabilities", "source": "dunham-application p. 5" },
+            { "label": "Parking", "value": "217 spaces, about 1.33 per apartment where zoning asks for 2, with 50 more shared at the Cummings Center", "source": "pb-2022-10-04 pp. 3-11" },
+            { "label": "Expected opening", "value": "Fully leased by fall 2026, the developer said in 2022", "source": "pb-2022-10-04 p. 4" }
+          ],
+          "approvals": [
+            { "board": "Zoning Board of Appeals", "what": "a special permit for subsidized elderly housing in the IR district", "status": "granted", "vote": "4-1", "date": "2022-05-25", "source": "dunham-application p. 12" },
+            { "board": "Planning Board", "what": "a special permit for fewer parking spaces (#182-22), extended in 2024 to November 4, 2026", "status": "granted", "vote": "6-1", "date": "2022-10-04", "source": "pb-2022-10-04 p. 11" },
+            { "board": "Planning Board", "what": "site plan review (#155-22)", "status": "granted", "vote": "7-0", "date": "2022-10-04", "source": "pb-2022-10-04 p. 11" }
+          ],
+          "events": [
+            { "date": "2022-05-25", "what": "The Zoning Board of Appeals granted a special permit for subsidized elderly housing, 4-1", "source": "dunham-application p. 12" },
+            { "date": "2022-07", "what": "Site plan and parking special permit applications filed with the Planning Board", "source": "dunham-application p. 1" },
+            { "date": "2022-10-04", "what": "The Planning Board granted the parking special permit, 6-1, and approved the site plan, 7-0", "source": "pb-2022-10-04 p. 11" },
+            {
+              "date": "2024-10-29",
+              "what": "At the owner's request, the Planning Board extended the parking special permit two years, to November 4, 2026, 7-0. The owner's attorney said the project was approved as costs and interest rates rose and had been put on hold indefinitely while financing is sought",
+              "source": "pb-2024-10-29 pp. 1-2"
+            }
+          ],
+          "section_sources": ["dunham-application", "pb-2022-10-04"]
+        }
+      ],
+      "check": ["Ask Planning whether the permits were extended again, lapsed, or were kept alive by construction; no further extension appears on Planning Board agendas posted through Oct 27, 2026", "When the ZBA and site plan approvals lapse on their own terms (only the parking special permit's extension is in the minutes)", "The city's project page (/908) returns not found; ask whether it moved", "Place the pin on the building site from the 2022 site plan"],
+      "zoning_notes": [
+        { "text": "The campus is zoned IR, mainly for offices, research labs and light industry.", "source": "zoning-300-42" },
+        { "text": "Subsidized elderly housing is allowed there, as in almost every district, with a special permit from the Zoning Board.", "source": "dunham-application p. 5" },
+        {
+          "text": "Subsidized elderly housing means at least 80% of the units have a resident 55 or older, at least 15% are permanently affordable, and at least 10% are built for people with disabilities. It doesn't mean the whole building is subsidized.",
+          "source": "zoning-300-5",
+          "more": "What subsidized elderly housing means"
+        }
+      ],
+      "plan": {
+        "map": { "text": "The plan's map marks the Dunham Road area as a priority growth area", "source": "planbeverly p. 30", "placed": true },
+        "definition": { "text": "which it describes as places “suitable for new medium to high density development, with proximity to transit and transportation options”", "source": "planbeverly p. 31" },
+        "passages": [
+          {
+            "topic": "On land along Route 128",
+            "quote": "invest in commercial areas “including Cherry Hill, the Beverly Airport, Dunham Road, and Sohier/Tozer Road, in order to position limited land in key areas for future office, research and development, and manufacturing opportunities”",
+            "source": "planbeverly p. 76"
+          },
+          { "topic": "On industrial areas", "quote": "“Strengthen the industrial areas along Rt. 128, including Cherry Hill, Dunham Road, and the Sohier/Tozer Road area”", "source": "planbeverly p. 41" },
+          { "topic": "On housing for older residents", "quote": "“the need for housing alternatives that can accommodate a growing senior population”", "source": "planbeverly p. 54" },
+          {
+            "topic": "On senior housing rules",
+            "quote": "“Review senior housing regulations, currently allowed by special permit throughout the city, to encourage this type of housing in all residential zoning districts”",
+            "source": "planbeverly p. 60"
+          }
+        ]
+      },
+      "digest_extra": ["2026-11-02#plan"]
+    },
+    {
+      "id": "46-federal-st",
+      "name": "46 Federal Street",
+      "address": "46 Federal St",
+      "neighborhood": "Downtown",
+      "ward": 2,
+      "parcels": ["11-161"],
+      "acres": 0.18,
+      "zoning": ["RHD"],
+      "location": { "lat": 42.54979, "lng": -70.88261, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1276/46-Federal-Street",
+      "chapters": [
+        {
+          "id": "townhouses",
+          "title": "Five townhouses",
+          "what": "Five townhouses replacing a single-family home and garage",
+          "homes": 5,
+          "stage": "approved",
+          "decided": "2026-04-28",
+          "events": [
+            { "date": "2026-01-28", "what": "ZBA granted a variance", "source": "city-private" },
+            { "date": "2026-04-28", "what": "Planning Board approved the special permit and site plan", "source": "city-projects" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "184-186-hart-st",
+      "name": "184-186 Hart Street",
+      "address": "184-186 Hart St",
+      "neighborhood": null,
+      "ward": 6,
+      "parcels": ["74-1", "74-1A"],
+      "zoning": ["R15", "R45"],
+      "location": { "lat": 42.57563, "lng": -70.817, "basis": "centroid of the two listed parcels", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1171/184-186-Hart-Street-OSRD",
+      "chapters": [
+        {
+          "id": "osrd",
+          "title": "Seven single-family homes",
+          "what": "Seven single-family homes, new or existing, off Hart St with a shared driveway or private road (an open space residential design)",
+          "homes": null,
+          "stage": "approved",
+          "decided": "2025-08-19",
+          "events": [
+            { "date": "2024-10-29", "what": "Yield plan approved", "source": "city-projects" },
+            { "date": "2025-02-12", "what": "Preferred plan selected", "source": "city-projects" },
+            { "date": "2025-08-19", "what": "OSRD site plan approved", "source": "city-projects" }
+          ]
+        }
+      ],
+      "check": ["How many of the seven homes are new", "The OSRD land likely covers more than the two listed parcels (1.3 acres)"]
+    },
+    {
+      "id": "14-greenwood-ave",
+      "name": "14 Greenwood Avenue",
+      "address": "14 Greenwood Ave",
+      "neighborhood": null,
+      "ward": 6,
+      "parcels": ["35-3"],
+      "acres": 2.79,
+      "zoning": ["R90"],
+      "location": { "lat": 42.56367, "lng": -70.83179, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1142/14-Greenwood-Avenue",
+      "chapters": [
+        {
+          "id": "new-lot",
+          "title": "One new house lot",
+          "what": "Dividing the lot to create one new house lot (a \"pork chop\" shaped lot)",
+          "homes": 1,
+          "stage": "approved",
+          "decided": "2025-07-15",
+          "events": [
+            { "date": "2024-10-29", "what": "Special permit approved", "source": "city-projects" },
+            { "date": "2024-11-21", "what": "Appeal of the special permit decision filed", "source": "city-projects" },
+            { "date": "2025-03-12", "what": "Modification to the special permit approved (the city's table prints the year as 2204)", "source": "city-projects" },
+            { "date": "2025-07-15", "what": "Definitive subdivision approved", "source": "city-projects" }
+          ]
+        }
+      ],
+      "check": ["Outcome of the November 2024 appeal"]
+    },
+    {
+      "id": "20-22-oak-st",
+      "name": "20-22 Oak Street",
+      "address": "20-22 Oak St",
+      "neighborhood": null,
+      "ward": 6,
+      "parcels": ["38-4"],
+      "acres": 0.22,
+      "zoning": ["CN"],
+      "location": { "lat": 42.56252, "lng": -70.8112, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1226/20-22-Oak-Street",
+      "chapters": [
+        {
+          "id": "two-family",
+          "title": "A two-family townhouse building",
+          "what": "One two-family townhouse building replacing two commercial buildings with eight business units",
+          "homes": 2,
+          "stage": "approved",
+          "decided": "2025-05-27",
+          "events": [
+            { "date": "2025-05-27", "what": "Approved", "source": "city-projects" }
+          ]
+        }
+      ],
+      "check": ["The June tracker listed this as complete; confirm whether it is built"]
+    },
+    {
+      "id": "397-cabot-st",
+      "name": "397 Cabot Street",
+      "address": "397 Cabot St",
+      "neighborhood": null,
+      "ward": 3,
+      "parcels": ["30-172"],
+      "acres": 0.11,
+      "zoning": ["CN"],
+      "location": { "lat": 42.55853, "lng": -70.88129, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1141/397-Cabot-Street",
+      "chapters": [
+        {
+          "id": "two-family",
+          "title": "A two-family home",
+          "what": "A two-family home with four parking spaces in back",
+          "homes": 2,
+          "stage": "approved",
+          "decided": "2024-03-19",
+          "events": [
+            { "date": "2024-03-19", "what": "Approved", "source": "city-projects" },
+            { "date": "2025-04-09", "what": "Site plan modification approved", "source": "city-projects" }
+          ]
+        }
+      ],
+      "check": ["The June tracker listed this as complete; confirm whether it is built"]
+    },
+    {
+      "id": "478-rantoul-st",
+      "name": "478 Rantoul Street",
+      "address": "478 Rantoul St",
+      "neighborhood": null,
+      "ward": 3,
+      "parcels": ["20-106"],
+      "acres": 0.5,
+      "zoning": ["CC"],
+      "location": { "lat": 42.55584, "lng": -70.88147, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1127/478-Rantoul-Street---June-2024-Submittal",
+      "chapters": [
+        {
+          "id": "addition",
+          "title": "30 one-bedroom apartments",
+          "what": "A new building with 30 one-bedroom apartments over parking, joined to the existing building, which keeps a small ground-floor commercial space",
+          "homes": 30,
+          "stage": "approved",
+          "decided": "2024-08-20",
+          "events": [
+            { "date": "2024-08-20", "what": "Approved", "source": "city-projects" },
+            { "date": "2025-09-16", "what": "Minor modification approved", "source": "city-projects" }
+          ]
+        }
+      ],
+      "check": ["The June tracker listed this as under construction; confirm"]
+    },
+    {
+      "id": "119-rantoul-st",
+      "name": "119 Rantoul Street",
+      "address": "119 Rantoul St",
+      "neighborhood": "Downtown",
+      "ward": 2,
+      "parcels": ["5-79"],
+      "acres": 0.44,
+      "zoning": ["CC"],
+      "location": { "lat": 42.54573, "lng": -70.88411, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/986/119-Rantoul-Street",
+      "chapters": [
+        {
+          "id": "apartments",
+          "title": "52 apartments and retail",
+          "what": "Apartments and about 1,600 sq ft of retail replacing an auto repair shop: first approved as 56 apartments in five stories, later 52 apartments with some parking in the MBTA garage",
+          "homes": 52,
+          "stage": "approved",
+          "decided": "2022-11-15",
+          "events": [
+            { "date": "2022-11-15", "what": "Approved", "source": "city-page-986" },
+            { "date": "2024-11-19", "what": "Site plan modification, two special permits and the inclusionary housing application approved", "source": "city-projects" }
+          ]
+        }
+      ],
+      "check": ["Confirm the Nov 15, 2022 approval date and the 52-apartment count on the city page", "The June tracker listed this as under construction; confirm"]
+    },
+    {
+      "id": "103-cabot-st",
+      "name": "103 Cabot Street",
+      "address": "103 Cabot St",
+      "neighborhood": "Downtown",
+      "ward": 2,
+      "parcels": ["5-288"],
+      "acres": 0.24,
+      "zoning": ["CC"],
+      "location": { "lat": 42.54498, "lng": -70.8803, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1010/103-Cabot-Street-Redevelopment",
+      "chapters": [
+        {
+          "id": "expansion",
+          "title": "11 homes and an office",
+          "what": "An existing four-unit building expanded to 11 homes and an office",
+          "homes": 11,
+          "stage": "under-construction",
+          "decided": "2023-02",
+          "events": [
+            { "date": "2025-12-16", "what": "Special permit and minor modification approved", "source": "city-projects" },
+            { "date": "2026-01-13", "what": "Minor modification to the site plan approved", "source": "city-projects" }
+          ],
+          "status_note": { "text": "Approved; under construction", "source": "city-projects", "checked": "2026-11-09" }
+        }
+      ],
+      "check": ["Confirm the original approval date (February 2023)"]
+    },
+    {
+      "id": "50-balch-st",
+      "name": "Beverly Landing (50 Balch Street)",
+      "address": "50 Balch St",
+      "neighborhood": "Cummings Center",
+      "ward": 3,
+      "parcels": ["30-232"],
+      "acres": 1.46,
+      "zoning": ["IG"],
+      "location": { "lat": 42.5629, "lng": -70.8875, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1086/50-Balch-Street-Cummings-Center",
+      "notes": "Unit counts differ by document: 53 in the city's project description, 59 after a later change, 60 in the affordable condo listing reported Nov 2.",
+      "chapters": [
+        {
+          "id": "senior-condos",
+          "title": "Condos for buyers 55 and older",
+          "who": "A Cummings Properties affiliate",
+          "what": "A five-story building of condos for buyers 55 and older, nine of them affordable",
+          "homes": 60,
+          "stage": "under-construction",
+          "decided": "2024-06-18",
+          "events": [
+            { "date": "2024-06-18", "what": "Approved", "source": "city-projects" },
+            { "date": "2025-01-15", "what": "Modification approved", "source": "city-projects" },
+            { "date": "2025-07-15", "what": "Modification approved", "source": "city-projects" },
+            { "date": "2026-11-02", "what": "Applications open for nine affordable condos", "source": "digest:2026-11-02#landing", "digest": "2026-11-02#landing" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "southwest-rantoul-gateway",
+      "name": "Southwest Rantoul Gateway (4-6 Rantoul Street)",
+      "address": "4-6 and 8 Rantoul St and 26-28R Cabot St",
+      "neighborhood": "Downtown",
+      "ward": 2,
+      "parcels": ["4-161", "4-160"],
+      "acres": 0.94,
+      "zoning": ["CC"],
+      "location": { "lat": 42.54203, "lng": -70.88542, "basis": "centroid of the two parcels", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/923/Southwest-Rantoul-Gateway",
+      "notes": "The Planning Board's decision lists 26, 28 and 28R Cabot St and 4-6 and 8 Rantoul St (Map 1 Lots 79-80, Map 4 Lots 160-163). Today's parcel layer shows the building on 4-161 (4-6 Rantoul St, 61 units, built 2023) and the lot behind it on 4-160 (28R Cabot St). Corrected Nov 9, 2026: an earlier draft placed it across the street at 7 Rantoul St.",
+      "chapters": [
+        {
+          "id": "apartments",
+          "title": "60 apartments",
+          "who": "Southwest Rantoul Gateway, LLC",
+          "what": "A five-story (53-foot) building with 60 apartments (5 affordable at 60% of area median income), a small office and 73 parking spaces, replacing the buildings on the site",
+          "homes": 60,
+          "stage": "built",
+          "decided": "2022-12-13",
+          "approvals": [
+            { "board": "Planning Board", "what": "site plan review (#156-22) and the inclusionary housing permit (#21-22)", "status": "granted", "vote": "8-0", "date": "2022-12-13", "source": "pb-2022-12-13 pp. 5-6" }
+          ],
+          "events": [
+            { "date": "2022-12-13", "what": "The Planning Board approved the site plan and the inclusionary housing permit, each 8-0", "source": "pb-2022-12-13 pp. 5-6" },
+            { "date": "2023-06-07", "what": "Construction was set to begin, Patch reported", "source": "patch-2023-06-07" },
+            { "date": "2023-06-14", "what": "A definitive subdivision plan for the site was approved (date from the document name)", "source": "doc-4464" },
+            { "date": "2025-06-06", "what": "Leasing began under the name Amara, with a certificate of occupancy issued, the New England Real Estate Journal reported", "source": "nerej-2025-06-06" }
+          ],
+          "status_note": { "text": "Approved, residential occupancy under way", "source": "city-projects", "checked": "2026-11-09" }
+        }
+      ],
+      "check": ["The posted Dec 13, 2022 minutes are marked as a draft; check for a final copy", "The 2025 leasing notice calls all 60 apartments market-rate; the city page says 5 are affordable at 60% AMI"]
+    },
+    {
+      "id": "140-rantoul-st",
+      "name": "Depot II (140 Rantoul Street)",
+      "address": "134-146 Rantoul St and 1-9 Park St",
+      "neighborhood": "Downtown",
+      "ward": 2,
+      "parcels": ["4-86"],
+      "acres": 0.67,
+      "zoning": ["CC"],
+      "location": { "lat": 42.54651, "lng": -70.88482, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "chapters": [
+        {
+          "id": "depot-ii",
+          "title": "106 apartments",
+          "who": "Depot Square Phase II, LLC",
+          "what": "A six-story, 72.5-foot building with 106 apartments, about 9,000 sq ft of ground-floor shops and 106 parking spaces, keeping and restoring the Casa de Lucca building at 146-148 Rantoul St",
+          "homes": 106,
+          "stage": "built",
+          "decided": "2020-01-28",
+          "facts": [
+            { "label": "Height", "value": "72.5 feet and six stories, by special permit in the downtown height overlay (the Tall Building Overlay), where the base limit was 55 feet", "source": "pb-2020-01-28 p. 7" },
+            { "label": "Affordable", "value": "None in the building. Twelve affordable homes approved earlier, at 461 Rantoul St and 2 Hardy St, count toward its requirement", "source": "pb-2020-01-28 p. 13" },
+            { "label": "Parking", "value": "106 spaces, using the Depot parking overlay's lower requirement for the whole site", "source": "pb-2020-01-28 pp. 6-7" }
+          ],
+          "approvals": [
+            { "board": "Planning Board", "what": "a special permit for height up to 72.5 feet and a parking deviation (#172-19)", "status": "granted", "vote": "7-1", "date": "2020-01-28", "source": "pb-2020-01-28 p. 7" },
+            { "board": "Planning Board", "what": "site plan review (#140-19) and the inclusionary housing permit (#17-19)", "status": "granted", "vote": "7-1", "date": "2020-01-28", "source": "pb-2020-01-28 p. 13" }
+          ],
+          "events": [
+            { "date": "2020-01-28", "what": "After a hearing that ran from fall 2019, the Planning Board approved the project 7-1. Its chair said about 2,000 people had signed a petition and 78 letters had been submitted", "source": "pb-2020-01-28 p. 12" },
+            { "date": "2021-05", "what": "Demolition of the old buildings on the site was set to begin, Patch reported", "source": "patch-2021-05" },
+            { "date": "2023-10-06", "what": "The building was completed, the New England Real Estate Journal reported", "source": "nerej-2023-10-06" }
+          ]
+        }
+      ],
+      "check": ["The assessor file lists 110 units and 2021; the approval and the completion notice say 106 apartments, finished in 2023", "The city has no project page for it; site map not drawn yet"]
+    },
+    {
+      "id": "anchor-point",
+      "name": "Anchor Point (108 Sohier Road)",
+      "address": "108 Sohier Rd",
+      "neighborhood": null,
+      "ward": 3,
+      "parcels": ["43-108"],
+      "acres": 2.29,
+      "zoning": ["IR"],
+      "location": { "lat": 42.56852, "lng": -70.87937, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/343/108-Sohier-Road-Anchor-Point",
+      "chapters": [
+        {
+          "id": "apartments",
+          "title": "77 affordable apartments",
+          "what": "77 affordable family apartments under the Smart Growth Overlay District (40R)",
+          "homes": 77,
+          "stage": "built",
+          "decided": null,
+          "events": [],
+          "status_note": { "text": "Phase I occupied; Phase II occupancy under way", "source": "city-projects", "checked": "2026-11-09" }
+        }
+      ],
+      "check": ["Approval date (before 2021)", "When Phase I opened"]
+    },
+    {
+      "id": "briscoe-village",
+      "name": "Beverly Village for Living and the Arts (former Briscoe Middle School)",
+      "address": "7 Sohier Rd",
+      "neighborhood": null,
+      "ward": 3,
+      "parcels": ["31-13"],
+      "acres": 4.89,
+      "zoning": ["RMD"],
+      "location": { "lat": 42.55982, "lng": -70.87888, "basis": "parcel centroid", "source": "massgis-l3" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/375/Briscoe-Village-for-Living-the-Arts",
+      "notes": "The city describes an 8.42-acre lot at 7 Sohier Rd. The state's FY2027 parcel file splits it three ways: 31-13 (20 Colon St, 4.89 acres, 91 apartments) and two city-owned lots, 31-13A (5 Sohier Rd) and 31-13B (21 Sohier Rd).",
+      "chapters": [
+        {
+          "id": "school-reuse",
+          "title": "School turned into housing and a theater",
+          "who": "Briscoe Village LLC",
+          "what": "The former Briscoe Middle School reused as housing (91 apartments in the state's assessor file), with a theater still to open",
+          "homes": 91,
+          "stage": "built",
+          "decided": null,
+          "events": [],
+          "status_note": { "text": "Residential occupancy complete; theater not yet complete", "source": "city-projects", "checked": "2026-11-09" }
+        }
+      ],
+      "check": ["City Council special permit date", "When residents moved in"]
+    },
+    {
+      "id": "451-essex-st",
+      "name": "451 Essex Street",
+      "address": "451 Essex St",
+      "neighborhood": null,
+      "ward": 6,
+      "parcels": ["71-10"],
+      "acres": 1.85,
+      "zoning": ["CN"],
+      "location": { "lat": 42.57585, "lng": -70.84926, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/1011/451-Essex-Street",
+      "chapters": [
+        {
+          "id": "mixed-use",
+          "title": "Townhouses and two shops",
+          "what": "A building with two commercial units and five three-story townhouse apartments, with 21 parking spaces",
+          "homes": 5,
+          "stage": "built",
+          "decided": "2023",
+          "events": [
+            { "date": "2025-08-19", "what": "Modification approved", "source": "city-projects" }
+          ],
+          "status_note": { "text": "Residential occupancy complete", "source": "city-projects", "checked": "2026-11-09" }
+        }
+      ],
+      "check": ["Approval date (hearing March 2023)"]
+    },
+    {
+      "id": "350-354-rantoul-st",
+      "name": "350-354 Rantoul Street",
+      "address": "350-354 Rantoul St",
+      "neighborhood": "Downtown",
+      "ward": 3,
+      "parcels": ["11-42"],
+      "acres": 0.09,
+      "zoning": ["CC"],
+      "location": { "lat": 42.5524, "lng": -70.88287, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "city_page": "https://www.beverlyma.gov/928/350-354-Rantoul-Street",
+      "chapters": [
+        {
+          "id": "dispensary",
+          "title": "A two-story store building",
+          "what": "A two-story building for a licensed marijuana store, replacing a three-story mixed-use building",
+          "homes": 0,
+          "stage": "built",
+          "decided": "2022",
+          "events": [],
+          "status_note": { "text": "Approved; open for business", "source": "city-projects", "checked": "2026-11-09" }
+        }
+      ],
+      "check": ["Approval and opening dates"]
+    },
+    {
+      "id": "63-sturtevant-st",
+      "name": "63 Sturtevant Street",
+      "address": "63 Sturtevant St",
+      "neighborhood": null,
+      "ward": 1,
+      "parcels": ["18-313A"],
+      "zoning": ["R10"],
+      "location": { "lat": 42.55728, "lng": -70.89515, "basis": "parcel centroid", "source": "city-gis" },
+      "depth": "row",
+      "chapters": [
+        {
+          "id": "street-extension",
+          "title": "Three house lots",
+          "what": "A 174-foot private extension of Sturtevant Street with a turnaround, creating three house lots",
+          "homes": 3,
+          "stage": "built",
+          "decided": null,
+          "events": [],
+          "status_note": { "text": "Construction complete and homes occupied", "source": "city-projects", "checked": "2026-11-09" }
+        }
+      ],
+      "check": ["Approval and completion dates, to confirm it was finished after Jan 1, 2021", "How many of the three lots are new homes"]
+    }
+  ],
+  "explainers": {
+    "rantoul-street": ["patch-2014-08-01", "patch-2020-01-13", "pb-2020-01-28", "patch-2022-10-25", "patch-2022-12-06", "globe-2023-01-20", "patch-2023-01-26", "cc-m-2023-02-13", "patch-2023-02-14", "city-memo-2022-11", "city-redline-2022", "city-mbta-communities", "planbeverly"]
+  },
+  "earlier": {
+    "about": "Buildings and subdivisions of 10 or more homes finished from 2005 through 2020, anywhere in the city. They predate the register's scope (built since 2021), so they have no pages. The year is when a source says the building opened; otherwise the assessor's year built, which can differ by a year or two. Found by a pass over the state assessor file for records built 2005 to 2020, grouped by address and by street, so conversions of older buildings are here only when a source turned them up.",
+    "buildings": [
+      {
+        "id": "48-federal-st",
+        "name": "48 Federal Street",
+        "address": "48 Federal St",
+        "ward": 2,
+        "homes": 18,
+        "year": 2005,
+        "year_basis": "assessor",
+        "note": "Condominiums",
+        "story": "rantoul-street", "location": { "lat": 42.54986, "lng": -70.88298 },
+        "sources": ["massgis-l3"]
+      },
+      {
+        "id": "depot-square-condos",
+        "name": "Depot Square Condos",
+        "address": "116-128 Rantoul St",
+        "ward": 2,
+        "homes": 46,
+        "year": 2008,
+        "year_basis": "sold out by March 2008",
+        "who": "Windover Development",
+        "note": "46 condos and 2 commercial units; the assessor lists 2006",
+        "story": "rantoul-street", "location": { "lat": 42.54595, "lng": -70.88492 },
+        "sources": ["nerej-2008-03-20"]
+      },
+      {
+        "id": "325-cabot-st",
+        "name": "325 Cabot Street",
+        "address": "325 Cabot St",
+        "ward": 3,
+        "homes": 32,
+        "year": 2010,
+        "year_basis": "assessor",
+        "story": "rantoul-street", "location": { "lat": 42.55393, "lng": -70.87808 },
+        "sources": ["massgis-l3"]
+      },
+      {
+        "id": "burnham-apartments",
+        "name": "Burnham Apartments",
+        "address": "375 Rantoul St",
+        "ward": 3,
+        "homes": 38,
+        "year": 2011,
+        "year_basis": "assessor",
+        "who": "Windover Development (owner in 2015)",
+        "story": "rantoul-street", "location": { "lat": 42.55287, "lng": -70.88197 },
+        "sources": ["dolben-2015-01-06", "massgis-l3"]
+      },
+      {
+        "id": "enterprise-apartments",
+        "name": "Enterprise Apartments",
+        "address": "79 Rantoul St",
+        "ward": 2,
+        "homes": 46,
+        "year": 2013,
+        "year_basis": "assessor",
+        "who": "Windover Development (owner in 2015)",
+        "story": "rantoul-street", "location": { "lat": 42.54437, "lng": -70.88444 },
+        "sources": ["dolben-2015-01-06", "massgis-l3"]
+      },
+      {
+        "id": "130-cabot-st",
+        "name": "130 Cabot Street",
+        "address": "130 Cabot St",
+        "ward": 2,
+        "homes": 13,
+        "year": 2015,
+        "year_basis": "assessor",
+        "story": "rantoul-street", "location": { "lat": 42.54666, "lng": -70.88014 },
+        "sources": ["massgis-l3"]
+      },
+      {
+        "id": "flats-at-131",
+        "name": "The Flats at 131",
+        "address": "131 Rantoul St",
+        "ward": 2,
+        "homes": 72,
+        "year": 2017,
+        "year_basis": "95% leased five months after opening, by October 2017",
+        "who": "Beverly Crossing",
+        "story": "rantoul-street", "location": { "lat": 42.54647, "lng": -70.88371 },
+        "sources": ["bldup-2017-10", "cbre-2025"]
+      },
+      {
+        "id": "link480",
+        "name": "Link480",
+        "address": "480 Rantoul St",
+        "ward": 3,
+        "homes": 90,
+        "year": 2018,
+        "year_basis": "first residents July 2018",
+        "who": "Beverly Crossing",
+        "affordable": "11 at 80% of area median income",
+        "story": "rantoul-street", "location": { "lat": 42.55638, "lng": -70.88152 },
+        "sources": ["nerej-2018-09-14"]
+      },
+      {
+        "id": "holmes-beverly",
+        "name": "Holmes Beverly",
+        "address": "110-114 Rantoul St",
+        "ward": 2,
+        "homes": 67,
+        "year": 2018,
+        "year_basis": "completed November 2018",
+        "who": "Barnat Development",
+        "affordable": "16 workforce homes",
+        "story": "rantoul-street", "location": { "lat": 42.54557, "lng": -70.88496 },
+        "sources": ["hp-2018-11-07", "masshousing-2019-03-18"]
+      },
+      {
+        "id": "canvas",
+        "name": "Canvas",
+        "address": "199 and 211 Rantoul St",
+        "ward": 2,
+        "homes": 126,
+        "year": 2018,
+        "year_basis": "assessor",
+        "who": "Beverly Crossing",
+        "note": "Two buildings",
+        "story": "rantoul-street", "location": { "lat": 42.54824, "lng": -70.88341 },
+        "sources": ["cbre-2025", "massgis-l3"]
+      },
+      {
+        "id": "5-west-dane-st",
+        "name": "5 West Dane Street",
+        "address": "5 West Dane St",
+        "ward": 3,
+        "homes": 11,
+        "year": 2020,
+        "year_basis": "assessor",
+        "story": "rantoul-street", "location": { "lat": 42.55237, "lng": -70.87926 },
+        "sources": ["massgis-l3"]
+      },
+      {
+        "id": "colonial-gardens",
+        "name": "Colonial Gardens",
+        "address": "105 Cherry Hill Dr",
+        "ward": 5,
+        "homes": 175,
+        "year": 2010,
+        "year_basis": "assessor",
+        "who": "Hawthorn Senior Living (operator today)",
+        "note": "Independent senior living",
+        "location": { "lat": 42.57391, "lng": -70.90706 },
+        "sources": ["massgis-l3", "hawthorn-colonial-gardens"]
+      },
+      {
+        "id": "holcroft-park-homes",
+        "name": "Holcroft Park Homes",
+        "address": "9 Mill St and 10, 22 and 30 Grant St",
+        "ward": 3,
+        "homes": 29,
+        "year": 2011,
+        "year_basis": "assessor",
+        "who": "North Shore Community Development Coalition",
+        "affordable": "all 29",
+        "location": { "lat": 42.55786, "lng": -70.88306 },
+        "sources": ["nscdc-holcroft", "massgis-l3"]
+      },
+      {
+        "id": "23-35-mill-st",
+        "name": "23 and 35 Mill Street",
+        "address": "23 and 35 Mill St",
+        "ward": 3,
+        "homes": 29,
+        "year": 2012,
+        "year_basis": "assessor",
+        "note": "Two apartment buildings beside Holcroft Park Homes",
+        "location": { "lat": 42.55765, "lng": -70.88395 },
+        "sources": ["massgis-l3"]
+      },
+      {
+        "id": "whitehall-cir",
+        "name": "Whitehall Circle",
+        "address": "Whitehall Cir",
+        "ward": 4,
+        "homes": 25,
+        "year": 2009,
+        "year_basis": "the assessor's years built run from 2009 to 2020",
+        "note": "Single-family homes",
+        "location": { "lat": 42.55714, "lng": -70.85306 },
+        "sources": ["massgis-l3"]
+      },
+      {
+        "id": "pond-view-ln",
+        "name": "Pond View Lane",
+        "address": "Pond View Ln",
+        "ward": 5,
+        "homes": 16,
+        "year": 2015,
+        "year_basis": "the assessor's years built are 2015 and 2016",
+        "note": "Single-family homes",
+        "location": { "lat": 42.56713, "lng": -70.86528 },
+        "sources": ["massgis-l3"]
+      },
+      {
+        "id": "elliott-landing",
+        "name": "Elliott Landing",
+        "address": "201 Elliott St",
+        "ward": 3,
+        "homes": 73,
+        "year": 2016,
+        "year_basis": "first residents after Thanksgiving 2016; the assessor lists 2015",
+        "who": "Cummings Properties",
+        "note": "Condominiums at the Cummings Center",
+        "location": { "lat": 42.55691, "lng": -70.88776 },
+        "sources": ["nerej-2017-02-24"]
+      },
+      {
+        "id": "mckay-apartments",
+        "name": "McKay Apartments",
+        "address": "131 McKay St",
+        "ward": 3,
+        "homes": 32,
+        "year": 2016,
+        "year_basis": "began leasing August 2016",
+        "who": "Beverly Crossing (owner)",
+        "note": "The former McKay School, with a townhouse addition",
+        "location": { "lat": 42.56411, "lng": -70.89282 },
+        "sources": ["dolben-2016-08-02", "salemnews-2016-08-31"]
+      }
+    ]
+  },
+  "candidates": [
+    {
+      "id": "4-linden-ave",
+      "name": "4 Linden Avenue",
+      "ward": 2,
+      "parcels": ["4-132"],
+      "known": "Planning Board parking special permit granted Sept 15, 2026 (four spaces to three, parking near the lot line); a ZBA decision is posted",
+      "open": "What is being built, and whether it adds homes",
+      "city_page": "https://www.beverlyma.gov/1304/4-Linden-Avenue"
+    },
+    {
+      "id": "114-hale-st",
+      "name": "114 Hale Street",
+      "ward": 4,
+      "parcels": ["12-208"],
+      "known": "ZBA finding and special permit to expand an existing three-family home, with six parking spaces in back; approved Aug 19, 2025",
+      "open": "In scope only if the expansion adds homes",
+      "city_page": "https://www.beverlyma.gov/1259/114-Hale-Street-Special-Permit"
+    },
+    {
+      "id": "18-leather-ln",
+      "name": "18 Leather Lane",
+      "ward": 6,
+      "parcels": ["63-20"],
+      "known": "Special permit approved Jan 15, 2025",
+      "open": "What it allows",
+      "city_page": "https://www.beverlyma.gov/1187/18-Leather-Lane"
+    },
+    {
+      "id": "81-83-hale-st",
+      "name": "81-83 Hale Street",
+      "ward": 2,
+      "parcels": ["12-136"],
+      "known": "Approved Dec 17, 2024 (the linked document is a parking special permit, two spaces to one)",
+      "open": "What it allows",
+      "doc": "https://www.beverlyma.gov/DocumentCenter/View/5845"
+    },
+    { "id": "676r-hale-st", "name": "676R Hale Street", "ward": 6, "parcels": ["37-83C", "37-83D"], "known": "Approved Nov 19, 2024", "open": "What it allows", "doc": "https://www.beverlyma.gov/DocumentCenter/View/5686" },
+    { "id": "14-paine-ave", "name": "14 Paine Avenue", "ward": 6, "parcels": ["26-2"], "known": "Approved Aug 20, 2024", "open": "What it allows", "city_page": "https://ma-beverly.civicplus.com/1144/14-Paine-Avenue" },
+    {
+      "id": "summit-ave",
+      "name": "3, 3R and 8 Summit Avenue",
+      "ward": 2,
+      "parcels": ["1-68"],
+      "known": "Approved May 21, 2024",
+      "open": "What it allows; only 3 Summit Ave came up in the city layer",
+      "doc": "https://www.beverlyma.gov/DocumentCenter/View/5384"
+    },
+    { "id": "93-hale-st", "name": "93 Hale Street", "ward": 4, "parcels": ["12-232"], "known": "Approved July 16, 2024", "open": "What it allows", "doc": "https://www.beverlyma.gov/DocumentCenter/View/5379" },
+    {
+      "id": "1-water-st",
+      "name": "Restaurant at 1 Water Street",
+      "ward": 2,
+      "parcels": ["1-85", "1-85A"],
+      "known": "A three-story restaurant with public amenities on city land; the city lists it as complete (site plan #143-19)",
+      "open": "Completion date, for the Jan 1, 2021 cutoff",
+      "city_page": "https://www.beverlyma.gov/401/Restaurant-at-1-Water-Street"
+    },
+    {
+      "id": "webster-ave-osrd",
+      "name": "20, 30 and 40 Webster Avenue",
+      "ward": 6,
+      "parcels": ["49-13A", "49-13B"],
+      "known": "Open space residential design: 9 new building lots and 2 open space parcels on a 14-acre site; the city lists it as complete",
+      "open": "Completion date, for the Jan 1, 2021 cutoff",
+      "city_page": "https://www.beverlyma.gov/356/20-30-40-Webster-Avenue-OSRD"
+    },
+    {
+      "id": "livingstone-ave-ext",
+      "name": "Livingstone Avenue extension",
+      "ward": 1,
+      "parcels": ["9-370"],
+      "known": "A two-lot subdivision extending Livingstone Ave about 280 ft, listed as complete; a minor change approved Aug 19, 2025 adds a driveway to 114 Livingstone Ave, where a house will be built",
+      "open": "Dates, and whether the house is built",
+      "city_page": "https://www.beverlyma.gov/392/Livingstone-Avenue-Extension-Subdivision"
+    },
+    {
+      "id": "105-sam-fonzo-dr",
+      "name": "105 Sam Fonzo Drive and 10 LP Henderson Road",
+      "ward": 5,
+      "parcels": ["90-15"],
+      "known": "A 95,800 sq ft manufacturing and packing building; the city lists it as complete",
+      "open": "Completion date, for the Jan 1, 2021 cutoff",
+      "city_page": "https://www.beverlyma.gov/849/105-Sam-Fonzo-Drive-10-LP-Henderson-Road"
+    },
+    {
+      "id": "zoning-freeze-plans",
+      "name": "Downtown zoning-freeze subdivision plans",
+      "ward": null,
+      "parcels": [],
+      "known": "Approved definitive subdivision plans filed to freeze zoning, documents dated June 14, 2023: 4-20 Rantoul St, 26-28R Cabot St and 7 and 9 Cox Court; 240 and 246-248 Cabot St",
+      "open": "No building is proposed, so they don't meet the entry rule yet. Worth watching: a building filed on one of these sites would be judged under the zoning in place in 2023",
+      "city_page": "https://www.beverlyma.gov/338/Projects-Development"
+    },
+    {
+      "id": "camp-paradise",
+      "name": "Camp Paradise (44 Cole Street)",
+      "ward": null,
+      "parcels": [],
+      "known": "City conservation land; Kestrel Educational Adventures proposed a public nature center and the Mayor said the city isn't interested in changing the use",
+      "open": "Scope: not a building before the Planning Board or ZBA, and the land isn't changing hands",
+      "digest": "2026-10-26#paradise"
+    },
+    {
+      "id": "city-hall-addition",
+      "name": "City Hall renovation and addition (191 Cabot Street)",
+      "ward": null,
+      "parcels": [],
+      "known": "A design change to the addition was on the Oct 28 ZBA agenda",
+      "open": "Scope: a public building project"
+    },
+    { "id": "12-tozer-rd", "name": "12 Tozer Road cell tower", "ward": null, "parcels": [], "known": "Continued ZBA hearing Oct 28 on a 124-foot tower", "open": "Scope: a tower, not homes or a building" },
+    {
+      "id": "doc-7718",
+      "name": "Affordable housing application (Document Center 7718)",
+      "ward": null,
+      "parcels": [],
+      "known": "Linked on the city's Affordable Housing page Oct 16",
+      "open": "Open the file",
+      "doc": "https://www.beverlyma.gov/DocumentCenter/View/7718"
+    },
+    {
+      "id": "sedna-congress-st",
+      "name": "Sedna, 10-16 Congress Street",
+      "ward": 2,
+      "parcels": ["1-1", "1-1A"],
+      "known": "62 apartments in two buildings; building A opened October 2020 and building B was finished by March 2021, the New England Real Estate Journal reported. Building B may put it inside the register's scope (finished since 2021)",
+      "next": "Find the Planning Board approval and confirm when each building was finished"
+    },
+    {
+      "id": "ymca-cabot-st",
+      "name": "YMCA residences, Cabot Street",
+      "ward": null,
+      "parcels": [],
+      "known": "Renovated and expanded from 45 single rooms to 67 studios, reopened December 2021, per Patch and Salem News headlines (not opened)",
+      "next": "Decide whether an expansion of existing housing is in scope; find the address, approvals and opening date"
+    },
+    {
+      "id": "holcroft-phase-2",
+      "name": "Holcroft Park Homes, Phase 2 (23 and 35 Mill St)",
+      "ward": 3,
+      "parcels": ["20-41", "19-126"],
+      "known": "Search excerpts of a 2013 MHP release describe a second phase of 29 affordable apartments in two Mill Street buildings; mhp.net refuses automated reads, so it was not opened",
+      "next": "Open the MHP release or the state Subsidized Housing Inventory in a browser; if confirmed, rename 23-35-mill-st and add its affordable count"
+    },
+    {
+      "id": "folger-ave",
+      "name": "Folger Avenue (Tanzella Hill)",
+      "ward": 1,
+      "parcels": [],
+      "known": "12 single-family homes built 2005 to 2014 per the assessor, mixed with older houses. Patch (Jul 14, 2013) mentioned a new neighborhood being built on Tanzella Hill",
+      "next": "Find the subdivision plan to see whether 10 or more homes came from one approval"
+    },
+    {
+      "id": "cabot-street-homes",
+      "name": "Cabot Street Homes, former Mayflower Motel site",
+      "ward": null,
+      "parcels": [],
+      "known": "Search excerpts describe 43 affordable apartments with a grand opening in April 2011 (not opened)",
+      "next": "Find the address and a source that can be read; the assessor pass did not catch it"
+    },
+    {
+      "id": "edwards-harborview",
+      "name": "Edwards School condominiums, 45 Rantoul St",
+      "ward": 2,
+      "parcels": [],
+      "known": "A 2004 search excerpt describes converting the former Edwards School to condominiums (not opened); listings give 42 units",
+      "next": "Find when it was finished; if 2005 or later it belongs with the Rantoul buildings"
+    },
+    {
+      "id": "turtle-woods",
+      "name": "Turtle Woods, 399 Essex St",
+      "ward": null,
+      "parcels": [],
+      "known": "Senior apartments, 67 one-bedroom per a search excerpt; year not found",
+      "next": "Find when it was built and whether it falls in 2005 to 2020"
+    }
+  ],
+  "left_out": [
+    { "name": "24 Lothrop Street", "why": "A 222 sq ft piece of one lot moved to a neighbor's lot for parking; no new home or building" },
+    { "name": "McDonald's, 230 Elliott Street", "why": "A change to an existing site plan's operating hours" },
+    { "name": "Varian site cleanup, 150 Sohier Road", "why": "Environmental cleanup; no development proposed" },
+    { "name": "Bass River overlay and the data center pause", "why": "Zoning changes: a later map layer, not pins" },
+    { "name": "26 Essex Street", "why": "Student housing coded \"Affiliated Housing (Educational)\" by the assessor, very likely Montserrat College's residence hall; not homes" }
+  ],
+  "sources": {
+    "city-projects": { "title": "City of Beverly, Projects / Development (status table)", "short": "City projects page", "kind": "government", "url": "https://www.beverlyma.gov/338/Projects-Development", "retrieved": "2026-11-09" },
+    "city-private": { "title": "City of Beverly, Private Development (project descriptions)", "kind": "government", "url": "https://www.beverlyma.gov/404/Private-Development", "retrieved": "2026-11-09" },
+    "doc-7751": { "title": "38 Standley Street OSRD Site Plan Application", "kind": "filing", "url": "https://www.beverlyma.gov/DocumentCenter/View/7751" },
+    "city-page-986": { "title": "City of Beverly, 119 Rantoul Street", "kind": "government", "url": "https://www.beverlyma.gov/986/119-Rantoul-Street" },
+    "city-gis": {
+      "title": "City of Beverly GIS, Combined_gdb: Parcels (layer 5) and Ward precincts (layer 26)",
+      "short": "City GIS",
+      "kind": "government",
+      "url": "https://services1.arcgis.com/IVwtHDf2UjOF6PcX/arcgis/rest/services/Combined_gdb/FeatureServer",
+      "retrieved": "2026-11-09",
+      "note": "Points are parcel centroids. The ward is the first digit of the precinct that holds the point."
+    },
+    "massgis-l3": {
+      "title": "MassGIS Level 3 assessor parcels, Beverly, FY2027",
+      "short": "State parcel data",
+      "kind": "government",
+      "url": "https://s3.us-east-1.amazonaws.com/download.massgis.digital.mass.gov/shapefiles/l3parcels/L3_SHP_M030_BEVERLY.zip"
+    },
+    "doc-4464": {
+      "title": "Rantoul, Cabot and School Street definitive subdivision plan, 2023-06-14",
+      "kind": "filing",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/4464/Rantoul-Cabot-School-Street-Definitive-Subdivision-2023-06-14"
+    },
+    "beat-boulder": { "title": "The Beverly Beat, \"Going big on Boulder Lane\", Oct 27, 2026", "short": "The Beverly Beat", "kind": "news", "url": "https://thebeverlybeat.substack.com/p/going-big-on-boulder-lane" },
+    "boulder-deck": {
+      "title": "Waverly Development's presentation for the Nov 5, 2026 community meeting, posted by the city on Nov 6",
+      "short": "Developer's slides",
+      "kind": "developer",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/7785",
+      "note": "17 pages. The city's page says this is the presentation made on Nov 5."
+    },
+    "boulder-deck-oct": {
+      "title": "An October 2026 version of the developer's slides, posted on Flipsnack",
+      "short": "October slides",
+      "kind": "developer",
+      "url": "https://www.flipsnack.com/77BFA7F7C6F/beverly_boulder_lane_presentation_10-12-26-1",
+      "note": "11 slides, file dated 10-12-26. The only version with the January plan; issue 9 of the digest reported from it."
+    },
+    "zba-2025-06-25-agenda": { "title": "Zoning Board of Appeals agenda, June 25, 2025", "short": "ZBA agenda", "kind": "minutes", "date": "2025-06-25", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_06252025-2350" },
+    "zba-2025-06-25": { "title": "Zoning Board of Appeals minutes, June 25, 2025", "short": "ZBA minutes", "kind": "minutes", "date": "2025-06-25", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_06252025-2350" },
+    "bsc-2015": {
+      "title": "Boulder Lane Mixed Use Feasibility Study, BSC Group for Wenham and Beverly, July 28, 2015 (archived copy)",
+      "short": "2015 study",
+      "kind": "study",
+      "url": "https://web.archive.org/web/20230802233930/https://cms4files1.revize.com/wenhamma/Boulder%20Lane%20Mixed%20Use%20Feasibility%20Study%20FINAL%207-30-15.pdf",
+      "note": "Page references are the study's printed pages."
+    },
+    "folly-page": {
+      "title": "City of Beverly, Trask Lane (Folly Hill) project page, with the applications, plans, peer reviews, state review and decisions",
+      "short": "the city's project page",
+      "kind": "government",
+      "url": "https://www.beverlyma.gov/403/Trask-Lane-Folly-Hill"
+    },
+    "folly-sub-2017": {
+      "title": "Planning Board decision, Trask Lane definitive subdivision plan, July 20, 2017",
+      "short": "2017 subdivision decision",
+      "kind": "minutes",
+      "date": "2017-07-20",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/5538",
+      "note": "A scan; text read by OCR."
+    },
+    "folly-sub-2024": {
+      "title": "Planning Board decision, modified definitive subdivision plan, Trask Lane extension, March 25, 2024",
+      "short": "2024 subdivision decision",
+      "kind": "minutes",
+      "date": "2024-03-25",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/5540",
+      "note": "A scan; text read by OCR."
+    },
+    "folly-sp-decision": {
+      "title": "Planning Board decision, parking special permit #201-25, April 2025",
+      "short": "Special permit decision",
+      "kind": "minutes",
+      "date": "2025-04-11",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/6172",
+      "note": "A scan; text read by OCR."
+    },
+    "folly-spr-decision": {
+      "title": "Planning Board decision, site plan review #168-24 and inclusionary housing #30-24, Dec 23, 2025, revised Jan 22, 2026",
+      "short": "Site plan decision",
+      "kind": "minutes",
+      "date": "2025-12-23",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/7051",
+      "note": "132 pages, a scan; text read by OCR."
+    },
+    "folly-mepa-enf": {
+      "title": "State environmental review (MEPA): certificate on the environmental notification form, Oct 11, 2024",
+      "short": "MEPA certificate",
+      "kind": "government",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/5667"
+    },
+    "folly-mepa-deir": {
+      "title": "State environmental review (MEPA): certificate on the draft environmental impact report, Feb 14, 2025",
+      "short": "MEPA certificate",
+      "kind": "government",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/6319"
+    },
+    "folly-mepa-feir": {
+      "title": "State environmental review (MEPA): certificate on the final environmental impact report, June 13, 2025",
+      "short": "MEPA certificate",
+      "kind": "government",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/6551"
+    },
+    "appeals-2019": {
+      "title": "Reeve v. City of Beverly, Massachusetts Appeals Court, July 24, 2019",
+      "short": "Appeals Court decision",
+      "kind": "minutes",
+      "date": "2019-07-24",
+      "url": "https://caselaw.findlaw.com/court/ma-court-of-appeals/2011662.html"
+    },
+    "pb-2025-02-12": { "title": "Planning Board minutes, Feb 12, 2025", "short": "Planning Board minutes", "kind": "minutes", "date": "2025-02-12", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_02122025-2155" },
+    "folly-ptc-2025-07": {
+      "title": "Parking and Traffic Commission letter of recommendation, July 15, 2025",
+      "short": "Parking and Traffic Commission letter",
+      "kind": "minutes",
+      "date": "2025-07-15",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/6708"
+    },
+    "concom-2026-10-06": {
+      "title": "Conservation Commission minutes, Oct 6, 2026",
+      "short": "Conservation Commission minutes",
+      "kind": "minutes",
+      "date": "2026-10-06",
+      "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_10062026-2937"
+    },
+    "bt-2026-03": {
+      "title": "Banker & Tradesman, profile of Corcoran's Peter Mahoney, March 2026 (as reposted by Corcoran)",
+      "short": "Banker & Tradesman",
+      "kind": "news",
+      "url": "https://www.jmcandco.com/news/peter-mahoney-building-development-momentum-in-metro-boston-housing/"
+    },
+    "zoning-300-38": { "title": "Beverly zoning, § 300-38: RSD Special Residential District", "short": "Zoning § 300-38", "kind": "rules", "url": "https://ecode360.com/29283886", "retrieved": "2026-11-09" },
+    "mgl-40a-6": { "title": "Massachusetts zoning act, Chapter 40A, Section 6", "short": "State zoning law, c. 40A § 6", "kind": "rules", "url": "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40A/Section6" },
+    "pb-2023-01-18": { "title": "Planning Board minutes, Jan 18, 2023", "short": "Planning Board minutes", "kind": "minutes", "date": "2023-01-18", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_01182023-1137" },
+    "pb-2023-03-07": { "title": "Planning Board minutes, Mar 7, 2023", "short": "Planning Board minutes", "kind": "minutes", "date": "2023-03-07", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_03072023-1213" },
+    "pb-2023-03-29": { "title": "Planning Board minutes, Mar 29, 2023", "short": "Planning Board minutes", "kind": "minutes", "date": "2023-03-29", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_03292023-1237" },
+    "pb-2023-04-24": { "title": "Planning Board minutes, Apr 24, 2023", "short": "Planning Board minutes", "kind": "minutes", "date": "2023-04-24", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_04242023-1270" },
+    "city-map-73-8": { "title": "City property map, parcel 73-8", "short": "City property map", "kind": "government", "url": "https://beverlyma.mapgeo.io/datasets/properties?previewId=73-8" },
+    "salem-news-boulder": {
+      "title": "The Salem News, \"Centerville residents speak out against 200-unit development\", Nov 6, 2026",
+      "short": "The Salem News",
+      "kind": "news",
+      "url": "https://www.salemnews.com/news/centerville-residents-speak-out-against-200-unit-development/article_cb13dccb-82d1-4c54-a412-7fe620f099d7.html"
+    },
+    "zoning-300-42": { "title": "Beverly zoning, § 300-42: IR district", "short": "Zoning § 300-42", "kind": "rules", "url": "https://ecode360.com/29284109" },
+    "zoning-300-5": { "title": "Beverly zoning, § 300-5: definitions", "short": "Zoning § 300-5", "kind": "rules", "url": "https://ecode360.com/29283349" },
+    "zoning-300-50": { "title": "Beverly zoning, § 300-50: Water Supply Protection Overlay District", "short": "Zoning § 300-50", "kind": "rules", "url": "https://ecode360.com/29284444" },
+    "zoning-300-92": { "title": "Beverly zoning, §§ 300-89 to 300-95: Zoning Board of Appeals", "short": "Zoning §§ 300-89 to 300-95", "kind": "rules", "url": "https://ecode360.com/29285066" },
+    "wetland-rules": { "title": "Beverly wetland rules, Chapter 565", "short": "Wetland rules", "kind": "rules", "url": "https://www.beverlyma.gov/DocumentCenter/View/856/Chapter-565-Wetlands-Protection-Regulations-PDF" },
+    "planbeverly": {
+      "title": "PlanBeverly, the city's comprehensive plan, January 2021",
+      "short": "PlanBeverly",
+      "kind": "rules",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/5450",
+      "note": "Printed page numbers match the PDF pages."
+    },
+    "enon-page": { "title": "City of Beverly, 37 Enon Street project page, with the applications, plans and decisions", "short": "the city's project page", "kind": "government", "url": "https://www.beverlyma.gov/1311/37-Enon-Street" },
+    "enon-spr-application": { "title": "Site plan review application, Sept 28, 2026", "short": "Application", "kind": "filing", "url": "https://www.beverlyma.gov/DocumentCenter/View/7688" },
+    "enon-transmittal": {
+      "title": "Site plan review and special permit filing (Beals Associates), Sept 28, 2026",
+      "short": "Application filing",
+      "kind": "filing",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/7689",
+      "note": "Page references are PDF pages."
+    },
+    "enon-plans": {
+      "title": "Plans to accompany the permit applications (Beals Associates), Sept 28, 2026",
+      "short": "Site plans",
+      "kind": "filing",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/7690",
+      "note": "Sheet C120, the zoning and parking tables, is PDF page 8."
+    },
+    "enon-reg-agreement": { "title": "Draft affordable housing (inclusionary) regulatory agreement, Sept 28, 2026", "short": "Draft affordable housing agreement", "kind": "filing", "url": "https://www.beverlyma.gov/DocumentCenter/View/7696" },
+    "enon-traffic-study": {
+      "title": "Transportation Impact Assessment (Vanasse & Associates), September 2026",
+      "short": "Traffic study",
+      "kind": "filing",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/7693",
+      "note": "332 pages. Page references are PDF pages."
+    },
+    "enon-zba-decision": { "title": "Zoning Board of Appeals decision on the height variance, filed Oct 7, 2026", "short": "ZBA decision", "kind": "minutes", "date": "2026-10-07", "url": "https://www.beverlyma.gov/DocumentCenter/View/7743" },
+    "enon-pb-agenda": { "title": "Planning Board agenda, Oct 27, 2026", "short": "Planning Board agenda", "kind": "minutes", "date": "2026-10-27", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_10272026-2973" },
+    "enon-hearing": { "title": "Planning Board hearing, Oct 27, 2026 (BevCam recording)", "short": "Hearing recording", "kind": "minutes", "date": "2026-10-27", "url": "https://www.youtube.com/watch?v=v40O_MuSb1A" },
+    "salem-news-enon": {
+      "title": "The Salem News, on a presentation to residents about the Enon Street property, Sept 4, 2026",
+      "short": "The Salem News",
+      "kind": "news",
+      "url": "https://www.salemnews.com/news/presentation-made-to-beverly-residents-regarding-enon-street-property/article_f6343c46-fd1e-4132-9c93-46a64d9db17f.html"
+    },
+    "patch-2025-09-05": { "title": "Patch, on the former Family Dollar property's future, Sep 5, 2025", "kind": "news", "url": "https://patch.com/massachusetts/beverly/beverly-mulls-former-family-dollar-stores-future-beyond-temporary-city-hall", "short": "Patch, Sep 5, 2025", "date": "2025-09-05" },
+    "nerej-2008-03-20": { "title": "New England Real Estate Journal, on Depot Square Condos selling out, Mar 20, 2008", "short": "NEREJ, Mar 20, 2008", "kind": "news", "date": "2008-03-20", "url": "https://nerej.com/21675" },
+    "dolben-2015-01-06": { "title": "The Dolben Company, on taking over management of Burnham Apartments and Enterprise Apartments, Jan 6, 2015", "short": "Dolben, Jan 6, 2015", "kind": "developer", "date": "2015-01-06", "url": "https://www.dolben.com/the-dolben-company-inc-assumes-new-management-contract/" },
+    "nerej-2017-02-24": { "title": "New England Real Estate Journal, \"Cummings Properties' Elliot Landing in Beverly now 70% leased\", Feb 24, 2017", "short": "NEREJ, Feb 24, 2017", "kind": "news", "date": "2017-02-24", "url": "https://nerej.com/print/33990" },
+    "salemnews-2016-08-31": { "title": "The Salem News, \"Former McKay School in Beverly reopens as apartments\", Aug 31, 2016", "short": "Salem News, Aug 31, 2016", "kind": "news", "date": "2016-08-31", "url": "https://www.salemnews.com/news/local_news/former-mckay-school-in-beverly-reopens-as-apartments/article_cdcd796b-3e42-5e96-930d-bc20b17e0517.html" },
+    "dolben-2016-08-02": { "title": "The Dolben Company, \"McKay begins leasing\", Aug 2, 2016", "short": "Dolben, Aug 2, 2016", "kind": "developer", "date": "2016-08-02", "url": "https://dolben.com/?p=1954" },
+    "nscdc-holcroft": { "title": "North Shore Community Development Coalition, 9 Mill Street and 10, 22 and 30 Grant Street (Holcroft Park Homes)", "short": "North Shore CDC", "kind": "developer", "url": "https://northshorecdc.org/properties/9-mill-st/", "retrieved": "2026-11-10" },
+    "hawthorn-colonial-gardens": { "title": "Colonial Gardens, independent senior living in Beverly (Hawthorn Senior Living)", "short": "Colonial Gardens site", "kind": "developer", "url": "https://colonial-gardens.seniorlivinginstyle.com/", "retrieved": "2026-11-10" },
+    "bldup-2017-10": { "title": "BLDUP, \"The Flats at 131 ... surpass 95% occupancy in just five months\", Oct 2017", "short": "BLDUP, Oct 2017", "kind": "news", "date": "2017-10", "url": "https://www.bldup.com/posts/the-flats-at-131-transit-oriented-apartments-in-beverly-surpass-95-occupancy-in-just-five-months" },
+    "nerej-2018-09-14": { "title": "New England Real Estate Journal, on Link480 opening, Sep 14, 2018", "short": "NEREJ, Sep 14, 2018", "kind": "news", "date": "2018-09-14", "url": "https://nerej.com/link480-managed-by-the-dolben-co-and-constructed-by-windover-opens-at-beverly-crossing" },
+    "hp-2018-11-07": { "title": "High-Profile, \"NEI completes mixed-use development\" (Holmes Beverly), Nov 7, 2018", "short": "High-Profile, Nov 7, 2018", "kind": "news", "date": "2018-11-07", "url": "https://www.high-profile.com/nei-completes-mixed-use-development/" },
+    "masshousing-2019-03-18": { "title": "MassHousing, on Holmes Beverly, Mar 18, 2019", "short": "MassHousing, Mar 18, 2019", "kind": "government", "date": "2019-03-18", "url": "https://www.masshousing.com/articles/holmes-beverly/" },
+    "cbre-2025": { "title": "CBRE, on the sale of the Beverly Crossing portfolio (four buildings, 394 apartments), 2025", "short": "CBRE, 2025", "kind": "developer", "date": "2025-02", "url": "https://www.cbre.com/press-releases/cbre-arranges-sale-of-the-beverly-crossing-portfolio-a-4-property-394-unit-apartment-portfolio" },
+    "patch-2014-08-01": { "title": "Patch, \"Depot Parking Garage Opens Saturday, Ribbon Cut Friday\", Aug 1, 2014", "short": "Patch, Aug 1, 2014", "kind": "news", "date": "2014-08-01", "url": "https://patch.com/massachusetts/beverly/depot-parking-garage-opens-saturday-ribbon-cut-friday" },
+    "patch-2020-01-13": { "title": "Patch, on residents' views of the pace of development, Jan 13, 2020", "short": "Patch, Jan 13, 2020", "kind": "news", "date": "2020-01-13", "url": "https://patch.com/massachusetts/beverly/some-beverly-residents-development-out-control" },
+    "patch-2022-10-25": { "title": "Patch, on the Council weighing a new building height limit, Oct 25, 2022", "short": "Patch, Oct 25, 2022", "kind": "news", "date": "2022-10-25", "url": "https://patch.com/massachusetts/beverly/tall-task-beverly-city-council-mulls-new-building-height-limit" },
+    "patch-2022-12-06": { "title": "Patch, on the joint hearing over downtown character and affordable housing, Dec 6, 2022", "short": "Patch, Dec 6, 2022", "kind": "news", "date": "2022-12-06", "url": "https://patch.com/massachusetts/beverly/beverly-battles-balances-downtown-character-affordable-housing" },
+    "globe-2023-01-20": { "title": "The Boston Globe, \"Beverly has built a lot of new housing lately. Now some there say it's time to slow down.\", Jan 20, 2023", "short": "Boston Globe, Jan 20, 2023", "kind": "news", "date": "2023-01-20", "url": "https://www.bostonglobe.com/2023/01/20/business/beverly-has-built-lot-new-housing-lately-now-some-there-say-its-time-slow-down/" },
+    "patch-2023-01-26": { "title": "Patch, on new building height limits recommended to the Council, Jan 26, 2023", "short": "Patch, Jan 26, 2023", "kind": "news", "date": "2023-01-26", "url": "https://patch.com/massachusetts/beverly/beverly-new-building-height-restrictions-recommended-city-council" },
+    "patch-2023-02-14": { "title": "Patch, \"Beverly Zoning Changes Sweep Through City Council\", Feb 14, 2023", "short": "Patch, Feb 14, 2023", "kind": "news", "date": "2023-02-14", "url": "https://patch.com/massachusetts/beverly/beverly-zoning-changes-sweep-through-city-council" },
+    "cc-m-2023-02-13": { "title": "Special City Council minutes, Feb 13, 2023 (the downtown zoning votes)", "short": "Council minutes, Feb 13, 2023", "kind": "minutes", "date": "2023-02-13", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_02132023-1172" },
+    "city-memo-2022-11": { "title": "City of Beverly Planning Department, memo to the City Council on downtown zoning amendments (Order #279), Nov 2022", "short": "Planning memo, Nov 2022", "kind": "government", "date": "2022-11-08", "url": "https://www.beverlyma.gov/DocumentCenter/View/3732" },
+    "city-redline-2022": { "title": "City of Beverly, proposed downtown zoning amendments, redline, 2022", "short": "Zoning redline, 2022", "kind": "rules", "date": "2022-11", "url": "https://www.beverlyma.gov/DocumentCenter/View/3733" },
+    "city-mbta-communities": { "title": "City of Beverly, MBTA Communities Multifamily Zoning", "short": "City MBTA Communities page", "kind": "government", "url": "https://www.beverlyma.gov/1105/MBTA-Communities-Multifamily-Zoning", "retrieved": "2026-10-28" },
+    "pb-2020-01-28": { "title": "Planning Board minutes, Jan 28, 2020 (Depot II decisions)", "short": "Planning Board minutes, Jan 28, 2020", "kind": "minutes", "date": "2020-01-28", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_01282020-23" },
+    "pb-2022-12-13": { "title": "Planning Board minutes, Dec 13, 2022 (posted marked as a draft)", "short": "Planning Board minutes, Dec 13, 2022", "kind": "minutes", "date": "2022-12-13", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_12132022-1111" },
+    "patch-2021-05": { "title": "Patch, \"Beverly Depot Project Building Demolition Set Next Week\", May 2021", "short": "Patch, May 2021", "kind": "news", "date": "2021-05", "url": "https://patch.com/massachusetts/beverly/beverly-depot-project-building-demolition-set-next-week" },
+    "nerej-2023-10-06": { "title": "New England Real Estate Journal, on the completion of Depot II, Oct 6, 2023", "short": "NEREJ, Oct 6, 2023", "kind": "news", "date": "2023-10-06", "url": "https://nerej.com/print/56015" },
+    "patch-2023-06-07": { "title": "Patch, on construction starting at Cabot and Rantoul streets, Jun 7, 2023", "short": "Patch, Jun 7, 2023", "kind": "news", "date": "2023-06-07", "url": "https://patch.com/massachusetts/beverly/beverly-5-story-cabot-rantoul-building-construction-set-begin" },
+    "nerej-2025-06-06": { "title": "New England Real Estate Journal, \"Procopio launches leasing at 60-unit mixed-use community Amara\", Jun 6, 2025", "short": "NEREJ, Jun 6, 2025", "kind": "news", "date": "2025-06-06", "url": "https://www.nerej.com/procopio-launches-leasing-at-60-unit-mixed-use-community-amara" },
+    "bevcam-pb-2022-07-19": { "title": "BevCam recording, Planning Board, Jul 19, 2022", "short": "Planning Board recording, Jul 19, 2022", "kind": "minutes", "date": "2022-07-19", "url": "https://www.youtube.com/watch?v=WbONjSiWjKk" },
+    "bevcam-pb-2022-08-16": { "title": "BevCam recording, Planning Board, Aug 16, 2022", "short": "Planning Board recording, Aug 16, 2022", "kind": "minutes", "date": "2022-08-16", "url": "https://www.youtube.com/watch?v=AKIBYA1SdHU" },
+    "cc-a-2023-04-18": { "title": "City Council agenda packet, Apr 18, 2023 (the Mayor's letters and Orders #119 and #120)", "short": "Council packet, Apr 18, 2023", "kind": "minutes", "date": "2023-04-18", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_04182023-1264" },
+    "bevcam-cc-2023-04-18": { "title": "BevCam recording, City Council, Apr 18, 2023", "short": "Council recording, Apr 18, 2023", "kind": "minutes", "date": "2023-04-18", "url": "https://www.youtube.com/watch?v=bg0KeWKyoeo" },
+    "cc-m-2023-05-01": { "title": "City Council minutes, May 1, 2023 (public hearing and votes on Orders #119 and #120)", "short": "Council minutes, May 1, 2023", "kind": "minutes", "date": "2023-05-01", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_05012023-1284" },
+    "bevcam-cc-2023-05-01": { "title": "BevCam recording, City Council, May 1, 2023", "short": "Council recording, May 1, 2023", "kind": "minutes", "date": "2023-05-01", "url": "https://www.youtube.com/watch?v=8r2ZaFzU2xw" },
+    "cc-m-2024-02-26": { "title": "Special City Council minutes, Feb 26, 2024 (City Hall project presentation)", "short": "Council minutes, Feb 26, 2024", "kind": "minutes", "date": "2024-02-26", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_02262024-1686" },
+    "bevcam-cc-2024-02-26": { "title": "BevCam recording, special City Council meeting, Feb 26, 2024", "short": "Council recording, Feb 26, 2024", "kind": "minutes", "date": "2024-02-26", "url": "https://www.youtube.com/watch?v=y4FAAcHxJNU" },
+    "cc-m-2024-04-01": { "title": "City Council minutes, Apr 1, 2024 (hearing and vote on Order #093)", "short": "Council minutes, Apr 1, 2024", "kind": "minutes", "date": "2024-04-01", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_04012024-1738" },
+    "bevcam-cc-2024-04-01": { "title": "BevCam recording, City Council, Apr 1, 2024", "short": "Council recording, Apr 1, 2024", "kind": "minutes", "date": "2024-04-01", "url": "https://www.youtube.com/watch?v=9F1QJFEJ5j0" },
+    "aht-m-2024-10-23": { "title": "Affordable Housing Trust minutes, Oct 23, 2024", "short": "Housing Trust minutes, Oct 23, 2024", "kind": "minutes", "date": "2024-10-23", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_10232024-1997" },
+    "cc-m-2025-06-16": { "title": "City Council minutes, Jun 16, 2025", "short": "Council minutes, Jun 16, 2025", "kind": "minutes", "date": "2025-06-16", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_06162025-2340" },
+    "bevcam-cc-2025-06-16": { "title": "BevCam recording, City Council, Jun 16, 2025 (chapter: Family Dollar Building and Staff Relocation Plans)", "short": "Council recording, Jun 16, 2025", "kind": "minutes", "date": "2025-06-16", "url": "https://www.youtube.com/watch?v=ej-36N1u24o" },
+    "bevcam-forum-2025-09-09": { "title": "BevCam recording, public meeting on future uses for the former dollar store building, Sep 9, 2025", "short": "Public meeting recording, Sep 9, 2025", "kind": "minutes", "date": "2025-09-09", "url": "https://www.youtube.com/watch?v=cXOYUyHeQkA" },
+    "ecdc-m-2025-12-04": { "title": "Economic and Community Development Council minutes, Dec 4, 2025", "short": "ECDC minutes, Dec 4, 2025", "kind": "minutes", "date": "2025-12-04", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_12042025-2542" },
+    "cc-m-2025-06-02": { "title": "City Council minutes, Jun 2, 2025", "short": "Council minutes, Jun 2, 2025", "kind": "minutes", "date": "2025-06-02", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_06022025-2318" },
+    "deck-2025-12": { "title": "City presentation, public meeting #2 on 218-226 Cabot Street, Dec 11, 2025", "short": "City presentation, Dec 2025", "kind": "government", "date": "2025-12-11", "url": "https://www.beverlyma.gov/DocumentCenter/View/6949" },
+    "bevcam-forum-2025-12-11": { "title": "BevCam recording, second public meeting on future uses for the former dollar store building, Dec 11, 2025", "short": "Public meeting recording, Dec 11, 2025", "kind": "minutes", "date": "2025-12-11", "url": "https://www.youtube.com/watch?v=0I9OFJQ5Lqg" },
+    "bevcam-cc-2026-09-08": { "title": "BevCam recording, City Council, Sep 8, 2026 (the Mayor's quarterly update)", "short": "Council recording, Sep 8, 2026", "kind": "minutes", "date": "2026-09-08", "url": "https://www.youtube.com/watch?v=ZcGKpUHCLdM" },
+    "ecdc-a-2026-09-24": { "title": "Economic and Community Development Council agenda, Sep 24, 2026", "short": "ECDC agenda, Sep 24, 2026", "kind": "minutes", "date": "2026-09-24", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_09242026-2909" },
+    "ecdc-a-2026-10-22": { "title": "Economic and Community Development Council agenda, Oct 22, 2026", "short": "ECDC agenda, Oct 22, 2026", "kind": "minutes", "date": "2026-10-22", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_10222026-2957" },
+    "city-page-1268": { "title": "City of Beverly, 218-226 Cabot Street Redevelopment", "short": "City project page", "kind": "government", "url": "https://www.beverlyma.gov/1268/218-226-Cabot-Street-Redevelopment", "retrieved": "2026-11-09" },
+    "deck-2025-09": { "title": "City presentation, public meeting #1 on 218-226 Cabot Street, Sep 9, 2025", "short": "City presentation, Sep 2025", "kind": "government", "date": "2025-09-09", "url": "https://www.beverlyma.gov/DocumentCenter/View/6950" },
+    "rfp-26-007": { "title": "City of Beverly, RFP #26-007: Sale and Redevelopment of 218-226 Cabot Street (The Rogers Building), Mar 25, 2026", "short": "RFP #26-007", "kind": "government", "date": "2026-03-25", "url": "https://www.beverlyma.gov/DocumentCenter/View/7175" },
+    "bid-258": { "title": "City of Beverly bid listing for RFP #26-007", "short": "Bid listing", "kind": "government", "url": "https://www.beverlyma.gov/bids.aspx?bidID=258", "retrieved": "2026-11-09" },
+    "salem-2022-07-21": { "title": "The Salem News, \"5-story apartment plan on Cabot Street raises concerns\", Jul 21, 2022 (syndicated copy)", "short": "Salem News, Jul 21, 2022", "kind": "news", "date": "2022-07-21", "url": "https://www.yahoo.com/news/5-story-apartment-plan-cabot-135700654.html" },
+    "patch-2023-04-19": { "title": "Patch, \"Should Beverly Pay $8 Million To Buy Family Dollar Lot On Cabot Street?\", Apr 19, 2023", "short": "Patch, Apr 19, 2023", "kind": "news", "date": "2023-04-19", "url": "https://patch.com/massachusetts/beverly/8-million-beverly-emminent-domain-purchase-public-hearing-set" },
+    "patch-2023-05-01": { "title": "Patch, \"Beverly To 'Take' Downtown Property For $8 Million After City Council OK's Mayor's Plan\", May 1, 2023", "short": "Patch, May 1, 2023", "kind": "news", "date": "2023-05-01", "url": "https://patch.com/massachusetts/beverly/beverly-8-million-city-cabot-street-property-purchase-approved" },
+    "patch-2024-04-02": { "title": "Patch, \"Beverly Nears Decision Time On Library, City Hall Relocation Projects\", Apr 2, 2024", "short": "Patch, Apr 2, 2024", "kind": "news", "date": "2024-04-02", "url": "https://patch.com/massachusetts/beverly/beverly-nears-decision-time-myriad-major-capital-projects" },
+    "patch-2025-06-17": { "title": "Patch, \"Beverly City Hall Projection Rises $2M, 'Within Reasonable Range' Of Authorization\", Jun 17, 2025", "short": "Patch, Jun 17, 2025", "kind": "news", "date": "2025-06-17", "url": "https://patch.com/massachusetts/beverly/beverly-city-hall-projection-rises-2m-within-reasonable-range-authorization" },
+    "patch-2025-09-09": { "title": "Patch, \"What To Do With Beverly's Former Family Dollar Downtown Building?\", Sep 9, 2025", "short": "Patch, Sep 9, 2025", "kind": "news", "date": "2025-09-09", "url": "https://patch.com/massachusetts/beverly/what-do-beverlys-former-family-dollar-downtown-building" },
+    "beat-2026-07-11": { "title": "The Beverly Beat, \"Moving next door\", Jul 11, 2026", "short": "Beverly Beat, Jul 11, 2026", "kind": "news", "date": "2026-07-11", "url": "https://thebeverlybeat.substack.com/p/moving-next-door" },
+    "gsa-laurel": { "title": "GSA Real Estate Sales, \"Laurel Street Portfolio\", 40-55 Laurel St", "kind": "government", "url": "https://realestatesales.gov/asset-details/?property_id=79", "retrieved": "2026-10-23" },
+    "patch-2016-12": { "title": "Patch, on the Folly Hill development, December 2016", "kind": "news", "url": "https://patch.com/massachusetts/beverly/beverly-official-try-temper-folly-hill-development" },
+    "dunham-application": {
+      "title": "40 Dunham Ridge site plan and special permit application, July 2022, with the ZBA special permit decision attached",
+      "short": "2022 application",
+      "kind": "filing",
+      "url": "https://www.beverlyma.gov/DocumentCenter/View/3227",
+      "note": "A scan; text read by OCR. The ZBA decision is on PDF pp. 9 to 12."
+    },
+    "pb-2022-10-04": { "title": "Planning Board minutes, Oct 4, 2022", "kind": "minutes", "date": "2022-10-04", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_10042022-1003" },
+    "pb-2024-10-29": { "title": "Planning Board minutes, Oct 29, 2024", "kind": "minutes", "date": "2024-10-29", "url": "https://www.beverlyma.gov/AgendaCenter/ViewFile/Minutes/_10292024-2002" }
+  },
+  "digest_headlines": {
+    "2026-09-11#dollar": "Dollar store site proposals rejected, going back to market",
+    "2026-09-28#enon": "179 units proposed for the Stop & Shop site on Enon Street",
+    "2026-10-05#enon": "Stop & Shop site: the Planning Board takes it up",
+    "2026-10-26#coastguard": "The Coast Guard houses on Laurel Street are headed to auction",
+    "2026-11-02#boulder": "Senior housing proposed off Boulder Lane, and a community meeting November 5",
+    "2026-11-02#enon": "Apartments at the Stop & Shop site: a first hearing, and a return November 17",
+    "2026-11-02#landing": "Nine affordable condos for buyers 55 and older on Balch Street",
+    "2026-11-02#plan": "How it works: PlanBeverly",
+    "2026-11-09#boulder": "Boulder Lane: the developer's plan is 200 units, and it would need approvals from three city boards",
+    "2026-11-09#zba": "How it works: special permits and variances"
+  }
+}
