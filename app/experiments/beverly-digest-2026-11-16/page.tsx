@@ -160,11 +160,15 @@ const COUNCIL_1109 = `${AGENDA}/ViewFile/Agenda/_11092026-2991`;
 const DRC_1112 = `${AGENDA}/ViewFile/Agenda/_11122026-2992`;
 const PB_1117 = `${AGENDA}/ViewFile/Agenda/_11172026-3000`;
 const FP_1119 = `${AGENDA}/ViewFile/Agenda/_11192026-3005`;
+const CEAC_1119 = `${AGENDA}/ViewFile/Agenda/_11192026-3003`;
+const FFC_1117 = `${AGENDA}/ViewFile/Agenda/_11172026-2995`;
+const FFC_1130 = `${AGENDA}/ViewFile/Agenda/_11302026-2996`;
 const CPC_1119 = `${AGENDA}/ViewFile/Agenda/_11192026-2985`;
 const CLERK_1116 = `${AGENDA}/ViewFile/Agenda/_11162026-2993`;
 const PACKET_1005 = `${AGENDA}/ViewFile/Agenda/_10052026-2938`;
 const PACKET_0908 = `${AGENDA}/ViewFile/Agenda/_09082026-2890`;
-const FORECAST = `${DOC}/6958/Financial-Forecast-Report-FY2026-2030`;
+const OSRC_REPORT = `${DOC}/7789`;
+const FORECAST =`${DOC}/6958/Financial-Forecast-Report-FY2026-2030`;
 const ALPR_POLICY = "https://beverlypolice.org/wp-content/uploads/2026/04/ALPR-2026-GO-02.pdf";
 
 const GLOBE_SUTTON =
@@ -196,7 +200,7 @@ const ahead: Ev[] = [
     date: "Nov 17",
     what: "Financial Forecast Committee",
     detail:
-      "6:30pm in the Police Station community room, 175 Elliott St. The first of three meetings that produce the forecast next year's budget starts from.",
+      "6:30pm in the Police Station community room, 175 Elliott St. The first of three meetings that produce the forecast next year's budget starts from. The Council's budget analyst, Gerry Perry, presents proposed city revenues and spending.",
     cal: {
       id: "forecast-2026-11-17",
       title: "Beverly Financial Forecast Committee",
@@ -246,14 +250,15 @@ const ahead: Ev[] = [
   },
   {
     date: "Nov 19",
-    what: "Council Finance and Property committee",
-    detail: "6:30pm at the Beverly Public Library. One item: the Clean Energy Advisory Committee.",
+    what: "Clean Energy Advisory Committee, with the Council's Finance and Property committee",
+    detail:
+      "6:30pm in the Sohier Room at the Beverly Public Library, 32 Essex St, and online. Both posted notices for the same time and room. The advisory committee's agenda includes its input on the 37 Enon St proposal and its December 7 update to the Council.",
     cal: {
-      id: "fp-2026-11-19",
-      title: "Beverly Council Finance and Property committee",
+      id: "ceac-fp-2026-11-19",
+      title: "Beverly Clean Energy Advisory Committee and Council Finance and Property",
       start: "2026-11-19T23:30:00Z",
       end: "2026-11-20T00:30:00Z",
-      location: "Beverly Public Library, Beverly, MA",
+      location: "Beverly Public Library, Sohier Room, 32 Essex St, Beverly, MA",
     },
   },
   {
@@ -265,7 +270,7 @@ const ahead: Ev[] = [
   {
     date: "Nov 30",
     what: "Financial Forecast Committee",
-    detail: "6:30pm in the Police Station community room, 175 Elliott St. The second of three meetings.",
+    detail: "6:30pm in the Police Station community room, 175 Elliott St. School and vocational school spending, then a scheduled vote to approve the forecast.",
   },
   {
     date: "Dec 7",
@@ -532,7 +537,12 @@ export default function DigestIssue10() {
             The Financial Forecast Committee meets November 17, November 30 and December 10, each at
             6:30pm in the Police Station community room. Its report sets the starting point for the
             FY2028 budget.{" "}
-            <Moment src={CC1109} s={10268} />
+            <Moment src={CC1109} s={10268} />{" "}On November 17, the Council&apos;s budget analyst, Gerry
+            Perry, presents proposed city revenues and spending{" "}
+            <Src href={`${FFC_1117}#page=1`}>agenda (p. 1)</Src>. On November 30, school officials
+            present school spending, followed by vocational school costs, and the committee is
+            scheduled to vote to approve the forecast{" "}
+            <Src href={`${FFC_1130}#page=1`}>agenda (p. 1)</Src>.
           </p>
           <p className={BODY}>
             <b>The deficit committee&apos;s next steps.</b>{" "}
@@ -679,6 +689,13 @@ export default function DigestIssue10() {
             Park&apos;s next phase for November 23 at 7:50pm.{" "}
             <Earlier issue={9} slug="2026-11-09" id="council" label="the grant" />
           </p>
+          <p className="mt-2.5 text-[0.93rem] leading-relaxed text-ink-mid">
+            The Open Space and Recreation Committee gave its{" "}
+            <Src href={OSRC_REPORT}>annual report</Src>: new volunteer-built bridges and a boardwalk
+            at Norwood Pond, and talks to link city trails to neighboring land. The committee has
+            open seats for Ward 2 and Ward 4; the Planning Department staffs it.{" "}
+            <Moment src={CC1109} s={1057} />
+          </p>
         </div>
 
         {/* ---- ahead ---- */}
@@ -716,7 +733,10 @@ export default function DigestIssue10() {
             <Src href={`${CLERK_1116}#page=1`}>Tabulation notice (p. 1)</Src>
             <Src href={`${PB_1117}#page=1`}>Planning Board notice (p. 1)</Src>
             <Src href={`${CPC_1119}#page=1`}>Community Preservation notice (p. 1)</Src>
+            <Src href={`${FFC_1117}#page=1`}>Forecast Committee notice, Nov 17 (p. 1)</Src>
+            <Src href={`${FFC_1130}#page=1`}>Forecast Committee notice, Nov 30 (p. 1)</Src>
             <Src href={`${FP_1119}#page=1`}>Finance and Property notice (p. 1)</Src>
+            <Src href={`${CEAC_1119}#page=1`}>Clean Energy Advisory notice (p. 1)</Src>
             <Src href={AGENDA}>Agendas</Src>
           </p>
         </section>
