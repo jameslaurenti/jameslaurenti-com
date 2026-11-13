@@ -634,48 +634,65 @@ export default function DigestIssue10() {
           <p className={BODY}>
             <b>Where councilors stood.</b>
           </p>
+          <p className={BODY}>
+            <b>For the $20,000 request.</b>{" "}
+            Houseman, Feldman and Crowley said their June votes were about how the role was run,
+            not its mission. Houseman also voted to restore the full $62,621; Feldman and Crowley
+            voted against that.
+          </p>
           <ul className={LIST}>
             <li>
-              <b>Backing the $20,000 instead:</b>{" "}Houseman, Feldman and Crowley all argued their
-              June votes targeted how the role was managed rather than the mission itself. Houseman
-              called the $20,000 a &ldquo;different business model&rdquo; amid a tight budget,
-              noting his June vote &ldquo;was not against DEI, was not against the work.&rdquo;{" "}
+              <b>Houseman</b>{" "}called the $20,000 a &ldquo;different business model&rdquo; amid a
+              tight budget, noting his June vote &ldquo;was not against DEI, was not against the
+              work.&rdquo;{" "}
               <Moment src={CC1109} s={9638} />
             </li>
             <li>
-              Feldman said she wants the role rebuilt &ldquo;under HR in a different form&rdquo;
-              next budget cycle and backed the $20,000 in the meantime.{" "}
+              <b>Feldman</b>{" "}wants the role rebuilt &ldquo;under HR in a different form&rdquo;
+              next budget cycle, and backed the $20,000 in the meantime.{" "}
               <Moment src={CC1109} s={7774} />
             </li>
             <li>
-              Crowley cited &ldquo;the lack of results&rdquo; and called the smaller sum
-              &ldquo;the lesser of two.&rdquo;{" "}
+              <b>Crowley</b>{" "}said he agreed with Feldman, and with St. Hilaire on &ldquo;the
+              lack of results&rdquo; under the earlier setup, so he could not support bringing back
+              the full amount, &ldquo;but potentially the lesser of two.&rdquo;{" "}
               <Moment src={CC1109} s={7935} />
             </li>
+          </ul>
+          <p className={BODY}>
+            <b>Holding the line on the deficit.</b>{" "}
+            St. Hilaire, who moved the June cut, said the budget picture has not changed.
+          </p>
+          <ul className={LIST}>
             <li>
-              <b>Holding the line on the deficit:</b>{" "}St. Hilaire said he regretted that the
-              June cut &ldquo;sent a bad message,&rdquo; but maintained that &ldquo;the fundamental
-              position hasn&apos;t changed. We&apos;ve got a budget deficit again.&rdquo;{" "}
+              <b>St. Hilaire</b>{" "}said he regretted that the June cut &ldquo;sent a bad
+              message,&rdquo; but that &ldquo;the fundamental position hasn&apos;t changed.
+              We&apos;ve got a budget deficit again.&rdquo;{" "}
               <Moment src={CC1109} s={7596} />
             </li>
+          </ul>
+          <p className={BODY}>
+            <b>Pushing for full restoration.</b>{" "}
+            Mullady and Flowers argued the full amount should come back.
+          </p>
+          <ul className={LIST}>
             <li>
-              <b>Pushing for full restoration:</b>{" "}Mullady, who moved the $62,621 amendment,
-              said he would not back the $20,000 order as written &ldquo;because I think we should
-              be doing more,&rdquo; adding that restoration &ldquo;could have and should have
-              happened in June.&rdquo;{" "}
+              <b>Mullady,</b>{" "}who moved the $62,621 amendment, said he would not back the
+              $20,000 order as written &ldquo;because I think we should be doing more,&rdquo; adding
+              that restoration &ldquo;could have and should have happened in June.&rdquo;{" "}
               <Moment src={CC1109} s={8394} />
             </li>
             <li>
-              Stepping out of the chair to speak, Council President Flowers said the dollar
-              difference between the two options was so small that &ldquo;this is not a financial
-              argument at this point.&rdquo;{" "}
+              <b>Flowers,</b>{" "}stepping out of the chair to speak as Council President, said the
+              dollar difference between the two options was so small that &ldquo;this is not a
+              financial argument at this point.&rdquo;{" "}
               <Moment src={CC1109} s={9437} />
             </li>
-            <li>
-              <b>No stated position:</b>{" "}Councilors Spang and Rotondo asked questions during
-              the debate without stating their positions.
-            </li>
           </ul>
+          <p className={BODY}>
+            <b>No stated position.</b>{" "}
+            Spang and Rotondo asked questions during the debate without stating their reasons.
+          </p>
           <Refs
             sources={
               <>
