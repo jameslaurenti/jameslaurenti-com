@@ -69,7 +69,7 @@ const PRE_DECISION = ["Talked about", "Under review"];
 /**
  * The three lenses. Each one picks its sites and the groups its key offers:
  * - Active lately: what is moving now (talked about, under review, approved, with a public step in the window).
- * - Since 2021: the longer view. Approved and built projects, and undecided ones that have gone still.
+ * - Since 2021: the longer view. Approved and built projects, and undecided ones with no public step in the active window.
  * - Before 2021: buildings finished 2005 to 2020, for context. No key.
  */
 type Lens = "active" | "since" | "before";
@@ -141,9 +141,9 @@ export default function DevMap({
   // The count leads the lens's one-line description, not its button, so "2021" and a number never sit side by side.
   const n = lensCount(lens);
   const about: Record<Lens, string> = {
-    active: `${n} ${n === 1 ? "site" : "sites"}: proposals and approved projects with a public step in the last ${activeWindow} days, or one scheduled.`,
-    since: `${n} ${n === 1 ? "site" : "sites"}: approved and finished projects since 2021, and proposals that have gone still. What is moving now is under Active lately.`,
-    before: `${n} buildings and subdivisions of 10 or more homes finished from 2005 through 2020, for context.`,
+    active: `${n} ${n === 1 ? "site" : "sites"}: proposals and approved projects in the last ${activeWindow} days.`,
+    since: `${n} ${n === 1 ? "site" : "sites"}: approved and finished projects since 2021, and proposals still waiting on a decision with no public step in the last ${activeWindow} days.`,
+    before: `${n} buildings and subdivisions finished from 2005 through 2020 (10 or more homes each).`,
   };
 
   return (
@@ -192,13 +192,14 @@ export default function DevMap({
         </ul>
       )}
 
-      <div className="mt-4 h-[62vh] min-h-[360px] w-full overflow-hidden rounded-lg border border-rule sm:h-[70vh]">
+      <p className="mt-4 max-w-[63ch] text-[0.9rem] text-ink-mid">
+        <strong className="font-semibold text-ink">How to use it:</strong>{" "}
+        {lens === "before" ? "tap a circle for a summary and its sources." : "tap a circle for a summary and a link to its page."}{" "}
+        Bigger circles mean more homes.{groups.length > 0 ? " Tap a key item to hide or show that group." : ""}
+      </p>
+      <div className="mt-3 h-[62vh] min-h-[360px] w-full overflow-hidden rounded-lg border border-rule sm:h-[70vh]">
         <MapInner sites={shown} colors={COLOR} earlier={lens === "before" ? earlier : []} />
       </div>
-      <p className="mt-2 text-[0.8rem] text-ink-faint">
-        Circles grow with the number of homes. Tap one for a summary
-        {lens === "before" ? " and its sources." : " and a link to its page."}
-      </p>
 
       {lens === "before" ? <EarlierList earlier={earlier} /> : <SiteList sites={shown} groups={groups} lens={lens} />}
     </section>

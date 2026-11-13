@@ -78,10 +78,16 @@ export default function DevelopmentMapPage() {
           Development in Beverly
         </h1>
         <p className="mt-5 max-w-[63ch] text-[1.15rem] leading-[1.65]">
-          Proposals, approvals and recent projects on the city&apos;s record, each with its history and sources. The
-          map opens on what is moving now: proposals and approved projects with a public step in the last{" "}
-          {activeWindow} days, or one scheduled. Since 2021 shows what was approved and built, and proposals that have
-          gone still. Before 2021 shows the larger buildings that came earlier.
+          This map is a guide to development in Beverly, for anyone who wants to follow a project or understand how a
+          neighborhood got the way it is. It tracks what is being talked about, what has been formally proposed and is
+          under review, and what has been approved or built, all from the city&apos;s public record.
+        </p>
+        <p className="mt-4 max-w-[63ch] text-[1.15rem] leading-[1.65]">
+          Each site has its own page with its history, what the zoning allows, and a link to the source behind every
+          fact. The map opens on what is moving now: sites with a public step in the last {activeWindow} days, or one
+          scheduled. Since 2021 shows what was approved and built, and proposals still waiting on a decision with no public step
+          in the last {activeWindow} days. Before 2021 shows
+          the larger buildings that came earlier.
         </p>
       </header>
       <DevMap sites={sites} earlier={earlier} activeWindow={activeWindow} />
