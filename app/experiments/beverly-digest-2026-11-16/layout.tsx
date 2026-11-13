@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 export const metadata: Metadata = {
   title: "Beverly Meeting Digest: Nov 9 to Nov 15, 2026 — James Laurenti",
   description:
-    "The data center pause passes its first vote, 8-0, as councilors ask what its wording would catch. The city lets its Flock camera contract lapse. Next year's projected deficit is about $1.6 million. The Council splits 4-4 on restoring the diversity director, then asks the Mayor for $20,000 for the Human Rights Committee.",
+    "The data center pause passes its first vote, 8-0, as councilors ask what its wording would catch. The city lets its Flock camera contract lapse. Next year's projected deficit is about $1.6 million. A move to restore the diversity director's funding fails on a 4-4 tie; the Council asks the Mayor for $20,000 for the Human Rights Committee instead.",
   // DRAFT: remove before publishing. qa:issue fails while this is here. (Under /experiments
   // the next.config header also sends noindex; this tag is the belt to its braces.)
   robots: { index: false, follow: false },

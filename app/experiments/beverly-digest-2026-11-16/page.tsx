@@ -184,7 +184,7 @@ const contents: [string, string][] = [
   ["datacenters", "The data center pause passes its first vote, 8-0, as councilors ask what its wording would catch"],
   ["flock", "The city lets its Flock camera contract lapse"],
   ["deficit", "Next year's projected deficit is about $1.6 million, before the forecast committee's review"],
-  ["humanrights", "The Council splits 4-4 on restoring the diversity director, then asks the Mayor for $20,000"],
+  ["humanrights", "A move to restore the diversity director's funding fails on a 4-4 tie"],
   ["ahead", "Coming up, through December 10"],
 ];
 
@@ -313,8 +313,9 @@ export default function DigestIssue10() {
             The Council voted 8-0 for the data center pause, with questions about what its wording
             would catch, and the final vote is November 23. The city is letting its Flock camera
             contract lapse. Next year&apos;s projected deficit is about $1.6 million, before the
-            forecast committee&apos;s review. And the Council split 4-4 on bringing back the
-            diversity director, then asked the Mayor for $20,000 for the Human Rights Committee.
+            forecast committee&apos;s review. And a move at the Council to restore the money
+            cut in June for the city&apos;s diversity director failed on a 4-4 tie. The Council
+            then asked the Mayor for $20,000 for the Human Rights Committee instead.
           </p>
         </header>
 
@@ -571,11 +572,11 @@ export default function DigestIssue10() {
         {/* ---- 04 ---- */}
         <section
           id="humanrights"
-          data-dek={"An amendment asking the Mayor for the full $62,621 cut in June, enough to bring back the part-time diversity, equity, inclusion and belonging director, failed 4-4. The Council then voted 5-3 to ask him for $20,000 for the volunteer Human Rights Committee, which he had said in advance he would send. A hearing and final vote would come December 7."}
+          data-dek={"The posted order asked the Mayor for $20,000 for the volunteer Human Rights Committee. At the meeting, the Council also voted on asking instead for the full $62,621 cut in June, enough to bring back the part-time diversity, equity, inclusion and belonging director. That failed on a 4-4 tie. Councilor Houseman, one of the five votes for the June cut, raised it. The $20,000 request then passed 5-3."}
           className={SECTION}
         >
           <Eyebrow>04 &middot; City Council</Eyebrow>
-          <H2>The Council splits 4-4 on restoring the diversity director, then asks the Mayor for $20,000</H2>
+          <H2>A move to restore the diversity director&apos;s funding fails on a 4-4 tie</H2>
           <From>
             City Council &middot; Monday, November 9 &middot; Order #213, filed by Councilor Houseman
           </From>
@@ -586,38 +587,46 @@ export default function DigestIssue10() {
             meeting="City Council, Nov 9"
           />
           <p className={BODY}>
-            The Council voted 5-3 to ask the Mayor for <Fig>$20,000</Fig>{" "}for the city&apos;s
-            volunteer Human Rights Committee. Before that, an amendment to ask instead for the full{" "}
-            <Fig>$62,621</Fig>{" "}cut from the budget in June, enough to bring back the part-time
-            diversity, equity, inclusion and belonging (DEIB) director, failed 4-4. Councilor Sonia
-            was absent, which left the tie.{" "}
+            The order on the agenda asked the Mayor for <Fig>$20,000</Fig>{" "}for the city&apos;s
+            volunteer Human Rights Committee. At the meeting, the Council also voted on asking
+            instead for the full <Fig>$62,621</Fig>{" "}cut from the budget in June, enough to
+            bring back the part-time diversity, equity, inclusion and belonging (DEIB) director.
+            That failed on a 4-4 tie, with Councilor Sonia absent. The $20,000 request then passed
+            5-3.{" "}
             <Moment src={CC1109} s={9489} />
           </p>
           <p className={BODY}>
-            <b>The amendment, 4-4.</b>{" "}
-            For: Councilors Flowers, Houseman, Mullady and Spang. Against: Councilors Crowley,
-            Feldman, Rotondo and St. Hilaire.
+            <b>Who raised it.</b>{" "}
+            The June cut passed 5-4. Councilor Houseman, one of the five, filed #213 and was the
+            first to bring up the larger amount. He said it came up in the Council&apos;s Finance
+            and Property committee, and put it on the floor &ldquo;for discussion,&rdquo; not as
+            his own motion. Councilor Mullady then moved it.{" "}
+            <Moment src={CC1109} s={7063} />
+          </p>
+          <p className={BODY}>
+            <b>The votes, June and November.</b>{" "}
+            On the November 9 amendment, for: Councilors Flowers, Houseman, Mullady and Spang.
+            Against: Councilors Crowley, Feldman, Rotondo and St. Hilaire. In the June 23 vote to
+            cut the position, for the cut: Councilors St. Hilaire, Houseman, Feldman, Rotondo and
+            Crowley; against: Councilors Flowers, Sonia, Mullady and Spang. Every councilor present
+            in November voted as in June except Houseman.{" "}
+            <Moment src={CC0623} s={3285} />
           </p>
           <p className={BODY}>
             <b>What the vote does.</b>{" "}
             It is a request, not spending. The Council cannot add money to the budget on its own; it
-            asks the Mayor to send an appropriation.{" "}
-            Houseman said the Mayor authorized him to tell the
-            Council he would send one for the $20,000 if it passed the order as written. On
+            asks the Mayor to send an appropriation. Houseman said the Mayor authorized him to tell
+            the Council he would send one for the $20,000 if it passed the order as written. On
             Houseman&apos;s timeline, the Council sets a hearing on November 23 and takes the final
             vote December 7, the night the tax rate is projected to be set.{" "}
             <Moment src={CC1109} s={7259} />
           </p>
           <p className={BODY}>
-            <b>From June to November.</b>{" "}
-            In the June 23 budget vote, the Council cut the director&apos;s position 5-4 on
-            Councilor St. Hilaire&apos;s motion. For the cut: Councilors St. Hilaire, Houseman,
-            Feldman, Rotondo and Crowley. Against: Councilors Flowers, Sonia, Mullady and Spang.{" "}
-            <Moment src={CC0623} s={3285} />{" "}On November 9, councilors explained where they stood.
+            <b>Where councilors stood.</b>
           </p>
           <ul className={LIST}>
             <li>
-              <b>Houseman</b>{" "}filed #213 and voted for both the June cut and the amendment. In
+              <b>Houseman</b>{" "}voted for the June cut and for the amendment. In
               June he said his objection was &ldquo;not with the position, but with the mayor&apos;s
               administration of this position.&rdquo; On November 9: &ldquo;my vote against this
               really was not against DEI, was not against the work.&rdquo; He called the $20,000 a
