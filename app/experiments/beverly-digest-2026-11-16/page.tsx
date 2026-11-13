@@ -175,15 +175,11 @@ const GLOBE_SUTTON =
   "https://www.bostonglobe.com/2026/11/10/business/kraft-group-data-centers-sutton-mass/";
 const ML_SUTTON =
   "https://www.masslive.com/centralmass/2026/11/central-mass-residents-oppose-data-center-proposal-at-raucous-meeting-kill-it-now.html";
-const ML_SOUTHBRIDGE =
-  "https://www.masslive.com/centralmass/2026/11/central-mass-towns-data-center-moratorium-goes-into-effect-next-week-heres-what-to-know.html";
-const ML_LEOMINSTER =
-  "https://www.masslive.com/centralmass/2026/09/central-mass-city-approves-1-year-moratorium-on-data-centers-battery-storage-sites.html";
 
 const contents: [string, string][] = [
-  ["datacenters", "The data center pause passes its first vote, 8-0, as councilors ask what its wording would catch"],
+  ["datacenters", "Council backs data center pause 8-0, flags concerns over broad wording"],
   ["flock", "The city lets its Flock camera contract lapse"],
-  ["deficit", "Next year's projected deficit is about $1.6 million, before the forecast committee's review"],
+  ["deficit", "Early estimates put next year's budget gap at $1.56 million"],
   ["humanrights", "A move to restore the diversity director's funding fails on a 4-4 tie"],
   ["ahead", "Coming up, through December 10"],
 ];
@@ -213,7 +209,7 @@ const ahead: Ev[] = [
     date: "Nov 17",
     what: "Planning Board: 37 Enon St and Waring School",
     detail:
-      "7:00pm in the Middle School library, 502 Cabot St, and online. The hearing on 179 apartments at 37 Enon St, the Stop & Shop site in Ward 5, continues. Then a hearing on Waring School's plan to divide its 4.38-acre lot at 38 Standley St for four single-family homes.",
+      "7:00pm in the Middle School library, 502 Cabot St, and online. The hearing on 179 apartments at 37 Enon St, the Stop & Shop site in Ward 5, continues. Then a hearing on Waring School's plan to divide its 4.38-acre lot at 38 Standley St, in Ward 6, for four single-family homes.",
     cal: {
       id: "planning-2026-11-17",
       title: "Beverly Planning Board",
@@ -310,10 +306,10 @@ export default function DigestIssue10() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            The Council voted 8-0 for the data center pause, with questions about what its wording
-            would catch, and the final vote is November 23. The city is letting its Flock camera
-            contract lapse. Next year&apos;s projected deficit is about $1.6 million, before the
-            forecast committee&apos;s review. And a move at the Council to restore the money
+            The City Council cleared the first hurdle on a one-year data center pause, and will
+            take the final vote November 23. The Mayor&apos;s office is letting its Flock
+            license-plate camera contract expire without renewal. Early numbers put next
+            year&apos;s FY28 budget deficit near $1.6 million. And a move at the Council to restore the money
             cut in June for the city&apos;s diversity director failed on a 4-4 tie. The Council
             then asked the Mayor for $20,000 for the Human Rights Committee instead.
           </p>
@@ -347,11 +343,11 @@ export default function DigestIssue10() {
         {/* ---- 01 ---- */}
         <section
           id="datacenters"
-          data-dek={"The Council voted 8-0 for the Mayor's one-year pause on data center applications, the first of two votes; the final vote is November 23 and needs six of nine. Councilors asked whether the definition could catch ordinary businesses with servers. The Planning Director said the words \"primary use\" keep those out and existing businesses are not affected, and the wording was not changed."}
+          data-dek={"The Council voted 8-0 for the Mayor's one-year pause on data center applications, the first of two votes; the final vote is November 23. Councilors asked whether the definition could catch ordinary businesses with servers. The Planning Director said the words \"primary use\" keep those out and existing businesses are not affected, and the wording was not changed."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Data centers</Eyebrow>
-          <H2>The data center pause passes its first vote, 8-0, as councilors ask what its wording would catch</H2>
+          <H2>Council backs data center pause 8-0, flags concerns over broad wording</H2>
           <From>
             City Council &middot; Monday, November 9 &middot; Order #250, submitted by the Mayor
           </From>
@@ -370,69 +366,61 @@ export default function DigestIssue10() {
             <Earlier issue={8} slug="2026-11-02" id="datacenters" label="the Planning Board's 7-0 vote" />
           </p>
           <p className={BODY}>
-            <b>The question was the wording.</b>{" "}
-            No councilor spoke against pausing. The questions were about what the definition
-            would catch. The order defines a data center as a building or group of buildings
+            <b>The debate was over the definition.</b>{" "}
+            No councilor spoke against the pause itself; the questions were whether the language
+            is drawn too broadly (or leaves a loophole). The order defines a data center as a building or group of buildings
             &ldquo;the primary use of which is to house computer systems, servers, data storage
             equipment, networking equipment,&rdquo; with no minimum size{" "}
             <Src href={`${PACKET_1005}#page=40`}>(p. 40)</Src>.
           </p>
           <ul className={LIST}>
             <li>
-              <b>Does anything here count today?</b>{" "}Councilor St. Hilaire asked. Planning
-              Director Darlene Wynne said servers and networking equipment &ldquo;are just in all of
-              our office spaces. But that&apos;s why we have to come up with this careful
-              definition.&rdquo; She repeated a Planning Board member&apos;s remark that &ldquo;we
-              all have little data centers in our hands.&rdquo;{" "}
+              <b>Would existing buildings be affected?</b>{" "}Councilor St. Hilaire asked if
+              anything currently in Beverly would count. Planning Director Darlene Wynne said
+              servers and networking equipment &ldquo;are just in all of our office spaces. But
+              that&apos;s why we have to come up with this careful definition.&rdquo;{" "}
               <Moment src={CC1109} s={2262} />
             </li>
             <li>
-              <b>What about part of a building?</b>{" "}Councilor Houseman pointed to a case in Salem,
-              where a proposal would have used only part of a building, and said the city might
-              &ldquo;look into possible refinement.&rdquo; Wynne said the wording came from
-              Stoneham&apos;s and Lowell&apos;s pauses, and that if there were a recommendation to
-              change it, &ldquo;we could do that.&rdquo;{" "}
+              <b>What if a project only uses part of a building?</b>{" "}Councilor Houseman pointed
+              to a proposal in Salem that would have occupied just a portion of a building,
+              suggesting Beverly might &ldquo;look into possible refinement&rdquo; since the current
+              text specifies a &ldquo;building or group of buildings.&rdquo; Wynne said the
+              language was borrowed from Stoneham and Lowell, and that the city could adjust it if
+              recommended.{" "}
               <Moment src={CC1109} s={2382} />
             </li>
             <li>
-              <b>Could it catch the wrong business?</b>{" "}At the Council&apos;s Legal Affairs
-              committee, one member said, &ldquo;I think we&apos;re all for what ... the intent
-              is,&rdquo; and asked, &ldquo;do we unintentionally do something we don&apos;t want to
-              do.&rdquo; Wynne said she had checked with the City Solicitor. The words &ldquo;primary
-              use&rdquo; keep out businesses that run their own servers to operate. And the pause
-              &ldquo;wouldn&apos;t change any existing uses for sure ... it would just be new
-              buildings, new uses.&rdquo;{" "}
+              <b>Could it accidentally block a normal business?</b>{" "}At the Legal Affairs
+              committee, one member backed the intent but worried: &ldquo;Do we unintentionally do
+              something we don&apos;t want to do?&rdquo; Wynne said she checked with the City
+              Solicitor, and the &ldquo;primary use&rdquo; clause protects regular companies that
+              simply run their own internal servers to operate. She added that the pause applies
+              only to &ldquo;new buildings, new uses,&rdquo; not existing ones.{" "}
               <Moment src={CC1109} s={4574} />
             </li>
           </ul>
           <p className={BODY}>
-            The committee recommended the order 3-0 as written, and no one moved to change it at the
-            full Council.{" "}
-            <Moment src={CC1109} s={4778} />
-          </p>
-          <p className={BODY}>
             <b>Why a year.</b>{" "}
-            One resident at the hearing asked the Council to consider making the pause permanent.
-            Wynne said the pause is there &ldquo;in order to craft better regulation&rdquo;: what
-            reviews and mitigation to require, and &ldquo;whether or not we want to allow them, what
-            scale we want to allow them at and in which locations.&rdquo; State guidance is expected
-            at the end of the year, which she called another reason to wait. Asked by Councilor
-            Spang whether a year is enough, she said yes, and that the Council can extend it. Work
-            on the rules starts in the new year.{" "}
+            One resident asked the Council to consider a permanent ban. Wynne explained that a
+            one-year pause buys time to write proper rules: deciding what reviews and mitigation to
+            require, as well as &ldquo;whether or not we want to allow them, what scale we want to
+            allow them at and in which locations.&rdquo; The city is also waiting on state guidance
+            expected at the end of the year. Asked by Councilor Spang if 12 months is enough, Wynne
+            said yes, noting the Council can extend it. Work on the rules starts in the new
+            year.{" "}
             <Moment src={CC1109} s={2003} />{" "}
             <Earlier issue={5} slug="2026-10-12" id="datacenters" label="the pause and the state's order" />
           </p>
           <p className={BODY}>
             <b>Elsewhere in Massachusetts.</b>{" "}
-            The same week, the Kraft Group and Unified Global Packaging Group&apos;s plan for a
-            10-building data center campus in Sutton, south of Worcester, went before that
-            town&apos;s Select Board, which took no action,{" "}
-            <Src href={GLOBE_SUTTON}>The Boston Globe reported</Src>. Nothing has been filed there.
-            Southbridge&apos;s one-year pause takes effect November 17, and Leominster passed one in
-            September, <Src href={ML_SOUTHBRIDGE}>MassLive</Src>{" "}
-            <Src href={ML_LEOMINSTER}>reported</Src>. More than 30 Massachusetts communities have
-            passed or are discussing pauses or bans,{" "}
-            <Src href={ML_SUTTON}>according to MassLive</Src>.
+            Beverly isn&apos;t alone. More than 30 Massachusetts communities have passed or are
+            weighing data center moratoriums or bans, according to{" "}
+            <Src href={ML_SUTTON}>MassLive</Src>. Last week, a proposed 10-building data center
+            campus in Sutton, backed by the Kraft Group and Unified Global Packaging Group, went
+            before that town&apos;s Select Board, which took no action; nothing has been formally
+            filed yet,{" "}
+            <Src href={GLOBE_SUTTON}>The Boston Globe reported</Src>.
           </p>
           <Refs
             sources={
@@ -499,7 +487,7 @@ export default function DigestIssue10() {
           className={SECTION}
         >
           <Eyebrow>03 &middot; City budget</Eyebrow>
-          <H2>Next year&apos;s projected deficit is about $1.6 million, before the forecast committee&apos;s review</H2>
+          <H2>Early estimates put next year&apos;s budget gap at $1.56 million</H2>
           <From>
             City Council &middot; Monday, November 9. Deficit Reduction Committee &middot; Thursday,
             November 12, online
@@ -518,39 +506,51 @@ export default function DigestIssue10() {
             <b>Why it is lower than last year&apos;s forecast.</b>{" "}
             Last December&apos;s{" "}
             <Src href={`${FORECAST}#page=12`}>forecast (p. 12)</Src>{" "}put the FY2028 gap at{" "}
-            <Fig>$7.1 million</Fig>. That figure carried the FY2027 gap of <Fig>$3.9 million</Fig>,
-            which the city closed with cuts and new fees before the budget passed in June. Feldman
-            told the committee the old figure no longer applies, and that there is almost always a
-            projected deficit at this point in the year.
+            <Fig>$7.1 million</Fig>. Feldman told the committee that the old number no longer
+            applies. Two things have changed since then:
           </p>
+          <ul className={LIST}>
+            <li>
+              <b>Closing the FY2027 gap:</b>{" "}Last year&apos;s $7.1 million estimate rolled over
+              an unresolved <Fig>$3.9 million</Fig>{" "}deficit from FY2027, which the city closed
+              through spending cuts and new fees before passing June&apos;s budget.
+            </li>
+            <li>
+              <b>Slower pension cost growth:</b>{" "}The older forecast assumed annual city pension
+              payments would keep climbing by 4.5% a year. In September, the finance director told
+              the deficit committee the city can ease off that pace.{" "}
+              <Earlier issue={2} slug="2026-09-21" id="pension" label="the pension payment" />
+            </li>
+          </ul>
           <p className={BODY}>
-            That forecast also assumed the city&apos;s pension payment would keep rising 4.5% a
-            year. In September, the finance director told the deficit committee the city can ease
-            off that increase.{" "}
-            <Earlier issue={2} slug="2026-09-21" id="pension" label="the pension payment" />
-          </p>
-          <p className={BODY}>
-            <b>What&apos;s next.</b>{" "}
+            <b>The forecast timeline.</b>{" "}
             The Financial Forecast Committee meets November 17, November 30 and December 10, each at
-            6:30pm in the Police Station community room. Its report sets the starting point for the
+            6:30pm in the Police Station community room, to set the baseline numbers for the
             FY2028 budget.{" "}
-            <Moment src={CC1109} s={10268} />{" "}On November 17, the Council&apos;s budget analyst, Gerry
-            Perry, presents proposed city revenues and spending{" "}
-            <Src href={`${FFC_1117}#page=1`}>agenda (p. 1)</Src>. On November 30, school officials
-            present school spending, followed by vocational school costs, and the committee is
-            scheduled to vote to approve the forecast{" "}
-            <Src href={`${FFC_1130}#page=1`}>agenda (p. 1)</Src>.
+            <Moment src={CC1109} s={10268} />
           </p>
+          <ul className={LIST}>
+            <li>
+              <b>On November 17,</b>{" "}the Council&apos;s budget analyst, Gerry Perry, presents
+              proposed city revenues and spending{" "}
+              <Src href={`${FFC_1117}#page=1`}>agenda (p. 1)</Src>.
+            </li>
+            <li>
+              <b>On November 30,</b>{" "}school officials present school spending, followed by
+              vocational school costs, and the committee is scheduled to vote to approve the
+              forecast{" "}
+              <Src href={`${FFC_1130}#page=1`}>agenda (p. 1)</Src>.
+            </li>
+          </ul>
           <p className={BODY}>
-            <b>The deficit committee&apos;s next steps.</b>{" "}
-            Feldman plans a January meeting of the Council&apos;s Finance and Property committee,
-            open to every councilor, so councilors can ask about the committee&apos;s October 20
-            presentation. So many councilors attended that night that they could not discuss it
-            among themselves. Feldman and Councilor Mullady will also ask for a standing committee
-            on PILOTs, the payments some tax-exempt owners make in place of property taxes.
-            Bigger questions, such as zoning, new growth and an override, move to late winter or
-            spring, when the Planning Director will be invited. These are topics the committee is
-            studying, not recommendations.{" "}
+            <b>Longer-term deficit work.</b>{" "}
+            Separately, Feldman plans a Finance and Property committee meeting in January, open to
+            the full Council, to discuss the deficit panel&apos;s October 20 presentation. Feldman
+            and Councilor Mullady will also propose a standing committee on PILOTs (payments made
+            by tax-exempt institutions in lieu of property taxes). Larger structural questions,
+            such as zoning, new growth and a potential Prop 2&frac12; override, will wait until
+            late winter or spring, when the Planning Director is invited to join the conversation.
+            These are areas of study, not formal recommendations.{" "}
             <Src href={DRC_1112}>(Committee agenda)</Src>
           </p>
           <Refs
@@ -572,7 +572,7 @@ export default function DigestIssue10() {
         {/* ---- 04 ---- */}
         <section
           id="humanrights"
-          data-dek={"The posted order asked the Mayor for $20,000 for the volunteer Human Rights Committee. At the meeting, the Council also voted on asking instead for the full $62,621 cut in June, enough to bring back the part-time diversity, equity, inclusion and belonging director. That failed on a 4-4 tie. Councilor Houseman, one of the five votes for the June cut, raised it. The $20,000 request then passed 5-3."}
+          data-dek={"A bid to restore the $62,621 cut in June for Beverly's part-time diversity, equity, inclusion and belonging (DEIB) director deadlocked 4-4 at the November 9 City Council meeting, with Councilor Sonia absent. The Council then voted 5-3 to ask the Mayor for $20,000 for the volunteer Human Rights Committee instead, a request filed by Councilor Houseman, who had supported the original June cut."}
           className={SECTION}
         >
           <Eyebrow>04 &middot; City Council</Eyebrow>
@@ -587,38 +587,48 @@ export default function DigestIssue10() {
             meeting="City Council, Nov 9"
           />
           <p className={BODY}>
-            The order on the agenda asked the Mayor for <Fig>$20,000</Fig>{" "}for the city&apos;s
-            volunteer Human Rights Committee. At the meeting, the Council also voted on asking
-            instead for the full <Fig>$62,621</Fig>{" "}cut from the budget in June, enough to
-            bring back the part-time diversity, equity, inclusion and belonging (DEIB) director.
-            That failed on a 4-4 tie, with Councilor Sonia absent. The $20,000 request then passed
-            5-3.{" "}
+            An effort to restore full funding for Beverly&apos;s part-time diversity, equity,
+            inclusion and belonging (DEIB) director failed on a 4-4 tie at the November 9 Council
+            meeting, with Councilor Sonia absent. Instead, the Council voted 5-3 to pass Order
+            #213 as originally filed, asking the Mayor for <Fig>$20,000</Fig>{" "}to support the
+            city&apos;s volunteer Human Rights Committee.{" "}
             <Moment src={CC1109} s={9489} />
           </p>
           <p className={BODY}>
-            <b>Who raised it.</b>{" "}
-            The June cut passed 5-4. Councilor Houseman, one of the five, filed #213 and was the
-            first to bring up the larger amount. He said it came up in the Council&apos;s Finance
-            and Property committee, and put it on the floor &ldquo;for discussion,&rdquo; not as
-            his own motion. Councilor Mullady then moved it.{" "}
+            <b>How the larger figure got on the floor.</b>{" "}
+            The original <Fig>$62,621</Fig>{" "}cut passed 5-4 during June budget talks. Councilor
+            Houseman (one of the five who voted for that cut) filed Order #213 for the smaller
+            $20,000 amount, then raised the $62,621 figure himself on November 9, noting it had
+            come up in the Finance and Property committee. He put it forward &ldquo;for
+            discussion&rdquo; rather than as his own motion, and Councilor Mullady formally moved
+            the amendment.{" "}
             <Moment src={CC1109} s={7063} />
           </p>
           <p className={BODY}>
-            <b>The votes, June and November.</b>{" "}
-            On the November 9 amendment, for: Councilors Flowers, Houseman, Mullady and Spang.
-            Against: Councilors Crowley, Feldman, Rotondo and St. Hilaire. In the June 23 vote to
-            cut the position, for the cut: Councilors St. Hilaire, Houseman, Feldman, Rotondo and
-            Crowley; against: Councilors Flowers, Sonia, Mullady and Spang. Every councilor present
-            in November voted as in June except Houseman.{" "}
+            <b>Who voted how (and who flipped from June).</b>{" "}
+            Every councilor present on November 9 voted the same way they had on June 23, with one
+            exception: Houseman, who backed the June cut but voted to restore the money in
+            November.{" "}
             <Moment src={CC0623} s={3285} />
           </p>
+          <ul className={LIST}>
+            <li>
+              <b>Voted to restore the $62,621 (4):</b>{" "}Councilors Flowers, Houseman, Mullady
+              and Spang. Sonia, who voted against the June cut, was absent.
+            </li>
+            <li>
+              <b>Voted against restoring it (4):</b>{" "}Councilors Crowley, Feldman, Rotondo and
+              St. Hilaire, all four of whom voted for the June cut.
+            </li>
+          </ul>
           <p className={BODY}>
-            <b>What the vote does.</b>{" "}
-            It is a request, not spending. The Council cannot add money to the budget on its own; it
-            asks the Mayor to send an appropriation. Houseman said the Mayor authorized him to tell
-            the Council he would send one for the $20,000 if it passed the order as written. On
-            Houseman&apos;s timeline, the Council sets a hearing on November 23 and takes the final
-            vote December 7, the night the tax rate is projected to be set.{" "}
+            <b>What the vote actually does.</b>{" "}
+            Under city budget rules, the Council cannot add money to the budget on its own. Order
+            #213 is formally a request asking the Mayor to submit an appropriation. Houseman said
+            the Mayor authorized him to tell the Council he would send over the $20,000 request if
+            the order passed as written. On Houseman&apos;s timeline, the Council would set a
+            public hearing at its November 23 meeting, then hold the hearing and take a final vote
+            on December 7, the night the city&apos;s tax rate is projected to be set.{" "}
             <Moment src={CC1109} s={7259} />
           </p>
           <p className={BODY}>
@@ -626,45 +636,44 @@ export default function DigestIssue10() {
           </p>
           <ul className={LIST}>
             <li>
-              <b>Houseman</b>{" "}voted for the June cut and for the amendment. In
-              June he said his objection was &ldquo;not with the position, but with the mayor&apos;s
-              administration of this position.&rdquo; On November 9: &ldquo;my vote against this
-              really was not against DEI, was not against the work.&rdquo; He called the $20,000 a
-              &ldquo;different business model&rdquo; given the deficit.{" "}
+              <b>Backing the $20,000 instead:</b>{" "}Houseman, Feldman and Crowley all argued their
+              June votes targeted how the role was managed rather than the mission itself. Houseman
+              called the $20,000 a &ldquo;different business model&rdquo; amid a tight budget,
+              noting his June vote &ldquo;was not against DEI, was not against the work.&rdquo;{" "}
               <Moment src={CC1109} s={9638} />
             </li>
             <li>
-              <b>Feldman</b>{" "}said her June vote reflected &ldquo;frustration with the
-              administration ... of this position itself and the way it was structured.&rdquo; She
-              wants it back &ldquo;under HR in a different form&rdquo; in the next budget, and
-              supported the $20,000 meanwhile.{" "}
+              Feldman said she wants the role rebuilt &ldquo;under HR in a different form&rdquo;
+              next budget cycle and backed the $20,000 in the meantime.{" "}
               <Moment src={CC1109} s={7774} />
             </li>
             <li>
-              <b>Crowley</b>{" "}agreed, citing &ldquo;the lack of results,&rdquo; and said he could
-              support &ldquo;the lesser of two.&rdquo;{" "}
+              Crowley cited &ldquo;the lack of results&rdquo; and called the smaller sum
+              &ldquo;the lesser of two.&rdquo;{" "}
               <Moment src={CC1109} s={7935} />
             </li>
             <li>
-              <b>St. Hilaire</b>{" "}said he regrets that the June cut &ldquo;sent a bad message. But
-              to me, the fundamental position hasn&apos;t changed. We&apos;ve got a budget deficit
-              again.&rdquo;{" "}
+              <b>Holding the line on the deficit:</b>{" "}St. Hilaire said he regretted that the
+              June cut &ldquo;sent a bad message,&rdquo; but maintained that &ldquo;the fundamental
+              position hasn&apos;t changed. We&apos;ve got a budget deficit again.&rdquo;{" "}
               <Moment src={CC1109} s={7596} />
             </li>
             <li>
-              <b>Mullady</b>{" "}moved the amendment. He said he would not support #213 as written
-              &ldquo;because I think we should be doing more,&rdquo; and that &ldquo;this could have
-              and should have happened in June.&rdquo;{" "}
+              <b>Pushing for full restoration:</b>{" "}Mullady, who moved the $62,621 amendment,
+              said he would not back the $20,000 order as written &ldquo;because I think we should
+              be doing more,&rdquo; adding that restoration &ldquo;could have and should have
+              happened in June.&rdquo;{" "}
               <Moment src={CC1109} s={8394} />
             </li>
             <li>
-              <b>Flowers,</b>{" "}stepping out of the chair to speak, said the difference between
-              the two amounts is so small that &ldquo;this is not a financial argument at this
-              point.&rdquo;{" "}
+              Stepping out of the chair to speak, Council President Flowers said the dollar
+              difference between the two options was so small that &ldquo;this is not a financial
+              argument at this point.&rdquo;{" "}
               <Moment src={CC1109} s={9437} />
             </li>
             <li>
-              <b>Spang and Rotondo</b>{" "}asked questions and did not state a position.
+              <b>No stated position:</b>{" "}Councilors Spang and Rotondo asked questions during
+              the debate without stating their positions.
             </li>
           </ul>
           <Refs
