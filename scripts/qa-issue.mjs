@@ -133,6 +133,28 @@ head(`TEXT SPACING`);
 }
 
 /**
+ * One recording pill per paragraph or list item (rule from issue 10, Nov 13 2026). Several
+ * chips a minute apart leave the reader guessing which to tap; pick the one that best backs
+ * the paragraph. The Hear button at the top of a story does not count. Issues before 10 broke
+ * this freely, so it is a CHECK, not a failure.
+ */
+head(`ONE PILL PER PARAGRAPH`);
+{
+  const prose = html.slice(html.indexOf("<header"));
+  const blocks = [...prose.matchAll(/<(p|li)\b[^>]*>([\s\S]*?)<\/\1>/g)];
+  let crowded = 0;
+  for (const [, tag, inner] of blocks) {
+    const n = (inner.match(/data-placement="inline-moment"/g) || []).length;
+    if (n > 1) {
+      crowded++;
+      const text = inner.replace(/<[^>]+>/g, "").replace(/\s+/g, " ").trim().slice(0, 50);
+      line("CHECK", `${n} pills in one <${tag}>: "${text}..."`);
+    }
+  }
+  if (!crowded) line("ok", "at most one inline recording pill in every paragraph and list item");
+}
+
+/**
  * Links into long PDFs carry #page=N, which desktop browsers honor and phone PDF viewers
  * mostly ignore. So the label prints the page too, "(p. 58)", and the two must agree.
  */

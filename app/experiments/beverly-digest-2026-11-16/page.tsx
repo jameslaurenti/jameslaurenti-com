@@ -383,7 +383,7 @@ export default function DigestIssue10() {
               our office spaces. But that&apos;s why we have to come up with this careful
               definition.&rdquo; She repeated a Planning Board member&apos;s remark that &ldquo;we
               all have little data centers in our hands.&rdquo;{" "}
-              <Moment src={CC1109} s={2224} /> <Moment src={CC1109} s={2262} />
+              <Moment src={CC1109} s={2262} />
             </li>
             <li>
               <b>What about part of a building?</b>{" "}Councilor Houseman pointed to a case in Salem,
@@ -391,8 +391,7 @@ export default function DigestIssue10() {
               &ldquo;look into possible refinement.&rdquo; Wynne said the wording came from
               Stoneham&apos;s and Lowell&apos;s pauses, and that if there were a recommendation to
               change it, &ldquo;we could do that.&rdquo;{" "}
-              <Moment src={CC1109} s={2292} /> <Moment src={CC1109} s={2382} />{" "}
-              <Moment src={CC1109} s={2423} />
+              <Moment src={CC1109} s={2382} />
             </li>
             <li>
               <b>Could it catch the wrong business?</b>{" "}At the Council&apos;s Legal Affairs
@@ -402,14 +401,13 @@ export default function DigestIssue10() {
               use&rdquo; keep out businesses that run their own servers to operate. And the pause
               &ldquo;wouldn&apos;t change any existing uses for sure ... it would just be new
               buildings, new uses.&rdquo;{" "}
-              <Moment src={CC1109} s={4574} /> <Moment src={CC1109} s={4611} />{" "}
-              <Moment src={CC1109} s={4741} />
+              <Moment src={CC1109} s={4574} />
             </li>
           </ul>
           <p className={BODY}>
             The committee recommended the order 3-0 as written, and no one moved to change it at the
             full Council.{" "}
-            <Moment src={CC1109} s={4778} /> <Moment src={CC1109} s={5885} />
+            <Moment src={CC1109} s={4778} />
           </p>
           <p className={BODY}>
             <b>Why a year.</b>{" "}
@@ -420,9 +418,7 @@ export default function DigestIssue10() {
             at the end of the year, which she called another reason to wait. Asked by Councilor
             Spang whether a year is enough, she said yes, and that the Council can extend it. Work
             on the rules starts in the new year.{" "}
-            <Moment src={CC1109} s={2003} /> <Moment src={CC1109} s={2074} />{" "}
-            <Moment src={CC1109} s={2196} /> <Moment src={CC1109} s={2449} />{" "}
-            <Moment src={CC1109} s={4680} />{" "}
+            <Moment src={CC1109} s={2003} />{" "}
             <Earlier issue={5} slug="2026-10-12" id="datacenters" label="the pause and the state's order" />
           </p>
           <p className={BODY}>
@@ -470,7 +466,7 @@ export default function DigestIssue10() {
             The Mayor said in October that the contract would expire in mid-November. Councilor
             Rotondo said then that the decision is the Mayor&apos;s, as the city&apos;s chief
             procurement officer.{" "}
-            <Moment src={FLOCK1019} s={1591} /> <Moment src={FLOCK1019} s={3237} />{" "}
+            <Moment src={FLOCK1019} s={1591} />{" "}
             <Earlier issue={7} slug="2026-10-26" id="flock" label="the October meeting" />
           </p>
           <p className={BODY}>
@@ -511,7 +507,7 @@ export default function DigestIssue10() {
             The city&apos;s projected deficit for next year&apos;s budget, FY2028, is{" "}
             <Fig>$1,560,000</Fig>, Councilor Houseman told the Council, &ldquo;subject to the work of
             the financial forecasting committee.&rdquo;{" "}
-            <Moment src={CC1109} s={8545} /> <Moment src={CC1109} s={8586} />{" "}Three days later the
+            <Moment src={CC1109} s={8586} />{" "}Three days later the
             Deficit Reduction Committee&apos;s chair, Councilor Kathleen Feldman, gave the committee
             the same figure, about $1.5 million. Neither figure has been published in a city
             document yet. The Financial Forecast Committee, which writes that document, starts
@@ -595,8 +591,7 @@ export default function DigestIssue10() {
             <Fig>$62,621</Fig>{" "}cut from the budget in June, enough to bring back the part-time
             diversity, equity, inclusion and belonging (DEIB) director, failed 4-4. Councilor Sonia
             was absent, which left the tie.{" "}
-            <Moment src={CC1109} s={7376} /> <Moment src={CC1109} s={9489} />{" "}
-            <Moment src={CC1109} s={10175} />
+            <Moment src={CC1109} s={9489} />
           </p>
           <p className={BODY}>
             <b>The amendment, 4-4.</b>{" "}
@@ -607,11 +602,11 @@ export default function DigestIssue10() {
             <b>What the vote does.</b>{" "}
             It is a request, not spending. The Council cannot add money to the budget on its own; it
             asks the Mayor to send an appropriation.{" "}
-            <Moment src={CC1109} s={10064} />{" "}Houseman said the Mayor authorized him to tell the
+            Houseman said the Mayor authorized him to tell the
             Council he would send one for the $20,000 if it passed the order as written. On
             Houseman&apos;s timeline, the Council sets a hearing on November 23 and takes the final
             vote December 7, the night the tax rate is projected to be set.{" "}
-            <Moment src={CC1109} s={7217} /> <Moment src={CC1109} s={7259} />
+            <Moment src={CC1109} s={7259} />
           </p>
           <p className={BODY}>
             <b>From June to November.</b>{" "}
@@ -627,15 +622,14 @@ export default function DigestIssue10() {
               administration of this position.&rdquo; On November 9: &ldquo;my vote against this
               really was not against DEI, was not against the work.&rdquo; He called the $20,000 a
               &ldquo;different business model&rdquo; given the deficit.{" "}
-              <Moment src={CC0623} s={3150} /> <Moment src={CC1109} s={9638} />{" "}
-              <Moment src={CC1109} s={8596} />
+              <Moment src={CC1109} s={9638} />
             </li>
             <li>
               <b>Feldman</b>{" "}said her June vote reflected &ldquo;frustration with the
               administration ... of this position itself and the way it was structured.&rdquo; She
               wants it back &ldquo;under HR in a different form&rdquo; in the next budget, and
               supported the $20,000 meanwhile.{" "}
-              <Moment src={CC1109} s={7774} /> <Moment src={CC1109} s={7830} />
+              <Moment src={CC1109} s={7774} />
             </li>
             <li>
               <b>Crowley</b>{" "}agreed, citing &ldquo;the lack of results,&rdquo; and said he could

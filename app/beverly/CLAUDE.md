@@ -114,6 +114,15 @@ Who filed an order and whose idea it was are different facts. Treat them differe
 - **Credit stays short.** One sentence. A thank-you round on the floor is not news.
 - **Votes stay separate.** Individual attribution only on roll calls.
 
+## Recording links in the digest
+
+- **One `Hear` button per story**, at the top: the single moment most worth hearing.
+- **One `Moment` pill per paragraph or list item, at most.** Pick the moment that best backs
+  the paragraph: the quote, the vote, or the key number. Several pills a minute apart leave
+  the reader guessing which to tap. If a paragraph truly needs two moments, the paragraph is
+  doing two jobs, so split it. The full recording goes under "Go deeper." `qa:issue` flags
+  any paragraph or list item with more than one (rule from issue 10, Nov 2026).
+
 ## Data layer
 
 Domain data lives in `data/beverly/*.json` (repo root), each file with a `_meta`
