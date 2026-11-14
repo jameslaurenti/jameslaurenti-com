@@ -614,13 +614,14 @@ export default function DigestIssue10() {
           <ul className={LIST}>
             <li>
               <b>Voted to restore the $62,621 (4):</b>{" "}Councilors Flowers, Houseman, Mullady
-              and Spang. Sonia, who voted against the June cut, was absent.
+              and Spang.
             </li>
             <li>
               <b>Voted against restoring it (4):</b>{" "}Councilors Crowley, Feldman, Rotondo and
               St. Hilaire, all four of whom voted for the June cut.
             </li>
           </ul>
+          <p className={BODY}>Councilor Sonia was absent.</p>
           <p className={BODY}>
             <b>What the vote actually does.</b>{" "}
             Under city budget rules, the Council cannot add money to the budget on its own. Order
@@ -628,11 +629,12 @@ export default function DigestIssue10() {
             the Mayor authorized him to tell the Council he would send over the $20,000 request if
             the order passed as written. On Houseman&apos;s timeline, the Council would set a
             public hearing at its November 23 meeting, then hold the hearing and take a final vote
-            on December 7, the night the city&apos;s tax rate is projected to be set.{" "}
+            on December 7.{" "}
             <Moment src={CC1109} s={7259} />
           </p>
           <p className={BODY}>
-            <b>Where councilors stood.</b>
+            <b>Where councilors stood.</b>{" "}
+            Six councilors explained their votes on the floor. Their reasons fell into three groups.
           </p>
           <p className={BODY}>
             <b>For the $20,000 request.</b>{" "}
@@ -642,10 +644,12 @@ export default function DigestIssue10() {
           </p>
           <ul className={LIST}>
             <li>
-              <b>Houseman</b>{" "}called the $20,000 a &ldquo;different business model&rdquo; amid a
-              tight budget, noting his June vote &ldquo;was not against DEI, was not against the
-              work.&rdquo;{" "}
-              <Moment src={CC1109} s={9638} />
+              <b>Houseman</b>{" "}called his order &ldquo;a different business model to do the
+              work of DEI,&rdquo; with staffing cuts likely next year. Instead of a director in the
+              Mayor&apos;s office, the volunteer Human Rights Committee would propose the work and
+              the Mayor would approve or reject it. He said his June vote &ldquo;was not against
+              DEI, was not against the work.&rdquo;{" "}
+              <Moment src={CC1109} s={9573} />
             </li>
             <li>
               <b>Feldman</b>{" "}wants the role rebuilt &ldquo;under HR in a different form&rdquo;
