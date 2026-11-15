@@ -180,7 +180,7 @@ const contents: [string, string][] = [
   ["datacenters", "Council backs data center pause 8-0, flags concerns over broad wording"],
   ["flock", "The city lets its Flock camera contract lapse"],
   ["deficit", "Early estimates put next year's budget gap at $1.56 million"],
-  ["humanrights", "A move to restore the diversity director's funding fails on a 4-4 tie"],
+  ["humanrights", "A move to restore the DEIB director's funding fails on a 4-4 tie"],
   ["ahead", "Coming up, through December 10"],
 ];
 
@@ -310,7 +310,8 @@ export default function DigestIssue10() {
             take the final vote November 23. The Mayor&apos;s office is letting its Flock
             license-plate camera contract expire without renewal. Early numbers put next
             year&apos;s FY28 budget deficit near $1.6 million. And a move at the Council to restore the money
-            cut in June for the city&apos;s diversity director failed on a 4-4 tie. The Council
+            cut in June for the city&apos;s diversity, equity, inclusion and belonging (DEIB)
+            director failed on a 4-4 tie. The Council
             then asked the Mayor for $20,000 for the Human Rights Committee instead.
           </p>
         </header>
@@ -376,9 +377,9 @@ export default function DigestIssue10() {
           <ul className={LIST}>
             <li>
               <b>Would existing buildings be affected?</b>{" "}Councilor St. Hilaire asked if
-              anything currently in Beverly would count. Planning Director Darlene Wynne said
-              servers and networking equipment &ldquo;are just in all of our office spaces. But
-              that&apos;s why we have to come up with this careful definition.&rdquo;{" "}
+              anything currently in Beverly would count. Planning Director Darlene Wynne said some
+              of that equipment, like servers and networking gear, is in &ldquo;all of our office
+              spaces. But that&apos;s why we have to come up with this careful definition.&rdquo;{" "}
               <Moment src={CC1109} s={2262} />
             </li>
             <li>
@@ -444,27 +445,27 @@ export default function DigestIssue10() {
           <From>The Mayor&apos;s office, in an email to residents &middot; Monday, November 9</From>
           <p className={BODY}>
             Beverly is letting its contract with Flock Safety, the company behind the city&apos;s
-            four license plate cameras, lapse. &ldquo;The City is choosing to let the current
-            contract lapse while we spend more time figuring out the outstanding details,&rdquo; the
-            Mayor&apos;s constituent services director wrote on November 9 to residents who had
-            contacted the office about it. &ldquo;More information will be forthcoming in the coming
-            weeks.&rdquo; A resident also read the news into the record at that night&apos;s Council
-            meeting.
+            four license plate cameras, lapse. The cameras have been a recurring topic at the
+            Council this year, but the contract is not a Council vote. Contracts are the
+            Mayor&apos;s call as the city&apos;s chief procurement officer, Councilor Rotondo noted
+            at an October meeting on the cameras.{" "}
+            <Moment src={FLOCK1019} s={3237} />{" "}
+            <Earlier issue={7} slug="2026-10-26" id="flock" label="the October meeting" />
           </p>
           <p className={BODY}>
-            The Mayor said in October that the contract would expire in mid-November. Councilor
-            Rotondo said then that the decision is the Mayor&apos;s, as the city&apos;s chief
-            procurement officer.{" "}
-            <Moment src={FLOCK1019} s={1591} />{" "}
-            <Earlier issue={7} slug="2026-10-26" id="flock" label="the October meeting" />
+            &ldquo;The City is choosing to let the current contract lapse while we spend more time
+            figuring out the outstanding details,&rdquo; the Mayor&apos;s constituent services
+            director wrote on November 9 to residents who had contacted the office about it.
+            &ldquo;More information will be forthcoming in the coming weeks.&rdquo; A resident also
+            read the email aloud during public comment at that night&apos;s Council meeting.
           </p>
           <p className={BODY}>
             The email did not say whether the cameras have been switched off or what comes next.
             Police policy keeps plate data for{" "}
-            <Src href={ALPR_POLICY}>30 days</Src>{" "}unless it is saved for an investigation. At Council meetings in
-            April and October, police described cases the cameras helped solve,
-            and most residents who spoke asked the city to end the contract. The Council&apos;s own
-            review, Order #120, is still in committee.
+            <Src href={ALPR_POLICY}>30 days</Src>{" "}unless it is saved for an investigation. At
+            joint Council committee meetings on the cameras in April and October, police described
+            cases the cameras helped solve, and most residents who spoke asked the city to end the
+            contract.
           </p>
           <Refs
             sources={
@@ -576,7 +577,7 @@ export default function DigestIssue10() {
           className={SECTION}
         >
           <Eyebrow>04 &middot; City Council</Eyebrow>
-          <H2>A move to restore the diversity director&apos;s funding fails on a 4-4 tie</H2>
+          <H2>A move to restore the DEIB director&apos;s funding fails on a 4-4 tie</H2>
           <From>
             City Council &middot; Monday, November 9 &middot; Order #213, filed by Councilor Houseman
           </From>
@@ -605,7 +606,7 @@ export default function DigestIssue10() {
             <Moment src={CC1109} s={7063} />
           </p>
           <p className={BODY}>
-            <b>Who voted how (and who flipped from June).</b>{" "}
+            <b>Who voted how.</b>{" "}
             Every councilor present on November 9 voted the same way they had on June 23, with one
             exception: Houseman, who backed the June cut but voted to restore the money in
             November.{" "}
@@ -637,18 +638,20 @@ export default function DigestIssue10() {
             Six councilors explained their votes on the floor. Their reasons fell into three groups.
           </p>
           <p className={BODY}>
-            <b>For the $20,000 request.</b>{" "}
-            Houseman, Feldman and Crowley said their June votes were about how the role was run,
-            not its mission. Houseman also voted to restore the full $62,621; Feldman and Crowley
-            voted against that.
+            <b>Changing how the work is done.</b>{" "}
+            Houseman, Feldman and Crowley all voted for the June cut and all spoke for the $20,000
+            request. Their objection, they said, was to how the work had been carried out, not to
+            the work itself, and each put it differently. On the 4-4 vote, Houseman
+            voted to restore the full $62,621; Feldman and Crowley voted against it.
           </p>
           <ul className={LIST}>
             <li>
-              <b>Houseman</b>{" "}called his order &ldquo;a different business model to do the
-              work of DEI,&rdquo; with staffing cuts likely next year. Instead of a director in the
-              Mayor&apos;s office, the volunteer Human Rights Committee would propose the work and
-              the Mayor would approve or reject it. He said his June vote &ldquo;was not against
-              DEI, was not against the work.&rdquo;{" "}
+              <b>Houseman</b>{" "}wants the volunteer Human Rights Committee to drive the work,
+              with funding, instead of a director in the Mayor&apos;s office: the committee would
+              propose the work and the Mayor would approve or reject it. He called it &ldquo;a
+              different business model to do the work of DEI,&rdquo; with staffing cuts likely
+              next year, and said his June vote &ldquo;was not against DEI, was not against the
+              work.&rdquo;{" "}
               <Moment src={CC1109} s={9573} />
             </li>
             <li>
@@ -657,9 +660,9 @@ export default function DigestIssue10() {
               <Moment src={CC1109} s={7774} />
             </li>
             <li>
-              <b>Crowley</b>{" "}said he agreed with Feldman, and with St. Hilaire on &ldquo;the
-              lack of results&rdquo; under the earlier setup, so he could not support bringing back
-              the full amount, &ldquo;but potentially the lesser of two.&rdquo;{" "}
+              <b>Crowley</b>{" "}pointed to &ldquo;the lack of results&rdquo; under the earlier
+              setup, agreeing with Feldman and St. Hilaire. He said he could not support bringing
+              back the full amount, &ldquo;but potentially the lesser of two.&rdquo;{" "}
               <Moment src={CC1109} s={7935} />
             </li>
           </ul>
