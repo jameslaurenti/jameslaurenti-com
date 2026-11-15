@@ -655,8 +655,11 @@ export default function DigestIssue10() {
               <Moment src={CC1109} s={9573} />
             </li>
             <li>
-              <b>Feldman</b>{" "}wants the role rebuilt &ldquo;under HR in a different form&rdquo;
-              next budget cycle, and backed the $20,000 in the meantime.{" "}
+              <b>Feldman</b>{" "}said, &ldquo;I want to fund the work of this position,&rdquo; but
+              she was not comfortable bringing the role back as it was structured in June. She
+              wants it rebuilt &ldquo;under HR in a different form&rdquo; next budget cycle, and
+              said she was &ldquo;happy to see&rdquo; the money go to the Human Rights
+              Committee&apos;s work in the meantime.{" "}
               <Moment src={CC1109} s={7774} />
             </li>
             <li>
