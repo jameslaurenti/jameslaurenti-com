@@ -286,13 +286,7 @@ const ahead: Ev[] = [
 export default function DigestIssue10() {
   return (
     <div className="bg-bg text-ink">
-      {/* DRAFT: review views are tagged apart so they never count toward issue 10. Set to
-          "2026-11-16" when publishing. */}
-      <PageTracking surface="digest" issue="2026-11-16-preview" depth />
-      {/* DRAFT: remove this banner before publishing. qa:issue fails while it is here. */}
-      <div className="bg-gold-strong/20 px-6 py-2 text-center text-[0.8rem] font-bold uppercase tracking-[0.14em] text-ink">
-        DRAFT, NOT PUBLISHED &middot; for review only
-      </div>
+      <PageTracking surface="digest" issue="2026-11-16" depth />
       <div className="mx-auto max-w-3xl px-6 pb-24">
         <header className="border-b border-rule pb-7 pt-14">
           <p className="text-[0.75rem] font-bold uppercase tracking-[0.18em] text-debt">
@@ -513,8 +507,8 @@ export default function DigestIssue10() {
           <ul className={LIST}>
             <li>
               <b>Closing the FY2027 gap:</b>{" "}Last year&apos;s $7.1 million estimate rolled over
-              an unresolved <Fig>$3.9 million</Fig>{" "}deficit from FY2027, which the city closed
-              through spending cuts and new fees before passing June&apos;s budget.
+              an unresolved <Fig>$3.9 million</Fig>{" "}deficit from FY2027, which the city closed in
+              June&apos;s budget.
             </li>
             <li>
               <b>Slower pension cost growth:</b>{" "}The older forecast assumed annual city pension

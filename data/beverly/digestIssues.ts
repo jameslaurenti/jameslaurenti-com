@@ -23,6 +23,14 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-11-16",
+    number: 10,
+    published: "November 16, 2026",
+    covering: "November 9 to November 15",
+    teaser:
+      "The Council backs the data center pause 8-0 and flags concerns over its wording. The city lets its Flock camera contract lapse, early estimates put next year's budget gap at $1.56 million, and a move to restore the DEIB director's funding fails on a 4-4 tie.",
+  },
+  {
     slug: "2026-11-09",
     number: 9,
     published: "November 9, 2026",
