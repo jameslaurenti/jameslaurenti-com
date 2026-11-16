@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import { SignupBox, SignupLine } from "@/components/beverly/DigestSignupSlots";
+import { SignupBand, SignupBox } from "@/components/beverly/DigestSignupSlots";
 
 /**
  * Wraps the archive and every issue. Three jobs: tell feed readers where the feeds are,
- * offer the email signup (a line above the content, the form below it), and say once,
+ * offer the email signup (a band with the form above the content, the full box below it), and say once,
  * under every page, that the digest is free to reuse. These live here rather than inside
  * each issue so published issues stay as they were written.
  */
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
 export default function DigestLayout({ children }: { children: React.ReactNode }) {
   return (
     <>
-      <SignupLine />
+      <SignupBand />
       {children}
       <SignupBox />
       <div className="bg-bg">

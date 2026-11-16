@@ -14,15 +14,14 @@ import { track } from "@/lib/analytics";
 const KIT_FORM = "https://app.kit.com/forms/10019223/subscriptions";
 const CONTACT = "beverly-digest@jameslaurenti.com";
 
-export default function DigestSignup({
-  placement,
-  title = "Get the digest by email",
-}: {
-  /** Where on the site this box sits, for the signup_submitted event. */
-  placement: string;
-  /** Null on the signup page, where the page heading already says it. */
-  title?: string | null;
-}) {
+export const KIT_FORM_URL = KIT_FORM;
+export const SIGNUP_CONTACT = CONTACT;
+
+/**
+ * The submit logic every signup placement shares: posts to Kit, records the placement and
+ * any ?from= channel, and reports idle, sending, sent or error.
+ */
+export function useDigestSignup(placement: string) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
   // Off-site links carry ?from= (a QR code, a social bio) so a signup can be traced to the
   // channel that brought it. Read on mount to keep the page statically renderable.
@@ -53,6 +52,20 @@ export default function DigestSignup({
       setStatus("error");
     }
   }
+
+  return { status, handleSubmit };
+}
+
+export default function DigestSignup({
+  placement,
+  title = "Get the digest by email",
+}: {
+  /** Where on the site this box sits, for the signup_submitted event. */
+  placement: string;
+  /** Null on the signup page, where the page heading already says it. */
+  title?: string | null;
+}) {
+  const { status, handleSubmit } = useDigestSignup(placement);
 
   return (
     <div className="max-w-[63ch] rounded-lg border border-rule bg-bg-card/60 px-6 py-6">

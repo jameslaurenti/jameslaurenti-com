@@ -208,8 +208,15 @@ directly from `components/beverly/DigestSignup.tsx`; Kit's embed script is not u
 - `jameslaurenti.com/digest` redirects to `/beverly/digest/subscribe` (next.config.ts). It is the
   address for social bios, texts and printed QR codes. Tag off-site links with `?from=<channel>`
   (e.g. `?from=flyer-cafe`); the `signup_submitted` event records it next to the placement.
-- The digest layout adds the signup line (top) and box (bottom) to every issue and the archive,
-  via `DigestSignupSlots.tsx`, so issues themselves are never edited for it.
+- The digest layout adds the signup band (top, with the form in it) and box (bottom) to every
+  issue and the archive, via `DigestSignupSlots.tsx`, so issues themselves are never edited for
+  it. Neither is sticky or a pop-up. The band replaced a one-line "Get it by email" link on
+  Nov 15, 2026; its placements are `issue-top-band` and `archive-top-band`, kept apart from
+  the old line's `issue-top` so the two can be compared.
+- Placement test: the band (option A) runs for issues 10 to 12 or so, then option B, a card
+  under the "In this issue" list, for a similar stretch; compare `signup_submitted` by
+  placement against issue views. Both options are mocked up at `/experiments/digest-signup`.
+  All signup forms share `useDigestSignup()` in `DigestSignup.tsx`.
 - Kit's form setting "After confirming redirect to" points at `/beverly/digest/welcome`, so
   confirmed subscribers land on the site, not on Kit's branded page.
 - The signup page samples the newest issue through `latestStories()` in digestFeed.ts, so it
