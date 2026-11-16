@@ -184,7 +184,13 @@ const contents: [string, string][] = [
   ["ahead", "Coming up, through December 10"],
 ];
 
-type Ev = { date: string; what: string; detail: string; cal?: CalendarEvent };
+type Ev = { date: string; what: string; detail: ReactNode; cal?: CalendarEvent };
+
+const Meet = ({ code }: { code: string }) => (
+  <a href={`https://meet.google.com/${code}`} className="rlink">
+    Google Meet
+  </a>
+);
 
 const ahead: Ev[] = [
   {
@@ -207,15 +213,55 @@ const ahead: Ev[] = [
   },
   {
     date: "Nov 17",
+    what: "Conservation Commission (online only)",
+    detail: (
+      <>
+        6:30pm, remote only, on <Meet code="sbk-brkt-xjh" />{" "}or by phone at 515-207-3273, PIN 261
+        481 192#. Filings include the city&apos;s request to amend its permit for Beverly Golf &amp;
+        Tennis at 134 McKay St, in Ward 1, and Endicott College&apos;s plan to rebuild seawalls
+        along Hale St, in Ward 6.
+      </>
+    ),
+    cal: {
+      id: "concom-2026-11-17",
+      title: "Beverly Conservation Commission (online only)",
+      start: "2026-11-17T23:30:00Z",
+      end: "2026-11-18T02:30:00Z",
+      location: "Online only, Google Meet: https://meet.google.com/sbk-brkt-xjh",
+      details:
+        "Join on Google Meet at https://meet.google.com/sbk-brkt-xjh or by phone at +1 515-207-3273, PIN 261 481 192#. Agenda: https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_11172026-3001",
+    },
+  },
+  {
+    date: "Nov 17",
     what: "Planning Board: 37 Enon St and Waring School",
-    detail:
-      "7:00pm in the Middle School library, 502 Cabot St, and online. The hearing on 179 apartments at 37 Enon St, the Stop & Shop site in Ward 5, continues. Then a hearing on Waring School's plan to divide its 4.38-acre lot at 38 Standley St, in Ward 6, for four single-family homes.",
+    detail: (
+      <>
+        7:00pm in the Middle School library, 502 Cabot St, on <Meet code="ybz-tmni-rmu" />{" "}and
+        live on BevCam. The hearing on 179 apartments at 37 Enon St, the Stop &amp; Shop site in
+        Ward 5, continues. Then a hearing on Waring School&apos;s plan to divide its 4.38-acre lot
+        at 38 Standley St, in Ward 6, for four single-family homes.
+      </>
+    ),
     cal: {
       id: "planning-2026-11-17",
       title: "Beverly Planning Board",
       start: "2026-11-18T00:00:00Z",
       end: "2026-11-18T02:30:00Z",
       location: "Beverly Middle School library, 502 Cabot St, Beverly, MA",
+    },
+  },
+  {
+    date: "Nov 17",
+    what: "Historic Districts Commission",
+    detail:
+      "7:00pm in the first-floor conference room at temporary City Hall, 175 Cabot St, in person only. Reviews the Planning Board's referral of Waring School's plan for 38 Standley St and a Community Preservation application to rehabilitate the windows at Beverly Golf & Tennis.",
+    cal: {
+      id: "hdc-2026-11-17",
+      title: "Beverly Historic Districts Commission",
+      start: "2026-11-18T00:00:00Z",
+      end: "2026-11-18T01:30:00Z",
+      location: "Temporary City Hall, 175 Cabot St, Beverly, MA",
     },
   },
   {
@@ -229,6 +275,27 @@ const ahead: Ev[] = [
       start: "2026-11-18T23:00:00Z",
       end: "2026-11-19T02:00:00Z",
       location: "Beverly Middle School library, 502 Cabot St, Beverly, MA",
+    },
+  },
+  {
+    date: "Nov 18",
+    what: "Harbor Management Authority",
+    detail: (
+      <>
+        6:45pm in the Police Station community room, 175 Elliott St, and on{" "}
+        <Meet code="hhw-kwwn-vmi" />. Sets next summer&apos;s rates for the recreational marina,
+        dinghies and kayak racks, and takes up cost overruns on phase 2 of the Glover Wharf hoist
+        pier.
+      </>
+    ),
+    cal: {
+      id: "hma-2026-11-18",
+      title: "Beverly Harbor Management Authority",
+      start: "2026-11-18T23:45:00Z",
+      end: "2026-11-19T01:45:00Z",
+      location: "Beverly Police Station, 175 Elliott St, Beverly, MA",
+      details:
+        "Also on Google Meet at https://meet.google.com/hhw-kwwn-vmi or by phone at +1 484-909-0086, PIN 546 157 562#. Agenda: https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_11182026-3004",
     },
   },
   {
@@ -247,8 +314,14 @@ const ahead: Ev[] = [
   {
     date: "Nov 19",
     what: "Clean Energy Advisory Committee, with the Council's Finance and Property committee",
-    detail:
-      "6:30pm in the Sohier Room at the Beverly Public Library, 32 Essex St, and online. Both posted notices for the same time and room. The advisory committee's agenda includes its input on the 37 Enon St proposal and its December 7 update to the Council.",
+    detail: (
+      <>
+        6:30pm in the Sohier Room at the Beverly Public Library, 32 Essex St, and on{" "}
+        <Meet code="kpy-xavv-nxg" />. Both posted notices for the same time and room. The advisory
+        committee&apos;s agenda includes its input on the 37 Enon St proposal and its December 7
+        update to the Council.
+      </>
+    ),
     cal: {
       id: "ceac-fp-2026-11-19",
       title: "Beverly Clean Energy Advisory Committee and Council Finance and Property",
