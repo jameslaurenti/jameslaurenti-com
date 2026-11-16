@@ -54,6 +54,15 @@ type Params = Record<string, string | number | boolean>;
  */
 export function track(event: TrackEvent, params: Params = {}): void {
   if (typeof window === "undefined" || typeof window.gtag !== "function") return;
+  // A published issue rendered inside an /experiments mockup must not count toward that
+  // issue, so its views are tagged as previews, like the hidden review copies are.
+  if (
+    typeof params.issue === "string" &&
+    !params.issue.endsWith("-preview") &&
+    window.location.pathname.startsWith("/experiments/")
+  ) {
+    params = { ...params, issue: `${params.issue}-preview` };
+  }
   try {
     window.gtag("event", event, params);
   } catch {
