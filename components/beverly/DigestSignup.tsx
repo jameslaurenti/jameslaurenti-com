@@ -18,11 +18,51 @@ export const KIT_FORM_URL = KIT_FORM;
 export const SIGNUP_CONTACT = CONTACT;
 
 /**
+ * Shared mail providers whose name is safe to send to analytics. Any other domain is
+ * reported as "other": a family or small-business domain can point to one person.
+ */
+const SHARED_PROVIDERS = new Set([
+  "gmail.com", "googlemail.com", "yahoo.com", "ymail.com", "aol.com", "outlook.com",
+  "hotmail.com", "live.com", "msn.com", "icloud.com", "me.com", "mac.com", "comcast.net",
+  "verizon.net", "att.net", "sbcglobal.net", "charter.net", "cox.net", "rcn.com",
+  "proton.me", "protonmail.com",
+]);
+
+function providerOf(address: string): string {
+  const domain = address.trim().toLowerCase().split("@").pop() ?? "";
+  return SHARED_PROVIDERS.has(domain) ? domain : "other";
+}
+
+/**
+ * Kit's reason for refusing a signup, from whichever shape its JSON takes: `errors` as an
+ * array of strings, as `{ messages: [...] }`, or as a field map, or a top-level `message`.
+ * Long or empty text is dropped so a resident never sees a page of markup.
+ */
+export function kitReason(json: unknown): string | null {
+  if (!json || typeof json !== "object") return null;
+  const j = json as Record<string, unknown>;
+  const found: string[] = [];
+  const collect = (v: unknown) => {
+    if (typeof v === "string") found.push(v);
+    else if (Array.isArray(v)) v.forEach(collect);
+    else if (v && typeof v === "object") Object.values(v).forEach(collect);
+  };
+  collect(j.errors);
+  if (!found.length) collect(j.message ?? j.error);
+  const text = found.map((s) => s.trim()).filter(Boolean).join(" ").replace(/<[^>]*>/g, "");
+  if (!text || text.length > 200) return null;
+  // The message is quoted mid-sentence on the page, so it needs its own full stop.
+  return /[.!?]$/.test(text) ? text : `${text}.`;
+}
+
+/**
  * The submit logic every signup placement shares: posts to Kit, records the placement and
- * any ?from= channel, and reports idle, sending, sent or error.
+ * any ?from= channel, and reports idle, sending, sent or error. On an error, `reason` holds
+ * Kit's own words when it gave any, so the resident (and James) can see why.
  */
 export function useDigestSignup(placement: string) {
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [reason, setReason] = useState<string | null>(null);
   // Off-site links carry ?from= (a QR code, a social bio) so a signup can be traced to the
   // channel that brought it. Read on mount to keep the page statically renderable.
   const from = useRef("");
@@ -33,27 +73,46 @@ export function useDigestSignup(placement: string) {
   async function handleSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("sending");
+    setReason(null);
     const form = e.currentTarget;
+    const body = new FormData(form);
+    const channel: Record<string, string> = from.current ? { from: from.current } : {};
+    // `shown` is what the resident reads (Kit's words, or null for the generic line);
+    // `logged` is what analytics records.
+    const fail = (shown: string | null, http: number, logged = shown ?? "no reason given") => {
+      setReason(shown);
+      setStatus("error");
+      track("signup_failed", {
+        placement,
+        provider: providerOf(String(body.get("email_address") ?? "")),
+        http,
+        reason: logged.slice(0, 100),
+        ...channel,
+      });
+    };
+    let res: Response;
     try {
-      const res = await fetch(KIT_FORM, {
+      res = await fetch(KIT_FORM, {
         method: "POST",
-        body: new FormData(form),
+        body,
         headers: { Accept: "application/json" },
       });
-      const json = await res.json().catch(() => null);
-      if (res.ok && json?.status === "success") {
-        setStatus("sent");
-        form.reset();
-        track("signup_submitted", { placement, ...(from.current ? { from: from.current } : {}) });
-      } else {
-        setStatus("error");
-      }
     } catch {
-      setStatus("error");
+      // Offline, blocked by an extension, or Kit unreachable: http 0 marks "never arrived".
+      fail(null, 0, "network");
+      return;
+    }
+    const json = await res.json().catch(() => null);
+    if (res.ok && json?.status === "success") {
+      setStatus("sent");
+      form.reset();
+      track("signup_submitted", { placement, ...channel });
+    } else {
+      fail(kitReason(json), res.status);
     }
   }
 
-  return { status, handleSubmit };
+  return { status, reason, handleSubmit };
 }
 
 export default function DigestSignup({
@@ -65,7 +124,7 @@ export default function DigestSignup({
   /** Null on the signup page, where the page heading already says it. */
   title?: string | null;
 }) {
-  const { status, handleSubmit } = useDigestSignup(placement);
+  const { status, reason, handleSubmit } = useDigestSignup(placement);
 
   return (
     <div className="max-w-[63ch] rounded-lg border border-rule bg-bg-card/60 px-6 py-6">
@@ -110,7 +169,9 @@ export default function DigestSignup({
           </form>
           {status === "error" && (
             <p className="mt-2.5 text-[0.92rem] text-debt" role="alert">
-              That did not go through. Check the address and try again, or email{" "}
+              That did not go through.{" "}
+              {reason ? <>Kit, the email service, said: &ldquo;{reason}&rdquo; </> : null}
+              Check the address and try again, or email{" "}
               <a href={`mailto:${CONTACT}`} className="rlink">
                 {CONTACT}
               </a>{" "}

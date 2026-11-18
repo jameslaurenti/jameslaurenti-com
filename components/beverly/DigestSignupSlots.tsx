@@ -24,7 +24,7 @@ const hidden = (path: string | null) => !!path && OWN_PAGES.some((p) => path.sta
 export function SignupBand() {
   const path = usePathname();
   const placement = path === "/beverly/digest" ? "archive-top-band" : "issue-top-band";
-  const { status, handleSubmit } = useDigestSignup(placement);
+  const { status, reason, handleSubmit } = useDigestSignup(placement);
   if (hidden(path)) return null;
   return (
     <div className="border-b border-rule bg-bg-card">
@@ -68,7 +68,9 @@ export function SignupBand() {
           )}
           {status === "error" && (
             <p className="mt-1.5 text-[0.85rem] text-debt" role="alert">
-              That did not go through. Try again, or email{" "}
+              That did not go through.{" "}
+              {reason ? <>Kit, the email service, said: &ldquo;{reason}&rdquo; </> : null}
+              Try again, or email{" "}
               <a href={`mailto:${SIGNUP_CONTACT}`} className="rlink">
                 {SIGNUP_CONTACT}
               </a>

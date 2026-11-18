@@ -42,6 +42,11 @@ export type TrackEvent =
   | "tool_outcome"
   /** The digest email form was accepted by Kit (confirmation email sent, not yet confirmed). */
   | "signup_submitted"
+  /**
+   * The digest email form was refused or never reached Kit. Carries Kit's reason, the HTTP
+   * status and the address's domain when it is a shared provider (never the address).
+   */
+  | "signup_failed"
   /** A mailto link to an official was opened, e.g. a councilor named in a story. */
   | "email_clicked";
 
