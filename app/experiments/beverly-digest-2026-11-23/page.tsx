@@ -150,7 +150,10 @@ const Earlier = ({ issue, slug, id, label }: { issue: number; slug: string; id: 
 
 const V = "https://www.youtube.com/watch?v=";
 const at = (src: string, seconds: number) => `${src}&t=${seconds}s`;
-const FFC1117 = `${V}3hMTOz6bOaU`;
+/* BevCam's public copy of the Nov 17 forecast meeting. The first upload (3hMTOz6bOaU)
+   went private; this one starts 31 seconds later, so timestamps are 31s earlier than the
+   vault transcript's. */
+const FFC1117 = `${V}-lvDkqE3Tls`;
 const PB1117 = `${V}Jit2sKWagGI`;
 const SC1118 = `${V}9ZdbtjyMF0M`;
 const COD1112 = `${V}z25KLRqt9gI`;
@@ -187,7 +190,7 @@ const HAVERHILL =
   "https://www.eagletribune.com/news/haverhill/haverhill-bans-e-bikes-e-scooters-on-school-property/article_7b10a9f1-ce7e-432f-b032-a2547634eea8.html";
 
 const contents: [string, string][] = [
-  ["deficit", "Next year's budget gap: $1.63 million, down from last year's $7.1 million forecast"],
+  ["deficit", "The FY2028 budget gap: $1.63 million, down from last December's $7.1 million forecast"],
   ["standley", "Waring School's plan for 38 Standley St would take down a house from about 1700"],
   ["schools", "The school budget is on track so far, with $837,000 more in state special education money than planned"],
   ["ebikes", "The School Committee puts off its e-bike vote"],
@@ -274,6 +277,93 @@ const ahead: Ev[] = [
 
 /* ---------------- page ---------------- */
 
+/* FY2028 gap walk, Dec 2025 forecast to Nov 2026 estimate. Figures from Perry's presentation
+   (Nov 17) and the Dec 2025 forecast, p. 11. The cost line is derived: what's left to reach
+   $1,628,672. Colors validated for color-vision deficiency (dataviz validator, all checks pass). */
+const GAP_STEPS: { label: string; note?: string; kind: "total" | "down" | "up"; value: number }[] = [
+  { label: "Forecast, Dec 2025", kind: "total", value: 7107323 },
+  { label: "Trash fee increase", note: "FY2027 budget", kind: "down", value: -2407096 },
+  { label: "Department cuts", note: "FY2027 budget", kind: "down", value: -1750711 },
+  { label: "State aid above estimate", note: "Revenue", kind: "down", value: -1480060 },
+  { label: "New growth above estimate", note: "Revenue", kind: "down", value: -700000 },
+  { label: "Higher cost estimates, net", note: "derived", kind: "up", value: 859216 },
+  { label: "Estimate, Nov 2026", kind: "total", value: 1628672 },
+];
+const GAP_COLOR = { total: "var(--color-ink-mid)", down: "#2f6fa8", up: "#b0562b" };
+const GAP_MAX = 7500000;
+
+function money(n: number) {
+  const m = Math.abs(n) / 1e6;
+  return `${n < 0 ? "\u2212" : ""}$${m.toFixed(2)}M`;
+}
+
+function GapWaterfall() {
+  let running = 0;
+  const rows = GAP_STEPS.map((st) => {
+    const from = st.kind === "total" ? 0 : running;
+    const to = st.kind === "total" ? st.value : running + st.value;
+    running = to;
+    return { ...st, from: st.kind === "total" ? to : from, lo: Math.min(from, to), hi: Math.max(from, to), end: to };
+  });
+  const pct = (n: number) => `${(n / GAP_MAX) * 100}%`;
+  return (
+    <figure className="mt-6 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-4 py-4">
+      <figcaption className="text-[0.95rem] font-semibold leading-snug text-ink">
+        How the FY2028 gap went from $7.1 million to $1.63 million
+      </figcaption>
+      <div className="mt-2 flex flex-wrap gap-x-4 gap-y-1 text-[0.8rem] text-ink-mid">
+        {(["down", "up", "total"] as const).map((k) => (
+          <span key={k} className="inline-flex items-center gap-1.5">
+            <span className="inline-block h-2.5 w-2.5 rounded-[2px]" style={{ background: GAP_COLOR[k] }} />
+            {k === "down" ? "Lowers the gap" : k === "up" ? "Raises the gap" : "Gap"}
+          </span>
+        ))}
+      </div>
+      <div className="mt-3" role="list">
+        {rows.map((r, i) => (
+          <div
+            key={r.label}
+            role="listitem"
+            className="grid grid-cols-[minmax(0,9.5rem)_minmax(0,1fr)] items-center gap-x-3 sm:grid-cols-[minmax(0,13rem)_minmax(0,1fr)]"
+          >
+            <div className="py-1.5 text-[0.82rem] leading-tight">
+              <div className={r.kind === "total" ? "font-semibold text-ink" : "text-ink"}>{r.label}</div>
+              <div className="text-ink-faint">
+                {r.kind === "total" ? money(r.value) : `${r.value > 0 ? "+" : ""}${money(r.value)}`}
+                {r.note ? ` \u00b7 ${r.note}` : ""}
+              </div>
+            </div>
+            <div className="relative self-stretch min-h-12">
+              <div className="absolute inset-y-0 left-0 w-px bg-[var(--color-rule)]" />
+              {i > 0 && (
+                <div
+                  className="absolute top-0 h-[calc(50%-10px)] border-l border-dashed border-ink-faint/60"
+                  style={{ left: pct(r.from) }}
+                />
+              )}
+              <div
+                className="absolute top-[calc(50%-10px)] h-5 rounded-[3px]"
+                style={{ left: pct(r.lo), width: pct(r.hi - r.lo), background: GAP_COLOR[r.kind] }}
+              />
+              {i < rows.length - 1 && (
+                <div
+                  className="absolute bottom-0 h-[calc(50%-10px)] border-l border-dashed border-ink-faint/60"
+                  style={{ left: pct(r.end) }}
+                />
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+      <p className="mt-3 text-[0.78rem] leading-relaxed text-ink-faint">
+        Perry&apos;s figures, Financial Forecast Committee, Nov 17, and the Dec 2025 forecast (p. 11).
+        The higher-cost line is the digest&apos;s arithmetic: the amount that takes Perry&apos;s
+        figures to his $1,628,672 total.
+      </p>
+    </figure>
+  );
+}
+
 export default function DigestIssue11() {
   return (
     <div className="bg-bg text-ink">
@@ -297,7 +387,8 @@ export default function DigestIssue11() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            A year ago the city forecast a $7.1 million gap in next year&apos;s budget. This week the
+            A year ago the city forecast a $7.1 million gap in its FY2028 budget, which starts next
+            July. This week the
             Council&apos;s budget analyst put it at $1.63 million and walked through what changed.
             Waring School&apos;s plan for four homes at
             38 Standley St, which would take down a house dating to about 1700, drew calls to save
@@ -336,33 +427,34 @@ export default function DigestIssue11() {
         {/* ---- 01 ---- */}
         <section
           id="deficit"
-          data-dek={"This year's city budget, FY2027, is balanced. Looking ahead to next year, the Council's budget analyst put the FY2028 gap at $1,628,672, down from last December's $7.1 million forecast, mostly because this year's budget closed a gap that forecast had carried forward. The figure leaves out the FEMA appeal, new union contracts and every Deficit Reduction Committee idea."}
+          data-dek={"The city's FY2027 budget, which runs through June 2027, is balanced. The Council's budget analyst put the FY2028 gap at $1,628,672, down from last December's $7.1 million forecast, mostly because the FY2027 budget closed a gap that forecast had carried forward. The figure leaves out the FEMA appeal, new union contracts and every Deficit Reduction Committee idea."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; City budget</Eyebrow>
-          <H2>Next year&apos;s budget gap: $1.63 million, down from last year&apos;s $7.1 million forecast</H2>
+          <H2>The FY2028 budget gap: $1.63 million, down from last December&apos;s $7.1 million forecast</H2>
           <From>Financial Forecast Committee &middot; Tuesday, November 17</From>
           <Hear
             src={FFC1117}
-            s={1180}
+            s={1149}
             title="Gerry Perry walks through how the gap closed"
             meeting="Financial Forecast Committee, Nov 17"
           />
           <p className={BODY}>
             <b>How the budget year works.</b>{" "}
-            Beverly&apos;s budget year runs from July 1 to June 30. This year, FY2027, started July 1
-            with a balanced budget: the Council closed that year&apos;s projected gap in June.
+            Beverly&apos;s budget year, or fiscal year, runs from July 1 to June 30 and takes the
+            name of the year it ends in. The current one, FY2027, runs from July 1, 2026 to June 30,
+            2027. It started with a balanced budget: the Council closed its projected gap in June.
             &ldquo;We are not in deficit,&rdquo; Mayor Cahill told the committee. Each fall the
             Financial Forecast Committee looks one year ahead, to FY2028, which starts July 1, 2027,
-            and estimates the gap the Mayor will have to close before presenting a budget to the
-            Council next June. <Moment src={FFC1117} s={819} />
+            and estimates the gap the Mayor will have to close before presenting the FY2028 budget to
+            the Council in June 2027. <Moment src={FFC1117} s={788} />
           </p>
           <p className={BODY}>
-            <b>This year&apos;s estimate.</b>{" "}
+            <b>The new estimate.</b>{" "}
             That gap is now <Fig>$1,628,672</Fig>, the Council&apos;s budget analyst, Gerry Perry,
             told the committee. It is up from the $1.56 million councilors cited November 9, because
             the bill from the regional vocational school came in higher.{" "}
-            <Moment src={FFC1117} s={1347} />{" "}
+            <Moment src={FFC1117} s={1316} />{" "}
             <Earlier issue={10} slug="2026-11-16" id="deficit" label="the $1.56 million estimate" />
           </p>
           <p className={BODY}>
@@ -370,47 +462,49 @@ export default function DigestIssue11() {
             Last December&apos;s forecast put the FY2028 gap at <Fig>$7.1 million</Fig>{" "}
             <Src href={`${FORECAST}#page=11`}>(p. 11)</Src>. That forecast stacks each year&apos;s
             unclosed gap onto the next, so its $7.1 million was built on FY2027&apos;s own forecast
-            gap of $3.9 million. That gap arrived as predicted, and June&apos;s budget closed it.
+            gap of $3.9 million. That gap arrived as predicted, and the FY2027 budget, passed in June,
+            closed it.
             &ldquo;We hit a bullseye,&rdquo; Perry said. &ldquo;It was a lousy bullseye.&rdquo;{" "}
-            <Moment src={FFC1117} s={1217} />
+            <Moment src={FFC1117} s={1186} />
           </p>
           <p className={BODY}>
             Perry then walked through what has changed for FY2028 since last December, about $5.5
-            million in all. He measures each change by its effect on next year&apos;s budget, so
-            these figures don&apos;t match this year&apos;s $3.9 million dollar for dollar:
+            million in all. He measures each change by its effect on the FY2028 budget, so these
+            figures don&apos;t match FY2027&apos;s $3.9 million dollar for dollar:
           </p>
+          <GapWaterfall />
           <ul className={LIST}>
             <li>
-              <b>Decisions in this year&apos;s budget (about $4.16 million):</b>{" "}The trash fee
+              <b>Decisions in the FY2027 budget (about $4.16 million):</b>{" "}The trash fee
               increase as proposed by the Mayor and modified by the Council (<Fig>$2,407,096</Fig>)
               and department cuts of 18.82 full-time positions affecting 26 employees
-              (<Fig>$1,750,711</Fig>). <Moment src={FFC1117} s={1418} />
+              (<Fig>$1,750,711</Fig>). <Moment src={FFC1117} s={1387} />
             </li>
             <li>
-              <b>Revenue that beat last year&apos;s estimates (about $2.18 million):</b>{" "}State aid
+              <b>Revenue that beat last December&apos;s estimates (about $2.18 million):</b>{" "}State aid
               came in <Fig>$1,480,060</Fig>{" "}above projections, and new growth (taxes from new
               construction and newly taxable property) hit $1.95 million against the $1.25 million
-              assumed (<Fig>$700,000</Fig>). <Moment src={FFC1117} s={1381} />
+              assumed (<Fig>$700,000</Fig>). <Moment src={FFC1117} s={1350} />
             </li>
             <li>
               <b>Higher cost estimates, adding back about $860,000:</b>{" "}Health insurance, state
               assessments and the vocational school went up; retirement costs went down. The net is
-              the digest&apos;s arithmetic from Perry&apos;s totals. <Moment src={FFC1117} s={1555} />
+              the digest&apos;s arithmetic from Perry&apos;s totals. <Moment src={FFC1117} s={1524} />
             </li>
           </ul>
           <p className={BODY}>
             Perry said <Fig>$1.63 million</Fig>{" "}is about 16 or 17 employees at about $100,000
             each with benefits, and it &ldquo;does not restore any of those 18 employees&rdquo; cut
-            this year. <Moment src={FFC1117} s={7520} />{" "}Councilor Houseman, who chairs the
+            in the FY2027 budget. <Moment src={FFC1117} s={7489} />{" "}Councilor Houseman, who chairs the
             committee, called this &ldquo;arguably the most challenging budget season the city has
             faced in the last 20 years.&rdquo;
           </p>
           <p className={BODY}>
             <b>What the number leaves out.</b>{" "}
-            New union contracts: the city&apos;s agreements end June 30, and the forecast assumes 3%
+            New union contracts: the city&apos;s agreements end June 30, 2027, and the forecast assumes 3%
             raises. It also leaves out a final pension figure; keeping that payment level at about
             $15 million depends on a state letter due in December or January.{" "}
-            <Moment src={FFC1117} s={2610} />
+            <Moment src={FFC1117} s={2579} />
           </p>
           <p className={BODY}>
             <b>The FEMA appeal.</b>{" "}
@@ -419,7 +513,7 @@ export default function DigestIssue11() {
             masks and distancing in stores, and covering the shifts of police and firefighters who
             had symptoms. FEMA turned down about <Fig>$1.2 million</Fig>. The city&apos;s appeal was
             heard late this summer, and a decision is expected soon; the Mayor briefs the Council on
-            Monday. <Moment src={FFC1117} s={1940} />
+            Monday. <Moment src={FFC1117} s={1909} />
           </p>
           <p className={BODY}>
             Beverly isn&apos;t alone. FEMA turned down Holyoke&apos;s final appeal over about
@@ -432,11 +526,11 @@ export default function DigestIssue11() {
           </p>
           <p className={BODY}>
             If the city loses, Perry said the money must come from one of two reserves: free cash
-            (leftover money from the prior year&apos;s books, which is down $1.5 million and already
-            set aside for roads and sidewalks) or the stabilization fund, which he likened to a
+            (money left over when a year&apos;s books close; this fall&apos;s amount is down $1.5
+            million and already set aside for roads and sidewalks) or the stabilization fund, which he likened to a
             savings account. The Mayor said he has committed to the state to ask the Council for
             a stabilization transfer, which takes six of nine votes.{" "}
-            <Moment src={FFC1117} s={2135} />{" "}The two reserves together are about 17% of the
+            <Moment src={FFC1117} s={2104} />{" "}The two reserves together are about 17% of the
             operating budget, within the city&apos;s policy of 13 to 23%, the Mayor said.
           </p>
           <p className={BODY}>
@@ -445,7 +539,7 @@ export default function DigestIssue11() {
             committee heard. They were renovated one a year starting with McKeown in 1998, so they
             are coming due together, and Centerville&apos;s roof is in the worst shape. Perry said
             some of those roofs could cost as much as $15 million each.{" "}
-            <Moment src={FFC1117} s={6210} />
+            <Moment src={FFC1117} s={6179} />
           </p>
           <p className={BODY}>
             Paying for projects that size usually means borrowing. The city spends about 4.8% of its
@@ -454,7 +548,7 @@ export default function DigestIssue11() {
             of day-to-day services, and he worries there won&apos;t be room to borrow for the roofs
             and heating systems in the next three to five years. The state School Building Authority
             can pay a share of school repairs, and the superintendent plans to apply (see story 3).{" "}
-            <Moment src={FFC1117} s={6014} />
+            <Moment src={FFC1117} s={5983} />
           </p>
           <p className={BODY}>
             <b>Where the Deficit Reduction Committee fits.</b>{" "}
@@ -471,7 +565,7 @@ export default function DigestIssue11() {
             to late winter or spring <Src href={DRC_1112}>(agenda)</Src>. The Mayor builds the
             FY2028 budget over the spring and presents it in June. And new growth is certified by the
             state each fall, so &ldquo;you&apos;re not going to know until next September what next
-            year&apos;s growth is,&rdquo; Perry said. <Moment src={FFC1117} s={3159} />
+            year&apos;s growth is,&rdquo; Perry said. <Moment src={FFC1117} s={3128} />
           </p>
           <p className={BODY}>
             <b>The analyst is changing, too.</b>{" "}
@@ -583,7 +677,7 @@ export default function DigestIssue11() {
         {/* ---- 03 ---- */}
         <section
           id="schools"
-          data-dek={"Almost five months into the school year's budget, revenue and spending are on target, the district's interim finance director told the School Committee's finance subcommittee. State reimbursement for the costliest special education came in about $837,000, or 22%, above budget; it goes into a revolving special education account used to offset next year's costs. The superintendent plans to seek state repair money starting with Centerville, one of six elementary schools whose roofs are coming due."}
+          data-dek={"Almost five months into the school year's budget, revenue and spending are on target, the district's interim finance director told the School Committee's finance subcommittee. State reimbursement for the costliest special education came in about $837,000, or 22%, above budget; it goes into a revolving special education account used to offset the following year's costs. The superintendent plans to seek state repair money starting with Centerville, one of six elementary schools whose roofs are coming due."}
           className={SECTION}
         >
           <Eyebrow>03 &middot; Schools</Eyebrow>
@@ -607,7 +701,7 @@ export default function DigestIssue11() {
           </p>
           <p className={BODY}>
             <b>Not something to count on.</b>{" "}
-            The amount depends on what the Legislature puts into the program each year. This year
+            The amount depends on what the Legislature puts into the program each year. For FY2027,
             lawmakers added $152 million in one-time money{" "}
             <Src href={MASC_FY27}>(MASC)</Src>. Two years ago the state covered only 44% of the
             transportation costs Beverly expected, according to the city forecast committee&apos;s
@@ -616,16 +710,16 @@ export default function DigestIssue11() {
           <p className={BODY}>
             <b>What it&apos;s for.</b>{" "}
             The money stays in a special education account. Beverly has used each year&apos;s
-            reimbursement toward the next year&apos;s special education tuition, which lowers what
-            the school budget needs. Whether this year&apos;s extra reimbursement will ease next
-            year&apos;s school budget (and, in turn, help close the city&apos;s $1.63 million gap)
+            reimbursement toward the following year&apos;s special education tuition, which lowers
+            what the school budget needs. Whether this extra reimbursement will ease the FY2028
+            school budget (and, in turn, help close the city&apos;s $1.63 million gap)
             didn&apos;t come up. The schools present their FY2028 numbers to the Financial Forecast Committee on November 30.
           </p>
           <p className={BODY}>
             <b>Going the other way: electricity.</b>{" "}
             Solar credits that used to cover part of the high school&apos;s electric bills ended, so
-            that line is already over budget. The city is paying those bills this year from a
-            one-time solar payout, but next year&apos;s budget will have to plan for the full cost,
+            that line is already over budget. The city is paying those bills in FY2027 from a
+            one-time solar payout, but the FY2028 budget will have to plan for the full cost,
             Liporto said. <Moment src={SC1118} s={1442} />
           </p>
           <p className={BODY}>
