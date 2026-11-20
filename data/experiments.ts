@@ -20,6 +20,22 @@ export type Experiment = {
 
 export const EXPERIMENTS: Experiment[] = [
   {
+    slug: "bass-river-history",
+    title: "Bass River: the story so far",
+    blurb:
+      "Three tries since 2005 to rezone River Street for homes and a riverfront path, why the 2022 draft paused, and the bridge hold. Groundwork for a 2027 piece; research record in the development folder.",
+    status: "draft",
+    updated: "2026-11",
+  },
+  {
+    slug: "beverly-overrides",
+    title: "Beverly and Proposition 2½",
+    blurb:
+      "Every override and debt exclusion push in the city's records since 1992: the failed 2008 school override, five that stopped short, and the idea's return. Back-pocket history; doc version shareable.",
+    status: "reference",
+    updated: "2026-11",
+  },
+  {
     slug: "beverly-zoning",
     title: "Zoning in Beverly, from zero",
     blurb:
