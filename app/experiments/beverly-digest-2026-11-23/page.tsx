@@ -443,11 +443,10 @@ export default function DigestIssue11() {
             <b>How the budget year works.</b>{" "}
             Beverly&apos;s budget year, or fiscal year, runs from July 1 to June 30 and takes the
             name of the year it ends in. The current one, FY2027, runs from July 1, 2026 to June 30,
-            2027. It started with a balanced budget: the Council closed its projected gap in June.
-            &ldquo;We are not in deficit,&rdquo; Mayor Cahill told the committee. Each fall the
-            Financial Forecast Committee looks one year ahead, to FY2028, which starts July 1, 2027,
-            and estimates the gap the Mayor will have to close before presenting the FY2028 budget to
-            the Council in June 2027. <Moment src={FFC1117} s={788} />
+            2027. It started with a balanced budget: the Council closed its projected gap in June.{" "}
+            <Moment src={FFC1117} s={788} /> Each fall the Financial Forecast Committee looks one year
+            ahead, to FY2028, which starts July 1, 2027, and estimates the gap the Mayor will have to
+            close before presenting the FY2028 budget to the Council in June 2027.
           </p>
           <p className={BODY}>
             <b>The new estimate.</b>{" "}
@@ -463,9 +462,7 @@ export default function DigestIssue11() {
             <Src href={`${FORECAST}#page=11`}>(p. 11)</Src>. That forecast stacks each year&apos;s
             unclosed gap onto the next, so its $7.1 million was built on FY2027&apos;s own forecast
             gap of $3.9 million. That gap arrived as predicted, and the FY2027 budget, passed in June,
-            closed it.
-            &ldquo;We hit a bullseye,&rdquo; Perry said. &ldquo;It was a lousy bullseye.&rdquo;{" "}
-            <Moment src={FFC1117} s={1186} />
+            closed it. <Moment src={FFC1117} s={1186} />
           </p>
           <p className={BODY}>
             Perry then walked through what has changed for FY2028 since last December, about $5.5
