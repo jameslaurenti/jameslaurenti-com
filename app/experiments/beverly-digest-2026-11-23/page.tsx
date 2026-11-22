@@ -169,6 +169,7 @@ const COUNCIL_1123_SPECIAL = `${AGENDA}/ViewFile/Agenda/_11232026-3014`;
 const ZBA_1124 = `${AGENDA}/ViewFile/Agenda/_11242026-3015`;
 const FORECAST = `${DOC}/6958/Financial-Forecast-Report-FY2026-2030`;
 const ENON_PAGE = "https://www.beverlyma.gov/1311";
+const FIGS = "/beverly/digest/2026-11-23";
 const CEAC_1119 = "https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_11192026-3003";
 const SC_FF_PACKET =
   "https://4.files.edl.io/4717/11/19/26/164356-cfd58abc-6d6d-4934-872e-f2c6866ac460.pdf";
@@ -621,6 +622,37 @@ export default function DigestIssue11() {
             <Src href={SN_STANDLEY}>(Salem News)</Src>. An early 1800s shoe shop, known as a
             &ldquo;ten-footer,&rdquo; stands on the lot. <Moment src={PB1117} s={7511} />
           </p>
+          <figure className="mt-6 max-w-[63ch]">
+            <div className="grid gap-2 sm:grid-cols-[3fr_2fr]">
+              <a href={`${FIGS}/standley-house-wide.jpg`} target="_blank" rel="noopener" data-track="figure_opened">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${FIGS}/standley-house-wide.jpg`}
+                  alt="The house at 38 Standley St in late fall: a long white clapboard house behind a large bare tree and a leaf-covered lawn. At left, a wing with a broad dark roof, a skylight and tall windows; at right, a gambrel-roofed section with a dormer, a white brick chimney and a covered porch."
+                  width={1600}
+                  height={900}
+                  loading="lazy"
+                  className="h-full w-full rounded border border-rule object-cover"
+                />
+              </a>
+              <a href={`${FIGS}/standley-house-porch-end.jpg`} target="_blank" rel="noopener" data-track="figure_opened">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={`${FIGS}/standley-house-porch-end.jpg`}
+                  alt="A closer view of the porch end of the house: peeling white clapboards, a gambrel roof, a tall white brick chimney, and a porch with the number 38 over the steps."
+                  width={1400}
+                  height={1054}
+                  loading="lazy"
+                  className="h-full w-full rounded border border-rule object-cover object-top"
+                />
+              </a>
+            </div>
+            <figcaption className="mt-2 text-[0.85rem] leading-snug text-ink-faint">
+              The house on November 22, and its porch end with the large chimney. Waring&apos;s engineer described a core from about 1700 to 1720,
+              a large addition to the west built around 1978, and possibly 1800s additions in
+              between. <Moment src={PB1117} s={7548} /> Photos by James Laurenti.
+            </figcaption>
+          </figure>
           <p className={BODY}>
             <b>The delay.</b>{" "}
             In January the commission voted unanimously to declare the house and the shoe shop
