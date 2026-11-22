@@ -169,6 +169,7 @@ const COUNCIL_1123_SPECIAL = `${AGENDA}/ViewFile/Agenda/_11232026-3014`;
 const ZBA_1124 = `${AGENDA}/ViewFile/Agenda/_11242026-3015`;
 const FORECAST = `${DOC}/6958/Financial-Forecast-Report-FY2026-2030`;
 const ENON_PAGE = "https://www.beverlyma.gov/1311";
+const CEAC_1119 = "https://www.beverlyma.gov/AgendaCenter/ViewFile/Agenda/_11192026-3003";
 const SC_FF_PACKET =
   "https://4.files.edl.io/4717/11/19/26/164356-cfd58abc-6d6d-4934-872e-f2c6866ac460.pdf";
 const SC_COTW_PACKET =
@@ -261,6 +262,11 @@ const ahead: Ev[] = [
     date: "Dec 8",
     what: "Conservation Commission",
     detail: "The golf course permit and the Endicott seawall both return.",
+  },
+  {
+    date: "Dec 9",
+    what: "Historic District Commission: 38 Standley St",
+    detail: "The city has asked the commission to review Waring School's plan for the house.",
   },
   {
     date: "Dec 10",
@@ -811,7 +817,7 @@ export default function DigestIssue11() {
         {/* ---- 05 ---- */}
         <section
           id="enon"
-          data-dek={"The Planning Board closed its public hearing on 179 apartments at 37 Enon St, the Stop & Shop site in Ward 5, after the Design Review Board and the Parking and Traffic Commission both recommended the project with conditions. The board continued the matter to December 15, when its chair expects to hold a vote."}
+          data-dek={"The Planning Board closed its public hearing on 179 apartments at 37 Enon St, the Stop & Shop site in Ward 5, after the Parking and Traffic Commission and the Design Review Board both recommended approval. The board continued the matter to December 15, when its chair expects to hold a vote."}
           className={SECTION}
         >
           <Eyebrow>05 &middot; Planning Board</Eyebrow>
@@ -821,13 +827,21 @@ export default function DigestIssue11() {
             The Planning Board closed its public hearing on the plan for 179 apartments at 37 Enon
             St, the Stop &amp; Shop site, on a 7-0 roll call. The board&apos;s chair said his
             &ldquo;strong intention&rdquo; is to vote at the next meeting, December 15, after hearing
-            from the Clean Energy Advisory Committee. <Moment src={PB1117} s={6302} />{" "}
+            from the Clean Energy Advisory Committee. <Moment src={PB1117} s={6302} /> That
+            committee had the project on its November 19 agenda{" "}
+            <Src href={`${CEAC_1119}#page=1`}>(p. 1)</Src>; nothing from the meeting has been posted
+            yet.{" "}
             <Earlier issue={8} slug="2026-11-02" id="enon" label="the October hearing" />
           </p>
           <p className={BODY}>
             <b>What&apos;s new.</b>{" "}
-            The Design Review Board and the Parking and Traffic Commission both recommended the
-            project unanimously, with conditions. <Moment src={PB1117} s={390} />
+            Both advisory boards recommended approval. <Moment src={PB1117} s={390} /> The Parking
+            and Traffic Commission voted 6-0 with 10 conditions, among them new traffic counts at the
+            driveways while school is in session, and working with the city and the MBTA on moving
+            the 451 bus stop and turnaround <Src href={`${DOC}/7826#page=3`}>(pp. 3-4)</Src>. The
+            Design Review Board voted 5-0, with five suggestions on roofing, plantings, the dog run
+            and paths that it said &ldquo;are not conditions of approval&rdquo;{" "}
+            <Src href={`${DOC}/7827#page=2`}>(p. 2)</Src>.
           </p>
           <p className={BODY}>
             <b>What to expect.</b>{" "}
