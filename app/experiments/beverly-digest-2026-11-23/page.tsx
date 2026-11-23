@@ -666,7 +666,7 @@ export default function DigestIssue11() {
           <p className={BODY}>
             Two board members of Historic Beverly, speaking for
             themselves, showed an alternative that keeps the house while still creating four lots to
-            sell, using one shared driveway.
+            sell.
             They said their builders&apos; figures were well under $3 million. Neither estimate has
             been made public. <Moment src={PB1117} s={9027} />
           </p>
