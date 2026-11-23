@@ -801,9 +801,7 @@ export default function DigestIssue11() {
               school property, from parking lots to bus loops, with exemptions for disability
               devices, police, on-duty staff and approved school activities{" "}
               <Src href={`${SC_COTW_PACKET}#page=21`}>(p. 21)</Src>. Mayor Cahill said it does not
-              separate pedal-assist bikes from throttle bikes. The policy chair, Catherine Frost, said
-              the first version was &ldquo;intentionally big. And that&apos;s not what folks
-              want.&rdquo; <Moment src={SC1118} s={9168} />
+              separate pedal-assist bikes from throttle bikes. <Moment src={SC1118} s={9168} />
             </li>
             <li>
               <b>Three drafts were in circulation.</b>{" "}The version in the packet differed from the
