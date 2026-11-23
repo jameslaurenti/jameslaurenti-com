@@ -499,9 +499,7 @@ export default function DigestIssue11() {
           <p className={BODY}>
             Perry said <Fig>$1.63 million</Fig>{" "}is about 16 or 17 employees at about $100,000
             each with benefits, and it &ldquo;does not restore any of those 18 employees&rdquo; cut
-            in the FY2027 budget. <Moment src={FFC1117} s={7489} />{" "}Councilor Houseman, who chairs the
-            committee, called this &ldquo;arguably the most challenging budget season the city has
-            faced in the last 20 years.&rdquo;
+            in the FY2027 budget. <Moment src={FFC1117} s={7489} />
           </p>
           <p className={BODY}>
             <b>What the number leaves out.</b>{" "}
