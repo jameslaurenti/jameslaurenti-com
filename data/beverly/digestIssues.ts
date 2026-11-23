@@ -23,6 +23,14 @@ export type DigestIssue = {
 
 export const issues: DigestIssue[] = [
   {
+    slug: "2026-11-23",
+    number: 11,
+    published: "November 23, 2026",
+    covering: "November 16 to November 22",
+    teaser:
+      "The FY2028 budget gap is now estimated at $1.63 million, down from last December's $7.1 million forecast. Waring School's plan for 38 Standley St would take down a house dating to about 1700, the School Committee puts off its e-bike vote, and 37 Enon St heads to a December 15 vote.",
+  },
+  {
     slug: "2026-11-16",
     number: 10,
     published: "November 16, 2026",
