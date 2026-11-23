@@ -85,6 +85,47 @@ const Hear = ({
 );
 
 /**
+ * The top-of-story button when a story turns on two competing claims: one button per side,
+ * same size and wording pattern, in the order they were said at the meeting.
+ */
+const HearSides = ({
+  src,
+  sides,
+}: {
+  src: string;
+  sides: { title: string; detail: string; s: number }[];
+}) => (
+  <div className="mb-2.5 max-w-[63ch] space-y-1.5">
+    {sides.map((x) => (
+      <a
+        key={x.s}
+        href={at(src, x.s)}
+        target="_blank"
+        rel="noopener"
+        className="flex items-center gap-3 rounded-md border border-accent/30 bg-accent-glow px-3.5 py-2.5 no-underline transition-colors hover:border-accent hover:bg-white"
+        data-track="source_opened"
+        data-placement="hear-button"
+        data-seconds={x.s}
+        data-moment={clock(x.s)}
+      >
+        <span
+          aria-hidden
+          className="flex h-6 w-6 flex-none items-center justify-center rounded-full bg-accent pl-0.5 text-[0.55rem] text-white"
+        >
+          &#9654;
+        </span>
+        <span className="flex min-w-0 flex-col">
+          <span className="text-[0.93rem] font-bold leading-snug text-accent-deep">{x.title}</span>
+          <span className="text-[0.8rem] tabular-nums text-ink-mid">
+            {x.detail} &middot; from {clock(x.s)}
+          </span>
+        </span>
+      </a>
+    ))}
+  </div>
+);
+
+/**
  * Every other moment, set inline right after the sentence it backs up. Keeping these next
  * to their claims, rather than in the footer, is what lets the footer be for documents.
  */
@@ -539,12 +580,13 @@ export default function DigestIssue11() {
           </p>
           <p className={BODY}>
             Paying for projects that size usually means borrowing. The city spends about 4.8% of its
-            budget on debt payments, Perry said, down from where it was about ten years ago. His own
-            view is that it should be closer to 7%, though he acknowledged that money would come out
-            of day-to-day services, and he worries there won&apos;t be room to borrow for the roofs
-            and heating systems in the next three to five years. The state School Building Authority
-            can pay a share of school repairs, and the superintendent plans to apply (see story 3).{" "}
-            <Moment src={FFC1117} s={5983} />
+            budget on debt payments, Perry said, down from where it was about ten years ago. He has
+            advised the Council to move that toward 7% so the city can keep up with its buildings,
+            while acknowledging the money would come out of day-to-day services such as teachers and
+            police. At 4.8%, he said, the city may not have room to borrow for the roofs and heating
+            systems in the next three to five years. <Moment src={FFC1117} s={5968} />{" "}The state
+            School Building Authority can pay a share of school repairs, and the superintendent plans
+            to apply (see story 3).
           </p>
           <p className={BODY}>
             <b>Where the Deficit Reduction Committee fits.</b>{" "}
@@ -583,11 +625,20 @@ export default function DigestIssue11() {
           <Eyebrow>02 &middot; Planning Board</Eyebrow>
           <H2>Waring School&apos;s plan for 38 Standley St would take down a house from about 1700</H2>
           <From>Planning Board &middot; Tuesday, November 17 &middot; OSRD site plan #13-25, Ward 6</From>
-          <Hear
+          <HearSides
             src={PB1117}
-            s={8182}
-            title="Waring's engineer on the cost of restoring the house"
-            meeting="Planning Board, Nov 17"
+            sides={[
+              {
+                title: "Waring's engineer on the cost",
+                detail: "Restoring the house would cost about $3.5 million",
+                s: 8182,
+              },
+              {
+                title: "Two Historic Beverly board members on the cost",
+                detail: "Their builders' figures were well under $3 million",
+                s: 9175,
+              },
+            ]}
           />
           <p className={BODY}>
             Waring School wants to divide its 4.38-acre lot at 38 Standley St, take down the house and
