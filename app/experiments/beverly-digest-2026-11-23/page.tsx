@@ -569,14 +569,6 @@ export default function DigestIssue11() {
             state each fall, so &ldquo;you&apos;re not going to know until next September what next
             year&apos;s growth is,&rdquo; Perry said. <Moment src={FFC1117} s={3128} />
           </p>
-          <p className={BODY}>
-            <b>The analyst is changing, too.</b>{" "}
-            On October 27 the Council voted 9-0 to offer the budget analyst job to Catherine Foster,
-            subject to reference checks and other hiring steps, with Gary Frisch as its second
-            choice, according to the meeting&apos;s draft minutes{" "}
-            <Src href={`${COUNCIL_1123}#page=42`}>(p. 42)</Src>. Perry offered to stay through the
-            forecast to help with the transition. A special Council meeting on November 23 takes up the next steps.
-          </p>
           <Refs
             sources={
               <>
