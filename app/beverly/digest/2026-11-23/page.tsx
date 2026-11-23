@@ -619,7 +619,7 @@ export default function DigestIssue11() {
         {/* ---- 02 ---- */}
         <section
           id="standley"
-          data-dek={"Waring School's plan to divide 4.38 acres at 38 Standley St into four house lots would take down a First Period house dating to 1700 to 1720. Waring's engineer put restoration at about $3.5 million. Two Historic Beverly board members, speaking for themselves, showed an alternative that keeps the house, and Councilors St. Hilaire and Houseman wrote asking the board to save it. The hearing continues December 15."}
+          data-dek={"Waring School's plan to divide 4.38 acres at 38 Standley St into four house lots would take down a First Period house dating to 1700 to 1720. Waring's engineer put restoration at about $3.5 million. Two Historic Beverly board members, speaking for themselves, said their builders' figures were well under $3 million and showed an alternative that keeps the house. Neither estimate has been made public. Councilors St. Hilaire and Houseman wrote asking the board to save it. The hearing continues December 15."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; Planning Board</Eyebrow>
@@ -851,9 +851,16 @@ export default function DigestIssue11() {
             <li>
               <b>Three drafts were in circulation.</b>{" "}The version in the packet differed from the
               one a subcommittee approved. &ldquo;How did that happen?&rdquo; the chair asked.{" "}
-              <Moment src={SC1118} s={9293} />
+              <Moment src={SC1118} s={9918} />
             </li>
           </ul>
+          <p className={BODY}>
+            <b>The policy chair&apos;s view.</b>{" "}
+            Catherine Frost, who chairs the committee&apos;s policy work, said the first draft was
+            intentionally broad, covering any micromobility device, and that narrowing it by type of
+            bike will take a lot more research. She asked for input from people with more knowledge
+            of the subject. <Moment src={SC1118} s={9293} />
+          </p>
           <p className={BODY}>
             <b>What&apos;s next.</b>{" "}
             Frost will reconcile the drafts, with input from the city&apos;s Bicycle and Pedestrian
