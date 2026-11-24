@@ -1,10 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 
+const DESCRIPTION =
+  "Curiosity, where it started in a Classics department, and where it points now: mostly at Beverly, Massachusetts.";
+
 export const metadata: Metadata = {
   title: "About — James Laurenti",
-  description:
-    "Curiosity, where it started in a Classics department, and where it points now: mostly at Beverly, Massachusetts.",
+  description: DESCRIPTION,
+  // Its own openGraph, so link previews show this page's description and URL rather than
+  // the site-wide ones from the root layout. Setting openGraph here drops the image the root
+  // segment's app/opengraph-image.tsx would supply, so it is named again.
+  openGraph: {
+    type: "website",
+    title: "About James Laurenti",
+    description: DESCRIPTION,
+    url: "/about",
+    siteName: "James Laurenti",
+    images: [{ url: "/opengraph-image", width: 1200, height: 630 }],
+  },
 };
 
 /**

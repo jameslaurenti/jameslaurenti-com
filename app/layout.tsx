@@ -20,17 +20,21 @@ const dmSans = DM_Sans({
   display: "swap",
 });
 
+const SITE_DESCRIPTION =
+  "I can't leave a thing half-understood. Plain-language guides to how Beverly, Massachusetts runs, and essays on what things mean.";
+
 export const metadata: Metadata = {
-  // Without this, page-level Open Graph images and canonical URLs can't resolve, and every
-  // page inherits the homepage's og:url.
+  // Without this, page-level Open Graph images and canonical URLs can't resolve.
   metadataBase: new URL("https://www.jameslaurenti.com"),
   title: "James Laurenti",
-  description: "Product leader. Builder of useful things.",
+  description: SITE_DESCRIPTION,
+  // Inherited whole by every page that doesn't set its own openGraph (Next merges metadata
+  // shallowly), so it carries no url: a shared /writing link must not claim to be the
+  // homepage. The image comes from app/opengraph-image.tsx.
   openGraph: {
     type: "website",
     title: "James Laurenti",
-    description: "Product leader. Builder of useful things.",
-    url: "/",
+    description: SITE_DESCRIPTION,
     siteName: "James Laurenti",
   },
   twitter: { card: "summary_large_image" },
