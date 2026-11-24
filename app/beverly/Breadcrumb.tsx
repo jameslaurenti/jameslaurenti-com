@@ -11,8 +11,8 @@ const DIGEST = `${HUB}/digest`;
  *
  * Two kinds of thing live under /beverly and they need different trails:
  *
- * - Pieces in the "What Beverly Does Next" collection go back to the hub, which is what
- *   the nav's "Beverly" item points at.
+ * - Explainers and tools go back to the Beverly hub, which is what the nav's "Beverly"
+ *   item points at.
  * - Digest issues go back to the digest archive. They sit at this URL for tidiness but
  *   are not part of that collection, and naming it in their crumb would claim a
  *   membership they do not have. The archive is also otherwise unreachable from inside
@@ -30,7 +30,7 @@ export default function Breadcrumb() {
 
   const inDigest = path.startsWith(`${DIGEST}/`);
   const href = inDigest ? DIGEST : HUB;
-  const label = inDigest ? "Beverly Meeting Digest" : "What Beverly Does Next";
+  const label = inDigest ? "Beverly Meeting Digest" : "Beverly";
 
   return (
     // Sticks under the site nav (h-14) so the way back stays reachable in pieces that run

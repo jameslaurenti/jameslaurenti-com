@@ -5,6 +5,17 @@ Guidance for Claude Code working on the **Civic Resources: Beverly** section
 anything here. The repo-wide file is the root `CLAUDE.md` (`@AGENTS.md`); this
 file is scoped to Beverly and does not override it.
 
+## The hub page (November 2026)
+
+`app/beverly/page.tsx` now centers on the digest: the newest issue, the email signup
+(`HubSignup`, placement `hub-card`), the three issues before it and the archive link, then a
+flat "Featured" list of finished pieces with no reading order. Only feature pieces that are
+already public (indexed and in the sitemap); drafts and held work stay unlinked or in
+`/experiments`. The numbered deficit story, the "coming soon" slots and the development map
+link were removed from the hub. It is interim: the civic work is moving to its own site (see
+"Plan to launch" in `docs/beverly/development-map.md`). Much of what follows predates this
+and still says `/work/beverly`; the routes are under `/beverly` now.
+
 ## What this section is
 
 `/work/beverly` is the Civic Resources: Beverly section of the site (a Next.js 16

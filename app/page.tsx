@@ -7,16 +7,16 @@ import Link from "next/link";
  */
 const currentlyRest = [
   { label: "Listening", value: "Geese, Getting Killed" },
-  { label: "Playing", value: "Hollow Knight: Silksong" },
-  { label: "Drinking", value: "Austrian reds, St. Laurent" },
-  { label: "Photographing", value: "My daughters negotiating their world" },
+  { label: "Playing", value: "Baldur's Gate 3" },
+  { label: "Drinking", value: "Negronis at Red's" },
+  { label: "Losing to", value: "My daughters, at the Tea Party spinner game" },
   { label: "Skeptical of", value: "FOMO merchants" },
 ];
 
 const whatIMake = [
   {
     mode: "How things work",
-    body: "Tools and writing that take something tangled and make it legible. Right now: Beverly's budget, the development reshaping a fast-growing city, and a weekly digest of what the city's boards actually did.",
+    body: "Tools and writing that take something tangled and make it legible. Right now that's Beverly: a weekly digest of what the city's boards did, linked into the meeting recordings, and explainers on how the city's money works.",
     cta: "See the Beverly work →",
     href: "/beverly",
   },
@@ -44,7 +44,7 @@ export default function Home() {
             className="text-accent uppercase font-sans"
             style={{ fontSize: "0.72rem", letterSpacing: "0.14em" }}
           >
-            Product · Classics · Curiosity
+            Classics · Curiosity · Beverly
           </span>
         </div>
 
@@ -52,14 +52,15 @@ export default function Home() {
         <h1
           className="font-display font-bold text-ink mb-8"
           style={{
-            fontSize: "clamp(2.6rem, 5.5vw, 4.6rem)",
+            // 2.4rem floor: the smallest size at which "half-understood." fits one line
+            // on a 375px phone, so it does not split at the hyphen.
+            fontSize: "clamp(2.4rem, 5.5vw, 4.6rem)",
             letterSpacing: "-0.03em",
             lineHeight: 1.02,
           }}
         >
-          I find the signal.<br />
-          Then I build something<br />
-          worth keeping.
+          I can&apos;t leave a&nbsp;thing<br />
+          half-understood.
         </h1>
 
         {/* Intro */}
@@ -67,10 +68,11 @@ export default function Home() {
           className="text-ink-mid"
           style={{ fontSize: "1.02rem", lineHeight: 1.78, maxWidth: "54ch" }}
         >
-          Most of what&apos;s here began with a question I couldn&apos;t put
-          down. Some are about how things work, like where my city&apos;s money
-          actually goes. Others are about what things mean, which is harder to
-          pin down and more personal.
+          Most of what&apos;s here started as something I wanted to understand
+          all the way through. Right now that points mostly at Beverly,
+          Massachusetts, where I live. I track how the city runs and write
+          plain-language guides to it. The rest is essays on what things mean,
+          which is harder to pin down and more personal.
         </p>
         <p
           className="text-ink-mid"
@@ -81,9 +83,10 @@ export default function Home() {
             marginTop: "1.1rem",
           }}
         >
-          By trade I&apos;m a product manager at Grubhub. Before that, a Classics
-          degree, a family liquor store, and a long stretch in wine. The rest is
-          curiosity that wouldn&apos;t stay in its lane.
+          By trade I&apos;m a Principal PM at Grubhub, where I&apos;ve spent seven
+          and a half years stepping into unfamiliar parts of the business and
+          figuring them out. Before that: a Classics degree, a family liquor
+          store, and a decade in wine ecommerce.
         </p>
 
         <p style={{ marginTop: "1.6rem" }}>
@@ -156,8 +159,7 @@ export default function Home() {
             Watching more <span className="text-ink font-medium">BevCam footage</span> than is
             strictly healthy. Reading{" "}
             <span className="text-ink font-medium">Dungeon Crawler Carl</span> on a promise to
-            myself that I will finish it. Thinking about what AI is actually worth, and not
-            landing anywhere comfortable.
+            myself that I will finish it.
           </p>
 
           <div>

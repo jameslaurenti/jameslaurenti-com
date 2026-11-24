@@ -322,7 +322,7 @@ export default function BudgetExplainer() {
             <b className="font-bold text-ink">Real Beverly numbers, plain language, no finance background needed.</b>
           </p>
           <p className="mt-8 text-[0.8125rem] leading-relaxed text-ink-faint">
-            A nonpartisan explainer. Figures from the city&apos;s own budget documents, with sources at the
+            A neutral explainer. Figures from the city&apos;s own budget documents, with sources at the
             bottom.
           </p>
           <p className="mt-2 text-[0.8125rem] leading-relaxed text-ink-faint">

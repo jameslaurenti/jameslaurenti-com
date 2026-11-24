@@ -20,10 +20,10 @@ type Entry = {
 // stays so older links and search results still land somewhere useful.
 const entries: Entry[] = [
   {
-    title: "What Beverly Does Next",
+    title: "Beverly",
     tag: "How things work",
     blurb:
-      "Beverly's budget is tightening, and the choices ahead will shape the town. Plain-language pieces and tools to help residents understand it and weigh in.",
+      "A weekly digest of what Beverly's city boards did, and explainers on how the city works. Neutral, sourced, and linked into the meeting recordings.",
     href: "/beverly",
   },
   {

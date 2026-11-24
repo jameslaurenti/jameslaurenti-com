@@ -192,9 +192,9 @@ export default function WhatSetsYourTaxes() {
             information. <b className="font-bold text-ink">Here is what actually moves your bill.</b>
           </p>
           <p className="mt-8 max-w-[60ch] text-[0.8125rem] leading-relaxed text-ink-faint">
-            A nonpartisan, statewide explainer. Figures from the Massachusetts Division of Local Services and the U.S. Census, with
+            A neutral, statewide explainer. Figures from the Massachusetts Division of Local Services and the U.S. Census, with
             sources at the bottom. It grew out of a closer look at one city:{" "}
-            <A href="/beverly">What Beverly Does Next</A>.
+            <A href="/beverly">Beverly</A>.
           </p>
         </header>
 

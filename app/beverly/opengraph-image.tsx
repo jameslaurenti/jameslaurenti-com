@@ -3,7 +3,7 @@ import { ImageResponse } from "next/og";
 // Applies to /beverly and every page nested under it, so each piece gets a real card
 // instead of inheriting the site-wide one. The per-page title and description come from each
 // route's own metadata; this is the shared image behind them.
-export const alt = "What Beverly Does Next: plain-language pieces and tools on the city budget";
+export const alt = "Beverly: a weekly digest of the city's meetings, and explainers on how the city works";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -51,7 +51,7 @@ export default async function Image() {
               maxWidth: 960,
             }}
           >
-            What Beverly Does Next
+            Beverly
           </div>
           <div
             style={{
@@ -62,14 +62,14 @@ export default async function Image() {
               maxWidth: 900,
             }}
           >
-            The city budget in plain language, with tools to poke at the numbers yourself.
+            A weekly digest of the city&apos;s meetings, and explainers on how the city works.
           </div>
         </div>
 
         <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
           <div style={{ width: 76, height: 8, background: ACCENT, borderRadius: 4, display: "flex" }} />
           <div style={{ fontSize: 28, color: INK_MID }}>
-            jameslaurenti.com · Nonpartisan and sourced
+            jameslaurenti.com · Neutral and sourced
           </div>
         </div>
       </div>
