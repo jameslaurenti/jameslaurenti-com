@@ -20,6 +20,14 @@ export type Experiment = {
 
 export const EXPERIMENTS: Experiment[] = [
   {
+    slug: "thanksgiving",
+    title: "Thanksgiving drinking game",
+    blurb:
+      "A shared board for dinner: anyone with the link adds a “drink when…” idea and taps it when it happens. Live tallies on every phone. Stored in Upstash Redis; keys reset by year.",
+    status: "internal",
+    updated: "2026-11",
+  },
+  {
     slug: "bass-river-history",
     title: "Bass River: the story so far",
     blurb:
