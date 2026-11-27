@@ -27,9 +27,22 @@ const H2 = ({ children }: { children: ReactNode }) => (
   </h2>
 );
 
-/** Which meeting or record an item came from. Thematic items can name more than one. */
-const From = ({ children }: { children: ReactNode }) => (
-  <p className="mt-2.5 max-w-[63ch] text-[0.9rem] leading-relaxed text-ink-mid">{children}</p>
+/**
+ * What a story is built on, in five words or fewer. The records themselves are listed once,
+ * with links, in the story's Sources row at the bottom, which the arrow jumps to. (New with
+ * issue 12, from James's note on Nov 27: the full list up here read as crammed and unclear,
+ * and it repeated the footer.)
+ */
+const From = ({ id, children }: { id: string; children: ReactNode }) => (
+  <p className="mb-3 mt-2 flex max-w-[63ch] flex-wrap items-baseline gap-x-2 text-[0.88rem] leading-snug">
+    <span className="text-[0.66rem] font-bold uppercase tracking-[0.12em] text-ink-faint">
+      From
+    </span>
+    <span className="text-ink-mid">{children}</span>
+    <a href={`#${id}-sources`} className="rlink text-[0.8rem]">
+      Sources&nbsp;&darr;
+    </a>
+  </p>
 );
 
 const Fig = ({ children }: { children: ReactNode }) => (
@@ -107,11 +120,11 @@ const Moment = ({ src, s }: { src: string; s: number }) => (
   </a>
 );
 
-const Refs = ({ sources, more }: { sources: ReactNode; more?: ReactNode }) => (
-  <div className="mt-5 grid max-w-[63ch] gap-1.5 border-t border-rule pt-3">
+const Refs = ({ id, sources, more }: { id: string; sources: ReactNode; more?: ReactNode }) => (
+  <div id={`${id}-sources`} className="mt-5 grid max-w-[63ch] scroll-mt-24 gap-1.5 border-t border-rule pt-3">
     <p className="flex flex-wrap items-baseline gap-x-4 gap-y-1 text-[0.93rem]">
       <span className="min-w-[5.5rem] text-[0.66rem] font-bold uppercase tracking-[0.12em] text-ink-faint">
-        Go deeper
+        Sources
       </span>
       {sources}
     </p>
@@ -171,6 +184,10 @@ const DLS_RATES =
   "https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=PropertyTaxInformation.taxratesbyclass.taxratesbyclass_main";
 const DLS_BILLS =
   "https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=AverageSingleTaxBill.SingleFamTaxBill_wRange";
+const DLS_LEVY =
+  "https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=Dashboard.TrendAnalysisReports.TaxLevyByClass";
+const DLS_VALUES =
+  "https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=PropertyTaxInformation.AssessedValuesbyClass.assessedvaluesbyclass";
 const DLS_GUIDE =
   "https://www.mass.gov/info-details/understanding-the-classification-hearing-process-in-local-taxation-and-tax-policy";
 /* Proposition 2½ itself: (f) holds the levy to 102.5% of last year's plus new growth. */
@@ -184,12 +201,31 @@ const contents: [string, string][] = [
 
 /* Beverly's average single-family home, from the state Division of Local Services
    (Average Single Family Tax Bill and Tax Rates by Class, data current as of Nov 27, 2026).
-   The FY2027 row is blank there until the rate is approved. */
-const BILLS: { year: string; rate: string; value: string; bill: string }[] = [
-  { year: "FY2024", rate: "$11.23", value: "$720,562", bill: "$8,092" },
-  { year: "FY2025", rate: "$10.99", value: "$766,766", bill: "$8,427" },
-  { year: "FY2026", rate: "$10.81", value: "$817,185", bill: "$8,834" },
+   The FY2027 row is blank there until the rate is approved. The changes from the year
+   before are the digest's arithmetic (evals/numbers/derivations/2026-11-30.json). */
+type Cell = { v: string; ch?: string };
+const BILLS: { year: string; rate: Cell; value: Cell; bill: Cell }[] = [
+  { year: "FY2024", rate: { v: "$11.23" }, value: { v: "$720,562" }, bill: { v: "$8,092" } },
+  {
+    year: "FY2025",
+    rate: { v: "$10.99", ch: "−2.1%" },
+    value: { v: "$766,766", ch: "+6.4%" },
+    bill: { v: "$8,427", ch: "+4.1%" },
+  },
+  {
+    year: "FY2026",
+    rate: { v: "$10.81", ch: "−1.6%" },
+    value: { v: "$817,185", ch: "+6.6%" },
+    bill: { v: "$8,834", ch: "+4.8%" },
+  },
 ];
+
+const Num = ({ c, strong = false }: { c: Cell; strong?: boolean }) => (
+  <>
+    <span className={strong ? "font-semibold" : ""}>{c.v}</span>
+    {c.ch && <span className="block text-[0.75rem] text-ink-faint">{c.ch}</span>}
+  </>
+);
 
 function BillTable() {
   return (
@@ -208,26 +244,34 @@ function BillTable() {
         </thead>
         <tbody>
           {BILLS.map((r) => (
-            <tr key={r.year} className="border-b border-rule last:border-b-0">
+            <tr key={r.year} className="border-b border-rule align-top last:border-b-0">
               <td className="py-1.5 pr-3">{r.year}</td>
-              <td className="py-1.5 pr-3">{r.rate}</td>
-              <td className="py-1.5 pr-3">{r.value}</td>
-              <td className="py-1.5 font-semibold">{r.bill}</td>
+              <td className="py-1.5 pr-3">
+                <Num c={r.rate} />
+              </td>
+              <td className="py-1.5 pr-3">
+                <Num c={r.value} />
+              </td>
+              <td className="py-1.5">
+                <Num c={r.bill} strong />
+              </td>
             </tr>
           ))}
         </tbody>
       </table>
       <p className="mt-3 text-[0.78rem] leading-relaxed text-ink-faint">
-        The state&apos;s figures. A fiscal year runs July 1 to June 30 and takes the name of the
-        year it ends in, so FY2026 ended this June.{" "}
-        <Src href={DLS_BILLS}>(State data)</Src>
+        The state&apos;s figures <Src href={DLS_BILLS}>(state data)</Src>. The changes from the
+        year before are the digest&apos;s arithmetic. A fiscal year runs July 1 to June 30 and
+        takes the name of the year it ends in, so FY2026 ended this June.
       </p>
     </figure>
   );
 }
 
-/* The five steps from the budget to the bill, with where each one stands. "now" is the
-   one decision still open; the rest are either settled or follow from it. */
+/* The four steps from the budget to the bill, with where each one stands. "now" is the
+   one decision still open; the rest are either settled or follow from it. The split and the
+   rates were two steps until round 2 (James, Nov 27): the rates follow from the vote, so
+   they read as one decision. */
 type Step = { what: string; when: string; state: "done" | "now" | "next"; body: ReactNode };
 
 const STEPS: Step[] = [
@@ -254,24 +298,15 @@ const STEPS: Step[] = [
     ),
   },
   {
-    what: "The split",
+    what: "The split, and with it the rates",
     when: "Monday, Dec 7 · still open",
     state: "now",
     body: (
       <>
         The Council holds a hearing, then votes on how the total is divided between homes and
-        businesses <Src href={`${COUNCIL_1123}#page=57`}>(p. 57)</Src>.
-      </>
-    ),
-  },
-  {
-    what: "The rates",
-    when: "From Dec 8",
-    state: "next",
-    body: (
-      <>
-        The split sets one rate for homes and one for business property. The city sends them to
-        the state for approval <Src href={`${COUNCIL_1123}#page=47`}>(p. 47)</Src>.
+        businesses <Src href={`${COUNCIL_1123}#page=57`}>(p. 57)</Src>. That sets one rate for
+        homes and one for business property, which the city plans to send to the state for
+        approval the next day <Src href={`${COUNCIL_1123}#page=47`}>(p. 47)</Src>.
       </>
     ),
   },
@@ -335,43 +370,97 @@ function BillSteps() {
   );
 }
 
-/* Last year's split next to the single rate the Council could have used instead. The
-   single rate is the chief assessor's figure from the Dec 1, 2025 hearing (35:57 and
-   41:00); the chosen rates match the state's Tax Rates by Class. */
-function SplitTable() {
+/* Who paid last year's (FY2026) property taxes: one rate for everyone next to the split the
+   Council chose. Replaces round 1's rate table (James, Nov 27: show what the split does to the
+   whole city, not just the rate per $1,000).
+   - The split: the state's Tax Levies by Class, FY2026. Homes are the residential class
+     ($107,964,564) plus open space ($9,282) = $107,973,846, 79.75%; business property is
+     commercial, industrial and personal property, $27,424,265, 20.25%; total $135,398,112.
+   - One rate: each class pays its share of the city's value, 88.43% and 11.57% (the state's
+     Assessed Values by Class, FY2026). Business property's $15,672,876 at one rate is the chief
+     assessor's (Dec 1, 2025, 38:35, matching the 11.57% of the total); homes' $119.7 million
+     is the total less that. The single rate and the moved $11,751,389 are his too (35:57,
+     38:56); the chosen rates match the state's Tax Rates by Class.
+   Colors: the two fills pass the dataviz validator (light surface); the gold is under 3:1, so
+   every segment carries a printed label. */
+type Share = { pct: number; amt: string };
+const WHO_PAYS: { label: string; rates: string; homes: Share; biz: Share }[] = [
+  {
+    label: "One rate for everyone",
+    rates: "$11.99 per $1,000 for all property",
+    homes: { pct: 88, amt: "$119.7 million" },
+    biz: { pct: 12, amt: "$15.7 million" },
+  },
+  {
+    label: "The split the Council chose",
+    rates: "Homes $10.81, business $20.98 per $1,000",
+    homes: { pct: 80, amt: "$108.0 million" },
+    biz: { pct: 20, amt: "$27.4 million" },
+  },
+];
+const HOMES_FILL = "#0f7a45";
+const BIZ_FILL = "#b8923a";
+
+const Swatch = ({ fill }: { fill: string }) => (
+  <span aria-hidden className="inline-block h-2.5 w-2.5 rounded-sm" style={{ background: fill }} />
+);
+
+function WhoPays() {
   return (
     <figure className="mt-6 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-4 py-4">
       <figcaption className="text-[0.95rem] font-semibold leading-snug text-ink">
-        Last year&apos;s choice, in tax per $1,000 of value
+        Who paid last year&apos;s $135.4 million in property taxes
       </figcaption>
-      <table className="mt-3 w-full text-left text-[0.9rem] tabular-nums">
-        <thead>
-          <tr className="border-b border-rule text-[0.75rem] uppercase tracking-wide text-ink-faint">
-            <th className="py-1.5 pr-3 font-semibold">
-              <span className="sr-only">Option</span>
-            </th>
-            <th className="py-1.5 pr-3 font-semibold">Homes</th>
-            <th className="py-1.5 font-semibold">Business property</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr className="border-b border-rule">
-            <td className="py-1.5 pr-3 text-ink-mid">One rate for everyone</td>
-            <td className="py-1.5 pr-3 text-ink-mid">$11.99</td>
-            <td className="py-1.5 text-ink-mid">$11.99</td>
-          </tr>
-          <tr>
-            <td className="py-1.5 pr-3 font-semibold">The split the Council chose</td>
-            <td className="py-1.5 pr-3 font-semibold">$10.81</td>
-            <td className="py-1.5 font-semibold">$20.98</td>
-          </tr>
-        </tbody>
-      </table>
-      <p className="mt-3 text-[0.78rem] leading-relaxed text-ink-faint">
+      <p className="mt-1.5 flex flex-wrap gap-x-4 text-[0.8rem] text-ink-mid">
+        <span className="inline-flex items-center gap-1.5">
+          <Swatch fill={HOMES_FILL} />
+          Homes
+        </span>
+        <span className="inline-flex items-center gap-1.5">
+          <Swatch fill={BIZ_FILL} />
+          Business property
+        </span>
+      </p>
+      {WHO_PAYS.map((b, i) => (
+        <div key={b.label}>
+          {i > 0 && (
+            <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-accent-glow px-2.5 py-0.5 text-[0.8rem] font-semibold text-accent-deep">
+              <span aria-hidden>&darr;</span> $11.75 million moves from homes to business property
+            </p>
+          )}
+          <p className="mt-3 flex flex-wrap items-baseline gap-x-2 text-[0.9rem]">
+            <span className="font-semibold text-ink">{b.label}</span>
+            <span className="text-[0.8rem] text-ink-faint">{b.rates}</span>
+          </p>
+          <div
+            role="img"
+            aria-label={`Homes ${b.homes.pct} percent, ${b.homes.amt}; business property ${b.biz.pct} percent, ${b.biz.amt}`}
+            className="mt-1.5 flex h-6 gap-[2px]"
+          >
+            <span className="rounded-l" style={{ width: `${b.homes.pct}%`, background: HOMES_FILL }} />
+            <span className="rounded-r" style={{ width: `${b.biz.pct}%`, background: BIZ_FILL }} />
+          </div>
+          <div className="mt-1 flex justify-between gap-3 text-[0.8rem] leading-snug tabular-nums text-ink-mid">
+            <span>
+              <b className="text-ink">Homes {b.homes.pct}%</b>
+              <span className="block">{b.homes.amt}</span>
+            </span>
+            <span className="text-right">
+              <b className="text-ink">Business {b.biz.pct}%</b>
+              <span className="block">{b.biz.amt}</span>
+            </span>
+          </div>
+        </div>
+      ))}
+      <p className="mt-4 text-[0.78rem] leading-relaxed text-ink-faint">
+        The split is the state&apos;s figures <Src href={DLS_LEVY}>(taxes by class)</Src>{" "}
+        <Src href={DLS_RATES}>(rates)</Src>; one rate and
+        the $11.75 million are the chief assessor&apos;s. <Moment src={COUNCIL1201_2025} s={2336} />{" "}
+        Homes include apartments and condos.
+      </p>
+      <p className="mt-1.5 text-[0.78rem] leading-relaxed text-ink-faint">
         The Council approved the split 8-0 on December 1, 2025.{" "}
-        <Moment src={COUNCIL1201_2025} s={3907} />{" "}
-        The single rate is the chief assessor&apos;s figure; the chosen rates are the state&apos;s{" "}
-        <Src href={DLS_RATES}>(state data)</Src>.
+        <Moment src={COUNCIL1201_2025} s={3907} />
       </p>
     </figure>
   );
@@ -494,12 +583,11 @@ export default function DigestIssue12() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            On December 7 the City Council decides how this year&apos;s property taxes are split
-            between homes and businesses, and the next day the city plans to send its tax rate to the
-            state. Here is what is already settled, what is left to decide, and how to read the bill
-            due February 1. Also from the Council: the data center pause passed its final vote, the
-            Mayor gave an update on the FEMA appeal, and the city&apos;s share of the Lynch Park
-            seawall design was approved.
+            On December 7 the City Council votes on the one part of this year&apos;s property tax
+            bills still open: how the total is divided between homes and businesses. Last year that
+            vote moved about $11.75 million from homes to business property. It&apos;s a holiday
+            week, so this issue takes a longer look at how your bill gets made and what the vote can
+            and can&apos;t change. Also: the data center pause is final.
           </p>
         </header>
 
@@ -531,60 +619,60 @@ export default function DigestIssue12() {
         {/* ---- 01 ---- */}
         <section
           id="taxbill"
-          data-dek={"On December 7 the City Council decides how this year's property taxes are split between homes and businesses, and the next day the city plans to send its tax rate to the state; the total was set with the budget in June. Last year homes paid $10.81 per $1,000 of value and business property $20.98, the largest split state law allows Beverly."}
+          data-dek={"On December 7 the City Council votes on how this year's property taxes are divided between homes and businesses; the total was set with the budget in June. Last year the split moved about $11.75 million of the total from homes to business property, the most state law allows Beverly."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Property taxes</Eyebrow>
           <H2>Your tax bill gets decided in the next nine days</H2>
-          <From>
-            The assessors&apos; request for a December 7 hearing &middot; Last year&apos;s hearing,
-            December 1, 2025 &middot; The state&apos;s tax data
-          </From>
+          <From id="taxbill">Last year&apos;s hearing, state data</From>
           <Hear
             src={COUNCIL1201_2025}
-            s={3325}
-            title="Gerry Perry on what the Council's vote does"
+            s={2303}
+            title="The chief assessor on what last year's split moved"
             meeting="City Council, Dec 1, 2025"
           />
           <p className={BODY}>
-            A property tax bill comes out of five steps. Two are done. The next one belongs to the City
+            A property tax bill comes out of four steps. Two are done. The third belongs to the City
             Council: on Monday, December 7, it holds its yearly hearing and vote on how this
             year&apos;s taxes are divided between homes and businesses.
           </p>
           <BillSteps />
           <p className={BODY}>
-            <b>The vote moves money; it doesn&apos;t change the total.</b>{" "}
-            &ldquo;All you&apos;re doing is shifting the money,&rdquo; the Council&apos;s budget analyst,
-            Gerry Perry, told councilors at last year&apos;s hearing.
-          </p>
-          <p className={BODY}>
             <b>The split.</b>{" "}
-            Business property (commercial and industrial buildings, and business equipment such as
-            utility lines) can be taxed at a higher rate than homes, up to a limit in state law. Last
-            year the Mayor recommended going to the limit, and the Council has done that every year
-            since 2021, the chief assessor, Francis Golden, said.{" "}
-            <Moment src={COUNCIL1201_2025} s={2157} />
+            The vote divides the total; it doesn&apos;t change it{" "}
+            <Src href={DLS_GUIDE}>(state guide)</Src>. Business property (commercial and industrial
+            buildings, and business equipment such as utility lines) can be taxed at a higher rate
+            than homes, up to a limit in state law. Last year the Mayor recommended going to the
+            limit, and the Council has done that every year since 2021, the chief assessor, Francis
+            Golden, said. <Moment src={COUNCIL1201_2025} s={2157} />
           </p>
-          <SplitTable />
+          <WhoPays />
           <p className={BODY}>
-            That split moved about <Fig>$11.75 million</Fig>{" "}of the total off homes and onto business
-            property, Golden said. A smaller split would lower the business rate and raise the rate
-            for homes. <Moment src={COUNCIL1201_2025} s={2336} />
+            Business property is about 12 percent of the city&apos;s value{" "}
+            <Src href={DLS_VALUES}>(state data)</Src>, so taxing it at $20.98
+            instead of $11.99 raised its share of the total from 12 percent to 20 percent. Spread
+            across all homes, the <Fig>$11.75 million</Fig>{" "}it moved comes to $1.18 less per $1,000
+            of value, or about <Fig>$960</Fig>{" "}on last year&apos;s average single-family home. The
+            $960 is the digest&apos;s arithmetic from the state&apos;s average value. A smaller split
+            would do the reverse: a lower rate for business property and a higher one for homes.{" "}
+            <Moment src={COUNCIL1201_2025} s={2264} />
           </p>
           <p className={BODY}>
             <b>Why a lower rate can still mean a higher bill.</b>{" "}
             The rate for homes went down each of the last two years, and the average bill still went
-            up.
+            up: values rose more than the rate fell.
           </p>
           <BillTable />
           <p className={BODY}>
-            When values rise, the rate comes down to fit, because the state caps the total, not the
-            rate. So what moves the bill is the total, which can grow 2.5 percent a year plus taxes on
-            new construction <Src href={PROP212_LAW}>(state law)</Src>, and the share of it that
-            homes carry. Home values are rising faster than
-            business values, so homes carry more of the total each year. &ldquo;It&apos;s the
-            residential driving the bus,&rdquo; Golden said.{" "}
-            <Moment src={COUNCIL1201_2025} s={3083} /> Our explainer,{" "}
+            The rate comes down when values rise because the state caps the total, not the rate. So
+            what moves the bill is the total, which can grow 2.5 percent a year plus taxes on new
+            construction <Src href={PROP212_LAW}>(state law)</Src>, and the share of it that homes
+            carry. Home values are rising faster than business values, so that share keeps growing:
+            homes paid 78.1 percent of the total in FY2023 and 79.75 percent last year{" "}
+            <Src href={DLS_LEVY}>(state data)</Src>. This year&apos;s values, already filed with the
+            state, raise homes&apos; share of the city&apos;s value again, to 88.5 percent{" "}
+            <Src href={DLS_VALUES}>(state data)</Src>. &ldquo;It&apos;s the residential driving the
+            bus,&rdquo; Golden said. <Moment src={COUNCIL1201_2025} s={3083} /> Our explainer,{" "}
             <a
               href="/beverly/what-sets-your-taxes"
               className="rlink"
@@ -628,10 +716,14 @@ export default function DigestIssue12() {
             Cabot St, and anyone can speak. The assessors present this year&apos;s figures that night.
           </p>
           <Refs
+            id="taxbill"
             sources={
               <>
-                <Src href={`${COUNCIL_1123}#page=57`}>The assessors&apos; request (p. 57)</Src>
-                <Src href={COUNCIL1201_2025}>Last year&apos;s hearing, full recording</Src>
+                <Src href={`${COUNCIL_1123}#page=57`}>
+                  The assessors&apos; request for the Dec 7 hearing (p. 57)
+                </Src>
+                <Src href={COUNCIL1201_2025}>Last year&apos;s hearing, Dec 1, 2025, full recording</Src>
+                <Src href={DLS_LEVY}>The state&apos;s tax data by class</Src>
               </>
             }
             more={
@@ -662,7 +754,7 @@ export default function DigestIssue12() {
         >
           <Eyebrow>02 &middot; City Council</Eyebrow>
           <H2>The data center pause is final, and the Mayor&apos;s update on the FEMA appeal</H2>
-          <From>City Council &middot; Monday, November 23 &middot; Special meeting and regular meeting</From>
+          <From id="council">City Council, November 23</From>
           <Hear
             src={COUNCIL1123}
             s={3798}
@@ -711,11 +803,12 @@ export default function DigestIssue12() {
             needed after that, as a contractor. <Moment src={COUNCIL1123} s={1101} />
           </p>
           <Refs
+            id="council"
             sources={
               <>
                 <Src href={`${COUNCIL_1123}#page=1`}>Agenda and packet (p. 1)</Src>
                 <Src href={`${COUNCIL_1123_SPECIAL}#page=1`}>Special meeting notice (p. 1)</Src>
-                <Src href={COUNCIL1123}>Full recording</Src>
+                <Src href={COUNCIL1123}>Full recording, special and regular meetings</Src>
               </>
             }
           />
