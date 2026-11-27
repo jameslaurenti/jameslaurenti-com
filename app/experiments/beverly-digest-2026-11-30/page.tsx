@@ -173,6 +173,8 @@ const DLS_BILLS =
   "https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=AverageSingleTaxBill.SingleFamTaxBill_wRange";
 const DLS_GUIDE =
   "https://www.mass.gov/info-details/understanding-the-classification-hearing-process-in-local-taxation-and-tax-policy";
+/* Proposition 2½ itself: (f) holds the levy to 102.5% of last year's plus new growth. */
+const PROP212_LAW = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter59/Section21C";
 
 const contents: [string, string][] = [
   ["taxbill", "Your tax bill gets decided in the next nine days"],
@@ -219,6 +221,157 @@ function BillTable() {
         The state&apos;s figures. A fiscal year runs July 1 to June 30 and takes the name of the
         year it ends in, so FY2026 ended this June.{" "}
         <Src href={DLS_BILLS}>(State data)</Src>
+      </p>
+    </figure>
+  );
+}
+
+/* The five steps from the budget to the bill, with where each one stands. "now" is the
+   one decision still open; the rest are either settled or follow from it. */
+type Step = { what: string; when: string; state: "done" | "now" | "next"; body: ReactNode };
+
+const STEPS: Step[] = [
+  {
+    what: "The total",
+    when: "Settled in June",
+    state: "done",
+    body: (
+      <>
+        The budget the Council passed set how much the city collects in property taxes. A state
+        law, Proposition 2&frac12;, caps that total, not any one bill.
+      </>
+    ),
+  },
+  {
+    what: "Your property's value",
+    when: "Settled",
+    state: "done",
+    body: (
+      <>
+        The assessors estimate what each property would sell for, and the state approves the
+        values <Src href={DLS_GUIDE}>(state guide)</Src>.
+      </>
+    ),
+  },
+  {
+    what: "The split",
+    when: "Monday, Dec 7 · still open",
+    state: "now",
+    body: (
+      <>
+        The Council holds a hearing, then votes on how the total is divided between homes and
+        businesses <Src href={`${COUNCIL_1123}#page=57`}>(p. 57)</Src>.
+      </>
+    ),
+  },
+  {
+    what: "The rates",
+    when: "From Dec 8",
+    state: "next",
+    body: (
+      <>
+        The split sets one rate for homes and one for business property. The city sends them to
+        the state for approval <Src href={`${COUNCIL_1123}#page=47`}>(p. 47)</Src>.
+      </>
+    ),
+  },
+  {
+    what: "Your bill",
+    when: "Due Feb 1",
+    state: "next",
+    body: (
+      <>
+        Your value, divided by 1,000, times the rate. Last year&apos;s average single-family home:
+        $817,185 &divide; 1,000 &times; $10.81 = $8,834{" "}
+        <Src href={DLS_BILLS}>(state data)</Src>.
+      </>
+    ),
+  },
+];
+
+function BillSteps() {
+  return (
+    <figure className="mt-6 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-3 py-4 sm:px-4">
+      <figcaption className="px-1 text-[0.95rem] font-semibold leading-snug text-ink">
+        How your tax bill gets made
+      </figcaption>
+      <ol className="mt-2 grid gap-1">
+        {STEPS.map((s, i) => (
+          <li
+            key={s.what}
+            className={`flex gap-3 rounded-md px-2 py-2.5 ${
+              s.state === "now" ? "bg-accent-glow ring-1 ring-accent/40" : ""
+            }`}
+          >
+            <span
+              aria-hidden
+              className={`mt-0.5 flex h-7 w-7 flex-none items-center justify-center rounded-full text-[0.8rem] font-bold tabular-nums ${
+                s.state === "done"
+                  ? "bg-rule text-ink-mid"
+                  : s.state === "now"
+                    ? "bg-accent text-white"
+                    : "border border-accent/50 text-accent"
+              }`}
+            >
+              {i + 1}
+            </span>
+            <div className="min-w-0">
+              <p className="flex flex-wrap items-baseline gap-x-2.5 gap-y-0.5">
+                <span className="font-semibold text-ink">{s.what}</span>
+                <span
+                  className={`text-[0.72rem] font-bold uppercase tracking-[0.1em] ${
+                    s.state === "now" ? "text-accent-deep" : "text-ink-faint"
+                  }`}
+                >
+                  {s.when}
+                </span>
+              </p>
+              <p className="mt-0.5 text-[0.92rem] leading-relaxed text-ink-mid">{s.body}</p>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </figure>
+  );
+}
+
+/* Last year's split next to the single rate the Council could have used instead. The
+   single rate is the chief assessor's figure from the Dec 1, 2025 hearing (35:57 and
+   41:00); the chosen rates match the state's Tax Rates by Class. */
+function SplitTable() {
+  return (
+    <figure className="mt-6 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-4 py-4">
+      <figcaption className="text-[0.95rem] font-semibold leading-snug text-ink">
+        Last year&apos;s choice, in tax per $1,000 of value
+      </figcaption>
+      <table className="mt-3 w-full text-left text-[0.9rem] tabular-nums">
+        <thead>
+          <tr className="border-b border-rule text-[0.75rem] uppercase tracking-wide text-ink-faint">
+            <th className="py-1.5 pr-3 font-semibold">
+              <span className="sr-only">Option</span>
+            </th>
+            <th className="py-1.5 pr-3 font-semibold">Homes</th>
+            <th className="py-1.5 font-semibold">Business property</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr className="border-b border-rule">
+            <td className="py-1.5 pr-3 text-ink-mid">One rate for everyone</td>
+            <td className="py-1.5 pr-3 text-ink-mid">$11.99</td>
+            <td className="py-1.5 text-ink-mid">$11.99</td>
+          </tr>
+          <tr>
+            <td className="py-1.5 pr-3 font-semibold">The split the Council chose</td>
+            <td className="py-1.5 pr-3 font-semibold">$10.81</td>
+            <td className="py-1.5 font-semibold">$20.98</td>
+          </tr>
+        </tbody>
+      </table>
+      <p className="mt-3 text-[0.78rem] leading-relaxed text-ink-faint">
+        The Council approved the split 8-0 on December 1, 2025.{" "}
+        <Moment src={COUNCIL1201_2025} s={3907} />{" "}
+        The single rate is the chief assessor&apos;s figure; the chosen rates are the state&apos;s{" "}
+        <Src href={DLS_RATES}>(state data)</Src>.
       </p>
     </figure>
   );
@@ -394,54 +547,54 @@ export default function DigestIssue12() {
             meeting="City Council, Dec 1, 2025"
           />
           <p className={BODY}>
-            On Monday, December 7, the City Council holds its yearly hearing on how the city&apos;s
-            property taxes are divided between homes and businesses, then votes on it, at the assessors&apos; request{" "}
-            <Src href={`${COUNCIL_1123}#page=57`}>(p. 57)</Src>. The next
-            day, the city plans to send its tax rate to the state for approval{" "}
-            <Src href={`${COUNCIL_1123}#page=47`}>(p. 47)</Src>.
+            A property tax bill comes out of five steps. Two are done. The next one belongs to the City
+            Council: on Monday, December 7, it holds its yearly hearing and vote on how this
+            year&apos;s taxes are divided between homes and businesses.
+          </p>
+          <BillSteps />
+          <p className={BODY}>
+            <b>The vote moves money; it doesn&apos;t change the total.</b>{" "}
+            &ldquo;All you&apos;re doing is shifting the money,&rdquo; the Council&apos;s budget analyst,
+            Gerry Perry, told councilors at last year&apos;s hearing.
           </p>
           <p className={BODY}>
-            <b>What&apos;s already settled.</b>{" "}
-            The total. The budget the Council passed in June set how much the city collects in property
-            taxes, within the limit set by the state law known as Proposition 2&frac12;, which caps the
-            total, not any one bill. Your property&apos;s value is settled too: it is the assessors&apos;
-            estimate of what it would sell for, and the state approves the city&apos;s values before
-            the hearing <Src href={DLS_GUIDE}>(state guide)</Src>. &ldquo;All you&apos;re doing is
-            shifting the money,&rdquo; the Council&apos;s budget analyst, Gerry Perry, told councilors
-            at last year&apos;s hearing.
-          </p>
-          <p className={BODY}>
-            <b>What&apos;s left: the split.</b>{" "}
-            Homes and business property can be taxed at different rates. Last year, homes paid{" "}
-            <Fig>$10.81</Fig> for every $1,000 of value, and business property (commercial and
-            industrial buildings, and business equipment such as utility lines) paid <Fig>$20.98</Fig>{" "}
-            <Src href={DLS_RATES}>(state data)</Src>. One rate for everyone would have been about
-            $11.99. The split moved about <Fig>$11.75 million</Fig>{" "}of the total off residential
-            property and onto business property, the city&apos;s chief assessor, Francis Golden, said
-            at last year&apos;s hearing. <Moment src={COUNCIL1201_2025} s={2336} />
-          </p>
-          <p className={BODY}>
-            <b>How far it can go.</b>{" "}
-            State law caps the split. Beverly&apos;s cap lets business property carry up to 1.75 times
-            the share it would carry under one rate. The city has used the full 1.75 every year since
-            2021, Golden said, and the Mayor recommended it again last year.{" "}
+            <b>The split.</b>{" "}
+            Business property (commercial and industrial buildings, and business equipment such as
+            utility lines) can be taxed at a higher rate than homes, up to a limit in state law. Last
+            year the Mayor recommended going to the limit, and the Council has done that every year
+            since 2021, the chief assessor, Francis Golden, said.{" "}
             <Moment src={COUNCIL1201_2025} s={2157} />
           </p>
+          <SplitTable />
           <p className={BODY}>
-            The Council approved it 8-0. A smaller split would lower the business rate and raise the
-            rate for homes. <Moment src={COUNCIL1201_2025} s={3907} />
+            That split moved about <Fig>$11.75 million</Fig>{" "}of the total off homes and onto business
+            property, Golden said. A smaller split would lower the business rate and raise the rate
+            for homes. <Moment src={COUNCIL1201_2025} s={2336} />
           </p>
           <p className={BODY}>
             <b>Why a lower rate can still mean a higher bill.</b>{" "}
-            Your bill is your property&apos;s value, divided by 1,000, times the rate. Last
-            year&apos;s average single-family home, by the state&apos;s figures: $817,185 &divide;
-            1,000 &times; $10.81 = $8,834 <Src href={DLS_BILLS}>(state data)</Src>.
-            The rate for homes has gone down three years running, but home values went up faster, so
-            the average bill rose. Home values are also rising faster than business values, which
-            leaves homes with more of the total each year. &ldquo;It&apos;s the residential driving the
-            bus,&rdquo; Golden said. <Moment src={COUNCIL1201_2025} s={3083} />
+            The rate for homes went down each of the last two years, and the average bill still went
+            up.
           </p>
           <BillTable />
+          <p className={BODY}>
+            When values rise, the rate comes down to fit, because the state caps the total, not the
+            rate. So what moves the bill is the total, which can grow 2.5 percent a year plus taxes on
+            new construction <Src href={PROP212_LAW}>(state law)</Src>, and the share of it that
+            homes carry. Home values are rising faster than
+            business values, so homes carry more of the total each year. &ldquo;It&apos;s the
+            residential driving the bus,&rdquo; Golden said.{" "}
+            <Moment src={COUNCIL1201_2025} s={3083} /> Our explainer,{" "}
+            <a
+              href="/beverly/what-sets-your-taxes"
+              className="rlink"
+              data-track="read_more_clicked"
+              data-placement="explainer-inline"
+            >
+              What sets your property taxes
+            </a>
+            , walks through why.
+          </p>
           <p className={BODY}>
             <b>When you&apos;ll see it.</b>{" "}
             The August and November bills were estimates based on last year. The bill due February 1
@@ -449,16 +602,20 @@ export default function DigestIssue12() {
             one due May 1, Golden said. <Moment src={COUNCIL1201_2025} s={3511} /> Bills are mailed
             about 30 days before they are due <Src href={COLLECTOR_FAQ}>(Collector of Taxes)</Src>.
           </p>
-          <p className={BODY}>
-            <b>Three optional discounts.</b>{" "}
-            State law offers three more choices <Src href={DLS_GUIDE}>(state guide)</Src>. A
-            residential exemption lowers the taxable value of owner-occupied homes, which shifts more
-            of the total onto rentals and higher-value homes. A small business exemption shifts taxes
-            within the business class, from small businesses to larger ones. An open space discount
-            shifts taxes from open land onto homes. Beverly has never granted any of them. The first
-            two can come up only if the Mayor recommends them, and last year the Mayor did not, Golden
-            said. <Moment src={COUNCIL1201_2025} s={1979} />
-          </p>
+          <details className="mt-5 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-3">
+            <summary className="cursor-pointer text-[0.95rem] font-semibold text-accent">
+              More: three optional discounts the Council could also vote on
+            </summary>
+            <p className="mt-2 text-[0.95rem] leading-relaxed">
+              State law offers three more choices <Src href={DLS_GUIDE}>(state guide)</Src>. A
+              residential exemption lowers the taxable value of owner-occupied homes, which shifts more
+              of the total onto rentals and higher-value homes. A small business exemption shifts taxes
+              within the business class, from small businesses to larger ones. An open space discount
+              shifts taxes from open land onto homes. Beverly has never granted any of them. The first
+              two can come up only if the Mayor recommends them, and last year the Mayor did not, Golden
+              said. <Moment src={COUNCIL1201_2025} s={1979} />
+            </p>
+          </details>
           <p className={BODY}>
             <b>If you think your value is wrong.</b>{" "}
             You can ask the assessors for an abatement, a reduction. The deadline is the due date of
@@ -476,6 +633,16 @@ export default function DigestIssue12() {
                 <Src href={`${COUNCIL_1123}#page=57`}>The assessors&apos; request (p. 57)</Src>
                 <Src href={COUNCIL1201_2025}>Last year&apos;s hearing, full recording</Src>
               </>
+            }
+            more={
+              <a
+                href="/beverly/what-sets-your-taxes"
+                className="rlink"
+                data-track="read_more_clicked"
+                data-placement="explainer-refs"
+              >
+                What sets your property taxes, and what doesn&apos;t
+              </a>
             }
           />
         </section>
