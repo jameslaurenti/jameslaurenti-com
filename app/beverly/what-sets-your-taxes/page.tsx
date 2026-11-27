@@ -163,8 +163,10 @@ const NOTES: React.ReactNode[] = [
     254 have passed at least one; about 318 have used a debt exclusion. <em>Confirmed.</em>
   </>,
   <>
-    Same DLS ballot-question data. Beverly appears in neither the override nor the debt-exclusion dataset: it has never held either
-    vote in the life of the law, funding both operations and buildings inside the 2.5 percent levy cap. Detailed treatment in the{" "}
+    Beverly City Council minutes from 1992 on, and the Salem News, June 4, 2008. One Proposition 2½ question reached Beverly&apos;s
+    ballot in those records: a $2.5 million override for the school operating budget, on June 3, 2008. It failed, 3,846 to 6,686.
+    No override or debt exclusion has passed. The DLS ballot-question data in note 12 lists no Beverly votes at all, that one
+    included, so it cannot settle the question for Beverly. Detailed treatment in the{" "}
     <A href="/beverly">Beverly piece</A>. <em>Confirmed.</em>
   </>,
   <>
@@ -234,7 +236,7 @@ export default function WhatSetsYourTaxes() {
             <P>
               Two words do all the work here: the <b>levy</b>{" "}and the <b>rate</b>. The levy is the total amount of money a town raises
               from all of its property taxes put together, one pot for the whole town. The rate is the price of the tax, the dollars owed
-              per thousand dollars of assessed value. Your bill is your assessment times the rate, and nothing else.
+              per thousand dollars of assessed value. At its core, your bill is your assessment times the rate.
             </P>
             <P>
               Proposition 2½ caps the levy. Not the rate, and not the value of any single house. A town&apos;s levy can rise only 2.5
@@ -257,6 +259,16 @@ export default function WhatSetsYourTaxes() {
               The rate is not a decision about how hard to tax. It is whatever number makes the capped levy come out of this year&apos;s
               values. It moves so the levy does not have to.
             </P>
+            <P>
+              One vote does move rates, in the cities and towns that use it: the split. State law lets a community tax homes and
+              business property at different rates, and where it does, the council or select board votes once a year on how the capped
+              levy is divided between them (the state&apos;s{" "}
+              <A href="https://www.mass.gov/info-details/understanding-the-classification-hearing-process-in-local-taxation-and-tax-policy" ext>
+                guide to that hearing
+              </A>
+              ). The vote does not change the total. It decides how much of it homes carry and how much businesses do, and so the rate
+              for each. Beverly is one of those cities.
+            </P>
           </Reveal>
         </section>
 
@@ -268,14 +280,18 @@ export default function WhatSetsYourTaxes() {
               A town-wide reassessment is close to a wash.
             </h2>
             <P>
-              If every home in town rises the same 20 percent, every rate falls about 20 percent, and almost nobody&apos;s bill
-              changes. The town is dividing the same pie. A revaluation just remeasures the slices.
+              If every property in town rises the same 20 percent, the rate falls just enough to cancel it, about 17 percent, and
+              almost nobody&apos;s bill changes. The town is dividing the same pie. A revaluation just remeasures the slices.
             </P>
             <P>
               Your own bill moves for one reason the assessment letter never mentions: whether your home rose faster or slower than the
               town as a whole. Outrun the town average and your slice of the pie grows, so your bill rises. Lag it and your bill falls.
               This is the one real catch in the whole system, and it is a small one, because it is zero-sum. For every homeowner whose
               bill goes up because their block got hot, another&apos;s goes down. The town still collects the same total.
+            </P>
+            <P>
+              Towns that split their rate have a second catch. If home values rise faster than business values, homes as a group carry
+              a bigger share of the total, even at the same split.
             </P>
 
             <div className="mt-8">
@@ -442,8 +458,8 @@ export default function WhatSetsYourTaxes() {
               Every town is some blend of these three: the hand it was dealt in 1980, how much it has built since, and how willing its
               voters are to tax themselves past the limit. That blend is a kind of fiscal fingerprint, and it explains far more about a
               town&apos;s finances than any rate ever will. Beverly is one sharp version of it. It has leaned on the second lever and
-              never once pulled the third, growing its tax base steadily while never, in the entire life of the law, passing an
-              operating override or a debt exclusion.<Fn n={13} />
+              never passed the third. In the city&apos;s records, its voters have never approved an operating override or a debt
+              exclusion; the one override that reached the ballot, for the schools in 2008, failed.<Fn n={13} />
             </P>
 
             <ExploreCallout>
@@ -475,8 +491,8 @@ export default function WhatSetsYourTaxes() {
             <div className="mt-8 rounded-r-md border-l-4 border-gold bg-bg-card/50 px-6 py-6">
               <p className="max-w-[64ch] text-[1rem] leading-relaxed text-ink">
                 For a close look at how one city played that hand across a decade of its own budgets, see{" "}
-                <A href="/beverly">What Beverly Does Next</A>, the second lever made concrete: a town that grew its base and never
-                went to the voters. And to place your own town, the{" "}
+                <A href="/beverly">What Beverly Does Next</A>, the second lever made concrete: a town that grew its base and has never
+                passed an override. And to place your own town, the{" "}
                 <A href="/beverly/property-tax">MA property tax explorer</A>{" "}maps every community in Massachusetts by those three levers,
                 and shows whether its property values have outrun its residents&apos; incomes.<Fn n={14} />
               </p>
@@ -572,7 +588,7 @@ function ValuationNotice() {
       <figcaption className="mx-auto mt-3 max-w-md text-[0.78125rem] leading-relaxed text-ink-faint">
         <span className="font-semibold" style={{ color: "var(--color-debt)" }}>Illustration.</span>{" "}This is the number everyone
         watches. It estimates what the house would sell for, and on its own it barely predicts the tax bill. The tax rate isn&apos;t on
-        this notice. It arrives months later, on the actual bill, after the state sets it.
+        this notice. It arrives months later, on the actual bill, once the town sets it and the state approves it.
       </figcaption>
     </figure>
   );
