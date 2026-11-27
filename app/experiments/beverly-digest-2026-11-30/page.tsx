@@ -433,8 +433,9 @@ export default function DigestIssue12() {
           </p>
           <p className={BODY}>
             <b>Why a lower rate can still mean a higher bill.</b>{" "}
-            Your bill is your property&apos;s value, divided by 1,000, times the rate. For last
-            year&apos;s average single-family home: $817,185 &divide; 1,000 &times; $10.81 = $8,834.
+            Your bill is your property&apos;s value, divided by 1,000, times the rate. Last
+            year&apos;s average single-family home, by the state&apos;s figures: $817,185 &divide;
+            1,000 &times; $10.81 = $8,834 <Src href={DLS_BILLS}>(state data)</Src>.
             The rate for homes has gone down three years running, but home values went up faster, so
             the average bill rose. Home values are also rising faster than business values, which
             leaves homes with more of the total each year. &ldquo;It&apos;s the residential driving the
