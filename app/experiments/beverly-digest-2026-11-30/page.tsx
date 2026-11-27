@@ -239,7 +239,7 @@ function BillTable() {
             <th className="py-1.5 pr-3 font-semibold">Year</th>
             <th className="py-1.5 pr-3 font-semibold">Rate per $1,000</th>
             <th className="py-1.5 pr-3 font-semibold">Value</th>
-            <th className="py-1.5 font-semibold">Tax bill</th>
+            <th className="py-1.5 font-semibold">Tax for the year</th>
           </tr>
         </thead>
         <tbody>
@@ -261,8 +261,9 @@ function BillTable() {
       </table>
       <p className="mt-3 text-[0.78rem] leading-relaxed text-ink-faint">
         The state&apos;s figures <Src href={DLS_BILLS}>(state data)</Src>. The changes from the
-        year before are the digest&apos;s arithmetic. A fiscal year runs July 1 to June 30 and
-        takes the name of the year it ends in, so FY2026 ended this June.
+        year before are the digest&apos;s arithmetic. Each tax year runs July to June and is named
+        for the year it ends in: FY2026 is the bills from August 2025 to May 2026. The December 7
+        vote sets FY2027.
       </p>
     </figure>
   );
@@ -281,8 +282,9 @@ const STEPS: Step[] = [
     state: "done",
     body: (
       <>
-        The budget the Council passed set how much the city collects in property taxes. A state
-        law, Proposition 2&frac12;, caps that total, not any one bill.
+        The budget the Council passed set how much the city collects in property taxes for the
+        year July 2026 to June 2027. A state law, Proposition 2&frac12;, caps that total, not any
+        one bill.
       </>
     ),
   },
@@ -311,13 +313,13 @@ const STEPS: Step[] = [
     ),
   },
   {
-    what: "Your bill",
-    when: "Due Feb 1",
+    what: "Your tax for the year",
+    when: "First bill due Feb 1",
     state: "next",
     body: (
       <>
         Your value, divided by 1,000, times the rate. Last year&apos;s average single-family home:
-        $817,185 &divide; 1,000 &times; $10.81 = $8,834{" "}
+        $817,185 &divide; 1,000 &times; $10.81 = $8,834 for the year{" "}
         <Src href={DLS_BILLS}>(state data)</Src>.
       </>
     ),
@@ -410,6 +412,9 @@ function WhoPays() {
     <figure className="mt-6 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-4 py-4">
       <figcaption className="text-[0.95rem] font-semibold leading-snug text-ink">
         Who paid last year&apos;s $135.4 million in property taxes
+        <span className="block text-[0.8rem] font-normal text-ink-faint">
+          FY2026, the bills from August 2025 to May 2026
+        </span>
       </figcaption>
       <p className="mt-1.5 flex flex-wrap gap-x-4 text-[0.8rem] text-ink-mid">
         <span className="inline-flex items-center gap-1.5">
@@ -506,8 +511,8 @@ const ahead: Ev[] = [
     what: "City Council: the tax split",
     detail: (
       <>
-        7:15pm hearing on how this year&apos;s property taxes are divided between homes and
-        businesses (see <a href="#taxbill" className="rlink">story 1</a>), in the Middle School
+        7:15pm hearing on how property taxes are divided between homes and businesses, which
+        sets the rates on the bills due February 1 and May 1 (see <a href="#taxbill" className="rlink">story 1</a>), in the Middle School
         library, 502 Cabot St. At 8:30pm, a hearing on the Mayor&apos;s request for $20,000
         &ldquo;to support the City&apos;s DEIB and other initiatives within the Executive
         office.&rdquo; Four more hearings are set for 7:30, 7:45, 8:00 and 8:15. Before the
@@ -583,9 +588,9 @@ export default function DigestIssue12() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            On December 7 the City Council votes on the one part of this year&apos;s property tax
-            bills still open: how the total is divided between homes and businesses. Last year that
-            vote moved about $11.75 million from homes to business property. It&apos;s a holiday
+            On December 7 the City Council makes the last open decision behind your next property
+            tax bill, due February 1: how the total is divided between homes and businesses. Last
+            year that vote moved about $11.75 million from homes to business property. It&apos;s a holiday
             week, so this issue takes a longer look at how your bill gets made and what the vote can
             and can&apos;t change. Also: the data center pause is final.
           </p>
@@ -619,7 +624,7 @@ export default function DigestIssue12() {
         {/* ---- 01 ---- */}
         <section
           id="taxbill"
-          data-dek={"On December 7 the City Council votes on how this year's property taxes are divided between homes and businesses; the total was set with the budget in June. Last year the split moved about $11.75 million of the total from homes to business property, the most state law allows Beverly."}
+          data-dek={"On December 7 the City Council votes on how property taxes are divided between homes and businesses, which sets the rates on the bills due February 1 and May 1; the total was set with the budget in June. Last year the split moved about $11.75 million of the total from homes to business property, the most state law allows Beverly."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Property taxes</Eyebrow>
@@ -633,8 +638,9 @@ export default function DigestIssue12() {
           />
           <p className={BODY}>
             A property tax bill comes out of four steps. Two are done. The third belongs to the City
-            Council: on Monday, December 7, it holds its yearly hearing and vote on how this
-            year&apos;s taxes are divided between homes and businesses.
+            Council: on Monday, December 7, it holds its yearly hearing and vote on how taxes are
+            divided between homes and businesses. The vote covers the tax year that began July 1,
+            which the state calls FY2027, and its rates first show up on the bill due February 1.
           </p>
           <BillSteps />
           <p className={BODY}>
@@ -668,8 +674,8 @@ export default function DigestIssue12() {
             what moves the bill is the total, which can grow 2.5 percent a year plus taxes on new
             construction <Src href={PROP212_LAW}>(state law)</Src>, and the share of it that homes
             carry. Home values are rising faster than business values, so that share keeps growing:
-            homes paid 78.1 percent of the total in FY2023 and 79.75 percent last year{" "}
-            <Src href={DLS_LEVY}>(state data)</Src>. This year&apos;s values, already filed with the
+            homes paid 78.1 percent of the total in FY2023 and 79.75 percent in FY2026{" "}
+            <Src href={DLS_LEVY}>(state data)</Src>. The values for FY2027, already filed with the
             state, raise homes&apos; share of the city&apos;s value again, to 88.5 percent{" "}
             <Src href={DLS_VALUES}>(state data)</Src>. &ldquo;It&apos;s the residential driving the
             bus,&rdquo; Golden said. <Moment src={COUNCIL1201_2025} s={3083} /> Our explainer,{" "}
@@ -685,9 +691,9 @@ export default function DigestIssue12() {
           </p>
           <p className={BODY}>
             <b>When you&apos;ll see it.</b>{" "}
-            The August and November bills were estimates based on last year. The bill due February 1
-            is the first at the new rate, and any change from last year shows up in that bill and the
-            one due May 1, Golden said. <Moment src={COUNCIL1201_2025} s={3511} /> Bills are mailed
+            The bills due in August and November, the first half of the tax year, were estimates
+            based on the year before. The bill due February 1 is the first at the new rate, and any
+            change from last year shows up in that bill and the one due May 1, Golden said. <Moment src={COUNCIL1201_2025} s={3511} /> Bills are mailed
             about 30 days before they are due <Src href={COLLECTOR_FAQ}>(Collector of Taxes)</Src>.
           </p>
           <details className="mt-5 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-3">
@@ -707,13 +713,13 @@ export default function DigestIssue12() {
           <p className={BODY}>
             <b>If you think your value is wrong.</b>{" "}
             You can ask the assessors for an abatement, a reduction. The deadline is the due date of
-            the first bill at the new rate. Last year it was February 2, according to the city&apos;s form{" "}
+            the first bill at the new rate, the one due in February. Last year it was February 2, according to the city&apos;s form{" "}
             <Src href={`${ABATEMENT_FORM}#page=1`}>(p. 1)</Src>.
           </p>
           <p className={BODY}>
             <b>How to take part.</b>{" "}
             The hearing is Monday, December 7, at 7:15pm in the Beverly Middle School library, 502
-            Cabot St, and anyone can speak. The assessors present this year&apos;s figures that night.
+            Cabot St, and anyone can speak. The assessors present the new figures that night.
           </p>
           <Refs
             id="taxbill"
