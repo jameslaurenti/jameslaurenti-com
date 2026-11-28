@@ -261,7 +261,8 @@ function BillTable() {
       </table>
       <p className="mt-3 text-[0.78rem] leading-relaxed text-ink-faint">
         The state&apos;s figures <Src href={DLS_BILLS}>(state data)</Src>. The changes from the
-        year before are the digest&apos;s arithmetic. Each tax year runs July to June and is named
+        year before are the digest&apos;s arithmetic. These are averages, which lean toward the
+        most expensive homes; many homes are valued lower. Each tax year runs July to June and is named
         for the year it ends in: FY2026 is the bills from August 2025 to May 2026. The December 7
         vote sets FY2027.
       </p>
@@ -663,7 +664,14 @@ export default function DigestIssue12() {
           {/* Round 3 (James, Nov 27): readers' first question is what this does to their bills.
               Which bills, and what happens either way, before the how. The "When you'll see it"
               paragraph moved in here. Kept conditional: nothing on record says what the Mayor
-              will recommend for FY2027. */}
+              will recommend for FY2027.
+              Round 5 (James, Nov 27): give the home value with the $960, and say the average runs
+              above most homes. The state publishes only the average. The city's parcel map
+              (ArcGIS Combined_gdb layer 5, LUC 101, queried Nov 27, 2026; last edited July 2025,
+              so its year can't be pinned to the state's) has 8,580 single-family homes with a mean
+              of $797,254 and a median of $680,350, so the copy says only that many homes are
+              valued below the average, with no median figure. $118 per $100,000 and the $600,000
+              example let readers scale it to their own home. */}
           <div className="mt-5 max-w-[63ch] rounded-lg border border-accent/40 bg-accent-glow px-5 py-4">
             <p className="text-[0.95rem] font-semibold text-accent-deep">What it means for your bill</p>
             <ul className="mt-2 grid gap-2.5 text-[0.95rem] leading-relaxed">
@@ -687,9 +695,11 @@ export default function DigestIssue12() {
                 <b>If the split gets smaller.</b>{" "}
                 Some of the tax moves from business property back onto homes, starting with the
                 February bill. <Moment src={COUNCIL1201_2025} s={2264} />{" "}For scale: last year, one rate
-                for everyone would have added about $960 to the average single-family home&apos;s tax
-                for the year, the digest&apos;s arithmetic below. A smaller split would add part of
-                that.
+                for everyone would have added about $118 a year for every $100,000 a home is valued
+                at, and a smaller split would add part of that. On the average single-family home,
+                valued at $817,185, that&apos;s about $960; on a $600,000 home, about $710. These are
+                the digest&apos;s arithmetic. The average leans toward the most expensive homes, so
+                many homes are valued below it.
               </li>
             </ul>
           </div>
@@ -714,8 +724,9 @@ export default function DigestIssue12() {
             <Src href={DLS_VALUES}>(state data)</Src>, so taxing it at $20.98
             instead of $11.99 raised its share of the total from 12 percent to 20 percent. Spread
             across all homes, the <Fig>$11.75 million</Fig>{" "}it moved comes to $1.18 less per $1,000
-            of value, or about <Fig>$960</Fig>{" "}on last year&apos;s average single-family home. The
-            $960 is the digest&apos;s arithmetic from the state&apos;s average value.
+            of value, or about <Fig>$960</Fig>{" "}on last year&apos;s average single-family home,
+            valued at $817,185. The $960 is the digest&apos;s arithmetic from the state&apos;s
+            average value.
           </p>
           <p className={BODY}>
             <b>Why a lower rate can still mean a higher bill.</b>{" "}
