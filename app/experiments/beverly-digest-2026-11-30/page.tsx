@@ -190,6 +190,14 @@ const DLS_VALUES =
   "https://dls-gw.dor.state.ma.us/reports/rdPage.aspx?rdReport=PropertyTaxInformation.AssessedValuesbyClass.assessedvaluesbyclass";
 const DLS_GUIDE =
   "https://www.mass.gov/info-details/understanding-the-classification-hearing-process-in-local-taxation-and-tax-policy";
+/* Fact check (Nov 27): the levy is everything appropriated since the last rate, fixed on the
+   recap and approved by the state (c.59 s.23); values are as of January 1 (c.59 s.2A); the
+   split needs the Mayor's approval (c.40 s.56); abatement grounds and deadline (c.59 s.59). */
+const LEVY_LAW = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter59/Section23";
+const VALUE_DATE_LAW = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter59/Section2A";
+const SPLIT_LAW = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleVII/Chapter40/Section56";
+const ABATE_LAW = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter59/Section59";
+const CPA_PAGE = "https://www.beverlyma.gov/409/Community-Preservation-Committee";
 /* Proposition 2½ itself: (f) holds the levy to 102.5% of last year's plus new growth. */
 const PROP212_LAW = "https://malegislature.gov/Laws/GeneralLaws/PartI/TitleIX/Chapter59/Section21C";
 
@@ -279,13 +287,14 @@ type Step = { what: string; when: string; state: "done" | "now" | "next"; body: 
 const STEPS: Step[] = [
   {
     what: "The total",
-    when: "Settled in June",
+    when: "Mostly set in June",
     state: "done",
     body: (
       <>
-        The budget the Council passed set how much the city collects in property taxes for the
-        year July 2026 to June 2027. A state law, Proposition 2&frac12;, caps that total, not any
-        one bill.
+        The budget the Council passed in June largely decides how much the city collects in
+        property taxes for the year July 2026 to June 2027. The total is final when the city sends
+        its rates to the state for approval <Src href={LEVY_LAW}>(state law)</Src>. A state law,
+        Proposition 2&frac12;, caps that total, not any one bill.
       </>
     ),
   },
@@ -295,8 +304,9 @@ const STEPS: Step[] = [
     state: "done",
     body: (
       <>
-        The assessors estimate what each property would sell for, and the state approves the
-        values <Src href={DLS_GUIDE}>(state guide)</Src>.
+        The assessors estimate what each property would have sold for on January 1, 2026{" "}
+        <Src href={VALUE_DATE_LAW}>(state law)</Src>, and the state approves the values{" "}
+        <Src href={DLS_GUIDE}>(state guide)</Src>.
       </>
     ),
   },
@@ -307,9 +317,10 @@ const STEPS: Step[] = [
     body: (
       <>
         The Council holds a hearing, then votes on how the total is divided between homes and
-        businesses <Src href={`${COUNCIL_1123}#page=57`}>(p. 57)</Src>. That sets one rate for
-        homes and one for business property, which the city plans to send to the state for
-        approval the next day <Src href={`${COUNCIL_1123}#page=47`}>(p. 47)</Src>.
+        businesses <Src href={`${COUNCIL_1123}#page=57`}>(p. 57)</Src>, and the Mayor approves it{" "}
+        <Src href={SPLIT_LAW}>(state law)</Src>. From it the assessors work out one rate for homes
+        and one for business property, which the city plans to send to the state for approval the
+        next day <Src href={`${COUNCIL_1123}#page=47`}>(p. 47)</Src>.
       </>
     ),
   },
@@ -319,9 +330,10 @@ const STEPS: Step[] = [
     state: "next",
     body: (
       <>
-        Your value, divided by 1,000, times the rate. Last year&apos;s average single-family home:
-        $817,185 &divide; 1,000 &times; $10.81 = $8,834 for the year{" "}
-        <Src href={DLS_BILLS}>(state data)</Src>.
+        Your value, divided by 1,000, times the rate, less any exemption you qualify for. Last
+        year&apos;s average single-family home: $817,185 &divide; 1,000 &times; $10.81 = $8,834 for
+        the year <Src href={DLS_BILLS}>(state data)</Src>. Beverly adds a 1 percent Community
+        Preservation surcharge <Src href={CPA_PAGE}>(city page)</Src>.
       </>
     ),
   },
@@ -537,12 +549,11 @@ const ahead: Ev[] = [
     detail: (
       <>
         7:15pm hearing on how property taxes are divided between homes and businesses, which
-        sets the rates on the bills due February 1 and May 1 (see <a href="#taxbill" className="rlink">story 1</a>), in the Middle School
+        decides the rates on the bills due February 1 and May 1 (see <a href="#taxbill" className="rlink">story 1</a>), in the Middle School
         library, 502 Cabot St. At 8:30pm, a hearing on the Mayor&apos;s request for $20,000
-        &ldquo;to support the City&apos;s DEIB and other initiatives within the Executive
-        office.&rdquo; Four more hearings are set for 7:30, 7:45, 8:00 and 8:15. Before the
-        meeting, at 6pm, the Legal Affairs committee takes up seven lodging house license
-        renewals.
+        &ldquo;in support of the City&apos;s DEIB and other initiatives within the Executive
+        office.&rdquo; Four more hearings are set for 7:30, 7:45, 8:00 and 8:15. The Legal Affairs
+        committee, posted for 6pm, takes up seven lodging house license renewals.
       </>
     ),
     cal: {
@@ -557,7 +568,7 @@ const ahead: Ev[] = [
     date: "Dec 7",
     what: "School Committee policy subcommittee",
     detail:
-      "6:00pm in the Middle School library. A vote to send the revised e-bike and scooter policy to the full School Committee, and drafts of policies grouped under \"Freedom to Read.\"",
+      "6:00pm in the Middle School library. A vote to send the revised policy on electric bikes, scooters and similar devices to the full School Committee, and drafts of policies grouped under \"Freedom to Read.\"",
   },
   {
     date: "Dec 8",
@@ -567,7 +578,8 @@ const ahead: Ev[] = [
   {
     date: "Dec 9",
     what: "Historic District Commission: 38 Standley St",
-    detail: "The city has asked the commission to review Waring School's plan for the house.",
+    detail:
+      "The commission's next scheduled meeting. Its review of Waring School's plan for the house, which the Planning Board asked for, was taken off the November 17 agenda; the December 9 agenda isn't posted yet.",
   },
   {
     date: "Dec 10",
@@ -613,7 +625,7 @@ export default function DigestIssue12() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            On December 7 the City Council makes the last open decision behind your next two
+            On December 7 the City Council makes the main decision still open on your next two
             property tax bills, due February 1 and May 1: how the total is divided between homes and businesses. Last
             year that vote moved about $11.75 million from homes to business property. It&apos;s a holiday
             week, so this issue takes a longer look at how your bill gets made and what the vote can
@@ -649,7 +661,7 @@ export default function DigestIssue12() {
         {/* ---- 01 ---- */}
         <section
           id="taxbill"
-          data-dek={"On December 7 the City Council votes on how property taxes are divided between homes and businesses, which sets the rates on the bills due February 1 and May 1; the total was set with the budget in June. Last year the split moved about $11.75 million of the total from homes to business property, the most state law allows Beverly."}
+          data-dek={"On December 7 the City Council votes on how property taxes are divided between homes and businesses, which decides the rates on the bills due February 1 and May 1; the total was largely set with the budget in June. Last year the split moved about $11.75 million of the total from homes to business property, the most state law allows Beverly."}
           className={SECTION}
         >
           <Eyebrow>01 &middot; Property taxes</Eyebrow>
@@ -677,8 +689,9 @@ export default function DigestIssue12() {
             <ul className="mt-2 grid gap-2.5 text-[0.95rem] leading-relaxed">
               <li>
                 <b>Which bills.</b>{" "}
-                The vote sets the rates for the tax year that began July 1 (the state calls it
-                FY2027). Your August and November bills were estimates based on last year&apos;s tax.
+                The vote decides the split for the tax year that began July 1 (the state calls it
+                FY2027); the assessors then work out the rates, and the state approves them{" "}
+                <Src href={LEVY_LAW}>(state law)</Src>. Your August and November bills were estimates based on last year&apos;s tax.
                 The bills due February 1 and May 1, mailed about a month ahead{" "}
                 <Src href={COLLECTOR_FAQ}>(Collector of Taxes)</Src>, charge the new rates, and each
                 carries half of the change for the year, the chief assessor said last year.{" "}
@@ -688,8 +701,8 @@ export default function DigestIssue12() {
                 <b>If the split stays where it is.</b>{" "}
                 The Council has taxed business property at the most state law allows every year since
                 2021. <Moment src={COUNCIL1201_2025} s={2157} />{" "}If it does again, the split works as it
-                did last year, and the change in your bill comes from what is already settled: the
-                total the city collects and your property&apos;s value.
+                did last year, and the change in your bill comes from the total the city collects and
+                your property&apos;s value, which this vote doesn&apos;t change.
               </li>
               <li>
                 <b>If the split gets smaller.</b>{" "}
@@ -704,7 +717,7 @@ export default function DigestIssue12() {
             </ul>
           </div>
           <p className={BODY}>
-            A property tax bill comes out of four steps. Two are done. The third belongs to the City
+            A property tax bill comes out of four steps. The first two are mostly done. The third belongs to the City
             Council: on Monday, December 7, it holds its yearly hearing and vote on how taxes are
             divided between homes and businesses.
           </p>
@@ -713,7 +726,7 @@ export default function DigestIssue12() {
             <b>The split.</b>{" "}
             The vote divides the total; it doesn&apos;t change it{" "}
             <Src href={DLS_GUIDE}>(state guide)</Src>. Business property (commercial and industrial
-            buildings, and business equipment such as utility lines) can be taxed at a higher rate
+            land and buildings, and taxable business equipment such as utility poles and wires) can be taxed at a higher rate
             than homes, up to a limit in state law. Last year the Mayor recommended going to the
             limit, and the Council has done that every year since 2021, the chief assessor, Francis
             Golden, said. <Moment src={COUNCIL1201_2025} s={2157} />
@@ -735,10 +748,12 @@ export default function DigestIssue12() {
           </p>
           <BillTable />
           <p className={BODY}>
-            The rate comes down when values rise because the state caps the total, not the rate. So
-            what moves the bill is the total, which can grow 2.5 percent a year plus taxes on new
-            construction <Src href={PROP212_LAW}>(state law)</Src>, and the share of it that homes
-            carry. Home values are rising faster than business values, so that share keeps growing:
+            The rate is the total divided by the value of all property, so it comes down when values
+            rise faster than the total. State law limits how fast the total can grow: 2.5 percent a
+            year, plus taxes on new construction and other new property{" "}
+            <Src href={PROP212_LAW}>(state law)</Src>. So what moves your bill is the total, the share
+            of it that homes carry, and how your home&apos;s value changed compared with others. Home
+            values are rising faster than business values, so homes&apos; share keeps growing:
             homes paid 78.1 percent of the total in FY2023 and 79.75 percent in FY2026{" "}
             <Src href={DLS_LEVY}>(state data)</Src>. The values for FY2027, already filed with the
             state, raise homes&apos; share of the city&apos;s value again, to 88.5 percent{" "}
@@ -761,8 +776,9 @@ export default function DigestIssue12() {
             <p className="mt-2 text-[0.95rem] leading-relaxed">
               State law offers three more choices <Src href={DLS_GUIDE}>(state guide)</Src>. A
               residential exemption lowers the taxable value of owner-occupied homes, which shifts more
-              of the total onto rentals and higher-value homes. A small business exemption shifts taxes
-              within the business class, from small businesses to larger ones. An open space discount
+              of the total onto rentals and higher-value homes. A small business exemption lowers the
+              taxable value of commercial properties worth under $1 million whose occupants have 10 or
+              fewer employees, which shifts taxes onto other business property. An open space discount
               shifts taxes from open land onto homes. Beverly has never granted any of them. The first
               two can come up only if the Mayor recommends them, and last year the Mayor did not, Golden
               said. <Moment src={COUNCIL1201_2025} s={1979} />
@@ -770,8 +786,10 @@ export default function DigestIssue12() {
           </details>
           <p className={BODY}>
             <b>If you think your value is wrong.</b>{" "}
-            You can ask the assessors for an abatement, a reduction. The deadline is the due date of
-            the first bill at the new rate, the one due in February. Last year it was February 2, according to the city&apos;s form{" "}
+            If your property is valued above what it would sell for, out of line with similar
+            properties, or in the wrong class, you can ask the assessors for an abatement, a
+            reduction <Src href={ABATE_LAW}>(state law)</Src>. The deadline is the due date of the
+            first bill at the new rate, normally February 1. Last year it was February 2, according to the city&apos;s form{" "}
             <Src href={`${ABATEMENT_FORM}#page=1`}>(p. 1)</Src>.
           </p>
           <p className={BODY}>
@@ -813,7 +831,7 @@ export default function DigestIssue12() {
         {/* ---- 02 ---- */}
         <section
           id="council"
-          data-dek={"The City Council gave the data center pause its final vote, 8-0, and approved $107,614 for the city's share of the Lynch Park seawall design, 8-0. The Mayor said about $1.2 million in COVID-era costs is still in dispute with FEMA, with a ruling that could come at any time. Catherine Foster starts as the Council's budget analyst on November 30."}
+          data-dek={"The City Council gave the data center pause its final vote, 8-0, and approved $107,614 for the city's share of the Lynch Park seawall design, 8-0. The Mayor said about $1.2 million in COVID-era costs is still in dispute with FEMA, with a ruling that could come at any time. Councilors set November 30 as Catherine Foster's first day as their budget analyst, if the date works for her."}
           className={SECTION}
         >
           <Eyebrow>02 &middot; City Council</Eyebrow>
@@ -828,8 +846,8 @@ export default function DigestIssue12() {
           <p className={BODY}>
             <b>The data center pause.</b>{" "}
             The Council gave the pause its final vote, 8-0, with no discussion. It bars applications
-            for data centers until the Council adopts zoning rules for them, or through November 30,
-            2027, whichever comes first, according to the order{" "}
+            for data centers <Src href={`${COUNCIL_1123}#page=138`}>(p. 138)</Src> until the Council
+            adopts zoning rules for them, or through November 30, 2027, whichever comes first{" "}
             <Src href={`${COUNCIL_1123}#page=139`}>(p. 139)</Src>.{" "}
             <Moment src={COUNCIL1123} s={7936} />{" "}
             <Earlier issue={10} slug="2026-11-16" id="datacenters" label="the first vote" />
@@ -844,27 +862,28 @@ export default function DigestIssue12() {
           <p className={BODY}>
             <b>If the city loses.</b>{" "}
             The state Department of Revenue first wanted the disputed amount dealt with in this
-            year&apos;s tax rate, the Mayor said, then agreed to wait, after the Mayor promised in
-            writing to ask the Council to cover any shortfall from the stabilization fund, a city
-            reserve fund. &ldquo;It doesn&apos;t commit you to voting for it,&rdquo; the
+            year&apos;s tax rate, the Mayor said, then agreed to wait if he committed in a letter to
+            ask the Council to cover any shortfall from the stabilization fund, a city reserve fund.
+            He said he has made that commitment. &ldquo;It doesn&apos;t commit you to voting for it,&rdquo; the
             Mayor told councilors. <Moment src={COUNCIL1123} s={3874} />
           </p>
           <p className={BODY}>
             <b>Lynch Park.</b>{" "}
             The Council approved <Fig>$107,614</Fig>{" "}from the city&apos;s Community Preservation fund,
-            8-0. It is the city&apos;s share of finishing the design and permits for the Lynch Park
-            seawall; a $430,456 state grant pays the rest{" "}
+            8-0. It is the city&apos;s share of the remaining design and environmental permits for the
+            Lynch Park seawall; a $430,456 state grant pays the rest{" "}
             <Src href={`${COUNCIL_1123}#page=33`}>(p. 33)</Src>.{" "}
             <Moment src={COUNCIL1123} s={9239} />{" "}
             <Earlier issue={8} slug="2026-11-02" id="lynch" label="the application" />
           </p>
           <p className={BODY}>
             <b>The budget analyst.</b>{" "}
-            At a special meeting before the regular one, councilors set November 30 as Catherine
-            Foster&apos;s first day as the Council&apos;s budget analyst and December 31 as Gerry
-            Perry&apos;s last, 6-0. Without a vote, they agreed to ask Perry to see the Financial
-            Forecast Committee through its last meeting on December 10, and to be available as
-            needed after that, as a contractor. <Moment src={COUNCIL1123} s={1101} />
+            At a special meeting before the regular one, councilors voted 6-0 to set November 30 as
+            Catherine Foster&apos;s first day as the Council&apos;s budget analyst, if the date works
+            for her, and December 31 as Gerry Perry&apos;s last. Councilors agreed Perry would see
+            the Financial Forecast Committee through its last meeting on December 10, and the Council
+            President said they would ask him to be available as needed after December 31, as a
+            contractor. <Moment src={COUNCIL1123} s={1101} />
           </p>
           <Refs
             id="council"
@@ -891,10 +910,10 @@ export default function DigestIssue12() {
           </p>
           <p className="mt-2.5 text-[0.93rem] leading-relaxed text-ink-mid">
             <b className="text-ink">Schools:</b>{" "}
-            The district&apos;s outside review of special education, student support teams and its
-            system of extra help for students who are struggling now starts in January, with a final
-            report due August 31, 2027 and presentations to the School Committee that September. The
-            original plan had the work starting this September, according to the city&apos;s bid
+            The district&apos;s outside review of special education and its system of extra help for
+            students who are struggling now starts in January, with a final report due August 31,
+            2027 and presentations to the School Committee that September. The original plan had the
+            work starting in September 2026, according to the city&apos;s bid
             addendum <Src href={`${AUDIT_ADDENDUM}#page=2`}>(p. 2)</Src>.
           </p>
         </div>
