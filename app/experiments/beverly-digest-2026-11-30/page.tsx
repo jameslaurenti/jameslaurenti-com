@@ -386,18 +386,32 @@ function BillSteps() {
    Colors: the two fills pass the dataviz validator (light surface); the gold is under 3:1, so
    every segment carries a printed label. */
 type Share = { pct: number; amt: string };
-const WHO_PAYS: { label: string; rates: string; homes: Share; biz: Share }[] = [
+/* Round 3 (James, Nov 27): it wasn't obvious which bar is what Beverly uses. Beverly's split now
+   comes first, highlighted like the open step in the steps figure; one rate is marked as a
+   comparison and its fills are faded. */
+const WHO_PAYS: {
+  tag: string;
+  label: string;
+  rates: string;
+  inUse: boolean;
+  homes: Share;
+  biz: Share;
+}[] = [
   {
-    label: "One rate for everyone",
-    rates: "$11.99 per $1,000 for all property",
-    homes: { pct: 88, amt: "$119.7 million" },
-    biz: { pct: 12, amt: "$15.7 million" },
-  },
-  {
-    label: "The split the Council chose",
+    tag: "What Beverly uses",
+    label: "The most state law allows",
     rates: "Homes $10.81, business $20.98 per $1,000",
+    inUse: true,
     homes: { pct: 80, amt: "$108.0 million" },
     biz: { pct: 20, amt: "$27.4 million" },
+  },
+  {
+    tag: "For comparison",
+    label: "One rate for everyone",
+    rates: "$11.99 per $1,000 for all property",
+    inUse: false,
+    homes: { pct: 88, amt: "$119.7 million" },
+    biz: { pct: 12, amt: "$15.7 million" },
   },
 ];
 const HOMES_FILL = "#0f7a45";
@@ -426,21 +440,27 @@ function WhoPays() {
           Business property
         </span>
       </p>
-      {WHO_PAYS.map((b, i) => (
-        <div key={b.label}>
-          {i > 0 && (
-            <p className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-accent-glow px-2.5 py-0.5 text-[0.8rem] font-semibold text-accent-deep">
-              <span aria-hidden>&darr;</span> $11.75 million moves from homes to business property
-            </p>
-          )}
-          <p className="mt-3 flex flex-wrap items-baseline gap-x-2 text-[0.9rem]">
+      {WHO_PAYS.map((b) => (
+        <div
+          key={b.label}
+          className={`mt-3 rounded-md ${b.inUse ? "bg-accent-glow px-2.5 py-2.5 ring-1 ring-accent/40" : "px-2.5"}`}
+        >
+          <p className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[0.9rem]">
+            <span
+              className={`rounded-full px-2 py-0.5 text-[0.66rem] font-bold uppercase tracking-[0.1em] ${
+                b.inUse ? "bg-accent text-white" : "border border-rule text-ink-faint"
+              }`}
+            >
+              {b.tag}
+            </span>
             <span className="font-semibold text-ink">{b.label}</span>
-            <span className="text-[0.8rem] text-ink-faint">{b.rates}</span>
           </p>
+          <p className="mt-0.5 text-[0.8rem] text-ink-faint">{b.rates}</p>
           <div
             role="img"
-            aria-label={`Homes ${b.homes.pct} percent, ${b.homes.amt}; business property ${b.biz.pct} percent, ${b.biz.amt}`}
+            aria-label={`${b.tag}, ${b.label}: homes ${b.homes.pct} percent, ${b.homes.amt}; business property ${b.biz.pct} percent, ${b.biz.amt}`}
             className="mt-1.5 flex h-6 gap-[2px]"
+            style={b.inUse ? undefined : { opacity: 0.45 }}
           >
             <span className="rounded-l" style={{ width: `${b.homes.pct}%`, background: HOMES_FILL }} />
             <span className="rounded-r" style={{ width: `${b.biz.pct}%`, background: BIZ_FILL }} />
@@ -457,6 +477,10 @@ function WhoPays() {
           </div>
         </div>
       ))}
+      <p className="mt-3 px-2.5 text-[0.88rem] leading-snug text-ink">
+        <b>The difference:</b>{" "}Beverly&apos;s split moves $11.75 million from homes to business
+        property.
+      </p>
       <p className="mt-4 text-[0.78rem] leading-relaxed text-ink-faint">
         The split is the state&apos;s figures <Src href={DLS_LEVY}>(taxes by class)</Src>{" "}
         <Src href={DLS_RATES}>(rates)</Src>; one rate and
@@ -588,8 +612,8 @@ export default function DigestIssue12() {
             publication
           </p>
           <p className="mt-5 max-w-[63ch] text-xl leading-snug text-ink-mid">
-            On December 7 the City Council makes the last open decision behind your next property
-            tax bill, due February 1: how the total is divided between homes and businesses. Last
+            On December 7 the City Council makes the last open decision behind your next two
+            property tax bills, due February 1 and May 1: how the total is divided between homes and businesses. Last
             year that vote moved about $11.75 million from homes to business property. It&apos;s a holiday
             week, so this issue takes a longer look at how your bill gets made and what the vote can
             and can&apos;t change. Also: the data center pause is final.
@@ -636,11 +660,43 @@ export default function DigestIssue12() {
             title="The chief assessor on what last year's split moved"
             meeting="City Council, Dec 1, 2025"
           />
+          {/* Round 3 (James, Nov 27): readers' first question is what this does to their bills.
+              Which bills, and what happens either way, before the how. The "When you'll see it"
+              paragraph moved in here. Kept conditional: nothing on record says what the Mayor
+              will recommend for FY2027. */}
+          <div className="mt-5 max-w-[63ch] rounded-lg border border-accent/40 bg-accent-glow px-5 py-4">
+            <p className="text-[0.95rem] font-semibold text-accent-deep">What it means for your bill</p>
+            <ul className="mt-2 grid gap-2.5 text-[0.95rem] leading-relaxed">
+              <li>
+                <b>Which bills.</b>{" "}
+                The vote sets the rates for the tax year that began July 1 (the state calls it
+                FY2027). Your August and November bills were estimates based on last year&apos;s tax.
+                The bills due February 1 and May 1, mailed about a month ahead{" "}
+                <Src href={COLLECTOR_FAQ}>(Collector of Taxes)</Src>, charge the new rates, and each
+                carries half of the change for the year, the chief assessor said last year.{" "}
+                <Moment src={COUNCIL1201_2025} s={3511} />
+              </li>
+              <li>
+                <b>If the split stays where it is.</b>{" "}
+                The Council has taxed business property at the most state law allows every year since
+                2021. <Moment src={COUNCIL1201_2025} s={2157} />{" "}If it does again, the split works as it
+                did last year, and the change in your bill comes from what is already settled: the
+                total the city collects and your property&apos;s value.
+              </li>
+              <li>
+                <b>If the split gets smaller.</b>{" "}
+                Some of the tax moves from business property back onto homes, starting with the
+                February bill. <Moment src={COUNCIL1201_2025} s={2264} />{" "}For scale: last year, one rate
+                for everyone would have added about $960 to the average single-family home&apos;s tax
+                for the year, the digest&apos;s arithmetic below. A smaller split would add part of
+                that.
+              </li>
+            </ul>
+          </div>
           <p className={BODY}>
             A property tax bill comes out of four steps. Two are done. The third belongs to the City
             Council: on Monday, December 7, it holds its yearly hearing and vote on how taxes are
-            divided between homes and businesses. The vote covers the tax year that began July 1,
-            which the state calls FY2027, and its rates first show up on the bill due February 1.
+            divided between homes and businesses.
           </p>
           <BillSteps />
           <p className={BODY}>
@@ -659,9 +715,7 @@ export default function DigestIssue12() {
             instead of $11.99 raised its share of the total from 12 percent to 20 percent. Spread
             across all homes, the <Fig>$11.75 million</Fig>{" "}it moved comes to $1.18 less per $1,000
             of value, or about <Fig>$960</Fig>{" "}on last year&apos;s average single-family home. The
-            $960 is the digest&apos;s arithmetic from the state&apos;s average value. A smaller split
-            would do the reverse: a lower rate for business property and a higher one for homes.{" "}
-            <Moment src={COUNCIL1201_2025} s={2264} />
+            $960 is the digest&apos;s arithmetic from the state&apos;s average value.
           </p>
           <p className={BODY}>
             <b>Why a lower rate can still mean a higher bill.</b>{" "}
@@ -688,13 +742,6 @@ export default function DigestIssue12() {
               What sets your property taxes
             </a>
             , walks through why.
-          </p>
-          <p className={BODY}>
-            <b>When you&apos;ll see it.</b>{" "}
-            The bills due in August and November, the first half of the tax year, were estimates
-            based on the year before. The bill due February 1 is the first at the new rate, and any
-            change from last year shows up in that bill and the one due May 1, Golden said. <Moment src={COUNCIL1201_2025} s={3511} /> Bills are mailed
-            about 30 days before they are due <Src href={COLLECTOR_FAQ}>(Collector of Taxes)</Src>.
           </p>
           <details className="mt-5 max-w-[63ch] rounded-lg border border-rule bg-white/70 px-5 py-3">
             <summary className="cursor-pointer text-[0.95rem] font-semibold text-accent">
